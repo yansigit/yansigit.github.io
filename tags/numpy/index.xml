@@ -1,0 +1,44 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>numpy - Tag - Seongbin Yoon</title>
+        <link>https://yansigit.github.io/tags/numpy/</link>
+        <description>numpy - Tag - Seongbin Yoon</description>
+        <generator>Hugo -- gohugo.io</generator><language>en</language><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Tue, 15 Sep 2020 23:50:14 &#43;0900</lastBuildDate><atom:link href="https://yansigit.github.io/tags/numpy/" rel="self" type="application/rss+xml" /><item>
+    <title>Numpy and Matplotlib</title>
+    <link>https://yansigit.github.io/blog/numpy-and-matplotlib/</link>
+    <pubDate>Tue, 15 Sep 2020 23:50:14 &#43;0900</pubDate>
+    <author>yansigit.github.io</author>
+    <guid>https://yansigit.github.io/blog/numpy-and-matplotlib/</guid>
+    <description><![CDATA[<h2 id="numpy" class="headerLink"><a href="#numpy" class="header-mark"></a>Numpy</h2><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-python" data-lang="python"><span class="kn">import</span> <span class="nn">cv2</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+
+<span class="n">img</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="mi">120</span><span class="p">,</span><span class="mi">240</span><span class="p">),</span> <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">uint8</span><span class="p">)</span> <span class="c1"># 120,240 2차원 배열 생성</span>
+<span class="n">img</span><span class="p">[</span><span class="mi">25</span><span class="p">:</span><span class="mi">35</span><span class="p">,</span> <span class="p">:]</span> <span class="o">=</span> <span class="mi">255</span>
+<span class="n">img</span><span class="p">[</span><span class="mi">55</span><span class="p">:</span><span class="mi">65</span><span class="p">,</span> <span class="p">:]</span> <span class="o">=</span> <span class="mi">115</span>
+<span class="n">img</span><span class="p">[</span><span class="mi">85</span><span class="p">:</span><span class="mi">95</span><span class="p">,</span> <span class="p">:]</span> <span class="o">=</span> <span class="mi">160</span>
+<span class="n">img</span><span class="p">[:,</span> <span class="mi">35</span><span class="p">:</span><span class="mi">45</span><span class="p">]</span> <span class="o">=</span> <span class="mi">205</span>
+<span class="n">img</span><span class="p">[:,</span> <span class="mi">75</span><span class="p">:</span><span class="mi">85</span><span class="p">]</span> <span class="o">=</span> <span class="mi">255</span>
+<span class="n">cv2</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="s1">&#39;Gray&#39;</span><span class="p">,</span> <span class="n">img</span><span class="p">)</span>
+<span class="k">if</span> <span class="n">cv2</span><span class="o">.</span><span class="n">waitKey</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span> <span class="o">&amp;</span> <span class="mh">0xFF</span> <span class="o">=</span> <span class="mi">27</span><span class="p">:</span>
+		<span class="n">cv2</span><span class="o">.</span><span class="n">destroyAllWindows</span><span class="p">()</span>
+</code></pre></td></tr></table>
+</div>
+</div>]]></description>
+</item></channel>
+</rss>

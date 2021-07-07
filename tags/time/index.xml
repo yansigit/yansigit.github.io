@@ -1,0 +1,15 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>time - Tag - Seongbin Yoon</title>
+        <link>https://yansigit.github.io/tags/time/</link>
+        <description>time - Tag - Seongbin Yoon</description>
+        <generator>Hugo -- gohugo.io</generator><language>en</language><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Thu, 06 Feb 2020 23:30:05 &#43;0900</lastBuildDate><atom:link href="https://yansigit.github.io/tags/time/" rel="self" type="application/rss+xml" /><item>
+    <title>Time Format in Golang</title>
+    <link>https://yansigit.github.io/blog/time-format-in-golang/</link>
+    <pubDate>Thu, 06 Feb 2020 23:30:05 &#43;0900</pubDate>
+    <author>yansigit.github.io</author>
+    <guid>https://yansigit.github.io/blog/time-format-in-golang/</guid>
+    <description><![CDATA[<h1 id="time-format-in-go-language" class="headerLink"><a href="#time-format-in-go-language" class="header-mark"></a>Time format in Go Language</h1><p>보통 프로그래밍 언어에서 시간과 날짜를 다룰 때 레이아웃은 <code>YYYY-MM-DD HH:MM:SS</code>와 같이 영문자를 이용한 방식이다.</p>
+<p>고 언어에서는 타 언어와 다르게 숫자로 포맷을 지정해줘야 한다.</p>]]></description>
+</item></channel>
+</rss>

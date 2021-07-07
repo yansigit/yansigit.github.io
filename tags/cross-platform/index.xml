@@ -1,0 +1,28 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>cross-platform - Tag - Seongbin Yoon</title>
+        <link>https://yansigit.github.io/tags/cross-platform/</link>
+        <description>cross-platform - Tag - Seongbin Yoon</description>
+        <generator>Hugo -- gohugo.io</generator><language>en</language><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Sat, 19 Sep 2020 14:16:38 &#43;0900</lastBuildDate><atom:link href="https://yansigit.github.io/tags/cross-platform/" rel="self" type="application/rss+xml" /><item>
+    <title>Little Tips Installing Flutter</title>
+    <link>https://yansigit.github.io/blog/little-tips-installing-flutter/</link>
+    <pubDate>Sat, 19 Sep 2020 14:16:38 &#43;0900</pubDate>
+    <author>yansigit.github.io</author>
+    <guid>https://yansigit.github.io/blog/little-tips-installing-flutter/</guid>
+    <description><![CDATA[<p>Notes for dealing with problems while installing flutter</p>]]></description>
+</item><item>
+    <title>React Native Quick Error Fixes</title>
+    <link>https://yansigit.github.io/blog/react-native-quick-error-fixes/</link>
+    <pubDate>Tue, 15 Sep 2020 22:56:51 &#43;0900</pubDate>
+    <author>yansigit.github.io</author>
+    <guid>https://yansigit.github.io/blog/react-native-quick-error-fixes/</guid>
+    <description><![CDATA[<h2 id="ios-향-빌드-시-체크사항" class="headerLink"><a href="#ios-%ed%96%a5-%eb%b9%8c%eb%93%9c-%ec%8b%9c-%ec%b2%b4%ed%81%ac%ec%82%ac%ed%95%ad" class="header-mark"></a>iOS 향 빌드 시 체크사항</h2><ul>
+<li>Xcode - 속성 - 컴포넌트에 iOS 시뮬레이터 깔려있는지 확인 (가상머신 이용 시)</li>
+<li>Location 에서 Command Line Tools가 제대로 지정되어 있는지 확인
+<ul>
+<li>없을 시 Command Line Tools 설치 후 설정</li>
+</ul>
+</li>
+</ul>]]></description>
+</item></channel>
+</rss>

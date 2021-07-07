@@ -1,0 +1,14 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>rdt - Tag - Seongbin Yoon</title>
+        <link>https://yansigit.github.io/tags/rdt/</link>
+        <description>rdt - Tag - Seongbin Yoon</description>
+        <generator>Hugo -- gohugo.io</generator><language>en</language><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Thu, 17 Sep 2020 00:11:07 &#43;0900</lastBuildDate><atom:link href="https://yansigit.github.io/tags/rdt/" rel="self" type="application/rss+xml" /><item>
+    <title>Computer Networking - RDT and Pipelined Protocols</title>
+    <link>https://yansigit.github.io/blog/computer-network-rdt-and-pipelined-protocols/</link>
+    <pubDate>Thu, 17 Sep 2020 00:11:07 &#43;0900</pubDate>
+    <author>yansigit.github.io</author>
+    <guid>https://yansigit.github.io/blog/computer-network-rdt-and-pipelined-protocols/</guid>
+    <description><![CDATA[<p>Computer Networking - RDT and Pipelined Protocols</p>]]></description>
+</item></channel>
+</rss>

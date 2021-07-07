@@ -1,0 +1,16 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>android - Tag - Seongbin Yoon</title>
+        <link>https://yansigit.github.io/tags/android/</link>
+        <description>android - Tag - Seongbin Yoon</description>
+        <generator>Hugo -- gohugo.io</generator><language>en</language><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Wed, 22 Jan 2020 21:31:21 &#43;0900</lastBuildDate><atom:link href="https://yansigit.github.io/tags/android/" rel="self" type="application/rss+xml" /><item>
+    <title>PostmarketOS on Nexus5</title>
+    <link>https://yansigit.github.io/blog/how-to-install-postmarket-os-on-nexus5/</link>
+    <pubDate>Wed, 22 Jan 2020 21:31:21 &#43;0900</pubDate>
+    <author>yansigit.github.io</author>
+    <guid>https://yansigit.github.io/blog/how-to-install-postmarket-os-on-nexus5/</guid>
+    <description><![CDATA[<h1 id="intro" class="headerLink"><a href="#intro" class="header-mark"></a>INTRO</h1><p>실험 대상은 넥서스 5. 굳이 넥서스 5를 고른 이유는, 구글의 레퍼런스 폰인만큼 부트로더 언락도 쉽고
+이미 여러 프로젝트의 개발 1호기로 사용되고 있기에 우분투나 페도라 등에서 혹시 이미 넥서스5용 OS를 개발해놓지 않았을까
+하는 기대감 때문이었다. 결과적으로는 NO 라고 이야기 할 수 있지만.</p>]]></description>
+</item></channel>
+</rss>

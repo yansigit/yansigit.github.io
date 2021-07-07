@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1"><meta name="robots" content="noodp"/><title>Hot Reloading on Golang Project - Seongbin Yoon</title>
+        <meta name="twitter:card" content="summary_large_image"/><meta name="twitter:title" content=""/>
+        <meta name="twitter:description" content="About uBlogger Theme"/>
+        <meta name="Description" content="고 언어 프로젝트에서 Hot-Reloading 기능 사용하기"><meta property="og:title" content="Hot Reloading on Golang Project" />
+<meta property="og:description" content="고 언어 프로젝트에서 Hot-Reloading 기능 사용하기" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://yansigit.github.io/blog/hot-reloading-on-golang-project/" /><meta property="og:image" content="https://yansigit.github.io/logo.png"/><meta property="article:section" content="blog" />
+<meta property="article:published_time" content="2020-01-27T19:47:58&#43;09:00" />
+<meta property="article:modified_time" content="2021-03-16T23:37:21&#43;09:00" />
+
+<meta name="application-name" content="uBlogger">
+<meta name="apple-mobile-web-app-title" content="uBlogger"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+        <link rel="icon" type="image/png" sizes="192x192" href="/android-chrome-192x192.png">
+        <link rel="icon" type="image/png" sizes="512x512" href="/android-chrome-512x512.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://yansigit.github.io/blog/hot-reloading-on-golang-project/" /><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/normalize.css@8.0.1/normalize.min.css"><link rel="stylesheet" href="/lib/prismjs/prism.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.7.2/animate.min.css"><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "Hot Reloading on Golang Project",
+        "inLanguage": "en",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https:\/\/yansigit.github.io\/blog\/hot-reloading-on-golang-project\/"
+        },"image": [{
+                            "@type": "ImageObject",
+                            "url": "https:\/\/yansigit.github.io\/images\/Apple-Devices-Preview.png",
+                            "width":  3200 ,
+                            "height":  2048 
+                        }],"genre": "blog","keywords": "go, golang, hot-reload","wordCount":  383 ,
+        "url": "https:\/\/yansigit.github.io\/blog\/hot-reloading-on-golang-project\/","datePublished": "2020-01-27T19:47:58+09:00","dateModified": "2021-03-16T23:37:21+09:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","description": "고 언어 프로젝트에서 Hot-Reloading 기능 사용하기"
+    }
+    </script><script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        "itemListElement": [{
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Home",
+            "item": "https:\/\/yansigit.github.io\/"
+        },{
+            "@type": "ListItem",
+            "position": 2,
+            "name": "go",
+            "item": "https://yansigit.github.io/categories/go/"
+        },{
+                "@type": "ListItem",
+                "position": 3,
+                "name": "Hot Reloading on Golang Project"
+            }]
+    }
+</script></head>
+    <body data-header-desktop="fixed" data-header-mobile="auto"><script>(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header>
+    <div class="desktop header" id="header-desktop">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="Seongbin Yoon" class="header-logo logo-svg"><span class="header-title-pre">📝</span>Blog == Portfolio</a>
+            </div>
+            <div class="menu">
+                <nav>
+                    <h2 class="display-hidden">Основная навигация</h2>
+                    <ul class="menu-inner"><li>
+                            <a class="menu-item" href="/posts/"> Posts </a>
+                        </li><li>
+                            <a class="menu-item" href="/blog/"> Blog </a>
+                        </li><li>
+                            <a class="menu-item" href="/tags/"> Tags </a>
+                        </li><li>
+                            <a class="menu-item" href="/categories/"> Categories </a>
+                        </li><li>
+                            <a class="menu-item" href="/categories/documentation/"> Docs </a>
+                        </li><li>
+                            <a class="menu-item" href="/about/"> About </a>
+                        </li><li>
+                            <a class="menu-item" href="https://github.com/upagge/ublogger" title="GitHub" rel="noopener noreffer" target="_blank"> Github </a>
+                        </li></ul>
+                </nav><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="Search titles or contents..." id="search-input-desktop">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="Search">
+                            <span class="svg-icon icon-search"></span>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="Clear">
+                            <span class="svg-icon icon-cancel"></span>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <span class="svg-icon icon-loading"></span>
+                        </span>
+                    </span><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                <span class="svg-icon icon-moon"></span>
+                </a>
+            </div>
+        </div>
+    </div><div class="mobile header" id="header-mobile">
+        <div class="header-container">
+            <div class="header-wrapper">
+                <div class="header-title">
+                    <a href="/" title="Seongbin Yoon" class="header-logo"><span class="header-title-pre">📝</span>Blog == Portfolio</a>
+                </div>
+                <div class="menu-toggle" id="menu-toggle-mobile">
+                    <span></span><span></span><span></span>
+                </div>
+            </div>
+            <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                        <div class="search mobile" id="search-mobile">
+                            <input type="text" placeholder="Search titles or contents..." id="search-input-mobile">
+                            <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="Search">
+                                <span class="svg-icon icon-search"></span>
+                            </a>
+                            <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="Clear">
+                                <span class="svg-icon icon-cancel"></span>
+                            </a>
+                            <span class="search-button search-loading" id="search-loading-mobile">
+                                <span class="svg-icon icon-loading"></span>
+                            </span>
+                        </div>
+                        <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
+                            Cancel
+                        </a>
+                    </div><nav>
+                    <h2 class="display-hidden">Основная навигация</h2>
+                    <ul><li>
+                            <a class="menu-item" href="/posts/" title="">Posts</a>
+                        </li><li>
+                            <a class="menu-item" href="/blog/" title="">Blog</a>
+                        </li><li>
+                            <a class="menu-item" href="/tags/" title="">Tags</a>
+                        </li><li>
+                            <a class="menu-item" href="/categories/" title="">Categories</a>
+                        </li><li>
+                            <a class="menu-item" href="/categories/documentation/" title="">Docs</a>
+                        </li><li>
+                            <a class="menu-item" href="/about/" title="">About</a>
+                        </li><li>
+                            <a class="menu-item" href="https://github.com/upagge/ublogger" title="GitHub" rel="noopener noreffer" target="_blank">Github</a>
+                        </li></ul>
+                </nav>
+                <a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                    <span class="svg-icon icon-moon"></span>
+                </a></div>
+        </div>
+    </div><div class="search-dropdown desktop">
+    <div id="search-dropdown-desktop"></div>
+</div>
+<div class="search-dropdown mobile">
+    <div id="search-dropdown-mobile"></div>
+</div></header><main class="main">
+                <div class="container"><div class="page single special"><h1 class="single-title pulse faster">Hot Reloading on Golang Project</h1><div class="content" id="content"><h1 id="hot-reloading" class="headerLink"><a href="#hot-reloading" class="header-mark"></a>Hot Reloading</h1><p>웹 어플리케이션을 개발할 때 항상 유용하게 사용하는 기능이 Hot-Reloading 기능이다.</p>
+<p>템플릿이나 기능을 약간 바꾸고 확인하고 싶을 때,
+코드를 변경하고 일일히 빌드를 새로 해주기란 여간 귀찮은 일이 아니기 때문이다.</p>
+<p>닷넷 코어나 노드JS 기반 프레임워크들에서 작업했을 때는 항상 기본적으로 포함된 기능들이라
+신경쓰지 않고 개발할 수 있었는데 고 언어에서 작업하려다 보니 여간 그리운게 아니라
+관련 패키지가 있는지 검색했더니..
+역시나 개발자들 마음은 한가지인가 보다.</p>
+<p><a href="https://github.com/cosmtrek/air" target="_blank" rel="noopener noreffer">AIR 깃허브 페이지</a></p>
+<p>사용법은 다음과 같다.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-shell" data-lang="shell">go get -u github.com/cosmtrek/air
+</code></pre></td></tr></table>
+</div>
+</div><p>먼저 <code>go get</code> 으로 해당 모듈을 다운받아 준다.</p>
+<p>해당 모듈에는 <code>air.exe</code> 파일이 포함되어 있으며 받자마자 바로 실행 가능하다.</p>
+<p>다음 프로젝트 루트 폴더로 들어가 <code>air.conf</code> 파일을 생성해준다.
+혹은 air 모듈의 디렉토리 내부에 있는 <code>air_example.conf</code> 파일을 복사해 이름을 변경해주어도 된다.</p>
+<p>해당파일은 리눅스용이므로 적절히 윈도우에서 사용 가능하도록 변경해주었다.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-toml" data-lang="toml"><span class="c"># Config file for [Air](https://github.com/cosmtrek/air) in TOML format</span>
+
+<span class="c"># Working directory</span>
+<span class="c"># . or absolute path, please note that the directories following must be under root.</span>
+<span class="nx">root</span> <span class="p">=</span> <span class="s2">&#34;.&#34;</span>
+<span class="nx">tmp_dir</span> <span class="p">=</span> <span class="s2">&#34;tmp&#34;</span>
+
+<span class="p">[</span><span class="nx">build</span><span class="p">]</span>
+<span class="c"># Just plain old shell command. You could use `make` as well.</span>
+<span class="nx">cmd</span> <span class="p">=</span> <span class="s2">&#34;go build -o ./tmp/main.exe .&#34;</span>
+<span class="c"># Binary file yields from `cmd`.</span>
+<span class="nx">bin</span> <span class="p">=</span> <span class="s2">&#34;tmp/main.exe&#34;</span>
+<span class="c"># Customize binary.</span>
+<span class="nx">full_bin</span> <span class="p">=</span> <span class="s2">&#34;set APP_ENV=dev&amp; set APP_USER=air&amp; tmp\\main.exe&#34;</span>
+<span class="c"># Watch these filename extensions.</span>
+<span class="nx">include_ext</span> <span class="p">=</span> <span class="p">[</span><span class="s2">&#34;go&#34;</span><span class="p">,</span> <span class="s2">&#34;pug&#34;</span><span class="p">,</span> <span class="s2">&#34;html&#34;</span><span class="p">]</span>
+<span class="c"># Ignore these filename extensions or directories.</span>
+<span class="nx">exclude_dir</span> <span class="p">=</span> <span class="p">[</span><span class="s2">&#34;assets&#34;</span><span class="p">,</span> <span class="s2">&#34;tmp&#34;</span><span class="p">,</span> <span class="s2">&#34;vendor&#34;</span><span class="p">,</span> <span class="s2">&#34;frontend/node_modules&#34;</span><span class="p">]</span>
+<span class="c"># Watch these directories if you specified.</span>
+<span class="nx">include_dir</span> <span class="p">=</span> <span class="p">[]</span>
+<span class="c"># Exclude files.</span>
+<span class="nx">exclude_file</span> <span class="p">=</span> <span class="p">[]</span>
+<span class="c"># It&#39;s not necessary to trigger build each time file changes if it&#39;s too frequent.</span>
+<span class="nx">delay</span> <span class="p">=</span> <span class="mi">1000</span> <span class="c"># ms</span>
+<span class="c"># Stop to run old binary when build errors occur.</span>
+<span class="nx">stop_on_error</span> <span class="p">=</span> <span class="kc">true</span>
+<span class="c"># This log file places in your tmp_dir.</span>
+<span class="nx">log</span> <span class="p">=</span> <span class="s2">&#34;air_errors.log&#34;</span>
+
+<span class="p">[</span><span class="nx">log</span><span class="p">]</span>
+<span class="c"># Show log time</span>
+<span class="nx">time</span> <span class="p">=</span> <span class="kc">false</span>
+
+<span class="p">[</span><span class="nx">color</span><span class="p">]</span>
+<span class="c"># Customize each part&#39;s color. If no color found, use the raw app log.</span>
+<span class="nx">main</span> <span class="p">=</span> <span class="s2">&#34;magenta&#34;</span>
+<span class="nx">watcher</span> <span class="p">=</span> <span class="s2">&#34;cyan&#34;</span>
+<span class="nx">build</span> <span class="p">=</span> <span class="s2">&#34;yellow&#34;</span>
+<span class="nx">runner</span> <span class="p">=</span> <span class="s2">&#34;green&#34;</span>
+
+<span class="p">[</span><span class="nx">misc</span><span class="p">]</span>
+<span class="c"># Delete tmp directory on exit</span>
+<span class="nx">clean_on_exit</span> <span class="p">=</span> <span class="kc">true</span>
+</code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-shell" data-lang="shell">air -c air.conf
+</code></pre></td></tr></table>
+</div>
+</div><p>다음 <code>air</code> 커맨드를 통해 conf 파일을 지정하고 프로젝트를 watch 시키면,
+파일이 변경될 때 마다 자동으로 재 빌드 작업하고 실행해줄 것이다.</p></div><div id="comments"><div id="utterances"></div><noscript>
+                Please enable JavaScript to view the comments powered by <a href="https://utteranc.es/">Utterances</a>.
+            </noscript></div></div></div>
+                </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line"><i class="svg-icon icon-copyright"></i><span>2020 - 2021</span><span class="author">&nbsp;<a href="/" target="_blank"></a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
+        </div>
+    </footer></div>
+
+        <aside id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="Back to Top">
+                <i class="svg-icon icon-arrow-up"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="View Comments">
+                <i class="svg-icon icon-comments-fixed"></i>
+            </a>
+        </aside><script src="https://cdn.jsdelivr.net/npm/smooth-scroll@16.1.3/dist/smooth-scroll.min.js"></script><script src="https://cdn.jsdelivr.net/npm/autocomplete.js@0.37.1/dist/autocomplete.min.js"></script><script src="https://cdn.jsdelivr.net/npm/algoliasearch@4.2.0/dist/algoliasearch-lite.umd.min.js"></script><script src="https://cdn.jsdelivr.net/npm/clipboard@2.0.6/dist/clipboard.min.js"></script><script src="https://cdn.jsdelivr.net/npm/sharer.js@0.4.0/sharer.min.js"></script><script src="/lib/prismjs/prism.js"></script><script>window.config={"code":{"copyTitle":"Copy to clipboard","maxShownLines":10},"comment":{"utterances":{"darkTheme":"github-dark","issueTerm":"pathname","label":"Utterances Comment","lightTheme":"github-light","repo":"yansigit/yansigit.github.io"}},"search":{"algoliaAppID":"PASDMWALPK","algoliaIndex":"index.en","algoliaSearchKey":"b42948e51daaa93df92381c8e2ac0f93","highlightTag":"em","maxResultLength":10,"noResultsFound":"No results found","snippetLength":30,"type":"algolia"}};</script><script src="/js/theme.min.js"></script><script>
+        (function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
+            m[i].l=1*new Date();k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)})
+        (window, document, "script", "https://mc.yandex.ru/metrika/tag.js", "ym");
+
+        ym("70532758", "init", {
+            clickmap:true,
+            trackLinks:true,
+            accurateTrackBounce:true,
+            webvisor: null 
+        });
+    </script>
+    <noscript><div><img src="https://mc.yandex.ru/watch/70532758" style="position:absolute; left:-9999px;" alt="" /></div></noscript></body>
+</html>

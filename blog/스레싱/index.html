@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1"><meta name="robots" content="noodp"/><title>운영체제 - 스레싱 - Seongbin Yoon</title>
+        <meta name="twitter:card" content="summary_large_image"/><meta name="twitter:title" content=""/>
+        <meta name="twitter:description" content="About uBlogger Theme"/>
+        <meta name="Description" content="스레싱"><meta property="og:title" content="운영체제 - 스레싱" />
+<meta property="og:description" content="스레싱" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://yansigit.github.io/blog/%EC%8A%A4%EB%A0%88%EC%8B%B1/" /><meta property="og:image" content="https://yansigit.github.io/logo.png"/><meta property="article:section" content="blog" />
+<meta property="article:published_time" content="2020-09-18T23:24:53&#43;09:00" />
+<meta property="article:modified_time" content="2020-09-18T23:24:53&#43;09:00" />
+
+<meta name="application-name" content="uBlogger">
+<meta name="apple-mobile-web-app-title" content="uBlogger"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+        <link rel="icon" type="image/png" sizes="192x192" href="/android-chrome-192x192.png">
+        <link rel="icon" type="image/png" sizes="512x512" href="/android-chrome-512x512.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://yansigit.github.io/blog/%EC%8A%A4%EB%A0%88%EC%8B%B1/" /><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/normalize.css@8.0.1/normalize.min.css"><link rel="stylesheet" href="/lib/prismjs/prism.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.7.2/animate.min.css"><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "운영체제 - 스레싱",
+        "inLanguage": "en",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https:\/\/yansigit.github.io\/blog\/%EC%8A%A4%EB%A0%88%EC%8B%B1\/"
+        },"image": [{
+                            "@type": "ImageObject",
+                            "url": "https:\/\/yansigit.github.io\/images\/Apple-Devices-Preview.png",
+                            "width":  3200 ,
+                            "height":  2048 
+                        }],"genre": "blog","keywords": "os, operation-system","wordCount":  425 ,
+        "url": "https:\/\/yansigit.github.io\/blog\/%EC%8A%A4%EB%A0%88%EC%8B%B1\/","datePublished": "2020-09-18T23:24:53+09:00","dateModified": "2020-09-18T23:24:53+09:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","description": "스레싱"
+    }
+    </script><script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        "itemListElement": [{
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Home",
+            "item": "https:\/\/yansigit.github.io\/"
+        },{
+            "@type": "ListItem",
+            "position": 2,
+            "name": "os",
+            "item": "https://yansigit.github.io/categories/os/"
+        },{
+                "@type": "ListItem",
+                "position": 3,
+                "name": "운영체제 - 스레싱"
+            }]
+    }
+</script></head>
+    <body data-header-desktop="fixed" data-header-mobile="auto"><script>(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header>
+    <div class="desktop header" id="header-desktop">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="Seongbin Yoon" class="header-logo logo-svg"><span class="header-title-pre">📝</span>Blog == Portfolio</a>
+            </div>
+            <div class="menu">
+                <nav>
+                    <h2 class="display-hidden">Основная навигация</h2>
+                    <ul class="menu-inner"><li>
+                            <a class="menu-item" href="/posts/"> Posts </a>
+                        </li><li>
+                            <a class="menu-item" href="/blog/"> Blog </a>
+                        </li><li>
+                            <a class="menu-item" href="/tags/"> Tags </a>
+                        </li><li>
+                            <a class="menu-item" href="/categories/"> Categories </a>
+                        </li><li>
+                            <a class="menu-item" href="/categories/documentation/"> Docs </a>
+                        </li><li>
+                            <a class="menu-item" href="/about/"> About </a>
+                        </li><li>
+                            <a class="menu-item" href="https://github.com/upagge/ublogger" title="GitHub" rel="noopener noreffer" target="_blank"> Github </a>
+                        </li></ul>
+                </nav><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="Search titles or contents..." id="search-input-desktop">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="Search">
+                            <span class="svg-icon icon-search"></span>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="Clear">
+                            <span class="svg-icon icon-cancel"></span>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <span class="svg-icon icon-loading"></span>
+                        </span>
+                    </span><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                <span class="svg-icon icon-moon"></span>
+                </a>
+            </div>
+        </div>
+    </div><div class="mobile header" id="header-mobile">
+        <div class="header-container">
+            <div class="header-wrapper">
+                <div class="header-title">
+                    <a href="/" title="Seongbin Yoon" class="header-logo"><span class="header-title-pre">📝</span>Blog == Portfolio</a>
+                </div>
+                <div class="menu-toggle" id="menu-toggle-mobile">
+                    <span></span><span></span><span></span>
+                </div>
+            </div>
+            <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                        <div class="search mobile" id="search-mobile">
+                            <input type="text" placeholder="Search titles or contents..." id="search-input-mobile">
+                            <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="Search">
+                                <span class="svg-icon icon-search"></span>
+                            </a>
+                            <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="Clear">
+                                <span class="svg-icon icon-cancel"></span>
+                            </a>
+                            <span class="search-button search-loading" id="search-loading-mobile">
+                                <span class="svg-icon icon-loading"></span>
+                            </span>
+                        </div>
+                        <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
+                            Cancel
+                        </a>
+                    </div><nav>
+                    <h2 class="display-hidden">Основная навигация</h2>
+                    <ul><li>
+                            <a class="menu-item" href="/posts/" title="">Posts</a>
+                        </li><li>
+                            <a class="menu-item" href="/blog/" title="">Blog</a>
+                        </li><li>
+                            <a class="menu-item" href="/tags/" title="">Tags</a>
+                        </li><li>
+                            <a class="menu-item" href="/categories/" title="">Categories</a>
+                        </li><li>
+                            <a class="menu-item" href="/categories/documentation/" title="">Docs</a>
+                        </li><li>
+                            <a class="menu-item" href="/about/" title="">About</a>
+                        </li><li>
+                            <a class="menu-item" href="https://github.com/upagge/ublogger" title="GitHub" rel="noopener noreffer" target="_blank">Github</a>
+                        </li></ul>
+                </nav>
+                <a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                    <span class="svg-icon icon-moon"></span>
+                </a></div>
+        </div>
+    </div><div class="search-dropdown desktop">
+    <div id="search-dropdown-desktop"></div>
+</div>
+<div class="search-dropdown mobile">
+    <div id="search-dropdown-mobile"></div>
+</div></header><main class="main">
+                <div class="container"><div class="page single special"><h1 class="single-title pulse faster">운영체제 - 스레싱</h1><div class="content" id="content"><p>스레싱</p>
+<h1 id="스레싱" class="headerLink"><a href="#%ec%8a%a4%eb%a0%88%ec%8b%b1" class="header-mark"></a>스레싱</h1><h2 id="스레싱-1" class="headerLink"><a href="#%ec%8a%a4%eb%a0%88%ec%8b%b1-1" class="header-mark"></a>스레싱</h2><ul>
+<li>잦은 페이지 부재로 하드디스크 입출력이 너무 많아져 작업이 멈춘 것 같은 상태</li>
+</ul>
+<h2 id="스레싱-발생-시점" class="headerLink"><a href="#%ec%8a%a4%eb%a0%88%ec%8b%b1-%eb%b0%9c%ec%83%9d-%ec%8b%9c%ec%a0%90" class="header-mark"></a>스레싱 발생 시점</h2><ul>
+<li>CPU가 작업하는 시간보다 스왑 영역으로 페이지를 보내고 새로운 페이지를 메모리에 가져오는 작업이 빈번해져서 CPU가 작업할 수 없는 상태에 이르게 되는 시점</li>
+<li>물리 메모리의 크기를 늘리면 스레싱 발생 지점이 늦춰져서 프로세스를 원만하게 실행할 수 있음</li>
+</ul>
+<p>
+
+
+
+    
+<img loading="lazy" decoding="async"
+         class="render-image"
+         src="./Untitled.png"
+         alt="image"
+         title="Untitled.png"
+    /></p>
+<h2 id="스레싱과-프레임-할당" class="headerLink"><a href="#%ec%8a%a4%eb%a0%88%ec%8b%b1%ea%b3%bc-%ed%94%84%eb%a0%88%ec%9e%84-%ed%95%a0%eb%8b%b9" class="header-mark"></a>스레싱과 프레임 할당</h2><ul>
+<li>프로세스에 너무 적은 프레임을 할당하면 페이지 부재가 빈번히 일어남</li>
+<li>프로세스에 너무 많은 프레임을 할당하면 페이지 부재는 줄지만 메모리가 낭비됨</li>
+<li>프로세스에 프레임을 할당하는 방식은 크게 <strong>정적 할당</strong>과 <strong>동적 할당</strong>으로 구분</li>
+</ul>
+<h2 id="정적-할당" class="headerLink"><a href="#%ec%a0%95%ec%a0%81-%ed%95%a0%eb%8b%b9" class="header-mark"></a>정적 할당</h2><h3 id="균등-할당" class="headerLink"><a href="#%ea%b7%a0%eb%93%b1-%ed%95%a0%eb%8b%b9" class="header-mark"></a>균등 할당</h3><ul>
+<li>프로세스의 크기과 상관 없이 사용 가능한 프레임을 모든 프로세스에 동일하게 할당</li>
+<li>크기가 큰 프로세스의 경우 필요한 만큼 프레임을 할당받지 못함
+<ul>
+<li>페이지 부재 빈번</li>
+<li>크기가 작은 프로세스의 경우 메모리 낭비</li>
+</ul>
+</li>
+</ul>
+<h3 id="비례-할당" class="headerLink"><a href="#%eb%b9%84%eb%a1%80-%ed%95%a0%eb%8b%b9" class="header-mark"></a>비례 할당</h3><ul>
+<li>프로세스의 크기에 비례하여 프레임 할당</li>
+<li>고정 할당보다는 좀 더 현실적
+<ul>
+<li>그러나 실행중에 필요로 하는 프레임을 유동적으로 반영하지 못함</li>
+<li>사용하지 않을 메모리를 미리 확보하는 셈이라 공간 낭비</li>
+</ul>
+</li>
+</ul>
+<h2 id="동적-할당---작업집합-모델" class="headerLink"><a href="#%eb%8f%99%ec%a0%81-%ed%95%a0%eb%8b%b9---%ec%9e%91%ec%97%85%ec%a7%91%ed%95%a9-%eb%aa%a8%eb%8d%b8" class="header-mark"></a>동적 할당 - 작업집합 모델</h2><p>
+
+
+
+    
+<img loading="lazy" decoding="async"
+         class="render-image"
+         src="./Untitled%201.png"
+         alt="image"
+         title="Untitled%201.png"
+    /></p>
+<ul>
+<li>최근 일정 시간 동안 참조된 페이지들을 집합으로 만들고, 이 집합에 있는 페이지들을 물리 메모리에 유지
+<ul>
+<li>작업집합 크기 : 작업집합 모델에서 물리 메모리에 유지할 페이지 크기</li>
+<li>작업집합 윈도우 : 작업집합에 포함되는 페이지 범위</li>
+</ul>
+</li>
+<li>델타 동안 참조된 10개의 페이지 중 작업집합에는 WS(.)={1, 7, 5, 2, 3}이 삽입되며, 이 페이지들은 다음번 윈도우에 도달할 때까지 물리 메모리에 보존</li>
+</ul>
+<p>
+
+
+
+    
+<img loading="lazy" decoding="async"
+         class="render-image"
+         src="./Untitled%202.png"
+         alt="image"
+         title="Untitled%202.png"
+    /></p>
+<ul>
+<li>작업집합 크기
+<ul>
+<li>작업집합에 들어갈 최대 페이지 수</li>
+<li>작업 집합 갱신 주기 (.번 페이지 접근시 마다)</li>
+</ul>
+</li>
+</ul>
+<h2 id="작업-집합-윈도우의-크기와-프로세스-실행-성능" class="headerLink"><a href="#%ec%9e%91%ec%97%85-%ec%a7%91%ed%95%a9-%ec%9c%88%eb%8f%84%ec%9a%b0%ec%9d%98-%ed%81%ac%ea%b8%b0%ec%99%80-%ed%94%84%eb%a1%9c%ec%84%b8%ec%8a%a4-%ec%8b%a4%ed%96%89-%ec%84%b1%eb%8a%a5" class="header-mark"></a>작업 집합 윈도우의 크기와 프로세스 실행 성능</h2><ul>
+<li>작업집합 윈도우를 너무 크게 잡으면 필요 없는 페이지가 메모리에 남아서 다른 프로세스에 영향을 미침</li>
+<li>윈도우를 너무 작게 잡으면 필요한 페이지가 스왑 영역으로 옮겨져서 프로세스의 성능이 떨어짐</li>
+<li>적정크기의 작업집합을 유지함으로써 메모리를 효율적으로 관리 할 수 있음</li>
+</ul>
+<h2 id="동적할당---페이지-부재-빈도" class="headerLink"><a href="#%eb%8f%99%ec%a0%81%ed%95%a0%eb%8b%b9---%ed%8e%98%ec%9d%b4%ec%a7%80-%eb%b6%80%ec%9e%ac-%eb%b9%88%eb%8f%84" class="header-mark"></a>동적할당 - 페이지 부재 빈도</h2><p>
+
+
+
+    
+<img loading="lazy" decoding="async"
+         class="render-image"
+         src="./Untitled%203.png"
+         alt="image"
+         title="Untitled%203.png"
+    /></p>
+<ul>
+<li>페이지 부재 횟수를 기록하여 페이지 부재 비율을 계산하는 방식</li>
+<li>페이지 부재 비율이 상한선을 초과하면 프레임을 추가하여 늘림</li>
+<li>페이지 부재 비율이 하한선 밑으로 내려가면 할당한 프레임을 회수</li>
+<li>페이지 부재 빈도 방식은 프로세스를 실행하면서 추가적으로 페이지를 할당하거나 회수하여 적정 페이지 할당량을 조절</li>
+</ul>
+<h2 id="전역-교체와-지역-교체" class="headerLink"><a href="#%ec%a0%84%ec%97%ad-%ea%b5%90%ec%b2%b4%ec%99%80-%ec%a7%80%ec%97%ad-%ea%b5%90%ec%b2%b4" class="header-mark"></a>전역 교체와 지역 교체</h2><p>
+
+
+
+    
+<img loading="lazy" decoding="async"
+         class="render-image"
+         src="./Untitled%204.png"
+         alt="image"
+         title="Untitled%204.png"
+    /></p>
+<ul>
+<li><strong>전역 교체</strong>
+<ul>
+<li>전체 프레임을 상대로 교체 알고리즘 적용</li>
+</ul>
+</li>
+<li><strong>지역 교체</strong>
+<ul>
+<li>현재 실행중인 프로세스의 프레임만을 대상으로 교체 알고리즘 적용</li>
+</ul>
+</li>
+</ul>
+<h2 id="지역-교체의-장단점" class="headerLink"><a href="#%ec%a7%80%ec%97%ad-%ea%b5%90%ec%b2%b4%ec%9d%98-%ec%9e%a5%eb%8b%a8%ec%a0%90" class="header-mark"></a>지역 교체의 장단점</h2><ul>
+<li><strong>장점</strong> : 자신에게 할당된 프레임의 전체 개수에 변화가 없기 때문에 페이지 교체가 다른 프로세스에 영향을 미치지 않음</li>
+<li><strong>단점</strong> : 자주 사용하는 페이지가 스왑 영역으로 옮겨져 시스템의 효율이 떨어짐</li>
+</ul>
+<h2 id="페이지-테이블의-크기" class="headerLink"><a href="#%ed%8e%98%ec%9d%b4%ec%a7%80-%ed%85%8c%ec%9d%b4%eb%b8%94%ec%9d%98-%ed%81%ac%ea%b8%b0" class="header-mark"></a>페이지 테이블의 크기</h2><p>
+
+
+
+    
+<img loading="lazy" decoding="async"
+         class="render-image"
+         src="./Untitled%205.png"
+         alt="image"
+         title="Untitled%205.png"
+    /></p>
+<ul>
+<li>페이지 테이블이 차지하는 공간은 1,048,576개 X 20Bit = 약 2.62MB (각 프로세스마다)</li>
+</ul>
+<h2 id="프로세스의-프레임-공유-예" class="headerLink"><a href="#%ed%94%84%eb%a1%9c%ec%84%b8%ec%8a%a4%ec%9d%98-%ed%94%84%eb%a0%88%ec%9e%84-%ea%b3%b5%ec%9c%a0-%ec%98%88" class="header-mark"></a>프로세스의 프레임 공유 예</h2><p>
+
+
+
+    
+<img loading="lazy" decoding="async"
+         class="render-image"
+         src="./Untitled%206.png"
+         alt="image"
+         title="Untitled%206.png"
+    /></p>
+<p>
+
+
+
+    
+<img loading="lazy" decoding="async"
+         class="render-image"
+         src="./Untitled%207.png"
+         alt="image"
+         title="Untitled%207.png"
+    /></p>
+<ul>
+<li>예를 들어 크롬을 두개 실행했을 경우 실행 부분은 메모리를 공유하고 데이터 부분만 따로 사용</li>
+</ul>
+<h2 id="쓰기-시점-복사" class="headerLink"><a href="#%ec%93%b0%ea%b8%b0-%ec%8b%9c%ec%a0%90-%eb%b3%b5%ec%82%ac" class="header-mark"></a>쓰기 시점 복사</h2><p>
+
+
+
+    
+<img loading="lazy" decoding="async"
+         class="render-image"
+         src="./Untitled%208.png"
+         alt="image"
+         title="Untitled%208.png"
+    /></p>
+<ul>
+<li>예를들어 크롬을 포크했을 때 기존의 메모리를 사용하고 있다가 데이터의 변화가 있을 때 그제서야 데이터 영역을 복사해 새로 할당해 주는 것
+<ul>
+<li>데이터의 변화가 있을 때 까지 복사를 미루는 방식</li>
+<li>메모리를 효율적으로 사용하기 위함</li>
+</ul>
+</li>
+</ul></div><div id="comments"><div id="utterances"></div><noscript>
+                Please enable JavaScript to view the comments powered by <a href="https://utteranc.es/">Utterances</a>.
+            </noscript></div></div></div>
+                </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line"><i class="svg-icon icon-copyright"></i><span>2020 - 2021</span><span class="author">&nbsp;<a href="/" target="_blank"></a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
+        </div>
+    </footer></div>
+
+        <aside id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="Back to Top">
+                <i class="svg-icon icon-arrow-up"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="View Comments">
+                <i class="svg-icon icon-comments-fixed"></i>
+            </a>
+        </aside><script src="https://cdn.jsdelivr.net/npm/smooth-scroll@16.1.3/dist/smooth-scroll.min.js"></script><script src="https://cdn.jsdelivr.net/npm/autocomplete.js@0.37.1/dist/autocomplete.min.js"></script><script src="https://cdn.jsdelivr.net/npm/algoliasearch@4.2.0/dist/algoliasearch-lite.umd.min.js"></script><script src="https://cdn.jsdelivr.net/npm/clipboard@2.0.6/dist/clipboard.min.js"></script><script src="https://cdn.jsdelivr.net/npm/sharer.js@0.4.0/sharer.min.js"></script><script src="/lib/prismjs/prism.js"></script><script>window.config={"code":{"copyTitle":"Copy to clipboard","maxShownLines":10},"comment":{"utterances":{"darkTheme":"github-dark","issueTerm":"pathname","label":"Utterances Comment","lightTheme":"github-light","repo":"yansigit/yansigit.github.io"}},"search":{"algoliaAppID":"PASDMWALPK","algoliaIndex":"index.en","algoliaSearchKey":"b42948e51daaa93df92381c8e2ac0f93","highlightTag":"em","maxResultLength":10,"noResultsFound":"No results found","snippetLength":30,"type":"algolia"}};</script><script src="/js/theme.min.js"></script><script>
+        (function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
+            m[i].l=1*new Date();k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)})
+        (window, document, "script", "https://mc.yandex.ru/metrika/tag.js", "ym");
+
+        ym("70532758", "init", {
+            clickmap:true,
+            trackLinks:true,
+            accurateTrackBounce:true,
+            webvisor: null 
+        });
+    </script>
+    <noscript><div><img src="https://mc.yandex.ru/watch/70532758" style="position:absolute; left:-9999px;" alt="" /></div></noscript></body>
+</html>

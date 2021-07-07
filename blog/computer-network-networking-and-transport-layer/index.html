@@ -1,0 +1,496 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1"><meta name="robots" content="noodp"/><title>Computer Networking - Socket Networking and Transport Layer - Seongbin Yoon</title>
+        <meta name="twitter:card" content="summary_large_image"/><meta name="twitter:title" content=""/>
+        <meta name="twitter:description" content="About uBlogger Theme"/>
+        <meta name="Description" content="컴퓨터 네트워크 - Socket Networking and Transport Layer"><meta property="og:title" content="Computer Networking - Socket Networking and Transport Layer" />
+<meta property="og:description" content="컴퓨터 네트워크 - Socket Networking and Transport Layer" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://yansigit.github.io/blog/computer-network-networking-and-transport-layer/" /><meta property="og:image" content="https://yansigit.github.io/logo.png"/><meta property="article:section" content="blog" />
+<meta property="article:published_time" content="2020-09-17T00:11:07&#43;09:00" />
+<meta property="article:modified_time" content="2021-03-16T23:37:21&#43;09:00" />
+
+<meta name="application-name" content="uBlogger">
+<meta name="apple-mobile-web-app-title" content="uBlogger"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+        <link rel="icon" type="image/png" sizes="192x192" href="/android-chrome-192x192.png">
+        <link rel="icon" type="image/png" sizes="512x512" href="/android-chrome-512x512.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://yansigit.github.io/blog/computer-network-networking-and-transport-layer/" /><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/normalize.css@8.0.1/normalize.min.css"><link rel="stylesheet" href="/lib/prismjs/prism.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.7.2/animate.min.css"><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "Computer Networking - Socket Networking and Transport Layer",
+        "inLanguage": "en",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https:\/\/yansigit.github.io\/blog\/computer-network-networking-and-transport-layer\/"
+        },"image": [{
+                            "@type": "ImageObject",
+                            "url": "https:\/\/yansigit.github.io\/images\/Apple-Devices-Preview.png",
+                            "width":  3200 ,
+                            "height":  2048 
+                        }],"genre": "blog","keywords": "computer-networking, network, networking, socket, socket-networking, transport-layer","wordCount":  822 ,
+        "url": "https:\/\/yansigit.github.io\/blog\/computer-network-networking-and-transport-layer\/","datePublished": "2020-09-17T00:11:07+09:00","dateModified": "2021-03-16T23:37:21+09:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","description": "컴퓨터 네트워크 - Socket Networking and Transport Layer"
+    }
+    </script><script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        "itemListElement": [{
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Home",
+            "item": "https:\/\/yansigit.github.io\/"
+        },{
+            "@type": "ListItem",
+            "position": 2,
+            "name": "computer-networking",
+            "item": "https://yansigit.github.io/categories/computer-networking/"
+        },{
+                "@type": "ListItem",
+                "position": 3,
+                "name": "Computer Networking - Socket Networking and Transport Layer"
+            }]
+    }
+</script></head>
+    <body data-header-desktop="fixed" data-header-mobile="auto"><script>(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header>
+    <div class="desktop header" id="header-desktop">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="Seongbin Yoon" class="header-logo logo-svg"><span class="header-title-pre">📝</span>Blog == Portfolio</a>
+            </div>
+            <div class="menu">
+                <nav>
+                    <h2 class="display-hidden">Основная навигация</h2>
+                    <ul class="menu-inner"><li>
+                            <a class="menu-item" href="/posts/"> Posts </a>
+                        </li><li>
+                            <a class="menu-item" href="/blog/"> Blog </a>
+                        </li><li>
+                            <a class="menu-item" href="/tags/"> Tags </a>
+                        </li><li>
+                            <a class="menu-item" href="/categories/"> Categories </a>
+                        </li><li>
+                            <a class="menu-item" href="/categories/documentation/"> Docs </a>
+                        </li><li>
+                            <a class="menu-item" href="/about/"> About </a>
+                        </li><li>
+                            <a class="menu-item" href="https://github.com/upagge/ublogger" title="GitHub" rel="noopener noreffer" target="_blank"> Github </a>
+                        </li></ul>
+                </nav><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="Search titles or contents..." id="search-input-desktop">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="Search">
+                            <span class="svg-icon icon-search"></span>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="Clear">
+                            <span class="svg-icon icon-cancel"></span>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <span class="svg-icon icon-loading"></span>
+                        </span>
+                    </span><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                <span class="svg-icon icon-moon"></span>
+                </a>
+            </div>
+        </div>
+    </div><div class="mobile header" id="header-mobile">
+        <div class="header-container">
+            <div class="header-wrapper">
+                <div class="header-title">
+                    <a href="/" title="Seongbin Yoon" class="header-logo"><span class="header-title-pre">📝</span>Blog == Portfolio</a>
+                </div>
+                <div class="menu-toggle" id="menu-toggle-mobile">
+                    <span></span><span></span><span></span>
+                </div>
+            </div>
+            <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                        <div class="search mobile" id="search-mobile">
+                            <input type="text" placeholder="Search titles or contents..." id="search-input-mobile">
+                            <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="Search">
+                                <span class="svg-icon icon-search"></span>
+                            </a>
+                            <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="Clear">
+                                <span class="svg-icon icon-cancel"></span>
+                            </a>
+                            <span class="search-button search-loading" id="search-loading-mobile">
+                                <span class="svg-icon icon-loading"></span>
+                            </span>
+                        </div>
+                        <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
+                            Cancel
+                        </a>
+                    </div><nav>
+                    <h2 class="display-hidden">Основная навигация</h2>
+                    <ul><li>
+                            <a class="menu-item" href="/posts/" title="">Posts</a>
+                        </li><li>
+                            <a class="menu-item" href="/blog/" title="">Blog</a>
+                        </li><li>
+                            <a class="menu-item" href="/tags/" title="">Tags</a>
+                        </li><li>
+                            <a class="menu-item" href="/categories/" title="">Categories</a>
+                        </li><li>
+                            <a class="menu-item" href="/categories/documentation/" title="">Docs</a>
+                        </li><li>
+                            <a class="menu-item" href="/about/" title="">About</a>
+                        </li><li>
+                            <a class="menu-item" href="https://github.com/upagge/ublogger" title="GitHub" rel="noopener noreffer" target="_blank">Github</a>
+                        </li></ul>
+                </nav>
+                <a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                    <span class="svg-icon icon-moon"></span>
+                </a></div>
+        </div>
+    </div><div class="search-dropdown desktop">
+    <div id="search-dropdown-desktop"></div>
+</div>
+<div class="search-dropdown mobile">
+    <div id="search-dropdown-mobile"></div>
+</div></header><main class="main">
+                <div class="container"><div class="page single special"><h1 class="single-title pulse faster">Computer Networking - Socket Networking and Transport Layer</h1><div class="content" id="content"><p>Computer Networking - Socket Networking and Transport Layer</p>
+<h1 id="computer-netowork-socket-networking-and-transport-layer" class="headerLink"><a href="#computer-netowork-socket-networking-and-transport-layer" class="header-mark"></a>Computer-Netowork-Socket-Networking-and-Transport-Layer</h1><h1 id="1-socket-programming" class="headerLink"><a href="#1-socket-programming" class="header-mark"></a>1. Socket Programming</h1><h2 id="socket" class="headerLink"><a href="#socket" class="header-mark"></a><strong>Socket</strong></h2><p>Door between applicationp process and end to end transport protocol</p>
+<h2 id="socket-delivery-flow" class="headerLink"><a href="#socket-delivery-flow" class="header-mark"></a>Socket delivery flow</h2><p>Make a messsage → Send it to sender socket → will be delivered automatically to the socket of the receiver → Receiver will get message thru its own socket</p>
+<h2 id="so-you-dont-need-to-worry-about-much-things" class="headerLink"><a href="#so-you-dont-need-to-worry-about-much-things" class="header-mark"></a>So, you don&rsquo;t need to worry about much things</h2><p>You only need to specify source address, destination address, and message which will be attached on socket.</p>
+<p>Rest of parts will be done by transport infra.</p>
+<h2 id="two-socket-types" class="headerLink"><a href="#two-socket-types" class="header-mark"></a>Two socket types</h2><ul>
+<li><strong>UDP</strong>
+<ul>
+<li>Unreliable Datagram</li>
+</ul>
+</li>
+<li><strong>TCP</strong>
+<ul>
+<li>Reliable</li>
+<li>Byte stream-oriented
+<ul>
+<li>Imagine there is some pipe between sender and receiver</li>
+<li>Sender ←→ Receiver</li>
+<li>And datagrams flow thru the pipeline, being oriented</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="udp-no-connection-between-client--server" class="headerLink"><a href="#udp-no-connection-between-client--server" class="header-mark"></a>UDP: &ldquo;No connection&rdquo; between client ↔ server</h2><ul>
+<li>No Handshaking before sending data</li>
+<li>Sender (Can be both Server or Client) attaches IP destination address and port number to each packet</li>
+<li>Receiver extracts sender IP and port number from received packet</li>
+<li>Packet can be lost or received un-ordered status. (not guaranteed)</li>
+</ul>
+<h2 id="how-udp-interacting" class="headerLink"><a href="#how-udp-interacting" class="header-mark"></a>How UDP interacting</h2><p>
+
+
+
+    
+<img loading="lazy" decoding="async"
+         class="render-image"
+         src="./Untitled.png"
+         alt="image"
+         title="Untitled.png"
+    /></p>
+<h2 id="actual-python-code-udp" class="headerLink"><a href="#actual-python-code-udp" class="header-mark"></a>Actual Python Code (UDP)</h2><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-python" data-lang="python"><span class="c1"># UDP CLIENT</span>
+<span class="kn">from</span> <span class="nn">socket</span> <span class="kn">import</span> <span class="o">*</span>
+<span class="n">serverName</span> <span class="o">=</span> <span class="s1">&#39;hostname&#39;</span>
+<span class="n">serverPort</span> <span class="o">=</span> <span class="mi">12000</span>
+<span class="n">clientSocket</span> <span class="o">=</span> <span class="n">socket</span><span class="p">(</span><span class="n">AF_INET</span><span class="p">,</span> <span class="n">SOCK_DGRAM</span><span class="p">)</span>
+<span class="n">message</span> <span class="o">=</span> <span class="n">raw_input</span><span class="p">(</span><span class="s1">&#39;Input lowercase sentence:&#39;</span><span class="p">)</span>
+<span class="n">clientSocket</span><span class="o">.</span><span class="n">sendto</span><span class="p">(</span><span class="n">message</span><span class="o">.</span><span class="n">encode</span><span class="p">(),</span> <span class="p">(</span><span class="n">serverName</span><span class="p">,</span> <span class="n">serverPort</span><span class="p">))</span>
+<span class="n">modifiedMessage</span><span class="p">,</span> <span class="n">serverAddress</span> <span class="o">=</span> <span class="n">clientSocket</span><span class="o">.</span><span class="n">recvfrom</span><span class="p">(</span><span class="mi">2048</span><span class="p">)</span> <span class="c1"># receive from. will be blocked until it receives some datagram</span>
+<span class="nb">print</span> <span class="n">modifiedMessage</span><span class="o">.</span><span class="n">decode</span><span class="p">()</span>
+<span class="n">clientSocket</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+</code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-python" data-lang="python"><span class="c1"># UDP SERVER</span>
+<span class="kn">from</span> <span class="nn">socket</span> <span class="kn">import</span> <span class="o">*</span>
+<span class="n">serverPort</span> <span class="o">=</span> <span class="mi">12000</span>
+<span class="n">serverSocket</span> <span class="o">=</span> <span class="n">socket</span><span class="p">(</span><span class="n">AF_INET</span><span class="p">,</span> <span class="n">SOCK_DGRAM</span><span class="p">)</span>
+<span class="n">serverSocket</span><span class="o">.</span><span class="n">bind</span><span class="p">((</span><span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="n">serverPort</span><span class="p">))</span>
+<span class="nb">print</span> <span class="p">(</span><span class="s1">&#39;The server is ready to receive&#39;</span><span class="p">)</span>
+<span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
+    <span class="n">message</span><span class="p">,</span> <span class="n">clientAddress</span> <span class="o">=</span> <span class="n">serverSocket</span><span class="o">.</span><span class="n">recvfrom</span><span class="p">(</span><span class="mi">2048</span><span class="p">)</span>
+    <span class="n">modifiedMessage</span> <span class="o">=</span> <span class="n">message</span><span class="o">.</span><span class="n">decode</span><span class="p">()</span><span class="o">.</span><span class="n">upper</span><span class="p">()</span>
+    <span class="n">serverSocket</span><span class="o">.</span><span class="n">sendto</span><span class="p">(</span><span class="n">modifiedMessage</span><span class="o">.</span><span class="n">encode</span><span class="p">(),</span> <span class="n">clientAddress</span><span class="p">)</span>
+</code></pre></td></tr></table>
+</div>
+</div><h2 id="tcp-creating-tcp-connection-between-clientserver" class="headerLink"><a href="#tcp-creating-tcp-connection-between-clientserver" class="header-mark"></a>TCP: &ldquo;Creating TCP connection between client↔server&rdquo;</h2><ul>
+<li>Client must contact server first
+<ul>
+<li>So, server process should be run first, with its socket to welcome client&rsquo;s contact</li>
+<li>Client contacts server by creating TCP socket, specifying IP address, port number of server process (with connect function in python)</li>
+</ul>
+</li>
+<li>Server creates saparated TCP socket for each clients
+<ul>
+<li>allows server to talk with multiple clients</li>
+<li>source port numbers used to determine clients</li>
+</ul>
+</li>
+<li>TCP provices reliable, in-order byte stream transfer (&ldquo;pipe&rdquo;) between client ↔ server</li>
+</ul>
+<h2 id="how-tcp-interacting" class="headerLink"><a href="#how-tcp-interacting" class="header-mark"></a>How TCP interacting</h2><p>
+
+
+
+    
+<img loading="lazy" decoding="async"
+         class="render-image"
+         src="./Untitled%201.png"
+         alt="image"
+         title="Untitled%201.png"
+    /></p>
+<ul>
+<li>서버 소켓은 Close되지 않고 클라이언트 소켓을 위해 언제나 열려있을 것임</li>
+</ul>
+<h2 id="actual-python-code-tcp" class="headerLink"><a href="#actual-python-code-tcp" class="header-mark"></a>Actual Python Code (TCP)</h2><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-python" data-lang="python"><span class="c1"># Client</span>
+<span class="kn">from</span> <span class="nn">socket</span> <span class="kn">import</span> <span class="o">*</span>
+<span class="n">serverName</span> <span class="o">=</span> <span class="s1">&#39;servername&#39;</span>
+<span class="n">serverPort</span> <span class="o">=</span> <span class="mi">12000</span>
+<span class="n">clientSocket</span> <span class="o">=</span> <span class="n">socket</span><span class="p">(</span><span class="n">AF_INET</span><span class="p">,</span> <span class="n">SOCK_STREAM</span><span class="p">)</span>
+<span class="n">clientSocket</span><span class="o">.</span><span class="n">connect</span><span class="p">((</span><span class="n">serverName</span><span class="p">,</span><span class="n">serverPort</span><span class="p">))</span>
+<span class="n">sentence</span> <span class="o">=</span> <span class="n">raw_input</span><span class="p">(</span><span class="s1">&#39;Input lowercase sentence:&#39;</span><span class="p">)</span>
+<span class="n">clientSocket</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="n">sentence</span><span class="o">.</span><span class="n">encode</span><span class="p">())</span>
+<span class="n">modifiedSentence</span> <span class="o">=</span> <span class="n">clientSocket</span><span class="o">.</span><span class="n">recv</span><span class="p">(</span><span class="mi">1024</span><span class="p">)</span>
+<span class="nb">print</span> <span class="p">(</span><span class="err">‘</span><span class="n">From</span> <span class="n">Server</span><span class="p">:</span><span class="err">’</span><span class="p">,</span> <span class="n">modifiedSentence</span><span class="o">.</span><span class="n">decode</span><span class="p">())</span>
+<span class="n">clientSocket</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+</code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-python" data-lang="python"><span class="c1"># Server</span>
+<span class="kn">from</span> <span class="nn">socket</span> <span class="kn">import</span> <span class="o">*</span>
+<span class="n">serverPort</span> <span class="o">=</span> <span class="mi">12000</span>
+<span class="n">serverSocket</span> <span class="o">=</span> <span class="n">socket</span><span class="p">(</span><span class="n">AF_INET</span><span class="p">,</span><span class="n">SOCK_STREAM</span><span class="p">)</span>
+<span class="n">serverSocket</span><span class="o">.</span><span class="n">bind</span><span class="p">((</span><span class="s1">&#39;&#39;</span><span class="p">,</span><span class="n">serverPort</span><span class="p">))</span>
+<span class="n">serverSocket</span><span class="o">.</span><span class="n">listen</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="c1"># begins to listen for incoming TCP requests</span>
+<span class="nb">print</span> <span class="s1">&#39;The server is ready to receive&#39;</span>
+<span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
+     <span class="n">connectionSocket</span><span class="p">,</span> <span class="n">addr</span> <span class="o">=</span> <span class="n">serverSocket</span><span class="o">.</span><span class="n">accept</span><span class="p">()</span> <span class="c1"># blocked waiting imcoming requests</span>
+     
+     <span class="n">sentence</span> <span class="o">=</span> <span class="n">connectionSocket</span><span class="o">.</span><span class="n">recv</span><span class="p">(</span><span class="mi">1024</span><span class="p">)</span><span class="o">.</span><span class="n">decode</span><span class="p">()</span>
+     <span class="n">capitalizedSentence</span> <span class="o">=</span> <span class="n">sentence</span><span class="o">.</span><span class="n">upper</span><span class="p">()</span>
+     <span class="n">connectionSocket</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="n">capitalizedSentence</span><span class="o">.</span><span class="n">encode</span><span class="p">())</span>
+     <span class="n">connectionSocket</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+</code></pre></td></tr></table>
+</div>
+</div><h1 id="2-transport-layer" class="headerLink"><a href="#2-transport-layer" class="header-mark"></a>2. Transport Layer</h1><h2 id="tranport-services-and-protocols" class="headerLink"><a href="#tranport-services-and-protocols" class="header-mark"></a>Tranport services and protocols</h2><ul>
+<li>Manage <strong>logical commucation</strong> between app process running on different hosts
+<ul>
+<li>Those Two hosts may not physically connected</li>
+</ul>
+</li>
+<li>Transport protocols run in end systems
+<ul>
+<li>Not in routers</li>
+<li>Send side: breaks app messages into segments, and passes to network layer</li>
+<li>Receiver side: Reassembles segments into messages, passes to app layer</li>
+</ul>
+</li>
+<li>More than one transport layer can be available: UDP and TCP</li>
+</ul>
+<h2 id="transport-vs-network-layer-" class="headerLink"><a href="#transport-vs-network-layer-" class="header-mark"></a>Transport vs Network Layer ★</h2><h3 id="network-layer" class="headerLink"><a href="#network-layer" class="header-mark"></a>Network Layer</h3><ul>
+<li><strong>Logical communication</strong> between <strong>hosts</strong></li>
+</ul>
+<h3 id="transport-layer" class="headerLink"><a href="#transport-layer" class="header-mark"></a>Transport Layer</h3><ul>
+<li><strong>Logical communication</strong> between <strong>processes</strong> (programs)</li>
+<li>Relies on network layer servcies</li>
+</ul>
+<h2 id="internet-transport-layer-protocols" class="headerLink"><a href="#internet-transport-layer-protocols" class="header-mark"></a>Internet Transport-Layer Protocols</h2><blockquote>
+<p>딜레이, 전송 속도는 TCP, UDP 둘 다 보장 안됨</p>
+</blockquote>
+<h3 id="tcp" class="headerLink"><a href="#tcp" class="header-mark"></a>TCP</h3><ul>
+<li>Congesion control
+<ul>
+<li>네트워크가 혼잡할 때 Sender의 속도를 줄여 혼잡을 완화</li>
+</ul>
+</li>
+<li>Flow control
+<ul>
+<li>Sender가 너무 빠르게 Stream을 보내지 않도록 속도를 조절</li>
+<li>Receiver가 받는 속도가 느리면 패킷로스가 일어날 수 있기 때문</li>
+</ul>
+</li>
+<li>Connection setup</li>
+</ul>
+<h3 id="udp" class="headerLink"><a href="#udp" class="header-mark"></a>UDP</h3><ul>
+<li>No extensions</li>
+</ul>
+<h1 id="3-multiplexing-and-demultiplexing" class="headerLink"><a href="#3-multiplexing-and-demultiplexing" class="header-mark"></a>3. Multiplexing and Demultiplexing</h1><blockquote>
+<p>여러개의 소켓에서 전송되고 받는 데이터를 Handle하기 위함</p>
+</blockquote>
+<p>
+
+
+
+    
+<img loading="lazy" decoding="async"
+         class="render-image"
+         src="./Untitled%202.png"
+         alt="image"
+         title="Untitled%202.png"
+    /></p>
+<h2 id="multiplexing" class="headerLink"><a href="#multiplexing" class="header-mark"></a>Multiplexing</h2><ul>
+<li><strong>Handle data from</strong> <strong>multiple sockets</strong>, add transport header</li>
+</ul>
+<h2 id="demultiplexing" class="headerLink"><a href="#demultiplexing" class="header-mark"></a>Demultiplexing</h2><ul>
+<li>Use transport header info to <strong>deliver received segments to correct socket</strong></li>
+</ul>
+<h2 id="how-demultiplexing-works" class="headerLink"><a href="#how-demultiplexing-works" class="header-mark"></a>How Demultiplexing works</h2><ul>
+<li>Each datagram has source IP address and destination IP address</li>
+<li>Also datagram carries one transport-layer segment
+<ul>
+<li>which has source, destination port number</li>
+</ul>
+</li>
+<li>So, host uses IP address &amp; Port numbers to direct segment to appropriate socket</li>
+</ul>
+<h2 id="connectionless-demultiplexing-used-in-udp" class="headerLink"><a href="#connectionless-demultiplexing-used-in-udp" class="header-mark"></a>Connectionless demultiplexing: &ldquo;Used in UDP&rdquo;</h2><h3 id="recall" class="headerLink"><a href="#recall" class="header-mark"></a>!Recall</h3><ul>
+<li>클라이언트 소켓이 만들어질때는 OS가 클라이언트 소켓에 포트 넘버를 자동 할당</li>
+<li>서버 소켓을 만들 때는 Bind 함수로 포트번호 할당 가능
+<ul>
+<li>OS에서 포트 넘버 할당</li>
+<li>Bind() 함수로 포트 넘버 할당</li>
+</ul>
+</li>
+<li>Sendto() 함수를 사용하기 위해서는
+<ul>
+<li>IP 주소와 포트 넘버를 명시해줘야 한다</li>
+</ul>
+</li>
+</ul>
+<h3 id="so-when-host-receives-udp-segment" class="headerLink"><a href="#so-when-host-receives-udp-segment" class="header-mark"></a>SO.. When host receives UDP segment</h3><p>
+
+
+
+    
+<img loading="lazy" decoding="async"
+         class="render-image"
+         src="./Untitled%203.png"
+         alt="image"
+         title="Untitled%203.png"
+    /></p>
+<ul>
+<li>Checks destination port number in segment
+<ul>
+<li>만약 각기 다른 Source IP, Port에서 온 데이터그램들이 같은 Destination Port를 가지고 있다면, 그냥 해당 Destination의 소켓으로 모두 전달한다.</li>
+<li>즉 UDP에서는 간단하게 말하면 포트 넘버만 보고 Demux를 한다고 볼 수 있다.</li>
+</ul>
+</li>
+<li>And directs UDP segment to socket with that port number</li>
+</ul>
+<h2 id="connection-oriented-demultiplexing-used-in-tcp" class="headerLink"><a href="#connection-oriented-demultiplexing-used-in-tcp" class="header-mark"></a>Connection-Oriented Demultiplexing: &ldquo;Used in TCP&rdquo;</h2><h3 id="tcp-socket-identified-by-4-tuple" class="headerLink"><a href="#tcp-socket-identified-by-4-tuple" class="header-mark"></a>TCP socket identified by 4-tuple</h3><p>
+
+
+
+    
+<img loading="lazy" decoding="async"
+         class="render-image"
+         src="./Untitled%204.png"
+         alt="image"
+         title="Untitled%204.png"
+    /></p>
+<blockquote>
+<p>Receiver uses all four values to direct segment to proper socket</p>
+</blockquote>
+<ul>
+<li>Source IP</li>
+<li>Source Port #</li>
+<li>Destination IP</li>
+<li>Destination Port #</li>
+</ul>
+<h3 id="server-host" class="headerLink"><a href="#server-host" class="header-mark"></a>Server host</h3><ul>
+<li>May support many simultaneous TCP sockets</li>
+<li>May have different sockets for each connecting client
+<ul>
+<li>Non-persistent HTTP will have different socket for each request</li>
+</ul>
+</li>
+</ul></div><div id="comments"><div id="utterances"></div><noscript>
+                Please enable JavaScript to view the comments powered by <a href="https://utteranc.es/">Utterances</a>.
+            </noscript></div></div></div>
+                </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line"><i class="svg-icon icon-copyright"></i><span>2020 - 2021</span><span class="author">&nbsp;<a href="/" target="_blank"></a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
+        </div>
+    </footer></div>
+
+        <aside id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="Back to Top">
+                <i class="svg-icon icon-arrow-up"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="View Comments">
+                <i class="svg-icon icon-comments-fixed"></i>
+            </a>
+        </aside><script src="https://cdn.jsdelivr.net/npm/smooth-scroll@16.1.3/dist/smooth-scroll.min.js"></script><script src="https://cdn.jsdelivr.net/npm/autocomplete.js@0.37.1/dist/autocomplete.min.js"></script><script src="https://cdn.jsdelivr.net/npm/algoliasearch@4.2.0/dist/algoliasearch-lite.umd.min.js"></script><script src="https://cdn.jsdelivr.net/npm/clipboard@2.0.6/dist/clipboard.min.js"></script><script src="https://cdn.jsdelivr.net/npm/sharer.js@0.4.0/sharer.min.js"></script><script src="/lib/prismjs/prism.js"></script><script>window.config={"code":{"copyTitle":"Copy to clipboard","maxShownLines":10},"comment":{"utterances":{"darkTheme":"github-dark","issueTerm":"pathname","label":"Utterances Comment","lightTheme":"github-light","repo":"yansigit/yansigit.github.io"}},"search":{"algoliaAppID":"PASDMWALPK","algoliaIndex":"index.en","algoliaSearchKey":"b42948e51daaa93df92381c8e2ac0f93","highlightTag":"em","maxResultLength":10,"noResultsFound":"No results found","snippetLength":30,"type":"algolia"}};</script><script src="/js/theme.min.js"></script><script>
+        (function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
+            m[i].l=1*new Date();k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)})
+        (window, document, "script", "https://mc.yandex.ru/metrika/tag.js", "ym");
+
+        ym("70532758", "init", {
+            clickmap:true,
+            trackLinks:true,
+            accurateTrackBounce:true,
+            webvisor: null 
+        });
+    </script>
+    <noscript><div><img src="https://mc.yandex.ru/watch/70532758" style="position:absolute; left:-9999px;" alt="" /></div></noscript></body>
+</html>

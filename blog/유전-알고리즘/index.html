@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1"><meta name="robots" content="noodp"/><title>유전 알고리즘 - Seongbin Yoon</title>
+        <meta name="twitter:card" content="summary_large_image"/><meta name="twitter:title" content=""/>
+        <meta name="twitter:description" content="About uBlogger Theme"/>
+        <meta name="Description" content="유전 알고리즘 정리"><meta property="og:title" content="유전 알고리즘" />
+<meta property="og:description" content="유전 알고리즘 정리" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://yansigit.github.io/blog/%EC%9C%A0%EC%A0%84-%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98/" /><meta property="og:image" content="https://yansigit.github.io/logo.png"/><meta property="article:section" content="blog" />
+<meta property="article:published_time" content="2021-07-07T00:04:34&#43;09:00" />
+<meta property="article:modified_time" content="2021-07-07T00:04:34&#43;09:00" />
+
+<meta name="application-name" content="uBlogger">
+<meta name="apple-mobile-web-app-title" content="uBlogger"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+        <link rel="icon" type="image/png" sizes="192x192" href="/android-chrome-192x192.png">
+        <link rel="icon" type="image/png" sizes="512x512" href="/android-chrome-512x512.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://yansigit.github.io/blog/%EC%9C%A0%EC%A0%84-%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98/" /><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/normalize.css@8.0.1/normalize.min.css"><link rel="stylesheet" href="/lib/prismjs/prism.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.7.2/animate.min.css"><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "유전 알고리즘",
+        "inLanguage": "en",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https:\/\/yansigit.github.io\/blog\/%EC%9C%A0%EC%A0%84-%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98\/"
+        },"image": [{
+                            "@type": "ImageObject",
+                            "url": "https:\/\/yansigit.github.io\/images\/Apple-Devices-Preview.png",
+                            "width":  3200 ,
+                            "height":  2048 
+                        }],"genre": "blog","keywords": "machine-learning, deep-learning, data-processing, data-science","wordCount":  182 ,
+        "url": "https:\/\/yansigit.github.io\/blog\/%EC%9C%A0%EC%A0%84-%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98\/","datePublished": "2021-07-07T00:04:34+09:00","dateModified": "2021-07-07T00:04:34+09:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","description": "유전 알고리즘 정리"
+    }
+    </script><script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        "itemListElement": [{
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Home",
+            "item": "https:\/\/yansigit.github.io\/"
+        },{
+            "@type": "ListItem",
+            "position": 2,
+            "name": "machine-learning",
+            "item": "https://yansigit.github.io/categories/machine-learning/"
+        },{
+                "@type": "ListItem",
+                "position": 3,
+                "name": "유전 알고리즘"
+            }]
+    }
+</script></head>
+    <body data-header-desktop="fixed" data-header-mobile="auto"><script>(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header>
+    <div class="desktop header" id="header-desktop">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="Seongbin Yoon" class="header-logo logo-svg"><span class="header-title-pre">📝</span>Blog == Portfolio</a>
+            </div>
+            <div class="menu">
+                <nav>
+                    <h2 class="display-hidden">Основная навигация</h2>
+                    <ul class="menu-inner"><li>
+                            <a class="menu-item" href="/posts/"> Posts </a>
+                        </li><li>
+                            <a class="menu-item" href="/blog/"> Blog </a>
+                        </li><li>
+                            <a class="menu-item" href="/tags/"> Tags </a>
+                        </li><li>
+                            <a class="menu-item" href="/categories/"> Categories </a>
+                        </li><li>
+                            <a class="menu-item" href="/categories/documentation/"> Docs </a>
+                        </li><li>
+                            <a class="menu-item" href="/about/"> About </a>
+                        </li><li>
+                            <a class="menu-item" href="https://github.com/upagge/ublogger" title="GitHub" rel="noopener noreffer" target="_blank"> Github </a>
+                        </li></ul>
+                </nav><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="Search titles or contents..." id="search-input-desktop">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="Search">
+                            <span class="svg-icon icon-search"></span>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="Clear">
+                            <span class="svg-icon icon-cancel"></span>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <span class="svg-icon icon-loading"></span>
+                        </span>
+                    </span><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                <span class="svg-icon icon-moon"></span>
+                </a>
+            </div>
+        </div>
+    </div><div class="mobile header" id="header-mobile">
+        <div class="header-container">
+            <div class="header-wrapper">
+                <div class="header-title">
+                    <a href="/" title="Seongbin Yoon" class="header-logo"><span class="header-title-pre">📝</span>Blog == Portfolio</a>
+                </div>
+                <div class="menu-toggle" id="menu-toggle-mobile">
+                    <span></span><span></span><span></span>
+                </div>
+            </div>
+            <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                        <div class="search mobile" id="search-mobile">
+                            <input type="text" placeholder="Search titles or contents..." id="search-input-mobile">
+                            <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="Search">
+                                <span class="svg-icon icon-search"></span>
+                            </a>
+                            <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="Clear">
+                                <span class="svg-icon icon-cancel"></span>
+                            </a>
+                            <span class="search-button search-loading" id="search-loading-mobile">
+                                <span class="svg-icon icon-loading"></span>
+                            </span>
+                        </div>
+                        <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
+                            Cancel
+                        </a>
+                    </div><nav>
+                    <h2 class="display-hidden">Основная навигация</h2>
+                    <ul><li>
+                            <a class="menu-item" href="/posts/" title="">Posts</a>
+                        </li><li>
+                            <a class="menu-item" href="/blog/" title="">Blog</a>
+                        </li><li>
+                            <a class="menu-item" href="/tags/" title="">Tags</a>
+                        </li><li>
+                            <a class="menu-item" href="/categories/" title="">Categories</a>
+                        </li><li>
+                            <a class="menu-item" href="/categories/documentation/" title="">Docs</a>
+                        </li><li>
+                            <a class="menu-item" href="/about/" title="">About</a>
+                        </li><li>
+                            <a class="menu-item" href="https://github.com/upagge/ublogger" title="GitHub" rel="noopener noreffer" target="_blank">Github</a>
+                        </li></ul>
+                </nav>
+                <a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                    <span class="svg-icon icon-moon"></span>
+                </a></div>
+        </div>
+    </div><div class="search-dropdown desktop">
+    <div id="search-dropdown-desktop"></div>
+</div>
+<div class="search-dropdown mobile">
+    <div id="search-dropdown-mobile"></div>
+</div></header><main class="main">
+                <div class="container"><div class="page single special"><h1 class="single-title pulse faster">유전 알고리즘</h1><div class="content" id="content"><h1 id="유전-알고리즘" class="headerLink"><a href="#%ec%9c%a0%ec%a0%84-%ec%95%8c%ea%b3%a0%eb%a6%ac%ec%a6%98" class="header-mark"></a>유전 알고리즘</h1><h2 id="genetic-algorithm" class="headerLink"><a href="#genetic-algorithm" class="header-mark"></a>Genetic Algorithm</h2><p>
+
+
+
+    
+<img loading="lazy" decoding="async"
+         class="render-image"
+         src="Untitled.png"
+         alt="%E1%84%8B%E1%85%B2%E1%84%8C%E1%85%A5%E1%86%AB%20%E1%84%8B%E1%85%A1%E1%86%AF%E1%84%80%E1%85%A9%E1%84%85%E1%85%B5%E1%84%8C%E1%85%B3%E1%86%B7/Untitled.png"
+         title="Untitled.png"
+    /></p>
+<h2 id="최적화-문제" class="headerLink"><a href="#%ec%b5%9c%ec%a0%81%ed%99%94-%eb%ac%b8%ec%a0%9c" class="header-mark"></a>최적화 문제</h2><ul>
+<li>가장 근접한 해를 찾는 방법</li>
+<li>Hill-Climbing 알고리즘
+<ul>
+<li>산꼭대기 그거</li>
+<li>미분을 통해 가장 가파른 경사를 알아내는 알고리즘</li>
+</ul>
+</li>
+<li><strong>유전 알고리즘 (GA)</strong>
+<ul>
+<li>GA에서 출력을 얻을 수 있는 함수가 정의되면 어디서나 적용 가능</li>
+<li>환경에 적합한 측도인 적합도를 늘리는 쪽으로 진화를 반복</li>
+</ul>
+</li>
+</ul>
+<h2 id="염색체" class="headerLink"><a href="#%ec%97%bc%ec%83%89%ec%b2%b4" class="header-mark"></a>염색체</h2><p>
+
+
+
+    
+<img loading="lazy" decoding="async"
+         class="render-image"
+         src="Untitled%201.png"
+         alt="%E1%84%8B%E1%85%B2%E1%84%8C%E1%85%A5%E1%86%AB%20%E1%84%8B%E1%85%A1%E1%86%AF%E1%84%80%E1%85%A9%E1%84%85%E1%85%B5%E1%84%8C%E1%85%B3%E1%86%B7/Untitled%201.png"
+         title="Untitled%201.png"
+    /></p>
+<p>
+
+
+
+    
+<img loading="lazy" decoding="async"
+         class="render-image"
+         src="Untitled%202.png"
+         alt="%E1%84%8B%E1%85%B2%E1%84%8C%E1%85%A5%E1%86%AB%20%E1%84%8B%E1%85%A1%E1%86%AF%E1%84%80%E1%85%A9%E1%84%85%E1%85%B5%E1%84%8C%E1%85%B3%E1%86%B7/Untitled%202.png"
+         title="Untitled%202.png"
+    /></p>
+<ul>
+<li>주어진 문제에 대한 가능한 해들의 집합을 표현한 자료구조</li>
+<li>Encoding: 문제 공간을 염색체들의 형태로 변경</li>
+<li>Decoding: 염색체들을 문제 공간으로 변경</li>
+</ul>
+<h2 id="평가함수" class="headerLink"><a href="#%ed%8f%89%ea%b0%80%ed%95%a8%ec%88%98" class="header-mark"></a>평가함수</h2><ul>
+<li>현재의 염색체가 얼마나 문제를 잘 해결하고 있는지 나타내는 함수
+<ul>
+<li>적합도를 반환</li>
+</ul>
+</li>
+</ul>
+<h2 id="유전자-연산-operation" class="headerLink"><a href="#%ec%9c%a0%ec%a0%84%ec%9e%90-%ec%97%b0%ec%82%b0-operation" class="header-mark"></a>유전자 연산 (operation)</h2><p>
+
+
+
+    
+<img loading="lazy" decoding="async"
+         class="render-image"
+         src="Untitled%203.png"
+         alt="%E1%84%8B%E1%85%B2%E1%84%8C%E1%85%A5%E1%86%AB%20%E1%84%8B%E1%85%A1%E1%86%AF%E1%84%80%E1%85%A9%E1%84%85%E1%85%B5%E1%84%8C%E1%85%B3%E1%86%B7/Untitled%203.png"
+         title="Untitled%203.png"
+    /></p>
+<ul>
+<li>염색체 선택 (selection)
+<ul>
+<li>적합도 값이 우수한 염색체들이 부모로 선택</li>
+</ul>
+</li>
+<li>유전자 교배 (crossover)
+<ul>
+<li>부모 염색체에서 유전자들을 서로 고환</li>
+</ul>
+</li>
+<li>돌연변이 (mutation)
+<ul>
+<li>염색체에서 임의 위치의 유전자 값을 바꿈</li>
+</ul>
+</li>
+</ul>
+<h2 id="선택연산자-fitness-function" class="headerLink"><a href="#%ec%84%a0%ed%83%9d%ec%97%b0%ec%82%b0%ec%9e%90-fitness-function" class="header-mark"></a>선택연산자 (Fitness Function)</h2><ul>
+<li><strong>룰렛 휠</strong></li>
+</ul>
+<p>
+
+
+
+    
+<img loading="lazy" decoding="async"
+         class="render-image"
+         src="Untitled%204.png"
+         alt="%E1%84%8B%E1%85%B2%E1%84%8C%E1%85%A5%E1%86%AB%20%E1%84%8B%E1%85%A1%E1%86%AF%E1%84%80%E1%85%A9%E1%84%85%E1%85%B5%E1%84%8C%E1%85%B3%E1%86%B7/Untitled%204.png"
+         title="Untitled%204.png"
+    /></p>
+<p>
+
+
+
+    
+<img loading="lazy" decoding="async"
+         class="render-image"
+         src="Untitled%205.png"
+         alt="%E1%84%8B%E1%85%B2%E1%84%8C%E1%85%A5%E1%86%AB%20%E1%84%8B%E1%85%A1%E1%86%AF%E1%84%80%E1%85%A9%E1%84%85%E1%85%B5%E1%84%8C%E1%85%B3%E1%86%B7/Untitled%205.png"
+         title="Untitled%205.png"
+    /></p>
+<h2 id="교배연산자-crossover" class="headerLink"><a href="#%ea%b5%90%eb%b0%b0%ec%97%b0%ec%82%b0%ec%9e%90-crossover" class="header-mark"></a>교배연산자 (Crossover)</h2><ul>
+<li>
+<p>임의의 교배 위치 선택</p>
+</li>
+<li>
+<p><strong>단순 교배 (simple crossover)</strong></p>
+<p>
+
+
+
+    
+<img loading="lazy" decoding="async"
+         class="render-image"
+         src="Untitled%206.png"
+         alt="%E1%84%8B%E1%85%B2%E1%84%8C%E1%85%A5%E1%86%AB%20%E1%84%8B%E1%85%A1%E1%86%AF%E1%84%80%E1%85%A9%E1%84%85%E1%85%B5%E1%84%8C%E1%85%B3%E1%86%B7/Untitled%206.png"
+         title="Untitled%206.png"
+    /></p>
+<ul>
+<li>하나의 부분만 교배</li>
+<li>빠르게 부모와 변함</li>
+<li>양쪽이 같은 값을 가지고 있는 부분은 바뀌지 않음</li>
+</ul>
+</li>
+<li>
+<p><strong>이점 교배 (two-point crossover)</strong></p>
+<p>
+
+
+
+    
+<img loading="lazy" decoding="async"
+         class="render-image"
+         src="Untitled%207.png"
+         alt="%E1%84%8B%E1%85%B2%E1%84%8C%E1%85%A5%E1%86%AB%20%E1%84%8B%E1%85%A1%E1%86%AF%E1%84%80%E1%85%A9%E1%84%85%E1%85%B5%E1%84%8C%E1%85%B3%E1%86%B7/Untitled%207.png"
+         title="Untitled%207.png"
+    /></p>
+<ul>
+<li>두개 부분을 교체</li>
+</ul>
+</li>
+<li>
+<p>단일교배 (uniform crossover)</p>
+</li>
+<li>
+<p>역위 (inversion)</p>
+</li>
+</ul>
+<h2 id="돌연변이" class="headerLink"><a href="#%eb%8f%8c%ec%97%b0%eb%b3%80%ec%9d%b4" class="header-mark"></a>돌연변이</h2><p>
+
+
+
+    
+<img loading="lazy" decoding="async"
+         class="render-image"
+         src="Untitled%208.png"
+         alt="%E1%84%8B%E1%85%B2%E1%84%8C%E1%85%A5%E1%86%AB%20%E1%84%8B%E1%85%A1%E1%86%AF%E1%84%80%E1%85%A9%E1%84%85%E1%85%B5%E1%84%8C%E1%85%B3%E1%86%B7/Untitled%208.png"
+         title="Untitled%208.png"
+    /></p>
+<ul>
+<li>다양한 개체군 유지</li>
+<li>아주 낮은 돌연변이률</li>
+</ul>
+<h2 id="예제" class="headerLink"><a href="#%ec%98%88%ec%a0%9c" class="header-mark"></a>예제</h2><p>
+
+
+
+    
+<img loading="lazy" decoding="async"
+         class="render-image"
+         src="Untitled%209.png"
+         alt="%E1%84%8B%E1%85%B2%E1%84%8C%E1%85%A5%E1%86%AB%20%E1%84%8B%E1%85%A1%E1%86%AF%E1%84%80%E1%85%A9%E1%84%85%E1%85%B5%E1%84%8C%E1%85%B3%E1%86%B7/Untitled%209.png"
+         title="Untitled%209.png"
+    /></p>
+<p>
+
+
+
+    
+<img loading="lazy" decoding="async"
+         class="render-image"
+         src="Untitled%2010.png"
+         alt="%E1%84%8B%E1%85%B2%E1%84%8C%E1%85%A5%E1%86%AB%20%E1%84%8B%E1%85%A1%E1%86%AF%E1%84%80%E1%85%A9%E1%84%85%E1%85%B5%E1%84%8C%E1%85%B3%E1%86%B7/Untitled%2010.png"
+         title="Untitled%2010.png"
+    /></p>
+<h2 id="유전자-알고리즘의-장단점" class="headerLink"><a href="#%ec%9c%a0%ec%a0%84%ec%9e%90-%ec%95%8c%ea%b3%a0%eb%a6%ac%ec%a6%98%ec%9d%98-%ec%9e%a5%eb%8b%a8%ec%a0%90" class="header-mark"></a>유전자 알고리즘의 장단점</h2><ul>
+<li>예측한 그대로 동작하는 알고리즘이 존재하는 문제에는 의미가 없음</li>
+<li>수행 시간 예측이 불가</li>
+<li>최적의 솔루션이 필요없는, 기존의 방법으로 해결할 수 없는 문제에 종종 사용됨</li>
+</ul>
+<h2 id="유전자-프로그래밍" class="headerLink"><a href="#%ec%9c%a0%ec%a0%84%ec%9e%90-%ed%94%84%eb%a1%9c%ea%b7%b8%eb%9e%98%eb%b0%8d" class="header-mark"></a>유전자 프로그래밍</h2><p>
+
+
+
+    
+<img loading="lazy" decoding="async"
+         class="render-image"
+         src="Untitled%2011.png"
+         alt="%E1%84%8B%E1%85%B2%E1%84%8C%E1%85%A5%E1%86%AB%20%E1%84%8B%E1%85%A1%E1%86%AF%E1%84%80%E1%85%A9%E1%84%85%E1%85%B5%E1%84%8C%E1%85%B3%E1%86%B7/Untitled%2011.png"
+         title="Untitled%2011.png"
+    /></p>
+<ul>
+<li>8 Queen, TSP</li>
+</ul></div><div id="comments"><div id="utterances"></div><noscript>
+                Please enable JavaScript to view the comments powered by <a href="https://utteranc.es/">Utterances</a>.
+            </noscript></div></div></div>
+                </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line"><i class="svg-icon icon-copyright"></i><span>2020 - 2021</span><span class="author">&nbsp;<a href="/" target="_blank"></a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
+        </div>
+    </footer></div>
+
+        <aside id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="Back to Top">
+                <i class="svg-icon icon-arrow-up"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="View Comments">
+                <i class="svg-icon icon-comments-fixed"></i>
+            </a>
+        </aside><script src="https://cdn.jsdelivr.net/npm/smooth-scroll@16.1.3/dist/smooth-scroll.min.js"></script><script src="https://cdn.jsdelivr.net/npm/autocomplete.js@0.37.1/dist/autocomplete.min.js"></script><script src="https://cdn.jsdelivr.net/npm/algoliasearch@4.2.0/dist/algoliasearch-lite.umd.min.js"></script><script src="https://cdn.jsdelivr.net/npm/clipboard@2.0.6/dist/clipboard.min.js"></script><script src="https://cdn.jsdelivr.net/npm/sharer.js@0.4.0/sharer.min.js"></script><script src="/lib/prismjs/prism.js"></script><script>window.config={"code":{"copyTitle":"Copy to clipboard","maxShownLines":10},"comment":{"utterances":{"darkTheme":"github-dark","issueTerm":"pathname","label":"Utterances Comment","lightTheme":"github-light","repo":"yansigit/yansigit.github.io"}},"search":{"algoliaAppID":"PASDMWALPK","algoliaIndex":"index.en","algoliaSearchKey":"b42948e51daaa93df92381c8e2ac0f93","highlightTag":"em","maxResultLength":10,"noResultsFound":"No results found","snippetLength":30,"type":"algolia"}};</script><script src="/js/theme.min.js"></script><script>
+        (function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
+            m[i].l=1*new Date();k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)})
+        (window, document, "script", "https://mc.yandex.ru/metrika/tag.js", "ym");
+
+        ym("70532758", "init", {
+            clickmap:true,
+            trackLinks:true,
+            accurateTrackBounce:true,
+            webvisor: null 
+        });
+    </script>
+    <noscript><div><img src="https://mc.yandex.ru/watch/70532758" style="position:absolute; left:-9999px;" alt="" /></div></noscript></body>
+</html>

@@ -1,0 +1,25 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>android - Category - Seongbin Yoon</title>
+        <link>https://yansigit.github.io/categories/android/</link>
+        <description>android - Category - Seongbin Yoon</description>
+        <generator>Hugo -- gohugo.io</generator><language>en</language><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Tue, 15 Sep 2020 23:31:39 &#43;0900</lastBuildDate><atom:link href="https://yansigit.github.io/categories/android/" rel="self" type="application/rss+xml" /><item>
+    <title>Port Forwarding on Android Emulator</title>
+    <link>https://yansigit.github.io/blog/port-forwarding-on-android-emulator/</link>
+    <pubDate>Tue, 15 Sep 2020 23:31:39 &#43;0900</pubDate>
+    <author>yansigit.github.io</author>
+    <guid>https://yansigit.github.io/blog/port-forwarding-on-android-emulator/</guid>
+    <description><![CDATA[<h2 id="telnet으로-포트-열기" class="headerLink"><a href="#telnet%ec%9c%bc%eb%a1%9c-%ed%8f%ac%ed%8a%b8-%ec%97%b4%ea%b8%b0" class="header-mark"></a>Telnet으로 포트 열기</h2><p><a href="https://developer.android.com/studio/run/emulator-networking?hl=ko" target="_blank" rel="noopener noreffer">https://developer.android.com/studio/run/emulator-networking?hl=ko</a></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="n">telnet</span> <span class="n">localhost</span> <span class="n">5554</span> <span class="c"># putty에서는 raw로 연결</span>
+<span class="n">add</span> <span class="p">&lt;</span><span class="n">protocol</span><span class="p">&gt;</span><span class="err">:</span><span class="p">&lt;</span><span class="nb">host-port</span><span class="p">&gt;</span><span class="err">:</span><span class="p">&lt;</span><span class="nb">guest-port</span><span class="p">&gt;</span>
+</code></pre></td></tr></table>
+</div>
+</div>]]></description>
+</item></channel>
+</rss>

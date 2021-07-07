@@ -1,0 +1,574 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1"><meta name="robots" content="noodp"/><title>운영체제 - 프로세스 제어 - Seongbin Yoon</title>
+        <meta name="twitter:card" content="summary_large_image"/><meta name="twitter:title" content=""/>
+        <meta name="twitter:description" content="About uBlogger Theme"/>
+        <meta name="Description" content="프로세스 제어"><meta property="og:title" content="운영체제 - 프로세스 제어" />
+<meta property="og:description" content="프로세스 제어" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://yansigit.github.io/blog/%ED%94%84%EB%A1%9C%EC%84%B8%EC%8A%A4-%EC%A0%9C%EC%96%B4/" /><meta property="og:image" content="https://yansigit.github.io/logo.png"/><meta property="article:section" content="blog" />
+<meta property="article:published_time" content="2020-09-18T23:24:53&#43;09:00" />
+<meta property="article:modified_time" content="2020-09-18T23:24:53&#43;09:00" />
+
+<meta name="application-name" content="uBlogger">
+<meta name="apple-mobile-web-app-title" content="uBlogger"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+        <link rel="icon" type="image/png" sizes="192x192" href="/android-chrome-192x192.png">
+        <link rel="icon" type="image/png" sizes="512x512" href="/android-chrome-512x512.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://yansigit.github.io/blog/%ED%94%84%EB%A1%9C%EC%84%B8%EC%8A%A4-%EC%A0%9C%EC%96%B4/" /><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/normalize.css@8.0.1/normalize.min.css"><link rel="stylesheet" href="/lib/prismjs/prism.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.7.2/animate.min.css"><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "운영체제 - 프로세스 제어",
+        "inLanguage": "en",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https:\/\/yansigit.github.io\/blog\/%ED%94%84%EB%A1%9C%EC%84%B8%EC%8A%A4-%EC%A0%9C%EC%96%B4\/"
+        },"image": [{
+                            "@type": "ImageObject",
+                            "url": "https:\/\/yansigit.github.io\/images\/Apple-Devices-Preview.png",
+                            "width":  3200 ,
+                            "height":  2048 
+                        }],"genre": "blog","keywords": "os, operation-system","wordCount":  781 ,
+        "url": "https:\/\/yansigit.github.io\/blog\/%ED%94%84%EB%A1%9C%EC%84%B8%EC%8A%A4-%EC%A0%9C%EC%96%B4\/","datePublished": "2020-09-18T23:24:53+09:00","dateModified": "2020-09-18T23:24:53+09:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","description": "프로세스 제어"
+    }
+    </script><script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        "itemListElement": [{
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Home",
+            "item": "https:\/\/yansigit.github.io\/"
+        },{
+            "@type": "ListItem",
+            "position": 2,
+            "name": "os",
+            "item": "https://yansigit.github.io/categories/os/"
+        },{
+                "@type": "ListItem",
+                "position": 3,
+                "name": "운영체제 - 프로세스 제어"
+            }]
+    }
+</script></head>
+    <body data-header-desktop="fixed" data-header-mobile="auto"><script>(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header>
+    <div class="desktop header" id="header-desktop">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="Seongbin Yoon" class="header-logo logo-svg"><span class="header-title-pre">📝</span>Blog == Portfolio</a>
+            </div>
+            <div class="menu">
+                <nav>
+                    <h2 class="display-hidden">Основная навигация</h2>
+                    <ul class="menu-inner"><li>
+                            <a class="menu-item" href="/posts/"> Posts </a>
+                        </li><li>
+                            <a class="menu-item" href="/blog/"> Blog </a>
+                        </li><li>
+                            <a class="menu-item" href="/tags/"> Tags </a>
+                        </li><li>
+                            <a class="menu-item" href="/categories/"> Categories </a>
+                        </li><li>
+                            <a class="menu-item" href="/categories/documentation/"> Docs </a>
+                        </li><li>
+                            <a class="menu-item" href="/about/"> About </a>
+                        </li><li>
+                            <a class="menu-item" href="https://github.com/upagge/ublogger" title="GitHub" rel="noopener noreffer" target="_blank"> Github </a>
+                        </li></ul>
+                </nav><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="Search titles or contents..." id="search-input-desktop">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="Search">
+                            <span class="svg-icon icon-search"></span>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="Clear">
+                            <span class="svg-icon icon-cancel"></span>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <span class="svg-icon icon-loading"></span>
+                        </span>
+                    </span><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                <span class="svg-icon icon-moon"></span>
+                </a>
+            </div>
+        </div>
+    </div><div class="mobile header" id="header-mobile">
+        <div class="header-container">
+            <div class="header-wrapper">
+                <div class="header-title">
+                    <a href="/" title="Seongbin Yoon" class="header-logo"><span class="header-title-pre">📝</span>Blog == Portfolio</a>
+                </div>
+                <div class="menu-toggle" id="menu-toggle-mobile">
+                    <span></span><span></span><span></span>
+                </div>
+            </div>
+            <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                        <div class="search mobile" id="search-mobile">
+                            <input type="text" placeholder="Search titles or contents..." id="search-input-mobile">
+                            <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="Search">
+                                <span class="svg-icon icon-search"></span>
+                            </a>
+                            <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="Clear">
+                                <span class="svg-icon icon-cancel"></span>
+                            </a>
+                            <span class="search-button search-loading" id="search-loading-mobile">
+                                <span class="svg-icon icon-loading"></span>
+                            </span>
+                        </div>
+                        <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
+                            Cancel
+                        </a>
+                    </div><nav>
+                    <h2 class="display-hidden">Основная навигация</h2>
+                    <ul><li>
+                            <a class="menu-item" href="/posts/" title="">Posts</a>
+                        </li><li>
+                            <a class="menu-item" href="/blog/" title="">Blog</a>
+                        </li><li>
+                            <a class="menu-item" href="/tags/" title="">Tags</a>
+                        </li><li>
+                            <a class="menu-item" href="/categories/" title="">Categories</a>
+                        </li><li>
+                            <a class="menu-item" href="/categories/documentation/" title="">Docs</a>
+                        </li><li>
+                            <a class="menu-item" href="/about/" title="">About</a>
+                        </li><li>
+                            <a class="menu-item" href="https://github.com/upagge/ublogger" title="GitHub" rel="noopener noreffer" target="_blank">Github</a>
+                        </li></ul>
+                </nav>
+                <a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                    <span class="svg-icon icon-moon"></span>
+                </a></div>
+        </div>
+    </div><div class="search-dropdown desktop">
+    <div id="search-dropdown-desktop"></div>
+</div>
+<div class="search-dropdown mobile">
+    <div id="search-dropdown-mobile"></div>
+</div></header><main class="main">
+                <div class="container"><div class="page single special"><h1 class="single-title pulse faster">운영체제 - 프로세스 제어</h1><div class="content" id="content"><p>프로세스 제어</p>
+<h1 id="프로세스-제어" class="headerLink"><a href="#%ed%94%84%eb%a1%9c%ec%84%b8%ec%8a%a4-%ec%a0%9c%ec%96%b4" class="header-mark"></a>프로세스 제어</h1><h1 id="1-프로세스-제어-블록-상세" class="headerLink"><a href="#1-%ed%94%84%eb%a1%9c%ec%84%b8%ec%8a%a4-%ec%a0%9c%ec%96%b4-%eb%b8%94%eb%a1%9d-%ec%83%81%ec%84%b8" class="header-mark"></a>1. 프로세스 제어 블록 (상세)</h1><h2 id="개념" class="headerLink"><a href="#%ea%b0%9c%eb%85%90" class="header-mark"></a>개념</h2><ul>
+<li>프로세스를 실행하는데 필요한 중요한 정보를 저장하는 자료 구조</li>
+<li>프로세스는 고유의 PCB를 가짐</li>
+<li>프로세스 생성 시 만들어져 프로세스가 실행을 완료하면 폐기</li>
+</ul>
+<h2 id="프로세스-제어-블록의-구성" class="headerLink"><a href="#%ed%94%84%eb%a1%9c%ec%84%b8%ec%8a%a4-%ec%a0%9c%ec%96%b4-%eb%b8%94%eb%a1%9d%ec%9d%98-%ea%b5%ac%ec%84%b1" class="header-mark"></a>프로세스 제어 블록의 구성</h2><p>
+
+
+
+    
+<img loading="lazy" decoding="async"
+         class="render-image"
+         src="./Untitled.png"
+         alt="image"
+         title="Untitled.png"
+    /></p>
+<ul>
+<li><strong>포인터</strong>
+<ul>
+<li>준비 상태나 대기 상태의 큐를 구현할 때 사용</li>
+</ul>
+</li>
+<li><strong>프로세스 상태</strong>
+<ul>
+<li>어떤 상태에 있는지 나타냄 (준비, 대기, 실행&hellip;)</li>
+</ul>
+</li>
+<li><strong>프로세스 구분자</strong>
+<ul>
+<li>여러 프로세스를 구분하기 위함</li>
+</ul>
+</li>
+<li><strong>프로그램 카운터</strong>
+<ul>
+<li>다음에 실행될 명령어의 위치를 가리킴 (.값)</li>
+</ul>
+</li>
+<li><strong>프로세스 우선순위</strong>
+<ul>
+<li>프로세스의 실행 순서를 결정하는 우선순위</li>
+</ul>
+</li>
+<li><strong>각종 레지스터 정보</strong>
+<ul>
+<li>프로세스가 실행되는 중에 사용하던 레지스터의 값</li>
+</ul>
+</li>
+<li><strong>메모리 관리 정보</strong>
+<ul>
+<li>프로세스가 메모리의 어디에 있는지를 나타내는 메모리 위치 정보</li>
+<li>메모리 보호를 위한 경계 레지스터, 한계 레지스터 값 등</li>
+</ul>
+</li>
+<li><strong>할당된 자원 정보</strong>
+<ul>
+<li>프로세스를 위한 입출력 자원이나 오픈 파일 등에 대한 정보</li>
+</ul>
+</li>
+<li><strong>계정 정보</strong>
+<ul>
+<li>계정 번호, CPU 할당 시간, CPU 사용 시간 등</li>
+</ul>
+</li>
+<li><strong>부모 프로세스 구분자와 자식 프로세스 구분자</strong>
+<ul>
+<li>부모 프로세스를 가리키는 PPID와 자식 프로세스를 가리키는 CPID 정보</li>
+</ul>
+</li>
+</ul>
+<h2 id="포인터" class="headerLink"><a href="#%ed%8f%ac%ec%9d%b8%ed%84%b0" class="header-mark"></a>포인터</h2><p>
+
+
+
+    
+<img loading="lazy" decoding="async"
+         class="render-image"
+         src="./Untitled%201.png"
+         alt="image"
+         title="Untitled%201.png"
+    /></p>
+<ul>
+<li>대기 상태에서는 같은 입출력을 요구한 프로세스끼리 연결할 때 포인터 사용</li>
+<li>대기 큐는 링크드 리스트를 이용해 구현함</li>
+</ul>
+<h1 id="2-문맥-교환" class="headerLink"><a href="#2-%eb%ac%b8%eb%a7%a5-%ea%b5%90%ed%99%98" class="header-mark"></a>2. 문맥 교환</h1><h2 id="개요" class="headerLink"><a href="#%ea%b0%9c%ec%9a%94" class="header-mark"></a>개요</h2><p>
+
+
+
+    
+<img loading="lazy" decoding="async"
+         class="render-image"
+         src="./Untitled%202.png"
+         alt="image"
+         title="Untitled%202.png"
+    /></p>
+<ul>
+<li>CPU를 차지하던 프로세스가 나가고 새로운 프로세스를 받아들이는 과정</li>
+<li>실행 상태에서 나가는 PCB에는 지금까지의 작업 내용을 저장</li>
+<li>반대로, 실행 상태로 들어오는 PCB는 해당 내용을 읽어 그것을 기반으로 CPU를 다시 세팅</li>
+</ul>
+<h1 id="3-프로세스의-구조" class="headerLink"><a href="#3-%ed%94%84%eb%a1%9c%ec%84%b8%ec%8a%a4%ec%9d%98-%ea%b5%ac%ec%a1%b0" class="header-mark"></a>3. 프로세스의 구조</h1><p>
+
+
+
+    
+<img loading="lazy" decoding="async"
+         class="render-image"
+         src="./Untitled%203.png"
+         alt="image"
+         title="Untitled%203.png"
+    /></p>
+<p>
+
+
+
+    
+<img loading="lazy" decoding="async"
+         class="render-image"
+         src="./Untitled%204.png"
+         alt="image"
+         title="Untitled%204.png"
+    /></p>
+<ul>
+<li>코드 영역
+<ul>
+<li>프로그램의 본체가 있는 곳</li>
+<li>프로그램의 코드가 기술</li>
+<li>읽기 전용</li>
+</ul>
+</li>
+<li>데이터 영역
+<ul>
+<li>프로그램이 사용하려고 정의한 변수와 데이터가 있는 곳</li>
+<li>코드가 실행되면서 사용하는 변수나 파일 등의 데이터를 모아놓음</li>
+<li>읽기 쓰기 모두 가능</li>
+</ul>
+</li>
+<li>스택 영역, 힙 영역
+<ul>
+<li>운영체제가 프로세스를 실행하기 위해 부수적으로 필요한 데이터를 모아놓은 곳</li>
+<li>프로세스 내에서 함수를 호출하면 함수를 수행하고 원래 프로그램으로 되돌아올 위치를 이 영역에 저장</li>
+<li>파라미터, 로컬 변수도 이 곳에 저장됨</li>
+<li>운영체제가 사용자의 프로세를 작동하기 위해 유지하는 영역
+<ul>
+<li>사용자에게는 보이지 않음</li>
+</ul>
+</li>
+<li>프로세스가 실행되는 동안 만들어지는 영역</li>
+<li>동적 할당 영역
+<ul>
+<li>크기가 늘어나기도, 줄어들기도 함</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="스택-영역" class="headerLink"><a href="#%ec%8a%a4%ed%83%9d-%ec%98%81%ec%97%ad" class="header-mark"></a>스택 영역</h2><ul>
+<li>스레드가 작동되는 동안 추가되거나 삭제되는 동적 할당 영역</li>
+<li>스레드가 진행됨에 따라 커지기도, 작아지기도 함</li>
+</ul>
+<p>
+
+
+
+    
+<img loading="lazy" decoding="async"
+         class="render-image"
+         src="./Untitled%205.png"
+         alt="image"
+         title="Untitled%205.png"
+    /></p>
+<ul>
+<li>add(., b)를 호출했다
+<ul>
+<li>다음에 실행할 코드의 주소 <strong>①</strong>과 <strong>add() 함수의 인자인 c, d</strong>를 스택 영역에 저장했다</li>
+</ul>
+</li>
+<li>add() 함수를 실행하며 mul(., d)를 호출했다
+<ul>
+<li>역시 다음에 실행할 코드의 주소인 <strong>②</strong>와 <strong>mul() 함수의 인자인 e,f</strong>를 스택에 저장했다.</li>
+</ul>
+</li>
+<li>해당 함수가 종료되면 스택을 보고 <strong>(.)</strong> 어디로 돌아가야 할지 확인함</li>
+</ul>
+<h2 id="힙-영역" class="headerLink"><a href="#%ed%9e%99-%ec%98%81%ec%97%ad" class="header-mark"></a>힙 영역</h2><ul>
+<li>프로그램이 실행되는 동안 할당되는 변수 영역</li>
+<li>포인터, malloc(), calloc()를 쓸때 해당 영역을 써서 메모리를 할당해줌</li>
+</ul>
+<h1 id="4-프로세스의-생성" class="headerLink"><a href="#4-%ed%94%84%eb%a1%9c%ec%84%b8%ec%8a%a4%ec%9d%98-%ec%83%9d%ec%84%b1" class="header-mark"></a>4. 프로세스의 생성</h1><h2 id="fork-시스템-호출" class="headerLink"><a href="#fork-%ec%8b%9c%ec%8a%a4%ed%85%9c-%ed%98%b8%ec%b6%9c" class="header-mark"></a>fork() 시스템 호출</h2><ul>
+<li>실행 중인 프로세스로부터 새로운 프로세스를 복사</li>
+<li>실행 중인 프로세스와 똑같은 프로세스가 하나 더 만들어짐</li>
+<li>실행하던 프로세스는 부모 프로세스, 새로 생긴 프로세스는 자식 프로세스가 됨</li>
+</ul>
+<h2 id="fork-시스템-호출의-동작-과정" class="headerLink"><a href="#fork-%ec%8b%9c%ec%8a%a4%ed%85%9c-%ed%98%b8%ec%b6%9c%ec%9d%98-%eb%8f%99%ec%9e%91-%ea%b3%bc%ec%a0%95" class="header-mark"></a>fork() 시스템 호출의 동작 과정</h2><p>
+
+
+
+    
+<img loading="lazy" decoding="async"
+         class="render-image"
+         src="./Untitled%206.png"
+         alt="image"
+         title="Untitled%206.png"
+    /></p>
+<ul>
+<li><strong>fork() 를 하면</strong>
+<ul>
+<li><strong>부모 프로세스 영역의 대부분이 자식 프로세스에 복사</strong>
+<ul>
+<li>PCB</li>
+<li>코드 영역</li>
+<li>데이터 영역</li>
+<li>스택 영역</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><strong>단 PCB의 일부가 변경됨</strong>
+<ul>
+<li>프로세스 구분자</li>
+<li>메모리 관련 정보</li>
+<li>부모 프로세스 구분자와 자식 프로세스 구분자</li>
+</ul>
+</li>
+</ul>
+<h2 id="fork-시스템-호출의-장점" class="headerLink"><a href="#fork-%ec%8b%9c%ec%8a%a4%ed%85%9c-%ed%98%b8%ec%b6%9c%ec%9d%98-%ec%9e%a5%ec%a0%90" class="header-mark"></a>fork() 시스템 호출의 장점</h2><ul>
+<li>프로세스 생성 속도가 빠름</li>
+<li>추가 작업 없이 자원 상속</li>
+<li>시스템 관리를 효율적으로</li>
+</ul>
+<h2 id="fork-시스템-호출의-예" class="headerLink"><a href="#fork-%ec%8b%9c%ec%8a%a4%ed%85%9c-%ed%98%b8%ec%b6%9c%ec%9d%98-%ec%98%88" class="header-mark"></a>fork() 시스템 호출의 예</h2><p>
+
+
+
+    
+<img loading="lazy" decoding="async"
+         class="render-image"
+         src="./Untitled%207.png"
+         alt="image"
+         title="Untitled%207.png"
+    /></p>
+<ul>
+<li>부모 프로세스의 코드가 실행되어 fork() 문을 만나면 똑같은 내용의 자식 프로세스를 생성</li>
+<li>이 때 fork() 문은
+<ul>
+<li>부모 프로세스에 0보다 큰 값을 반환</li>
+<li>자식 프로세스에 0을 반환</li>
+</ul>
+</li>
+<li>만약 0보다 작은 값을 반환하면 자식 프로세스가 생성되지 않은 것으로 여겨 Error 출력</li>
+</ul>
+<h1 id="5-exec-시스템-호출" class="headerLink"><a href="#5-exec-%ec%8b%9c%ec%8a%a4%ed%85%9c-%ed%98%b8%ec%b6%9c" class="header-mark"></a>5. exec() 시스템 호출</h1><p>
+
+
+
+    
+<img loading="lazy" decoding="async"
+         class="render-image"
+         src="./Untitled%208.png"
+         alt="image"
+         title="Untitled%208.png"
+    /></p>
+<h2 id="fork" class="headerLink"><a href="#fork" class="header-mark"></a>fork()</h2><ul>
+<li>새로운 프로세스를 복사하는 시스템 호출</li>
+</ul>
+<h2 id="exec" class="headerLink"><a href="#exec" class="header-mark"></a>exec()</h2><ul>
+<li>프로세스는 그대로 두고 프로세스의 내용만 바꾸는 시스템 호출</li>
+<li>이미 만들어진 프로세스의 구조를 재활용하는 것</li>
+</ul>
+<h1 id="6-exec의-동작-과정" class="headerLink"><a href="#6-exec%ec%9d%98-%eb%8f%99%ec%9e%91-%ea%b3%bc%ec%a0%95" class="header-mark"></a>6. exec()의 동작 과정</h1><p>
+
+
+
+    
+<img loading="lazy" decoding="async"
+         class="render-image"
+         src="./Untitled%209.png"
+         alt="image"
+         title="Untitled%209.png"
+    /></p>
+<ul>
+<li>코드 영역에 있는 기존의 내용을 지우고 새로운 코드로 바꿈</li>
+<li>데이터 영역이 새로운 변수로 채워짐</li>
+<li>스택 영역이 리셋됨</li>
+<li>PCB의 내용 중 프로세스 구분자, 부모 프로세스 구분자, 자식 프로세스 구분자, 메모리 관련 사항은 변하지 않음</li>
+<li>그러나 프로세스 카운터 레지스터 값을 비록한 각종 레지스터와 사용된 파일 정보들은 리셋됨</li>
+</ul>
+<h1 id="7-exec-시스템-호출의-예" class="headerLink"><a href="#7-exec-%ec%8b%9c%ec%8a%a4%ed%85%9c-%ed%98%b8%ec%b6%9c%ec%9d%98-%ec%98%88" class="header-mark"></a>7. exec() 시스템 호출의 예</h1><p>
+
+
+
+    
+<img loading="lazy" decoding="async"
+         class="render-image"
+         src="./Untitled%2010.png"
+         alt="image"
+         title="Untitled%2010.png"
+    /></p>
+<ul>
+<li>exec()를 해도 PCB의 각종 프로세스 구분자 (., PPID, CPID)가 변경되지 않음
+<ul>
+<li>때문에 프로세스가 종료된 후 부모 프로세스로 돌아올 수 있다.</li>
+</ul>
+</li>
+<li>wait()
+<ul>
+<li>자식 프로세스가 종료할 때 까지 대기</li>
+</ul>
+</li>
+</ul>
+<h1 id="8-프로세스의-계층-구조" class="headerLink"><a href="#8-%ed%94%84%eb%a1%9c%ec%84%b8%ec%8a%a4%ec%9d%98-%ea%b3%84%ec%b8%b5-%ea%b5%ac%ec%a1%b0" class="header-mark"></a>8. 프로세스의 계층 구조</h1><p>
+
+
+
+    
+<img loading="lazy" decoding="async"
+         class="render-image"
+         src="./Untitled%2011.png"
+         alt="image"
+         title="Untitled%2011.png"
+    /></p>
+<ul>
+<li><strong>유닉스의 모든 프로세스는 init 프로세스의 자식임</strong></li>
+<li>트리 구조를 이룬다</li>
+<li><strong>쉘에서 어떤 프로그램을 실행할 때도 fork() 후 exec()를 하는 방식이다</strong></li>
+</ul>
+<h2 id="프로세스-계층-구조의-장점" class="headerLink"><a href="#%ed%94%84%eb%a1%9c%ec%84%b8%ec%8a%a4-%ea%b3%84%ec%b8%b5-%ea%b5%ac%ec%a1%b0%ec%9d%98-%ec%9e%a5%ec%a0%90" class="header-mark"></a>프로세스 계층 구조의 장점</h2><ol>
+<li>여러 작업을 동시에 처리할 수 있다</li>
+<li>프로세스의 재사용이 용이하다</li>
+<li>자원 회수가 쉽다
+<ul>
+<li>프로세스 간의 책임 관계가 분명해져서 시스템을 관리하기 수월</li>
+</ul>
+</li>
+</ol>
+<h2 id="좀비-프로세스" class="headerLink"><a href="#%ec%a2%80%eb%b9%84-%ed%94%84%eb%a1%9c%ec%84%b8%ec%8a%a4" class="header-mark"></a>좀비 프로세스</h2><ul>
+<li>프로세스가 종료된 후에도 커널에 프로세스 정보가 비정상적으로 남아있는 프로세스</li>
+<li>자식 프로세스가 종료되었지만 부모 프로세스가 wait()를 하지 않음
+<ul>
+<li>따라서 부모 프로세스가 커널이 정리작업을 하도록 하지 않음</li>
+</ul>
+</li>
+</ul>
+<h2 id="미아-프로세스" class="headerLink"><a href="#%eb%af%b8%ec%95%84-%ed%94%84%eb%a1%9c%ec%84%b8%ec%8a%a4" class="header-mark"></a>미아 프로세스</h2><ul>
+<li>자식 프로세스 종료 전 부모 프로세스가 종료한 경우 발생</li>
+<li>이럴 경우 init 프로세스가 내부적으로 wait()를 해줌
+<ul>
+<li>미아 프로세스가 좀비 프로세스가 되는 것을 방지하기 위함</li>
+</ul>
+</li>
+</ul>
+<h1 id="9-exit와-wait" class="headerLink"><a href="#9-exit%ec%99%80-wait" class="header-mark"></a>9. exit()와 wait()</h1><h2 id="exit-시스템-호출" class="headerLink"><a href="#exit-%ec%8b%9c%ec%8a%a4%ed%85%9c-%ed%98%b8%ec%b6%9c" class="header-mark"></a>exit() 시스템 호출</h2><ul>
+<li>작업의 종료를 알려줌</li>
+<li>자식 프로세스가 exit()를 호출함으로써, 부모 프로세스는 자식 프로세스가 사용하던 자원을 빨리 거둬갈 수 있음</li>
+<li>exit() 함수가 전달하는 인자로 자식 프로세스가 어떤 상태로 종료되었는지 알려줄 수 있음
+<ul>
+<li><strong>exit(.)</strong> = 정상종료</li>
+<li><strong>exit(-1)</strong> = 비정상정료</li>
+</ul>
+</li>
+</ul>
+<h2 id="wait-시스템-호출" class="headerLink"><a href="#wait-%ec%8b%9c%ec%8a%a4%ed%85%9c-%ed%98%b8%ec%b6%9c" class="header-mark"></a>wait() 시스템 호출</h2><ul>
+<li>자식 프로세스가 끝나기를 기다렸다가 자식 프로세스가 종료되면 다음 문장을 실행</li>
+<li>자식이 미아 프로세스가 되는 것을 막아줌
+<ul>
+<li>부모 프로세스가 자식 프로세스보다 빨리 끝나지 않도록 해줌</li>
+</ul>
+</li>
+</ul>
+<h2 id="쉘에서-프로그램을-실행시킬-때" class="headerLink"><a href="#%ec%89%98%ec%97%90%ec%84%9c-%ed%94%84%eb%a1%9c%ea%b7%b8%eb%9e%a8%ec%9d%84-%ec%8b%a4%ed%96%89%ec%8b%9c%ed%82%ac-%eb%95%8c" class="header-mark"></a>쉘에서 프로그램을 실행시킬 때</h2><p>
+
+
+
+    
+<img loading="lazy" decoding="async"
+         class="render-image"
+         src="./Untitled%2012.png"
+         alt="image"
+         title="Untitled%2012.png"
+    /></p>
+<ul>
+<li>foreground에서 실행시킬 경우
+<ul>
+<li>wait() 함수를 사용함</li>
+<li>그래서 다음 명령어를 입력할 수 없는 것</li>
+</ul>
+</li>
+<li>background에서 실행시킬 경우
+<ul>
+<li>wait() 함수를 사용하지 않음</li>
+<li>그래서 다음 명령어를 입력할 수 있음</li>
+</ul>
+</li>
+</ul></div><div id="comments"><div id="utterances"></div><noscript>
+                Please enable JavaScript to view the comments powered by <a href="https://utteranc.es/">Utterances</a>.
+            </noscript></div></div></div>
+                </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line"><i class="svg-icon icon-copyright"></i><span>2020 - 2021</span><span class="author">&nbsp;<a href="/" target="_blank"></a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
+        </div>
+    </footer></div>
+
+        <aside id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="Back to Top">
+                <i class="svg-icon icon-arrow-up"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="View Comments">
+                <i class="svg-icon icon-comments-fixed"></i>
+            </a>
+        </aside><script src="https://cdn.jsdelivr.net/npm/smooth-scroll@16.1.3/dist/smooth-scroll.min.js"></script><script src="https://cdn.jsdelivr.net/npm/autocomplete.js@0.37.1/dist/autocomplete.min.js"></script><script src="https://cdn.jsdelivr.net/npm/algoliasearch@4.2.0/dist/algoliasearch-lite.umd.min.js"></script><script src="https://cdn.jsdelivr.net/npm/clipboard@2.0.6/dist/clipboard.min.js"></script><script src="https://cdn.jsdelivr.net/npm/sharer.js@0.4.0/sharer.min.js"></script><script src="/lib/prismjs/prism.js"></script><script>window.config={"code":{"copyTitle":"Copy to clipboard","maxShownLines":10},"comment":{"utterances":{"darkTheme":"github-dark","issueTerm":"pathname","label":"Utterances Comment","lightTheme":"github-light","repo":"yansigit/yansigit.github.io"}},"search":{"algoliaAppID":"PASDMWALPK","algoliaIndex":"index.en","algoliaSearchKey":"b42948e51daaa93df92381c8e2ac0f93","highlightTag":"em","maxResultLength":10,"noResultsFound":"No results found","snippetLength":30,"type":"algolia"}};</script><script src="/js/theme.min.js"></script><script>
+        (function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
+            m[i].l=1*new Date();k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)})
+        (window, document, "script", "https://mc.yandex.ru/metrika/tag.js", "ym");
+
+        ym("70532758", "init", {
+            clickmap:true,
+            trackLinks:true,
+            accurateTrackBounce:true,
+            webvisor: null 
+        });
+    </script>
+    <noscript><div><img src="https://mc.yandex.ru/watch/70532758" style="position:absolute; left:-9999px;" alt="" /></div></noscript></body>
+</html>

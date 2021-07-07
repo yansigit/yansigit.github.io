@@ -1,0 +1,77 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>os - Category - Seongbin Yoon</title>
+        <link>https://yansigit.github.io/categories/os/</link>
+        <description>os - Category - Seongbin Yoon</description>
+        <generator>Hugo -- gohugo.io</generator><language>en</language><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Fri, 18 Sep 2020 23:24:53 &#43;0900</lastBuildDate><atom:link href="https://yansigit.github.io/categories/os/" rel="self" type="application/rss+xml" /><item>
+    <title>운영체제 - CPU</title>
+    <link>https://yansigit.github.io/blog/cpu/</link>
+    <pubDate>Fri, 18 Sep 2020 23:24:53 &#43;0900</pubDate>
+    <author>yansigit.github.io</author>
+    <guid>https://yansigit.github.io/blog/cpu/</guid>
+    <description><![CDATA[<p>CPU</p>]]></description>
+</item><item>
+    <title>운영체제 - CPU 스케줄링</title>
+    <link>https://yansigit.github.io/blog/cpu-%EC%8A%A4%EC%BC%80%EC%A4%84%EB%A7%81/</link>
+    <pubDate>Fri, 18 Sep 2020 23:24:53 &#43;0900</pubDate>
+    <author>yansigit.github.io</author>
+    <guid>https://yansigit.github.io/blog/cpu-%EC%8A%A4%EC%BC%80%EC%A4%84%EB%A7%81/</guid>
+    <description><![CDATA[<p>CPU 스케줄링</p>]]></description>
+</item><item>
+    <title>운영체제 - CPU 스케줄링 알고리즘</title>
+    <link>https://yansigit.github.io/blog/cpu-%EC%8A%A4%EC%BC%80%EC%A4%84%EB%A7%81-%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98/</link>
+    <pubDate>Fri, 18 Sep 2020 23:24:53 &#43;0900</pubDate>
+    <author>yansigit.github.io</author>
+    <guid>https://yansigit.github.io/blog/cpu-%EC%8A%A4%EC%BC%80%EC%A4%84%EB%A7%81-%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98/</guid>
+    <description><![CDATA[<p>CPU 스케줄링 알고리즘</p>]]></description>
+</item><item>
+    <title>운영체제 - RAID</title>
+    <link>https://yansigit.github.io/blog/raid/</link>
+    <pubDate>Fri, 18 Sep 2020 23:24:53 &#43;0900</pubDate>
+    <author>yansigit.github.io</author>
+    <guid>https://yansigit.github.io/blog/raid/</guid>
+    <description><![CDATA[<p>RAID</p>]]></description>
+</item><item>
+    <title>운영체제 - 가상 메모리</title>
+    <link>https://yansigit.github.io/blog/%EA%B0%80%EC%83%81-%EB%A9%94%EB%AA%A8%EB%A6%AC/</link>
+    <pubDate>Fri, 18 Sep 2020 23:24:53 &#43;0900</pubDate>
+    <author>yansigit.github.io</author>
+    <guid>https://yansigit.github.io/blog/%EA%B0%80%EC%83%81-%EB%A9%94%EB%AA%A8%EB%A6%AC/</guid>
+    <description><![CDATA[<p>가상 메모리</p>]]></description>
+</item><item>
+    <title>운영체제 - 가상메모리 관리</title>
+    <link>https://yansigit.github.io/blog/%EA%B0%80%EC%83%81%EB%A9%94%EB%AA%A8%EB%A6%AC-%EA%B4%80%EB%A6%AC/</link>
+    <pubDate>Fri, 18 Sep 2020 23:24:53 &#43;0900</pubDate>
+    <author>yansigit.github.io</author>
+    <guid>https://yansigit.github.io/blog/%EA%B0%80%EC%83%81%EB%A9%94%EB%AA%A8%EB%A6%AC-%EA%B4%80%EB%A6%AC/</guid>
+    <description><![CDATA[<p>가상메모리 관리</p>]]></description>
+</item><item>
+    <title>운영체제 - 공유자원과 임계구역</title>
+    <link>https://yansigit.github.io/blog/%EA%B3%B5%EC%9C%A0%EC%9E%90%EC%9B%90%EA%B3%BC-%EC%9E%84%EA%B3%84%EA%B5%AC%EC%97%AD/</link>
+    <pubDate>Fri, 18 Sep 2020 23:24:53 &#43;0900</pubDate>
+    <author>yansigit.github.io</author>
+    <guid>https://yansigit.github.io/blog/%EA%B3%B5%EC%9C%A0%EC%9E%90%EC%9B%90%EA%B3%BC-%EC%9E%84%EA%B3%84%EA%B5%AC%EC%97%AD/</guid>
+    <description><![CDATA[<p>공유자원과 임계구역</p>]]></description>
+</item><item>
+    <title>운영체제 - 교착상태</title>
+    <link>https://yansigit.github.io/blog/%EA%B5%90%EC%B0%A9%EC%83%81%ED%83%9C/</link>
+    <pubDate>Fri, 18 Sep 2020 23:24:53 &#43;0900</pubDate>
+    <author>yansigit.github.io</author>
+    <guid>https://yansigit.github.io/blog/%EA%B5%90%EC%B0%A9%EC%83%81%ED%83%9C/</guid>
+    <description><![CDATA[<p>교착상태</p>]]></description>
+</item><item>
+    <title>운영체제 - 네트워크 저장장치</title>
+    <link>https://yansigit.github.io/blog/%EB%84%A4%ED%8A%B8%EC%9B%8C%ED%81%AC-%EC%A0%80%EC%9E%A5%EC%9E%A5%EC%B9%98/</link>
+    <pubDate>Fri, 18 Sep 2020 23:24:53 &#43;0900</pubDate>
+    <author>yansigit.github.io</author>
+    <guid>https://yansigit.github.io/blog/%EB%84%A4%ED%8A%B8%EC%9B%8C%ED%81%AC-%EC%A0%80%EC%9E%A5%EC%9E%A5%EC%B9%98/</guid>
+    <description><![CDATA[<p>네트워크 저장장치</p>]]></description>
+</item><item>
+    <title>운영체제 - 네트워크와 인터넷</title>
+    <link>https://yansigit.github.io/blog/%EB%84%A4%ED%8A%B8%EC%9B%8C%ED%81%AC%EC%99%80-%EC%9D%B8%ED%84%B0%EB%84%B7/</link>
+    <pubDate>Fri, 18 Sep 2020 23:24:53 &#43;0900</pubDate>
+    <author>yansigit.github.io</author>
+    <guid>https://yansigit.github.io/blog/%EB%84%A4%ED%8A%B8%EC%9B%8C%ED%81%AC%EC%99%80-%EC%9D%B8%ED%84%B0%EB%84%B7/</guid>
+    <description><![CDATA[<p>네트워크와 인터넷</p>]]></description>
+</item></channel>
+</rss>

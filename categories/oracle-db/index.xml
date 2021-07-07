@@ -1,0 +1,77 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>oracle-db - Category - Seongbin Yoon</title>
+        <link>https://yansigit.github.io/categories/oracle-db/</link>
+        <description>oracle-db - Category - Seongbin Yoon</description>
+        <generator>Hugo -- gohugo.io</generator><language>en</language><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Wed, 16 Sep 2020 00:00:00 &#43;0000</lastBuildDate><atom:link href="https://yansigit.github.io/categories/oracle-db/" rel="self" type="application/rss+xml" /><item>
+    <title>ORACLE DB Scott 계정</title>
+    <link>https://yansigit.github.io/blog/oracle-db-scott-account/</link>
+    <pubDate>Wed, 16 Sep 2020 00:00:00 &#43;0000</pubDate>
+    <author>yansigit.github.io</author>
+    <guid>https://yansigit.github.io/blog/oracle-db-scott-account/</guid>
+    <description><![CDATA[<p>ORACLE DB Scott 계정에 대해서</p>]]></description>
+</item><item>
+    <title>ORACLE DB SQL*PLUS 명령어 정리</title>
+    <link>https://yansigit.github.io/blog/oracle-db-sql-plus/</link>
+    <pubDate>Wed, 16 Sep 2020 00:00:00 &#43;0000</pubDate>
+    <author>yansigit.github.io</author>
+    <guid>https://yansigit.github.io/blog/oracle-db-sql-plus/</guid>
+    <description><![CDATA[<p>ORACLE DB SQL*PLUS 명령어 정리</p>]]></description>
+</item><item>
+    <title>ORACLE DB 계정</title>
+    <link>https://yansigit.github.io/blog/oracle-db-accounts/</link>
+    <pubDate>Wed, 16 Sep 2020 00:00:00 &#43;0000</pubDate>
+    <author>yansigit.github.io</author>
+    <guid>https://yansigit.github.io/blog/oracle-db-accounts/</guid>
+    <description><![CDATA[<p>ORACLE DB 계정 설명</p>]]></description>
+</item><item>
+    <title>ORACLE DB 명령어 정리</title>
+    <link>https://yansigit.github.io/blog/oracle-db-commands/</link>
+    <pubDate>Wed, 16 Sep 2020 00:00:00 &#43;0000</pubDate>
+    <author>yansigit.github.io</author>
+    <guid>https://yansigit.github.io/blog/oracle-db-commands/</guid>
+    <description><![CDATA[<p>ORACLE DB 명령어 정리</p>]]></description>
+</item><item>
+    <title>ORACLE DB 서브 쿼리 정리</title>
+    <link>https://yansigit.github.io/blog/oracle-db-sub-queries/</link>
+    <pubDate>Wed, 16 Sep 2020 00:00:00 &#43;0000</pubDate>
+    <author>yansigit.github.io</author>
+    <guid>https://yansigit.github.io/blog/oracle-db-sub-queries/</guid>
+    <description><![CDATA[<p>ORACLE DB 서브 쿼리</p>]]></description>
+</item><item>
+    <title>ORACLE DB 에러 대응</title>
+    <link>https://yansigit.github.io/blog/oracle-db-quick-fixes-for-errors/</link>
+    <pubDate>Wed, 16 Sep 2020 00:00:00 &#43;0000</pubDate>
+    <author>yansigit.github.io</author>
+    <guid>https://yansigit.github.io/blog/oracle-db-quick-fixes-for-errors/</guid>
+    <description><![CDATA[<p>ORACLE DB 에러 대응</p>]]></description>
+</item><item>
+    <title>ORACLE DB 연습문제 모음</title>
+    <link>https://yansigit.github.io/blog/oracle-db-examples/</link>
+    <pubDate>Wed, 16 Sep 2020 00:00:00 &#43;0000</pubDate>
+    <author>yansigit.github.io</author>
+    <guid>https://yansigit.github.io/blog/oracle-db-examples/</guid>
+    <description><![CDATA[<p>ORACLE DB 연습문제 모음</p>]]></description>
+</item><item>
+    <title>ORACLE DB 이론 정리</title>
+    <link>https://yansigit.github.io/blog/oracle-db-theory/</link>
+    <pubDate>Wed, 16 Sep 2020 00:00:00 &#43;0000</pubDate>
+    <author>yansigit.github.io</author>
+    <guid>https://yansigit.github.io/blog/oracle-db-theory/</guid>
+    <description><![CDATA[<p>ORACLE DB 이론 정리</p>]]></description>
+</item><item>
+    <title>ORACLE DB 테이블 조인</title>
+    <link>https://yansigit.github.io/blog/oracle-db-joining-tables/</link>
+    <pubDate>Wed, 16 Sep 2020 00:00:00 &#43;0000</pubDate>
+    <author>yansigit.github.io</author>
+    <guid>https://yansigit.github.io/blog/oracle-db-joining-tables/</guid>
+    <description><![CDATA[<p>ORACLE DB 테이블 조인</p>]]></description>
+</item><item>
+    <title>ORACLE DB 팁 정리</title>
+    <link>https://yansigit.github.io/blog/oracle-db-tips/</link>
+    <pubDate>Wed, 16 Sep 2020 00:00:00 &#43;0000</pubDate>
+    <author>yansigit.github.io</author>
+    <guid>https://yansigit.github.io/blog/oracle-db-tips/</guid>
+    <description><![CDATA[<p>ORACLE DB 팁 정리</p>]]></description>
+</item></channel>
+</rss>

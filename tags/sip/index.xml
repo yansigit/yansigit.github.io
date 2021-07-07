@@ -1,0 +1,14 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>sip - Tag - Seongbin Yoon</title>
+        <link>https://yansigit.github.io/tags/sip/</link>
+        <description>sip - Tag - Seongbin Yoon</description>
+        <generator>Hugo -- gohugo.io</generator><language>en</language><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Thu, 17 Sep 2020 00:11:07 &#43;0900</lastBuildDate><atom:link href="https://yansigit.github.io/tags/sip/" rel="self" type="application/rss+xml" /><item>
+    <title>Computer Networking - VOIP-SIP</title>
+    <link>https://yansigit.github.io/blog/computer-network-voip-sip/</link>
+    <pubDate>Thu, 17 Sep 2020 00:11:07 &#43;0900</pubDate>
+    <author>yansigit.github.io</author>
+    <guid>https://yansigit.github.io/blog/computer-network-voip-sip/</guid>
+    <description><![CDATA[<p>Computer Networking - VOIP-SIP</p>]]></description>
+</item></channel>
+</rss>

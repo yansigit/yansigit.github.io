@@ -1,0 +1,16 @@
+# Setting React Native Environment Variable
+
+
+## 맥의 경우
+
+```bash
+# .bash_profile 혹은 .zshrc 파일에 아래 내용 작성
+export ANDROID_HOME=$HOME/Library/Android/sdk
+export ANDROID_SDK_ROOT=$ANDROID_HOME
+export PATH=$PATH:$ANDROID_HOME/emulator
+export PATH=$PATH:$ANDROID_HOME/tools
+export PATH=$PATH:$ANDROID_HOME/tools/bin
+export PATH=$PATH:$ANDROID_HOME/platform-tools
+```
+
+<!--more-->

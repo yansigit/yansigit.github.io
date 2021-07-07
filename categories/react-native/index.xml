@@ -1,0 +1,88 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>react-native - Category - Seongbin Yoon</title>
+        <link>https://yansigit.github.io/categories/react-native/</link>
+        <description>react-native - Category - Seongbin Yoon</description>
+        <generator>Hugo -- gohugo.io</generator><language>en</language><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Tue, 15 Sep 2020 23:29:35 &#43;0900</lastBuildDate><atom:link href="https://yansigit.github.io/categories/react-native/" rel="self" type="application/rss+xml" /><item>
+    <title>Setting React Native Environment Variable</title>
+    <link>https://yansigit.github.io/blog/setting-react-native-environment-variable/</link>
+    <pubDate>Tue, 15 Sep 2020 23:29:35 &#43;0900</pubDate>
+    <author>yansigit.github.io</author>
+    <guid>https://yansigit.github.io/blog/setting-react-native-environment-variable/</guid>
+    <description><![CDATA[<h2 id="맥의-경우" class="headerLink"><a href="#%eb%a7%a5%ec%9d%98-%ea%b2%bd%ec%9a%b0" class="header-mark"></a>맥의 경우</h2><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash"><span class="c1"># .bash_profile 혹은 .zshrc 파일에 아래 내용 작성</span>
+<span class="nb">export</span> <span class="nv">ANDROID_HOME</span><span class="o">=</span><span class="nv">$HOME</span>/Library/Android/sdk
+<span class="nb">export</span> <span class="nv">ANDROID_SDK_ROOT</span><span class="o">=</span><span class="nv">$ANDROID_HOME</span>
+<span class="nb">export</span> <span class="nv">PATH</span><span class="o">=</span><span class="nv">$PATH</span>:<span class="nv">$ANDROID_HOME</span>/emulator
+<span class="nb">export</span> <span class="nv">PATH</span><span class="o">=</span><span class="nv">$PATH</span>:<span class="nv">$ANDROID_HOME</span>/tools
+<span class="nb">export</span> <span class="nv">PATH</span><span class="o">=</span><span class="nv">$PATH</span>:<span class="nv">$ANDROID_HOME</span>/tools/bin
+<span class="nb">export</span> <span class="nv">PATH</span><span class="o">=</span><span class="nv">$PATH</span>:<span class="nv">$ANDROID_HOME</span>/platform-tools
+</code></pre></td></tr></table>
+</div>
+</div>]]></description>
+</item><item>
+    <title>React Native Simple Notes</title>
+    <link>https://yansigit.github.io/blog/react-native-simple-notes/</link>
+    <pubDate>Tue, 15 Sep 2020 23:24:53 &#43;0900</pubDate>
+    <author>yansigit.github.io</author>
+    <guid>https://yansigit.github.io/blog/react-native-simple-notes/</guid>
+    <description><![CDATA[<h2 id="컴포넌트-기본-구조" class="headerLink"><a href="#%ec%bb%b4%ed%8f%ac%eb%84%8c%ed%8a%b8-%ea%b8%b0%eb%b3%b8-%ea%b5%ac%ec%a1%b0" class="header-mark"></a>컴포넌트 기본 구조</h2><p><code>App.js</code></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-jsx" data-lang="jsx"><span class="kr">import</span> <span class="nx">React</span><span class="p">,</span> <span class="p">{</span> <span class="nx">Component</span> <span class="p">}</span> <span class="nx">from</span> <span class="s1">&#39;react&#39;</span><span class="p">;</span>
+
+<span class="c1">// Hello Component (View)
+</span><span class="c1">// 이제 해당 컴포넌트는 JSX 내부에 &lt;Hello /&gt; 식으로 사용 가능
+</span><span class="c1"></span><span class="kr">class</span> <span class="nx">Hello</span> <span class="kr">extends</span> <span class="nx">Component</span> <span class="p">{</span>
+  <span class="nx">render</span><span class="p">()</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="p">(</span>
+      <span class="p">&lt;</span><span class="nt">h1</span><span class="p">&gt;</span><span class="nx">hello</span><span class="p">,</span> <span class="p">{</span><span class="k">this</span><span class="p">.</span><span class="nx">props</span><span class="p">.</span><span class="nx">name</span><span class="p">}&lt;/</span><span class="nt">h1</span><span class="p">&gt;</span>
+    <span class="p">);</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="kr">export</span> <span class="k">default</span> <span class="nx">Hello</span><span class="p">;</span>
+</code></pre></td></tr></table>
+</div>
+</div>]]></description>
+</item><item>
+    <title>React Native Quick Error Fixes</title>
+    <link>https://yansigit.github.io/blog/react-native-quick-error-fixes/</link>
+    <pubDate>Tue, 15 Sep 2020 22:56:51 &#43;0900</pubDate>
+    <author>yansigit.github.io</author>
+    <guid>https://yansigit.github.io/blog/react-native-quick-error-fixes/</guid>
+    <description><![CDATA[<h2 id="ios-향-빌드-시-체크사항" class="headerLink"><a href="#ios-%ed%96%a5-%eb%b9%8c%eb%93%9c-%ec%8b%9c-%ec%b2%b4%ed%81%ac%ec%82%ac%ed%95%ad" class="header-mark"></a>iOS 향 빌드 시 체크사항</h2><ul>
+<li>Xcode - 속성 - 컴포넌트에 iOS 시뮬레이터 깔려있는지 확인 (가상머신 이용 시)</li>
+<li>Location 에서 Command Line Tools가 제대로 지정되어 있는지 확인
+<ul>
+<li>없을 시 Command Line Tools 설치 후 설정</li>
+</ul>
+</li>
+</ul>]]></description>
+</item></channel>
+</rss>

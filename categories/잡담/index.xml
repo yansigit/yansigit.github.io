@@ -1,0 +1,22 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>잡담 - Category - Seongbin Yoon</title>
+        <link>https://yansigit.github.io/categories/%EC%9E%A1%EB%8B%B4/</link>
+        <description>잡담 - Category - Seongbin Yoon</description>
+        <generator>Hugo -- gohugo.io</generator><language>en</language><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Sun, 16 Feb 2020 17:01:05 &#43;0900</lastBuildDate><atom:link href="https://yansigit.github.io/categories/%EC%9E%A1%EB%8B%B4/" rel="self" type="application/rss+xml" /><item>
+    <title>About Http/3</title>
+    <link>https://yansigit.github.io/blog/about-http-3/</link>
+    <pubDate>Sun, 16 Feb 2020 17:01:05 &#43;0900</pubDate>
+    <author>yansigit.github.io</author>
+    <guid>https://yansigit.github.io/blog/about-http-3/</guid>
+    <description><![CDATA[<p>HTTP/2 나온지 얼마나 됬다고&hellip;</p>]]></description>
+</item><item>
+    <title>Markdown Editor Typora</title>
+    <link>https://yansigit.github.io/blog/markdown-editor-typora/</link>
+    <pubDate>Mon, 27 Jan 2020 22:09:09 &#43;0900</pubDate>
+    <author>yansigit.github.io</author>
+    <guid>https://yansigit.github.io/blog/markdown-editor-typora/</guid>
+    <description><![CDATA[<h1 id="markdown-editor" class="headerLink"><a href="#markdown-editor" class="header-mark"></a>Markdown Editor</h1><p>지금까지 블로그 글을 쓸 때, 나는 Webstorm의 마크다운 플러그인을 이용해 IDE에서 직접 써왔다.</p>
+<p>마크다운 전용 에디터가 존재하는 것은 알고 있었지만 깔기도 귀찮았을 뿐더러 사용에 지장도 딱히 없다고 느꼈기 때문이다.</p>]]></description>
+</item></channel>
+</rss>

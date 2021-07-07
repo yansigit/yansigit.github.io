@@ -1,0 +1,16 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>hot-reload - Tag - Seongbin Yoon</title>
+        <link>https://yansigit.github.io/tags/hot-reload/</link>
+        <description>hot-reload - Tag - Seongbin Yoon</description>
+        <generator>Hugo -- gohugo.io</generator><language>en</language><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Mon, 27 Jan 2020 19:47:58 &#43;0900</lastBuildDate><atom:link href="https://yansigit.github.io/tags/hot-reload/" rel="self" type="application/rss+xml" /><item>
+    <title>Hot Reloading on Golang Project</title>
+    <link>https://yansigit.github.io/blog/hot-reloading-on-golang-project/</link>
+    <pubDate>Mon, 27 Jan 2020 19:47:58 &#43;0900</pubDate>
+    <author>yansigit.github.io</author>
+    <guid>https://yansigit.github.io/blog/hot-reloading-on-golang-project/</guid>
+    <description><![CDATA[<h1 id="hot-reloading" class="headerLink"><a href="#hot-reloading" class="header-mark"></a>Hot Reloading</h1><p>웹 어플리케이션을 개발할 때 항상 유용하게 사용하는 기능이 Hot-Reloading 기능이다.</p>
+<p>템플릿이나 기능을 약간 바꾸고 확인하고 싶을 때,
+코드를 변경하고 일일히 빌드를 새로 해주기란 여간 귀찮은 일이 아니기 때문이다.</p>]]></description>
+</item></channel>
+</rss>

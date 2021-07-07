@@ -1,0 +1,562 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1"><meta name="robots" content="noodp"/><title>Computer Networking - VOIP-SIP - Seongbin Yoon</title>
+        <meta name="twitter:card" content="summary_large_image"/><meta name="twitter:title" content=""/>
+        <meta name="twitter:description" content="About uBlogger Theme"/>
+        <meta name="Description" content="컴퓨터 네트워크 - VOIP-SIP"><meta property="og:title" content="Computer Networking - VOIP-SIP" />
+<meta property="og:description" content="컴퓨터 네트워크 - VOIP-SIP" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://yansigit.github.io/blog/computer-network-voip-sip/" /><meta property="og:image" content="https://yansigit.github.io/logo.png"/><meta property="article:section" content="blog" />
+<meta property="article:published_time" content="2020-09-17T00:11:07&#43;09:00" />
+<meta property="article:modified_time" content="2021-03-16T23:37:21&#43;09:00" />
+
+<meta name="application-name" content="uBlogger">
+<meta name="apple-mobile-web-app-title" content="uBlogger"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+        <link rel="icon" type="image/png" sizes="192x192" href="/android-chrome-192x192.png">
+        <link rel="icon" type="image/png" sizes="512x512" href="/android-chrome-512x512.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://yansigit.github.io/blog/computer-network-voip-sip/" /><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/normalize.css@8.0.1/normalize.min.css"><link rel="stylesheet" href="/lib/prismjs/prism.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.7.2/animate.min.css"><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "Computer Networking - VOIP-SIP",
+        "inLanguage": "en",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https:\/\/yansigit.github.io\/blog\/computer-network-voip-sip\/"
+        },"image": [{
+                            "@type": "ImageObject",
+                            "url": "https:\/\/yansigit.github.io\/images\/Apple-Devices-Preview.png",
+                            "width":  3200 ,
+                            "height":  2048 
+                        }],"genre": "blog","keywords": "computer-networking, network, sip, networking, voip","wordCount":  688 ,
+        "url": "https:\/\/yansigit.github.io\/blog\/computer-network-voip-sip\/","datePublished": "2020-09-17T00:11:07+09:00","dateModified": "2021-03-16T23:37:21+09:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","description": "컴퓨터 네트워크 - VOIP-SIP"
+    }
+    </script><script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        "itemListElement": [{
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Home",
+            "item": "https:\/\/yansigit.github.io\/"
+        },{
+            "@type": "ListItem",
+            "position": 2,
+            "name": "computer-networking",
+            "item": "https://yansigit.github.io/categories/computer-networking/"
+        },{
+                "@type": "ListItem",
+                "position": 3,
+                "name": "Computer Networking - VOIP-SIP"
+            }]
+    }
+</script></head>
+    <body data-header-desktop="fixed" data-header-mobile="auto"><script>(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header>
+    <div class="desktop header" id="header-desktop">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="Seongbin Yoon" class="header-logo logo-svg"><span class="header-title-pre">📝</span>Blog == Portfolio</a>
+            </div>
+            <div class="menu">
+                <nav>
+                    <h2 class="display-hidden">Основная навигация</h2>
+                    <ul class="menu-inner"><li>
+                            <a class="menu-item" href="/posts/"> Posts </a>
+                        </li><li>
+                            <a class="menu-item" href="/blog/"> Blog </a>
+                        </li><li>
+                            <a class="menu-item" href="/tags/"> Tags </a>
+                        </li><li>
+                            <a class="menu-item" href="/categories/"> Categories </a>
+                        </li><li>
+                            <a class="menu-item" href="/categories/documentation/"> Docs </a>
+                        </li><li>
+                            <a class="menu-item" href="/about/"> About </a>
+                        </li><li>
+                            <a class="menu-item" href="https://github.com/upagge/ublogger" title="GitHub" rel="noopener noreffer" target="_blank"> Github </a>
+                        </li></ul>
+                </nav><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="Search titles or contents..." id="search-input-desktop">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="Search">
+                            <span class="svg-icon icon-search"></span>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="Clear">
+                            <span class="svg-icon icon-cancel"></span>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <span class="svg-icon icon-loading"></span>
+                        </span>
+                    </span><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                <span class="svg-icon icon-moon"></span>
+                </a>
+            </div>
+        </div>
+    </div><div class="mobile header" id="header-mobile">
+        <div class="header-container">
+            <div class="header-wrapper">
+                <div class="header-title">
+                    <a href="/" title="Seongbin Yoon" class="header-logo"><span class="header-title-pre">📝</span>Blog == Portfolio</a>
+                </div>
+                <div class="menu-toggle" id="menu-toggle-mobile">
+                    <span></span><span></span><span></span>
+                </div>
+            </div>
+            <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                        <div class="search mobile" id="search-mobile">
+                            <input type="text" placeholder="Search titles or contents..." id="search-input-mobile">
+                            <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="Search">
+                                <span class="svg-icon icon-search"></span>
+                            </a>
+                            <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="Clear">
+                                <span class="svg-icon icon-cancel"></span>
+                            </a>
+                            <span class="search-button search-loading" id="search-loading-mobile">
+                                <span class="svg-icon icon-loading"></span>
+                            </span>
+                        </div>
+                        <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
+                            Cancel
+                        </a>
+                    </div><nav>
+                    <h2 class="display-hidden">Основная навигация</h2>
+                    <ul><li>
+                            <a class="menu-item" href="/posts/" title="">Posts</a>
+                        </li><li>
+                            <a class="menu-item" href="/blog/" title="">Blog</a>
+                        </li><li>
+                            <a class="menu-item" href="/tags/" title="">Tags</a>
+                        </li><li>
+                            <a class="menu-item" href="/categories/" title="">Categories</a>
+                        </li><li>
+                            <a class="menu-item" href="/categories/documentation/" title="">Docs</a>
+                        </li><li>
+                            <a class="menu-item" href="/about/" title="">About</a>
+                        </li><li>
+                            <a class="menu-item" href="https://github.com/upagge/ublogger" title="GitHub" rel="noopener noreffer" target="_blank">Github</a>
+                        </li></ul>
+                </nav>
+                <a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                    <span class="svg-icon icon-moon"></span>
+                </a></div>
+        </div>
+    </div><div class="search-dropdown desktop">
+    <div id="search-dropdown-desktop"></div>
+</div>
+<div class="search-dropdown mobile">
+    <div id="search-dropdown-mobile"></div>
+</div></header><main class="main">
+                <div class="container"><div class="page single special"><h1 class="single-title pulse faster">Computer Networking - VOIP-SIP</h1><div class="content" id="content"><p>Computer Networking - VOIP-SIP</p>
+<h1 id="computer-network-voip-sip" class="headerLink"><a href="#computer-network-voip-sip" class="header-mark"></a>Computer-Network-VOIP-SIP</h1><h2 id="sip--session-init-protocol" class="headerLink"><a href="#sip--session-init-protocol" class="header-mark"></a>SIP : Session Init Protocol</h2><ul>
+<li>모든 전화, 비디오 콜이 인터넷 통해서 이루어지도록</li>
+<li>번호보다는 이름이나 이메일로 신원 확인</li>
+<li>전화 받는 사람(Collee)가 어디서든, 어떤 장치를 쓰던 Reachable 하게</li>
+</ul>
+<h2 id="sip-서비스들" class="headerLink"><a href="#sip-%ec%84%9c%eb%b9%84%ec%8a%a4%eb%93%a4" class="header-mark"></a>SIP 서비스들</h2><ul>
+<li>Call 셋업 시 SIP가 제공하는 메커니즘들
+<ul>
+<li>Coller가 Collee에게 전화하고 싶다는 사실을 Collee에게 알려줌</li>
+<li>이로서 미디어 타입, 인코딩 방식 등 협의</li>
+<li>전화 종료</li>
+</ul>
+</li>
+<li>mnemonic (의미있는) 식별자들을 IP 주소로 변경
+<ul>
+<li>이메일, 이름 등</li>
+</ul>
+</li>
+<li>통화 관리
+<ul>
+<li>새로운 미디어 스트림 추가 (음성 → 비디오 전화 등)</li>
+<li>인코딩 방식 변경</li>
+<li>다른 통화상태 추가</li>
+<li>전화 홀드, 전달 등</li>
+</ul>
+</li>
+</ul>
+<h2 id="example" class="headerLink"><a href="#example" class="header-mark"></a>Example</h2><p>
+
+
+
+    
+<img loading="lazy" decoding="async"
+         class="render-image"
+         src="./Untitled.png"
+         alt="image"
+         title="Untitled.png"
+    /></p>
+<ul>
+<li>인코딩 협상
+<ul>
+<li>만약 상대방이 요청한 인코딩을 자신의 시스템이 지원하지 않는다면 606 Not Acceptable
+<ul>
+<li>상대방은 다른 인코딩 방식을 설정해 새 INVITE 메세지를 보낼 수 있음</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>RTP(UDP) 뿐만 아니라 TCP도 사용 가능</li>
+</ul>
+<h2 id="이름-변환-user-location" class="headerLink"><a href="#%ec%9d%b4%eb%a6%84-%eb%b3%80%ed%99%98-user-location" class="header-mark"></a>이름 변환, User Location</h2><ul>
+<li>Collee의 IP 주소를 알아내야 하는데 IP는 계속 바뀜
+<ul>
+<li>USER는 돌아다니고</li>
+<li>DHCP 프로토콜</li>
+<li>기기마다 다른 IP</li>
+</ul>
+</li>
+</ul>
+<h2 id="sip-registrar" class="headerLink"><a href="#sip-registrar" class="header-mark"></a>SIP registrar</h2><p>
+
+
+
+    
+<img loading="lazy" decoding="async"
+         class="render-image"
+         src="./Untitled%201.png"
+         alt="image"
+         title="Untitled%201.png"
+    /></p>
+<ul>
+<li>사용자가 SIP Client를 실행시키면 클라이언트는 SIP REGISTER에 메세지를 보내 등록</li>
+</ul>
+<h2 id="sip-proxy" class="headerLink"><a href="#sip-proxy" class="header-mark"></a>SIP Proxy</h2><ul>
+<li>Local DNS Server와 유사한 역할</li>
+<li>Alice가 프록시 서버로 invite 메세지를 보내면
+<ul>
+<li>해당 메세지는 상대방 Bob의 주소(이름)을 포함</li>
+<li>프록시 서버는 다른 프록시 서버 등을 통해 라우팅하여 Bob에게 메세지 전달</li>
+<li>Response를 받으면 다시 그것을 Alice에게 전달
+<ul>
+<li>Response에는 Bob의 IP가 포함</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="sip-example" class="headerLink"><a href="#sip-example" class="header-mark"></a>SIP example</h2><p>
+
+
+
+    
+<img loading="lazy" decoding="async"
+         class="render-image"
+         src="./Untitled%202.png"
+         alt="image"
+         title="Untitled%202.png"
+    /></p>
+<h1 id="network-and-multimedia" class="headerLink"><a href="#network-and-multimedia" class="header-mark"></a>Network and Multimedia</h1><h2 id="multimedia-support-of-network" class="headerLink"><a href="#multimedia-support-of-network" class="header-mark"></a>Multimedia support of network</h2><p>
+
+
+
+    
+<img loading="lazy" decoding="async"
+         class="render-image"
+         src="./Untitled%203.png"
+         alt="image"
+         title="Untitled%203.png"
+    /></p>
+<ul>
+<li>Best Effort
+<ul>
+<li>None services available</li>
+</ul>
+</li>
+<li>Differentiated service (서비스 차등화)
+<ul>
+<li>Soft Guarantee available</li>
+<li>Packet Marking
+<ul>
+<li>패킷에 중요도 마킹</li>
+</ul>
+</li>
+<li>Scheduling policing</li>
+<li>복잡성 중간. 조금 사용</li>
+</ul>
+</li>
+<li>Per-connection QoS
+<ul>
+<li>Hard Guarantee available</li>
+<li>Packet Marking</li>
+<li>Scheduling policing</li>
+<li>Call admission
+<ul>
+<li>보장해줄 수 있다면 허용, 아니라면 통신 비허가</li>
+</ul>
+</li>
+<li>복잡성이 높아 실제로는 사용 거의 안함</li>
+</ul>
+</li>
+</ul>
+<h2 id="best-effort-networks" class="headerLink"><a href="#best-effort-networks" class="header-mark"></a>Best effort networks</h2><ul>
+<li>충분한 용량을 줘서 딜레이나 로스 없이 하겠다</li>
+<li>좋은 라우터, 링크로 하겠다</li>
+<li>비용이 많이 듬</li>
+<li>Challenges
+<ul>
+<li>그럼 얼마만큼의 bandwith가 충분한 양인가?</li>
+<li>트래픽 추정도 필요함</li>
+</ul>
+</li>
+</ul>
+<h2 id="class-of-service" class="headerLink"><a href="#class-of-service" class="header-mark"></a>Class of Service</h2><ul>
+<li>서비스에 클래스를 두어 차등화하겠다</li>
+<li>클래스 별로 다른 서비스를 제공</li>
+</ul>
+<h2 id="class-of-service--sinario-1" class="headerLink"><a href="#class-of-service--sinario-1" class="header-mark"></a>Class of Service : Sinario 1</h2><p>
+
+
+
+    
+<img loading="lazy" decoding="async"
+         class="render-image"
+         src="./Untitled%204.png"
+         alt="image"
+         title="Untitled%204.png"
+    /></p>
+<ul>
+<li>VOIP의 경우 실시간성 데이터이므로 우선순위가 높아지면 좋음</li>
+<li>VOIP인지 HTTP 클래스인지 식별하기 위해 <strong>Packet Marking</strong> 사용</li>
+</ul>
+<h2 id="class-of-service--qos-garantees" class="headerLink"><a href="#class-of-service--qos-garantees" class="header-mark"></a>Class of Service : QoS garantees</h2><p>
+
+
+
+    
+<img loading="lazy" decoding="async"
+         class="render-image"
+         src="./Untitled%205.png"
+         alt="image"
+         title="Untitled%205.png"
+    /></p>
+<ul>
+<li>그런데 VOIP에 우선순위를 높게 줬더니 링크 캐퍼시티를 전부 사용해버린다면?
+<ul>
+<li>HTTP 연결은 아예 못하게 되어버림</li>
+<li>그러므로 <strong>QoS policing</strong>를 주어 연결속도 제한</li>
+</ul>
+</li>
+</ul>
+<h2 id="class-of-service--qos-problem" class="headerLink"><a href="#class-of-service--qos-problem" class="header-mark"></a>Class of Service : QoS Problem</h2><p>
+
+
+
+    
+<img loading="lazy" decoding="async"
+         class="render-image"
+         src="./Untitled%206.png"
+         alt="image"
+         title="Untitled%206.png"
+    /></p>
+<ul>
+<li>그런데 예를들어 VOIP에 1Mbps, HTTP에 0.5Mbps 식으로 고정적으로 할당해버리면
+<ul>
+<li>만약 VOIP가 Idle 상태일때도 HTTP는 0.5Mbps만 사용 가능</li>
+<li>그러므로 링크 낭비</li>
+<li>따라서 최대한 효과적으로 사용할 수 있는 방법 궁리해야함</li>
+</ul>
+</li>
+</ul>
+<h2 id="packet-scheduling" class="headerLink"><a href="#packet-scheduling" class="header-mark"></a>Packet Scheduling</h2><p>
+
+
+
+    
+<img loading="lazy" decoding="async"
+         class="render-image"
+         src="./Untitled%207.png"
+         alt="image"
+         title="Untitled%207.png"
+    /></p>
+<p>
+
+
+
+    
+<img loading="lazy" decoding="async"
+         class="render-image"
+         src="./Untitled%208.png"
+         alt="image"
+         title="Untitled%208.png"
+    /></p>
+<ul>
+<li>큐에 쌓인 패킷들 중에 어떤 패킷을 보낼 지 정하는 것 (지난학기때 배움)</li>
+<li>방법들
+<ul>
+<li>FCFS (선입선출)</li>
+<li>Simple Multi-Class Proirity</li>
+<li>Round robin</li>
+<li>Weighted fair queueing (WFQ)</li>
+</ul>
+</li>
+</ul>
+<h2 id="policing-mechanisms" class="headerLink"><a href="#policing-mechanisms" class="header-mark"></a>Policing mechanisms</h2><ul>
+<li>QoS 정책</li>
+<li>평균 패킷 제한
+<ul>
+<li>(장기적으로) Unit time 당 얼마나 많은 패킷을 보낼 수 있는지 결정</li>
+</ul>
+</li>
+<li>Peak Rate
+<ul>
+<li>분당, 초당 얼마의 패킷을 보낼 수있는지 결정</li>
+</ul>
+</li>
+<li>Burst size
+<ul>
+<li>한번에 (연속적으로) 패킷을 보낼 때 얼마나 많이 보낼 수 있는지 결정</li>
+</ul>
+</li>
+</ul>
+<h2 id="policing-mechanisms-token-bucket" class="headerLink"><a href="#policing-mechanisms-token-bucket" class="header-mark"></a>Policing mechanisms: <strong>Token bucket</strong></h2><ul>
+<li><strong>Token bucket</strong> : 제일 많이 사용</li>
+<li>방법론
+<ul>
+<li>가상의 통이 있는데 여기에는 티켓이 1초당 10개 생성됨</li>
+<li>패킷이 지나갈 때 마다 티켓을 한장 소모하고 가야함</li>
+<li>만약 가상의 통이 비어있다면 (티켓이 없다면) 패킷은 티켓이 생길 때 까지 대기했다가 지나가야함</li>
+</ul>
+</li>
+<li><strong>티켓(토큰)이 생성되는 시간을 통해 속도 조절</strong>
+<ul>
+<li>초당 A개의 토큰을 생성한다면 패킷도 초당 10개 지나갈 수 있음</li>
+</ul>
+</li>
+<li><strong>통의 크기를 조절해 Burst Size 조절</strong>
+<ul>
+<li>통의 크기가 B라면, Burst Size도 B
+<ul>
+<li>기다리는 시간 없이 연속적으로 보낼 수 있는 양</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>따라서 주어진 T 시간에 대해 보낼 수 있는 패킷의 양은
+<ul>
+<li>A * T + B</li>
+</ul>
+</li>
+</ul>
+<h2 id="policing-and-qos-guarantees" class="headerLink"><a href="#policing-and-qos-guarantees" class="header-mark"></a>Policing and QoS Guarantees</h2><ul>
+<li>Tocken bucket과 WFQ를 같이 쓰면 라우터 큐 딜레이의 Guaranteed upper bound를 구할 있다</li>
+</ul>
+<p>
+
+
+
+    
+<img loading="lazy" decoding="async"
+         class="render-image"
+         src="./Untitled%209.png"
+         alt="image"
+         title="Untitled%209.png"
+    /></p>
+<ul>
+<li>즉 Dmax of Red = b / ((W1)/W1+..+Wn) * R)</li>
+</ul>
+<h2 id="differentiated-services" class="headerLink"><a href="#differentiated-services" class="header-mark"></a>Differentiated Services</h2><ul>
+<li>차등화된 서비스 제공</li>
+<li>간단한 펑션은 네트워크 코어에 유지하고, 복잡한 펑션은 엣지 라우터나 호스트에 유지</li>
+<li>직접 클래스를 구현하진 않고, 클래스를 만들 수 있는 기능들을 정의</li>
+</ul>
+<h2 id="diffserv-architecture" class="headerLink"><a href="#diffserv-architecture" class="header-mark"></a>Diffserv Architecture</h2><ul>
+<li><strong>Edge Router</strong>
+<ul>
+<li>Flow 별 트래픽 관리</li>
+<li>패킷 마킹
+<ul>
+<li>in-profile
+<ul>
+<li>Flow가 선언한 만큼의 속도 안에서 쓰고있는 패킷들에 마킹됨</li>
+</ul>
+</li>
+<li>out-profile
+<ul>
+<li>Flow가 선언한 만큼의 속도 이상을 사용하고 있는 패킷들에 마킹됨</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><strong>Core Router</strong>
+<ul>
+<li>Class 별 트래픽 관리</li>
+<li>엣지 라우터에서 마킹한 것에 기반하여 버퍼링, 스케줄링</li>
+<li>in-profile 패킷들에 우선순위를 먼저 줌</li>
+</ul>
+</li>
+</ul>
+<h2 id="edge-router-packet-marking" class="headerLink"><a href="#edge-router-packet-marking" class="header-mark"></a>Edge-router packet marking</h2><ul>
+<li>Profile = 협의된 전송 속도 R, 버킷 사이즈 B</li>
+<li>Flow 마다 Profile을 베이스로 패킷을 마킹함</li>
+<li>마킹 사용법
+<ul>
+<li>Class-Based Marking
+<ul>
+<li>클래스 별로 마킹</li>
+</ul>
+</li>
+<li>Intra-Class Marking
+<ul>
+<li>클래스 내에서도 in-profile인지 out-profile인지에 따라 마킹 가능</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="diffserv-packet-marking-detail" class="headerLink"><a href="#diffserv-packet-marking-detail" class="header-mark"></a>Diffserv packet marking: Detail</h2><ul>
+<li>ToS를 이용해 마킹</li>
+<li>6비트짜리 Differentiated Service Code Point (DSCP) 필드 이용</li>
+</ul>
+<h2 id="per-connection-qos-guarantees" class="headerLink"><a href="#per-connection-qos-guarantees" class="header-mark"></a>Per-Connection QoS Guarantees</h2><p>
+
+
+
+    
+<img loading="lazy" decoding="async"
+         class="render-image"
+         src="./Untitled%2010.png"
+         alt="image"
+         title="Untitled%2010.png"
+    /></p>
+<ul>
+<li>아예 연결별로 QoS를 지정</li>
+<li>예를 들어 1.5Mbps링크에 2개의 1Mbps 연결이 시도되고 있다면
+<ul>
+<li>한개만 허용하고 다른 한개는 막아버림</li>
+<li><strong>Call Admission</strong></li>
+</ul>
+</li>
+</ul></div><div id="comments"><div id="utterances"></div><noscript>
+                Please enable JavaScript to view the comments powered by <a href="https://utteranc.es/">Utterances</a>.
+            </noscript></div></div></div>
+                </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line"><i class="svg-icon icon-copyright"></i><span>2020 - 2021</span><span class="author">&nbsp;<a href="/" target="_blank"></a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
+        </div>
+    </footer></div>
+
+        <aside id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="Back to Top">
+                <i class="svg-icon icon-arrow-up"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="View Comments">
+                <i class="svg-icon icon-comments-fixed"></i>
+            </a>
+        </aside><script src="https://cdn.jsdelivr.net/npm/smooth-scroll@16.1.3/dist/smooth-scroll.min.js"></script><script src="https://cdn.jsdelivr.net/npm/autocomplete.js@0.37.1/dist/autocomplete.min.js"></script><script src="https://cdn.jsdelivr.net/npm/algoliasearch@4.2.0/dist/algoliasearch-lite.umd.min.js"></script><script src="https://cdn.jsdelivr.net/npm/clipboard@2.0.6/dist/clipboard.min.js"></script><script src="https://cdn.jsdelivr.net/npm/sharer.js@0.4.0/sharer.min.js"></script><script src="/lib/prismjs/prism.js"></script><script>window.config={"code":{"copyTitle":"Copy to clipboard","maxShownLines":10},"comment":{"utterances":{"darkTheme":"github-dark","issueTerm":"pathname","label":"Utterances Comment","lightTheme":"github-light","repo":"yansigit/yansigit.github.io"}},"search":{"algoliaAppID":"PASDMWALPK","algoliaIndex":"index.en","algoliaSearchKey":"b42948e51daaa93df92381c8e2ac0f93","highlightTag":"em","maxResultLength":10,"noResultsFound":"No results found","snippetLength":30,"type":"algolia"}};</script><script src="/js/theme.min.js"></script><script>
+        (function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
+            m[i].l=1*new Date();k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)})
+        (window, document, "script", "https://mc.yandex.ru/metrika/tag.js", "ym");
+
+        ym("70532758", "init", {
+            clickmap:true,
+            trackLinks:true,
+            accurateTrackBounce:true,
+            webvisor: null 
+        });
+    </script>
+    <noscript><div><img src="https://mc.yandex.ru/watch/70532758" style="position:absolute; left:-9999px;" alt="" /></div></noscript></body>
+</html>

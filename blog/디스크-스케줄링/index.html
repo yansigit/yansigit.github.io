@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1"><meta name="robots" content="noodp"/><title>운영체제 - 디스크 스케줄링 - Seongbin Yoon</title>
+        <meta name="twitter:card" content="summary_large_image"/><meta name="twitter:title" content=""/>
+        <meta name="twitter:description" content="About uBlogger Theme"/>
+        <meta name="Description" content="디스크 스케줄링"><meta property="og:title" content="운영체제 - 디스크 스케줄링" />
+<meta property="og:description" content="디스크 스케줄링" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://yansigit.github.io/blog/%EB%94%94%EC%8A%A4%ED%81%AC-%EC%8A%A4%EC%BC%80%EC%A4%84%EB%A7%81/" /><meta property="og:image" content="https://yansigit.github.io/logo.png"/><meta property="article:section" content="blog" />
+<meta property="article:published_time" content="2020-09-18T23:24:53&#43;09:00" />
+<meta property="article:modified_time" content="2020-09-18T23:24:53&#43;09:00" />
+
+<meta name="application-name" content="uBlogger">
+<meta name="apple-mobile-web-app-title" content="uBlogger"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+        <link rel="icon" type="image/png" sizes="192x192" href="/android-chrome-192x192.png">
+        <link rel="icon" type="image/png" sizes="512x512" href="/android-chrome-512x512.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://yansigit.github.io/blog/%EB%94%94%EC%8A%A4%ED%81%AC-%EC%8A%A4%EC%BC%80%EC%A4%84%EB%A7%81/" /><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/normalize.css@8.0.1/normalize.min.css"><link rel="stylesheet" href="/lib/prismjs/prism.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.7.2/animate.min.css"><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "운영체제 - 디스크 스케줄링",
+        "inLanguage": "en",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https:\/\/yansigit.github.io\/blog\/%EB%94%94%EC%8A%A4%ED%81%AC-%EC%8A%A4%EC%BC%80%EC%A4%84%EB%A7%81\/"
+        },"image": [{
+                            "@type": "ImageObject",
+                            "url": "https:\/\/yansigit.github.io\/images\/Apple-Devices-Preview.png",
+                            "width":  3200 ,
+                            "height":  2048 
+                        }],"genre": "blog","keywords": "os, operation-system","wordCount":  310 ,
+        "url": "https:\/\/yansigit.github.io\/blog\/%EB%94%94%EC%8A%A4%ED%81%AC-%EC%8A%A4%EC%BC%80%EC%A4%84%EB%A7%81\/","datePublished": "2020-09-18T23:24:53+09:00","dateModified": "2020-09-18T23:24:53+09:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","description": "디스크 스케줄링"
+    }
+    </script><script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        "itemListElement": [{
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Home",
+            "item": "https:\/\/yansigit.github.io\/"
+        },{
+            "@type": "ListItem",
+            "position": 2,
+            "name": "os",
+            "item": "https://yansigit.github.io/categories/os/"
+        },{
+                "@type": "ListItem",
+                "position": 3,
+                "name": "운영체제 - 디스크 스케줄링"
+            }]
+    }
+</script></head>
+    <body data-header-desktop="fixed" data-header-mobile="auto"><script>(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header>
+    <div class="desktop header" id="header-desktop">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="Seongbin Yoon" class="header-logo logo-svg"><span class="header-title-pre">📝</span>Blog == Portfolio</a>
+            </div>
+            <div class="menu">
+                <nav>
+                    <h2 class="display-hidden">Основная навигация</h2>
+                    <ul class="menu-inner"><li>
+                            <a class="menu-item" href="/posts/"> Posts </a>
+                        </li><li>
+                            <a class="menu-item" href="/blog/"> Blog </a>
+                        </li><li>
+                            <a class="menu-item" href="/tags/"> Tags </a>
+                        </li><li>
+                            <a class="menu-item" href="/categories/"> Categories </a>
+                        </li><li>
+                            <a class="menu-item" href="/categories/documentation/"> Docs </a>
+                        </li><li>
+                            <a class="menu-item" href="/about/"> About </a>
+                        </li><li>
+                            <a class="menu-item" href="https://github.com/upagge/ublogger" title="GitHub" rel="noopener noreffer" target="_blank"> Github </a>
+                        </li></ul>
+                </nav><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="Search titles or contents..." id="search-input-desktop">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="Search">
+                            <span class="svg-icon icon-search"></span>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="Clear">
+                            <span class="svg-icon icon-cancel"></span>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <span class="svg-icon icon-loading"></span>
+                        </span>
+                    </span><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                <span class="svg-icon icon-moon"></span>
+                </a>
+            </div>
+        </div>
+    </div><div class="mobile header" id="header-mobile">
+        <div class="header-container">
+            <div class="header-wrapper">
+                <div class="header-title">
+                    <a href="/" title="Seongbin Yoon" class="header-logo"><span class="header-title-pre">📝</span>Blog == Portfolio</a>
+                </div>
+                <div class="menu-toggle" id="menu-toggle-mobile">
+                    <span></span><span></span><span></span>
+                </div>
+            </div>
+            <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                        <div class="search mobile" id="search-mobile">
+                            <input type="text" placeholder="Search titles or contents..." id="search-input-mobile">
+                            <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="Search">
+                                <span class="svg-icon icon-search"></span>
+                            </a>
+                            <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="Clear">
+                                <span class="svg-icon icon-cancel"></span>
+                            </a>
+                            <span class="search-button search-loading" id="search-loading-mobile">
+                                <span class="svg-icon icon-loading"></span>
+                            </span>
+                        </div>
+                        <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
+                            Cancel
+                        </a>
+                    </div><nav>
+                    <h2 class="display-hidden">Основная навигация</h2>
+                    <ul><li>
+                            <a class="menu-item" href="/posts/" title="">Posts</a>
+                        </li><li>
+                            <a class="menu-item" href="/blog/" title="">Blog</a>
+                        </li><li>
+                            <a class="menu-item" href="/tags/" title="">Tags</a>
+                        </li><li>
+                            <a class="menu-item" href="/categories/" title="">Categories</a>
+                        </li><li>
+                            <a class="menu-item" href="/categories/documentation/" title="">Docs</a>
+                        </li><li>
+                            <a class="menu-item" href="/about/" title="">About</a>
+                        </li><li>
+                            <a class="menu-item" href="https://github.com/upagge/ublogger" title="GitHub" rel="noopener noreffer" target="_blank">Github</a>
+                        </li></ul>
+                </nav>
+                <a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                    <span class="svg-icon icon-moon"></span>
+                </a></div>
+        </div>
+    </div><div class="search-dropdown desktop">
+    <div id="search-dropdown-desktop"></div>
+</div>
+<div class="search-dropdown mobile">
+    <div id="search-dropdown-mobile"></div>
+</div></header><main class="main">
+                <div class="container"><div class="page single special"><h1 class="single-title pulse faster">운영체제 - 디스크 스케줄링</h1><div class="content" id="content"><p>디스크 스케줄링</p>
+<h1 id="디스크-스케줄링" class="headerLink"><a href="#%eb%94%94%ec%8a%a4%ed%81%ac-%ec%8a%a4%ec%bc%80%ec%a4%84%eb%a7%81" class="header-mark"></a>디스크 스케줄링</h1><h2 id="디스크-스케줄링-1" class="headerLink"><a href="#%eb%94%94%ec%8a%a4%ed%81%ac-%ec%8a%a4%ec%bc%80%ec%a4%84%eb%a7%81-1" class="header-mark"></a>디스크 스케줄링</h2><ul>
+<li>트랙의 이동을 최소화하여 탐색 시간을 줄이는 것이 목적</li>
+</ul>
+<h2 id="아래-예시들에서-공통으로-이용할-트랙-접근-순서" class="headerLink"><a href="#%ec%95%84%eb%9e%98-%ec%98%88%ec%8b%9c%eb%93%a4%ec%97%90%ec%84%9c-%ea%b3%b5%ed%86%b5%ec%9c%bc%eb%a1%9c-%ec%9d%b4%ec%9a%a9%ed%95%a0-%ed%8a%b8%eb%9e%99-%ec%a0%91%ea%b7%bc-%ec%88%9c%ec%84%9c" class="header-mark"></a>아래 예시들에서 공통으로 이용할 트랙 접근 순서</h2><p>
+
+
+
+    
+<img loading="lazy" decoding="async"
+         class="render-image"
+         src="./Untitled.png"
+         alt="image"
+         title="Untitled.png"
+    /></p>
+<h2 id="fcfs-디스크-스케줄링--come-first-served" class="headerLink"><a href="#fcfs-%eb%94%94%ec%8a%a4%ed%81%ac-%ec%8a%a4%ec%bc%80%ec%a4%84%eb%a7%81--come-first-served" class="header-mark"></a>FCFS 디스크 스케줄링 (. Come First Served)</h2><ul>
+<li>요청이 들어온 순서대로 서비스</li>
+<li>헤드가 이동한 총거리 : 7+9+6+8+20+4+5+6=65</li>
+</ul>
+<p>
+
+
+
+    
+<img loading="lazy" decoding="async"
+         class="render-image"
+         src="./Untitled%201.png"
+         alt="image"
+         title="Untitled%201.png"
+    /></p>
+<h2 id="sstf-디스크-스케줄링--seek-time-first" class="headerLink"><a href="#sstf-%eb%94%94%ec%8a%a4%ed%81%ac-%ec%8a%a4%ec%bc%80%ec%a4%84%eb%a7%81--seek-time-first" class="header-mark"></a>SSTF 디스크 스케줄링 (. Seek Time First)</h2><p>
+
+
+
+    
+<img loading="lazy" decoding="async"
+         class="render-image"
+         src="./Untitled%202.png"
+         alt="image"
+         title="Untitled%202.png"
+    /></p>
+<p>
+
+
+
+    
+<img loading="lazy" decoding="async"
+         class="render-image"
+         src="./Untitled.png"
+         alt="image"
+         title="Untitled.png"
+    /></p>
+<ul>
+<li>현재 헤드가 있는 위치에서 가장 가까운 트랙부터 서비스</li>
+<li>다음에 서비스할 두 트랙의 거리가 같다면 먼저 요청받은 트랙을 서비스</li>
+<li>헤드가 이동한 총거리 : 1+3+3+1+3+12+3+5=31</li>
+<li>효율성은 좋지만 아사 현상을 일으킬 수 있어 사용하지 않음
+<ul>
+<li>계속 요청이 들어오는 경우 먼 곳에 있는 곳의 트랙은 아예 접근 못할수도</li>
+</ul>
+</li>
+</ul>
+<h2 id="블록-sstf-디스크-스케줄링" class="headerLink"><a href="#%eb%b8%94%eb%a1%9d-sstf-%eb%94%94%ec%8a%a4%ed%81%ac-%ec%8a%a4%ec%bc%80%ec%a4%84%eb%a7%81" class="header-mark"></a>블록 SSTF 디스크 스케줄링</h2><p>
+
+
+
+    
+<img loading="lazy" decoding="async"
+         class="render-image"
+         src="./Untitled%203.png"
+         alt="image"
+         title="Untitled%203.png"
+    /></p>
+<ul>
+<li>큐에 있는 트랙 요청을 일정한 블록 형태로 묶음</li>
+<li>모든 트랙은 블록 안에서만 움직임</li>
+<li>헤드가 이동한 총거리 : <strong>2+9+3+8+20+3+1+5=51</strong></li>
+<li>에이징을 사용하여 공평성을 보장하지만 FCFS에 비해 성능 향상은 제한적</li>
+</ul>
+<h2 id="scan-디스크-스케줄링" class="headerLink"><a href="#scan-%eb%94%94%ec%8a%a4%ed%81%ac-%ec%8a%a4%ec%bc%80%ec%a4%84%eb%a7%81" class="header-mark"></a>SCAN 디스크 스케줄링</h2><p>
+
+
+
+    
+<img loading="lazy" decoding="async"
+         class="render-image"
+         src="./Untitled%204.png"
+         alt="image"
+         title="Untitled%204.png"
+    /></p>
+<p>
+
+
+
+    
+<img loading="lazy" decoding="async"
+         class="render-image"
+         src="./Untitled.png"
+         alt="image"
+         title="Untitled.png"
+    /></p>
+<ul>
+<li>헤드가 움직이기 시작하면 맨 마지막 트랙에 도착할 때까지 뒤돌아가지 않고 계속 앞으로만 전진하면서 요청받은 트랙을 서비스</li>
+<li>헤드가 이동한 총거리 : 1+3+3+5+3+17+2+1+3=38</li>
+<li>동일한 트랙이나 실린더 요청이 연속적으로 발생하면 헤드가 더 이상 나아가지 못하고 제자리에 머물게 되어 - 바깥쪽 트랙이 아사 현상을 겪는 문제가 발생
+<ul>
+<li>예를들어 11번을 처리하고 왼쪽으로 나아가는데, 만약 큐에 자꾸 10번 요청이 계속 들어오면 10번만 처리해줘야하는 문제</li>
+</ul>
+</li>
+<li>엘리베이터를 생각하면 쉬움</li>
+</ul>
+<h2 id="c-scan-디스크-스케줄링--scan" class="headerLink"><a href="#c-scan-%eb%94%94%ec%8a%a4%ed%81%ac-%ec%8a%a4%ec%bc%80%ec%a4%84%eb%a7%81--scan" class="header-mark"></a>C-SCAN 디스크 스케줄링 (. SCAN)</h2><p>
+
+
+
+    
+<img loading="lazy" decoding="async"
+         class="render-image"
+         src="./Untitled%205.png"
+         alt="image"
+         title="Untitled%205.png"
+    /></p>
+<p>
+
+
+
+    
+<img loading="lazy" decoding="async"
+         class="render-image"
+         src="./Untitled.png"
+         alt="image"
+         title="Untitled.png"
+    /></p>
+<ul>
+<li>SCAN 디스크 스케줄링을 변형한 것 - 헤드가 한쪽 방향으로 움직일 때는 요청받은 트랙을 서비스하고 반대 - 방향으로 돌아올 때는 서비스하지 않고 이동만 함</li>
+<li>헤드가 이동한 총거리 : 1+3+3+5+3+24+1+3+1+2=46</li>
+<li>동일한 트랙(실린더) 요청이 연속적으로 발생하면 바깥쪽 트랙이 아사 현상을 겪음</li>
+</ul>
+<h2 id="look-디스크-스케줄링" class="headerLink"><a href="#look-%eb%94%94%ec%8a%a4%ed%81%ac-%ec%8a%a4%ec%bc%80%ec%a4%84%eb%a7%81" class="header-mark"></a>LOOK 디스크 스케줄링</h2><p>
+
+
+
+    
+<img loading="lazy" decoding="async"
+         class="render-image"
+         src="./Untitled%206.png"
+         alt="image"
+         title="Untitled%206.png"
+    /></p>
+<p>
+
+
+
+    
+<img loading="lazy" decoding="async"
+         class="render-image"
+         src="./Untitled.png"
+         alt="image"
+         title="Untitled.png"
+    /></p>
+<ul>
+<li>더 이상 서비스할 트랙이 없으면 헤드가 끝까지 가지 않고 중간에서 방향을 바꿈</li>
+<li>헤드가 이동한 총거리 : 1+3+3+5+17+2+1+3=35</li>
+<li>SCAN은 끝까지 가는데 이건 처리할게 그 방향에 없다면 U턴</li>
+</ul>
+<h2 id="c-look-디스크-스케줄링" class="headerLink"><a href="#c-look-%eb%94%94%ec%8a%a4%ed%81%ac-%ec%8a%a4%ec%bc%80%ec%a4%84%eb%a7%81" class="header-mark"></a>C-LOOK 디스크 스케줄링</h2><p>
+
+
+
+    
+<img loading="lazy" decoding="async"
+         class="render-image"
+         src="./Untitled%207.png"
+         alt="image"
+         title="Untitled%207.png"
+    /></p>
+<ul>
+<li>C-SCAN 디스크 스케줄링의 LOOK 버전</li>
+<li>한쪽 방향으로만 서비스하는 C-SCAN 디스크 스케줄링과 유사한데, 차이점은 더 이상 서비스할 트랙이 없으면 - 헤드가 중간에서 방향을 바꿀 수 있다는 것</li>
+<li>헤드가 이동한 총거리 : 1+3+3+5+20+3+1+2=38</li>
+</ul>
+<h2 id="sltf-디스크-스케줄링--latency-time-first" class="headerLink"><a href="#sltf-%eb%94%94%ec%8a%a4%ed%81%ac-%ec%8a%a4%ec%bc%80%ec%a4%84%eb%a7%81--latency-time-first" class="header-mark"></a>SLTF 디스크 스케줄링 (. Latency Time First)</h2><ul>
+<li>디스크의 회전을 줄이기 위한 스케줄링</li>
+<li>큐에 들어온 요청을 디스크의 회전 방향에 맞춰 재정렬한 후 서비스</li>
+</ul>
+<p>
+
+
+
+    
+<img loading="lazy" decoding="async"
+         class="render-image"
+         src="./Untitled%208.png"
+         alt="image"
+         title="Untitled%208.png"
+    /></p></div><div id="comments"><div id="utterances"></div><noscript>
+                Please enable JavaScript to view the comments powered by <a href="https://utteranc.es/">Utterances</a>.
+            </noscript></div></div></div>
+                </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line"><i class="svg-icon icon-copyright"></i><span>2020 - 2021</span><span class="author">&nbsp;<a href="/" target="_blank"></a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
+        </div>
+    </footer></div>
+
+        <aside id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="Back to Top">
+                <i class="svg-icon icon-arrow-up"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="View Comments">
+                <i class="svg-icon icon-comments-fixed"></i>
+            </a>
+        </aside><script src="https://cdn.jsdelivr.net/npm/smooth-scroll@16.1.3/dist/smooth-scroll.min.js"></script><script src="https://cdn.jsdelivr.net/npm/autocomplete.js@0.37.1/dist/autocomplete.min.js"></script><script src="https://cdn.jsdelivr.net/npm/algoliasearch@4.2.0/dist/algoliasearch-lite.umd.min.js"></script><script src="https://cdn.jsdelivr.net/npm/clipboard@2.0.6/dist/clipboard.min.js"></script><script src="https://cdn.jsdelivr.net/npm/sharer.js@0.4.0/sharer.min.js"></script><script src="/lib/prismjs/prism.js"></script><script>window.config={"code":{"copyTitle":"Copy to clipboard","maxShownLines":10},"comment":{"utterances":{"darkTheme":"github-dark","issueTerm":"pathname","label":"Utterances Comment","lightTheme":"github-light","repo":"yansigit/yansigit.github.io"}},"search":{"algoliaAppID":"PASDMWALPK","algoliaIndex":"index.en","algoliaSearchKey":"b42948e51daaa93df92381c8e2ac0f93","highlightTag":"em","maxResultLength":10,"noResultsFound":"No results found","snippetLength":30,"type":"algolia"}};</script><script src="/js/theme.min.js"></script><script>
+        (function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
+            m[i].l=1*new Date();k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)})
+        (window, document, "script", "https://mc.yandex.ru/metrika/tag.js", "ym");
+
+        ym("70532758", "init", {
+            clickmap:true,
+            trackLinks:true,
+            accurateTrackBounce:true,
+            webvisor: null 
+        });
+    </script>
+    <noscript><div><img src="https://mc.yandex.ru/watch/70532758" style="position:absolute; left:-9999px;" alt="" /></div></noscript></body>
+</html>

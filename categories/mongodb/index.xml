@@ -1,0 +1,37 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>mongodb - Category - Seongbin Yoon</title>
+        <link>https://yansigit.github.io/categories/mongodb/</link>
+        <description>mongodb - Category - Seongbin Yoon</description>
+        <generator>Hugo -- gohugo.io</generator><language>en</language><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Sun, 09 Feb 2020 00:57:11 &#43;0900</lastBuildDate><atom:link href="https://yansigit.github.io/categories/mongodb/" rel="self" type="application/rss+xml" /><item>
+    <title>Mongodb Cheat Sheet for Golang</title>
+    <link>https://yansigit.github.io/blog/mongodb-cheat-sheet-for-golang/</link>
+    <pubDate>Sun, 09 Feb 2020 00:57:11 &#43;0900</pubDate>
+    <author>yansigit.github.io</author>
+    <guid>https://yansigit.github.io/blog/mongodb-cheat-sheet-for-golang/</guid>
+    <description><![CDATA[<h2 id="mgm-init" class="headerLink"><a href="#mgm-init" class="header-mark"></a>mgm init</h2><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-go" data-lang="go"><span class="nx">_</span> <span class="p">=</span> <span class="nx">mgm</span><span class="p">.</span><span class="nf">SetDefaultConfig</span><span class="p">(</span><span class="kc">nil</span><span class="p">,</span> <span class="s">&#34;Wiki_DB&#34;</span><span class="p">,</span> <span class="nx">options</span><span class="p">.</span><span class="nf">Client</span><span class="p">().</span><span class="nf">ApplyURI</span><span class="p">(</span><span class="s">&#34;mongodb://localhost:27017&#34;</span><span class="p">))</span>
+</code></pre></td></tr></table>
+</div>
+</div>]]></description>
+</item><item>
+    <title>Using Mongodb in Golang</title>
+    <link>https://yansigit.github.io/blog/using-mongodb-in-golang/</link>
+    <pubDate>Fri, 07 Feb 2020 22:40:26 &#43;0900</pubDate>
+    <author>yansigit.github.io</author>
+    <guid>https://yansigit.github.io/blog/using-mongodb-in-golang/</guid>
+    <description><![CDATA[<h1 id="odm-for-mongodb" class="headerLink"><a href="#odm-for-mongodb" class="header-mark"></a>ODM for MongoDB</h1><p>MongoDB에도 <code>ORM</code>과 비슷한 <code>ODM</code> 프레임웍이 있는데 바로 <a href="https://github.com/Kamva/mgm" target="_blank" rel="noopener noreffer">MGM</a> 이라는 프로젝트. 저번달에 따끈따끈하게 나온 프로젝트인거 같다.</p>
+<p>사실 MongoDB 같은 경우에는 SQL 기반이 아니라 JSON 혹은 BSON 기반이라 ODM을 쓸것까지는 없을 것 같지만, 아직 MongoDB에 익숙하지 않기도 하고 짜여진 구조체를 기반으로 편리하게 데이터베이스와 소통할 수 있다는 장점과 빠른 개발이 가능할것이라는 생각에 한번 사용해보기로 했다.</p>]]></description>
+</item><item>
+    <title>Client Software for Mongo Db Mongodb Compass</title>
+    <link>https://yansigit.github.io/blog/client-software-for-mongo-db-mongodb-compass/</link>
+    <pubDate>Fri, 07 Feb 2020 22:40:13 &#43;0900</pubDate>
+    <author>yansigit.github.io</author>
+    <guid>https://yansigit.github.io/blog/client-software-for-mongo-db-mongodb-compass/</guid>
+    <description><![CDATA[<p>Mongo DB 관리 클라이언트, MongoDB Compass</p>]]></description>
+</item></channel>
+</rss>

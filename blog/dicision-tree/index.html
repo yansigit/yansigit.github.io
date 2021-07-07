@@ -1,0 +1,460 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1"><meta name="robots" content="noodp"/><title>Dicision Tree - Seongbin Yoon</title>
+        <meta name="twitter:card" content="summary_large_image"/><meta name="twitter:title" content=""/>
+        <meta name="twitter:description" content="About uBlogger Theme"/>
+        <meta name="Description" content="결정 트리"><meta property="og:title" content="Dicision Tree" />
+<meta property="og:description" content="결정 트리" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://yansigit.github.io/blog/dicision-tree/" /><meta property="og:image" content="https://yansigit.github.io/logo.png"/><meta property="article:section" content="blog" />
+<meta property="article:published_time" content="2021-07-07T00:04:34&#43;09:00" />
+<meta property="article:modified_time" content="2021-07-07T16:12:15&#43;09:00" />
+
+<meta name="application-name" content="uBlogger">
+<meta name="apple-mobile-web-app-title" content="uBlogger"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+        <link rel="icon" type="image/png" sizes="192x192" href="/android-chrome-192x192.png">
+        <link rel="icon" type="image/png" sizes="512x512" href="/android-chrome-512x512.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://yansigit.github.io/blog/dicision-tree/" /><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/normalize.css@8.0.1/normalize.min.css"><link rel="stylesheet" href="/lib/prismjs/prism.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.7.2/animate.min.css"><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "Dicision Tree",
+        "inLanguage": "en",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https:\/\/yansigit.github.io\/blog\/dicision-tree\/"
+        },"image": [{
+                            "@type": "ImageObject",
+                            "url": "https:\/\/yansigit.github.io\/images\/Apple-Devices-Preview.png",
+                            "width":  3200 ,
+                            "height":  2048 
+                        }],"genre": "blog","keywords": "machine-learning, deep-learning, data-processing, data-science","wordCount":  384 ,
+        "url": "https:\/\/yansigit.github.io\/blog\/dicision-tree\/","datePublished": "2021-07-07T00:04:34+09:00","dateModified": "2021-07-07T16:12:15+09:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","description": "결정 트리"
+    }
+    </script><script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        "itemListElement": [{
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Home",
+            "item": "https:\/\/yansigit.github.io\/"
+        },{
+            "@type": "ListItem",
+            "position": 2,
+            "name": "machine-learning",
+            "item": "https://yansigit.github.io/categories/machine-learning/"
+        },{
+                "@type": "ListItem",
+                "position": 3,
+                "name": "Dicision Tree"
+            }]
+    }
+</script></head>
+    <body data-header-desktop="fixed" data-header-mobile="auto"><script>(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header>
+    <div class="desktop header" id="header-desktop">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="Seongbin Yoon" class="header-logo logo-svg"><span class="header-title-pre">📝</span>Blog == Portfolio</a>
+            </div>
+            <div class="menu">
+                <nav>
+                    <h2 class="display-hidden">Основная навигация</h2>
+                    <ul class="menu-inner"><li>
+                            <a class="menu-item" href="/posts/"> Posts </a>
+                        </li><li>
+                            <a class="menu-item" href="/blog/"> Blog </a>
+                        </li><li>
+                            <a class="menu-item" href="/tags/"> Tags </a>
+                        </li><li>
+                            <a class="menu-item" href="/categories/"> Categories </a>
+                        </li><li>
+                            <a class="menu-item" href="/categories/documentation/"> Docs </a>
+                        </li><li>
+                            <a class="menu-item" href="/about/"> About </a>
+                        </li><li>
+                            <a class="menu-item" href="https://github.com/upagge/ublogger" title="GitHub" rel="noopener noreffer" target="_blank"> Github </a>
+                        </li></ul>
+                </nav><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="Search titles or contents..." id="search-input-desktop">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="Search">
+                            <span class="svg-icon icon-search"></span>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="Clear">
+                            <span class="svg-icon icon-cancel"></span>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <span class="svg-icon icon-loading"></span>
+                        </span>
+                    </span><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                <span class="svg-icon icon-moon"></span>
+                </a>
+            </div>
+        </div>
+    </div><div class="mobile header" id="header-mobile">
+        <div class="header-container">
+            <div class="header-wrapper">
+                <div class="header-title">
+                    <a href="/" title="Seongbin Yoon" class="header-logo"><span class="header-title-pre">📝</span>Blog == Portfolio</a>
+                </div>
+                <div class="menu-toggle" id="menu-toggle-mobile">
+                    <span></span><span></span><span></span>
+                </div>
+            </div>
+            <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                        <div class="search mobile" id="search-mobile">
+                            <input type="text" placeholder="Search titles or contents..." id="search-input-mobile">
+                            <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="Search">
+                                <span class="svg-icon icon-search"></span>
+                            </a>
+                            <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="Clear">
+                                <span class="svg-icon icon-cancel"></span>
+                            </a>
+                            <span class="search-button search-loading" id="search-loading-mobile">
+                                <span class="svg-icon icon-loading"></span>
+                            </span>
+                        </div>
+                        <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
+                            Cancel
+                        </a>
+                    </div><nav>
+                    <h2 class="display-hidden">Основная навигация</h2>
+                    <ul><li>
+                            <a class="menu-item" href="/posts/" title="">Posts</a>
+                        </li><li>
+                            <a class="menu-item" href="/blog/" title="">Blog</a>
+                        </li><li>
+                            <a class="menu-item" href="/tags/" title="">Tags</a>
+                        </li><li>
+                            <a class="menu-item" href="/categories/" title="">Categories</a>
+                        </li><li>
+                            <a class="menu-item" href="/categories/documentation/" title="">Docs</a>
+                        </li><li>
+                            <a class="menu-item" href="/about/" title="">About</a>
+                        </li><li>
+                            <a class="menu-item" href="https://github.com/upagge/ublogger" title="GitHub" rel="noopener noreffer" target="_blank">Github</a>
+                        </li></ul>
+                </nav>
+                <a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                    <span class="svg-icon icon-moon"></span>
+                </a></div>
+        </div>
+    </div><div class="search-dropdown desktop">
+    <div id="search-dropdown-desktop"></div>
+</div>
+<div class="search-dropdown mobile">
+    <div id="search-dropdown-mobile"></div>
+</div></header><main class="main">
+                <div class="container"><div class="page single special"><h1 class="single-title pulse faster">Dicision Tree</h1><div class="content" id="content"><h1 id="dicision-tree" class="headerLink"><a href="#dicision-tree" class="header-mark"></a>Dicision Tree</h1><h2 id="information-theory" class="headerLink"><a href="#information-theory" class="header-mark"></a>Information Theory</h2><ul>
+<li>정보량을 수치화하고 그것의 연산을 가능하게 하는 것</li>
+</ul>
+<h3 id="quantity-of-information-정보량" class="headerLink"><a href="#quantity-of-information-%ec%a0%95%eb%b3%b4%eb%9f%89" class="header-mark"></a>Quantity of Information 정보량</h3><ul>
+<li>불확실성</li>
+<li>확률이 낮은 사건일수록 정보량 (불확실성)은 높다</li>
+<li>확률과 정보량은 반비례관계</li>
+<li>&ldquo;오늘 하루 종일 맑다&rdquo;
+<ul>
+<li>&lsquo;내일은 맑다&rsquo; 의 불확실성</li>
+<li>&lsquo;내일은 큰 비가 온다&rsquo; 의 불확실성</li>
+</ul>
+</li>
+</ul>
+<h3 id="information-entropy" class="headerLink"><a href="#information-entropy" class="header-mark"></a>Information Entropy</h3><p>
+
+
+
+    
+<img loading="lazy" decoding="async"
+         class="render-image"
+         src="./Untitled.png"
+         alt="Dicision%20Tree/Untitled.png"
+         title="Untitled.png"
+    /></p>
+<blockquote>
+<p>H(X)가 정보 엔트로피 값이고, 아래 축은 시행에서 어떤 사건이 일어날 확률입니다. 확률이 0.5일 때 엔트로피가 가장 높은 1임을 볼 수 있고, 확률이 한 쪽으로 편향될수록 엔트로피가 낮아지는 것을 볼 수 있습니다.</p>
+</blockquote>
+<ul>
+<li>확률 변수의 정보량</li>
+<li>얻은 정보가 의미있는 정보인지 (정보량)를 판단</li>
+<li>가장 랜덤일 경우 엔트로피는 1 (최대)</li>
+<li>아닐 경우 1 이하. 고정일 경우 0</li>
+</ul>
+<p>
+
+
+
+    
+<img loading="lazy" decoding="async"
+         class="render-image"
+         src="./Untitled%201.png"
+         alt="Dicision%20Tree/Untitled%201.png"
+         title="Untitled%201.png"
+    /></p>
+<h2 id="상호정보량-mutual-information" class="headerLink"><a href="#%ec%83%81%ed%98%b8%ec%a0%95%eb%b3%b4%eb%9f%89-mutual-information" class="header-mark"></a>상호정보량 Mutual Information</h2><ul>
+<li>하나의 확률변수가 다른 확률변수에 대해 제공하는 정보의 양</li>
+</ul>
+<h1 id="decision-tree" class="headerLink"><a href="#decision-tree" class="header-mark"></a>Decision Tree</h1><ul>
+<li>분류, 회귀에서 사용</li>
+<li>트리 형태로 의사결정 지식을 표현한 것</li>
+</ul>
+<p>
+
+
+
+    
+<img loading="lazy" decoding="async"
+         class="render-image"
+         src="./Untitled%202.png"
+         alt="Dicision%20Tree/Untitled%202.png"
+         title="Untitled%202.png"
+    /></p>
+<ul>
+<li>내부 노드 : 비교 속성</li>
+<li>단말 노드 (ternimal node) : 기대값</li>
+<li>간선 (edge) : 속성 값</li>
+</ul>
+<h2 id="decision-tree알고리즘" class="headerLink"><a href="#decision-tree%ec%95%8c%ea%b3%a0%eb%a6%ac%ec%a6%98" class="header-mark"></a>Decision Tree알고리즘</h2><ul>
+<li>반복적인 노드 분할 과정
+<ul>
+<li>분할 속성 (spliting attribute) 을 선택</li>
+<li>속성값에 따라 서브트리를 생성</li>
+<li>데이터를 속성값에 따라 분배</li>
+</ul>
+</li>
+</ul>
+<h3 id="분할속성-결정-방법" class="headerLink"><a href="#%eb%b6%84%ed%95%a0%ec%86%8d%ec%84%b1-%ea%b2%b0%ec%a0%95-%eb%b0%a9%eb%b2%95" class="header-mark"></a>분할속성 결정 방법</h3><h3 id="information-gain-정보-이득" class="headerLink"><a href="#information-gain-%ec%a0%95%eb%b3%b4-%ec%9d%b4%eb%93%9d" class="header-mark"></a>Information Gain (정보 이득)</h3><ul>
+<li>어떤 분류를 통해 얼마나 information에 대한 이득이 생겼는지를 나타냄</li>
+<li>Entropy를 통해 계산</li>
+<li>어떤 Feature를 선택함으로써 더 데이터를 잘 구분하는지</li>
+</ul>
+<h2 id="엔트로피-계산" class="headerLink"><a href="#%ec%97%94%ed%8a%b8%eb%a1%9c%ed%94%bc-%ea%b3%84%ec%82%b0" class="header-mark"></a>엔트로피 계산</h2><p>
+
+
+
+    
+<img loading="lazy" decoding="async"
+         class="render-image"
+         src="./Untitled%203.png"
+         alt="Dicision%20Tree/Untitled%203.png"
+         title="Untitled%203.png"
+    /></p>
+<p>
+
+
+
+    
+<img loading="lazy" decoding="async"
+         class="render-image"
+         src="./Untitled%204.png"
+         alt="Dicision%20Tree/Untitled%204.png"
+         title="Untitled%204.png"
+    /></p>
+<p>
+
+
+
+    
+<img loading="lazy" decoding="async"
+         class="render-image"
+         src="./Untitled%205.png"
+         alt="Dicision%20Tree/Untitled%205.png"
+         title="Untitled%205.png"
+    /></p>
+<p>
+
+
+
+    
+<img loading="lazy" decoding="async"
+         class="render-image"
+         src="./Untitled%206.png"
+         alt="Dicision%20Tree/Untitled%206.png"
+         title="Untitled%206.png"
+    /></p>
+<p>
+
+
+
+    
+<img loading="lazy" decoding="async"
+         class="render-image"
+         src="./Untitled%207.png"
+         alt="Dicision%20Tree/Untitled%207.png"
+         title="Untitled%207.png"
+    /></p>
+<h3 id="속성별-정보이득" class="headerLink"><a href="#%ec%86%8d%ec%84%b1%eb%b3%84-%ec%a0%95%eb%b3%b4%ec%9d%b4%eb%93%9d" class="header-mark"></a>속성별 정보이득</h3><ul>
+<li>IG(Pattern) = 0.246</li>
+<li>IG(Outline) = 0.151</li>
+<li>IG(Dot) = 0.048</li>
+</ul>
+<h3 id="분할속성-선택" class="headerLink"><a href="#%eb%b6%84%ed%95%a0%ec%86%8d%ec%84%b1-%ec%84%a0%ed%83%9d" class="header-mark"></a>분할속성 선택</h3><ul>
+<li>정보이득이 큰것 선택
+<ul>
+<li>Pattern 선택</li>
+</ul>
+</li>
+</ul>
+<p>
+
+
+
+    
+<img loading="lazy" decoding="async"
+         class="render-image"
+         src="./Untitled%208.png"
+         alt="Dicision%20Tree/Untitled%208.png"
+         title="Untitled%208.png"
+    /></p>
+<h2 id="decision-tree-개선-척도" class="headerLink"><a href="#decision-tree-%ea%b0%9c%ec%84%a0-%ec%b2%99%eb%8f%84" class="header-mark"></a>Decision Tree 개선 척도</h2><ul>
+<li>정보이득비 (빠르게 건너뜀)</li>
+<li>지니지수 (빠르게 건너뜀)</li>
+</ul>
+<h2 id="분할속성-평가-척도-비교" class="headerLink"><a href="#%eb%b6%84%ed%95%a0%ec%86%8d%ec%84%b1-%ed%8f%89%ea%b0%80-%ec%b2%99%eb%8f%84-%eb%b9%84%ea%b5%90" class="header-mark"></a>분할속성 평가 척도 비교</h2><p>
+
+
+
+    
+<img loading="lazy" decoding="async"
+         class="render-image"
+         src="./Untitled%209.png"
+         alt="Dicision%20Tree/Untitled%209.png"
+         title="Untitled%209.png"
+    /></p>
+<h2 id="결정트리-알고리즘" class="headerLink"><a href="#%ea%b2%b0%ec%a0%95%ed%8a%b8%eb%a6%ac-%ec%95%8c%ea%b3%a0%eb%a6%ac%ec%a6%98" class="header-mark"></a>결정트리 알고리즘</h2><ul>
+<li>ID3
+<ul>
+<li>범주형 속성값을 갖는 데이터</li>
+</ul>
+</li>
+<li>C4.5
+<ul>
+<li>범주형 + 수치형 속성값</li>
+<li>ID3을 개선</li>
+</ul>
+</li>
+<li>CART
+<ul>
+<li>수치형 속성값</li>
+</ul>
+</li>
+</ul>
+<h2 id="앙상블-ensemble-classifier" class="headerLink"><a href="#%ec%95%99%ec%83%81%eb%b8%94-ensemble-classifier" class="header-mark"></a>앙상블 Ensemble Classifier</h2><p>
+
+
+
+    
+<img loading="lazy" decoding="async"
+         class="render-image"
+         src="./Untitled%2010.png"
+         alt="Dicision%20Tree/Untitled%2010.png"
+         title="Untitled%2010.png"
+    /></p>
+<h3 id="학습기-결합" class="headerLink"><a href="#%ed%95%99%ec%8a%b5%ea%b8%b0-%ea%b2%b0%ed%95%a9" class="header-mark"></a>학습기 결합</h3><ul>
+<li>선형 분류기와 같은 간단한 인식기로 학습을 수행</li>
+<li>복수 개의 선형 분류기의 학습 결과를 결합해 좋은 성능의 인식기를 만듬</li>
+</ul>
+<h3 id="장점" class="headerLink"><a href="#%ec%9e%a5%ec%a0%90" class="header-mark"></a>장점</h3><ul>
+<li>나쁜 운을 피할 수 있다</li>
+<li>성능향상</li>
+<li>데이터 양, 질에 따른 어려움 극복</li>
+<li>결정 경계가 너무 복잡한 경우 사용</li>
+</ul>
+<h3 id="결합" class="headerLink"><a href="#%ea%b2%b0%ed%95%a9" class="header-mark"></a>결합</h3><ul>
+<li>병렬적 결합
+<ul>
+<li>한번에 일괄로 분류하여 최종 결과 생성</li>
+</ul>
+</li>
+<li>순차절 결합
+<ul>
+<li>각 분류기의 결과를 순차적으로 조합</li>
+</ul>
+</li>
+</ul>
+<h3 id="결합-방법의-분류" class="headerLink"><a href="#%ea%b2%b0%ed%95%a9-%eb%b0%a9%eb%b2%95%ec%9d%98-%eb%b6%84%eb%a5%98" class="header-mark"></a>결합 방법의 분류</h3><ul>
+<li><strong>Filter에 의한 방법 (순차)</strong>
+<ul>
+<li>각 분류기 학습때마다 새로운 데이터를 생성</li>
+<li>Boosting, Cascading</li>
+</ul>
+</li>
+<li><strong>Resampling에 의한 방법 (병렬)</strong>
+<ul>
+<li>주어진 전체 데이터로부터 일부 집합을 추출하여 각 분류기를 학습</li>
+<li>Bagging, MadaBoost</li>
+</ul>
+</li>
+<li><strong>Rewrighting에 의한 방법</strong>
+<ul>
+<li>모든 분류기에 대해 동일한 학습 데이터 사용 → 각 데이터에 가중치를 부여해 학습에 대한 영향도 조절</li>
+<li>AdaBoost</li>
+</ul>
+</li>
+</ul>
+<h2 id="배깅-bagging-bootstrap-aggregating" class="headerLink"><a href="#%eb%b0%b0%ea%b9%85-bagging-bootstrap-aggregating" class="header-mark"></a>배깅 (Bagging, bootstrap aggregating)</h2><p>
+
+
+
+    
+<img loading="lazy" decoding="async"
+         class="render-image"
+         src="./Untitled%2011.png"
+         alt="Dicision%20Tree/Untitled%2011.png"
+         title="Untitled%2011.png"
+    /></p>
+<ul>
+<li>부트스트랩을 통해 여러개의 학습데이터 집합을 만들고, 각 학습 데이터 집합별로 분류기를 만들어 이들이 투표나 가중치 투표를 하여 최종 판정</li>
+</ul>
+<h2 id="랜덤-포레스트-random-forest" class="headerLink"><a href="#%eb%9e%9c%eb%8d%a4-%ed%8f%ac%eb%a0%88%ec%8a%a4%ed%8a%b8-random-forest" class="header-mark"></a>랜덤 포레스트 (Random Forest)</h2><ul>
+<li>분류기로 결정트리를 사용하는 배깅 기법</li>
+</ul>
+<h2 id="부스팅-boosting" class="headerLink"><a href="#%eb%b6%80%ec%8a%a4%ed%8c%85-boosting" class="header-mark"></a>부스팅 (Boosting)</h2><p>
+
+
+
+    
+<img loading="lazy" decoding="async"
+         class="render-image"
+         src="./Untitled%2012.png"
+         alt="Dicision%20Tree/Untitled%2012.png"
+         title="Untitled%2012.png"
+    /></p>
+<ul>
+<li>K개의 분류기를 순차적으로 만들어가는 앙상블 기법</li>
+<li>분류 정확도에 따라 학습데이터에 가중치를 변경해가면서 분류</li>
+</ul>
+<h2 id="adaboost" class="headerLink"><a href="#adaboost" class="header-mark"></a>AdaBoost</h2><ul>
+<li>검색필요</li>
+</ul></div><div id="comments"><div id="utterances"></div><noscript>
+                Please enable JavaScript to view the comments powered by <a href="https://utteranc.es/">Utterances</a>.
+            </noscript></div></div></div>
+                </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line"><i class="svg-icon icon-copyright"></i><span>2020 - 2021</span><span class="author">&nbsp;<a href="/" target="_blank"></a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
+        </div>
+    </footer></div>
+
+        <aside id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="Back to Top">
+                <i class="svg-icon icon-arrow-up"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="View Comments">
+                <i class="svg-icon icon-comments-fixed"></i>
+            </a>
+        </aside><script src="https://cdn.jsdelivr.net/npm/smooth-scroll@16.1.3/dist/smooth-scroll.min.js"></script><script src="https://cdn.jsdelivr.net/npm/autocomplete.js@0.37.1/dist/autocomplete.min.js"></script><script src="https://cdn.jsdelivr.net/npm/algoliasearch@4.2.0/dist/algoliasearch-lite.umd.min.js"></script><script src="https://cdn.jsdelivr.net/npm/clipboard@2.0.6/dist/clipboard.min.js"></script><script src="https://cdn.jsdelivr.net/npm/sharer.js@0.4.0/sharer.min.js"></script><script src="/lib/prismjs/prism.js"></script><script>window.config={"code":{"copyTitle":"Copy to clipboard","maxShownLines":10},"comment":{"utterances":{"darkTheme":"github-dark","issueTerm":"pathname","label":"Utterances Comment","lightTheme":"github-light","repo":"yansigit/yansigit.github.io"}},"search":{"algoliaAppID":"PASDMWALPK","algoliaIndex":"index.en","algoliaSearchKey":"b42948e51daaa93df92381c8e2ac0f93","highlightTag":"em","maxResultLength":10,"noResultsFound":"No results found","snippetLength":30,"type":"algolia"}};</script><script src="/js/theme.min.js"></script><script>
+        (function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
+            m[i].l=1*new Date();k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)})
+        (window, document, "script", "https://mc.yandex.ru/metrika/tag.js", "ym");
+
+        ym("70532758", "init", {
+            clickmap:true,
+            trackLinks:true,
+            accurateTrackBounce:true,
+            webvisor: null 
+        });
+    </script>
+    <noscript><div><img src="https://mc.yandex.ru/watch/70532758" style="position:absolute; left:-9999px;" alt="" /></div></noscript></body>
+</html>

@@ -1,0 +1,14 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>tip - Category - Seongbin Yoon</title>
+        <link>https://yansigit.github.io/categories/tip/</link>
+        <description>tip - Category - Seongbin Yoon</description>
+        <generator>Hugo -- gohugo.io</generator><language>en</language><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Thu, 20 Feb 2020 00:00:00 &#43;0000</lastBuildDate><atom:link href="https://yansigit.github.io/categories/tip/" rel="self" type="application/rss+xml" /><item>
+    <title>Virtualbox With Docker(hyper V)</title>
+    <link>https://yansigit.github.io/blog/virtualbox-with-dockerhyper-v/</link>
+    <pubDate>Thu, 20 Feb 2020 00:00:00 &#43;0000</pubDate>
+    <author>yansigit.github.io</author>
+    <guid>https://yansigit.github.io/blog/virtualbox-with-dockerhyper-v/</guid>
+    <description><![CDATA[<h2 id="쉬운-설정법" class="headerLink"><a href="#%ec%89%ac%ec%9a%b4-%ec%84%a4%ec%a0%95%eb%b2%95" class="header-mark"></a>쉬운 설정법</h2><p>버추얼박스 6.0 버전부터 Hyper-V를 켠 상태로도 이용할 수 있게 되었다.</p>]]></description>
+</item></channel>
+</rss>

@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1"><meta name="robots" content="noodp"/><title>Classification - Seongbin Yoon</title>
+        <meta name="twitter:card" content="summary_large_image"/><meta name="twitter:title" content=""/>
+        <meta name="twitter:description" content="About uBlogger Theme"/>
+        <meta name="Description" content="분류 알고리즘 정리"><meta property="og:title" content="Classification" />
+<meta property="og:description" content="분류 알고리즘 정리" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://yansigit.github.io/blog/supervised-learning/classification/" /><meta property="og:image" content="https://yansigit.github.io/logo.png"/><meta property="article:section" content="blog" />
+<meta property="article:published_time" content="2021-07-07T00:04:34&#43;09:00" />
+<meta property="article:modified_time" content="2021-07-07T16:12:15&#43;09:00" />
+
+<meta name="application-name" content="uBlogger">
+<meta name="apple-mobile-web-app-title" content="uBlogger"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+        <link rel="icon" type="image/png" sizes="192x192" href="/android-chrome-192x192.png">
+        <link rel="icon" type="image/png" sizes="512x512" href="/android-chrome-512x512.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://yansigit.github.io/blog/supervised-learning/classification/" /><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/normalize.css@8.0.1/normalize.min.css"><link rel="stylesheet" href="/lib/prismjs/prism.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.7.2/animate.min.css"><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "Classification",
+        "inLanguage": "en",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https:\/\/yansigit.github.io\/blog\/supervised-learning\/classification\/"
+        },"image": [{
+                            "@type": "ImageObject",
+                            "url": "https:\/\/yansigit.github.io\/images\/Apple-Devices-Preview.png",
+                            "width":  3200 ,
+                            "height":  2048 
+                        }],"genre": "blog","keywords": "machine-learning, deep-learning, data-processing, data-science","wordCount":  359 ,
+        "url": "https:\/\/yansigit.github.io\/blog\/supervised-learning\/classification\/","datePublished": "2021-07-07T00:04:34+09:00","dateModified": "2021-07-07T16:12:15+09:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","description": "분류 알고리즘 정리"
+    }
+    </script><script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        "itemListElement": [{
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Home",
+            "item": "https:\/\/yansigit.github.io\/"
+        },{
+            "@type": "ListItem",
+            "position": 2,
+            "name": "machine-learning",
+            "item": "https://yansigit.github.io/categories/machine-learning/"
+        },{
+                "@type": "ListItem",
+                "position": 3,
+                "name": "Classification"
+            }]
+    }
+</script></head>
+    <body data-header-desktop="fixed" data-header-mobile="auto"><script>(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header>
+    <div class="desktop header" id="header-desktop">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="Seongbin Yoon" class="header-logo logo-svg"><span class="header-title-pre">📝</span>Blog == Portfolio</a>
+            </div>
+            <div class="menu">
+                <nav>
+                    <h2 class="display-hidden">Основная навигация</h2>
+                    <ul class="menu-inner"><li>
+                            <a class="menu-item" href="/posts/"> Posts </a>
+                        </li><li>
+                            <a class="menu-item" href="/blog/"> Blog </a>
+                        </li><li>
+                            <a class="menu-item" href="/tags/"> Tags </a>
+                        </li><li>
+                            <a class="menu-item" href="/categories/"> Categories </a>
+                        </li><li>
+                            <a class="menu-item" href="/categories/documentation/"> Docs </a>
+                        </li><li>
+                            <a class="menu-item" href="/about/"> About </a>
+                        </li><li>
+                            <a class="menu-item" href="https://github.com/upagge/ublogger" title="GitHub" rel="noopener noreffer" target="_blank"> Github </a>
+                        </li></ul>
+                </nav><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="Search titles or contents..." id="search-input-desktop">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="Search">
+                            <span class="svg-icon icon-search"></span>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="Clear">
+                            <span class="svg-icon icon-cancel"></span>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <span class="svg-icon icon-loading"></span>
+                        </span>
+                    </span><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                <span class="svg-icon icon-moon"></span>
+                </a>
+            </div>
+        </div>
+    </div><div class="mobile header" id="header-mobile">
+        <div class="header-container">
+            <div class="header-wrapper">
+                <div class="header-title">
+                    <a href="/" title="Seongbin Yoon" class="header-logo"><span class="header-title-pre">📝</span>Blog == Portfolio</a>
+                </div>
+                <div class="menu-toggle" id="menu-toggle-mobile">
+                    <span></span><span></span><span></span>
+                </div>
+            </div>
+            <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                        <div class="search mobile" id="search-mobile">
+                            <input type="text" placeholder="Search titles or contents..." id="search-input-mobile">
+                            <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="Search">
+                                <span class="svg-icon icon-search"></span>
+                            </a>
+                            <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="Clear">
+                                <span class="svg-icon icon-cancel"></span>
+                            </a>
+                            <span class="search-button search-loading" id="search-loading-mobile">
+                                <span class="svg-icon icon-loading"></span>
+                            </span>
+                        </div>
+                        <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
+                            Cancel
+                        </a>
+                    </div><nav>
+                    <h2 class="display-hidden">Основная навигация</h2>
+                    <ul><li>
+                            <a class="menu-item" href="/posts/" title="">Posts</a>
+                        </li><li>
+                            <a class="menu-item" href="/blog/" title="">Blog</a>
+                        </li><li>
+                            <a class="menu-item" href="/tags/" title="">Tags</a>
+                        </li><li>
+                            <a class="menu-item" href="/categories/" title="">Categories</a>
+                        </li><li>
+                            <a class="menu-item" href="/categories/documentation/" title="">Docs</a>
+                        </li><li>
+                            <a class="menu-item" href="/about/" title="">About</a>
+                        </li><li>
+                            <a class="menu-item" href="https://github.com/upagge/ublogger" title="GitHub" rel="noopener noreffer" target="_blank">Github</a>
+                        </li></ul>
+                </nav>
+                <a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                    <span class="svg-icon icon-moon"></span>
+                </a></div>
+        </div>
+    </div><div class="search-dropdown desktop">
+    <div id="search-dropdown-desktop"></div>
+</div>
+<div class="search-dropdown mobile">
+    <div id="search-dropdown-mobile"></div>
+</div></header><main class="main">
+                <div class="container"><div class="page single special"><h1 class="single-title pulse faster">Classification</h1><div class="content" id="content"><h1 id="classification" class="headerLink"><a href="#classification" class="header-mark"></a>Classification</h1><h2 id="naive-bayes-classification" class="headerLink"><a href="#naive-bayes-classification" class="header-mark"></a>Naive Bayes Classification</h2><p>Bayes의 법칙에 기반해 사후확률을 이용해 분류</p>
+<h3 id="장점" class="headerLink"><a href="#%ec%9e%a5%ec%a0%90" class="header-mark"></a>장점</h3><ul>
+<li>간단하고 빠르며 정확</li>
+<li>computation cost 작음 (빠름)</li>
+<li>큰 데이터셋에 적합</li>
+<li>연속형보다 이산형 데이터에서 성능 좋음</li>
+<li>Multiple class 예측을 위해서도 사용 가능</li>
+</ul>
+<h3 id="단점" class="headerLink"><a href="#%eb%8b%a8%ec%a0%90" class="header-mark"></a>단점</h3><ul>
+<li>사건 간에 독립성이 있어야 함</li>
+</ul>
+<h2 id="logistic-regression-classification" class="headerLink"><a href="#logistic-regression-classification" class="header-mark"></a>Logistic Regression Classification</h2><ul>
+<li>이진분류기</li>
+</ul>
+<p>
+
+
+
+    
+<img loading="lazy" decoding="async"
+         class="render-image"
+         src="./Untitled.png"
+         alt="Classification/Untitled.png"
+         title="Untitled.png"
+    /></p>
+<ul>
+<li>
+<p>분류함수로 <code>Sigmoid</code> 함수 사용</p>
+</li>
+<li>
+<p>비용함수로 평균제곱오차 사용하지 않음</p>
+<p>
+
+
+
+    
+<img loading="lazy" decoding="async"
+         class="render-image"
+         src="./Untitled%201.png"
+         alt="Classification/Untitled%201.png"
+         title="Untitled%201.png"
+    /></p>
+<ul>
+<li>위와같이 울퉁불퉁해서 글로벌 미니멈을 못찾음</li>
+<li>따라서 새로운 비용함수인 <code>크로스 엔트로피</code> 를 비용함수로 사용</li>
+</ul>
+</li>
+</ul>
+<h2 id="multinomal-regression-classification" class="headerLink"><a href="#multinomal-regression-classification" class="header-mark"></a>Multinomal Regression Classification</h2><ul>
+<li>종속변수가 범주형이면서 3개 이상의 범주를 가질때 적용
+<ul>
+<li>예) 대학교로 진학할 때 어떤 전공이 인기있는지</li>
+<li>사람들이 어떤 혈액형을 가지고 있는지</li>
+<li>모두 통계적인 분류</li>
+</ul>
+</li>
+<li>분류함수로 <code>Softmax</code> 함수 사용</li>
+</ul>
+<h2 id="k-nearest-neighbor-knn" class="headerLink"><a href="#k-nearest-neighbor-knn" class="header-mark"></a>K-nearest neighbor (KNN)</h2><p>
+
+
+
+    
+<img loading="lazy" decoding="async"
+         class="render-image"
+         src="./Untitled%202.png"
+         alt="Classification/Untitled%202.png"
+         title="Untitled%202.png"
+    /></p>
+<ul>
+<li>새로운 데이터를 입력받으면 가장 가까이 있는 것이 무엇이냐를 중심으로 새로운 데이터의 종류를 정해줌</li>
+<li>주변의 K개의 갯수를 보고 판단 → KNN이라고 부름
+<ul>
+<li>K → 주변의 데이터 갯수</li>
+</ul>
+</li>
+</ul>
+<h3 id="특징" class="headerLink"><a href="#%ed%8a%b9%ec%a7%95" class="header-mark"></a>특징</h3><ul>
+<li>학습단계에서는 실질적인 학습이 일어나지 않고 데이터만 저장
+<ul>
+<li>학습데이터가 크면 메모리 문제</li>
+<li>게으른 학습 (Lazy learning)</li>
+</ul>
+</li>
+<li>새로운 데이터가 주어지면 저장된 데이터 이용해 학습
+<ul>
+<li>시간이 많이 걸림</li>
+</ul>
+</li>
+<li>데이터간의 거리 계산
+<ul>
+<li>수치데이터인 경우
+<ul>
+<li>유클리디언 거리</li>
+</ul>
+</li>
+<li>범주형 데이터가 포함된 경우
+<ul>
+<li>직접 개발</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>효율적인 근접 이웃 탐색
+<ul>
+<li>데이터의 갯수 많아지면 계산시간 증가 문제</li>
+<li>색인 자료구조 사용
+<ul>
+<li>R-트리, K-D 트리 등</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="최근접-k개로부터-결과를-추정하는-방법" class="headerLink"><a href="#%ec%b5%9c%ea%b7%bc%ec%a0%91-k%ea%b0%9c%eb%a1%9c%eb%b6%80%ed%84%b0-%ea%b2%b0%ea%b3%bc%eb%a5%bc-%ec%b6%94%ec%a0%95%ed%95%98%eb%8a%94-%eb%b0%a9%eb%b2%95" class="header-mark"></a>최근접 K개로부터 결과를 추정하는 방법</h3><ul>
+<li>분류
+<ul>
+<li>출력이 범주형 값</li>
+<li><strong>다수결 투표</strong>: 개수가 많은 범주 선택</li>
+</ul>
+</li>
+<li>회귀분석
+<ul>
+<li>출력이 수치형 값</li>
+<li>평균: 최근접 K개의 평균값</li>
+<li><strong>가중합 (Weighted Sum)</strong>: 거리에 반비례하는 가중치 사용</li>
+</ul>
+</li>
+</ul>
+<h2 id="support-vector-machine-svm" class="headerLink"><a href="#support-vector-machine-svm" class="header-mark"></a>Support Vector Machine (SVM)</h2><p>
+
+
+
+    
+<img loading="lazy" decoding="async"
+         class="render-image"
+         src="./Untitled%203.png"
+         alt="Classification/Untitled%203.png"
+         title="Untitled%203.png"
+    /></p>
+<ul>
+<li>이진분류기</li>
+<li><code>**초평면**</code>: 분류하는 선</li>
+<li>분류 오차를 줄이면서 동시에 <strong>margin</strong>을 최대로 하는 **<code>Decision Boundary</code>**를 찾음</li>
+<li><strong>margin</strong>: 결정 경계과 가장 가까이에 있는 학습 데이터까지의 거리</li>
+<li>**<code>서포트**벡터</code>: Decision Boundary로부터 가장 가까이에 있는 학습 데이터들</li>
+</ul>
+<h3 id="제약조건-최적화" class="headerLink"><a href="#%ec%a0%9c%ec%95%bd%ec%a1%b0%ea%b1%b4-%ec%b5%9c%ec%a0%81%ed%99%94" class="header-mark"></a>제약조건 최적화</h3><ul>
+<li>라그랑주 함수 사용</li>
+</ul>
+<h3 id="선형-분리불가-문제의-svm" class="headerLink"><a href="#%ec%84%a0%ed%98%95-%eb%b6%84%eb%a6%ac%eb%b6%88%ea%b0%80-%eb%ac%b8%ec%a0%9c%ec%9d%98-svm" class="header-mark"></a>선형 분리불가 문제의 SVM</h3><ul>
+<li><strong>슬랙변수</strong></li>
+</ul>
+<h3 id="선형-svm" class="headerLink"><a href="#%ec%84%a0%ed%98%95-svm" class="header-mark"></a>선형 SVM</h3><p>
+
+
+
+    
+<img loading="lazy" decoding="async"
+         class="render-image"
+         src="./Untitled%204.png"
+         alt="Classification/Untitled%204.png"
+         title="Untitled%204.png"
+    /></p>
+<ul>
+<li>선형인 초평면으로 공간 분할</li>
+<li>슬랙변수를 도입하더라도 한계</li>
+</ul>
+<h3 id="데이터의-고차원-사상" class="headerLink"><a href="#%eb%8d%b0%ec%9d%b4%ed%84%b0%ec%9d%98-%ea%b3%a0%ec%b0%a8%ec%9b%90-%ec%82%ac%ec%83%81" class="header-mark"></a>데이터의 고차원 사상</h3><p>
+
+
+
+    
+<img loading="lazy" decoding="async"
+         class="render-image"
+         src="./Untitled%205.png"
+         alt="Classification/Untitled%205.png"
+         title="Untitled%205.png"
+    /></p>
+<ul>
+<li>데이터를 고차원의 사상하면 선형 분리 가능</li>
+<li>XOR 문제</li>
+</ul>
+<h2 id="고차원-변환의-문제점" class="headerLink"><a href="#%ea%b3%a0%ec%b0%a8%ec%9b%90-%eb%b3%80%ed%99%98%ec%9d%98-%eb%ac%b8%ec%a0%9c%ec%a0%90" class="header-mark"></a>고차원 변환의 문제점</h2><ul>
+<li>차원의 저주 (<code>Curse of Dimensionality</code>) 문제 발생
+<ul>
+<li>학습 데이터가 차원의 수보다 적어져 성능이 저하되는 형상</li>
+</ul>
+</li>
+<li>테스트 데이터에 대한 일반화 (Generalization) 능력 저하 가능
+<ul>
+<li>Margin  최대화를 통해 일반화 능력 유지</li>
+</ul>
+</li>
+<li>계산 비용 증가
+<ul>
+<li>Kerenl Trick 사용으로 해결</li>
+</ul>
+</li>
+</ul>
+<h2 id="kernel-trick" class="headerLink"><a href="#kernel-trick" class="header-mark"></a>Kernel Trick</h2><ul>
+<li>고차원으로 변환하여 계산하지 않고, 원래 데이터에서 계산</li>
+<li>커널 함수 이용
+<ul>
+<li>다항식 커널 (Polynomial Kernel)</li>
+<li>RBF 커널</li>
+<li>쌍곡 탄젠트 커널 (Hyperbolic Tangent)</li>
+</ul>
+</li>
+</ul>
+<h2 id="비선형-svm에-의한-결정-경계-및-서포트-벡터" class="headerLink"><a href="#%eb%b9%84%ec%84%a0%ed%98%95-svm%ec%97%90-%ec%9d%98%ed%95%9c-%ea%b2%b0%ec%a0%95-%ea%b2%bd%ea%b3%84-%eb%b0%8f-%ec%84%9c%ed%8f%ac%ed%8a%b8-%eb%b2%a1%ed%84%b0" class="header-mark"></a>비선형 SVM에 의한 결정 경계 및 서포트 벡터</h2><p>
+
+
+
+    
+<img loading="lazy" decoding="async"
+         class="render-image"
+         src="./Untitled%206.png"
+         alt="Classification/Untitled%206.png"
+         title="Untitled%206.png"
+    /></p>
+<h1 id="multiclass-classification" class="headerLink"><a href="#multiclass-classification" class="header-mark"></a>Multiclass Classification</h1><ul>
+<li>2개 이상의 Classes를 분류</li>
+</ul>
+<h3 id="직접-분류" class="headerLink"><a href="#%ec%a7%81%ec%a0%91-%eb%b6%84%eb%a5%98" class="header-mark"></a>직접 분류</h3><ul>
+<li>Random Forest</li>
+<li>Naive Bayes</li>
+</ul>
+<h3 id="2진-분류-이용" class="headerLink"><a href="#2%ec%a7%84-%eb%b6%84%eb%a5%98-%ec%9d%b4%ec%9a%a9" class="header-mark"></a>2진 분류 이용</h3><ul>
+<li>SVM</li>
+<li>Linear</li>
+<li>Logistic Regression</li>
+</ul></div><div id="comments"><div id="utterances"></div><noscript>
+                Please enable JavaScript to view the comments powered by <a href="https://utteranc.es/">Utterances</a>.
+            </noscript></div></div></div>
+                </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line"><i class="svg-icon icon-copyright"></i><span>2020 - 2021</span><span class="author">&nbsp;<a href="/" target="_blank"></a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
+        </div>
+    </footer></div>
+
+        <aside id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="Back to Top">
+                <i class="svg-icon icon-arrow-up"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="View Comments">
+                <i class="svg-icon icon-comments-fixed"></i>
+            </a>
+        </aside><script src="https://cdn.jsdelivr.net/npm/smooth-scroll@16.1.3/dist/smooth-scroll.min.js"></script><script src="https://cdn.jsdelivr.net/npm/autocomplete.js@0.37.1/dist/autocomplete.min.js"></script><script src="https://cdn.jsdelivr.net/npm/algoliasearch@4.2.0/dist/algoliasearch-lite.umd.min.js"></script><script src="https://cdn.jsdelivr.net/npm/clipboard@2.0.6/dist/clipboard.min.js"></script><script src="https://cdn.jsdelivr.net/npm/sharer.js@0.4.0/sharer.min.js"></script><script src="/lib/prismjs/prism.js"></script><script>window.config={"code":{"copyTitle":"Copy to clipboard","maxShownLines":10},"comment":{"utterances":{"darkTheme":"github-dark","issueTerm":"pathname","label":"Utterances Comment","lightTheme":"github-light","repo":"yansigit/yansigit.github.io"}},"search":{"algoliaAppID":"PASDMWALPK","algoliaIndex":"index.en","algoliaSearchKey":"b42948e51daaa93df92381c8e2ac0f93","highlightTag":"em","maxResultLength":10,"noResultsFound":"No results found","snippetLength":30,"type":"algolia"}};</script><script src="/js/theme.min.js"></script><script>
+        (function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
+            m[i].l=1*new Date();k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)})
+        (window, document, "script", "https://mc.yandex.ru/metrika/tag.js", "ym");
+
+        ym("70532758", "init", {
+            clickmap:true,
+            trackLinks:true,
+            accurateTrackBounce:true,
+            webvisor: null 
+        });
+    </script>
+    <noscript><div><img src="https://mc.yandex.ru/watch/70532758" style="position:absolute; left:-9999px;" alt="" /></div></noscript></body>
+</html>

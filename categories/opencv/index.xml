@@ -1,0 +1,212 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>opencv - Category - Seongbin Yoon</title>
+        <link>https://yansigit.github.io/categories/opencv/</link>
+        <description>opencv - Category - Seongbin Yoon</description>
+        <generator>Hugo -- gohugo.io</generator><language>en</language><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Wed, 16 Sep 2020 00:08:03 &#43;0900</lastBuildDate><atom:link href="https://yansigit.github.io/categories/opencv/" rel="self" type="application/rss+xml" /><item>
+    <title>OpenCV Spatial Domain</title>
+    <link>https://yansigit.github.io/blog/opencv-spatial-domain/</link>
+    <pubDate>Wed, 16 Sep 2020 00:08:03 &#43;0900</pubDate>
+    <author>yansigit.github.io</author>
+    <guid>https://yansigit.github.io/blog/opencv-spatial-domain/</guid>
+    <description><![CDATA[<blockquote>
+<p>지금까지 배운 화소단위 처리는 새로운 영상을 생성할 때 특정 화소만의 값을 이용해 처리</p>
+</blockquote>]]></description>
+</item><item>
+    <title>OpenCV Linear Interpolation</title>
+    <link>https://yansigit.github.io/blog/opencv-linear-interpolation/</link>
+    <pubDate>Wed, 16 Sep 2020 00:06:46 &#43;0900</pubDate>
+    <author>yansigit.github.io</author>
+    <guid>https://yansigit.github.io/blog/opencv-linear-interpolation/</guid>
+    <description><![CDATA[<h2 id="정수배의-확대" class="headerLink"><a href="#%ec%a0%95%ec%88%98%eb%b0%b0%ec%9d%98-%ed%99%95%eb%8c%80" class="header-mark"></a>정수배의 확대</h2><p>
+
+
+
+    
+</p>
+<ul>
+<li>가장 간단한 방법</li>
+<li>정해진 배율만큼 화소를 반복적으로 복사</li>
+<li>화질이 좋지 않음</li>
+</ul>]]></description>
+</item><item>
+    <title>OpenCV Geometric Transform</title>
+    <link>https://yansigit.github.io/blog/opencv-geometric-transform/</link>
+    <pubDate>Wed, 16 Sep 2020 00:06:11 &#43;0900</pubDate>
+    <author>yansigit.github.io</author>
+    <guid>https://yansigit.github.io/blog/opencv-geometric-transform/</guid>
+    <description><![CDATA[<blockquote>
+<p>임의의 기하학적 변환에 의해 화소들의 위치와 화소값을 변경</p>
+</blockquote>
+<blockquote>
+<p>화소들을 움직이거나 새로운  화소를 보간법에 의해 생성</p>
+</blockquote>]]></description>
+</item><item>
+    <title>OpenCV Histogram</title>
+    <link>https://yansigit.github.io/blog/opencv-histogram/</link>
+    <pubDate>Wed, 16 Sep 2020 00:05:22 &#43;0900</pubDate>
+    <author>yansigit.github.io</author>
+    <guid>https://yansigit.github.io/blog/opencv-histogram/</guid>
+    <description><![CDATA[<h2 id="1-개요" class="headerLink"><a href="#1-%ea%b0%9c%ec%9a%94" class="header-mark"></a>1. 개요</h2><blockquote>
+<p>이미지의 밝기 분포를 그래프로 표현한 방식</p>
+</blockquote>
+<blockquote>
+<p>즉 각 픽셀의 밝기를 모아 그래프로 표현한 것</p>
+</blockquote>]]></description>
+</item><item>
+    <title>Dealing With Camera on OpenCV</title>
+    <link>https://yansigit.github.io/blog/dealing-with-camera-on-opencv/</link>
+    <pubDate>Wed, 16 Sep 2020 00:04:34 &#43;0900</pubDate>
+    <author>yansigit.github.io</author>
+    <guid>https://yansigit.github.io/blog/dealing-with-camera-on-opencv/</guid>
+    <description><![CDATA[<h2 id="카메라-처리" class="headerLink"><a href="#%ec%b9%b4%eb%a9%94%eb%9d%bc-%ec%b2%98%eb%a6%ac" class="header-mark"></a>카메라 처리</h2><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-python" data-lang="python"><span class="c1"># cv2.VideoCapture(카메라번호)</span>
+<span class="n">cap</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">VideoCapture</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+
+<span class="n">cap</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">cv2</span><span class="o">.</span><span class="n">CAP_PROP_FRAME_WIDTH</span><span class="p">)</span>
+<span class="n">cap</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">cv2</span><span class="o">.</span><span class="n">CAP_PROP_FRAME_HEIGHT</span><span class="p">)</span>
+<span class="n">cap</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">cv2</span><span class="o">.</span><span class="n">CAP_PROP_FRAME_WIDTH</span><span class="p">,</span> <span class="mi">320</span><span class="p">)</span>
+<span class="n">cap</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">cv2</span><span class="o">.</span><span class="n">CAP_PROP_FRAME_WIDTH</span><span class="p">,</span> <span class="mi">240</span><span class="p">)</span>
+
+<span class="k">if</span> <span class="n">cap</span><span class="o">.</span><span class="n">isOpened</span><span class="p">():</span>
+		<span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
+				<span class="n">ret</span><span class="p">,</span> <span class="n">img</span> <span class="o">=</span> <span class="n">cap</span><span class="o">.</span><span class="n">read</span><span class="p">()</span> <span class="c1"># 다음 프레임 읽기</span>
+				<span class="k">if</span> <span class="n">ret</span><span class="p">:</span>
+						<span class="n">cv2</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="s1">&#39;camera&#39;</span><span class="p">,</span> <span class="n">img</span><span class="p">)</span>
+						<span class="k">if</span> <span class="n">cv2</span><span class="o">.</span><span class="n">waitKey</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="o">!=</span> <span class="o">-</span><span class="mi">1</span><span class="p">:</span> <span class="c1"># 1ms 동안 키 입력 대기</span>
+								<span class="n">cv2</span><span class="o">.</span><span class="n">imwrite</span><span class="p">(</span><span class="s1">&#39;snapshot.jpg&#39;</span><span class="p">,</span> <span class="n">img</span><span class="p">)</span> <span class="c1"># 키 입력 있으면 프레임 저장</span>
+								<span class="k">break</span>
+						<span class="k">else</span><span class="p">:</span>
+								<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;프레임 없음&#39;</span><span class="p">)</span>
+								<span class="k">break</span>
+<span class="k">else</span><span class="p">:</span>
+		<span class="nb">print</span><span class="p">(</span><span class="s2">&#34;카메라 오픈 오류&#34;</span><span class="p">)</span>
+
+<span class="n">cap</span><span class="o">.</span><span class="n">release</span><span class="p">()</span>
+<span class="n">cv2</span><span class="o">.</span><span class="n">destroyAllWindows</span><span class="p">()</span>
+</code></pre></td></tr></table>
+</div>
+</div>]]></description>
+</item><item>
+    <title>OpenCV 비트연산</title>
+    <link>https://yansigit.github.io/blog/opencv-%EB%B9%84%ED%8A%B8%EC%97%B0%EC%82%B0/</link>
+    <pubDate>Wed, 16 Sep 2020 00:04:09 &#43;0900</pubDate>
+    <author>yansigit.github.io</author>
+    <guid>https://yansigit.github.io/blog/opencv-%EB%B9%84%ED%8A%B8%EC%97%B0%EC%82%B0/</guid>
+    <description><![CDATA[<h2 id="비트-연산" class="headerLink"><a href="#%eb%b9%84%ed%8a%b8-%ec%97%b0%ec%82%b0" class="header-mark"></a>비트 연산</h2><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-python" data-lang="python"><span class="n">bitAnd</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">bitwise_and</span><span class="p">(</span><span class="n">img1</span><span class="p">,</span> <span class="n">img2</span><span class="p">)</span>
+<span class="n">bitOr</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">bitwise_or</span><span class="p">(</span><span class="n">img1</span><span class="p">,</span> <span class="n">img2</span><span class="p">)</span>
+<span class="n">bitXor</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">bitwise_xor</span><span class="p">(</span><span class="n">img1</span><span class="p">,</span> <span class="n">img2</span><span class="p">)</span>
+<span class="n">bitNot</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">bitwise_not</span><span class="p">(</span><span class="n">img1</span><span class="p">)</span>
+</code></pre></td></tr></table>
+</div>
+</div>]]></description>
+</item><item>
+    <title>OpenCV Blending</title>
+    <link>https://yansigit.github.io/blog/opencv-blending/</link>
+    <pubDate>Wed, 16 Sep 2020 00:03:51 &#43;0900</pubDate>
+    <author>yansigit.github.io</author>
+    <guid>https://yansigit.github.io/blog/opencv-blending/</guid>
+    <description><![CDATA[<h2 id="12-블렌딩" class="headerLink"><a href="#12-%eb%b8%94%eb%a0%8c%eb%94%a9" class="header-mark"></a>12. 블렌딩</h2><blockquote>
+<p>OpenCV는 <code>Saturation</code> 연산을 하고, Numpy는 <code>Modulo</code> 연산을 한다</p>
+</blockquote>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-python" data-lang="python"><span class="n">a</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">uint8</span><span class="p">([[</span><span class="mi">200</span><span class="p">,</span> <span class="mi">50</span><span class="p">]])</span>
+<span class="n">b</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">uint8</span><span class="p">([[</span><span class="mi">100</span><span class="p">,</span> <span class="mi">100</span><span class="p">]])</span>
+
+<span class="n">add1</span> <span class="o">=</span> <span class="n">a</span> <span class="o">+</span> <span class="n">b</span>         <span class="c1"># [[44 150]]  (오버플로우된 값이 반영)</span>
+<span class="n">add2</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">)</span> <span class="c1"># [[255 150]] (uint8 한계치인 255까지만 반영)</span>
+
+<span class="n">sub1</span> <span class="o">=</span> <span class="n">a</span> <span class="o">-</span> <span class="n">b</span>               <span class="c1"># [[100 206]] (음수 오버플로우되어 반영)</span>
+<span class="n">sub2</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">substract</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">)</span> <span class="c1"># [[100 0]]   (unit 한계치인 0까지만 반영)</span>
+</code></pre></td></tr></table>
+</div>
+</div><ul>
+<li><code>Saturation</code> : 0~255까지 한계치를 두고 연산</li>
+<li><code>Modulo</code> : 오버플로우가 일어나면 그 일어난 값만큼 다시 한계치에서 더해줌</li>
+</ul>]]></description>
+</item><item>
+    <title>OpenCV Thresholding</title>
+    <link>https://yansigit.github.io/blog/opencv-thresholding/</link>
+    <pubDate>Wed, 16 Sep 2020 00:01:55 &#43;0900</pubDate>
+    <author>yansigit.github.io</author>
+    <guid>https://yansigit.github.io/blog/opencv-thresholding/</guid>
+    <description><![CDATA[<h2 id="기본" class="headerLink"><a href="#%ea%b8%b0%eb%b3%b8" class="header-mark"></a>기본</h2><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-python" data-lang="python"><span class="c1"># 1. numpy 이용</span>
+<span class="n">threst_np</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros_like</span><span class="p">(</span><span class="n">img</span><span class="p">)</span> <span class="c1"># 원본과 동일한 크기의 0으로 채워진 이미지 생성</span>
+<span class="n">threst_np</span><span class="p">[</span><span class="n">img</span> <span class="o">&gt;</span> <span class="mi">127</span><span class="p">]</span> <span class="o">=</span> <span class="mi">255</span> <span class="c1"># 127보다 큰 값만 255로 변경</span>
+</code></pre></td></tr></table>
+</div>
+</div>]]></description>
+</item><item>
+    <title>OpenCV 컬러 스페이스</title>
+    <link>https://yansigit.github.io/blog/opencv-%EC%BB%AC%EB%9F%AC-%EC%8A%A4%ED%8E%98%EC%9D%B4%EC%8A%A4/</link>
+    <pubDate>Wed, 16 Sep 2020 00:00:18 &#43;0900</pubDate>
+    <author>yansigit.github.io</author>
+    <guid>https://yansigit.github.io/blog/opencv-%EC%BB%AC%EB%9F%AC-%EC%8A%A4%ED%8E%98%EC%9D%B4%EC%8A%A4/</guid>
+    <description><![CDATA[<h2 id="1-이진-이미지" class="headerLink"><a href="#1-%ec%9d%b4%ec%a7%84-%ec%9d%b4%eb%af%b8%ec%a7%80" class="header-mark"></a>1. 이진 이미지</h2><ul>
+<li>한개의 픽셀을 두가지 값으로만 표현</li>
+<li>흰색과 검은색으로만 이미지를 표시</li>
+</ul>]]></description>
+</item><item>
+    <title>openCV 영역 (ROI) 지정하기</title>
+    <link>https://yansigit.github.io/blog/%EA%B4%80%EC%8B%AC%EC%98%81%EC%97%AD-roi-%EC%A7%80%EC%A0%95%ED%95%98%EA%B8%B0/</link>
+    <pubDate>Tue, 15 Sep 2020 23:58:13 &#43;0900</pubDate>
+    <author>yansigit.github.io</author>
+    <guid>https://yansigit.github.io/blog/%EA%B4%80%EC%8B%AC%EC%98%81%EC%97%AD-roi-%EC%A7%80%EC%A0%95%ED%95%98%EA%B8%B0/</guid>
+    <description><![CDATA[<h2 id="roi" class="headerLink"><a href="#roi" class="header-mark"></a>ROI</h2><blockquote>
+<p>전체 이미지에서 관심있는 부분만 잘라서 연산 (연산량 단축, 알고리즘 단순화)</p>
+</blockquote>]]></description>
+</item></channel>
+</rss>

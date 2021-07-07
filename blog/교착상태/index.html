@@ -1,0 +1,622 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1"><meta name="robots" content="noodp"/><title>운영체제 - 교착상태 - Seongbin Yoon</title>
+        <meta name="twitter:card" content="summary_large_image"/><meta name="twitter:title" content=""/>
+        <meta name="twitter:description" content="About uBlogger Theme"/>
+        <meta name="Description" content="교착상태"><meta property="og:title" content="운영체제 - 교착상태" />
+<meta property="og:description" content="교착상태" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://yansigit.github.io/blog/%EA%B5%90%EC%B0%A9%EC%83%81%ED%83%9C/" /><meta property="og:image" content="https://yansigit.github.io/logo.png"/><meta property="article:section" content="blog" />
+<meta property="article:published_time" content="2020-09-18T23:24:53&#43;09:00" />
+<meta property="article:modified_time" content="2020-09-18T23:24:53&#43;09:00" />
+
+<meta name="application-name" content="uBlogger">
+<meta name="apple-mobile-web-app-title" content="uBlogger"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+        <link rel="icon" type="image/png" sizes="192x192" href="/android-chrome-192x192.png">
+        <link rel="icon" type="image/png" sizes="512x512" href="/android-chrome-512x512.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://yansigit.github.io/blog/%EA%B5%90%EC%B0%A9%EC%83%81%ED%83%9C/" /><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/normalize.css@8.0.1/normalize.min.css"><link rel="stylesheet" href="/lib/prismjs/prism.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.7.2/animate.min.css"><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "운영체제 - 교착상태",
+        "inLanguage": "en",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https:\/\/yansigit.github.io\/blog\/%EA%B5%90%EC%B0%A9%EC%83%81%ED%83%9C\/"
+        },"image": [{
+                            "@type": "ImageObject",
+                            "url": "https:\/\/yansigit.github.io\/images\/Apple-Devices-Preview.png",
+                            "width":  3200 ,
+                            "height":  2048 
+                        }],"genre": "blog","keywords": "os, operation-system","wordCount":  992 ,
+        "url": "https:\/\/yansigit.github.io\/blog\/%EA%B5%90%EC%B0%A9%EC%83%81%ED%83%9C\/","datePublished": "2020-09-18T23:24:53+09:00","dateModified": "2020-09-18T23:24:53+09:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","description": "교착상태"
+    }
+    </script><script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        "itemListElement": [{
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Home",
+            "item": "https:\/\/yansigit.github.io\/"
+        },{
+            "@type": "ListItem",
+            "position": 2,
+            "name": "os",
+            "item": "https://yansigit.github.io/categories/os/"
+        },{
+                "@type": "ListItem",
+                "position": 3,
+                "name": "운영체제 - 교착상태"
+            }]
+    }
+</script></head>
+    <body data-header-desktop="fixed" data-header-mobile="auto"><script>(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header>
+    <div class="desktop header" id="header-desktop">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="Seongbin Yoon" class="header-logo logo-svg"><span class="header-title-pre">📝</span>Blog == Portfolio</a>
+            </div>
+            <div class="menu">
+                <nav>
+                    <h2 class="display-hidden">Основная навигация</h2>
+                    <ul class="menu-inner"><li>
+                            <a class="menu-item" href="/posts/"> Posts </a>
+                        </li><li>
+                            <a class="menu-item" href="/blog/"> Blog </a>
+                        </li><li>
+                            <a class="menu-item" href="/tags/"> Tags </a>
+                        </li><li>
+                            <a class="menu-item" href="/categories/"> Categories </a>
+                        </li><li>
+                            <a class="menu-item" href="/categories/documentation/"> Docs </a>
+                        </li><li>
+                            <a class="menu-item" href="/about/"> About </a>
+                        </li><li>
+                            <a class="menu-item" href="https://github.com/upagge/ublogger" title="GitHub" rel="noopener noreffer" target="_blank"> Github </a>
+                        </li></ul>
+                </nav><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="Search titles or contents..." id="search-input-desktop">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="Search">
+                            <span class="svg-icon icon-search"></span>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="Clear">
+                            <span class="svg-icon icon-cancel"></span>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <span class="svg-icon icon-loading"></span>
+                        </span>
+                    </span><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                <span class="svg-icon icon-moon"></span>
+                </a>
+            </div>
+        </div>
+    </div><div class="mobile header" id="header-mobile">
+        <div class="header-container">
+            <div class="header-wrapper">
+                <div class="header-title">
+                    <a href="/" title="Seongbin Yoon" class="header-logo"><span class="header-title-pre">📝</span>Blog == Portfolio</a>
+                </div>
+                <div class="menu-toggle" id="menu-toggle-mobile">
+                    <span></span><span></span><span></span>
+                </div>
+            </div>
+            <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                        <div class="search mobile" id="search-mobile">
+                            <input type="text" placeholder="Search titles or contents..." id="search-input-mobile">
+                            <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="Search">
+                                <span class="svg-icon icon-search"></span>
+                            </a>
+                            <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="Clear">
+                                <span class="svg-icon icon-cancel"></span>
+                            </a>
+                            <span class="search-button search-loading" id="search-loading-mobile">
+                                <span class="svg-icon icon-loading"></span>
+                            </span>
+                        </div>
+                        <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
+                            Cancel
+                        </a>
+                    </div><nav>
+                    <h2 class="display-hidden">Основная навигация</h2>
+                    <ul><li>
+                            <a class="menu-item" href="/posts/" title="">Posts</a>
+                        </li><li>
+                            <a class="menu-item" href="/blog/" title="">Blog</a>
+                        </li><li>
+                            <a class="menu-item" href="/tags/" title="">Tags</a>
+                        </li><li>
+                            <a class="menu-item" href="/categories/" title="">Categories</a>
+                        </li><li>
+                            <a class="menu-item" href="/categories/documentation/" title="">Docs</a>
+                        </li><li>
+                            <a class="menu-item" href="/about/" title="">About</a>
+                        </li><li>
+                            <a class="menu-item" href="https://github.com/upagge/ublogger" title="GitHub" rel="noopener noreffer" target="_blank">Github</a>
+                        </li></ul>
+                </nav>
+                <a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                    <span class="svg-icon icon-moon"></span>
+                </a></div>
+        </div>
+    </div><div class="search-dropdown desktop">
+    <div id="search-dropdown-desktop"></div>
+</div>
+<div class="search-dropdown mobile">
+    <div id="search-dropdown-mobile"></div>
+</div></header><main class="main">
+                <div class="container"><div class="page single special"><h1 class="single-title pulse faster">운영체제 - 교착상태</h1><div class="content" id="content"><p>교착상태</p>
+<h1 id="교착상태" class="headerLink"><a href="#%ea%b5%90%ec%b0%a9%ec%83%81%ed%83%9c" class="header-mark"></a>교착상태</h1><h1 id="1-교착-상태" class="headerLink"><a href="#1-%ea%b5%90%ec%b0%a9-%ec%83%81%ed%83%9c" class="header-mark"></a>1. 교착 상태</h1><ul>
+<li>2개 이상의 프로세스가 다른 프로세스의 작업이 끝나기만을 기다리며 작업을 더 이상 진행하지 못하는 상태</li>
+</ul>
+<h2 id="아사상태와의-차이점" class="headerLink"><a href="#%ec%95%84%ec%82%ac%ec%83%81%ed%83%9c%ec%99%80%ec%9d%98-%ec%b0%a8%ec%9d%b4%ec%a0%90" class="header-mark"></a>아사상태와의 차이점</h2><ul>
+<li><strong>아사상태</strong> : 운영체제가 잘못된 정책을 사용해 특정 프로세스의 작업이 지연되는 문제</li>
+<li><strong>교착상태</strong> : 프로세스나 스레드가 결코 일어날 수 없는 특정 이벤트를 기다리는 것</li>
+</ul>
+<h2 id="발생--공유할-수-없는-자원을-사용할-때" class="headerLink"><a href="#%eb%b0%9c%ec%83%9d--%ea%b3%b5%ec%9c%a0%ed%95%a0-%ec%88%98-%ec%97%86%eb%8a%94-%ec%9e%90%ec%9b%90%ec%9d%84-%ec%82%ac%ec%9a%a9%ed%95%a0-%eb%95%8c" class="header-mark"></a>발생 : 공유할 수 없는 자원을 사용할 때</h2><p>
+
+
+
+    
+<img loading="lazy" decoding="async"
+         class="render-image"
+         src="./Untitled.png"
+         alt="image"
+         title="Untitled.png"
+    /></p>
+<ul>
+<li>위의 예에서는 P1, P2 둘 다 프린터, CD 레코더를 써야하는 상황</li>
+<li>그러나 두 개 프로세스가 하나씩을 계속 점유하고 있기 때문에 무한 대기에 빠지게 됨</li>
+</ul>
+<h2 id="발생--공유-변수" class="headerLink"><a href="#%eb%b0%9c%ec%83%9d--%ea%b3%b5%ec%9c%a0-%eb%b3%80%ec%88%98" class="header-mark"></a>발생 : 공유 변수</h2><p>
+
+
+
+    
+<img loading="lazy" decoding="async"
+         class="render-image"
+         src="./Untitled%201.png"
+         alt="image"
+         title="Untitled%201.png"
+    /></p>
+<ul>
+<li><code>lock1, lock2</code>가 모두 <code>True</code>가 되어 버릴 경우 두 프로세스 모두 한루프에 빠지게 됨</li>
+</ul>
+<h2 id="발생--응용-프로그램" class="headerLink"><a href="#%eb%b0%9c%ec%83%9d--%ec%9d%91%ec%9a%a9-%ed%94%84%eb%a1%9c%ea%b7%b8%eb%9e%a8" class="header-mark"></a>발생 : 응용 프로그램</h2><p>데이터베이스같은 응용 프로그램에서도 교착상태 발생</p>
+<h2 id="자원-할당-그래프" class="headerLink"><a href="#%ec%9e%90%ec%9b%90-%ed%95%a0%eb%8b%b9-%ea%b7%b8%eb%9e%98%ed%94%84" class="header-mark"></a>자원 할당 그래프</h2><ul>
+<li>프로세스가 어떤 자원을 사용중이고 어떤 자원을 기다리고 있는지를 방향성이 있는 그래프로 그린 것</li>
+<li>프로세스는 원, 자원은 사각형으로 표현</li>
+</ul>
+<p>
+
+
+
+    
+<img loading="lazy" decoding="async"
+         class="render-image"
+         src="./Untitled%202.png"
+         alt="image"
+         title="Untitled%202.png"
+    /></p>
+<h2 id="다중-자원" class="headerLink"><a href="#%eb%8b%a4%ec%a4%91-%ec%9e%90%ec%9b%90" class="header-mark"></a>다중 자원</h2><ul>
+<li>여러 프로세스가 자원을 동시에 사용</li>
+<li>수용할 수 있는 프로세스 수를 사각형 안에 작은 동그라미로 표현</li>
+</ul>
+<p>
+
+
+
+    
+<img loading="lazy" decoding="async"
+         class="render-image"
+         src="./Untitled%203.png"
+         alt="image"
+         title="Untitled%203.png"
+    /></p>
+<h2 id="식사하는-철학자-문제" class="headerLink"><a href="#%ec%8b%9d%ec%82%ac%ed%95%98%eb%8a%94-%ec%b2%a0%ed%95%99%ec%9e%90-%eb%ac%b8%ec%a0%9c" class="header-mark"></a>식사하는 철학자 문제</h2><p>
+
+
+
+    
+<img loading="lazy" decoding="async"
+         class="render-image"
+         src="./Untitled%204.png"
+         alt="image"
+         title="Untitled%204.png"
+    /></p>
+<ul>
+<li>두 개의 포크를 사용해 칠면조를 먹어야 하는 상황</li>
+<li>왼쪽에 있는 포크를 잡은 뒤 오른쪽에 있는 포크를 잡아야만 식사 가능
+<ul>
+<li>모두 동시에 식사를 시작한다고 가정한다면 다들 왼쪽에 있는 포크를 이미 집었으므로 가용 자원 없음</li>
+<li>따라서 식사를 마칠 수 없으므로 교착상태에 빠지게 됨</li>
+</ul>
+</li>
+</ul>
+<h3 id="조건" class="headerLink"><a href="#%ec%a1%b0%ea%b1%b4" class="header-mark"></a>조건</h3><ol>
+<li>
+<p>철학자들은 서로 포크를 공유할 수 없음</p>
+<ul>
+<li>→ 자원을 공유하지 못하면 교착 상태가 발생</li>
+</ul>
+</li>
+<li>
+<p>각 철학자는 다른 철학자의 포크를 빼앗을 수 없음</p>
+<ul>
+<li>→ 자원을 빼앗을 수 없으면 자원을 놓을 때 까지 기다려야 하므로 교착상태 발생</li>
+</ul>
+</li>
+<li>
+<p>각 철학자는 왼쪽 포크를 잡은 채 오른쪽 포크를 기다림</p>
+<ul>
+<li>→ 자원 하나를 잡은 상태에서 다른 자원을 기다리면 교착 상태 발생</li>
+</ul>
+</li>
+<li>
+<p>자원 할당 그래프가 원형</p>
+<ul>
+<li>→ 자원을 요구하는 방향이 원을 이루면 양보를 하지 않기에 교착상태 발생</li>
+<li>즉 원을 이루면 선후관계가 불분명하여 문제가 계속 맴돈다는 의미</li>
+</ul>
+<p>
+
+
+
+    
+<img loading="lazy" decoding="async"
+         class="render-image"
+         src="./Untitled%205.png"
+         alt="image"
+         title="Untitled%205.png"
+    /></p>
+<ul>
+<li>(사각형이라면 이런 문제는 없었을 것)</li>
+<li>(제일 왼쪽 철학자는 어차피 포크 2개를 가질 수 없어 식사가 불가능하다)</li>
+</ul>
+</li>
+</ol>
+<h1 id="2-교착상태-필요-조건" class="headerLink"><a href="#2-%ea%b5%90%ec%b0%a9%ec%83%81%ed%83%9c-%ed%95%84%ec%9a%94-%ec%a1%b0%ea%b1%b4" class="header-mark"></a>2. 교착상태 필요 조건</h1><blockquote>
+<p>다음 4가지 조건이 모두 발생해야만 교착상태 발생</p>
+</blockquote>
+<blockquote>
+<p>한가지라도 만족하지 않으면 교착상태 발생하지 않음</p>
+</blockquote>
+<h2 id="자원의-특징-조건" class="headerLink"><a href="#%ec%9e%90%ec%9b%90%ec%9d%98-%ed%8a%b9%ec%a7%95-%ec%a1%b0%ea%b1%b4" class="header-mark"></a><strong>자원의 특징 조건</strong></h2><ul>
+<li><strong>상호 배제</strong></li>
+</ul>
+<p>한 프로세스가 사용하는 자원은 다른 프로세스와 공유할 수 없는 자원이여야 함</p>
+<ul>
+<li><strong>비선점</strong></li>
+</ul>
+<p>한 프로세스가 사용중인 자원은 다른 프로세스가 빼앗을 수 없는 비선점 자원이여야 함</p>
+<h2 id="프로세스의-행위-조건" class="headerLink"><a href="#%ed%94%84%eb%a1%9c%ec%84%b8%ec%8a%a4%ec%9d%98-%ed%96%89%ec%9c%84-%ec%a1%b0%ea%b1%b4" class="header-mark"></a><strong>프로세스의 행위 조건</strong></h2><ul>
+<li><strong>점유와 대기</strong></li>
+</ul>
+<p>프로세스가 어떤 자원을 할당받은 상태에서 다른 자원을 기다리는 상태여야 함</p>
+<ul>
+<li><strong>원형 대기</strong></li>
+</ul>
+<p>점유와 대기를 하는 프로세스 간의 관계가 원을 이루어야 함</p>
+<h1 id="3-교착상태-해결-방법" class="headerLink"><a href="#3-%ea%b5%90%ec%b0%a9%ec%83%81%ed%83%9c-%ed%95%b4%ea%b2%b0-%eb%b0%a9%eb%b2%95" class="header-mark"></a>3. 교착상태 해결 방법</h1><h2 id="교착-상태-예방" class="headerLink"><a href="#%ea%b5%90%ec%b0%a9-%ec%83%81%ed%83%9c-%ec%98%88%eb%b0%a9" class="header-mark"></a>교착 상태 예방</h2><blockquote>
+<p>교착상태 필요조건 4가지가 발생하지 않도록 예방</p>
+</blockquote>
+<blockquote>
+<p>시스템에 제약을 가장 많이 둠</p>
+</blockquote>
+<blockquote>
+<p>교착상태 조건 4가지에 대해 각각의 방식이 존재</p>
+</blockquote>
+<h3 id="a-상호-배제-예방" class="headerLink"><a href="#a-%ec%83%81%ed%98%b8-%eb%b0%b0%ec%a0%9c-%ec%98%88%eb%b0%a9" class="header-mark"></a>A. <strong>상호 배제 예방</strong></h3><ul>
+<li>시스템 내에 상호 배타적인, 즉 독점적으로 사용 가능한 모든 자원을 없애버리는 방법</li>
+<li>현실적으로는 모든 자원을 공유하도록 것은 불가능</li>
+</ul>
+<h3 id="b-비선점-예방" class="headerLink"><a href="#b-%eb%b9%84%ec%84%a0%ec%a0%90-%ec%98%88%eb%b0%a9" class="header-mark"></a>B. <strong>비선점 예방</strong></h3><ul>
+<li>모든 자원을 빼앗을 수 있도록 만드는 방법</li>
+<li>그러나 아사 현상을 일으키고</li>
+<li>뺏을 수 없는 자원이 있을수 밖에 없기에 불가능</li>
+</ul>
+<h3 id="c-점유와-대기-예방" class="headerLink"><a href="#c-%ec%a0%90%ec%9c%a0%ec%99%80-%eb%8c%80%ea%b8%b0-%ec%98%88%eb%b0%a9" class="header-mark"></a>C. <strong>점유와 대기 예방</strong></h3><p>
+
+
+
+    
+<img loading="lazy" decoding="async"
+         class="render-image"
+         src="./Untitled%206.png"
+         alt="image"
+         title="Untitled%206.png"
+    /></p>
+<p>
+
+
+
+    
+<img loading="lazy" decoding="async"
+         class="render-image"
+         src="./Untitled%207.png"
+         alt="image"
+         title="Untitled%207.png"
+    /></p>
+<ul>
+<li>자원을 점유한 상태에서 다른 자원을 기다리지 못하게 함</li>
+<li><strong>전부 할당하거나 아예 할당하지 않는</strong> 방법</li>
+<li><strong>장점</strong>
+<ul>
+<li>자원 사용 방식을 변화시켜 교착 상태를 처리한다는 점에서 의미가 있음</li>
+</ul>
+</li>
+<li><strong>단점</strong>
+<ul>
+<li>그러나 프로세스가 자신이 사용하는 모든 자원을 자세히 알기는 어려움</li>
+<li>자원의 활용성이 떨어짐</li>
+<li>많은 자원을 사용하는 프로세스가 적은 자원을 사용하는 프로세스보다 불리
+<ul>
+<li>아사 현상</li>
+</ul>
+</li>
+<li>결국 일괄 작업 방식으로 동작</li>
+</ul>
+</li>
+</ul>
+<h3 id="d-원형-대기-예방" class="headerLink"><a href="#d-%ec%9b%90%ed%98%95-%eb%8c%80%ea%b8%b0-%ec%98%88%eb%b0%a9" class="header-mark"></a>D. <strong>원형 대기 예방</strong></h3><p>
+
+
+
+    
+<img loading="lazy" decoding="async"
+         class="render-image"
+         src="./Untitled%208.png"
+         alt="image"
+         title="Untitled%208.png"
+    /></p>
+<p>
+
+
+
+    
+<img loading="lazy" decoding="async"
+         class="render-image"
+         src="./Untitled%209.png"
+         alt="image"
+         title="Untitled%209.png"
+    /></p>
+<ul>
+<li>모든 자원에 숫자를 부여하고 숫자가 큰 방향으로만 자원 할당
+<ul>
+<li>마우스를 할당받은 상태에서 프린터를 할당받을 수는 있지만 프린터를 할당받은 상태에서는 마우스나 하드디스크를 할당받을 수 없음</li>
+</ul>
+</li>
+<li>위의 예에서 P2는 R2를 할당받았지만 R1을 할당받을 수 없기에 강제종료됨
+<ul>
+<li>따라서 P1은 R2를 할당받고 정상적으로 실행 가능</li>
+</ul>
+</li>
+<li><strong>단점</strong>
+<ul>
+<li>작업 진행에 유연성이 떨어짐
+<ul>
+<li>사용자는 P2 → P1 순서로 실행하고 싶을수도 있다</li>
+</ul>
+</li>
+<li>자원의 번호를 어떻게 부여할 것인가?</li>
+</ul>
+</li>
+</ul>
+<h3 id="e-결론" class="headerLink"><a href="#e-%ea%b2%b0%eb%a1%a0" class="header-mark"></a>E. 결론</h3><ul>
+<li>상호배제와 비선점은 예방이 사실상 불가능</li>
+<li>점유와 대기, 원형 대기는 프로세스 작업 방식을 제한하고 자원을 낭비</li>
+</ul>
+<h2 id="교착-상태-회피" class="headerLink"><a href="#%ea%b5%90%ec%b0%a9-%ec%83%81%ed%83%9c-%ed%9a%8c%ed%94%bc" class="header-mark"></a>교착 상태 회피</h2><ul>
+<li>교착상태가 발생하지 않도록 자원 할당량을 조절하여 교착 상태를 회피</li>
+<li>프로세스에 자원을 할당할 때 어느 수준 이상의 자원을 나누어주면 교착상태가 발생하는지 파악, 해당 수준 이하로만 자원을 나누어주는 방법</li>
+<li>교착상태가 발생하는 범위에 있으면 프로세스를 대기시킴</li>
+<li>상태 예방보다는 제약이 적음</li>
+</ul>
+<h3 id="a-안정-상태와-불안정-상태" class="headerLink"><a href="#a-%ec%95%88%ec%a0%95-%ec%83%81%ed%83%9c%ec%99%80-%eb%b6%88%ec%95%88%ec%a0%95-%ec%83%81%ed%83%9c" class="header-mark"></a>A. 안정 상태와 불안정 상태</h3><p>
+
+
+
+    
+<img loading="lazy" decoding="async"
+         class="render-image"
+         src="./Untitled%2010.png"
+         alt="image"
+         title="Untitled%2010.png"
+    /></p>
+<ul>
+<li><strong>안정 상태</strong>
+<ul>
+<li>각 프로세스의 기대 자원과 비교해, 가용 자원이 크거나 같은 경우가 <strong>한 번 이상</strong>인 경우</li>
+<li>즉, 각 프로세스의 기대 자원이 <code>5,7,8,10</code> 이고 가용 자원이 <code>5</code>일 경우에도 시스템은 안정 상태</li>
+</ul>
+</li>
+<li>할당된 자원이 적으면  안정 상태가 크고 할당된 자원이 많으면 불안정 상태가 크다</li>
+<li>교착 상태는 불안정 상태의 일부분
+<ul>
+<li>불안정 상태가 커질수록 교착상태 발생 가능성 높아짐</li>
+</ul>
+</li>
+<li>교착 상태 회피는 안정 상태를 유지할 수 있는 범위 내에서 자원을 할당해 교착 상태 회피</li>
+</ul>
+<h3 id="b-은행원-알고리즘" class="headerLink"><a href="#b-%ec%9d%80%ed%96%89%ec%9b%90-%ec%95%8c%ea%b3%a0%eb%a6%ac%ec%a6%98" class="header-mark"></a>B. 은행원 알고리즘</h3><p>
+
+
+
+    
+<img loading="lazy" decoding="async"
+         class="render-image"
+         src="./Untitled%2011.png"
+         alt="image"
+         title="Untitled%2011.png"
+    /></p>
+<p>
+
+
+
+    
+<img loading="lazy" decoding="async"
+         class="render-image"
+         src="./Untitled%2012.png"
+         alt="image"
+         title="Untitled%2012.png"
+    /></p>
+<ul>
+<li>은행이 대출을 해주는 방식.</li>
+<li>즉, 대츨 가능한 금액 범위 내이면 허용하지 그렇지 않으면 거부하는 것</li>
+<li>위의 예는 라면 10개, 스파게티 20개가 있을 때
+<ul>
+<li>손님을 가용한 범위인 10 까지만 받겠다는 것</li>
+<li>(모든 손님이 라면을 원할 수 있으므로)</li>
+</ul>
+</li>
+<li><strong>변수 용어</strong>
+<ul>
+<li>전체 자원</li>
+<li>가용 자원 (= 전체자원 - 프로세스들에 할당된 자원들)</li>
+<li>최대 자원 : 각 프로세스가 선언한 최대 사용 가능한 자원 수</li>
+<li>할당 자원 : 실제 각 프로세스에 할당된 자원 수</li>
+<li>기대 자원 (= 최대 자원 - 할당 자원)</li>
+</ul>
+</li>
+<li><strong>자원 할당 기준</strong>
+<ul>
+<li>각 프로세스의 기대 자원 ≤ 가용 자원</li>
+</ul>
+</li>
+</ul>
+<h3 id="c-교착-상태-회피의-문제점" class="headerLink"><a href="#c-%ea%b5%90%ec%b0%a9-%ec%83%81%ed%83%9c-%ed%9a%8c%ed%94%bc%ec%9d%98-%eb%ac%b8%ec%a0%9c%ec%a0%90" class="header-mark"></a>C. 교착 상태 회피의 문제점</h3><ul>
+<li>프로세스가 자신이 사용할 모든 자원을 미리 선언해야함</li>
+<li>시스템의 전체 자원 수가 고정적이여야 함</li>
+<li>자원이 낭비됨</li>
+</ul>
+<h2 id="교착-상태-검출과-회복" class="headerLink"><a href="#%ea%b5%90%ec%b0%a9-%ec%83%81%ed%83%9c-%ea%b2%80%ec%b6%9c%ea%b3%bc-%ed%9a%8c%eb%b3%b5" class="header-mark"></a>교착 상태 검출과 회복</h2><ul>
+<li>시스템에 제약을 아예 두지 않음</li>
+<li>자원 할당 그래프를 모니터링하며 교착 상태가 발생하는지 살펴보다가 교착 상태가 발생하면 교착 상태 회복 단계 진행</li>
+</ul>
+<h3 id="a-타임아웃-이용해-검출" class="headerLink"><a href="#a-%ed%83%80%ec%9e%84%ec%95%84%ec%9b%83-%ec%9d%b4%ec%9a%a9%ed%95%b4-%ea%b2%80%ec%b6%9c" class="header-mark"></a>A. 타임아웃 이용해 검출</h3><p>
+
+
+
+    
+<img loading="lazy" decoding="async"
+         class="render-image"
+         src="./Untitled%2013.png"
+         alt="image"
+         title="Untitled%2013.png"
+    /></p>
+<ul>
+<li>특정 시간 동안 작업이 진행되지 않은 프로세스를 교착 상태가 발생한것으로 간주</li>
+<li>교착 상태가 자주 발생하지 않을것이라 가정하고 사용</li>
+<li>타임아웃되면 프로세스가 종료됨</li>
+<li><strong>데이터베이스에서 타임아웃의 문제</strong>
+<ul>
+<li>일부 데이터의 일관성이 깨질 수 잇음</li>
+<li>따라서 체크포인트와 롤백 사용, 작업을 하다 문제가 발생하면 과거의 체크포인트로 돌아감</li>
+</ul>
+</li>
+</ul>
+<h3 id="b-자원-할당-그래프를-이용해-검출" class="headerLink"><a href="#b-%ec%9e%90%ec%9b%90-%ed%95%a0%eb%8b%b9-%ea%b7%b8%eb%9e%98%ed%94%84%eb%a5%bc-%ec%9d%b4%ec%9a%a9%ed%95%b4-%ea%b2%80%ec%b6%9c" class="header-mark"></a>B. 자원 할당 그래프를 이용해 검출</h3><p>
+
+
+
+    
+<img loading="lazy" decoding="async"
+         class="render-image"
+         src="./Untitled%2014.png"
+         alt="image"
+         title="Untitled%2014.png"
+    /></p>
+<ul>
+<li>자원 할당 그래프에 사이클이 있으면 교착 상태</li>
+<li>시간이 오래 걸림. 시스템 내의 전체 프로세스와 자원의 싸이클을 검출해야 하므로.</li>
+</ul>
+<h3 id="c-교착-상태-회복" class="headerLink"><a href="#c-%ea%b5%90%ec%b0%a9-%ec%83%81%ed%83%9c-%ed%9a%8c%eb%b3%b5" class="header-mark"></a>C. 교착 상태 회복</h3><ul>
+<li>교착 상태가 검출된 후 교착 상태를 푸는 후속 작업을 하는 것</li>
+<li>교착 상태 회복 단계에서는 교착 상태를 유발한 프로세스를 강제로 종료함</li>
+<li><strong>방법</strong>
+<ol>
+<li>교착 상태를 일으킨 모든 프로세스를 동시 종료</li>
+<li>교착 상태를 일으킨 프로세스 중 하나를 골라 순서대로 종료
+<ul>
+<li>우선순위가 낮은 프로세스를 먼저 종료</li>
+<li>우선순위가 같은 경우 시간이 짧은 프로세스를 먼저 종료</li>
+<li>두 위의 조건이 같으면 자원을 많이 사용하는 프로세스를 먼저 종료</li>
+</ul>
+</li>
+</ol>
+</li>
+</ul>
+<h1 id="4-다중-지원과-사이클" class="headerLink"><a href="#4-%eb%8b%a4%ec%a4%91-%ec%a7%80%ec%9b%90%ea%b3%bc-%ec%82%ac%ec%9d%b4%ed%81%b4" class="header-mark"></a>4. 다중 지원과 사이클</h1><p>
+
+
+
+    
+<img loading="lazy" decoding="async"
+         class="render-image"
+         src="./Untitled%2015.png"
+         alt="image"
+         title="Untitled%2015.png"
+    /></p>
+<blockquote>
+<p>다중 자원이 포함된 자원 할당 그래프에서는 대기 그래프와 그래프 감소 방법을 이용해 사이클을 찾음</p>
+</blockquote>
+<h2 id="대기-그래프" class="headerLink"><a href="#%eb%8c%80%ea%b8%b0-%ea%b7%b8%eb%9e%98%ed%94%84" class="header-mark"></a>대기 그래프</h2><ul>
+<li>자원 할당 그래프에서 프로세스와 프로세스 간에 기다리는 관계만 나타낸 그래프</li>
+</ul>
+<h2 id="그래프-감소" class="headerLink"><a href="#%ea%b7%b8%eb%9e%98%ed%94%84-%ea%b0%90%ec%86%8c" class="header-mark"></a>그래프 감소</h2><ul>
+<li>대기 그래프에서 작업이 끝날 가능성이 있는 그래프의 화살표와 관련 프로세스의 화살표를 연속적으로 지워나가는 작업</li>
+</ul>
+<h3 id="교착-상태가-발생하지-않는-경우" class="headerLink"><a href="#%ea%b5%90%ec%b0%a9-%ec%83%81%ed%83%9c%ea%b0%80-%eb%b0%9c%ec%83%9d%ed%95%98%ec%a7%80-%ec%95%8a%eb%8a%94-%ea%b2%bd%ec%9a%b0" class="header-mark"></a>교착 상태가 발생하지 않는 경우</h3><p>
+
+
+
+    
+<img loading="lazy" decoding="async"
+         class="render-image"
+         src="./Untitled%2016.png"
+         alt="image"
+         title="Untitled%2016.png"
+    /></p>
+<h3 id="교착-상태가-발생한-경우" class="headerLink"><a href="#%ea%b5%90%ec%b0%a9-%ec%83%81%ed%83%9c%ea%b0%80-%eb%b0%9c%ec%83%9d%ed%95%9c-%ea%b2%bd%ec%9a%b0" class="header-mark"></a>교착 상태가 발생한 경우</h3><p>
+
+
+
+    
+<img loading="lazy" decoding="async"
+         class="render-image"
+         src="./Untitled%2017.png"
+         alt="image"
+         title="Untitled%2017.png"
+    /></p></div><div id="comments"><div id="utterances"></div><noscript>
+                Please enable JavaScript to view the comments powered by <a href="https://utteranc.es/">Utterances</a>.
+            </noscript></div></div></div>
+                </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line"><i class="svg-icon icon-copyright"></i><span>2020 - 2021</span><span class="author">&nbsp;<a href="/" target="_blank"></a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
+        </div>
+    </footer></div>
+
+        <aside id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="Back to Top">
+                <i class="svg-icon icon-arrow-up"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="View Comments">
+                <i class="svg-icon icon-comments-fixed"></i>
+            </a>
+        </aside><script src="https://cdn.jsdelivr.net/npm/smooth-scroll@16.1.3/dist/smooth-scroll.min.js"></script><script src="https://cdn.jsdelivr.net/npm/autocomplete.js@0.37.1/dist/autocomplete.min.js"></script><script src="https://cdn.jsdelivr.net/npm/algoliasearch@4.2.0/dist/algoliasearch-lite.umd.min.js"></script><script src="https://cdn.jsdelivr.net/npm/clipboard@2.0.6/dist/clipboard.min.js"></script><script src="https://cdn.jsdelivr.net/npm/sharer.js@0.4.0/sharer.min.js"></script><script src="/lib/prismjs/prism.js"></script><script>window.config={"code":{"copyTitle":"Copy to clipboard","maxShownLines":10},"comment":{"utterances":{"darkTheme":"github-dark","issueTerm":"pathname","label":"Utterances Comment","lightTheme":"github-light","repo":"yansigit/yansigit.github.io"}},"search":{"algoliaAppID":"PASDMWALPK","algoliaIndex":"index.en","algoliaSearchKey":"b42948e51daaa93df92381c8e2ac0f93","highlightTag":"em","maxResultLength":10,"noResultsFound":"No results found","snippetLength":30,"type":"algolia"}};</script><script src="/js/theme.min.js"></script><script>
+        (function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
+            m[i].l=1*new Date();k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)})
+        (window, document, "script", "https://mc.yandex.ru/metrika/tag.js", "ym");
+
+        ym("70532758", "init", {
+            clickmap:true,
+            trackLinks:true,
+            accurateTrackBounce:true,
+            webvisor: null 
+        });
+    </script>
+    <noscript><div><img src="https://mc.yandex.ru/watch/70532758" style="position:absolute; left:-9999px;" alt="" /></div></noscript></body>
+</html>

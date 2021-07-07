@@ -1,0 +1,531 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1"><meta name="robots" content="noodp"/><title>Computer Networking - HTTP - Seongbin Yoon</title>
+        <meta name="twitter:card" content="summary_large_image"/><meta name="twitter:title" content=""/>
+        <meta name="twitter:description" content="About uBlogger Theme"/>
+        <meta name="Description" content="컴퓨터 네트워크 - HTTP"><meta property="og:title" content="Computer Networking - HTTP" />
+<meta property="og:description" content="컴퓨터 네트워크 - HTTP" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://yansigit.github.io/blog/computer-network-http/" /><meta property="og:image" content="https://yansigit.github.io/logo.png"/><meta property="article:section" content="blog" />
+<meta property="article:published_time" content="2020-09-17T00:11:07&#43;09:00" />
+<meta property="article:modified_time" content="2021-03-16T23:37:21&#43;09:00" />
+
+<meta name="application-name" content="uBlogger">
+<meta name="apple-mobile-web-app-title" content="uBlogger"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+        <link rel="icon" type="image/png" sizes="192x192" href="/android-chrome-192x192.png">
+        <link rel="icon" type="image/png" sizes="512x512" href="/android-chrome-512x512.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://yansigit.github.io/blog/computer-network-http/" /><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/normalize.css@8.0.1/normalize.min.css"><link rel="stylesheet" href="/lib/prismjs/prism.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.7.2/animate.min.css"><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "Computer Networking - HTTP",
+        "inLanguage": "en",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https:\/\/yansigit.github.io\/blog\/computer-network-http\/"
+        },"image": [{
+                            "@type": "ImageObject",
+                            "url": "https:\/\/yansigit.github.io\/images\/Apple-Devices-Preview.png",
+                            "width":  3200 ,
+                            "height":  2048 
+                        }],"genre": "blog","keywords": "computer-networking, network, networking, http","wordCount":  684 ,
+        "url": "https:\/\/yansigit.github.io\/blog\/computer-network-http\/","datePublished": "2020-09-17T00:11:07+09:00","dateModified": "2021-03-16T23:37:21+09:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","description": "컴퓨터 네트워크 - HTTP"
+    }
+    </script><script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        "itemListElement": [{
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Home",
+            "item": "https:\/\/yansigit.github.io\/"
+        },{
+            "@type": "ListItem",
+            "position": 2,
+            "name": "computer-networking",
+            "item": "https://yansigit.github.io/categories/computer-networking/"
+        },{
+                "@type": "ListItem",
+                "position": 3,
+                "name": "Computer Networking - HTTP"
+            }]
+    }
+</script></head>
+    <body data-header-desktop="fixed" data-header-mobile="auto"><script>(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header>
+    <div class="desktop header" id="header-desktop">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="Seongbin Yoon" class="header-logo logo-svg"><span class="header-title-pre">📝</span>Blog == Portfolio</a>
+            </div>
+            <div class="menu">
+                <nav>
+                    <h2 class="display-hidden">Основная навигация</h2>
+                    <ul class="menu-inner"><li>
+                            <a class="menu-item" href="/posts/"> Posts </a>
+                        </li><li>
+                            <a class="menu-item" href="/blog/"> Blog </a>
+                        </li><li>
+                            <a class="menu-item" href="/tags/"> Tags </a>
+                        </li><li>
+                            <a class="menu-item" href="/categories/"> Categories </a>
+                        </li><li>
+                            <a class="menu-item" href="/categories/documentation/"> Docs </a>
+                        </li><li>
+                            <a class="menu-item" href="/about/"> About </a>
+                        </li><li>
+                            <a class="menu-item" href="https://github.com/upagge/ublogger" title="GitHub" rel="noopener noreffer" target="_blank"> Github </a>
+                        </li></ul>
+                </nav><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="Search titles or contents..." id="search-input-desktop">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="Search">
+                            <span class="svg-icon icon-search"></span>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="Clear">
+                            <span class="svg-icon icon-cancel"></span>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <span class="svg-icon icon-loading"></span>
+                        </span>
+                    </span><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                <span class="svg-icon icon-moon"></span>
+                </a>
+            </div>
+        </div>
+    </div><div class="mobile header" id="header-mobile">
+        <div class="header-container">
+            <div class="header-wrapper">
+                <div class="header-title">
+                    <a href="/" title="Seongbin Yoon" class="header-logo"><span class="header-title-pre">📝</span>Blog == Portfolio</a>
+                </div>
+                <div class="menu-toggle" id="menu-toggle-mobile">
+                    <span></span><span></span><span></span>
+                </div>
+            </div>
+            <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                        <div class="search mobile" id="search-mobile">
+                            <input type="text" placeholder="Search titles or contents..." id="search-input-mobile">
+                            <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="Search">
+                                <span class="svg-icon icon-search"></span>
+                            </a>
+                            <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="Clear">
+                                <span class="svg-icon icon-cancel"></span>
+                            </a>
+                            <span class="search-button search-loading" id="search-loading-mobile">
+                                <span class="svg-icon icon-loading"></span>
+                            </span>
+                        </div>
+                        <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
+                            Cancel
+                        </a>
+                    </div><nav>
+                    <h2 class="display-hidden">Основная навигация</h2>
+                    <ul><li>
+                            <a class="menu-item" href="/posts/" title="">Posts</a>
+                        </li><li>
+                            <a class="menu-item" href="/blog/" title="">Blog</a>
+                        </li><li>
+                            <a class="menu-item" href="/tags/" title="">Tags</a>
+                        </li><li>
+                            <a class="menu-item" href="/categories/" title="">Categories</a>
+                        </li><li>
+                            <a class="menu-item" href="/categories/documentation/" title="">Docs</a>
+                        </li><li>
+                            <a class="menu-item" href="/about/" title="">About</a>
+                        </li><li>
+                            <a class="menu-item" href="https://github.com/upagge/ublogger" title="GitHub" rel="noopener noreffer" target="_blank">Github</a>
+                        </li></ul>
+                </nav>
+                <a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                    <span class="svg-icon icon-moon"></span>
+                </a></div>
+        </div>
+    </div><div class="search-dropdown desktop">
+    <div id="search-dropdown-desktop"></div>
+</div>
+<div class="search-dropdown mobile">
+    <div id="search-dropdown-mobile"></div>
+</div></header><main class="main">
+                <div class="container"><div class="page single special"><h1 class="single-title pulse faster">Computer Networking - HTTP</h1><div class="content" id="content"><p>컴퓨터 네트워크 - HTTP</p>
+<h1 id="computer-netowork-http" class="headerLink"><a href="#computer-netowork-http" class="header-mark"></a>Computer-Netowork-HTTP</h1><h1 id="1-web-and-http" class="headerLink"><a href="#1-web-and-http" class="header-mark"></a>1. Web and HTTP</h1><ul>
+<li>웹 페이지는 오브젝트로 이루어져 있다</li>
+<li>오브젝트
+<ul>
+<li>HTML 파일</li>
+<li>JPEG</li>
+<li>Audio 파일</li>
+<li>플래시 등</li>
+</ul>
+</li>
+<li>더 정확히 말하면 웹 페이지는 베이스 HTML 파일로 구성되며
+<ul>
+<li>그리고 그 HTML 파일은 몇개의 참조된 오브젝트들을 포함한다.</li>
+</ul>
+</li>
+<li>각각의 오브젝트들은 URL을 통해 특정 가능하다
+<ul>
+<li>예시) <code>www.somewebsite.com/somedirectory/someobject.gif</code></li>
+<li>URL은 <strong>호스트 네임</strong>과 <strong>패스 네임</strong>으로 이루어져 있다.</li>
+</ul>
+</li>
+</ul>
+<h1 id="2-http" class="headerLink"><a href="#2-http" class="header-mark"></a>2. HTTP</h1><h2 id="개요" class="headerLink"><a href="#%ea%b0%9c%ec%9a%94" class="header-mark"></a>개요</h2><ul>
+<li><strong>HTTP</strong>: hypertext transfer protocol</li>
+<li><strong>웹의 애플리케이션 프로토콜</strong></li>
+<li>기본적으로 Client/Server 모델
+<ul>
+<li><strong>Client</strong>
+<ul>
+<li>브라우저로 HTTP 프로토콜을 통해 reqeust하고 오브젝트들을 받아서 디스플레이 해줌</li>
+</ul>
+</li>
+<li><strong>Server</strong>
+<ul>
+<li>웹 서버는 HTTP 프로토콜을 통해 오브젝트를 response로 전송</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><strong>TCP를 사용</strong> (현재로서는)
+<ol>
+<li>클라이언트는 서버로 TCP 연결을 시작</li>
+<li>서버는 TCP 연결을 수락</li>
+<li>클라이언트는 HTTP request 메세지</li>
+<li>서버는 HTTP response 메세지를 보냄</li>
+<li>TCP 연결 종료</li>
+</ol>
+</li>
+<li><strong>HTTP</strong>는 <strong>Stateless</strong> 하다
+<ul>
+<li>서버는 과거의 클라이언트 request에 대한 정보를 저장하지 않는다</li>
+<li>다만 쿠키, 세션 등으로 따로 구현할 수는 있다</li>
+<li>왜?
+<ul>
+<li>구현이 어렵다. 예를 들어서 클라이언트/서버가 크래시가 날 경우 복구 등에 대한 문제.</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h1 id="3-http-연결-" class="headerLink"><a href="#3-http-%ec%97%b0%ea%b2%b0-" class="header-mark"></a>3. HTTP 연결 💥</h1><blockquote>
+<p>시험에 나올 가능성이 높은 중요한 부분</p>
+</blockquote>
+<h2 id="non-persistent-http" class="headerLink"><a href="#non-persistent-http" class="header-mark"></a>Non-Persistent HTTP</h2><p>
+
+
+
+    
+<img loading="lazy" decoding="async"
+         class="render-image"
+         src="./Untitled.png"
+         alt="image"
+         title="Untitled.png"
+    /></p>
+<ul>
+<li>한 TCP 연결에서 한 개의 오브젝트만 보낼 수 있다</li>
+<li>한 개의 오브젝트를 보내면 TCP 연결은 종료</li>
+<li>여러 개의 오브젝트를 받고싶다면 여러 개의 TCP 연결이 필요</li>
+</ul>
+<p>
+
+
+
+    
+<img loading="lazy" decoding="async"
+         class="render-image"
+         src="./Untitled%201.png"
+         alt="image"
+         title="Untitled%201.png"
+    /></p>
+<ul>
+<li><strong>RTT (Round Trip Time)</strong>
+<ul>
+<li>작은 패킷이 클라이언트에서 서버로 갔다가 돌아오는 시간</li>
+<li>즉 Request 한 후 Response가 도착할 때 까지 걸리는 시간</li>
+<li>파일 (오브젝트) 전송 시간은 포함하지 않는다.</li>
+<li>즉 response 패킷의 처음 몇 바이트의 도달 시간 까지만 RTT로 침</li>
+</ul>
+</li>
+<li><strong>Non-Persistent HTTP Response time = 2RTT + 파일 전송 시간</strong></li>
+</ul>
+<h2 id="non-persistent-http-문제점" class="headerLink"><a href="#non-persistent-http-%eb%ac%b8%ec%a0%9c%ec%a0%90" class="header-mark"></a>Non-Persistent HTTP 문제점</h2><ul>
+<li>오브젝트 당 2 RTT를 소모</li>
+<li>TCP 연결마다 OS에 부하가 걸린다</li>
+<li>브라우저는 TCP 연결을 병렬적으로 동시에 열어 시간을 줄이기도 한다
+<ul>
+<li>예를 들어, 1HTML + 10JPG 예의 경우
+<ul>
+<li>HTML 파일을 전송받는데 2 RTT를 소모</li>
+<li>HTML 파싱한 후 참조된 오브젝트들을 전송할 때 병렬적으로 TCP 연결을 해 한꺼번에 2 RTT를 소모</li>
+<li>총 4 RTT로 전송할 수 있다는 것</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="persistent-http" class="headerLink"><a href="#persistent-http" class="header-mark"></a>Persistent HTTP</h2><ul>
+<li>서버가 Response를 전송 후에도 TCP 연결을 유지</li>
+<li>여러 개의 오브젝트를 한 번의 TCP 연결로 전송 가능</li>
+<li>모든 참조 오브젝트에 대해 하나의 RTT로도 충분하다
+<ul>
+<li>예를 들어 1HTML + 10JPG의 예의 경우
+<ul>
+<li>HTML 파일을 전송받는데 2 RTT를 소모</li>
+<li>HTML 파싱한 후 참조된 오브젝트를 전송할 때 이미 연결된 TCP가 유지되고 있으므로 HTTP 전송에 해당하는 1 RTT 만 소모</li>
+<li>총 3 RTT로 전송 가능</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h1 id="4-http-request-message" class="headerLink"><a href="#4-http-request-message" class="header-mark"></a>4. HTTP request message</h1><h2 id="개요-1" class="headerLink"><a href="#%ea%b0%9c%ec%9a%94-1" class="header-mark"></a>개요</h2><ul>
+<li>Request와 Response 두 개의 메세지 타입</li>
+<li>HTTP Request messsage
+<ul>
+<li>ASCII 로 구성</li>
+<li>사람이 읽을 수 있음</li>
+</ul>
+</li>
+</ul>
+<p>
+
+
+
+    
+<img loading="lazy" decoding="async"
+         class="render-image"
+         src="./Untitled%202.png"
+         alt="image"
+         title="Untitled%202.png"
+    /></p>
+<p>
+
+
+
+    
+<img loading="lazy" decoding="async"
+         class="render-image"
+         src="./Untitled%203.png"
+         alt="image"
+         title="Untitled%203.png"
+    /></p>
+<h2 id="uploading-form-input" class="headerLink"><a href="#uploading-form-input" class="header-mark"></a>Uploading Form Input</h2><ul>
+<li>POST 메소드
+<ul>
+<li>폼 인풋에서 종종 쓰임</li>
+<li>인풋은 Entity body에 기입되어 전달</li>
+</ul>
+</li>
+<li>Get 메소드
+<ul>
+<li>URL 메소드 라고도 함</li>
+<li>인풋은 URL 필드에 포함되어 전달된다</li>
+</ul>
+</li>
+</ul>
+<h2 id="method-types" class="headerLink"><a href="#method-types" class="header-mark"></a>Method Types</h2><ul>
+<li>HTTP/1.0
+<ul>
+<li>GET</li>
+<li>POST</li>
+<li>HEAD
+<ul>
+<li>실제 데이터는 안보내고 HEAD만 보낼 때 사용</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>HTTP/1.1
+<ul>
+<li>GET</li>
+<li>POST</li>
+<li>HEAD</li>
+<li>PUT
+<ul>
+<li>URL 필드에 명시된 경로로 파일을 업로드 하고 싶을 때</li>
+</ul>
+</li>
+<li>DELETE
+<ul>
+<li>URL 필드에 명시된 경로의 파일을 지우고 싶을 때</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h1 id="5-http-response-message" class="headerLink"><a href="#5-http-response-message" class="header-mark"></a>5. HTTP response message</h1><p>
+
+
+
+    
+<img loading="lazy" decoding="async"
+         class="render-image"
+         src="./Untitled%204.png"
+         alt="image"
+         title="Untitled%204.png"
+    /></p>
+<h2 id="respose-status-codes" class="headerLink"><a href="#respose-status-codes" class="header-mark"></a>Respose Status Codes</h2><ul>
+<li><strong>200 OK</strong>
+<ul>
+<li>Request 성공. Response 메세지 뒤에 요청한 오브젝트가 있다.</li>
+</ul>
+</li>
+<li><strong>301 Moved Permanently</strong>
+<ul>
+<li>요청한 오브젝트가 이동되었다. 새 위치를 메세지에 담아 보내주겠다.</li>
+</ul>
+</li>
+<li><strong>400 Bad Request</strong>
+<ul>
+<li>(서버가) 요청한 메세지를 이해할 수 없다.</li>
+</ul>
+</li>
+<li><strong>404 Not found</strong>
+<ul>
+<li>요청한 문서를 서버에서 찾을 수 없다.</li>
+</ul>
+</li>
+<li><strong>505 HTTP Version Not Supported</strong></li>
+</ul>
+<h1 id="5-user-server-state-cookies" class="headerLink"><a href="#5-user-server-state-cookies" class="header-mark"></a>5. User-Server State: Cookies</h1><h2 id="개요-2" class="headerLink"><a href="#%ea%b0%9c%ec%9a%94-2" class="header-mark"></a>개요</h2><p>상태 정보를 유지하기 위해 사용</p>
+<p>과자 부스러기와 같이 작은 정보들을 담는다고 하여 Cookie라고 함</p>
+<h2 id="4개의-컴포넌트" class="headerLink"><a href="#4%ea%b0%9c%ec%9d%98-%ec%bb%b4%ed%8f%ac%eb%84%8c%ed%8a%b8" class="header-mark"></a>4개의 컴포넌트</h2><p>쿠키를 사용하기 위해서는 다음의 네 가지 컴포넌트가 필요하다.</p>
+<ol>
+<li>HTTP response message 에서의 쿠키 헤더 라인</li>
+<li>HTTP request message 에서의 쿠키 헤더 라인</li>
+<li>쿠키 파일은 유저의 호스트에서 유지되고, 유저의 브라우저에 의해 관리된다</li>
+<li>웹 사이트의 백 엔드 데이터베이스</li>
+</ol>
+<p>
+
+
+
+    
+<img loading="lazy" decoding="async"
+         class="render-image"
+         src="./Untitled%205.png"
+         alt="image"
+         title="Untitled%205.png"
+    /></p>
+<h2 id="쿠키는-어디에서-사용될-수-있나" class="headerLink"><a href="#%ec%bf%a0%ed%82%a4%eb%8a%94-%ec%96%b4%eb%94%94%ec%97%90%ec%84%9c-%ec%82%ac%ec%9a%a9%eb%90%a0-%ec%88%98-%ec%9e%88%eb%82%98" class="header-mark"></a>쿠키는 어디에서 사용될 수 있나?</h2><ul>
+<li>인증</li>
+<li>쇼핑 카트</li>
+<li>사용자 맞춤 추천 정보</li>
+<li>유저 활동 정보</li>
+</ul>
+<blockquote>
+<p>쿠키는 프라이버시를 침해할 여지가 있다</p>
+</blockquote>
+<h1 id="2-웹-캐시-프록시-서버" class="headerLink"><a href="#2-%ec%9b%b9-%ec%ba%90%ec%8b%9c-%ed%94%84%eb%a1%9d%ec%8b%9c-%ec%84%9c%eb%b2%84" class="header-mark"></a>2. 웹 캐시 (프록시 서버)</h1><h2 id="목적" class="headerLink"><a href="#%eb%aa%a9%ec%a0%81" class="header-mark"></a>목적</h2><p>클라이언트의 요청을 실제 오리진 서버의 관여 없이 만족시키는 것</p>
+<p>
+
+
+
+    
+<img loading="lazy" decoding="async"
+         class="render-image"
+         src="./Untitled%206.png"
+         alt="image"
+         title="Untitled%206.png"
+    /></p>
+<ol>
+<li>클라이언트는 프록시 서버에 HTTP Request를 보내 원하는 오브젝트를 요청</li>
+<li>Proxy Server는 요청을 받은 오브젝트가 자신의 서버에 있는지 확인
+<ul>
+<li>오브젝트가 없다면
+<ol>
+<li>Origin 서버에 HTTP request 보내 해당 오브젝트 요청</li>
+<li>Origin 서버에서 받은 오브젝트를 Client에 Response로 다시 전달</li>
+</ol>
+</li>
+<li>오브젝트가 있다면
+<ul>
+<li>Client에 전달</li>
+</ul>
+</li>
+</ul>
+</li>
+</ol>
+<h2 id="특징" class="headerLink"><a href="#%ed%8a%b9%ec%a7%95" class="header-mark"></a>특징</h2><ul>
+<li>프록시 서버는 클라이언트/서버 두개의 역할을 모두 하는 셈</li>
+<li>클라이언트의 응답 시간을 줄여줄 수 있다</li>
+<li>기관의 엑세스 링크에 대한 트래픽을 줄여줄 수 있다</li>
+<li>ISP에서 캐시 서버를 운영한다면, 영세 사업자는 트래픽 경감효과를 누릴 수 있다.</li>
+</ul>
+<h2 id="conditional-get" class="headerLink"><a href="#conditional-get" class="header-mark"></a>Conditional GET</h2><p>
+
+
+
+    
+<img loading="lazy" decoding="async"
+         class="render-image"
+         src="./Untitled%207.png"
+         alt="image"
+         title="Untitled%207.png"
+    /></p>
+<blockquote>
+<p>캐시된 최신의 오브젝트를 이미 가지고 있다면 서버에서 오브젝트를 보내지 말라는 것</p>
+</blockquote>
+<ul>
+<li>오브젝트 전송 딜레이를 발생하지 않게 하여</li>
+<li>링크 사용도를 낮출 수 있다</li>
+</ul>
+<h2 id="클라이언트" class="headerLink"><a href="#%ed%81%b4%eb%9d%bc%ec%9d%b4%ec%96%b8%ed%8a%b8" class="header-mark"></a>클라이언트</h2><ul>
+<li>클라이언트 측에서 캐시된 버전의 오브젝트의 Date를 HTTP request에 명시</li>
+</ul>
+<p>
+
+
+
+    
+<img loading="lazy" decoding="async"
+         class="render-image"
+         src="./Untitled%208.png"
+         alt="image"
+         title="Untitled%208.png"
+    /></p>
+<h2 id="서버" class="headerLink"><a href="#%ec%84%9c%eb%b2%84" class="header-mark"></a>서버</h2><ul>
+<li>만약 해당 캐시된 오브젝트의 Date가 최신의 것이라면 Response에 해당 오브젝트를 포함하지 않음</li>
+</ul>
+<p>
+
+
+
+    
+<img loading="lazy" decoding="async"
+         class="render-image"
+         src="./Untitled%209.png"
+         alt="image"
+         title="Untitled%209.png"
+    /></p></div><div id="comments"><div id="utterances"></div><noscript>
+                Please enable JavaScript to view the comments powered by <a href="https://utteranc.es/">Utterances</a>.
+            </noscript></div></div></div>
+                </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line"><i class="svg-icon icon-copyright"></i><span>2020 - 2021</span><span class="author">&nbsp;<a href="/" target="_blank"></a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
+        </div>
+    </footer></div>
+
+        <aside id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="Back to Top">
+                <i class="svg-icon icon-arrow-up"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="View Comments">
+                <i class="svg-icon icon-comments-fixed"></i>
+            </a>
+        </aside><script src="https://cdn.jsdelivr.net/npm/smooth-scroll@16.1.3/dist/smooth-scroll.min.js"></script><script src="https://cdn.jsdelivr.net/npm/autocomplete.js@0.37.1/dist/autocomplete.min.js"></script><script src="https://cdn.jsdelivr.net/npm/algoliasearch@4.2.0/dist/algoliasearch-lite.umd.min.js"></script><script src="https://cdn.jsdelivr.net/npm/clipboard@2.0.6/dist/clipboard.min.js"></script><script src="https://cdn.jsdelivr.net/npm/sharer.js@0.4.0/sharer.min.js"></script><script src="/lib/prismjs/prism.js"></script><script>window.config={"code":{"copyTitle":"Copy to clipboard","maxShownLines":10},"comment":{"utterances":{"darkTheme":"github-dark","issueTerm":"pathname","label":"Utterances Comment","lightTheme":"github-light","repo":"yansigit/yansigit.github.io"}},"search":{"algoliaAppID":"PASDMWALPK","algoliaIndex":"index.en","algoliaSearchKey":"b42948e51daaa93df92381c8e2ac0f93","highlightTag":"em","maxResultLength":10,"noResultsFound":"No results found","snippetLength":30,"type":"algolia"}};</script><script src="/js/theme.min.js"></script><script>
+        (function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
+            m[i].l=1*new Date();k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)})
+        (window, document, "script", "https://mc.yandex.ru/metrika/tag.js", "ym");
+
+        ym("70532758", "init", {
+            clickmap:true,
+            trackLinks:true,
+            accurateTrackBounce:true,
+            webvisor: null 
+        });
+    </script>
+    <noscript><div><img src="https://mc.yandex.ru/watch/70532758" style="position:absolute; left:-9999px;" alt="" /></div></noscript></body>
+</html>

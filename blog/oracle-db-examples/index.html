@@ -1,0 +1,873 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1"><meta name="robots" content="noodp"/><title>ORACLE DB 연습문제 모음 - Seongbin Yoon</title>
+        <meta name="twitter:card" content="summary_large_image"/><meta name="twitter:title" content=""/>
+        <meta name="twitter:description" content="About uBlogger Theme"/>
+        <meta name="Description" content="ORACLE DB 연습문제"><meta property="og:title" content="ORACLE DB 연습문제 모음" />
+<meta property="og:description" content="ORACLE DB 연습문제" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://yansigit.github.io/blog/oracle-db-examples/" /><meta property="og:image" content="https://yansigit.github.io/logo.png"/><meta property="article:section" content="blog" />
+<meta property="article:published_time" content="2020-09-16T00:00:00&#43;00:00" />
+<meta property="article:modified_time" content="2021-03-16T23:37:21&#43;09:00" />
+
+<meta name="application-name" content="uBlogger">
+<meta name="apple-mobile-web-app-title" content="uBlogger"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+        <link rel="icon" type="image/png" sizes="192x192" href="/android-chrome-192x192.png">
+        <link rel="icon" type="image/png" sizes="512x512" href="/android-chrome-512x512.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://yansigit.github.io/blog/oracle-db-examples/" /><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/normalize.css@8.0.1/normalize.min.css"><link rel="stylesheet" href="/lib/prismjs/prism.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.7.2/animate.min.css"><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "ORACLE DB 연습문제 모음",
+        "inLanguage": "en",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https:\/\/yansigit.github.io\/blog\/oracle-db-examples\/"
+        },"image": [{
+                            "@type": "ImageObject",
+                            "url": "https:\/\/yansigit.github.io\/images\/Apple-Devices-Preview.png",
+                            "width":  3200 ,
+                            "height":  2048 
+                        }],"genre": "blog","keywords": "oracle, db, oracle-db","wordCount":  1038 ,
+        "url": "https:\/\/yansigit.github.io\/blog\/oracle-db-examples\/","datePublished": "2020-09-16T00:00:00+00:00","dateModified": "2021-03-16T23:37:21+09:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","description": "ORACLE DB 연습문제"
+    }
+    </script><script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        "itemListElement": [{
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Home",
+            "item": "https:\/\/yansigit.github.io\/"
+        },{
+            "@type": "ListItem",
+            "position": 2,
+            "name": "oracle-db",
+            "item": "https://yansigit.github.io/categories/oracle-db/"
+        },{
+                "@type": "ListItem",
+                "position": 3,
+                "name": "ORACLE DB 연습문제 모음"
+            }]
+    }
+</script></head>
+    <body data-header-desktop="fixed" data-header-mobile="auto"><script>(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header>
+    <div class="desktop header" id="header-desktop">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="Seongbin Yoon" class="header-logo logo-svg"><span class="header-title-pre">📝</span>Blog == Portfolio</a>
+            </div>
+            <div class="menu">
+                <nav>
+                    <h2 class="display-hidden">Основная навигация</h2>
+                    <ul class="menu-inner"><li>
+                            <a class="menu-item" href="/posts/"> Posts </a>
+                        </li><li>
+                            <a class="menu-item" href="/blog/"> Blog </a>
+                        </li><li>
+                            <a class="menu-item" href="/tags/"> Tags </a>
+                        </li><li>
+                            <a class="menu-item" href="/categories/"> Categories </a>
+                        </li><li>
+                            <a class="menu-item" href="/categories/documentation/"> Docs </a>
+                        </li><li>
+                            <a class="menu-item" href="/about/"> About </a>
+                        </li><li>
+                            <a class="menu-item" href="https://github.com/upagge/ublogger" title="GitHub" rel="noopener noreffer" target="_blank"> Github </a>
+                        </li></ul>
+                </nav><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="Search titles or contents..." id="search-input-desktop">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="Search">
+                            <span class="svg-icon icon-search"></span>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="Clear">
+                            <span class="svg-icon icon-cancel"></span>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <span class="svg-icon icon-loading"></span>
+                        </span>
+                    </span><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                <span class="svg-icon icon-moon"></span>
+                </a>
+            </div>
+        </div>
+    </div><div class="mobile header" id="header-mobile">
+        <div class="header-container">
+            <div class="header-wrapper">
+                <div class="header-title">
+                    <a href="/" title="Seongbin Yoon" class="header-logo"><span class="header-title-pre">📝</span>Blog == Portfolio</a>
+                </div>
+                <div class="menu-toggle" id="menu-toggle-mobile">
+                    <span></span><span></span><span></span>
+                </div>
+            </div>
+            <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                        <div class="search mobile" id="search-mobile">
+                            <input type="text" placeholder="Search titles or contents..." id="search-input-mobile">
+                            <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="Search">
+                                <span class="svg-icon icon-search"></span>
+                            </a>
+                            <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="Clear">
+                                <span class="svg-icon icon-cancel"></span>
+                            </a>
+                            <span class="search-button search-loading" id="search-loading-mobile">
+                                <span class="svg-icon icon-loading"></span>
+                            </span>
+                        </div>
+                        <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
+                            Cancel
+                        </a>
+                    </div><nav>
+                    <h2 class="display-hidden">Основная навигация</h2>
+                    <ul><li>
+                            <a class="menu-item" href="/posts/" title="">Posts</a>
+                        </li><li>
+                            <a class="menu-item" href="/blog/" title="">Blog</a>
+                        </li><li>
+                            <a class="menu-item" href="/tags/" title="">Tags</a>
+                        </li><li>
+                            <a class="menu-item" href="/categories/" title="">Categories</a>
+                        </li><li>
+                            <a class="menu-item" href="/categories/documentation/" title="">Docs</a>
+                        </li><li>
+                            <a class="menu-item" href="/about/" title="">About</a>
+                        </li><li>
+                            <a class="menu-item" href="https://github.com/upagge/ublogger" title="GitHub" rel="noopener noreffer" target="_blank">Github</a>
+                        </li></ul>
+                </nav>
+                <a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                    <span class="svg-icon icon-moon"></span>
+                </a></div>
+        </div>
+    </div><div class="search-dropdown desktop">
+    <div id="search-dropdown-desktop"></div>
+</div>
+<div class="search-dropdown mobile">
+    <div id="search-dropdown-mobile"></div>
+</div></header><main class="main">
+                <div class="container"><div class="page single special"><h1 class="single-title pulse faster">ORACLE DB 연습문제 모음</h1><div class="content" id="content"><p>ORACLE DB 연습문제 모음</p>
+<h2 id="예제" class="headerLink"><a href="#%ec%98%88%ec%a0%9c" class="header-mark"></a>예제</h2><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">  1
+</span><span class="lnt">  2
+</span><span class="lnt">  3
+</span><span class="lnt">  4
+</span><span class="lnt">  5
+</span><span class="lnt">  6
+</span><span class="lnt">  7
+</span><span class="lnt">  8
+</span><span class="lnt">  9
+</span><span class="lnt"> 10
+</span><span class="lnt"> 11
+</span><span class="lnt"> 12
+</span><span class="lnt"> 13
+</span><span class="lnt"> 14
+</span><span class="lnt"> 15
+</span><span class="lnt"> 16
+</span><span class="lnt"> 17
+</span><span class="lnt"> 18
+</span><span class="lnt"> 19
+</span><span class="lnt"> 20
+</span><span class="lnt"> 21
+</span><span class="lnt"> 22
+</span><span class="lnt"> 23
+</span><span class="lnt"> 24
+</span><span class="lnt"> 25
+</span><span class="lnt"> 26
+</span><span class="lnt"> 27
+</span><span class="lnt"> 28
+</span><span class="lnt"> 29
+</span><span class="lnt"> 30
+</span><span class="lnt"> 31
+</span><span class="lnt"> 32
+</span><span class="lnt"> 33
+</span><span class="lnt"> 34
+</span><span class="lnt"> 35
+</span><span class="lnt"> 36
+</span><span class="lnt"> 37
+</span><span class="lnt"> 38
+</span><span class="lnt"> 39
+</span><span class="lnt"> 40
+</span><span class="lnt"> 41
+</span><span class="lnt"> 42
+</span><span class="lnt"> 43
+</span><span class="lnt"> 44
+</span><span class="lnt"> 45
+</span><span class="lnt"> 46
+</span><span class="lnt"> 47
+</span><span class="lnt"> 48
+</span><span class="lnt"> 49
+</span><span class="lnt"> 50
+</span><span class="lnt"> 51
+</span><span class="lnt"> 52
+</span><span class="lnt"> 53
+</span><span class="lnt"> 54
+</span><span class="lnt"> 55
+</span><span class="lnt"> 56
+</span><span class="lnt"> 57
+</span><span class="lnt"> 58
+</span><span class="lnt"> 59
+</span><span class="lnt"> 60
+</span><span class="lnt"> 61
+</span><span class="lnt"> 62
+</span><span class="lnt"> 63
+</span><span class="lnt"> 64
+</span><span class="lnt"> 65
+</span><span class="lnt"> 66
+</span><span class="lnt"> 67
+</span><span class="lnt"> 68
+</span><span class="lnt"> 69
+</span><span class="lnt"> 70
+</span><span class="lnt"> 71
+</span><span class="lnt"> 72
+</span><span class="lnt"> 73
+</span><span class="lnt"> 74
+</span><span class="lnt"> 75
+</span><span class="lnt"> 76
+</span><span class="lnt"> 77
+</span><span class="lnt"> 78
+</span><span class="lnt"> 79
+</span><span class="lnt"> 80
+</span><span class="lnt"> 81
+</span><span class="lnt"> 82
+</span><span class="lnt"> 83
+</span><span class="lnt"> 84
+</span><span class="lnt"> 85
+</span><span class="lnt"> 86
+</span><span class="lnt"> 87
+</span><span class="lnt"> 88
+</span><span class="lnt"> 89
+</span><span class="lnt"> 90
+</span><span class="lnt"> 91
+</span><span class="lnt"> 92
+</span><span class="lnt"> 93
+</span><span class="lnt"> 94
+</span><span class="lnt"> 95
+</span><span class="lnt"> 96
+</span><span class="lnt"> 97
+</span><span class="lnt"> 98
+</span><span class="lnt"> 99
+</span><span class="lnt">100
+</span><span class="lnt">101
+</span><span class="lnt">102
+</span><span class="lnt">103
+</span><span class="lnt">104
+</span><span class="lnt">105
+</span><span class="lnt">106
+</span><span class="lnt">107
+</span><span class="lnt">108
+</span><span class="lnt">109
+</span><span class="lnt">110
+</span><span class="lnt">111
+</span><span class="lnt">112
+</span><span class="lnt">113
+</span><span class="lnt">114
+</span><span class="lnt">115
+</span><span class="lnt">116
+</span><span class="lnt">117
+</span><span class="lnt">118
+</span><span class="lnt">119
+</span><span class="lnt">120
+</span><span class="lnt">121
+</span><span class="lnt">122
+</span><span class="lnt">123
+</span><span class="lnt">124
+</span><span class="lnt">125
+</span><span class="lnt">126
+</span><span class="lnt">127
+</span><span class="lnt">128
+</span><span class="lnt">129
+</span><span class="lnt">130
+</span><span class="lnt">131
+</span><span class="lnt">132
+</span><span class="lnt">133
+</span><span class="lnt">134
+</span><span class="lnt">135
+</span><span class="lnt">136
+</span><span class="lnt">137
+</span><span class="lnt">138
+</span><span class="lnt">139
+</span><span class="lnt">140
+</span><span class="lnt">141
+</span><span class="lnt">142
+</span><span class="lnt">143
+</span><span class="lnt">144
+</span><span class="lnt">145
+</span><span class="lnt">146
+</span><span class="lnt">147
+</span><span class="lnt">148
+</span><span class="lnt">149
+</span><span class="lnt">150
+</span><span class="lnt">151
+</span><span class="lnt">152
+</span><span class="lnt">153
+</span><span class="lnt">154
+</span><span class="lnt">155
+</span><span class="lnt">156
+</span><span class="lnt">157
+</span><span class="lnt">158
+</span><span class="lnt">159
+</span><span class="lnt">160
+</span><span class="lnt">161
+</span><span class="lnt">162
+</span><span class="lnt">163
+</span><span class="lnt">164
+</span><span class="lnt">165
+</span><span class="lnt">166
+</span><span class="lnt">167
+</span><span class="lnt">168
+</span><span class="lnt">169
+</span><span class="lnt">170
+</span><span class="lnt">171
+</span><span class="lnt">172
+</span><span class="lnt">173
+</span><span class="lnt">174
+</span><span class="lnt">175
+</span><span class="lnt">176
+</span><span class="lnt">177
+</span><span class="lnt">178
+</span><span class="lnt">179
+</span><span class="lnt">180
+</span><span class="lnt">181
+</span><span class="lnt">182
+</span><span class="lnt">183
+</span><span class="lnt">184
+</span><span class="lnt">185
+</span><span class="lnt">186
+</span><span class="lnt">187
+</span><span class="lnt">188
+</span><span class="lnt">189
+</span><span class="lnt">190
+</span><span class="lnt">191
+</span><span class="lnt">192
+</span><span class="lnt">193
+</span><span class="lnt">194
+</span><span class="lnt">195
+</span><span class="lnt">196
+</span><span class="lnt">197
+</span><span class="lnt">198
+</span><span class="lnt">199
+</span><span class="lnt">200
+</span><span class="lnt">201
+</span><span class="lnt">202
+</span><span class="lnt">203
+</span><span class="lnt">204
+</span><span class="lnt">205
+</span><span class="lnt">206
+</span><span class="lnt">207
+</span><span class="lnt">208
+</span><span class="lnt">209
+</span><span class="lnt">210
+</span><span class="lnt">211
+</span><span class="lnt">212
+</span><span class="lnt">213
+</span><span class="lnt">214
+</span><span class="lnt">215
+</span><span class="lnt">216
+</span><span class="lnt">217
+</span><span class="lnt">218
+</span><span class="lnt">219
+</span><span class="lnt">220
+</span><span class="lnt">221
+</span><span class="lnt">222
+</span><span class="lnt">223
+</span><span class="lnt">224
+</span><span class="lnt">225
+</span><span class="lnt">226
+</span><span class="lnt">227
+</span><span class="lnt">228
+</span><span class="lnt">229
+</span><span class="lnt">230
+</span><span class="lnt">231
+</span><span class="lnt">232
+</span><span class="lnt">233
+</span><span class="lnt">234
+</span><span class="lnt">235
+</span><span class="lnt">236
+</span><span class="lnt">237
+</span><span class="lnt">238
+</span><span class="lnt">239
+</span><span class="lnt">240
+</span><span class="lnt">241
+</span><span class="lnt">242
+</span><span class="lnt">243
+</span><span class="lnt">244
+</span><span class="lnt">245
+</span><span class="lnt">246
+</span><span class="lnt">247
+</span><span class="lnt">248
+</span><span class="lnt">249
+</span><span class="lnt">250
+</span><span class="lnt">251
+</span><span class="lnt">252
+</span><span class="lnt">253
+</span><span class="lnt">254
+</span><span class="lnt">255
+</span><span class="lnt">256
+</span><span class="lnt">257
+</span><span class="lnt">258
+</span><span class="lnt">259
+</span><span class="lnt">260
+</span><span class="lnt">261
+</span><span class="lnt">262
+</span><span class="lnt">263
+</span><span class="lnt">264
+</span><span class="lnt">265
+</span><span class="lnt">266
+</span><span class="lnt">267
+</span><span class="lnt">268
+</span><span class="lnt">269
+</span><span class="lnt">270
+</span><span class="lnt">271
+</span><span class="lnt">272
+</span><span class="lnt">273
+</span><span class="lnt">274
+</span><span class="lnt">275
+</span><span class="lnt">276
+</span><span class="lnt">277
+</span><span class="lnt">278
+</span><span class="lnt">279
+</span><span class="lnt">280
+</span><span class="lnt">281
+</span><span class="lnt">282
+</span><span class="lnt">283
+</span><span class="lnt">284
+</span><span class="lnt">285
+</span><span class="lnt">286
+</span><span class="lnt">287
+</span><span class="lnt">288
+</span><span class="lnt">289
+</span><span class="lnt">290
+</span><span class="lnt">291
+</span><span class="lnt">292
+</span><span class="lnt">293
+</span><span class="lnt">294
+</span><span class="lnt">295
+</span><span class="lnt">296
+</span><span class="lnt">297
+</span><span class="lnt">298
+</span><span class="lnt">299
+</span><span class="lnt">300
+</span><span class="lnt">301
+</span><span class="lnt">302
+</span><span class="lnt">303
+</span><span class="lnt">304
+</span><span class="lnt">305
+</span><span class="lnt">306
+</span><span class="lnt">307
+</span><span class="lnt">308
+</span><span class="lnt">309
+</span><span class="lnt">310
+</span><span class="lnt">311
+</span><span class="lnt">312
+</span><span class="lnt">313
+</span><span class="lnt">314
+</span><span class="lnt">315
+</span><span class="lnt">316
+</span><span class="lnt">317
+</span><span class="lnt">318
+</span><span class="lnt">319
+</span><span class="lnt">320
+</span><span class="lnt">321
+</span><span class="lnt">322
+</span><span class="lnt">323
+</span><span class="lnt">324
+</span><span class="lnt">325
+</span><span class="lnt">326
+</span><span class="lnt">327
+</span><span class="lnt">328
+</span><span class="lnt">329
+</span><span class="lnt">330
+</span><span class="lnt">331
+</span><span class="lnt">332
+</span><span class="lnt">333
+</span><span class="lnt">334
+</span><span class="lnt">335
+</span><span class="lnt">336
+</span><span class="lnt">337
+</span><span class="lnt">338
+</span><span class="lnt">339
+</span><span class="lnt">340
+</span><span class="lnt">341
+</span><span class="lnt">342
+</span><span class="lnt">343
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-sql" data-lang="sql"><span class="c1">--1&gt; 부서테이블의 모든 데이터를 출력하라.
+</span><span class="c1"></span><span class="k">SELECT</span><span class="w"> </span><span class="o">*</span><span class="w">
+</span><span class="w"></span><span class="k">FROM</span><span class="w"> </span><span class="n">EMP</span><span class="w">
+</span><span class="w"> 
+</span><span class="w"></span><span class="c1">--2&gt; EMP테이블에서 각 사원의 직업, 사원번호, 이름, 입사일을 출력하라.
+</span><span class="c1"></span><span class="k">SELECT</span><span class="w"> </span><span class="n">JOB</span><span class="p">,</span><span class="w"> </span><span class="n">EMPNO</span><span class="p">,</span><span class="w"> </span><span class="n">ENAME</span><span class="p">,</span><span class="w"> </span><span class="n">HIREDATE</span><span class="w">
+</span><span class="w"></span><span class="k">FROM</span><span class="w"> </span><span class="n">EMP</span><span class="w">
+</span><span class="w"> 
+</span><span class="w"></span><span class="c1">--3&gt; EMP테이블에서 직업을 출력하되, 각 항목(ROW)가 중복되지 않게 출력하라.
+</span><span class="c1"></span><span class="k">SELECT</span><span class="w"> </span><span class="k">DISTINCT</span><span class="w"> </span><span class="n">JOB</span><span class="w">
+</span><span class="w"></span><span class="k">FROM</span><span class="w"> </span><span class="n">EMP</span><span class="w">
+</span><span class="w"> 
+</span><span class="w"></span><span class="c1">--4&gt; 급여가 2850 이상인 사원의 이름 및 급여를 표시하는 출력하라.
+</span><span class="c1"></span><span class="k">SELECT</span><span class="w"> </span><span class="n">ENAME</span><span class="p">,</span><span class="w"> </span><span class="n">SAL</span><span class="w">
+</span><span class="w"></span><span class="k">FROM</span><span class="w"> </span><span class="n">EMP</span><span class="w">
+</span><span class="w"></span><span class="k">WHERE</span><span class="w"> </span><span class="n">SAL</span><span class="w"> </span><span class="o">&gt;=</span><span class="w"> </span><span class="mi">2850</span><span class="w">
+</span><span class="w"> 
+</span><span class="w"></span><span class="c1">--5&gt; 사원번호가 7566인 사원의 이름 및 부서번호를 표시하는 출력하라.
+</span><span class="c1"></span><span class="k">SELECT</span><span class="w"> </span><span class="n">ENAME</span><span class="p">,</span><span class="w"> </span><span class="n">DEPTNO</span><span class="w">
+</span><span class="w"></span><span class="k">FROM</span><span class="w"> </span><span class="n">EMP</span><span class="w">
+</span><span class="w"></span><span class="k">WHERE</span><span class="w"> </span><span class="n">EMPNO</span><span class="o">=</span><span class="mi">7566</span><span class="w">
+</span><span class="w"> 
+</span><span class="w"></span><span class="c1">--6&gt; 급여가 1500이상 ~ 2850이하의 범위에 속하지 않는 모든 사원의 이름 및 급여를 출력하라.
+</span><span class="c1"></span><span class="k">SELECT</span><span class="w"> </span><span class="n">ENAME</span><span class="p">,</span><span class="w"> </span><span class="n">SAL</span><span class="w">
+</span><span class="w"></span><span class="k">FROM</span><span class="w"> </span><span class="n">EMP</span><span class="w">
+</span><span class="w"></span><span class="k">WHERE</span><span class="w"> </span><span class="n">SAL</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">BETWEEN</span><span class="w"> </span><span class="mi">1500</span><span class="w"> </span><span class="k">AND</span><span class="w"> </span><span class="mi">2850</span><span class="w">
+</span><span class="w"> 
+</span><span class="w"></span><span class="c1">--7&gt; 1981년 2월 20일 ~ 1981년 5월 1일에 입사한 사원의 이름,직업 및 입사일을 출력하라. 입사일을 기준으로 해서 오름차순으로 정렬하라.
+</span><span class="c1"></span><span class="k">SELECT</span><span class="w"> </span><span class="n">ENAME</span><span class="p">,</span><span class="w"> </span><span class="n">JOB</span><span class="p">,</span><span class="w"> </span><span class="n">HIREDATE</span><span class="w">
+</span><span class="w"></span><span class="k">FROM</span><span class="w"> </span><span class="n">EMP</span><span class="w">
+</span><span class="w"></span><span class="k">WHERE</span><span class="w"> </span><span class="n">HIREDATE</span><span class="w"> </span><span class="k">BETWEEN</span><span class="w"> </span><span class="s1">&#39;1981-02-20&#39;</span><span class="w"> </span><span class="k">AND</span><span class="w"> </span><span class="s1">&#39;1981-05-01&#39;</span><span class="w">
+</span><span class="w"></span><span class="k">ORDER</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">HIREDATE</span><span class="w">
+</span><span class="w"> 
+</span><span class="w"></span><span class="c1">--8&gt; 10번 및 30번 부서에 속하는 모든 사원의 이름과 부서 번호를 출력하되, 이름을 알파벳순으로 정렬하여 출력하라.
+</span><span class="c1"></span><span class="w"> 
+</span><span class="w"></span><span class="k">SELECT</span><span class="w"> </span><span class="n">ENAME</span><span class="p">,</span><span class="w"> </span><span class="n">DEPTNO</span><span class="w">
+</span><span class="w"></span><span class="k">FROM</span><span class="w"> </span><span class="n">EMP</span><span class="w">
+</span><span class="w"></span><span class="k">WHERE</span><span class="w"> </span><span class="n">DEPTNO</span><span class="w"> </span><span class="k">IN</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="mi">30</span><span class="p">)</span><span class="w">
+</span><span class="w"></span><span class="k">ORDER</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">ENAME</span><span class="w">
+</span><span class="w"> 
+</span><span class="w"></span><span class="c1">--9&gt; 10번 및 30번 부서에 속하는 모든 사원 중 급여가 1500을 넘는 사원의 이름 및 급여를 출력하라.
+</span><span class="c1">--(단 컬럼명을 각각 employee 및 Monthly Salary로 지정하시오)
+</span><span class="c1"></span><span class="k">SELECT</span><span class="w"> </span><span class="n">ENAME</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="s1">&#39;Employee&#39;</span><span class="p">,</span><span class="w"> </span><span class="n">SAL</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="s1">&#39; Monthly Salary&#39;</span><span class="w">
+</span><span class="w"></span><span class="k">FROM</span><span class="w"> </span><span class="n">EMP</span><span class="w">
+</span><span class="w"></span><span class="k">WHERE</span><span class="w"> </span><span class="n">DEPTNO</span><span class="w"> </span><span class="k">IN</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="mi">30</span><span class="p">)</span><span class="w"> </span><span class="k">AND</span><span class="w"> </span><span class="n">SAL</span><span class="o">&gt;</span><span class="mi">1500</span><span class="w">
+</span><span class="w"> 
+</span><span class="w"></span><span class="c1">--10&gt; 관리자가 없는 모든 사원의 이름 및 직위를 출력하라.
+</span><span class="c1"></span><span class="k">SELECT</span><span class="w"> </span><span class="n">ENAME</span><span class="p">,</span><span class="w"> </span><span class="n">JOB</span><span class="w">
+</span><span class="w"></span><span class="k">FROM</span><span class="w"> </span><span class="n">EMP</span><span class="w">
+</span><span class="w"></span><span class="k">WHERE</span><span class="w"> </span><span class="n">MGR</span><span class="w"> </span><span class="k">IS</span><span class="w"> </span><span class="k">NULL</span><span class="w">
+</span><span class="w"> 
+</span><span class="w"> 
+</span><span class="w"></span><span class="c1">--11&gt; 커미션을 받는 모든 사원의 이름, 급여 및 커미션을 출력하되, 급여를 기준으로
+</span><span class="c1">-- 내림차순으로 정렬하여 출력하라.
+</span><span class="c1"></span><span class="k">SELECT</span><span class="w"> </span><span class="n">ENAME</span><span class="p">,</span><span class="w"> </span><span class="n">SAL</span><span class="p">,</span><span class="w"> </span><span class="n">COMM</span><span class="w">
+</span><span class="w"></span><span class="k">FROM</span><span class="w"> </span><span class="n">EMP</span><span class="w">
+</span><span class="w"></span><span class="k">WHERE</span><span class="w"> </span><span class="n">COMM</span><span class="w"> </span><span class="k">IS</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="w">
+</span><span class="w"></span><span class="k">ORDER</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">SAL</span><span class="w"> </span><span class="k">DESC</span><span class="w">
+</span><span class="w"> 
+</span><span class="w"></span><span class="c1">--12&gt; 이름의 세 번째 문자가 A인 모든 사원의 이름을 출력하라.
+</span><span class="c1"></span><span class="k">SELECT</span><span class="w"> </span><span class="n">ENAME</span><span class="w">
+</span><span class="w"></span><span class="k">FROM</span><span class="w"> </span><span class="n">EMP</span><span class="w">
+</span><span class="w"></span><span class="k">WHERE</span><span class="w"> </span><span class="n">ENAME</span><span class="w"> </span><span class="k">LIKE</span><span class="w"> </span><span class="s1">&#39;__A%&#39;</span><span class="w">
+</span><span class="w"> 
+</span><span class="w"></span><span class="c1">--13&gt; 이름에 L이 두 번 들어가며 부서 30에 속해있는 사원의 이름을 출력하라.
+</span><span class="c1"></span><span class="k">SELECT</span><span class="w"> </span><span class="n">ENAME</span><span class="w">
+</span><span class="w"></span><span class="k">FROM</span><span class="w"> </span><span class="n">EMP</span><span class="w">
+</span><span class="w"></span><span class="k">WHERE</span><span class="w"> </span><span class="n">ENAME</span><span class="w"> </span><span class="k">LIKE</span><span class="w"> </span><span class="s1">&#39;%L%L%&#39;</span><span class="w"> </span><span class="k">AND</span><span class="w"> </span><span class="n">DEPTNO</span><span class="o">=</span><span class="mi">30</span><span class="w">
+</span><span class="w"> 
+</span><span class="w"></span><span class="c1">--14&gt; 직업이 Clerk 또는 Analyst 이면서 급여가 1000,3000,5000 이 아닌
+</span><span class="c1">-- 모든 사원의 이름, 직업 및 급여를 출력하라.
+</span><span class="c1"></span><span class="w"> 
+</span><span class="w"></span><span class="k">SELECT</span><span class="w"> </span><span class="n">ENAME</span><span class="p">,</span><span class="w"> </span><span class="n">JOB</span><span class="p">,</span><span class="w"> </span><span class="n">SAL</span><span class="w">
+</span><span class="w"></span><span class="k">FROM</span><span class="w"> </span><span class="n">EMP</span><span class="w">
+</span><span class="w"></span><span class="k">WHERE</span><span class="w"> </span><span class="n">JOB</span><span class="w"> </span><span class="k">IN</span><span class="p">(</span><span class="s1">&#39;CLERK&#39;</span><span class="p">,</span><span class="s1">&#39;ANALYST&#39;</span><span class="p">)</span><span class="w"> </span><span class="k">AND</span><span class="w"> </span><span class="n">SAL</span><span class="w"> </span><span class="k">not</span><span class="w"> </span><span class="k">IN</span><span class="p">(</span><span class="mi">1000</span><span class="p">,</span><span class="mi">3000</span><span class="p">,</span><span class="mi">5000</span><span class="p">)</span><span class="w">
+</span><span class="w"> 
+</span><span class="w"></span><span class="c1">--15&gt; 사원번호, 이름, 급여 그리고 15%인상된 급여를 정수로 표시하되 컬럼명을
+</span><span class="c1">-- New Salary로 지정하여 출력하라.
+</span><span class="c1"></span><span class="k">SELECT</span><span class="w"> </span><span class="n">EMPNO</span><span class="p">,</span><span class="w"> </span><span class="n">ENAME</span><span class="p">,</span><span class="w"> </span><span class="n">SAL</span><span class="p">,</span><span class="w">
+</span><span class="w">           </span><span class="n">ROUND</span><span class="p">(</span><span class="n">SAL</span><span class="o">+</span><span class="p">(</span><span class="n">SAL</span><span class="o">*</span><span class="mi">0</span><span class="p">.</span><span class="mi">15</span><span class="p">),</span><span class="mi">0</span><span class="p">)</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="s2">&#34;New Salary&#34;</span><span class="w">
+</span><span class="w"></span><span class="k">FROM</span><span class="w"> </span><span class="n">EMP</span><span class="w">
+</span><span class="w"> 
+</span><span class="w"></span><span class="c1">--16&gt; 15번 문제와 동일한 데이타에서 급여 인상분(새 급여에서 이전 급여를 뺀 값)을 추가해서
+</span><span class="c1">-- 출력하라.(컬럼명은 Increase로 하라).
+</span><span class="c1"></span><span class="k">SELECT</span><span class="w"> </span><span class="n">EMPNO</span><span class="p">,</span><span class="w"> </span><span class="n">ENAME</span><span class="p">,</span><span class="w"> </span><span class="n">SAL</span><span class="p">,</span><span class="w"> </span><span class="n">ROUND</span><span class="p">(</span><span class="n">SAL</span><span class="o">+</span><span class="p">(</span><span class="n">SAL</span><span class="o">*</span><span class="mi">0</span><span class="p">.</span><span class="mi">15</span><span class="p">)</span><span class="w"> </span><span class="p">)</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="s2">&#34;New Salary&#34;</span><span class="p">,</span><span class="w">
+</span><span class="w">  </span><span class="p">(</span><span class="n">ROUND</span><span class="p">(</span><span class="n">SAL</span><span class="o">+</span><span class="p">(</span><span class="n">SAL</span><span class="o">*</span><span class="mi">0</span><span class="p">.</span><span class="mi">15</span><span class="p">)))</span><span class="o">-</span><span class="n">SAL</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="s2">&#34;Increase&#34;</span><span class="w">
+</span><span class="w"></span><span class="k">FROM</span><span class="w"> </span><span class="n">EMP</span><span class="w">
+</span><span class="w"> 
+</span><span class="w"></span><span class="c1">--18&gt; 모든 사원의 이름(첫 글자는 대문자로, 나머지 글자는 소문자로 표시) 및 이름 길이를
+</span><span class="c1">-- 표시하는 쿼리를 작성하고 컬럼 별칭은 적당히 넣어서 출력하라.
+</span><span class="c1"></span><span class="k">SELECT</span><span class="w"> </span><span class="k">UPPER</span><span class="p">(</span><span class="n">SUBSTR</span><span class="p">(</span><span class="n">ENAME</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">))</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="k">LOWER</span><span class="p">(</span><span class="n">SUBSTR</span><span class="p">(</span><span class="n">ENAME</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">12</span><span class="p">))</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="s2">&#34;NAME&#34;</span><span class="p">,</span><span class="w">
+</span><span class="w"></span><span class="k">LENGTH</span><span class="p">(</span><span class="n">ENAME</span><span class="p">)</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="s2">&#34;LENENAME&#34;</span><span class="w">
+</span><span class="w"></span><span class="k">FROM</span><span class="w"> </span><span class="n">EMP</span><span class="w">
+</span><span class="w"> 
+</span><span class="w"> 
+</span><span class="w"></span><span class="c1">--19&gt; 사원의 이름과 커미션을 출력하되, 커미션이 책정되지 않은
+</span><span class="c1">-- 사원의 커미션은 &#39;no commission&#39;으로 출력하라.
+</span><span class="c1"></span><span class="k">SELECT</span><span class="w"> </span><span class="n">ENAME</span><span class="p">,</span><span class="w"> </span><span class="n">NVL</span><span class="p">(</span><span class="n">TO_CHAR</span><span class="p">(</span><span class="n">COMM</span><span class="p">),</span><span class="s1">&#39;no commission&#39;</span><span class="p">)</span><span class="w">
+</span><span class="w"></span><span class="k">FROM</span><span class="w"> </span><span class="n">EMP</span><span class="w">
+</span><span class="w"> 
+</span><span class="w"></span><span class="c1">--20&gt; 모든 사원의 이름,부서번호,부서이름을 표시하는 질의를 작성하라.(DECODE)
+</span><span class="c1"></span><span class="w"> 
+</span><span class="w"></span><span class="k">SELECT</span><span class="w"> </span><span class="n">empno</span><span class="p">,</span><span class="w"> </span><span class="n">deptno</span><span class="w"> </span><span class="p">,</span><span class="w"> </span><span class="n">DECODE</span><span class="p">(</span><span class="n">deptno</span><span class="p">,</span><span class="mi">10</span><span class="p">,</span><span class="s1">&#39;ACCOUNTING&#39;</span><span class="w"> </span><span class="p">,</span><span class="w">
+</span><span class="w">                                                    </span><span class="mi">20</span><span class="p">,</span><span class="s1">&#39;RESEARCH&#39;</span><span class="p">,</span><span class="w">
+</span><span class="w">                                                    </span><span class="mi">30</span><span class="p">,</span><span class="s1">&#39;SALES&#39;</span><span class="p">,</span><span class="w">
+</span><span class="w">                                                    </span><span class="mi">40</span><span class="p">,</span><span class="s1">&#39;OPERATIONS&#39;</span><span class="p">)</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="s2">&#34;dname&#34;</span><span class="w">
+</span><span class="w"></span><span class="k">FROM</span><span class="w"> </span><span class="n">EMP</span><span class="p">;</span><span class="w">
+</span><span class="w"> 
+</span><span class="w"> 
+</span><span class="w"></span><span class="k">SELECT</span><span class="w"> </span><span class="n">E</span><span class="p">.</span><span class="n">ENAME</span><span class="p">,</span><span class="w"> </span><span class="n">E</span><span class="p">.</span><span class="n">DEPTNO</span><span class="p">,</span><span class="w"> </span><span class="n">D</span><span class="p">.</span><span class="n">DNAME</span><span class="w">
+</span><span class="w"></span><span class="k">FROM</span><span class="w"> </span><span class="n">EMP</span><span class="w"> </span><span class="n">E</span><span class="p">,</span><span class="w"> </span><span class="n">DEPT</span><span class="w"> </span><span class="n">D</span><span class="w">
+</span><span class="w"></span><span class="k">WHERE</span><span class="w"> </span><span class="n">E</span><span class="p">.</span><span class="n">DEPTNO</span><span class="o">=</span><span class="n">D</span><span class="p">.</span><span class="n">DEPTNO</span><span class="w">
+</span><span class="w"> 
+</span><span class="w"></span><span class="c1">--21&gt; 30번 부서에 속한 사원의 이름과 부서번호 그리고 부서이름을 출력하라.
+</span><span class="c1"></span><span class="k">SELECT</span><span class="w"> </span><span class="n">E</span><span class="p">.</span><span class="n">ENAME</span><span class="p">,</span><span class="w"> </span><span class="n">E</span><span class="p">.</span><span class="n">DEPTNO</span><span class="p">,</span><span class="w"> </span><span class="n">D</span><span class="p">.</span><span class="n">DNAME</span><span class="w">
+</span><span class="w"></span><span class="k">FROM</span><span class="w"> </span><span class="n">EMP</span><span class="w"> </span><span class="n">E</span><span class="p">,</span><span class="w"> </span><span class="n">DEPT</span><span class="w"> </span><span class="n">D</span><span class="w">
+</span><span class="w"></span><span class="k">WHERE</span><span class="w"> </span><span class="n">E</span><span class="p">.</span><span class="n">DEPTNO</span><span class="o">=</span><span class="n">D</span><span class="p">.</span><span class="n">DEPTNO</span><span class="w"> </span><span class="k">AND</span><span class="w"> </span><span class="n">E</span><span class="p">.</span><span class="n">DEPTNO</span><span class="o">=</span><span class="mi">30</span><span class="w">
+</span><span class="w"> 
+</span><span class="w"></span><span class="c1">--22&gt; 30번 부서에 속한 사원들의 모든 직업과 부서위치를 출력하라.
+</span><span class="c1">--(단, 직업 목록이 중복되지 않게 하라.)
+</span><span class="c1"></span><span class="k">SELECT</span><span class="w"> </span><span class="k">DISTINCT</span><span class="w"> </span><span class="n">E</span><span class="p">.</span><span class="n">JOB</span><span class="p">,</span><span class="w"> </span><span class="n">D</span><span class="p">.</span><span class="n">LOC</span><span class="w">
+</span><span class="w"></span><span class="k">FROM</span><span class="w"> </span><span class="n">EMP</span><span class="w"> </span><span class="n">E</span><span class="p">,</span><span class="w"> </span><span class="n">DEPT</span><span class="w"> </span><span class="n">D</span><span class="w">
+</span><span class="w"></span><span class="k">WHERE</span><span class="w"> </span><span class="n">E</span><span class="p">.</span><span class="n">DEPTNO</span><span class="o">=</span><span class="n">D</span><span class="p">.</span><span class="n">DEPTNO</span><span class="w"> </span><span class="k">AND</span><span class="w"> </span><span class="n">D</span><span class="p">.</span><span class="n">DEPTNO</span><span class="o">=</span><span class="mi">30</span><span class="w">
+</span><span class="w"> 
+</span><span class="w"></span><span class="c1">--23&gt; 커미션이 책정되어 있는 모든 사원의 이름, 부서이름 및 위치를 출력하라.
+</span><span class="c1"></span><span class="k">SELECT</span><span class="w"> </span><span class="n">E</span><span class="p">.</span><span class="n">ENAME</span><span class="p">,</span><span class="w"> </span><span class="n">D</span><span class="p">.</span><span class="n">DNAME</span><span class="p">,</span><span class="w"> </span><span class="n">D</span><span class="p">.</span><span class="n">LOC</span><span class="w">
+</span><span class="w"></span><span class="k">FROM</span><span class="w"> </span><span class="n">EMP</span><span class="w"> </span><span class="n">E</span><span class="p">,</span><span class="w"> </span><span class="n">DEPT</span><span class="w"> </span><span class="n">D</span><span class="w">
+</span><span class="w"></span><span class="k">WHERE</span><span class="w"> </span><span class="n">E</span><span class="p">.</span><span class="n">DEPTNO</span><span class="o">=</span><span class="n">D</span><span class="p">.</span><span class="n">DEPTNO</span><span class="w"> </span><span class="k">AND</span><span class="w"> </span><span class="n">COMM</span><span class="w"> </span><span class="k">IS</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="w">
+</span><span class="w"> 
+</span><span class="w"></span><span class="c1">--24&gt; 이름에 A가 들어가는 모든 사원의 이름과 부서 이름을 출력하라.
+</span><span class="c1"></span><span class="k">SELECT</span><span class="w"> </span><span class="n">E</span><span class="p">.</span><span class="n">ENAME</span><span class="p">,</span><span class="w"> </span><span class="n">D</span><span class="p">.</span><span class="n">DNAME</span><span class="w">
+</span><span class="w"></span><span class="k">FROM</span><span class="w"> </span><span class="n">EMP</span><span class="w"> </span><span class="n">E</span><span class="p">,</span><span class="w"> </span><span class="n">DEPT</span><span class="w"> </span><span class="n">D</span><span class="w">
+</span><span class="w"></span><span class="k">WHERE</span><span class="w"> </span><span class="n">E</span><span class="p">.</span><span class="n">DEPTNO</span><span class="o">=</span><span class="n">D</span><span class="p">.</span><span class="n">DEPTNO</span><span class="w"> </span><span class="k">AND</span><span class="w"> </span><span class="n">E</span><span class="p">.</span><span class="n">ENAME</span><span class="w"> </span><span class="k">LIKE</span><span class="w"> </span><span class="s1">&#39;%A%&#39;</span><span class="w">
+</span><span class="w"> 
+</span><span class="w"></span><span class="c1">--25&gt; Dallas에서 근무하는 모든 사원의 이름, 직업, 부서번호 및 부서이름을 출력하라.
+</span><span class="c1"></span><span class="k">SELECT</span><span class="w"> </span><span class="n">E</span><span class="p">.</span><span class="n">ENAME</span><span class="p">,</span><span class="w"> </span><span class="n">E</span><span class="p">.</span><span class="n">JOB</span><span class="p">,</span><span class="w"> </span><span class="n">E</span><span class="p">.</span><span class="n">DEPTNO</span><span class="p">,</span><span class="w"> </span><span class="n">D</span><span class="p">.</span><span class="n">DNAME</span><span class="w">
+</span><span class="w"></span><span class="k">FROM</span><span class="w"> </span><span class="n">EMP</span><span class="w"> </span><span class="n">E</span><span class="p">,</span><span class="w"> </span><span class="n">DEPT</span><span class="w"> </span><span class="n">D</span><span class="w">
+</span><span class="w"></span><span class="k">WHERE</span><span class="w"> </span><span class="n">E</span><span class="p">.</span><span class="n">DEPTNO</span><span class="o">=</span><span class="n">D</span><span class="p">.</span><span class="n">DEPTNO</span><span class="w"> </span><span class="k">AND</span><span class="w"> </span><span class="n">D</span><span class="p">.</span><span class="n">LOC</span><span class="o">=</span><span class="s1">&#39;Dallas&#39;</span><span class="w">
+</span><span class="w"> 
+</span><span class="w"></span><span class="c1">--26&gt; 사원이름 및 사원번호, 해당 관리자이름 및 관리자 번호를 출력하되,
+</span><span class="c1">--각 컬럼명을 employee,emp#,manager,mgr#으로 표시하여 출력하라.
+</span><span class="c1"></span><span class="k">SELECT</span><span class="w"> </span><span class="n">E</span><span class="p">.</span><span class="n">ENAME</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="s2">&#34;EMPPLOYEE&#34;</span><span class="p">,</span><span class="w"> </span><span class="n">E</span><span class="p">.</span><span class="n">EMPNO</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="s2">&#34;EMP#&#34;</span><span class="p">,</span><span class="w">
+</span><span class="w"></span><span class="n">M</span><span class="p">.</span><span class="n">ENAME</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="s2">&#34;MANAGER&#34;</span><span class="p">,</span><span class="w"> </span><span class="n">M</span><span class="p">.</span><span class="n">EMPNO</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="s2">&#34;MGR#&#34;</span><span class="w">
+</span><span class="w"></span><span class="k">FROM</span><span class="w"> </span><span class="n">EMP</span><span class="w"> </span><span class="n">E</span><span class="p">,</span><span class="w"> </span><span class="n">EMP</span><span class="w"> </span><span class="n">M</span><span class="w">
+</span><span class="w"></span><span class="k">WHERE</span><span class="w"> </span><span class="n">E</span><span class="p">.</span><span class="n">MGR</span><span class="o">=</span><span class="n">M</span><span class="p">.</span><span class="n">EMPNO</span><span class="w">
+</span><span class="w"> 
+</span><span class="w"></span><span class="c1">--27&gt; 모든 사원의 이름,직업,부서이름,급여 및 등급을 출력하라.
+</span><span class="c1"></span><span class="k">SELECT</span><span class="w"> </span><span class="n">E</span><span class="p">.</span><span class="n">ENAME</span><span class="p">,</span><span class="w"> </span><span class="n">E</span><span class="p">.</span><span class="n">JOB</span><span class="p">,</span><span class="w"> </span><span class="n">D</span><span class="p">.</span><span class="n">DNAME</span><span class="p">,</span><span class="w"> </span><span class="n">E</span><span class="p">.</span><span class="n">SAL</span><span class="p">,</span><span class="w"> </span><span class="n">S</span><span class="p">.</span><span class="n">GRADE</span><span class="w">
+</span><span class="w"></span><span class="k">FROM</span><span class="w"> </span><span class="n">EMP</span><span class="w"> </span><span class="n">E</span><span class="p">,</span><span class="w"> </span><span class="n">DEPT</span><span class="w"> </span><span class="n">D</span><span class="p">,</span><span class="w"> </span><span class="n">SALGRADE</span><span class="w"> </span><span class="n">S</span><span class="w">
+</span><span class="w"></span><span class="k">WHERE</span><span class="w"> </span><span class="n">E</span><span class="p">.</span><span class="n">DEPTNO</span><span class="o">=</span><span class="n">D</span><span class="p">.</span><span class="n">DEPTNO</span><span class="w">
+</span><span class="w"></span><span class="k">AND</span><span class="w"> </span><span class="n">E</span><span class="p">.</span><span class="n">SAL</span><span class="w"> </span><span class="k">BETWEEN</span><span class="w"> </span><span class="n">S</span><span class="p">.</span><span class="n">LOSAL</span><span class="w"> </span><span class="k">AND</span><span class="w"> </span><span class="n">S</span><span class="p">.</span><span class="n">HISAL</span><span class="w">
+</span><span class="w"> 
+</span><span class="w"></span><span class="c1">--28&gt; Smith보다 늦게 입사한 사원의 이름 및 입사일을 출력하라.
+</span><span class="c1"></span><span class="k">SELECT</span><span class="w"> </span><span class="n">ENAME</span><span class="p">,</span><span class="w"> </span><span class="n">HIREDATE</span><span class="w">
+</span><span class="w"></span><span class="k">FROM</span><span class="w"> </span><span class="n">EMP</span><span class="w">
+</span><span class="w"></span><span class="k">WHERE</span><span class="w"> </span><span class="n">HIREDATE</span><span class="o">&gt;</span><span class="p">(</span><span class="k">SELECT</span><span class="w"> </span><span class="n">HIREDATE</span><span class="w">
+</span><span class="w">   </span><span class="k">FROM</span><span class="w"> </span><span class="n">EMP</span><span class="w">
+</span><span class="w">   </span><span class="k">WHERE</span><span class="w"> </span><span class="n">ENAME</span><span class="o">=</span><span class="s1">&#39;SMITH&#39;</span><span class="p">)</span><span class="w">
+</span><span class="w"> 
+</span><span class="w"></span><span class="c1">--29&gt; 자신의 관리자보다 먼저 입사한 모든 사원의 이름, 입사일,
+</span><span class="c1">--관리자의 이름, 관리자의 입사일을 출력하되 각각 컬럼명을
+</span><span class="c1"></span><span class="w"> </span><span class="n">Employee</span><span class="p">,</span><span class="n">EmpHiredate</span><span class="p">,</span><span class="w"> </span><span class="n">Manager</span><span class="p">,</span><span class="n">MgrHiredate로</span><span class="w"> </span><span class="err">표시하여</span><span class="w"> </span><span class="err">출력하라</span><span class="p">.</span><span class="w">
+</span><span class="w"></span><span class="k">SELECT</span><span class="w"> </span><span class="n">E</span><span class="p">.</span><span class="n">ENAME</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="s2">&#34;Employee&#34;</span><span class="p">,</span><span class="w"> </span><span class="n">E</span><span class="p">.</span><span class="n">HIREDATE</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="s2">&#34;EmpHIredate&#34;</span><span class="p">,</span><span class="w">
+</span><span class="w"></span><span class="n">M</span><span class="p">.</span><span class="n">ENAME</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="s2">&#34;Manager&#34;</span><span class="p">,</span><span class="w">
+</span><span class="w"> </span><span class="n">M</span><span class="p">.</span><span class="n">HIREDATE</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="s2">&#34;MgrHiredate&#34;</span><span class="w">
+</span><span class="w"></span><span class="k">FROM</span><span class="w"> </span><span class="n">EMP</span><span class="w"> </span><span class="n">E</span><span class="p">,</span><span class="w"> </span><span class="n">EMP</span><span class="w"> </span><span class="n">M</span><span class="w">
+</span><span class="w"></span><span class="k">WHERE</span><span class="w"> </span><span class="n">E</span><span class="p">.</span><span class="n">MGR</span><span class="o">=</span><span class="n">M</span><span class="p">.</span><span class="n">EMPNO</span><span class="w"> </span><span class="k">AND</span><span class="w"> </span><span class="n">E</span><span class="p">.</span><span class="n">HIREDATE</span><span class="o">&lt;</span><span class="n">M</span><span class="p">.</span><span class="n">HIREDATE</span><span class="w">
+</span><span class="w"> 
+</span><span class="w"></span><span class="c1">--30&gt; 모든 사원의 급여 최고액,최저액,총액 및 평균액을 출력하되
+</span><span class="c1">--각 컬럼명을 Maximum, Minimum, Sum, Average로 지정하여 출력하라.
+</span><span class="c1"></span><span class="k">SELECT</span><span class="w"> </span><span class="k">MAX</span><span class="p">(</span><span class="n">SAL</span><span class="p">)</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="s2">&#34;Maximum&#34;</span><span class="p">,</span><span class="w"> </span><span class="k">MIN</span><span class="p">(</span><span class="n">SAL</span><span class="p">)</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="s2">&#34;Minimum&#34;</span><span class="p">,</span><span class="w">
+</span><span class="w"> </span><span class="k">SUM</span><span class="p">(</span><span class="n">SAL</span><span class="p">)</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="s2">&#34;Sum&#34;</span><span class="p">,</span><span class="w"> </span><span class="k">AVG</span><span class="p">(</span><span class="n">SAL</span><span class="p">)</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="s2">&#34;Average&#34;</span><span class="w">
+</span><span class="w"></span><span class="k">FROM</span><span class="w"> </span><span class="n">EMP</span><span class="w">
+</span><span class="w"> 
+</span><span class="w"></span><span class="c1">--31&gt; 각 직업별로 급여 최저액.최고액,총액 및 평균액을 출력하라.
+</span><span class="c1"></span><span class="k">SELECT</span><span class="w"> </span><span class="n">JOB</span><span class="p">,</span><span class="w"> </span><span class="k">MAX</span><span class="p">(</span><span class="n">SAL</span><span class="p">),</span><span class="w"> </span><span class="k">MIN</span><span class="p">(</span><span class="n">SAL</span><span class="p">),</span><span class="w"> </span><span class="k">SUM</span><span class="p">(</span><span class="n">SAL</span><span class="p">),</span><span class="w"> </span><span class="k">AVG</span><span class="p">(</span><span class="n">SAL</span><span class="p">)</span><span class="w">
+</span><span class="w"></span><span class="k">FROM</span><span class="w"> </span><span class="n">EMP</span><span class="w">
+</span><span class="w"></span><span class="k">GROUP</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">JOB</span><span class="w">
+</span><span class="w"> 
+</span><span class="w"></span><span class="c1">--32&gt; 직업이 동일한 사람 수를 직업과 같이 출력하라.
+</span><span class="c1"></span><span class="k">SELECT</span><span class="w"> </span><span class="n">JOB</span><span class="p">,</span><span class="w"> </span><span class="k">COUNT</span><span class="p">(</span><span class="n">JOB</span><span class="p">)</span><span class="w">
+</span><span class="w"></span><span class="k">FROM</span><span class="w"> </span><span class="n">EMP</span><span class="w">
+</span><span class="w"></span><span class="k">GROUP</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">JOB</span><span class="w">
+</span><span class="w"> 
+</span><span class="w"></span><span class="c1">--33&gt; 관리자의 수를 출력하되, 관리자 번호가 중복되지 않게하라. 그리고,
+</span><span class="c1">--컬럼명을 Number of Manager로 지정하여 출력하라.
+</span><span class="c1"></span><span class="k">SELECT</span><span class="w"> </span><span class="k">COUNT</span><span class="p">(</span><span class="k">DISTINCT</span><span class="p">(</span><span class="n">MGR</span><span class="p">))</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="s2">&#34;Number of Manager&#34;</span><span class="w">
+</span><span class="w"></span><span class="k">FROM</span><span class="w"> </span><span class="n">EMP</span><span class="w">
+</span><span class="w"> 
+</span><span class="w"></span><span class="c1">--34&gt; 최고 급여와 최저 급여의 차액을 출력하라.
+</span><span class="c1"></span><span class="k">SELECT</span><span class="w"> </span><span class="k">MAX</span><span class="p">(</span><span class="n">SAL</span><span class="p">)</span><span class="o">-</span><span class="k">MIN</span><span class="p">(</span><span class="n">SAL</span><span class="p">)</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">EMP</span><span class="w">
+</span><span class="w"> 
+</span><span class="w"></span><span class="c1">--35&gt; 관리자 번호 및 해당 관리자에 속한 사원들의 최저 급여를 출력하라.
+</span><span class="c1">--단, 관리자가 없는 사원 및 최저 급여가 1000 미만인 그룹은 제외시키고 급여를 기준으로
+</span><span class="c1">--출력 결과를 내림차순으로 정렬하라.
+</span><span class="c1"></span><span class="k">SELECT</span><span class="w"> </span><span class="n">MGR</span><span class="p">,</span><span class="w"> </span><span class="k">MIN</span><span class="p">(</span><span class="n">SAL</span><span class="p">)</span><span class="w">
+</span><span class="w"></span><span class="k">FROM</span><span class="w"> </span><span class="n">EMP</span><span class="w">
+</span><span class="w"></span><span class="k">WHERE</span><span class="w"> </span><span class="n">MGR</span><span class="w"> </span><span class="k">IS</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="w">
+</span><span class="w"></span><span class="k">GROUP</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">MGR</span><span class="w">
+</span><span class="w"></span><span class="k">HAVING</span><span class="w"> </span><span class="k">MIN</span><span class="p">(</span><span class="n">SAL</span><span class="p">)</span><span class="o">&gt;=</span><span class="mi">1000</span><span class="w">
+</span><span class="w"></span><span class="k">ORDER</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="k">MIN</span><span class="p">(</span><span class="n">SAL</span><span class="p">)</span><span class="w">
+</span><span class="w"> 
+</span><span class="w"></span><span class="c1">--36&gt; 부서별로 부서이름, 부서위치, 사원 수 및 평균 급여를 출력하라.
+</span><span class="c1">--그리고 각각의 컬럼명을 부서명,위치,사원의 수,평균급여로 표시하라.
+</span><span class="c1">--SELECT E.DEPTNO AS &#34;부서명&#34;, D.DNAME AS &#34;부서이름&#34;, D.LOC AS &#34;위치&#34;,
+</span><span class="c1"></span><span class="w"> </span><span class="k">COUNT</span><span class="p">(</span><span class="n">E</span><span class="p">.</span><span class="n">EMPNO</span><span class="p">)</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="s2">&#34;사원의 수&#34;</span><span class="p">,</span><span class="w"> </span><span class="k">AVG</span><span class="p">(</span><span class="n">E</span><span class="p">.</span><span class="n">SAL</span><span class="p">)</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="s2">&#34;평균급여&#34;</span><span class="w">
+</span><span class="w"></span><span class="k">FROM</span><span class="w"> </span><span class="n">EMP</span><span class="w"> </span><span class="n">E</span><span class="p">,</span><span class="w"> </span><span class="n">DEPT</span><span class="w"> </span><span class="n">D</span><span class="w">
+</span><span class="w"></span><span class="k">WHERE</span><span class="w"> </span><span class="n">E</span><span class="p">.</span><span class="n">DEPTNO</span><span class="o">=</span><span class="n">D</span><span class="p">.</span><span class="n">DEPTNO</span><span class="w">
+</span><span class="w"></span><span class="k">GROUP</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">E</span><span class="p">.</span><span class="n">DEPTNO</span><span class="p">,</span><span class="w"> </span><span class="n">D</span><span class="p">.</span><span class="n">DNAME</span><span class="p">,</span><span class="w"> </span><span class="n">D</span><span class="p">.</span><span class="n">LOC</span><span class="w">
+</span><span class="w"> 
+</span><span class="w"></span><span class="c1">--37&gt; Smith와 동일한 부서에 속한 모든 사원의 이름 및 입사일을 출력하라.
+</span><span class="c1">--단, Smith는 제외하고 출력하시오
+</span><span class="c1"></span><span class="k">SELECT</span><span class="w"> </span><span class="n">ENAME</span><span class="p">,</span><span class="w"> </span><span class="n">TO_CHAR</span><span class="p">(</span><span class="n">HIREDATE</span><span class="p">,</span><span class="s1">&#39;YYYY-MM-DD&#39;</span><span class="p">)</span><span class="w">
+</span><span class="w"></span><span class="k">FROM</span><span class="w"> </span><span class="n">EMP</span><span class="w">
+</span><span class="w"></span><span class="k">WHERE</span><span class="w"> </span><span class="n">DEPTNO</span><span class="w"> </span><span class="k">IN</span><span class="p">(</span><span class="k">SELECT</span><span class="w"> </span><span class="n">DEPTNO</span><span class="w">
+</span><span class="w">   </span><span class="k">FROM</span><span class="w"> </span><span class="n">EMP</span><span class="w">
+</span><span class="w">   </span><span class="k">WHERE</span><span class="w"> </span><span class="n">ENAME</span><span class="o">=</span><span class="s1">&#39;SMITH&#39;</span><span class="p">)</span><span class="w">
+</span><span class="w"></span><span class="k">AND</span><span class="w"> </span><span class="n">ENAME</span><span class="o">!=</span><span class="s1">&#39;SMITH&#39;</span><span class="w">
+</span><span class="w"> 
+</span><span class="w"></span><span class="c1">--38&gt; 자신의 급여가 평균 급여보다 많은 모든 사원의 사원 번호, 이름, 급여를
+</span><span class="c1">--표시하는 질의를 작성하고 급여를 기준으로 결과를 내림차순으로 정렬하라.
+</span><span class="c1"></span><span class="k">SELECT</span><span class="w"> </span><span class="n">EMPNO</span><span class="p">,</span><span class="w"> </span><span class="n">ENAME</span><span class="p">,</span><span class="w"> </span><span class="n">SAL</span><span class="w">
+</span><span class="w"></span><span class="k">FROM</span><span class="w"> </span><span class="n">EMP</span><span class="w">
+</span><span class="w"></span><span class="k">WHERE</span><span class="w"> </span><span class="n">SAL</span><span class="o">&gt;</span><span class="p">(</span><span class="k">SELECT</span><span class="w"> </span><span class="k">AVG</span><span class="p">(</span><span class="n">SAL</span><span class="p">)</span><span class="w">
+</span><span class="w">  </span><span class="k">FROM</span><span class="w"> </span><span class="n">EMP</span><span class="p">)</span><span class="w">
+</span><span class="w"></span><span class="k">ORDER</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">SAL</span><span class="w"> </span><span class="k">DESC</span><span class="w">
+</span><span class="w"> 
+</span><span class="w"></span><span class="c1">--39&gt; 이름에 T가 들어가는 사원의 속한 부서에서 근무하는 모든 사원의
+</span><span class="c1">--사원번호 및 이름을 출력하라.
+</span><span class="c1"></span><span class="k">SELECT</span><span class="w"> </span><span class="n">EMPNO</span><span class="p">,</span><span class="w"> </span><span class="n">ENAME</span><span class="w">
+</span><span class="w"></span><span class="k">FROM</span><span class="w"> </span><span class="n">EMP</span><span class="w">
+</span><span class="w"></span><span class="k">WHERE</span><span class="w"> </span><span class="n">DEPTNO</span><span class="w"> </span><span class="k">IN</span><span class="p">(</span><span class="k">SELECT</span><span class="w"> </span><span class="n">DEPTNO</span><span class="w">
+</span><span class="w">   </span><span class="k">FROM</span><span class="w"> </span><span class="n">EMP</span><span class="w">
+</span><span class="w">   </span><span class="k">WHERE</span><span class="w"> </span><span class="n">ENAME</span><span class="w"> </span><span class="k">LIKE</span><span class="w"> </span><span class="s1">&#39;%T%&#39;</span><span class="p">)</span><span class="w">
+</span><span class="w"> 
+</span><span class="w"></span><span class="c1">--40&gt; 부서위치가 Dallas인 모든 사원의 이름,부서번호 및 직위를 출력하라.
+</span><span class="c1"></span><span class="k">SELECT</span><span class="w"> </span><span class="n">E</span><span class="p">.</span><span class="n">ENAME</span><span class="p">,</span><span class="w"> </span><span class="n">E</span><span class="p">.</span><span class="n">DEPTNO</span><span class="p">,</span><span class="w"> </span><span class="n">E</span><span class="p">.</span><span class="n">JOB</span><span class="w">
+</span><span class="w"></span><span class="k">FROM</span><span class="w"> </span><span class="n">EMP</span><span class="w"> </span><span class="n">E</span><span class="p">,</span><span class="w"> </span><span class="n">DEPT</span><span class="w"> </span><span class="n">D</span><span class="w">
+</span><span class="w"></span><span class="k">WHERE</span><span class="w"> </span><span class="n">E</span><span class="p">.</span><span class="n">DEPTNO</span><span class="o">=</span><span class="n">D</span><span class="p">.</span><span class="n">DEPTNO</span><span class="w">
+</span><span class="w"></span><span class="k">AND</span><span class="w"> </span><span class="n">D</span><span class="p">.</span><span class="n">LOC</span><span class="o">=</span><span class="s1">&#39;DALLAS&#39;</span><span class="w">
+</span><span class="w"> 
+</span><span class="w"></span><span class="c1">--41&gt; KING에게 보고하는 모든 사원의 이름과 급여를 출력하라.
+</span><span class="c1"></span><span class="k">SELECT</span><span class="w"> </span><span class="n">ENAME</span><span class="p">,</span><span class="w"> </span><span class="n">SAL</span><span class="w">
+</span><span class="w"></span><span class="k">FROM</span><span class="w"> </span><span class="n">EMP</span><span class="w">
+</span><span class="w"></span><span class="k">WHERE</span><span class="w"> </span><span class="n">MGR</span><span class="o">=</span><span class="p">(</span><span class="k">SELECT</span><span class="w"> </span><span class="n">EMPNO</span><span class="w">
+</span><span class="w">  </span><span class="k">FROM</span><span class="w"> </span><span class="n">EMP</span><span class="w">
+</span><span class="w">  </span><span class="k">WHERE</span><span class="w"> </span><span class="n">ENAME</span><span class="o">=</span><span class="s1">&#39;KING&#39;</span><span class="p">)</span><span class="w">
+</span><span class="w"> 
+</span><span class="w"></span><span class="c1">--42&gt; Sales 부서의 모든 사원에 대한 부서번호, 이름 및 직위를 출력하라.
+</span><span class="c1"></span><span class="k">SELECT</span><span class="w"> </span><span class="n">E</span><span class="p">.</span><span class="n">DEPTNO</span><span class="p">,</span><span class="w"> </span><span class="n">E</span><span class="p">.</span><span class="n">ENAME</span><span class="p">,</span><span class="w"> </span><span class="n">E</span><span class="p">.</span><span class="n">JOB</span><span class="w">
+</span><span class="w"></span><span class="k">FROM</span><span class="w"> </span><span class="n">EMP</span><span class="w"> </span><span class="n">E</span><span class="p">,</span><span class="w"> </span><span class="n">DEPT</span><span class="w"> </span><span class="n">D</span><span class="w">
+</span><span class="w"></span><span class="k">WHERE</span><span class="w"> </span><span class="n">E</span><span class="p">.</span><span class="n">DEPTNO</span><span class="o">=</span><span class="n">D</span><span class="p">.</span><span class="n">DEPTNO</span><span class="w">
+</span><span class="w"> </span><span class="k">AND</span><span class="w"> </span><span class="n">D</span><span class="p">.</span><span class="n">DNAME</span><span class="o">=</span><span class="s1">&#39;SALES&#39;</span><span class="w">
+</span><span class="w"> 
+</span><span class="w"></span><span class="k">SELECT</span><span class="w"> </span><span class="n">E</span><span class="p">.</span><span class="n">DEPTNO</span><span class="p">,</span><span class="w"> </span><span class="n">E</span><span class="p">.</span><span class="n">ENAME</span><span class="p">,</span><span class="w"> </span><span class="n">E</span><span class="p">.</span><span class="n">JOB</span><span class="w">
+</span><span class="w"></span><span class="k">FROM</span><span class="w"> </span><span class="n">EMP</span><span class="w"> </span><span class="n">E</span><span class="w"> </span><span class="k">inner</span><span class="w"> </span><span class="k">join</span><span class="w"> </span><span class="n">DEPT</span><span class="w"> </span><span class="n">D</span><span class="w"> </span><span class="k">on</span><span class="w"> </span><span class="n">E</span><span class="p">.</span><span class="n">DEPTNO</span><span class="o">=</span><span class="n">D</span><span class="p">.</span><span class="n">DEPTNO</span><span class="w">
+</span><span class="w"></span><span class="k">where</span><span class="w">  </span><span class="n">D</span><span class="p">.</span><span class="n">DNAME</span><span class="o">=</span><span class="s1">&#39;SALES&#39;</span><span class="w">
+</span><span class="w"> 
+</span><span class="w"></span><span class="c1">--43&gt; 자신의 급여가 평균 급여보다 많고 이름에 T가 들어가는 사원과
+</span><span class="c1">--동일한 부서에 근무하는 모든 사원의 사원 번호, 이름 및 급여를 출력하라.
+</span><span class="c1"></span><span class="k">SELECT</span><span class="w"> </span><span class="n">EMPNO</span><span class="p">,</span><span class="w"> </span><span class="n">ENAME</span><span class="p">,</span><span class="w"> </span><span class="n">SAL</span><span class="w">
+</span><span class="w"></span><span class="k">FROM</span><span class="w"> </span><span class="n">EMP</span><span class="w">
+</span><span class="w"></span><span class="k">WHERE</span><span class="w"> </span><span class="n">SAL</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="p">(</span><span class="k">SELECT</span><span class="w"> </span><span class="k">AVG</span><span class="p">(</span><span class="n">SAL</span><span class="p">)</span><span class="w">
+</span><span class="w">  </span><span class="k">FROM</span><span class="w"> </span><span class="n">EMP</span><span class="p">)</span><span class="w">
+</span><span class="w"></span><span class="k">AND</span><span class="w"> </span><span class="n">DEPTNO</span><span class="w"> </span><span class="k">IN</span><span class="p">(</span><span class="k">SELECT</span><span class="w"> </span><span class="n">DEPTNO</span><span class="w">
+</span><span class="w">  </span><span class="k">FROM</span><span class="w"> </span><span class="n">EMP</span><span class="w">
+</span><span class="w">  </span><span class="k">WHERE</span><span class="w"> </span><span class="n">ENAME</span><span class="w"> </span><span class="k">LIKE</span><span class="w"> </span><span class="s1">&#39;%T%&#39;</span><span class="p">)</span><span class="w">
+</span><span class="w"> 
+</span><span class="w"></span><span class="c1">--44&gt; 커미션을 받는 사원과 급여가 일치하는 사원의 이름,부서번호,급여를 출력하라.
+</span><span class="c1"></span><span class="k">SELECT</span><span class="w"> </span><span class="n">ENAME</span><span class="p">,</span><span class="w"> </span><span class="n">DEPTNO</span><span class="p">,</span><span class="w"> </span><span class="n">SAL</span><span class="w">
+</span><span class="w"></span><span class="k">FROM</span><span class="w"> </span><span class="n">EMP</span><span class="w">
+</span><span class="w"></span><span class="k">WHERE</span><span class="w"> </span><span class="n">SAL</span><span class="w"> </span><span class="k">IN</span><span class="p">(</span><span class="k">SELECT</span><span class="w"> </span><span class="n">SAL</span><span class="w">
+</span><span class="w">  </span><span class="k">FROM</span><span class="w"> </span><span class="n">EMP</span><span class="w">
+</span><span class="w">  </span><span class="k">WHERE</span><span class="w"> </span><span class="n">COMM</span><span class="w"> </span><span class="k">IS</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="p">)</span><span class="w">
+</span><span class="w"> 
+</span><span class="w"></span><span class="c1">--45&gt; Dallas에서 근무하는 사원과 직업이 일치하는 사원의 이름,부서이름, 및 급여를 출력하시오
+</span><span class="c1"></span><span class="k">SELECT</span><span class="w"> </span><span class="n">E</span><span class="p">.</span><span class="n">ENAME</span><span class="p">,</span><span class="w"> </span><span class="n">D</span><span class="p">.</span><span class="n">DNAME</span><span class="p">,</span><span class="w"> </span><span class="n">E</span><span class="p">.</span><span class="n">SAL</span><span class="w">
+</span><span class="w"></span><span class="k">FROM</span><span class="w"> </span><span class="n">EMP</span><span class="w"> </span><span class="n">E</span><span class="p">,</span><span class="w"> </span><span class="n">DEPT</span><span class="w"> </span><span class="n">D</span><span class="w">
+</span><span class="w"></span><span class="k">WHERE</span><span class="w"> </span><span class="n">E</span><span class="p">.</span><span class="n">DEPTNO</span><span class="o">=</span><span class="n">D</span><span class="p">.</span><span class="n">DEPTNO</span><span class="w">
+</span><span class="w"></span><span class="k">AND</span><span class="w"> </span><span class="n">E</span><span class="p">.</span><span class="n">JOB</span><span class="w"> </span><span class="k">IN</span><span class="p">(</span><span class="k">SELECT</span><span class="w"> </span><span class="n">E</span><span class="p">.</span><span class="n">JOB</span><span class="w">
+</span><span class="w">  </span><span class="k">FROM</span><span class="w"> </span><span class="n">EMP</span><span class="w"> </span><span class="n">E</span><span class="p">,</span><span class="w"> </span><span class="n">DEPT</span><span class="w"> </span><span class="n">D</span><span class="w">
+</span><span class="w">  </span><span class="k">WHERE</span><span class="w"> </span><span class="n">E</span><span class="p">.</span><span class="n">DEPTNO</span><span class="o">=</span><span class="n">D</span><span class="p">.</span><span class="n">DEPTNO</span><span class="w">
+</span><span class="w">  </span><span class="k">AND</span><span class="w"> </span><span class="n">D</span><span class="p">.</span><span class="n">LOC</span><span class="o">=</span><span class="s1">&#39;DALLAS&#39;</span><span class="p">)</span><span class="w">
+</span><span class="w"> 
+</span><span class="w"></span><span class="c1">--46&gt; Scott과 동일한 급여 및 커미션을 받는 모든 사원의 이름, 입사일 및 급여를 출력하시오
+</span><span class="c1"></span><span class="k">SELECT</span><span class="w"> </span><span class="n">ENAME</span><span class="p">,</span><span class="w"> </span><span class="n">HIREDATE</span><span class="p">,</span><span class="w"> </span><span class="n">SAL</span><span class="w">
+</span><span class="w"></span><span class="k">FROM</span><span class="w"> </span><span class="n">EMP</span><span class="w">
+</span><span class="w"></span><span class="k">WHERE</span><span class="w"> </span><span class="n">SAL</span><span class="o">=</span><span class="p">(</span><span class="k">SELECT</span><span class="w"> </span><span class="n">SAL</span><span class="w">
+</span><span class="w">  </span><span class="k">FROM</span><span class="w"> </span><span class="n">EMP</span><span class="w">
+</span><span class="w">  </span><span class="k">WHERE</span><span class="w"> </span><span class="n">ENAME</span><span class="o">=</span><span class="s1">&#39;SCOTT&#39;</span><span class="p">)</span><span class="w">
+</span><span class="w"></span><span class="k">AND</span><span class="w"> </span><span class="n">NVL</span><span class="p">(</span><span class="n">COMM</span><span class="p">,</span><span class="mi">0</span><span class="p">)</span><span class="o">=</span><span class="p">(</span><span class="k">SELECT</span><span class="w"> </span><span class="n">NVL</span><span class="p">(</span><span class="n">COMM</span><span class="p">,</span><span class="mi">0</span><span class="p">)</span><span class="w">
+</span><span class="w">  </span><span class="k">FROM</span><span class="w"> </span><span class="n">EMP</span><span class="w">
+</span><span class="w">  </span><span class="k">WHERE</span><span class="w"> </span><span class="n">ENAME</span><span class="o">=</span><span class="s1">&#39;SCOTT&#39;</span><span class="p">)</span><span class="w">
+</span><span class="w"> 
+</span><span class="w"></span><span class="c1">--47&gt; 직업이 Clerk 인 사원들보다 더 많은 급여를 받는 사원의 사원번호, 이름, 급여를 출력하되,
+</span><span class="c1">--결과를 급여가 높은 순으로 정렬하라.
+</span><span class="c1"></span><span class="k">SELECT</span><span class="w"> </span><span class="n">EMPNO</span><span class="p">,</span><span class="w"> </span><span class="n">ENAME</span><span class="p">,</span><span class="w"> </span><span class="n">SAL</span><span class="w">
+</span><span class="w"></span><span class="k">FROM</span><span class="w"> </span><span class="n">EMP</span><span class="w">
+</span><span class="w"></span><span class="k">WHERE</span><span class="w"> </span><span class="n">SAL</span><span class="o">&gt;</span><span class="k">ALL</span><span class="p">(</span><span class="k">SELECT</span><span class="w"> </span><span class="n">SAL</span><span class="w">
+</span><span class="w">  </span><span class="k">FROM</span><span class="w"> </span><span class="n">EMP</span><span class="w">
+</span><span class="w">  </span><span class="k">WHERE</span><span class="w"> </span><span class="n">JOB</span><span class="o">=</span><span class="s1">&#39;CLERK&#39;</span><span class="p">)</span><span class="w"> </span><span class="c1">--결국 최대값과 비교 any 최소값과 비교
+</span><span class="c1"></span><span class="k">ORDER</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">SAL</span><span class="w"> </span><span class="k">DESC</span><span class="w">
+</span><span class="w"> 
+</span><span class="w"></span><span class="c1">--48&gt; 이름에 A가 들어가는 사원과 같은 직업을 가진 사원의 이름과 월급, 부서번호를 출력하라.
+</span><span class="c1"></span><span class="k">SELECT</span><span class="w"> </span><span class="n">ENAME</span><span class="p">,</span><span class="w"> </span><span class="n">SAL</span><span class="p">,</span><span class="w"> </span><span class="n">DEPTNO</span><span class="w">
+</span><span class="w"></span><span class="k">FROM</span><span class="w"> </span><span class="n">EMP</span><span class="w">
+</span><span class="w"></span><span class="k">WHERE</span><span class="w"> </span><span class="n">JOB</span><span class="w"> </span><span class="k">IN</span><span class="p">(</span><span class="k">SELECT</span><span class="w"> </span><span class="n">JOB</span><span class="w">
+</span><span class="w">  </span><span class="k">FROM</span><span class="w"> </span><span class="n">EMP</span><span class="w">
+</span><span class="w">  </span><span class="k">WHERE</span><span class="w"> </span><span class="n">ENAME</span><span class="w"> </span><span class="k">LIKE</span><span class="w"> </span><span class="s1">&#39;%A%&#39;</span><span class="p">)</span><span class="w">
+</span><span class="w"> 
+</span><span class="w"></span><span class="c1">--49&gt; New  York 에서 근무하는 사원과 급여 및 커미션이 같은 사원의 사원이름과 부서명을 출력하라.
+</span><span class="c1"></span><span class="k">select</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">emp</span><span class="w"> </span><span class="k">join</span><span class="w"> </span><span class="n">dept</span><span class="w"> 
+</span><span class="w"></span><span class="k">on</span><span class="w"> </span><span class="n">emp</span><span class="p">.</span><span class="n">deptno</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">dept</span><span class="p">.</span><span class="n">deptno</span><span class="w">
+</span><span class="w"></span><span class="k">and</span><span class="w"> </span><span class="n">dept</span><span class="p">.</span><span class="n">loc</span><span class="o">=</span><span class="s1">&#39;NEW YORK&#39;</span><span class="p">;</span><span class="w">
+</span><span class="w"> 
+</span><span class="w"></span><span class="k">SELECT</span><span class="w"> </span><span class="n">E</span><span class="p">.</span><span class="n">ENAME</span><span class="p">,</span><span class="w"> </span><span class="n">D</span><span class="p">.</span><span class="n">DNAME</span><span class="w">
+</span><span class="w"></span><span class="k">FROM</span><span class="w"> </span><span class="n">EMP</span><span class="w"> </span><span class="n">E</span><span class="p">,</span><span class="w"> </span><span class="n">DEPT</span><span class="w"> </span><span class="n">D</span><span class="w">
+</span><span class="w"></span><span class="k">WHERE</span><span class="w">
+</span><span class="w"></span><span class="n">e</span><span class="p">.</span><span class="n">deptno</span><span class="o">=</span><span class="w"> </span><span class="n">d</span><span class="p">.</span><span class="n">deptno</span><span class="w">
+</span><span class="w"></span><span class="k">AND</span><span class="w"> </span><span class="n">E</span><span class="p">.</span><span class="n">SAL</span><span class="w"> </span><span class="k">IN</span><span class="p">(</span><span class="w">
+</span><span class="w">          </span><span class="k">SELECT</span><span class="w"> </span><span class="n">E</span><span class="p">.</span><span class="n">SAL</span><span class="w">
+</span><span class="w">                </span><span class="k">FROM</span><span class="w"> </span><span class="n">EMP</span><span class="w"> </span><span class="n">E</span><span class="p">,</span><span class="w"> </span><span class="n">DEPT</span><span class="w"> </span><span class="n">D</span><span class="w">
+</span><span class="w">                </span><span class="k">WHERE</span><span class="w"> </span><span class="n">E</span><span class="p">.</span><span class="n">DEPTNO</span><span class="o">=</span><span class="n">D</span><span class="p">.</span><span class="n">DEPTNO</span><span class="w"> </span><span class="k">AND</span><span class="w"> </span><span class="n">LOC</span><span class="o">=</span><span class="s1">&#39;NEW YORK&#39;</span><span class="w">
+</span><span class="w">                  </span><span class="p">)</span><span class="w">
+</span><span class="w"></span><span class="k">AND</span><span class="w"> </span><span class="n">NVL</span><span class="p">(</span><span class="n">COMM</span><span class="p">,</span><span class="mi">0</span><span class="p">)</span><span class="w"> </span><span class="k">IN</span><span class="p">(</span><span class="w">
+</span><span class="w">               </span><span class="k">SELECT</span><span class="w"> </span><span class="n">NVL</span><span class="p">(</span><span class="n">COMM</span><span class="p">,</span><span class="mi">0</span><span class="p">)</span><span class="w">
+</span><span class="w">               </span><span class="k">FROM</span><span class="w"> </span><span class="n">EMP</span><span class="w"> </span><span class="n">E</span><span class="p">,</span><span class="w"> </span><span class="n">DEPT</span><span class="w"> </span><span class="n">D</span><span class="w">
+</span><span class="w">               </span><span class="k">WHERE</span><span class="w"> </span><span class="n">E</span><span class="p">.</span><span class="n">DEPTNO</span><span class="o">=</span><span class="n">D</span><span class="p">.</span><span class="n">DEPTNO</span><span class="w">
+</span><span class="w">                              </span><span class="k">AND</span><span class="w"> </span><span class="n">LOC</span><span class="o">=</span><span class="s1">&#39;NEW YORK&#39;</span><span class="p">);</span><span class="w">
+</span><span class="w"> 
+</span><span class="w"></span><span class="c1">--50&gt; Dallas에서 근무하는 사원과 직업 및 관리자가 같은 사원의 사원번호,사원이름,
+</span><span class="c1">--직업,월급,부서명,커미션을 출력하되 커미션이 책정되지 않은 사원은 NoCommission으로 표시하고,
+</span><span class="c1">--커미션의 컬럼명은 Comm으로 나오게 출력하시오. (단, 최고월급부터 출력되게 하시오)
+</span><span class="c1"></span><span class="k">SELECT</span><span class="w"> </span><span class="n">E</span><span class="p">.</span><span class="n">EMPNO</span><span class="p">,</span><span class="w"> </span><span class="n">E</span><span class="p">.</span><span class="n">ENAME</span><span class="p">,</span><span class="w"> </span><span class="n">E</span><span class="p">.</span><span class="n">JOB</span><span class="p">,</span><span class="w"> </span><span class="n">E</span><span class="p">.</span><span class="n">SAL</span><span class="p">,</span><span class="w"> </span><span class="n">D</span><span class="p">.</span><span class="n">DNAME</span><span class="p">,</span><span class="w">
+</span><span class="w"></span><span class="n">NVL</span><span class="p">((</span><span class="n">TO_CHAR</span><span class="p">(</span><span class="n">E</span><span class="p">.</span><span class="n">COMM</span><span class="p">)),</span><span class="s1">&#39;NoCommision&#39;</span><span class="p">)</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="s2">&#34;COMM&#34;</span><span class="w">
+</span><span class="w"></span><span class="k">FROM</span><span class="w"> </span><span class="n">EMP</span><span class="w"> </span><span class="n">E</span><span class="p">,</span><span class="w"> </span><span class="n">DEPT</span><span class="w"> </span><span class="n">D</span><span class="w">
+</span><span class="w"></span><span class="k">WHERE</span><span class="w"> </span><span class="n">E</span><span class="p">.</span><span class="n">DEPTNO</span><span class="o">=</span><span class="n">D</span><span class="p">.</span><span class="n">DEPTNO</span><span class="w">
+</span><span class="w"></span><span class="k">AND</span><span class="w"> </span><span class="n">JOB</span><span class="w"> </span><span class="k">IN</span><span class="p">(</span><span class="k">SELECT</span><span class="w"> </span><span class="n">JOB</span><span class="w">
+</span><span class="w">  </span><span class="k">FROM</span><span class="w"> </span><span class="n">EMP</span><span class="w"> </span><span class="n">E</span><span class="p">,</span><span class="w"> </span><span class="n">DEPT</span><span class="w"> </span><span class="n">D</span><span class="w">
+</span><span class="w">  </span><span class="k">WHERE</span><span class="w"> </span><span class="n">E</span><span class="p">.</span><span class="n">DEPTNO</span><span class="o">=</span><span class="n">D</span><span class="p">.</span><span class="n">DEPTNO</span><span class="w"> </span><span class="k">AND</span><span class="w"> </span><span class="n">LOC</span><span class="o">=</span><span class="s1">&#39;DALLAS&#39;</span><span class="p">)</span><span class="w">
+</span><span class="w"></span><span class="k">AND</span><span class="w"> </span><span class="n">MGR</span><span class="w"> </span><span class="k">IN</span><span class="p">(</span><span class="k">SELECT</span><span class="w"> </span><span class="n">MGR</span><span class="w">
+</span><span class="w">  </span><span class="k">FROM</span><span class="w"> </span><span class="n">EMP</span><span class="w"> </span><span class="n">E</span><span class="p">,</span><span class="w"> </span><span class="n">DEPT</span><span class="w"> </span><span class="n">D</span><span class="w">
+</span><span class="w">  </span><span class="k">WHERE</span><span class="w"> </span><span class="n">E</span><span class="p">.</span><span class="n">DEPTNO</span><span class="o">=</span><span class="n">D</span><span class="p">.</span><span class="n">DEPTNO</span><span class="w"> </span><span class="k">AND</span><span class="w"> </span><span class="n">LOC</span><span class="o">=</span><span class="s1">&#39;DALLAS&#39;</span><span class="p">)</span><span class="w">
+</span></code></pre></td></tr></table>
+</div>
+</div></div><div id="comments"><div id="utterances"></div><noscript>
+                Please enable JavaScript to view the comments powered by <a href="https://utteranc.es/">Utterances</a>.
+            </noscript></div></div></div>
+                </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line"><i class="svg-icon icon-copyright"></i><span>2020 - 2021</span><span class="author">&nbsp;<a href="/" target="_blank"></a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
+        </div>
+    </footer></div>
+
+        <aside id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="Back to Top">
+                <i class="svg-icon icon-arrow-up"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="View Comments">
+                <i class="svg-icon icon-comments-fixed"></i>
+            </a>
+        </aside><script src="https://cdn.jsdelivr.net/npm/smooth-scroll@16.1.3/dist/smooth-scroll.min.js"></script><script src="https://cdn.jsdelivr.net/npm/autocomplete.js@0.37.1/dist/autocomplete.min.js"></script><script src="https://cdn.jsdelivr.net/npm/algoliasearch@4.2.0/dist/algoliasearch-lite.umd.min.js"></script><script src="https://cdn.jsdelivr.net/npm/clipboard@2.0.6/dist/clipboard.min.js"></script><script src="https://cdn.jsdelivr.net/npm/sharer.js@0.4.0/sharer.min.js"></script><script src="/lib/prismjs/prism.js"></script><script>window.config={"code":{"copyTitle":"Copy to clipboard","maxShownLines":10},"comment":{"utterances":{"darkTheme":"github-dark","issueTerm":"pathname","label":"Utterances Comment","lightTheme":"github-light","repo":"yansigit/yansigit.github.io"}},"search":{"algoliaAppID":"PASDMWALPK","algoliaIndex":"index.en","algoliaSearchKey":"b42948e51daaa93df92381c8e2ac0f93","highlightTag":"em","maxResultLength":10,"noResultsFound":"No results found","snippetLength":30,"type":"algolia"}};</script><script src="/js/theme.min.js"></script><script>
+        (function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
+            m[i].l=1*new Date();k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)})
+        (window, document, "script", "https://mc.yandex.ru/metrika/tag.js", "ym");
+
+        ym("70532758", "init", {
+            clickmap:true,
+            trackLinks:true,
+            accurateTrackBounce:true,
+            webvisor: null 
+        });
+    </script>
+    <noscript><div><img src="https://mc.yandex.ru/watch/70532758" style="position:absolute; left:-9999px;" alt="" /></div></noscript></body>
+</html>

@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1"><meta name="robots" content="noodp"/><title>Installing Mac OS on Virtualbox on Windows - Seongbin Yoon</title>
+        <meta name="twitter:card" content="summary_large_image"/><meta name="twitter:title" content=""/>
+        <meta name="twitter:description" content="About uBlogger Theme"/>
+        <meta name="Description" content="윈도우에서 버추얼박스 이용하여 맥 OS 설치하기"><meta property="og:title" content="Installing Mac OS on Virtualbox on Windows" />
+<meta property="og:description" content="윈도우에서 버추얼박스 이용하여 맥 OS 설치하기" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://yansigit.github.io/blog/how-to-install-mac-os-on-virtualbox-on-windows/" /><meta property="og:image" content="https://yansigit.github.io/logo.png"/><meta property="article:section" content="blog" />
+<meta property="article:published_time" content="2020-02-20T23:33:21&#43;09:00" />
+<meta property="article:modified_time" content="2021-03-16T23:37:21&#43;09:00" />
+
+<meta name="application-name" content="uBlogger">
+<meta name="apple-mobile-web-app-title" content="uBlogger"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+        <link rel="icon" type="image/png" sizes="192x192" href="/android-chrome-192x192.png">
+        <link rel="icon" type="image/png" sizes="512x512" href="/android-chrome-512x512.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://yansigit.github.io/blog/how-to-install-mac-os-on-virtualbox-on-windows/" /><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/normalize.css@8.0.1/normalize.min.css"><link rel="stylesheet" href="/lib/prismjs/prism.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.7.2/animate.min.css"><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "Installing Mac OS on Virtualbox on Windows",
+        "inLanguage": "en",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https:\/\/yansigit.github.io\/blog\/how-to-install-mac-os-on-virtualbox-on-windows\/"
+        },"image": [{
+                            "@type": "ImageObject",
+                            "url": "https:\/\/yansigit.github.io\/images\/Apple-Devices-Preview.png",
+                            "width":  3200 ,
+                            "height":  2048 
+                        }],"genre": "blog","keywords": "mac, macos, virtualbox, windows","wordCount":  255 ,
+        "url": "https:\/\/yansigit.github.io\/blog\/how-to-install-mac-os-on-virtualbox-on-windows\/","datePublished": "2020-02-20T23:33:21+09:00","dateModified": "2021-03-16T23:37:21+09:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","description": "윈도우에서 버추얼박스 이용하여 맥 OS 설치하기"
+    }
+    </script><script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        "itemListElement": [{
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Home",
+            "item": "https:\/\/yansigit.github.io\/"
+        },{
+            "@type": "ListItem",
+            "position": 2,
+            "name": "해킨토시",
+            "item": "https://yansigit.github.io/categories/%ED%95%B4%ED%82%A8%ED%86%A0%EC%8B%9C/"
+        },{
+                "@type": "ListItem",
+                "position": 3,
+                "name": "Installing Mac OS on Virtualbox on Windows"
+            }]
+    }
+</script></head>
+    <body data-header-desktop="fixed" data-header-mobile="auto"><script>(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header>
+    <div class="desktop header" id="header-desktop">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="Seongbin Yoon" class="header-logo logo-svg"><span class="header-title-pre">📝</span>Blog == Portfolio</a>
+            </div>
+            <div class="menu">
+                <nav>
+                    <h2 class="display-hidden">Основная навигация</h2>
+                    <ul class="menu-inner"><li>
+                            <a class="menu-item" href="/posts/"> Posts </a>
+                        </li><li>
+                            <a class="menu-item" href="/blog/"> Blog </a>
+                        </li><li>
+                            <a class="menu-item" href="/tags/"> Tags </a>
+                        </li><li>
+                            <a class="menu-item" href="/categories/"> Categories </a>
+                        </li><li>
+                            <a class="menu-item" href="/categories/documentation/"> Docs </a>
+                        </li><li>
+                            <a class="menu-item" href="/about/"> About </a>
+                        </li><li>
+                            <a class="menu-item" href="https://github.com/upagge/ublogger" title="GitHub" rel="noopener noreffer" target="_blank"> Github </a>
+                        </li></ul>
+                </nav><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="Search titles or contents..." id="search-input-desktop">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="Search">
+                            <span class="svg-icon icon-search"></span>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="Clear">
+                            <span class="svg-icon icon-cancel"></span>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <span class="svg-icon icon-loading"></span>
+                        </span>
+                    </span><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                <span class="svg-icon icon-moon"></span>
+                </a>
+            </div>
+        </div>
+    </div><div class="mobile header" id="header-mobile">
+        <div class="header-container">
+            <div class="header-wrapper">
+                <div class="header-title">
+                    <a href="/" title="Seongbin Yoon" class="header-logo"><span class="header-title-pre">📝</span>Blog == Portfolio</a>
+                </div>
+                <div class="menu-toggle" id="menu-toggle-mobile">
+                    <span></span><span></span><span></span>
+                </div>
+            </div>
+            <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                        <div class="search mobile" id="search-mobile">
+                            <input type="text" placeholder="Search titles or contents..." id="search-input-mobile">
+                            <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="Search">
+                                <span class="svg-icon icon-search"></span>
+                            </a>
+                            <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="Clear">
+                                <span class="svg-icon icon-cancel"></span>
+                            </a>
+                            <span class="search-button search-loading" id="search-loading-mobile">
+                                <span class="svg-icon icon-loading"></span>
+                            </span>
+                        </div>
+                        <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
+                            Cancel
+                        </a>
+                    </div><nav>
+                    <h2 class="display-hidden">Основная навигация</h2>
+                    <ul><li>
+                            <a class="menu-item" href="/posts/" title="">Posts</a>
+                        </li><li>
+                            <a class="menu-item" href="/blog/" title="">Blog</a>
+                        </li><li>
+                            <a class="menu-item" href="/tags/" title="">Tags</a>
+                        </li><li>
+                            <a class="menu-item" href="/categories/" title="">Categories</a>
+                        </li><li>
+                            <a class="menu-item" href="/categories/documentation/" title="">Docs</a>
+                        </li><li>
+                            <a class="menu-item" href="/about/" title="">About</a>
+                        </li><li>
+                            <a class="menu-item" href="https://github.com/upagge/ublogger" title="GitHub" rel="noopener noreffer" target="_blank">Github</a>
+                        </li></ul>
+                </nav>
+                <a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                    <span class="svg-icon icon-moon"></span>
+                </a></div>
+        </div>
+    </div><div class="search-dropdown desktop">
+    <div id="search-dropdown-desktop"></div>
+</div>
+<div class="search-dropdown mobile">
+    <div id="search-dropdown-mobile"></div>
+</div></header><main class="main">
+                <div class="container"><div class="page single special"><h1 class="single-title pulse faster">Installing Mac OS on Virtualbox on Windows</h1><div class="content" id="content"><h2 id="1-개요" class="headerLink"><a href="#1-%ea%b0%9c%ec%9a%94" class="header-mark"></a>1. 개요</h2><p>맥을 사자니 돈이 너무 없고, 해킨토시를 하자니 노트북이라 깔고 설정하기 귀찮다면</p>
+<p><strong>답은 바로 가상머신</strong></p>
+<h2 id="2-vmdk-다운받기" class="headerLink"><a href="#2-vmdk-%eb%8b%a4%ec%9a%b4%eb%b0%9b%ea%b8%b0" class="header-mark"></a>2. VMDK 다운받기</h2><p>먼저 <code>vmdk</code> 가상 하드파일을 다운받는다. 구글에 검색하면 많이 나온다. 눈치껏 제일 안전할 것 같은 사이트를 고르자.</p>
+<p>대략 <code>8GB</code> 정도이며 구글드라이브 주소가 제공된 경우 대역폭 초과로 다운로드가 안될 확률이 많으니 토렌트를 이용하는게 좋다.</p>
+<p>속도도 빨라<code>50MB/S</code> 정도 나온다.</p>
+<h2 id="3-버추얼박스-extension-pack-설치" class="headerLink"><a href="#3-%eb%b2%84%ec%b6%94%ec%96%bc%eb%b0%95%ec%8a%a4-extension-pack-%ec%84%a4%ec%b9%98" class="header-mark"></a>3. 버추얼박스 Extension Pack 설치</h2><p>버추얼박스는 이미 설치되어 있을테니 <code>Extension Pack</code>만 받아 설치하자</p>
+<p><a href="https://www.virtualbox.org/wiki/Downloads" target="_blank" rel="noopener noreffer">버추얼박스 다운로드 페이지</a>에 있다.</p>
+<h2 id="4-가상머신-생성" class="headerLink"><a href="#4-%ea%b0%80%ec%83%81%eb%a8%b8%ec%8b%a0-%ec%83%9d%ec%84%b1" class="header-mark"></a>4. 가상머신 생성</h2><p>이제 가상머신을 만들 차례다.</p>
+<p>메모리는 넉넉잡아 <code>8GB</code> 정도 잡아주고, 디스크는 다운 받아놓은 <code>.vmdk</code> 디스크를 임포트 해주자.</p>
+<p>이제 다 끝났으면 좋겠지만.. 아직 설정할게 남았다.</p>
+<h2 id="5-가상머신-설정" class="headerLink"><a href="#5-%ea%b0%80%ec%83%81%eb%a8%b8%ec%8b%a0-%ec%84%a4%ec%a0%95" class="header-mark"></a>5. 가상머신 설정</h2><p>가상머신 설정 창으로 들어간다.</p>
+<ol>
+<li><code>시스템 - 마더보드 - 칩셋</code> 부분을 <code>PIIX3</code>으로</li>
+<li><code>시스템 - 마더보드 - 프로세서</code> 에서 <code>프로세서 개수</code>를 <code>실제 프로세스 개수의 반 (최소 4개)</code></li>
+<li><code>디스플레이 - 비디오메모리 </code> 부분을 <code>128MB</code></li>
+<li><code>USB - USB 컨트롤러 사용하기</code> 부분을 <code>USB 3.0 컨트롤러</code>로 설정</li>
+</ol>
+<p>그 다음 <code>cmd</code>창을 켜고</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-shell" data-lang="shell"><span class="nb">cd</span> <span class="s2">&#34;C:\Program Files\Oracle\VirtualBox\&#34;
+</span><span class="s2">VBoxManage modifyvm &#34;</span>&lt;가상머신이름&gt;<span class="s2">&#34; --cpuidset 00000001 000106e5 00100800 0098e3fd bfebfbff
+</span><span class="s2">VBoxManage setextradata &#34;</span>&lt;가상머신이름&gt;<span class="s2">&#34; &#34;</span>VBoxInternal/Devices/efi/0/Config/DmiSystemProduct<span class="s2">&#34; &#34;</span>iMac11,3<span class="s2">&#34;
+</span><span class="s2">VBoxManage setextradata &#34;</span>&lt;가상머신이름&gt;<span class="s2">&#34; &#34;</span>VBoxInternal/Devices/efi/0/Config/DmiSystemVersion<span class="s2">&#34; &#34;</span>1.0<span class="s2">&#34;
+</span><span class="s2">VBoxManage setextradata &#34;</span>&lt;가상머신이름&gt;<span class="s2">&#34; &#34;</span>VBoxInternal/Devices/efi/0/Config/DmiBoardProduct<span class="s2">&#34; &#34;</span>Iloveapple<span class="s2">&#34;
+</span><span class="s2">VBoxManage setextradata &#34;</span>&lt;가상머신이름&gt;<span class="s2">&#34; &#34;</span>VBoxInternal/Devices/smc/0/Config/DeviceKey<span class="s2">&#34; &#34;</span>ourhardworkbythesewordsguardedpleasedontsteal<span class="o">(</span>c<span class="o">)</span>AppleComputerInc<span class="s2">&#34;
+</span><span class="s2">VBoxManage setextradata &#34;</span>&lt;가상머신이름&gt;<span class="s2">&#34; &#34;</span>VBoxInternal/Devices/smc/0/Config/GetKeyFromRealSMC<span class="s2">&#34; 1
+</span></code></pre></td></tr></table>
+</div>
+</div><p>위 명령어를 쭉쭉 쳐준다.</p>
+<p><code>ourhardworkbythesewordsguardedpleasedontsteal(c)AppleComputerInc</code> 부분이 참으로 인상깊다.. <strong>미안해요 애플!</strong></p>
+<h2 id="6-가상머신-실행" class="headerLink"><a href="#6-%ea%b0%80%ec%83%81%eb%a8%b8%ec%8b%a0-%ec%8b%a4%ed%96%89" class="header-mark"></a>6. 가상머신 실행</h2><p>다음 가상머신을 실행하면 해킨토시 깔 때 봤던 커널 로그들이 조르륵 뜨기 시작한다.</p>
+<p>괜시리 또 마음이 쫄린다.  무한부팅 걸리거나 커널 패닉이 일어나면 지금까지 했던게 말짱 도루묵이다.</p>
+<p>부팅이 되기를 간절히 기도하며 기다리다 보면.. 안된다..</p>
+<hr>
+<h3 id="20200915-추가" class="headerLink"><a href="#20200915-%ec%b6%94%ea%b0%80" class="header-mark"></a>2020/09/15 추가</h3><p>아무래도 Hyper-V 떄문에 안되었던 모양인데, 지금은 아예 해킨토시로 사용하고 있기 때문에 테스트는 해보지 않았다.</p>
+<p>해킨토시 설치 과정과 Intel 무선랜 칩에서 Broadcom 무선랜카드로 변경한 과정은 나중에 포스팅하겠다.</p></div><div id="comments"><div id="utterances"></div><noscript>
+                Please enable JavaScript to view the comments powered by <a href="https://utteranc.es/">Utterances</a>.
+            </noscript></div></div></div>
+                </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line"><i class="svg-icon icon-copyright"></i><span>2020 - 2021</span><span class="author">&nbsp;<a href="/" target="_blank"></a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
+        </div>
+    </footer></div>
+
+        <aside id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="Back to Top">
+                <i class="svg-icon icon-arrow-up"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="View Comments">
+                <i class="svg-icon icon-comments-fixed"></i>
+            </a>
+        </aside><script src="https://cdn.jsdelivr.net/npm/smooth-scroll@16.1.3/dist/smooth-scroll.min.js"></script><script src="https://cdn.jsdelivr.net/npm/autocomplete.js@0.37.1/dist/autocomplete.min.js"></script><script src="https://cdn.jsdelivr.net/npm/algoliasearch@4.2.0/dist/algoliasearch-lite.umd.min.js"></script><script src="https://cdn.jsdelivr.net/npm/clipboard@2.0.6/dist/clipboard.min.js"></script><script src="https://cdn.jsdelivr.net/npm/sharer.js@0.4.0/sharer.min.js"></script><script src="/lib/prismjs/prism.js"></script><script>window.config={"code":{"copyTitle":"Copy to clipboard","maxShownLines":10},"comment":{"utterances":{"darkTheme":"github-dark","issueTerm":"pathname","label":"Utterances Comment","lightTheme":"github-light","repo":"yansigit/yansigit.github.io"}},"search":{"algoliaAppID":"PASDMWALPK","algoliaIndex":"index.en","algoliaSearchKey":"b42948e51daaa93df92381c8e2ac0f93","highlightTag":"em","maxResultLength":10,"noResultsFound":"No results found","snippetLength":30,"type":"algolia"}};</script><script src="/js/theme.min.js"></script><script>
+        (function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
+            m[i].l=1*new Date();k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)})
+        (window, document, "script", "https://mc.yandex.ru/metrika/tag.js", "ym");
+
+        ym("70532758", "init", {
+            clickmap:true,
+            trackLinks:true,
+            accurateTrackBounce:true,
+            webvisor: null 
+        });
+    </script>
+    <noscript><div><img src="https://mc.yandex.ru/watch/70532758" style="position:absolute; left:-9999px;" alt="" /></div></noscript></body>
+</html>

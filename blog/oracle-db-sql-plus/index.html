@@ -1,0 +1,763 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1"><meta name="robots" content="noodp"/><title>ORACLE DB SQL*PLUS 명령어 정리 - Seongbin Yoon</title>
+        <meta name="twitter:card" content="summary_large_image"/><meta name="twitter:title" content=""/>
+        <meta name="twitter:description" content="About uBlogger Theme"/>
+        <meta name="Description" content="ORACLE DB SQL*PLUS 명령어"><meta property="og:title" content="ORACLE DB SQL*PLUS 명령어 정리" />
+<meta property="og:description" content="ORACLE DB SQL*PLUS 명령어" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://yansigit.github.io/blog/oracle-db-sql-plus/" /><meta property="og:image" content="https://yansigit.github.io/logo.png"/><meta property="article:section" content="blog" />
+<meta property="article:published_time" content="2020-09-16T00:00:00&#43;00:00" />
+<meta property="article:modified_time" content="2021-03-16T23:37:21&#43;09:00" />
+
+<meta name="application-name" content="uBlogger">
+<meta name="apple-mobile-web-app-title" content="uBlogger"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+        <link rel="icon" type="image/png" sizes="192x192" href="/android-chrome-192x192.png">
+        <link rel="icon" type="image/png" sizes="512x512" href="/android-chrome-512x512.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://yansigit.github.io/blog/oracle-db-sql-plus/" /><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/normalize.css@8.0.1/normalize.min.css"><link rel="stylesheet" href="/lib/prismjs/prism.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.7.2/animate.min.css"><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "ORACLE DB SQL*PLUS 명령어 정리",
+        "inLanguage": "en",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https:\/\/yansigit.github.io\/blog\/oracle-db-sql-plus\/"
+        },"image": [{
+                            "@type": "ImageObject",
+                            "url": "https:\/\/yansigit.github.io\/images\/Apple-Devices-Preview.png",
+                            "width":  3200 ,
+                            "height":  2048 
+                        }],"genre": "blog","keywords": "oracle, db, oracle-db","wordCount":  466 ,
+        "url": "https:\/\/yansigit.github.io\/blog\/oracle-db-sql-plus\/","datePublished": "2020-09-16T00:00:00+00:00","dateModified": "2021-03-16T23:37:21+09:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","description": "ORACLE DB SQL*PLUS 명령어"
+    }
+    </script><script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        "itemListElement": [{
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Home",
+            "item": "https:\/\/yansigit.github.io\/"
+        },{
+            "@type": "ListItem",
+            "position": 2,
+            "name": "oracle-db",
+            "item": "https://yansigit.github.io/categories/oracle-db/"
+        },{
+                "@type": "ListItem",
+                "position": 3,
+                "name": "ORACLE DB SQL*PLUS 명령어 정리"
+            }]
+    }
+</script></head>
+    <body data-header-desktop="fixed" data-header-mobile="auto"><script>(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header>
+    <div class="desktop header" id="header-desktop">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="Seongbin Yoon" class="header-logo logo-svg"><span class="header-title-pre">📝</span>Blog == Portfolio</a>
+            </div>
+            <div class="menu">
+                <nav>
+                    <h2 class="display-hidden">Основная навигация</h2>
+                    <ul class="menu-inner"><li>
+                            <a class="menu-item" href="/posts/"> Posts </a>
+                        </li><li>
+                            <a class="menu-item" href="/blog/"> Blog </a>
+                        </li><li>
+                            <a class="menu-item" href="/tags/"> Tags </a>
+                        </li><li>
+                            <a class="menu-item" href="/categories/"> Categories </a>
+                        </li><li>
+                            <a class="menu-item" href="/categories/documentation/"> Docs </a>
+                        </li><li>
+                            <a class="menu-item" href="/about/"> About </a>
+                        </li><li>
+                            <a class="menu-item" href="https://github.com/upagge/ublogger" title="GitHub" rel="noopener noreffer" target="_blank"> Github </a>
+                        </li></ul>
+                </nav><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="Search titles or contents..." id="search-input-desktop">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="Search">
+                            <span class="svg-icon icon-search"></span>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="Clear">
+                            <span class="svg-icon icon-cancel"></span>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <span class="svg-icon icon-loading"></span>
+                        </span>
+                    </span><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                <span class="svg-icon icon-moon"></span>
+                </a>
+            </div>
+        </div>
+    </div><div class="mobile header" id="header-mobile">
+        <div class="header-container">
+            <div class="header-wrapper">
+                <div class="header-title">
+                    <a href="/" title="Seongbin Yoon" class="header-logo"><span class="header-title-pre">📝</span>Blog == Portfolio</a>
+                </div>
+                <div class="menu-toggle" id="menu-toggle-mobile">
+                    <span></span><span></span><span></span>
+                </div>
+            </div>
+            <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                        <div class="search mobile" id="search-mobile">
+                            <input type="text" placeholder="Search titles or contents..." id="search-input-mobile">
+                            <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="Search">
+                                <span class="svg-icon icon-search"></span>
+                            </a>
+                            <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="Clear">
+                                <span class="svg-icon icon-cancel"></span>
+                            </a>
+                            <span class="search-button search-loading" id="search-loading-mobile">
+                                <span class="svg-icon icon-loading"></span>
+                            </span>
+                        </div>
+                        <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
+                            Cancel
+                        </a>
+                    </div><nav>
+                    <h2 class="display-hidden">Основная навигация</h2>
+                    <ul><li>
+                            <a class="menu-item" href="/posts/" title="">Posts</a>
+                        </li><li>
+                            <a class="menu-item" href="/blog/" title="">Blog</a>
+                        </li><li>
+                            <a class="menu-item" href="/tags/" title="">Tags</a>
+                        </li><li>
+                            <a class="menu-item" href="/categories/" title="">Categories</a>
+                        </li><li>
+                            <a class="menu-item" href="/categories/documentation/" title="">Docs</a>
+                        </li><li>
+                            <a class="menu-item" href="/about/" title="">About</a>
+                        </li><li>
+                            <a class="menu-item" href="https://github.com/upagge/ublogger" title="GitHub" rel="noopener noreffer" target="_blank">Github</a>
+                        </li></ul>
+                </nav>
+                <a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                    <span class="svg-icon icon-moon"></span>
+                </a></div>
+        </div>
+    </div><div class="search-dropdown desktop">
+    <div id="search-dropdown-desktop"></div>
+</div>
+<div class="search-dropdown mobile">
+    <div id="search-dropdown-mobile"></div>
+</div></header><main class="main">
+                <div class="container"><div class="page single special"><h1 class="single-title pulse faster">ORACLE DB SQL*PLUS 명령어 정리</h1><div class="content" id="content"><p>ORACLE DB SQL*PLUS 명령어 정리</p>
+<h2 id="sqlplus-명령어" class="headerLink"><a href="#sqlplus-%eb%aa%85%eb%a0%b9%ec%96%b4" class="header-mark"></a>SQL*PLUS 명령어</h2><blockquote>
+<p>SQL 명령어를 간단하게 편집, 저장, 실행, 결과 보기 등 제공</p>
+</blockquote>
+<h3 id="list--l" class="headerLink"><a href="#list--l" class="header-mark"></a>LIST # <code>L</code></h3><blockquote>
+<p>SQL 버퍼에 있는 쿼리를 출력</p>
+</blockquote>
+<blockquote>
+<p>맨 마지막으로 실행한 SQL 쿼리가 버퍼에 저장됨</p>
+</blockquote>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-sql" data-lang="sql"><span class="k">SQL</span><span class="o">&gt;</span><span class="w"> </span><span class="k">select</span><span class="w"> </span><span class="n">to_number</span><span class="p">(</span><span class="s1">&#39;1444&#39;</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">dual</span><span class="p">;</span><span class="w">
+</span><span class="w">
+</span><span class="w"></span><span class="n">TO_NUMBER</span><span class="p">(</span><span class="s1">&#39;1444&#39;</span><span class="p">)</span><span class="o">+</span><span class="mi">1</span><span class="w">
+</span><span class="w"></span><span class="c1">-------------------
+</span><span class="c1"></span><span class="w">               </span><span class="mi">1445</span><span class="w">
+</span><span class="w">
+</span><span class="w"></span><span class="k">SQL</span><span class="o">&gt;</span><span class="w"> </span><span class="n">l</span><span class="w">
+</span><span class="w">  </span><span class="mi">1</span><span class="o">*</span><span class="w"> </span><span class="k">select</span><span class="w"> </span><span class="n">to_number</span><span class="p">(</span><span class="s1">&#39;1444&#39;</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">dual</span><span class="w">
+</span><span class="w">
+</span><span class="w"></span><span class="k">SQL</span><span class="o">&gt;</span><span class="w"> </span><span class="k">select</span><span class="w"> </span><span class="n">empno</span><span class="p">,</span><span class="w"> </span><span class="n">ename</span><span class="p">,</span><span class="w"> </span><span class="n">sal</span><span class="w">
+</span><span class="w">  </span><span class="mi">2</span><span class="w">  </span><span class="k">from</span><span class="w"> </span><span class="n">emp</span><span class="w">
+</span><span class="w">  </span><span class="mi">3</span><span class="w">  </span><span class="k">where</span><span class="w"> </span><span class="n">deptno</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">20</span><span class="p">;</span><span class="w">
+</span><span class="w">
+</span><span class="w">     </span><span class="n">EMPNO</span><span class="w"> </span><span class="n">ENAME</span><span class="w">             </span><span class="n">SAL</span><span class="w">
+</span><span class="w"></span><span class="c1">---------- ---------- ----------
+</span><span class="c1"></span><span class="w">      </span><span class="mi">7369</span><span class="w"> </span><span class="n">SMITH</span><span class="w">             </span><span class="mi">800</span><span class="w">
+</span><span class="w">      </span><span class="mi">7566</span><span class="w"> </span><span class="n">JONES</span><span class="w">            </span><span class="mi">2975</span><span class="w">
+</span><span class="w">      </span><span class="mi">7788</span><span class="w"> </span><span class="n">SCOTT</span><span class="w">            </span><span class="mi">3000</span><span class="w">
+</span><span class="w">      </span><span class="mi">7876</span><span class="w"> </span><span class="n">ADAMS</span><span class="w">            </span><span class="mi">1100</span><span class="w">
+</span><span class="w">      </span><span class="mi">7902</span><span class="w"> </span><span class="n">FORD</span><span class="w">             </span><span class="mi">3000</span><span class="w">
+</span><span class="w">
+</span><span class="w"></span><span class="k">SQL</span><span class="o">&gt;</span><span class="w"> </span><span class="n">l</span><span class="w">
+</span><span class="w">  </span><span class="mi">1</span><span class="w">  </span><span class="k">select</span><span class="w"> </span><span class="n">empno</span><span class="p">,</span><span class="w"> </span><span class="n">ename</span><span class="p">,</span><span class="w"> </span><span class="n">sal</span><span class="w">
+</span><span class="w">  </span><span class="mi">2</span><span class="w">  </span><span class="k">from</span><span class="w"> </span><span class="n">emp</span><span class="w">
+</span><span class="w">  </span><span class="mi">3</span><span class="o">*</span><span class="w"> </span><span class="k">where</span><span class="w"> </span><span class="n">deptno</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">20</span><span class="w">
+</span><span class="w"></span><span class="k">SQL</span><span class="o">&gt;</span><span class="w"> </span><span class="n">l</span><span class="w"> </span><span class="mi">2</span><span class="w">
+</span><span class="w">  </span><span class="mi">2</span><span class="o">*</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">emp</span><span class="w">
+</span><span class="w"></span><span class="k">SQL</span><span class="o">&gt;</span><span class="w"> </span><span class="n">l</span><span class="w"> </span><span class="mi">2</span><span class="w"> </span><span class="mi">3</span><span class="w">
+</span><span class="w">  </span><span class="mi">2</span><span class="w">  </span><span class="k">from</span><span class="w"> </span><span class="n">emp</span><span class="w">
+</span><span class="w">  </span><span class="mi">3</span><span class="o">*</span><span class="w"> </span><span class="k">where</span><span class="w"> </span><span class="n">deptno</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">20</span><span class="w">
+</span></code></pre></td></tr></table>
+</div>
+</div><h3 id="run--r-" class="headerLink"><a href="#run--r-" class="header-mark"></a>RUN # <code>R</code>, <code>/</code></h3><blockquote>
+<p>버퍼에 저장된 쿼리 실행</p>
+</blockquote>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-sql" data-lang="sql"><span class="k">SQL</span><span class="o">&gt;</span><span class="w"> </span><span class="n">l</span><span class="w">
+</span><span class="w">  </span><span class="mi">1</span><span class="w">  </span><span class="k">select</span><span class="w"> </span><span class="n">empno</span><span class="p">,</span><span class="w"> </span><span class="n">ename</span><span class="p">,</span><span class="w"> </span><span class="n">sal</span><span class="w">
+</span><span class="w">  </span><span class="mi">2</span><span class="w">  </span><span class="k">from</span><span class="w"> </span><span class="n">emp</span><span class="w">
+</span><span class="w">  </span><span class="mi">3</span><span class="o">*</span><span class="w"> </span><span class="k">where</span><span class="w"> </span><span class="n">deptno</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">20</span><span class="w">
+</span><span class="w">
+</span><span class="w"></span><span class="k">SQL</span><span class="o">&gt;</span><span class="w"> </span><span class="n">r</span><span class="w">
+</span><span class="w">  </span><span class="mi">1</span><span class="w">  </span><span class="k">select</span><span class="w"> </span><span class="n">empno</span><span class="p">,</span><span class="w"> </span><span class="n">ename</span><span class="p">,</span><span class="w"> </span><span class="n">sal</span><span class="w">
+</span><span class="w">  </span><span class="mi">2</span><span class="w">  </span><span class="k">from</span><span class="w"> </span><span class="n">emp</span><span class="w">
+</span><span class="w">  </span><span class="mi">3</span><span class="o">*</span><span class="w"> </span><span class="k">where</span><span class="w"> </span><span class="n">deptno</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">20</span><span class="w">
+</span><span class="w">
+</span><span class="w">     </span><span class="n">EMPNO</span><span class="w"> </span><span class="n">ENAME</span><span class="w">             </span><span class="n">SAL</span><span class="w">
+</span><span class="w"></span><span class="c1">---------- ---------- ----------
+</span><span class="c1"></span><span class="w">      </span><span class="mi">7369</span><span class="w"> </span><span class="n">SMITH</span><span class="w">             </span><span class="mi">800</span><span class="w">
+</span><span class="w">      </span><span class="mi">7566</span><span class="w"> </span><span class="n">JONES</span><span class="w">            </span><span class="mi">2975</span><span class="w">
+</span><span class="w">      </span><span class="mi">7788</span><span class="w"> </span><span class="n">SCOTT</span><span class="w">            </span><span class="mi">3000</span><span class="w">
+</span><span class="w">      </span><span class="mi">7876</span><span class="w"> </span><span class="n">ADAMS</span><span class="w">            </span><span class="mi">1100</span><span class="w">
+</span><span class="w">      </span><span class="mi">7902</span><span class="w"> </span><span class="n">FORD</span><span class="w">             </span><span class="mi">3000</span><span class="w">
+</span><span class="w">
+</span><span class="w"></span><span class="k">SQL</span><span class="o">&gt;</span><span class="w"> </span><span class="o">/</span><span class="w">
+</span><span class="w">
+</span><span class="w">     </span><span class="n">EMPNO</span><span class="w"> </span><span class="n">ENAME</span><span class="w">             </span><span class="n">SAL</span><span class="w">
+</span><span class="w"></span><span class="c1">---------- ---------- ----------
+</span><span class="c1"></span><span class="w">      </span><span class="mi">7369</span><span class="w"> </span><span class="n">SMITH</span><span class="w">             </span><span class="mi">800</span><span class="w">
+</span><span class="w">      </span><span class="mi">7566</span><span class="w"> </span><span class="n">JONES</span><span class="w">            </span><span class="mi">2975</span><span class="w">
+</span><span class="w">      </span><span class="mi">7788</span><span class="w"> </span><span class="n">SCOTT</span><span class="w">            </span><span class="mi">3000</span><span class="w">
+</span><span class="w">      </span><span class="mi">7876</span><span class="w"> </span><span class="n">ADAMS</span><span class="w">            </span><span class="mi">1100</span><span class="w">
+</span><span class="w">      </span><span class="mi">7902</span><span class="w"> </span><span class="n">FORD</span><span class="w">             </span><span class="mi">3000</span><span class="w">
+</span></code></pre></td></tr></table>
+</div>
+</div><h3 id="save" class="headerLink"><a href="#save" class="header-mark"></a><code>SAVE</code></h3><blockquote>
+<p>버퍼에 있는 쿼리를 파일로 저장</p>
+</blockquote>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-sql" data-lang="sql"><span class="k">SQL</span><span class="o">&gt;</span><span class="w"> </span><span class="k">select</span><span class="w"> </span><span class="mi">1</span><span class="o">+</span><span class="mi">4</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">dual</span><span class="p">;</span><span class="w">
+</span><span class="w">
+</span><span class="w">       </span><span class="mi">1</span><span class="o">+</span><span class="mi">4</span><span class="w">
+</span><span class="w"></span><span class="c1">----------
+</span><span class="c1"></span><span class="w">         </span><span class="mi">5</span><span class="w">
+</span><span class="w">
+</span><span class="w"></span><span class="k">SQL</span><span class="o">&gt;</span><span class="w"> </span><span class="n">save</span><span class="w"> </span><span class="n">example1</span><span class="w">
+</span><span class="w"></span><span class="n">file</span><span class="w"> </span><span class="n">example1</span><span class="p">.</span><span class="k">sql</span><span class="p">(</span><span class="err">이</span><span class="p">)</span><span class="err">가</span><span class="w"> </span><span class="err">생성되었습니다</span><span class="w">
+</span></code></pre></td></tr></table>
+</div>
+</div><h3 id="get" class="headerLink"><a href="#get" class="header-mark"></a><code>GET</code></h3><blockquote>
+<p>파일의 명령어를 SQL 버퍼로 불러옴</p>
+</blockquote>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-sql" data-lang="sql"><span class="k">SQL</span><span class="o">&gt;</span><span class="w"> </span><span class="k">get</span><span class="w"> </span><span class="n">example1</span><span class="w">
+</span><span class="w">  </span><span class="mi">1</span><span class="o">*</span><span class="w"> </span><span class="k">select</span><span class="w"> </span><span class="mi">1</span><span class="o">+</span><span class="mi">4</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">dual</span><span class="w">
+</span><span class="w">
+</span><span class="w"></span><span class="k">SQL</span><span class="o">&gt;</span><span class="w"> </span><span class="n">l</span><span class="w">
+</span><span class="w">  </span><span class="mi">1</span><span class="o">*</span><span class="w"> </span><span class="k">select</span><span class="w"> </span><span class="mi">1</span><span class="o">+</span><span class="mi">4</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">dual</span><span class="w">
+</span></code></pre></td></tr></table>
+</div>
+</div><h2 id="start--start-" class="headerLink"><a href="#start--start-" class="header-mark"></a>START # <code>START</code>, <code>@</code></h2><blockquote>
+<p>파일의 명령어를 실행</p>
+</blockquote>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-sql" data-lang="sql"><span class="k">SQL</span><span class="o">&gt;</span><span class="w"> </span><span class="k">start</span><span class="w"> </span><span class="n">example1</span><span class="w">
+</span><span class="w">
+</span><span class="w">       </span><span class="mi">1</span><span class="o">+</span><span class="mi">4</span><span class="w">
+</span><span class="w"></span><span class="c1">----------
+</span><span class="c1"></span><span class="w">         </span><span class="mi">5</span><span class="w">
+</span><span class="w">
+</span><span class="w"></span><span class="k">SQL</span><span class="o">&gt;</span><span class="w"> </span><span class="o">@</span><span class="w"> </span><span class="n">example1</span><span class="w">
+</span><span class="w">
+</span><span class="w">       </span><span class="mi">1</span><span class="o">+</span><span class="mi">4</span><span class="w">
+</span><span class="w"></span><span class="c1">----------
+</span><span class="c1"></span><span class="w">         </span><span class="mi">5</span><span class="w">
+</span></code></pre></td></tr></table>
+</div>
+</div><h3 id="edit--ed-파일명" class="headerLink"><a href="#edit--ed-%ed%8c%8c%ec%9d%bc%eb%aa%85" class="header-mark"></a>EDIT # <code>ED [파일명]</code></h3><blockquote>
+<p>버퍼에 있는 쿼리를 임시파일에 저장하고 편집기로 열어줌</p>
+</blockquote>
+<blockquote>
+<p>뒤에 파일명을 명시하면 빈 내용의 새 파일을 만듬 (편집 종료해도 버퍼로 안불러옴)</p>
+</blockquote>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-sql" data-lang="sql"><span class="k">SQL</span><span class="o">&gt;</span><span class="w"> </span><span class="n">l</span><span class="w">
+</span><span class="w">  </span><span class="mi">1</span><span class="o">*</span><span class="w"> </span><span class="k">select</span><span class="w"> </span><span class="mi">6</span><span class="o">+</span><span class="mi">9</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">dual</span><span class="w">
+</span><span class="w"></span><span class="k">SQL</span><span class="o">&gt;</span><span class="w"> </span><span class="n">ed</span><span class="w">
+</span><span class="w"></span><span class="n">file</span><span class="w"> </span><span class="n">afiedt</span><span class="p">.</span><span class="n">buf</span><span class="p">(</span><span class="err">이</span><span class="p">)</span><span class="err">가</span><span class="w"> </span><span class="err">기록되었습니다</span><span class="w">
+</span><span class="w">
+</span><span class="w">  </span><span class="mi">1</span><span class="o">*</span><span class="w"> </span><span class="k">select</span><span class="w"> </span><span class="mi">16</span><span class="o">+</span><span class="mi">19</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">dual</span><span class="w">
+</span><span class="w"></span><span class="k">SQL</span><span class="o">&gt;</span><span class="w"> </span><span class="n">l</span><span class="w">
+</span><span class="w">  </span><span class="mi">1</span><span class="o">*</span><span class="w"> </span><span class="k">select</span><span class="w"> </span><span class="mi">16</span><span class="o">+</span><span class="mi">19</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">dual</span><span class="w">
+</span></code></pre></td></tr></table>
+</div>
+</div><h3 id="host" class="headerLink"><a href="#host" class="header-mark"></a><code>HOST</code></h3><blockquote>
+<p>SQL*PLUS 내에서 <code>Shell</code> 열어줌</p>
+</blockquote>
+<blockquote>
+<p>돌아올 때는 <code>exit</code></p>
+</blockquote>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash">SQL&gt; host
+sh-4.2# <span class="nb">pwd</span>
+/root
+sh-4.2# ls -l
+total <span class="m">12</span>
+-rw-r--r-- <span class="m">1</span> root root <span class="m">25</span> Apr <span class="m">17</span> 04:31 afiedt.buf
+-rw-r--r-- <span class="m">1</span> root root <span class="m">23</span> Apr <span class="m">17</span> 04:24 example1.sql
+-rw-r--r-- <span class="m">1</span> root root <span class="m">35</span> Apr <span class="m">17</span> 04:33 example2.sql
+sh-4.2# <span class="nb">exit</span>
+<span class="nb">exit</span>
+
+SQL&gt;
+</code></pre></td></tr></table>
+</div>
+</div><h3 id="i" class="headerLink"><a href="#i" class="header-mark"></a><code>I</code></h3><blockquote>
+<p>현재 행의 다음 행에 문자열  삽입</p>
+</blockquote>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-sql" data-lang="sql"><span class="k">SQL</span><span class="o">&gt;</span><span class="w"> </span><span class="n">l</span><span class="w">
+</span><span class="w">  </span><span class="mi">1</span><span class="w">  </span><span class="k">select</span><span class="w"> </span><span class="n">empno</span><span class="p">,</span><span class="w"> </span><span class="n">ename</span><span class="p">,</span><span class="w"> </span><span class="n">job</span><span class="w">
+</span><span class="w">  </span><span class="mi">2</span><span class="w">  </span><span class="k">from</span><span class="w"> </span><span class="n">emp</span><span class="w">
+</span><span class="w">  </span><span class="mi">3</span><span class="o">*</span><span class="w"> </span><span class="k">where</span><span class="w"> </span><span class="n">deptno</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">10</span><span class="w">
+</span><span class="w"></span><span class="k">SQL</span><span class="o">&gt;</span><span class="w"> </span><span class="mi">2</span><span class="w">
+</span><span class="w">  </span><span class="mi">2</span><span class="o">*</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">emp</span><span class="w">
+</span><span class="w"></span><span class="k">SQL</span><span class="o">&gt;</span><span class="w"> </span><span class="mi">1</span><span class="w">
+</span><span class="w">  </span><span class="mi">1</span><span class="o">*</span><span class="w"> </span><span class="k">select</span><span class="w"> </span><span class="n">empno</span><span class="p">,</span><span class="w"> </span><span class="n">ename</span><span class="p">,</span><span class="w"> </span><span class="n">job</span><span class="w">
+</span><span class="w"></span><span class="k">SQL</span><span class="o">&gt;</span><span class="w"> </span><span class="n">l</span><span class="w">
+</span><span class="w">  </span><span class="mi">1</span><span class="w">  </span><span class="k">select</span><span class="w"> </span><span class="n">empno</span><span class="p">,</span><span class="w"> </span><span class="n">ename</span><span class="p">,</span><span class="w"> </span><span class="n">job</span><span class="w">
+</span><span class="w">  </span><span class="mi">2</span><span class="w">  </span><span class="k">from</span><span class="w"> </span><span class="n">emp</span><span class="w">
+</span><span class="w">  </span><span class="mi">3</span><span class="o">*</span><span class="w"> </span><span class="k">where</span><span class="w"> </span><span class="n">deptno</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">10</span><span class="w">
+</span><span class="w"></span><span class="k">SQL</span><span class="o">&gt;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="k">and</span><span class="w"> </span><span class="n">job</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;CLERK&#39;</span><span class="w">           </span><span class="o">#</span><span class="w"> </span><span class="err">현재</span><span class="w"> </span><span class="err">행의</span><span class="w"> </span><span class="err">다음행에</span><span class="w"> </span><span class="k">and</span><span class="w"> </span><span class="n">job</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;CLERK&#39;</span><span class="w"> </span><span class="err">삽입</span><span class="w">
+</span><span class="w"></span><span class="k">SQL</span><span class="o">&gt;</span><span class="w"> </span><span class="n">l</span><span class="w">
+</span><span class="w">  </span><span class="mi">1</span><span class="w">  </span><span class="k">select</span><span class="w"> </span><span class="n">empno</span><span class="p">,</span><span class="w"> </span><span class="n">ename</span><span class="p">,</span><span class="w"> </span><span class="n">job</span><span class="w">
+</span><span class="w">  </span><span class="mi">2</span><span class="w">  </span><span class="k">from</span><span class="w"> </span><span class="n">emp</span><span class="w">
+</span><span class="w">  </span><span class="mi">3</span><span class="w">  </span><span class="k">where</span><span class="w"> </span><span class="n">deptno</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">10</span><span class="w">
+</span><span class="w">  </span><span class="mi">4</span><span class="o">*</span><span class="w"> </span><span class="k">and</span><span class="w"> </span><span class="n">job</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;CLERK&#39;</span><span class="w">
+</span></code></pre></td></tr></table>
+</div>
+</div><h3 id="a" class="headerLink"><a href="#a" class="header-mark"></a><code>A</code></h3><blockquote>
+<p>현재 행의 끝에 문자열 추가</p>
+</blockquote>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-sql" data-lang="sql"><span class="k">SQL</span><span class="o">&gt;</span><span class="w"> </span><span class="n">l</span><span class="w">
+</span><span class="w">  </span><span class="mi">1</span><span class="w">  </span><span class="k">select</span><span class="w"> </span><span class="n">empno</span><span class="p">,</span><span class="w"> </span><span class="n">ename</span><span class="p">,</span><span class="w"> </span><span class="n">job</span><span class="w">
+</span><span class="w">  </span><span class="mi">2</span><span class="w">  </span><span class="k">from</span><span class="w"> </span><span class="n">emp</span><span class="w">
+</span><span class="w">  </span><span class="mi">3</span><span class="w">  </span><span class="k">where</span><span class="w"> </span><span class="n">deptno</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">10</span><span class="w">
+</span><span class="w">  </span><span class="mi">4</span><span class="o">*</span><span class="w"> </span><span class="k">and</span><span class="w"> </span><span class="n">job</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;CLERK&#39;</span><span class="w">
+</span><span class="w"></span><span class="k">SQL</span><span class="o">&gt;</span><span class="w"> </span><span class="mi">1</span><span class="w">
+</span><span class="w">  </span><span class="mi">1</span><span class="o">*</span><span class="w"> </span><span class="k">select</span><span class="w"> </span><span class="n">empno</span><span class="p">,</span><span class="w"> </span><span class="n">ename</span><span class="p">,</span><span class="w"> </span><span class="n">job</span><span class="w">
+</span><span class="w"></span><span class="k">SQL</span><span class="o">&gt;</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="p">,</span><span class="w"> </span><span class="n">sal</span><span class="w">                          </span><span class="o">#</span><span class="w"> </span><span class="err">현재</span><span class="w"> </span><span class="err">행의</span><span class="w"> </span><span class="err">끝에</span><span class="w"> </span><span class="p">,</span><span class="w"> </span><span class="n">sal</span><span class="w"> </span><span class="err">추가</span><span class="w">
+</span><span class="w">  </span><span class="mi">1</span><span class="o">*</span><span class="w"> </span><span class="k">select</span><span class="w"> </span><span class="n">empno</span><span class="p">,</span><span class="w"> </span><span class="n">ename</span><span class="p">,</span><span class="w"> </span><span class="n">job</span><span class="p">,</span><span class="w"> </span><span class="n">sal</span><span class="w">
+</span><span class="w"></span><span class="k">SQL</span><span class="o">&gt;</span><span class="w"> </span><span class="n">r</span><span class="w">
+</span><span class="w">  </span><span class="mi">1</span><span class="w">  </span><span class="k">select</span><span class="w"> </span><span class="n">empno</span><span class="p">,</span><span class="w"> </span><span class="n">ename</span><span class="p">,</span><span class="w"> </span><span class="n">job</span><span class="p">,</span><span class="w"> </span><span class="n">sal</span><span class="w">
+</span><span class="w">  </span><span class="mi">2</span><span class="w">  </span><span class="k">from</span><span class="w"> </span><span class="n">emp</span><span class="w">
+</span><span class="w">  </span><span class="mi">3</span><span class="w">  </span><span class="k">where</span><span class="w"> </span><span class="n">deptno</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">10</span><span class="w">
+</span><span class="w">  </span><span class="mi">4</span><span class="o">*</span><span class="w"> </span><span class="k">and</span><span class="w"> </span><span class="n">job</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;CLERK&#39;</span><span class="w">
+</span><span class="w">
+</span><span class="w">     </span><span class="n">EMPNO</span><span class="w"> </span><span class="n">ENAME</span><span class="w">      </span><span class="n">JOB</span><span class="w">              </span><span class="n">SAL</span><span class="w">
+</span><span class="w"></span><span class="c1">---------- ---------- --------- ----------
+</span><span class="c1"></span><span class="w">      </span><span class="mi">7934</span><span class="w"> </span><span class="n">MILLER</span><span class="w">     </span><span class="n">CLERK</span><span class="w">           </span><span class="mi">1300</span><span class="w">
+</span></code></pre></td></tr></table>
+</div>
+</div><h3 id="del" class="headerLink"><a href="#del" class="header-mark"></a><code>DEL</code></h3><blockquote>
+<p>행 삭제</p>
+</blockquote>
+<p><code>del</code> : 현재 행 삭제</p>
+<p><code>del n</code> : n번째 행 삭제</p>
+<p><code>del n1 n2</code> : n1부터 n2까지의 행 삭제</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-sql" data-lang="sql"><span class="k">SQL</span><span class="o">&gt;</span><span class="w"> </span><span class="n">l</span><span class="w">
+</span><span class="w">  </span><span class="mi">1</span><span class="w">  </span><span class="k">select</span><span class="w"> </span><span class="n">empno</span><span class="p">,</span><span class="w"> </span><span class="n">ename</span><span class="p">,</span><span class="w"> </span><span class="n">job</span><span class="p">,</span><span class="w"> </span><span class="n">sal</span><span class="w">
+</span><span class="w">  </span><span class="mi">2</span><span class="w">  </span><span class="k">from</span><span class="w"> </span><span class="n">emp</span><span class="w">
+</span><span class="w">  </span><span class="mi">3</span><span class="w">  </span><span class="k">where</span><span class="w"> </span><span class="n">deptno</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">10</span><span class="w">
+</span><span class="w">  </span><span class="mi">4</span><span class="o">*</span><span class="w"> </span><span class="k">and</span><span class="w"> </span><span class="n">job</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;CLERK&#39;</span><span class="w">
+</span><span class="w"></span><span class="k">SQL</span><span class="o">&gt;</span><span class="w"> </span><span class="n">del</span><span class="w">                             </span><span class="o">#</span><span class="w"> </span><span class="err">현재</span><span class="w"> </span><span class="err">행</span><span class="w"> </span><span class="err">삭제</span><span class="w">
+</span><span class="w"></span><span class="k">SQL</span><span class="o">&gt;</span><span class="w"> </span><span class="n">l</span><span class="w">
+</span><span class="w">  </span><span class="mi">1</span><span class="w">  </span><span class="k">select</span><span class="w"> </span><span class="n">empno</span><span class="p">,</span><span class="w"> </span><span class="n">ename</span><span class="p">,</span><span class="w"> </span><span class="n">job</span><span class="p">,</span><span class="w"> </span><span class="n">sal</span><span class="w">
+</span><span class="w">  </span><span class="mi">2</span><span class="w">  </span><span class="k">from</span><span class="w"> </span><span class="n">emp</span><span class="w">
+</span><span class="w">  </span><span class="mi">3</span><span class="o">*</span><span class="w"> </span><span class="k">where</span><span class="w"> </span><span class="n">deptno</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">10</span><span class="w">
+</span><span class="w">
+</span><span class="w"></span><span class="k">SQL</span><span class="o">&gt;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="k">and</span><span class="w"> </span><span class="n">job</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;CLERK&#39;</span><span class="w">
+</span><span class="w"></span><span class="k">SQL</span><span class="o">&gt;</span><span class="w"> </span><span class="n">l</span><span class="w">
+</span><span class="w">  </span><span class="mi">1</span><span class="w">  </span><span class="k">select</span><span class="w"> </span><span class="n">empno</span><span class="p">,</span><span class="w"> </span><span class="n">ename</span><span class="p">,</span><span class="w"> </span><span class="n">job</span><span class="p">,</span><span class="w"> </span><span class="n">sal</span><span class="w">
+</span><span class="w">  </span><span class="mi">2</span><span class="w">  </span><span class="k">from</span><span class="w"> </span><span class="n">emp</span><span class="w">
+</span><span class="w">  </span><span class="mi">3</span><span class="w">  </span><span class="k">where</span><span class="w"> </span><span class="n">deptno</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">10</span><span class="w">
+</span><span class="w">  </span><span class="mi">4</span><span class="o">*</span><span class="w"> </span><span class="k">and</span><span class="w"> </span><span class="n">job</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;CLERK&#39;</span><span class="w">
+</span><span class="w"></span><span class="k">SQL</span><span class="o">&gt;</span><span class="w"> </span><span class="n">del</span><span class="w"> </span><span class="mi">3</span><span class="w">                           </span><span class="o">#</span><span class="w"> </span><span class="mi">3</span><span class="err">행</span><span class="w"> </span><span class="err">삭제</span><span class="w">
+</span><span class="w"></span><span class="k">SQL</span><span class="o">&gt;</span><span class="w"> </span><span class="n">l</span><span class="w">
+</span><span class="w">  </span><span class="mi">1</span><span class="w">  </span><span class="k">select</span><span class="w"> </span><span class="n">empno</span><span class="p">,</span><span class="w"> </span><span class="n">ename</span><span class="p">,</span><span class="w"> </span><span class="n">job</span><span class="p">,</span><span class="w"> </span><span class="n">sal</span><span class="w">
+</span><span class="w">  </span><span class="mi">2</span><span class="w">  </span><span class="k">from</span><span class="w"> </span><span class="n">emp</span><span class="w">
+</span><span class="w">  </span><span class="mi">3</span><span class="o">*</span><span class="w"> </span><span class="k">and</span><span class="w"> </span><span class="n">job</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;CLERK&#39;</span><span class="w">
+</span><span class="w">
+</span><span class="w"></span><span class="k">SQL</span><span class="o">&gt;</span><span class="w"> </span><span class="n">del</span><span class="w"> </span><span class="mi">2</span><span class="w"> </span><span class="mi">3</span><span class="w">                         </span><span class="o">#</span><span class="w"> </span><span class="mi">2</span><span class="o">~</span><span class="mi">3</span><span class="w"> </span><span class="err">행</span><span class="w"> </span><span class="err">삭제</span><span class="w">
+</span><span class="w"></span><span class="k">SQL</span><span class="o">&gt;</span><span class="w"> </span><span class="n">l</span><span class="w">
+</span><span class="w">  </span><span class="mi">1</span><span class="o">*</span><span class="w"> </span><span class="k">select</span><span class="w"> </span><span class="n">empno</span><span class="p">,</span><span class="w"> </span><span class="n">ename</span><span class="p">,</span><span class="w"> </span><span class="n">job</span><span class="p">,</span><span class="w"> </span><span class="n">sal</span><span class="w">
+</span></code></pre></td></tr></table>
+</div>
+</div><h3 id="change--c" class="headerLink"><a href="#change--c" class="header-mark"></a>CHANGE # <code>C</code></h3><blockquote>
+<p>현재 행의 문자열을 교체</p>
+</blockquote>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-sql" data-lang="sql"><span class="k">SQL</span><span class="o">&gt;</span><span class="w"> </span><span class="n">l</span><span class="w">
+</span><span class="w">  </span><span class="mi">1</span><span class="w">  </span><span class="k">select</span><span class="w"> </span><span class="n">empno</span><span class="p">,</span><span class="w"> </span><span class="n">ename</span><span class="p">,</span><span class="w"> </span><span class="n">job</span><span class="p">,</span><span class="w"> </span><span class="n">sal</span><span class="w">
+</span><span class="w">  </span><span class="mi">2</span><span class="w">  </span><span class="k">from</span><span class="w"> </span><span class="n">emp</span><span class="w">
+</span><span class="w">  </span><span class="mi">3</span><span class="o">*</span><span class="w"> </span><span class="k">where</span><span class="w"> </span><span class="n">deptno</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">20</span><span class="w">
+</span><span class="w"></span><span class="k">SQL</span><span class="o">&gt;</span><span class="w"> </span><span class="mi">1</span><span class="w">
+</span><span class="w">  </span><span class="mi">1</span><span class="o">*</span><span class="w"> </span><span class="k">select</span><span class="w"> </span><span class="n">empno</span><span class="p">,</span><span class="w"> </span><span class="n">ename</span><span class="p">,</span><span class="w"> </span><span class="n">job</span><span class="p">,</span><span class="w"> </span><span class="n">sal</span><span class="w">
+</span><span class="w"></span><span class="k">SQL</span><span class="o">&gt;</span><span class="w"> </span><span class="k">c</span><span class="o">/</span><span class="n">job</span><span class="o">/</span><span class="n">deptno</span><span class="w">                             </span><span class="o">#</span><span class="w"> </span><span class="err">문자열</span><span class="w"> </span><span class="err">변경</span><span class="w">
+</span><span class="w">  </span><span class="mi">1</span><span class="o">*</span><span class="w"> </span><span class="k">select</span><span class="w"> </span><span class="n">empno</span><span class="p">,</span><span class="w"> </span><span class="n">ename</span><span class="p">,</span><span class="w"> </span><span class="n">deptno</span><span class="p">,</span><span class="w"> </span><span class="n">sal</span><span class="w">
+</span><span class="w"></span><span class="k">SQL</span><span class="o">&gt;</span><span class="w"> </span><span class="n">l</span><span class="w">
+</span><span class="w">  </span><span class="mi">1</span><span class="w">  </span><span class="k">select</span><span class="w"> </span><span class="n">empno</span><span class="p">,</span><span class="w"> </span><span class="n">ename</span><span class="p">,</span><span class="w"> </span><span class="n">deptno</span><span class="p">,</span><span class="w"> </span><span class="n">sal</span><span class="w">
+</span><span class="w">  </span><span class="mi">2</span><span class="w">  </span><span class="k">from</span><span class="w"> </span><span class="n">emp</span><span class="w">
+</span><span class="w">  </span><span class="mi">3</span><span class="o">*</span><span class="w"> </span><span class="k">where</span><span class="w"> </span><span class="n">deptno</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">20</span><span class="w">
+</span></code></pre></td></tr></table>
+</div>
+</div><h2 id="n-문자열" class="headerLink"><a href="#n-%eb%ac%b8%ec%9e%90%ec%97%b4" class="header-mark"></a><code>{n} {문자열}</code></h2><blockquote>
+<p>n 번째 행을 해당 문자열로 교체</p>
+</blockquote>
+<blockquote>
+<p>n이 0이면 첫번째 행 앞에 문자열 삽입</p>
+</blockquote>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-sql" data-lang="sql"><span class="k">SQL</span><span class="o">&gt;</span><span class="w"> </span><span class="n">l</span><span class="w">
+</span><span class="w">  </span><span class="mi">1</span><span class="w">  </span><span class="k">select</span><span class="w"> </span><span class="n">empno</span><span class="p">,</span><span class="w"> </span><span class="n">ename</span><span class="p">,</span><span class="w"> </span><span class="n">deptno</span><span class="p">,</span><span class="w"> </span><span class="n">sal</span><span class="w">
+</span><span class="w">  </span><span class="mi">2</span><span class="w">  </span><span class="k">from</span><span class="w"> </span><span class="n">emp</span><span class="w">
+</span><span class="w">  </span><span class="mi">3</span><span class="o">*</span><span class="w"> </span><span class="k">where</span><span class="w"> </span><span class="n">deptno</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">20</span><span class="w">
+</span><span class="w"></span><span class="k">SQL</span><span class="o">&gt;</span><span class="w"> </span><span class="mi">3</span><span class="w"> </span><span class="k">where</span><span class="w"> </span><span class="n">sal</span><span class="w"> </span><span class="o">&gt;=</span><span class="w"> </span><span class="mi">2000</span><span class="w">     </span><span class="o">#</span><span class="w"> </span><span class="mi">3</span><span class="err">행</span><span class="w"> </span><span class="err">내용</span><span class="w"> </span><span class="err">교체</span><span class="w">
+</span><span class="w"></span><span class="k">SQL</span><span class="o">&gt;</span><span class="w"> </span><span class="n">l</span><span class="w">
+</span><span class="w">  </span><span class="mi">1</span><span class="w">  </span><span class="k">select</span><span class="w"> </span><span class="n">empno</span><span class="p">,</span><span class="w"> </span><span class="n">ename</span><span class="p">,</span><span class="w"> </span><span class="n">deptno</span><span class="p">,</span><span class="w"> </span><span class="n">sal</span><span class="w">
+</span><span class="w">  </span><span class="mi">2</span><span class="w">  </span><span class="k">from</span><span class="w"> </span><span class="n">emp</span><span class="w">
+</span><span class="w">  </span><span class="mi">3</span><span class="o">*</span><span class="w"> </span><span class="k">where</span><span class="w"> </span><span class="n">sal</span><span class="w"> </span><span class="o">&gt;=</span><span class="w"> </span><span class="mi">2000</span><span class="w">
+</span><span class="w">
+</span><span class="w"></span><span class="k">SQL</span><span class="o">&gt;</span><span class="w"> </span><span class="n">del</span><span class="w"> </span><span class="mi">1</span><span class="w">
+</span><span class="w"></span><span class="k">SQL</span><span class="o">&gt;</span><span class="w"> </span><span class="n">l</span><span class="w">
+</span><span class="w">  </span><span class="mi">1</span><span class="w">  </span><span class="k">from</span><span class="w"> </span><span class="n">emp</span><span class="w">
+</span><span class="w">  </span><span class="mi">2</span><span class="o">*</span><span class="w"> </span><span class="k">where</span><span class="w"> </span><span class="n">sal</span><span class="w"> </span><span class="o">&gt;=</span><span class="w"> </span><span class="mi">2000</span><span class="w">
+</span><span class="w"></span><span class="k">SQL</span><span class="o">&gt;</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="k">select</span><span class="w"> </span><span class="n">ename</span><span class="w">          </span><span class="o">#</span><span class="w"> </span><span class="err">첫번째</span><span class="w"> </span><span class="err">줄에</span><span class="w"> </span><span class="err">내용</span><span class="w"> </span><span class="err">삽입</span><span class="w">
+</span><span class="w"></span><span class="k">SQL</span><span class="o">&gt;</span><span class="w"> </span><span class="n">l</span><span class="w">
+</span><span class="w">  </span><span class="mi">1</span><span class="w">  </span><span class="k">select</span><span class="w"> </span><span class="n">ename</span><span class="w">
+</span><span class="w">  </span><span class="mi">2</span><span class="w">  </span><span class="k">from</span><span class="w"> </span><span class="n">emp</span><span class="w">
+</span><span class="w">  </span><span class="mi">3</span><span class="o">*</span><span class="w"> </span><span class="k">where</span><span class="w"> </span><span class="n">sal</span><span class="w"> </span><span class="o">&gt;=</span><span class="w"> </span><span class="mi">2000</span><span class="w">
+</span></code></pre></td></tr></table>
+</div>
+</div><h3 id="clear-screen--cl-scr" class="headerLink"><a href="#clear-screen--cl-scr" class="header-mark"></a>CLEAR SCREEN # <code>CL SCR</code></h3><blockquote>
+<p>화면 내용 모두 삭제</p>
+</blockquote>
+<h3 id="clear-buffer--cl-buff" class="headerLink"><a href="#clear-buffer--cl-buff" class="header-mark"></a>CLEAR BUFFER # <code>CL BUFF</code></h3><blockquote>
+<p>버퍼 모두 삭제</p>
+</blockquote>
+<h3 id="spool-파일명" class="headerLink"><a href="#spool-%ed%8c%8c%ec%9d%bc%eb%aa%85" class="header-mark"></a><code>SPOOL {파일명}</code></h3><blockquote>
+<p>지금부터 작업 내용을 모두 파일로 저장</p>
+</blockquote>
+<blockquote>
+<p>중지: <code>spool off</code></p>
+</blockquote>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-sql" data-lang="sql"><span class="n">sh</span><span class="o">-</span><span class="mi">4</span><span class="p">.</span><span class="mi">2</span><span class="o">#</span><span class="w"> </span><span class="n">cat</span><span class="w"> </span><span class="k">output</span><span class="p">.</span><span class="n">txt</span><span class="w">
+</span><span class="w"></span><span class="k">SQL</span><span class="o">&gt;</span><span class="w"> </span><span class="k">select</span><span class="w"> </span><span class="n">ename</span><span class="w">
+</span><span class="w">  </span><span class="mi">2</span><span class="w">  </span><span class="k">from</span><span class="w"> </span><span class="n">emp</span><span class="w">
+</span><span class="w">  </span><span class="mi">3</span><span class="w">  </span><span class="k">where</span><span class="w"> </span><span class="n">sal</span><span class="w"> </span><span class="o">&gt;=</span><span class="w"> </span><span class="mi">3000</span><span class="p">;</span><span class="w">
+</span><span class="w">
+</span><span class="w"></span><span class="n">ENAME</span><span class="w">
+</span><span class="w"></span><span class="c1">----------
+</span><span class="c1"></span><span class="n">KING</span><span class="w">
+</span><span class="w"></span><span class="n">FORD</span><span class="w">
+</span><span class="w">
+</span><span class="w"></span><span class="k">SQL</span><span class="o">&gt;</span><span class="w"> </span><span class="mi">1</span><span class="w">
+</span><span class="w">  </span><span class="mi">1</span><span class="o">*</span><span class="w"> </span><span class="k">select</span><span class="w"> </span><span class="n">ename</span><span class="w">
+</span><span class="w"></span><span class="k">SQL</span><span class="o">&gt;</span><span class="w"> </span><span class="k">c</span><span class="o">/</span><span class="n">ename</span><span class="o">/</span><span class="n">sal</span><span class="w">
+</span><span class="w">  </span><span class="mi">1</span><span class="o">*</span><span class="w"> </span><span class="k">select</span><span class="w"> </span><span class="n">sal</span><span class="w">
+</span><span class="w"></span><span class="k">SQL</span><span class="o">&gt;</span><span class="w"> </span><span class="n">r</span><span class="w">
+</span><span class="w">  </span><span class="mi">1</span><span class="w">  </span><span class="k">select</span><span class="w"> </span><span class="n">sal</span><span class="w">
+</span><span class="w">  </span><span class="mi">2</span><span class="w">  </span><span class="k">from</span><span class="w"> </span><span class="n">emp</span><span class="w">
+</span><span class="w">  </span><span class="mi">3</span><span class="o">*</span><span class="w"> </span><span class="k">where</span><span class="w"> </span><span class="n">sal</span><span class="w"> </span><span class="o">&gt;=</span><span class="w"> </span><span class="mi">3000</span><span class="w">
+</span><span class="w">
+</span><span class="w">       </span><span class="n">SAL</span><span class="w">
+</span><span class="w"></span><span class="c1">----------
+</span><span class="c1"></span><span class="w">      </span><span class="mi">5000</span><span class="w">
+</span><span class="w">      </span><span class="mi">3000</span><span class="w">
+</span><span class="w">
+</span><span class="w"></span><span class="k">SQL</span><span class="o">&gt;</span><span class="w"> </span><span class="n">spool</span><span class="w"> </span><span class="k">off</span><span class="w">
+</span></code></pre></td></tr></table>
+</div>
+</div></div><div id="comments"><div id="utterances"></div><noscript>
+                Please enable JavaScript to view the comments powered by <a href="https://utteranc.es/">Utterances</a>.
+            </noscript></div></div></div>
+                </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line"><i class="svg-icon icon-copyright"></i><span>2020 - 2021</span><span class="author">&nbsp;<a href="/" target="_blank"></a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
+        </div>
+    </footer></div>
+
+        <aside id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="Back to Top">
+                <i class="svg-icon icon-arrow-up"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="View Comments">
+                <i class="svg-icon icon-comments-fixed"></i>
+            </a>
+        </aside><script src="https://cdn.jsdelivr.net/npm/smooth-scroll@16.1.3/dist/smooth-scroll.min.js"></script><script src="https://cdn.jsdelivr.net/npm/autocomplete.js@0.37.1/dist/autocomplete.min.js"></script><script src="https://cdn.jsdelivr.net/npm/algoliasearch@4.2.0/dist/algoliasearch-lite.umd.min.js"></script><script src="https://cdn.jsdelivr.net/npm/clipboard@2.0.6/dist/clipboard.min.js"></script><script src="https://cdn.jsdelivr.net/npm/sharer.js@0.4.0/sharer.min.js"></script><script src="/lib/prismjs/prism.js"></script><script>window.config={"code":{"copyTitle":"Copy to clipboard","maxShownLines":10},"comment":{"utterances":{"darkTheme":"github-dark","issueTerm":"pathname","label":"Utterances Comment","lightTheme":"github-light","repo":"yansigit/yansigit.github.io"}},"search":{"algoliaAppID":"PASDMWALPK","algoliaIndex":"index.en","algoliaSearchKey":"b42948e51daaa93df92381c8e2ac0f93","highlightTag":"em","maxResultLength":10,"noResultsFound":"No results found","snippetLength":30,"type":"algolia"}};</script><script src="/js/theme.min.js"></script><script>
+        (function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
+            m[i].l=1*new Date();k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)})
+        (window, document, "script", "https://mc.yandex.ru/metrika/tag.js", "ym");
+
+        ym("70532758", "init", {
+            clickmap:true,
+            trackLinks:true,
+            accurateTrackBounce:true,
+            webvisor: null 
+        });
+    </script>
+    <noscript><div><img src="https://mc.yandex.ru/watch/70532758" style="position:absolute; left:-9999px;" alt="" /></div></noscript></body>
+</html>

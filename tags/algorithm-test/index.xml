@@ -1,0 +1,34 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>algorithm test - Tag - Seongbin Yoon</title>
+        <link>https://yansigit.github.io/tags/algorithm-test/</link>
+        <description>algorithm test - Tag - Seongbin Yoon</description>
+        <generator>Hugo -- gohugo.io</generator><language>en</language><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Mon, 10 Feb 2020 14:27:41 &#43;0900</lastBuildDate><atom:link href="https://yansigit.github.io/tags/algorithm-test/" rel="self" type="application/rss+xml" /><item>
+    <title>Golang Cheet Sheets for Algo Test</title>
+    <link>https://yansigit.github.io/blog/golang-cheet-sheets-for-algo-test/</link>
+    <pubDate>Mon, 10 Feb 2020 14:27:41 &#43;0900</pubDate>
+    <author>yansigit.github.io</author>
+    <guid>https://yansigit.github.io/blog/golang-cheet-sheets-for-algo-test/</guid>
+    <description><![CDATA[<h1 id="scan" class="headerLink"><a href="#scan" class="header-mark"></a>Scan</h1><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-go" data-lang="go"><span class="kd">var</span> <span class="nx">test</span> <span class="p">[</span><span class="mi">5</span><span class="p">]</span><span class="kt">int</span>
+<span class="k">for</span> <span class="nx">i</span><span class="o">:=</span><span class="mi">0</span><span class="p">;</span> <span class="nx">i</span><span class="p">&lt;</span><span class="mi">5</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span> <span class="p">{</span>
+   <span class="nx">fmt</span><span class="p">.</span><span class="nf">Scan</span><span class="p">(</span><span class="o">&amp;</span><span class="nx">test</span><span class="p">[</span><span class="nx">i</span><span class="p">])</span>
+<span class="p">}</span>
+<span class="nx">fmt</span><span class="p">.</span><span class="nf">Print</span><span class="p">(</span><span class="nx">test</span><span class="p">)</span>
+<span class="c1">// 입력 1 4 5 2 3
+</span><span class="c1">// 출력 [1,4,5,2,3]
+</span></code></pre></td></tr></table>
+</div>
+</div>]]></description>
+</item></channel>
+</rss>

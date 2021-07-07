@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1"><meta name="robots" content="noodp"/><title>머신러닝 - Seongbin Yoon</title>
+        <meta name="twitter:card" content="summary_large_image"/><meta name="twitter:title" content=""/>
+        <meta name="twitter:description" content="About uBlogger Theme"/>
+        <meta name="Description" content="머신러닝이란 무엇인가"><meta property="og:title" content="머신러닝" />
+<meta property="og:description" content="머신러닝이란 무엇인가" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://yansigit.github.io/blog/%EB%A8%B8%EC%8B%A0-%EB%9F%AC%EB%8B%9D/" /><meta property="og:image" content="https://yansigit.github.io/logo.png"/><meta property="article:section" content="blog" />
+<meta property="article:published_time" content="2021-07-07T00:04:34&#43;09:00" />
+<meta property="article:modified_time" content="2021-07-07T00:04:34&#43;09:00" />
+
+<meta name="application-name" content="uBlogger">
+<meta name="apple-mobile-web-app-title" content="uBlogger"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+        <link rel="icon" type="image/png" sizes="192x192" href="/android-chrome-192x192.png">
+        <link rel="icon" type="image/png" sizes="512x512" href="/android-chrome-512x512.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://yansigit.github.io/blog/%EB%A8%B8%EC%8B%A0-%EB%9F%AC%EB%8B%9D/" /><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/normalize.css@8.0.1/normalize.min.css"><link rel="stylesheet" href="/lib/prismjs/prism.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.7.2/animate.min.css"><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "머신러닝",
+        "inLanguage": "en",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https:\/\/yansigit.github.io\/blog\/%EB%A8%B8%EC%8B%A0-%EB%9F%AC%EB%8B%9D\/"
+        },"image": [{
+                            "@type": "ImageObject",
+                            "url": "https:\/\/yansigit.github.io\/images\/Apple-Devices-Preview.png",
+                            "width":  3200 ,
+                            "height":  2048 
+                        }],"genre": "blog","keywords": "machine-learning, deep-learning, data-processing, data-science","wordCount":  313 ,
+        "url": "https:\/\/yansigit.github.io\/blog\/%EB%A8%B8%EC%8B%A0-%EB%9F%AC%EB%8B%9D\/","datePublished": "2021-07-07T00:04:34+09:00","dateModified": "2021-07-07T00:04:34+09:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","description": "머신러닝이란 무엇인가"
+    }
+    </script><script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        "itemListElement": [{
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Home",
+            "item": "https:\/\/yansigit.github.io\/"
+        },{
+            "@type": "ListItem",
+            "position": 2,
+            "name": "machine-learning",
+            "item": "https://yansigit.github.io/categories/machine-learning/"
+        },{
+                "@type": "ListItem",
+                "position": 3,
+                "name": "머신러닝"
+            }]
+    }
+</script></head>
+    <body data-header-desktop="fixed" data-header-mobile="auto"><script>(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header>
+    <div class="desktop header" id="header-desktop">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="Seongbin Yoon" class="header-logo logo-svg"><span class="header-title-pre">📝</span>Blog == Portfolio</a>
+            </div>
+            <div class="menu">
+                <nav>
+                    <h2 class="display-hidden">Основная навигация</h2>
+                    <ul class="menu-inner"><li>
+                            <a class="menu-item" href="/posts/"> Posts </a>
+                        </li><li>
+                            <a class="menu-item" href="/blog/"> Blog </a>
+                        </li><li>
+                            <a class="menu-item" href="/tags/"> Tags </a>
+                        </li><li>
+                            <a class="menu-item" href="/categories/"> Categories </a>
+                        </li><li>
+                            <a class="menu-item" href="/categories/documentation/"> Docs </a>
+                        </li><li>
+                            <a class="menu-item" href="/about/"> About </a>
+                        </li><li>
+                            <a class="menu-item" href="https://github.com/upagge/ublogger" title="GitHub" rel="noopener noreffer" target="_blank"> Github </a>
+                        </li></ul>
+                </nav><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="Search titles or contents..." id="search-input-desktop">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="Search">
+                            <span class="svg-icon icon-search"></span>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="Clear">
+                            <span class="svg-icon icon-cancel"></span>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <span class="svg-icon icon-loading"></span>
+                        </span>
+                    </span><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                <span class="svg-icon icon-moon"></span>
+                </a>
+            </div>
+        </div>
+    </div><div class="mobile header" id="header-mobile">
+        <div class="header-container">
+            <div class="header-wrapper">
+                <div class="header-title">
+                    <a href="/" title="Seongbin Yoon" class="header-logo"><span class="header-title-pre">📝</span>Blog == Portfolio</a>
+                </div>
+                <div class="menu-toggle" id="menu-toggle-mobile">
+                    <span></span><span></span><span></span>
+                </div>
+            </div>
+            <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                        <div class="search mobile" id="search-mobile">
+                            <input type="text" placeholder="Search titles or contents..." id="search-input-mobile">
+                            <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="Search">
+                                <span class="svg-icon icon-search"></span>
+                            </a>
+                            <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="Clear">
+                                <span class="svg-icon icon-cancel"></span>
+                            </a>
+                            <span class="search-button search-loading" id="search-loading-mobile">
+                                <span class="svg-icon icon-loading"></span>
+                            </span>
+                        </div>
+                        <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
+                            Cancel
+                        </a>
+                    </div><nav>
+                    <h2 class="display-hidden">Основная навигация</h2>
+                    <ul><li>
+                            <a class="menu-item" href="/posts/" title="">Posts</a>
+                        </li><li>
+                            <a class="menu-item" href="/blog/" title="">Blog</a>
+                        </li><li>
+                            <a class="menu-item" href="/tags/" title="">Tags</a>
+                        </li><li>
+                            <a class="menu-item" href="/categories/" title="">Categories</a>
+                        </li><li>
+                            <a class="menu-item" href="/categories/documentation/" title="">Docs</a>
+                        </li><li>
+                            <a class="menu-item" href="/about/" title="">About</a>
+                        </li><li>
+                            <a class="menu-item" href="https://github.com/upagge/ublogger" title="GitHub" rel="noopener noreffer" target="_blank">Github</a>
+                        </li></ul>
+                </nav>
+                <a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                    <span class="svg-icon icon-moon"></span>
+                </a></div>
+        </div>
+    </div><div class="search-dropdown desktop">
+    <div id="search-dropdown-desktop"></div>
+</div>
+<div class="search-dropdown mobile">
+    <div id="search-dropdown-mobile"></div>
+</div></header><main class="main">
+                <div class="container"><div class="page single special"><h1 class="single-title pulse faster">머신러닝</h1><div class="content" id="content"><h1 id="머신-러닝" class="headerLink"><a href="#%eb%a8%b8%ec%8b%a0-%eb%9f%ac%eb%8b%9d" class="header-mark"></a>머신 러닝</h1><h2 id="연역적-학습-vs-귀납적-학습" class="headerLink"><a href="#%ec%97%b0%ec%97%ad%ec%a0%81-%ed%95%99%ec%8a%b5-vs-%ea%b7%80%eb%82%a9%ec%a0%81-%ed%95%99%ec%8a%b5" class="header-mark"></a>연역적 학습 VS 귀납적 학습</h2><ul>
+<li>연역적
+<ul>
+<li>모든 포유동물은 심장을 기자고 있다</li>
+<li>모든 말은 포유동물이다</li>
+<li>→ 모든 말은 심장을 가지고 있다</li>
+</ul>
+</li>
+<li>귀납법
+<ul>
+<li>참새는 하늘을 난다</li>
+<li>제비는 하늘을 난다</li>
+<li>모든 새는 하늘을 난다</li>
+</ul>
+</li>
+</ul>
+<h2 id="귀납적-학습" class="headerLink"><a href="#%ea%b7%80%eb%82%a9%ec%a0%81-%ed%95%99%ec%8a%b5" class="header-mark"></a>귀납적 학습</h2><ul>
+<li>사례들을 일반화하여 패턴, 모델 추출</li>
+<li>일반적인 기계학습의 대상</li>
+<li>학습 데이터를 잘 설명할 수 있는 패턴을 찾는 것</li>
+</ul>
+<h2 id="전통적인-프로그래밍과-머신러닝" class="headerLink"><a href="#%ec%a0%84%ed%86%b5%ec%a0%81%ec%9d%b8-%ed%94%84%eb%a1%9c%ea%b7%b8%eb%9e%98%eb%b0%8d%ea%b3%bc-%eb%a8%b8%ec%8b%a0%eb%9f%ac%eb%8b%9d" class="header-mark"></a>전통적인 프로그래밍과 머신러닝</h2><p>
+
+
+
+    
+<img loading="lazy" decoding="async"
+         class="render-image"
+         src="Untitled.png"
+         alt="%E1%84%86%E1%85%A5%E1%84%89%E1%85%B5%E1%86%AB%20%E1%84%85%E1%85%A5%E1%84%82%E1%85%B5%E1%86%BC/Untitled.png"
+         title="Untitled.png"
+    /></p>
+<ul>
+<li>전통적인 프로그래밍 → 데이터와 규칙을 주면 답이 나옴</li>
+<li>머신러닝 → 데이터와 답을 주면 규칙이 나옴</li>
+</ul>
+<h2 id="사람의-학습과-기계-학습의-비교" class="headerLink"><a href="#%ec%82%ac%eb%9e%8c%ec%9d%98-%ed%95%99%ec%8a%b5%ea%b3%bc-%ea%b8%b0%ea%b3%84-%ed%95%99%ec%8a%b5%ec%9d%98-%eb%b9%84%ea%b5%90" class="header-mark"></a>사람의 학습과 기계 학습의 비교</h2><p>
+
+
+
+    
+<img loading="lazy" decoding="async"
+         class="render-image"
+         src="Untitled%201.png"
+         alt="%E1%84%86%E1%85%A5%E1%84%89%E1%85%B5%E1%86%AB%20%E1%84%85%E1%85%A5%E1%84%82%E1%85%B5%E1%86%BC/Untitled%201.png"
+         title="Untitled%201.png"
+    /></p>
+<h2 id="머신러닝-응용-분야" class="headerLink"><a href="#%eb%a8%b8%ec%8b%a0%eb%9f%ac%eb%8b%9d-%ec%9d%91%ec%9a%a9-%eb%b6%84%ec%95%bc" class="header-mark"></a>머신러닝 응용 분야</h2><ul>
+<li>복잡한 데이터들이 있고, 이들 데이터에 기반해 결정을 내려야 하는 분야</li>
+<li>문자인식</li>
+<li>자율주행</li>
+<li>광고, 상품 추천</li>
+<li>안면인식 등..</li>
+<li>보안시스템 (해킹방어)</li>
+</ul>
+<h2 id="지도학습-supoervised-learning" class="headerLink"><a href="#%ec%a7%80%eb%8f%84%ed%95%99%ec%8a%b5-supoervised-learning" class="header-mark"></a>지도학습 (Supoervised Learning)</h2><ul>
+<li>입력 - 출력의 데이터들로부터 새로운 입력에 대한 출력을 결정할 수 있는 패턴 추출</li>
+<li>분류 (Classification)</li>
+<li>회귀 (Regression)</li>
+</ul>
+<h2 id="비지도학습-unsupervised-learning-자율학습" class="headerLink"><a href="#%eb%b9%84%ec%a7%80%eb%8f%84%ed%95%99%ec%8a%b5-unsupervised-learning-%ec%9e%90%ec%9c%a8%ed%95%99%ec%8a%b5" class="header-mark"></a>비지도학습 (Unsupervised Learning, 자율학습)</h2><ul>
+<li><strong>출력</strong>에 대한 정보가 없는 데이터로부터 필요한 패턴 추출</li>
+<li>군집 (Clustering)</li>
+<li>차원축소 (Dimension Reduction)</li>
+</ul>
+<h2 id="강화학습-reinforcement-learning" class="headerLink"><a href="#%ea%b0%95%ed%99%94%ed%95%99%ec%8a%b5-reinforcement-learning" class="header-mark"></a>강화학습 (Reinforcement Learning)</h2><ul>
+<li>출력에 대한 정확한 정보는 제공하지 않음</li>
+<li>평가정보 (Reward)는 주어지는 문제에 대해 각 상태에서의 행동을 결정</li>
+</ul>
+<h2 id="판별모델-discriminative-model" class="headerLink"><a href="#%ed%8c%90%eb%b3%84%eb%aa%a8%eb%8d%b8-discriminative-model" class="header-mark"></a>판별모델 (Discriminative Model)</h2><ul>
+<li>Supervised Learning</li>
+<li>반 고흐가 그렸는지 예측하는 판별 모델</li>
+<li>샘플 X가 주어졌을 때 레이블 Y의 확률을 Estimate</li>
+</ul>
+<p>
+
+
+
+    
+<img loading="lazy" decoding="async"
+         class="render-image"
+         src="Untitled%202.png"
+         alt="%E1%84%86%E1%85%A5%E1%84%89%E1%85%B5%E1%86%AB%20%E1%84%85%E1%85%A5%E1%84%82%E1%85%B5%E1%86%BC/Untitled%202.png"
+         title="Untitled%202.png"
+    /></p>
+<ul>
+<li>P(Y|X)를 직접적으로 도출
+<ul>
+<li>데이터 X가 주어졌을 때 클래스 레이블 Y가 나타날 조건부확률을 직접적으로 도출</li>
+<li>입력값 X의 차원이 높아질수록 계산량이 증가 → 학습이 어려워짐</li>
+<li>대부분 지도학습에 해당
+<ul>
+<li>클래스 레이블 정보 Y가 필요하기 때문</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Dicision Boundary를 학습하는 것이 목표
+<ul>
+<li>분별모델은 데이터 X가 주어졌을 때 Y1에 속할지, Y2에 속할지 구분하는데 관심</li>
+</ul>
+</li>
+</ul>
+<h2 id="생성모델-generative-model" class="headerLink"><a href="#%ec%83%9d%ec%84%b1%eb%aa%a8%eb%8d%b8-generative-model" class="header-mark"></a>생성모델 (Generative Model)</h2><ul>
+<li>Unsupervised Learning</li>
+<li>새로운 데이터 셋을  생성하는 방법을 기술</li>
+<li>이 모델에서 샘플링하면 새로운 데이터를 생성 가능</li>
+<li>생성 모델은 확률적이여야 한다</li>
+<li>예시) 말 이미지를 생성하는 모델
+<ul>
+<li>말의 외관을 결정하는 일반적인 규칙을 학습해야 한다</li>
+<li>이 규칙은 확률적이여야 함 → 고정된 계산만 수행한다면 매번 동일한 값을 출력하기 때문</li>
+<li>결론적으로 원본 training set에 있을 것 같지만 완전히 새롭고 다른 샘플을 생성해야함</li>
+</ul>
+</li>
+</ul>
+<p>
+
+
+
+    
+<img loading="lazy" decoding="async"
+         class="render-image"
+         src="Untitled%203.png"
+         alt="%E1%84%86%E1%85%A5%E1%84%89%E1%85%B5%E1%86%AB%20%E1%84%85%E1%85%A5%E1%84%82%E1%85%B5%E1%86%BC/Untitled%203.png"
+         title="Untitled%203.png"
+    /></p>
+<ul>
+<li>P(Y|X)를 간접적으로 도출
+<ul>
+<li>데이터 X가 생성되는 과정을 두개의 확률모형으로 모델링</li>
+<li>베이즈 정리를 이용해 P(Y|X)를  간접적으로 도출</li>
+</ul>
+</li>
+<li>P(Y)와 P(X|Y)의 확분포를 학습하는 것이 목표
+<ul>
+<li>범주의 분포를 학습하는 것이 목표</li>
+<li>화가의 화풍을 학습시켜 어떤 그림을 그 화풍으로 변환하는 등..</li>
+</ul>
+</li>
+</ul></div><div id="comments"><div id="utterances"></div><noscript>
+                Please enable JavaScript to view the comments powered by <a href="https://utteranc.es/">Utterances</a>.
+            </noscript></div></div></div>
+                </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line"><i class="svg-icon icon-copyright"></i><span>2020 - 2021</span><span class="author">&nbsp;<a href="/" target="_blank"></a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
+        </div>
+    </footer></div>
+
+        <aside id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="Back to Top">
+                <i class="svg-icon icon-arrow-up"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="View Comments">
+                <i class="svg-icon icon-comments-fixed"></i>
+            </a>
+        </aside><script src="https://cdn.jsdelivr.net/npm/smooth-scroll@16.1.3/dist/smooth-scroll.min.js"></script><script src="https://cdn.jsdelivr.net/npm/autocomplete.js@0.37.1/dist/autocomplete.min.js"></script><script src="https://cdn.jsdelivr.net/npm/algoliasearch@4.2.0/dist/algoliasearch-lite.umd.min.js"></script><script src="https://cdn.jsdelivr.net/npm/clipboard@2.0.6/dist/clipboard.min.js"></script><script src="https://cdn.jsdelivr.net/npm/sharer.js@0.4.0/sharer.min.js"></script><script src="/lib/prismjs/prism.js"></script><script>window.config={"code":{"copyTitle":"Copy to clipboard","maxShownLines":10},"comment":{"utterances":{"darkTheme":"github-dark","issueTerm":"pathname","label":"Utterances Comment","lightTheme":"github-light","repo":"yansigit/yansigit.github.io"}},"search":{"algoliaAppID":"PASDMWALPK","algoliaIndex":"index.en","algoliaSearchKey":"b42948e51daaa93df92381c8e2ac0f93","highlightTag":"em","maxResultLength":10,"noResultsFound":"No results found","snippetLength":30,"type":"algolia"}};</script><script src="/js/theme.min.js"></script><script>
+        (function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
+            m[i].l=1*new Date();k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)})
+        (window, document, "script", "https://mc.yandex.ru/metrika/tag.js", "ym");
+
+        ym("70532758", "init", {
+            clickmap:true,
+            trackLinks:true,
+            accurateTrackBounce:true,
+            webvisor: null 
+        });
+    </script>
+    <noscript><div><img src="https://mc.yandex.ru/watch/70532758" style="position:absolute; left:-9999px;" alt="" /></div></noscript></body>
+</html>

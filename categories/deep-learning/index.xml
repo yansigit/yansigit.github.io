@@ -1,0 +1,77 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>deep-learning - Category - Seongbin Yoon</title>
+        <link>https://yansigit.github.io/categories/deep-learning/</link>
+        <description>deep-learning - Category - Seongbin Yoon</description>
+        <generator>Hugo -- gohugo.io</generator><language>en</language><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Wed, 07 Jul 2021 00:04:34 &#43;0900</lastBuildDate><atom:link href="https://yansigit.github.io/categories/deep-learning/" rel="self" type="application/rss+xml" /><item>
+    <title>Classification</title>
+    <link>https://yansigit.github.io/blog/supervised-learning/classification/</link>
+    <pubDate>Wed, 07 Jul 2021 00:04:34 &#43;0900</pubDate>
+    <author>yansigit.github.io</author>
+    <guid>https://yansigit.github.io/blog/supervised-learning/classification/</guid>
+    <description><![CDATA[분류 알고리즘 정리]]></description>
+</item><item>
+    <title>Clustering (군집화)</title>
+    <link>https://yansigit.github.io/blog/unsupervised-learning/clustering/</link>
+    <pubDate>Wed, 07 Jul 2021 00:04:34 &#43;0900</pubDate>
+    <author>yansigit.github.io</author>
+    <guid>https://yansigit.github.io/blog/unsupervised-learning/clustering/</guid>
+    <description><![CDATA[군집화에 대한 정의와 방법]]></description>
+</item><item>
+    <title>Data Processing</title>
+    <link>https://yansigit.github.io/blog/data-preprocessing/</link>
+    <pubDate>Wed, 07 Jul 2021 00:04:34 &#43;0900</pubDate>
+    <author>yansigit.github.io</author>
+    <guid>https://yansigit.github.io/blog/data-preprocessing/</guid>
+    <description><![CDATA[데이터 전처리 방법]]></description>
+</item><item>
+    <title>Deep Neural Network</title>
+    <link>https://yansigit.github.io/blog/deep-neural-network/</link>
+    <pubDate>Wed, 07 Jul 2021 00:04:34 &#43;0900</pubDate>
+    <author>yansigit.github.io</author>
+    <guid>https://yansigit.github.io/blog/deep-neural-network/</guid>
+    <description><![CDATA[뉴럴 네트워크]]></description>
+</item><item>
+    <title>Dicision Tree</title>
+    <link>https://yansigit.github.io/blog/dicision-tree/</link>
+    <pubDate>Wed, 07 Jul 2021 00:04:34 &#43;0900</pubDate>
+    <author>yansigit.github.io</author>
+    <guid>https://yansigit.github.io/blog/dicision-tree/</guid>
+    <description><![CDATA[결정 트리]]></description>
+</item><item>
+    <title>Dimensionality Reduction (차원축소)</title>
+    <link>https://yansigit.github.io/blog/unsupervised-learning/dimensionality-reduction/</link>
+    <pubDate>Wed, 07 Jul 2021 00:04:34 &#43;0900</pubDate>
+    <author>yansigit.github.io</author>
+    <guid>https://yansigit.github.io/blog/unsupervised-learning/dimensionality-reduction/</guid>
+    <description><![CDATA[차원축소의 정의와 필요성]]></description>
+</item><item>
+    <title>Neural Network</title>
+    <link>https://yansigit.github.io/blog/neural-network/</link>
+    <pubDate>Wed, 07 Jul 2021 00:04:34 &#43;0900</pubDate>
+    <author>yansigit.github.io</author>
+    <guid>https://yansigit.github.io/blog/neural-network/</guid>
+    <description><![CDATA[신경망]]></description>
+</item><item>
+    <title>Regression (회귀)</title>
+    <link>https://yansigit.github.io/blog/supervised-learning/regression/</link>
+    <pubDate>Wed, 07 Jul 2021 00:04:34 &#43;0900</pubDate>
+    <author>yansigit.github.io</author>
+    <guid>https://yansigit.github.io/blog/supervised-learning/regression/</guid>
+    <description><![CDATA[회귀에 대한 정의와 알고리즘]]></description>
+</item><item>
+    <title>Supervised Learning</title>
+    <link>https://yansigit.github.io/blog/supervised-learning/</link>
+    <pubDate>Wed, 07 Jul 2021 00:04:34 &#43;0900</pubDate>
+    <author>yansigit.github.io</author>
+    <guid>https://yansigit.github.io/blog/supervised-learning/</guid>
+    <description><![CDATA[지도 학습]]></description>
+</item><item>
+    <title>Unsupervised Learning</title>
+    <link>https://yansigit.github.io/blog/unsupervised-learning/</link>
+    <pubDate>Wed, 07 Jul 2021 00:04:34 &#43;0900</pubDate>
+    <author>yansigit.github.io</author>
+    <guid>https://yansigit.github.io/blog/unsupervised-learning/</guid>
+    <description><![CDATA[비지도학습]]></description>
+</item></channel>
+</rss>

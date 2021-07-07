@@ -1,0 +1,495 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1"><meta name="robots" content="noodp"/><title>Computer Networking - P2P and Dash - Seongbin Yoon</title>
+        <meta name="twitter:card" content="summary_large_image"/><meta name="twitter:title" content=""/>
+        <meta name="twitter:description" content="About uBlogger Theme"/>
+        <meta name="Description" content="컴퓨터 네트워크 - P2P and Dash"><meta property="og:title" content="Computer Networking - P2P and Dash" />
+<meta property="og:description" content="컴퓨터 네트워크 - P2P and Dash" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://yansigit.github.io/blog/computer-network-p2p-and-dash/" /><meta property="og:image" content="https://yansigit.github.io/logo.png"/><meta property="article:section" content="blog" />
+<meta property="article:published_time" content="2020-09-17T00:11:07&#43;09:00" />
+<meta property="article:modified_time" content="2021-03-16T23:37:21&#43;09:00" />
+
+<meta name="application-name" content="uBlogger">
+<meta name="apple-mobile-web-app-title" content="uBlogger"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+        <link rel="icon" type="image/png" sizes="192x192" href="/android-chrome-192x192.png">
+        <link rel="icon" type="image/png" sizes="512x512" href="/android-chrome-512x512.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://yansigit.github.io/blog/computer-network-p2p-and-dash/" /><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/normalize.css@8.0.1/normalize.min.css"><link rel="stylesheet" href="/lib/prismjs/prism.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.7.2/animate.min.css"><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "Computer Networking - P2P and Dash",
+        "inLanguage": "en",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https:\/\/yansigit.github.io\/blog\/computer-network-p2p-and-dash\/"
+        },"image": [{
+                            "@type": "ImageObject",
+                            "url": "https:\/\/yansigit.github.io\/images\/Apple-Devices-Preview.png",
+                            "width":  3200 ,
+                            "height":  2048 
+                        }],"genre": "blog","keywords": "computer-networking, network, networking, p2p, dash","wordCount":  603 ,
+        "url": "https:\/\/yansigit.github.io\/blog\/computer-network-p2p-and-dash\/","datePublished": "2020-09-17T00:11:07+09:00","dateModified": "2021-03-16T23:37:21+09:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","description": "컴퓨터 네트워크 - P2P and Dash"
+    }
+    </script><script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        "itemListElement": [{
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Home",
+            "item": "https:\/\/yansigit.github.io\/"
+        },{
+            "@type": "ListItem",
+            "position": 2,
+            "name": "computer-networking",
+            "item": "https://yansigit.github.io/categories/computer-networking/"
+        },{
+                "@type": "ListItem",
+                "position": 3,
+                "name": "Computer Networking - P2P and Dash"
+            }]
+    }
+</script></head>
+    <body data-header-desktop="fixed" data-header-mobile="auto"><script>(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header>
+    <div class="desktop header" id="header-desktop">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="Seongbin Yoon" class="header-logo logo-svg"><span class="header-title-pre">📝</span>Blog == Portfolio</a>
+            </div>
+            <div class="menu">
+                <nav>
+                    <h2 class="display-hidden">Основная навигация</h2>
+                    <ul class="menu-inner"><li>
+                            <a class="menu-item" href="/posts/"> Posts </a>
+                        </li><li>
+                            <a class="menu-item" href="/blog/"> Blog </a>
+                        </li><li>
+                            <a class="menu-item" href="/tags/"> Tags </a>
+                        </li><li>
+                            <a class="menu-item" href="/categories/"> Categories </a>
+                        </li><li>
+                            <a class="menu-item" href="/categories/documentation/"> Docs </a>
+                        </li><li>
+                            <a class="menu-item" href="/about/"> About </a>
+                        </li><li>
+                            <a class="menu-item" href="https://github.com/upagge/ublogger" title="GitHub" rel="noopener noreffer" target="_blank"> Github </a>
+                        </li></ul>
+                </nav><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="Search titles or contents..." id="search-input-desktop">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="Search">
+                            <span class="svg-icon icon-search"></span>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="Clear">
+                            <span class="svg-icon icon-cancel"></span>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <span class="svg-icon icon-loading"></span>
+                        </span>
+                    </span><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                <span class="svg-icon icon-moon"></span>
+                </a>
+            </div>
+        </div>
+    </div><div class="mobile header" id="header-mobile">
+        <div class="header-container">
+            <div class="header-wrapper">
+                <div class="header-title">
+                    <a href="/" title="Seongbin Yoon" class="header-logo"><span class="header-title-pre">📝</span>Blog == Portfolio</a>
+                </div>
+                <div class="menu-toggle" id="menu-toggle-mobile">
+                    <span></span><span></span><span></span>
+                </div>
+            </div>
+            <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                        <div class="search mobile" id="search-mobile">
+                            <input type="text" placeholder="Search titles or contents..." id="search-input-mobile">
+                            <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="Search">
+                                <span class="svg-icon icon-search"></span>
+                            </a>
+                            <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="Clear">
+                                <span class="svg-icon icon-cancel"></span>
+                            </a>
+                            <span class="search-button search-loading" id="search-loading-mobile">
+                                <span class="svg-icon icon-loading"></span>
+                            </span>
+                        </div>
+                        <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
+                            Cancel
+                        </a>
+                    </div><nav>
+                    <h2 class="display-hidden">Основная навигация</h2>
+                    <ul><li>
+                            <a class="menu-item" href="/posts/" title="">Posts</a>
+                        </li><li>
+                            <a class="menu-item" href="/blog/" title="">Blog</a>
+                        </li><li>
+                            <a class="menu-item" href="/tags/" title="">Tags</a>
+                        </li><li>
+                            <a class="menu-item" href="/categories/" title="">Categories</a>
+                        </li><li>
+                            <a class="menu-item" href="/categories/documentation/" title="">Docs</a>
+                        </li><li>
+                            <a class="menu-item" href="/about/" title="">About</a>
+                        </li><li>
+                            <a class="menu-item" href="https://github.com/upagge/ublogger" title="GitHub" rel="noopener noreffer" target="_blank">Github</a>
+                        </li></ul>
+                </nav>
+                <a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                    <span class="svg-icon icon-moon"></span>
+                </a></div>
+        </div>
+    </div><div class="search-dropdown desktop">
+    <div id="search-dropdown-desktop"></div>
+</div>
+<div class="search-dropdown mobile">
+    <div id="search-dropdown-mobile"></div>
+</div></header><main class="main">
+                <div class="container"><div class="page single special"><h1 class="single-title pulse faster">Computer Networking - P2P and Dash</h1><div class="content" id="content"><p>Computer Networking - P2P and Dash</p>
+<h1 id="computer-network-p2p-and-dash" class="headerLink"><a href="#computer-network-p2p-and-dash" class="header-mark"></a>Computer-Network-P2P-and-Dash</h1><h1 id="1-pure-p2p-아키텍쳐" class="headerLink"><a href="#1-pure-p2p-%ec%95%84%ed%82%a4%ed%85%8d%ec%b3%90" class="header-mark"></a>1. Pure P2P 아키텍쳐</h1><ul>
+<li>Always-On 서버 없음</li>
+<li>임의의 엔드 시스템들이 서로 통신 (Peer)</li>
+<li>피어들은 간헐적으로 연결되며 IP가 변경될 수 있음</li>
+<li>예
+<ul>
+<li>Bittorrent</li>
+<li>VoIP</li>
+</ul>
+</li>
+</ul>
+<h2 id="클라이언트-서버-vs-p2p" class="headerLink"><a href="#%ed%81%b4%eb%9d%bc%ec%9d%b4%ec%96%b8%ed%8a%b8-%ec%84%9c%eb%b2%84-vs-p2p" class="header-mark"></a>클라이언트-서버 VS P2P</h2><blockquote>
+<p>Q. 사이즈가 <code>F</code>인 파일을 <code>N</code>개의 피어에게 전송할 때 얼마나 걸리나?</p>
+</blockquote>
+<h3 id="클라이언트-서버의-경우" class="headerLink"><a href="#%ed%81%b4%eb%9d%bc%ec%9d%b4%ec%96%b8%ed%8a%b8-%ec%84%9c%eb%b2%84%ec%9d%98-%ea%b2%bd%ec%9a%b0" class="header-mark"></a>클라이언트-서버의 경우</h3><p>
+
+
+
+    
+<img loading="lazy" decoding="async"
+         class="render-image"
+         src="./Untitled.png"
+         alt="image"
+         title="Untitled.png"
+    /></p>
+<ul>
+<li>
+<p><strong>서버의 입장에서</strong></p>
+<ul>
+<li>
+<p>파일은 순차적을 보낸다.</p>
+</li>
+<li>
+<p>한 개 보낼 때</p>
+<p>$$F/u_s$$</p>
+</li>
+<li>
+<p>여러 카피 보낼 때</p>
+<p>$$N×F/u_s$$</p>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>클라이언트 입장에서</strong></p>
+<ul>
+<li>dmin = 최소 클라이언트 다운 속도</li>
+</ul>
+<p>$$F/d_{min}$$</p>
+</li>
+<li>
+<p>결과</p>
+<p>$$D_{cs} ≥ max(NF/u_s,F/d_{min})$$</p>
+</li>
+</ul>
+<h3 id="p2p의-경우" class="headerLink"><a href="#p2p%ec%9d%98-%ea%b2%bd%ec%9a%b0" class="header-mark"></a>P2P의 경우</h3><ul>
+<li>
+<p><strong>서버 역할 피어</strong></p>
+<ul>
+<li>일단 최소한 한 개의 파일은 업로드해야함</li>
+</ul>
+<p>$$F/u_s$$</p>
+</li>
+<li>
+<p><strong>클라이언트 역할 피어</strong></p>
+<p>$$F/d_{min}$$</p>
+</li>
+<li>
+<p><strong>최상의 경우</strong></p>
+<ul>
+<li>서버 역할 피어와 다른 모든 <code>i</code>개의 피어가 업로드 하고있을 경우</li>
+</ul>
+<p>$$NF/(u_s+ \sum u_i)$$</p>
+</li>
+<li>
+<p><strong>결과</strong></p>
+<p>$$D_{P2P} ≥ max{F/u_s,F/d_{min},NF/(u_s + \sum u_i)} $$</p>
+</li>
+</ul>
+<h2 id="차이" class="headerLink"><a href="#%ec%b0%a8%ec%9d%b4" class="header-mark"></a>차이</h2><p>
+
+
+
+    
+<img loading="lazy" decoding="async"
+         class="render-image"
+         src="./Untitled%201.png"
+         alt="image"
+         title="Untitled%201.png"
+    /></p>
+<blockquote>
+<p>클라이언트-서버 구조에서는 N이 커지면 전송시간 또한 선형적으로 커진다</p>
+</blockquote>
+<blockquote>
+<p>그러나 P2P 구조에서는 N이 커져도 클아이언트-서버 구조처럼 드라마틱하게 전송시간이 늘어나지 않는다</p>
+</blockquote>
+<h1 id="2-비트토렌트" class="headerLink"><a href="#2-%eb%b9%84%ed%8a%b8%ed%86%a0%eb%a0%8c%ed%8a%b8" class="header-mark"></a>2. 비트토렌트</h1><p>
+
+
+
+    
+<img loading="lazy" decoding="async"
+         class="render-image"
+         src="./Untitled%202.png"
+         alt="image"
+         title="Untitled%202.png"
+    /></p>
+<ul>
+<li>파일은 256KB의 청크로 나뉘어짐</li>
+<li><strong>토렌트</strong>: 파일을 공유하는 피어들의 그룹</li>
+<li><strong>트래커</strong>: 토렌트 내부의 피어들의 참여도 등을 추적</li>
+<li>토렌트에 처음 참여한 유저는 청크가 없다.
+<ul>
+<li>다른 피어들에게서 청크를 받으며 점점 채워나간다</li>
+<li>트래커에게서 피어 리스트를 받은 후 일부 피어들과 통신함 (neighbor)</li>
+</ul>
+</li>
+<li>다운로드와 동시에 받은 청크를 업로드 가능</li>
+<li>통신중인 피어들은 나가거나 새로 들어올 수 있다</li>
+<li>파일을 다 받은 후에는 토렌트에 남거나 떠날 수 있다</li>
+</ul>
+<h2 id="비트토렌트-청크" class="headerLink"><a href="#%eb%b9%84%ed%8a%b8%ed%86%a0%eb%a0%8c%ed%8a%b8-%ec%b2%ad%ed%81%ac" class="header-mark"></a>비트토렌트 청크</h2><ul>
+<li><strong>요청</strong>
+<ul>
+<li>피어들은 각각 다른 파일들의 조각 (청크)을 가지고 있을 수 있다.</li>
+<li>그러므로 피어들은 주기적으로 다른 피어들이 가지고 있는 청크의 리스트를 요청해 받는다</li>
+<li>청크들을 요청할때는 최대한 레어한 청크부터 받는다.</li>
+</ul>
+</li>
+<li><strong>전송</strong>
+<ul>
+<li><strong>Tit-For-Tat</strong>
+<ul>
+<li>눈에는 눈 이에는 이</li>
+<li>나에게 파일을 보내야 나도 너에게 보낸다</li>
+</ul>
+</li>
+<li>자신에게 가장 높은 속도로 청크를 보내고 있는 <strong>4명의 피어</strong>에게 청크를 전송한다
+<ul>
+<li>나머지에게는 전송하지 않는다 (<strong>Chocked</strong>)</li>
+</ul>
+</li>
+<li>해당 4명의 피어 리스트는 10초마다 한번씩 갱신된다</li>
+<li><strong>Optimistically Unchoke</strong>
+<ul>
+<li>30초마다 추가로 랜덤하게 피어를 골라 청크를 전송한다</li>
+<li>해당 피어가 지금 4명의 피어 리스트에 있는 피어들보다 빠르다면
+<ul>
+<li>그 피어가 새로운 <strong>Top 4</strong>가 될 것</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h1 id="3-비디오-스트리밍과-cdn" class="headerLink"><a href="#3-%eb%b9%84%eb%94%94%ec%98%a4-%ec%8a%a4%ed%8a%b8%eb%a6%ac%eb%b0%8d%ea%b3%bc-cdn" class="header-mark"></a>3. 비디오 스트리밍과 CDN</h1><h2 id="비디오-스트리밍" class="headerLink"><a href="#%eb%b9%84%eb%94%94%ec%98%a4-%ec%8a%a4%ed%8a%b8%eb%a6%ac%eb%b0%8d" class="header-mark"></a>비디오 스트리밍</h2><ul>
+<li>비디오 트래픽이 인터넷 Bandwidth를 가장 많이 잡아먹음</li>
+<li>서비스 업체들의 고민
+<ul>
+<li>어떻게 수억명이 넘는 유저들을 다 수용하는가?
+<ul>
+<li>하나의 서버로는 절대 수용 못한다 (네임서버 기억)</li>
+</ul>
+</li>
+<li>유저마다 다른 환경
+<ul>
+<li>PC, 모바일</li>
+<li>각기 다른 인터넷 속도 등</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>솔루션
+<ul>
+<li>분산된, 애플리케이션 레벨의 인프라 서비스 (DASH)</li>
+</ul>
+</li>
+</ul>
+<h2 id="멀티미디어-비디오" class="headerLink"><a href="#%eb%a9%80%ed%8b%b0%eb%af%b8%eb%94%94%ec%96%b4-%eb%b9%84%eb%94%94%ec%98%a4" class="header-mark"></a>멀티미디어: 비디오</h2><ul>
+<li>비디오란
+<ul>
+<li>고정된 속도로 디스플레이되는 연속된 이미지</li>
+<li>예) 24프레임</li>
+</ul>
+</li>
+<li>이미지
+<ul>
+<li>픽셀의 집합</li>
+<li>각 픽셀은 비트로 표현됨</li>
+</ul>
+</li>
+<li>코딩
+<ul>
+<li>이미지 간의 중복성을 이용해 이미지 비트를 줄임
+<ul>
+<li>Spatial
+<ul>
+<li>한 이미지 내에서 중복되는 픽셀을 이용</li>
+</ul>
+</li>
+<li>Temporal
+<ul>
+<li>프레임 간에 차이점을 이용</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>CBR</li>
+<li>VBR</li>
+</ul>
+</li>
+</ul>
+<h2 id="dash-dynamic-adaptive-streaming-over-http" class="headerLink"><a href="#dash-dynamic-adaptive-streaming-over-http" class="header-mark"></a>DASH (Dynamic Adaptive Streaming over HTTP)</h2><blockquote>
+<p>유튜브에서 인터넷 속도에 따라 저화질, 중화질, 고화질 변경하는 것을 생각</p>
+</blockquote>
+<h3 id="server" class="headerLink"><a href="#server" class="header-mark"></a>SERVER</h3><ul>
+<li>파일을 여러개의 청크로 쪼갬</li>
+<li>각각 청크들은 각기 다른 속도로 인코딩 됨</li>
+<li>Manifest file
+<ul>
+<li>각각의 청크들의 URL을 제공</li>
+</ul>
+</li>
+</ul>
+<h3 id="client" class="headerLink"><a href="#client" class="header-mark"></a>CLIENT</h3><ul>
+<li>주기적으로 서버-클라이언트 간 Bandwidth를 측정</li>
+<li>그 속도를 기반으로 Manifest 파일을 보고 적절한 청크를 요청
+<ul>
+<li>지금 Bandwidth 내에서 수용가능한 최대 레이트를 고름</li>
+<li>시간에 따라서 인터넷 속도가 달라질 수 있음
+<ul>
+<li>그때그때 청크의 레이트 변경하며 요청할 수 있다</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><strong>클라이언트가 주도 (Intelligence)</strong>
+<ul>
+<li>언제 청크를 요청할 것인가
+<ul>
+<li>너무 빠르게 요청해 받으면 버퍼 오버플로우 발생</li>
+<li>너무 늦게 요청해 받으면 버퍼가 비어 버퍼링 발생</li>
+</ul>
+</li>
+<li>어떤 레이트로
+<ul>
+<li>Bandwidth가 충분하다면 더 나은 화질 요청</li>
+</ul>
+</li>
+<li>어디에 청크를 요청할 것인가
+<ul>
+<li>클라이언트에서 물리적으로 더 가깝거나 더 빠른 회선의 서버에 요청 가능</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="수많은-요청-처리" class="headerLink"><a href="#%ec%88%98%eb%a7%8e%ec%9d%80-%ec%9a%94%ec%b2%ad-%ec%b2%98%eb%a6%ac" class="header-mark"></a>수많은 요청 처리</h2><blockquote>
+<p>CDN을 이용, 영상의 COPY들을 나눠 분산 처리</p>
+</blockquote>
+<ul>
+<li>Enter Deep
+<ul>
+<li>엑세스 네트워크에 많은 CDN 서버를 둠</li>
+<li>유저들에 더 가깝게</li>
+</ul>
+</li>
+<li>Bring Home
+<ul>
+<li>상대적으로 더 큰 몇개의 서버들을 엑세스 네트워크들 근처(POP)에 둠</li>
+</ul>
+</li>
+<li>네트워크 상황 등에 따라 각기 다른 CDN 노드를 선택해 사용 가능</li>
+<li>고민
+<ul>
+<li>어떤 CDN 노드로부터 컨텐츠를 받을 것인가?</li>
+<li>혼잡이 발생했을 때 Viewer는 어떻게 대처할 것인가?</li>
+<li>이를 Over The Top (OTT) 라고 함</li>
+<li>어떤 컨텐츠가 어떤 CDN에 위치할 것인가?</li>
+</ul>
+</li>
+</ul>
+<h2 id="dns를-통한-cdn-컨텐츠-엑세스" class="headerLink"><a href="#dns%eb%a5%bc-%ed%86%b5%ed%95%9c-cdn-%ec%bb%a8%ed%85%90%ec%b8%a0-%ec%97%91%ec%84%b8%ec%8a%a4" class="header-mark"></a>DNS를 통한 CDN 컨텐츠 엑세스</h2><p>
+
+
+
+    
+<img loading="lazy" decoding="async"
+         class="render-image"
+         src="./Untitled%203.png"
+         alt="image"
+         title="Untitled%203.png"
+    /></p>
+<ol>
+<li>유저가 컨텐츠에 접속
+<ul>
+<li><a href="http://video.netcinema.com/7FV50GAD">http://video.netcinema.com/7FV50GAD</a></li>
+</ul>
+</li>
+<li>유저는 로컬 DNS 서버에 해당 주소의 IP를 찾기 위해 DNS 질의</li>
+<li>질의 끝에 Netcinema의 Authoratative DNS 서버에서 CDN의 주소인 <a href="http://a1133.kingcdn.com">http://a1133.kingcdn.com</a> 알려줌</li>
+<li>로컬 DNS는 KingCDN의 DNS 서버에 다시 질의하고, CDN의 DNS 서버는 실제 CDN 서버의 IP를 알려줌</li>
+<li>유저는 컨텐츠를 HTTP를 통해 스트리밍하며 받아봄</li>
+</ol>
+<h2 id="넷플릭스의-대략적-구조" class="headerLink"><a href="#%eb%84%b7%ed%94%8c%eb%a6%ad%ec%8a%a4%ec%9d%98-%eb%8c%80%eb%9e%b5%ec%a0%81-%ea%b5%ac%ec%a1%b0" class="header-mark"></a>넷플릭스의 대략적 구조</h2><p>
+
+
+
+    
+<img loading="lazy" decoding="async"
+         class="render-image"
+         src="./Untitled%204.png"
+         alt="image"
+         title="Untitled%204.png"
+    /></p></div><div id="comments"><div id="utterances"></div><noscript>
+                Please enable JavaScript to view the comments powered by <a href="https://utteranc.es/">Utterances</a>.
+            </noscript></div></div></div>
+                </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line"><i class="svg-icon icon-copyright"></i><span>2020 - 2021</span><span class="author">&nbsp;<a href="/" target="_blank"></a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
+        </div>
+    </footer></div>
+
+        <aside id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="Back to Top">
+                <i class="svg-icon icon-arrow-up"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="View Comments">
+                <i class="svg-icon icon-comments-fixed"></i>
+            </a>
+        </aside><script src="https://cdn.jsdelivr.net/npm/smooth-scroll@16.1.3/dist/smooth-scroll.min.js"></script><script src="https://cdn.jsdelivr.net/npm/autocomplete.js@0.37.1/dist/autocomplete.min.js"></script><script src="https://cdn.jsdelivr.net/npm/algoliasearch@4.2.0/dist/algoliasearch-lite.umd.min.js"></script><script src="https://cdn.jsdelivr.net/npm/clipboard@2.0.6/dist/clipboard.min.js"></script><script src="https://cdn.jsdelivr.net/npm/sharer.js@0.4.0/sharer.min.js"></script><script src="/lib/prismjs/prism.js"></script><script>window.config={"code":{"copyTitle":"Copy to clipboard","maxShownLines":10},"comment":{"utterances":{"darkTheme":"github-dark","issueTerm":"pathname","label":"Utterances Comment","lightTheme":"github-light","repo":"yansigit/yansigit.github.io"}},"search":{"algoliaAppID":"PASDMWALPK","algoliaIndex":"index.en","algoliaSearchKey":"b42948e51daaa93df92381c8e2ac0f93","highlightTag":"em","maxResultLength":10,"noResultsFound":"No results found","snippetLength":30,"type":"algolia"}};</script><script src="/js/theme.min.js"></script><script>
+        (function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
+            m[i].l=1*new Date();k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)})
+        (window, document, "script", "https://mc.yandex.ru/metrika/tag.js", "ym");
+
+        ym("70532758", "init", {
+            clickmap:true,
+            trackLinks:true,
+            accurateTrackBounce:true,
+            webvisor: null 
+        });
+    </script>
+    <noscript><div><img src="https://mc.yandex.ru/watch/70532758" style="position:absolute; left:-9999px;" alt="" /></div></noscript></body>
+</html>
