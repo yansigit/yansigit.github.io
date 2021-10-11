@@ -1,0 +1,797 @@
+<!DOCTYPE html>
+<html lang="ko-kr">
+    <head><meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content='컴퓨터 네트워크 - P2P and Dash'><title>Computer Networking - P2P and Dash</title>
+
+<link rel='canonical' href='https://yansigit.github.io/blog/computer-networking-p2p-and-dash/'>
+
+<link rel="stylesheet" href="/scss/style.min.css"><meta property='og:title' content='Computer Networking - P2P and Dash'>
+<meta property='og:description' content='컴퓨터 네트워크 - P2P and Dash'>
+<meta property='og:url' content='https://yansigit.github.io/blog/computer-networking-p2p-and-dash/'>
+<meta property='og:site_name' content='Code like Feather'>
+<meta property='og:type' content='article'><meta property='article:section' content='Posts' /><meta property='article:tag' content='computer-networking' /><meta property='article:tag' content='network' /><meta property='article:tag' content='networking' /><meta property='article:tag' content='p2p' /><meta property='article:tag' content='dash' /><meta property='article:published_time' content='2020-09-17T00:11:07&#43;09:00'/><meta property='article:modified_time' content='2020-09-17T00:11:07&#43;09:00'/><meta property='og:image' content='https://yansigit.github.io/images/lighthouse.jpg' />
+<meta name="twitter:title" content="Computer Networking - P2P and Dash">
+<meta name="twitter:description" content="컴퓨터 네트워크 - P2P and Dash"><meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content='https://yansigit.github.io/images/lighthouse.jpg' />
+    </head>
+    <body class="
+    article-page has-toc
+">
+    <script>
+        (function() {
+            const colorSchemeKey = 'StackColorScheme';
+            if(!localStorage.getItem(colorSchemeKey)){
+                localStorage.setItem(colorSchemeKey, "auto");
+            }
+        })();
+    </script><script>
+    (function() {
+        const colorSchemeKey = 'StackColorScheme';
+        const colorSchemeItem = localStorage.getItem(colorSchemeKey);
+        const supportDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches === true;
+
+        if (colorSchemeItem == 'dark' || colorSchemeItem === 'auto' && supportDarkMode) {
+            
+
+            document.documentElement.dataset.scheme = 'dark';
+        } else {
+            document.documentElement.dataset.scheme = 'light';
+        }
+    })();
+</script>
+<div class="container main-container flex 
+    
+        extended
+    
+">
+    
+        <div id="article-toolbar">
+            <a href="https://yansigit.github.io" class="back-home">
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-chevron-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <polyline points="15 6 9 12 15 18" />
+</svg>
+
+
+
+                <span>Back</span>
+            </a>
+        </div>
+    
+<main class="main full-width">
+    <article class="main-article">
+    <header class="article-header">
+
+    <div class="article-details">
+    
+    <header class="article-category">
+        
+            <a href="/categories/computer-networking/" >
+                computer-networking
+            </a>
+        
+    </header>
+    
+
+    <h2 class="article-title">
+        <a href="/blog/computer-networking-p2p-and-dash/">Computer Networking - P2P and Dash</a>
+    </h2>
+
+    
+    <h3 class="article-subtitle">
+        컴퓨터 네트워크 - P2P and Dash
+    </h3>
+    
+
+    
+    <footer class="article-time">
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-calendar-time" width="56" height="56" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M11.795 21h-6.795a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v4" />
+  <circle cx="18" cy="18" r="4" />
+  <path d="M15 3v4" />
+  <path d="M7 3v4" />
+  <path d="M3 11h16" />
+  <path d="M18 16.496v1.504l1 1" />
+</svg>
+                <time class="article-time--published">Sep 17, 2020</time>
+            </div>
+        
+
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <polyline points="12 7 12 12 15 15" />
+</svg>
+
+
+
+                <time class="article-time--reading">
+                    3 minute read
+                </time>
+            </div>
+        
+    </footer>
+    
+</div>
+</header>
+
+    <section class="article-content">
+    <p>Computer Networking - P2P and Dash</p>
+<h1 id="computer-network-p2p-and-dash">Computer-Network-P2P-and-Dash</h1>
+<h1 id="1-pure-p2p-아키텍쳐">1. Pure P2P 아키텍쳐</h1>
+<ul>
+<li>Always-On 서버 없음</li>
+<li>임의의 엔드 시스템들이 서로 통신 (Peer)</li>
+<li>피어들은 간헐적으로 연결되며 IP가 변경될 수 있음</li>
+<li>예
+<ul>
+<li>Bittorrent</li>
+<li>VoIP</li>
+</ul>
+</li>
+</ul>
+<h2 id="클라이언트-서버-vs-p2p">클라이언트-서버 VS P2P</h2>
+<blockquote>
+<p>Q. 사이즈가 <code>F</code>인 파일을 <code>N</code>개의 피어에게 전송할 때 얼마나 걸리나?</p>
+</blockquote>
+<h3 id="클라이언트-서버의-경우">클라이언트-서버의 경우</h3>
+<p><figure 
+	>
+	<a href="/posts/computer-network-p2p-and-dash/Untitled.png" >
+		<img src="/posts/computer-network-p2p-and-dash/Untitled.png"
+			
+			
+			
+			loading="lazy"
+			alt="image">
+	</a>
+	
+	<figcaption>image</figcaption>
+	
+</figure></p>
+<ul>
+<li>
+<p><strong>서버의 입장에서</strong></p>
+<ul>
+<li>
+<p>파일은 순차적을 보낸다.</p>
+</li>
+<li>
+<p>한 개 보낼 때</p>
+<p>$$F/u_s$$</p>
+</li>
+<li>
+<p>여러 카피 보낼 때</p>
+<p>$$N×F/u_s$$</p>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>클라이언트 입장에서</strong></p>
+<ul>
+<li>dmin = 최소 클라이언트 다운 속도</li>
+</ul>
+<p>$$F/d_{min}$$</p>
+</li>
+<li>
+<p>결과</p>
+<p>$$D_{cs} ≥ max(NF/u_s,F/d_{min})$$</p>
+</li>
+</ul>
+<h3 id="p2p의-경우">P2P의 경우</h3>
+<ul>
+<li>
+<p><strong>서버 역할 피어</strong></p>
+<ul>
+<li>일단 최소한 한 개의 파일은 업로드해야함</li>
+</ul>
+<p>$$F/u_s$$</p>
+</li>
+<li>
+<p><strong>클라이언트 역할 피어</strong></p>
+<p>$$F/d_{min}$$</p>
+</li>
+<li>
+<p><strong>최상의 경우</strong></p>
+<ul>
+<li>서버 역할 피어와 다른 모든 <code>i</code>개의 피어가 업로드 하고있을 경우</li>
+</ul>
+<p>$$NF/(u_s+ \sum u_i)$$</p>
+</li>
+<li>
+<p><strong>결과</strong></p>
+<p>$$D_{P2P} ≥ max{F/u_s,F/d_{min},NF/(u_s + \sum u_i)} $$</p>
+</li>
+</ul>
+<h2 id="차이">차이</h2>
+<p><figure 
+	>
+	<a href="/posts/computer-network-p2p-and-dash/Untitled%201.png" >
+		<img src="/posts/computer-network-p2p-and-dash/Untitled%201.png"
+			
+			
+			
+			loading="lazy"
+			alt="image">
+	</a>
+	
+	<figcaption>image</figcaption>
+	
+</figure></p>
+<blockquote>
+<p>클라이언트-서버 구조에서는 N이 커지면 전송시간 또한 선형적으로 커진다</p>
+</blockquote>
+<blockquote>
+<p>그러나 P2P 구조에서는 N이 커져도 클아이언트-서버 구조처럼 드라마틱하게 전송시간이 늘어나지 않는다</p>
+</blockquote>
+<h1 id="2-비트토렌트">2. 비트토렌트</h1>
+<p><figure 
+	>
+	<a href="/posts/computer-network-p2p-and-dash/Untitled%202.png" >
+		<img src="/posts/computer-network-p2p-and-dash/Untitled%202.png"
+			
+			
+			
+			loading="lazy"
+			alt="image">
+	</a>
+	
+	<figcaption>image</figcaption>
+	
+</figure></p>
+<ul>
+<li>파일은 256KB의 청크로 나뉘어짐</li>
+<li><strong>토렌트</strong>: 파일을 공유하는 피어들의 그룹</li>
+<li><strong>트래커</strong>: 토렌트 내부의 피어들의 참여도 등을 추적</li>
+<li>토렌트에 처음 참여한 유저는 청크가 없다.
+<ul>
+<li>다른 피어들에게서 청크를 받으며 점점 채워나간다</li>
+<li>트래커에게서 피어 리스트를 받은 후 일부 피어들과 통신함 (neighbor)</li>
+</ul>
+</li>
+<li>다운로드와 동시에 받은 청크를 업로드 가능</li>
+<li>통신중인 피어들은 나가거나 새로 들어올 수 있다</li>
+<li>파일을 다 받은 후에는 토렌트에 남거나 떠날 수 있다</li>
+</ul>
+<h2 id="비트토렌트-청크">비트토렌트 청크</h2>
+<ul>
+<li><strong>요청</strong>
+<ul>
+<li>피어들은 각각 다른 파일들의 조각 (청크)을 가지고 있을 수 있다.</li>
+<li>그러므로 피어들은 주기적으로 다른 피어들이 가지고 있는 청크의 리스트를 요청해 받는다</li>
+<li>청크들을 요청할때는 최대한 레어한 청크부터 받는다.</li>
+</ul>
+</li>
+<li><strong>전송</strong>
+<ul>
+<li><strong>Tit-For-Tat</strong>
+<ul>
+<li>눈에는 눈 이에는 이</li>
+<li>나에게 파일을 보내야 나도 너에게 보낸다</li>
+</ul>
+</li>
+<li>자신에게 가장 높은 속도로 청크를 보내고 있는 <strong>4명의 피어</strong>에게 청크를 전송한다
+<ul>
+<li>나머지에게는 전송하지 않는다 (<strong>Chocked</strong>)</li>
+</ul>
+</li>
+<li>해당 4명의 피어 리스트는 10초마다 한번씩 갱신된다</li>
+<li><strong>Optimistically Unchoke</strong>
+<ul>
+<li>30초마다 추가로 랜덤하게 피어를 골라 청크를 전송한다</li>
+<li>해당 피어가 지금 4명의 피어 리스트에 있는 피어들보다 빠르다면
+<ul>
+<li>그 피어가 새로운 <strong>Top 4</strong>가 될 것</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h1 id="3-비디오-스트리밍과-cdn">3. 비디오 스트리밍과 CDN</h1>
+<h2 id="비디오-스트리밍">비디오 스트리밍</h2>
+<ul>
+<li>비디오 트래픽이 인터넷 Bandwidth를 가장 많이 잡아먹음</li>
+<li>서비스 업체들의 고민
+<ul>
+<li>어떻게 수억명이 넘는 유저들을 다 수용하는가?
+<ul>
+<li>하나의 서버로는 절대 수용 못한다 (네임서버 기억)</li>
+</ul>
+</li>
+<li>유저마다 다른 환경
+<ul>
+<li>PC, 모바일</li>
+<li>각기 다른 인터넷 속도 등</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>솔루션
+<ul>
+<li>분산된, 애플리케이션 레벨의 인프라 서비스 (DASH)</li>
+</ul>
+</li>
+</ul>
+<h2 id="멀티미디어-비디오">멀티미디어: 비디오</h2>
+<ul>
+<li>비디오란
+<ul>
+<li>고정된 속도로 디스플레이되는 연속된 이미지</li>
+<li>예) 24프레임</li>
+</ul>
+</li>
+<li>이미지
+<ul>
+<li>픽셀의 집합</li>
+<li>각 픽셀은 비트로 표현됨</li>
+</ul>
+</li>
+<li>코딩
+<ul>
+<li>이미지 간의 중복성을 이용해 이미지 비트를 줄임
+<ul>
+<li>Spatial
+<ul>
+<li>한 이미지 내에서 중복되는 픽셀을 이용</li>
+</ul>
+</li>
+<li>Temporal
+<ul>
+<li>프레임 간에 차이점을 이용</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>CBR</li>
+<li>VBR</li>
+</ul>
+</li>
+</ul>
+<h2 id="dash-dynamic-adaptive-streaming-over-http">DASH (Dynamic Adaptive Streaming over HTTP)</h2>
+<blockquote>
+<p>유튜브에서 인터넷 속도에 따라 저화질, 중화질, 고화질 변경하는 것을 생각</p>
+</blockquote>
+<h3 id="server">SERVER</h3>
+<ul>
+<li>파일을 여러개의 청크로 쪼갬</li>
+<li>각각 청크들은 각기 다른 속도로 인코딩 됨</li>
+<li>Manifest file
+<ul>
+<li>각각의 청크들의 URL을 제공</li>
+</ul>
+</li>
+</ul>
+<h3 id="client">CLIENT</h3>
+<ul>
+<li>주기적으로 서버-클라이언트 간 Bandwidth를 측정</li>
+<li>그 속도를 기반으로 Manifest 파일을 보고 적절한 청크를 요청
+<ul>
+<li>지금 Bandwidth 내에서 수용가능한 최대 레이트를 고름</li>
+<li>시간에 따라서 인터넷 속도가 달라질 수 있음
+<ul>
+<li>그때그때 청크의 레이트 변경하며 요청할 수 있다</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><strong>클라이언트가 주도 (Intelligence)</strong>
+<ul>
+<li>언제 청크를 요청할 것인가
+<ul>
+<li>너무 빠르게 요청해 받으면 버퍼 오버플로우 발생</li>
+<li>너무 늦게 요청해 받으면 버퍼가 비어 버퍼링 발생</li>
+</ul>
+</li>
+<li>어떤 레이트로
+<ul>
+<li>Bandwidth가 충분하다면 더 나은 화질 요청</li>
+</ul>
+</li>
+<li>어디에 청크를 요청할 것인가
+<ul>
+<li>클라이언트에서 물리적으로 더 가깝거나 더 빠른 회선의 서버에 요청 가능</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="수많은-요청-처리">수많은 요청 처리</h2>
+<blockquote>
+<p>CDN을 이용, 영상의 COPY들을 나눠 분산 처리</p>
+</blockquote>
+<ul>
+<li>Enter Deep
+<ul>
+<li>엑세스 네트워크에 많은 CDN 서버를 둠</li>
+<li>유저들에 더 가깝게</li>
+</ul>
+</li>
+<li>Bring Home
+<ul>
+<li>상대적으로 더 큰 몇개의 서버들을 엑세스 네트워크들 근처(POP)에 둠</li>
+</ul>
+</li>
+<li>네트워크 상황 등에 따라 각기 다른 CDN 노드를 선택해 사용 가능</li>
+<li>고민
+<ul>
+<li>어떤 CDN 노드로부터 컨텐츠를 받을 것인가?</li>
+<li>혼잡이 발생했을 때 Viewer는 어떻게 대처할 것인가?</li>
+<li>이를 Over The Top (OTT) 라고 함</li>
+<li>어떤 컨텐츠가 어떤 CDN에 위치할 것인가?</li>
+</ul>
+</li>
+</ul>
+<h2 id="dns를-통한-cdn-컨텐츠-엑세스">DNS를 통한 CDN 컨텐츠 엑세스</h2>
+<p><figure 
+	>
+	<a href="/posts/computer-network-p2p-and-dash/Untitled%203.png" >
+		<img src="/posts/computer-network-p2p-and-dash/Untitled%203.png"
+			
+			
+			
+			loading="lazy"
+			alt="image">
+	</a>
+	
+	<figcaption>image</figcaption>
+	
+</figure></p>
+<ol>
+<li>유저가 컨텐츠에 접속
+<ul>
+<li><a class="link" href="http://video.netcinema.com/7FV50GAD"  target="_blank" rel="noopener"
+    >http://video.netcinema.com/7FV50GAD</a></li>
+</ul>
+</li>
+<li>유저는 로컬 DNS 서버에 해당 주소의 IP를 찾기 위해 DNS 질의</li>
+<li>질의 끝에 Netcinema의 Authoratative DNS 서버에서 CDN의 주소인 <a class="link" href="http://a1133.kingcdn.com"  target="_blank" rel="noopener"
+    >http://a1133.kingcdn.com</a> 알려줌</li>
+<li>로컬 DNS는 KingCDN의 DNS 서버에 다시 질의하고, CDN의 DNS 서버는 실제 CDN 서버의 IP를 알려줌</li>
+<li>유저는 컨텐츠를 HTTP를 통해 스트리밍하며 받아봄</li>
+</ol>
+<h2 id="넷플릭스의-대략적-구조">넷플릭스의 대략적 구조</h2>
+<p><figure 
+	>
+	<a href="/posts/computer-network-p2p-and-dash/Untitled%204.png" >
+		<img src="/posts/computer-network-p2p-and-dash/Untitled%204.png"
+			
+			
+			
+			loading="lazy"
+			alt="image">
+	</a>
+	
+	<figcaption>image</figcaption>
+	
+</figure></p>
+</section>
+
+
+    <footer class="article-footer">
+    
+    <section class="article-tags">
+        
+            <a href="/tags/computer-networking/">computer-networking</a>
+        
+            <a href="/tags/network/">network</a>
+        
+            <a href="/tags/networking/">networking</a>
+        
+            <a href="/tags/p2p/">p2p</a>
+        
+            <a href="/tags/dash/">dash</a>
+        
+    </section>
+
+
+    
+    <section class="article-copyright">
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-copyright" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <path d="M14.5 9a3.5 4 0 1 0 0 6" />
+</svg>
+
+
+
+        <span>Licensed under CC BY-NC-SA 4.0</span>
+    </section>
+    </footer>
+
+
+    
+</article>
+
+    <aside class="related-contents--wrapper">
+    
+    
+        <h2 class="section-title">Related contents</h2>
+        <div class="related-contents">
+            <div class="flex article-list--tile">
+                
+                    
+<article class="">
+    <a href="/blog/computer-networking-email-and-dns/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">Computer Networking - Email and DNS</h2>
+        </div>
+    </a>
+</article>
+                
+                    
+<article class="">
+    <a href="/blog/computer-networking-final-quick-note/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">Computer Networking - Final Quick Note</h2>
+        </div>
+    </a>
+</article>
+                
+                    
+<article class="">
+    <a href="/blog/computer-networking-flow-control-and-handshake/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">Computer Networking - Flow Control and Handshake</h2>
+        </div>
+    </a>
+</article>
+                
+                    
+<article class="">
+    <a href="/blog/computer-networking-http/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">Computer Networking - HTTP</h2>
+        </div>
+    </a>
+</article>
+                
+                    
+<article class="">
+    <a href="/blog/computer-networking-network-multimedia/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">Computer Networking - Network Multimedia</h2>
+        </div>
+    </a>
+</article>
+                
+            </div>
+        </div>
+    
+</aside>
+
+     
+    
+        
+    <script src="https://utteranc.es/client.js" 
+        repo="yansigit/yansigit.github.io"
+        issue-term="pathname"
+        
+        label="Utterances Comment"
+        
+        crossorigin="anonymous"
+        async
+        >
+</script>
+
+<style>
+    .utterances {
+        max-width: unset;
+    }
+</style>
+
+<script>
+    function setUtterancesTheme(theme) {
+        let utterances = document.querySelector('.utterances iframe');
+        if (utterances) {
+            utterances.contentWindow.postMessage(
+                {
+                    type: 'set-theme',
+                    theme: `github-${theme}`
+                },
+                'https://utteranc.es'
+            );
+        }
+    }
+
+    addEventListener('message', event => {
+        if (event.origin !== 'https://utteranc.es') return;
+        setUtterancesTheme(document.documentElement.dataset.scheme)
+    });
+
+    window.addEventListener('onColorSchemeChange', (e) => {
+        setUtterancesTheme(e.detail)
+    })
+</script>
+
+
+    
+
+    <footer class="site-footer">
+    <section class="copyright">
+        &copy; 
+        
+            2020 - 
+        
+        2021 Code like Feather
+    </section>
+    
+    <section class="powerby">
+        Built with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> <br />
+        Theme <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="3.2.0">Stack</a></b> designed by <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a>
+    </section>
+</footer>
+
+
+    
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    
+    <div class="pswp__bg"></div>
+
+    
+    <div class="pswp__scroll-wrap">
+
+        
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                
+                
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"integrity="sha256-ePwmChbbvXbsO02lbM3HoHbSHTHFAeChekF1xKJdleo="crossorigin="anonymous"
+                defer="true"
+                >
+            </script><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"integrity="sha256-UKkzOn/w1mBxRmLLGrSeyB4e1xbrp4xylgAWb3M42pU="crossorigin="anonymous"
+                defer="true"
+                >
+            </script><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.css"integrity="sha256-c0uckgykQ9v5k&#43;IqViZOZKc47Jn7KQil4/MP3ySA3F8="crossorigin="anonymous"
+            ><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.css"integrity="sha256-SBLU4vv6CA6lHsZ1XyTdhyjJxCjPif/TRkjnsyGAGnE="crossorigin="anonymous"
+            >
+
+            </main>
+    
+        <aside class="sidebar right-sidebar sticky">
+            <section class="widget archives">
+                <div class="widget-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-hash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <line x1="5" y1="9" x2="19" y2="9" />
+  <line x1="5" y1="15" x2="19" y2="15" />
+  <line x1="11" y1="4" x2="7" y2="20" />
+  <line x1="17" y1="4" x2="13" y2="20" />
+</svg>
+
+
+
+                </div>
+                <h2 class="widget-title section-title">Table of contents</h2>
+                
+                <div class="widget--toc">
+                    <nav id="TableOfContents">
+  <ol>
+    <li><a href="#클라이언트-서버-vs-p2p">클라이언트-서버 VS P2P</a>
+      <ol>
+        <li><a href="#클라이언트-서버의-경우">클라이언트-서버의 경우</a></li>
+        <li><a href="#p2p의-경우">P2P의 경우</a></li>
+      </ol>
+    </li>
+    <li><a href="#차이">차이</a></li>
+  </ol>
+
+  <ol>
+    <li><a href="#비트토렌트-청크">비트토렌트 청크</a></li>
+  </ol>
+
+  <ol>
+    <li><a href="#비디오-스트리밍">비디오 스트리밍</a></li>
+    <li><a href="#멀티미디어-비디오">멀티미디어: 비디오</a></li>
+    <li><a href="#dash-dynamic-adaptive-streaming-over-http">DASH (Dynamic Adaptive Streaming over HTTP)</a>
+      <ol>
+        <li><a href="#server">SERVER</a></li>
+        <li><a href="#client">CLIENT</a></li>
+      </ol>
+    </li>
+    <li><a href="#수많은-요청-처리">수많은 요청 처리</a></li>
+    <li><a href="#dns를-통한-cdn-컨텐츠-엑세스">DNS를 통한 CDN 컨텐츠 엑세스</a></li>
+    <li><a href="#넷플릭스의-대략적-구조">넷플릭스의 대략적 구조</a></li>
+  </ol>
+</nav>
+                </div>
+            </section>
+        </aside>
+    
+
+        </div>
+        <script 
+                src="https://cdn.jsdelivr.net/npm/node-vibrant@3.1.5/dist/vibrant.min.js"integrity="sha256-5NovOZc4iwiAWTYIFiIM7DxKUXKWvpVEuMEPLzcm5/g="crossorigin="anonymous"
+                defer="false"
+                >
+            </script><script type="text/javascript" src="/ts/main.js" defer></script>
+<script>
+    (function () {
+        const customFont = document.createElement('link');
+        customFont.href = "https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap";
+
+        customFont.type = "text/css";
+        customFont.rel = "stylesheet";
+
+        document.head.appendChild(customFont);
+    }());
+</script>
+
+    </body>
+</html>

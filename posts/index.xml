@@ -1,0 +1,1170 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Posts on Code like Feather</title>
+    <link>https://yansigit.github.io/posts/</link>
+    <description>Recent content in Posts on Code like Feather</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>ko-kr</language>
+    <lastBuildDate>Wed, 07 Jul 2021 00:04:34 +0900</lastBuildDate><atom:link href="https://yansigit.github.io/posts/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Classification</title>
+      <link>https://yansigit.github.io/blog/classification/</link>
+      <pubDate>Wed, 07 Jul 2021 00:04:34 +0900</pubDate>
+      
+      <guid>https://yansigit.github.io/blog/classification/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Clustering (군집화)</title>
+      <link>https://yansigit.github.io/blog/clustering-%EA%B5%B0%EC%A7%91%ED%99%94/</link>
+      <pubDate>Wed, 07 Jul 2021 00:04:34 +0900</pubDate>
+      
+      <guid>https://yansigit.github.io/blog/clustering-%EA%B5%B0%EC%A7%91%ED%99%94/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Data Processing</title>
+      <link>https://yansigit.github.io/blog/data-processing/</link>
+      <pubDate>Wed, 07 Jul 2021 00:04:34 +0900</pubDate>
+      
+      <guid>https://yansigit.github.io/blog/data-processing/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Deep Neural Network</title>
+      <link>https://yansigit.github.io/blog/deep-neural-network/</link>
+      <pubDate>Wed, 07 Jul 2021 00:04:34 +0900</pubDate>
+      
+      <guid>https://yansigit.github.io/blog/deep-neural-network/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Dicision Tree</title>
+      <link>https://yansigit.github.io/blog/dicision-tree/</link>
+      <pubDate>Wed, 07 Jul 2021 00:04:34 +0900</pubDate>
+      
+      <guid>https://yansigit.github.io/blog/dicision-tree/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Dimensionality Reduction (차원축소)</title>
+      <link>https://yansigit.github.io/blog/dimensionality-reduction-%EC%B0%A8%EC%9B%90%EC%B6%95%EC%86%8C/</link>
+      <pubDate>Wed, 07 Jul 2021 00:04:34 +0900</pubDate>
+      
+      <guid>https://yansigit.github.io/blog/dimensionality-reduction-%EC%B0%A8%EC%9B%90%EC%B6%95%EC%86%8C/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Neural Network</title>
+      <link>https://yansigit.github.io/blog/neural-network/</link>
+      <pubDate>Wed, 07 Jul 2021 00:04:34 +0900</pubDate>
+      
+      <guid>https://yansigit.github.io/blog/neural-network/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Regression (회귀)</title>
+      <link>https://yansigit.github.io/blog/regression-%ED%9A%8C%EA%B7%80/</link>
+      <pubDate>Wed, 07 Jul 2021 00:04:34 +0900</pubDate>
+      
+      <guid>https://yansigit.github.io/blog/regression-%ED%9A%8C%EA%B7%80/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Supervised Learning</title>
+      <link>https://yansigit.github.io/blog/supervised-learning/</link>
+      <pubDate>Wed, 07 Jul 2021 00:04:34 +0900</pubDate>
+      
+      <guid>https://yansigit.github.io/blog/supervised-learning/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Unsupervised Learning</title>
+      <link>https://yansigit.github.io/blog/unsupervised-learning/</link>
+      <pubDate>Wed, 07 Jul 2021 00:04:34 +0900</pubDate>
+      
+      <guid>https://yansigit.github.io/blog/unsupervised-learning/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>게임트리</title>
+      <link>https://yansigit.github.io/blog/%EA%B2%8C%EC%9E%84%ED%8A%B8%EB%A6%AC/</link>
+      <pubDate>Wed, 07 Jul 2021 00:04:34 +0900</pubDate>
+      
+      <guid>https://yansigit.github.io/blog/%EA%B2%8C%EC%9E%84%ED%8A%B8%EB%A6%AC/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>딥러닝 인터뷰</title>
+      <link>https://yansigit.github.io/blog/%EB%94%A5%EB%9F%AC%EB%8B%9D-%EC%9D%B8%ED%84%B0%EB%B7%B0/</link>
+      <pubDate>Wed, 07 Jul 2021 00:04:34 +0900</pubDate>
+      
+      <guid>https://yansigit.github.io/blog/%EB%94%A5%EB%9F%AC%EB%8B%9D-%EC%9D%B8%ED%84%B0%EB%B7%B0/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>머신러닝</title>
+      <link>https://yansigit.github.io/blog/%EB%A8%B8%EC%8B%A0%EB%9F%AC%EB%8B%9D/</link>
+      <pubDate>Wed, 07 Jul 2021 00:04:34 +0900</pubDate>
+      
+      <guid>https://yansigit.github.io/blog/%EB%A8%B8%EC%8B%A0%EB%9F%AC%EB%8B%9D/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>머신러닝 용어정리</title>
+      <link>https://yansigit.github.io/blog/%EB%A8%B8%EC%8B%A0%EB%9F%AC%EB%8B%9D-%EC%9A%A9%EC%96%B4%EC%A0%95%EB%A6%AC/</link>
+      <pubDate>Wed, 07 Jul 2021 00:04:34 +0900</pubDate>
+      
+      <guid>https://yansigit.github.io/blog/%EB%A8%B8%EC%8B%A0%EB%9F%AC%EB%8B%9D-%EC%9A%A9%EC%96%B4%EC%A0%95%EB%A6%AC/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>베이즈 정리와 확신도</title>
+      <link>https://yansigit.github.io/blog/%EB%B2%A0%EC%9D%B4%EC%A6%88-%EC%A0%95%EB%A6%AC%EC%99%80-%ED%99%95%EC%8B%A0%EB%8F%84/</link>
+      <pubDate>Wed, 07 Jul 2021 00:04:34 +0900</pubDate>
+      
+      <guid>https://yansigit.github.io/blog/%EB%B2%A0%EC%9D%B4%EC%A6%88-%EC%A0%95%EB%A6%AC%EC%99%80-%ED%99%95%EC%8B%A0%EB%8F%84/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>부정확한 언어 - 퍼지이론</title>
+      <link>https://yansigit.github.io/blog/%EB%B6%80%EC%A0%95%ED%99%95%ED%95%9C-%EC%96%B8%EC%96%B4-%ED%8D%BC%EC%A7%80%EC%9D%B4%EB%A1%A0/</link>
+      <pubDate>Wed, 07 Jul 2021 00:04:34 +0900</pubDate>
+      
+      <guid>https://yansigit.github.io/blog/%EB%B6%80%EC%A0%95%ED%99%95%ED%95%9C-%EC%96%B8%EC%96%B4-%ED%8D%BC%EC%A7%80%EC%9D%B4%EB%A1%A0/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>유전 알고리즘</title>
+      <link>https://yansigit.github.io/blog/%EC%9C%A0%EC%A0%84-%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98/</link>
+      <pubDate>Wed, 07 Jul 2021 00:04:34 +0900</pubDate>
+      
+      <guid>https://yansigit.github.io/blog/%EC%9C%A0%EC%A0%84-%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>전문가 시스템</title>
+      <link>https://yansigit.github.io/blog/%EC%A0%84%EB%AC%B8%EA%B0%80-%EC%8B%9C%EC%8A%A4%ED%85%9C/</link>
+      <pubDate>Wed, 07 Jul 2021 00:04:34 +0900</pubDate>
+      
+      <guid>https://yansigit.github.io/blog/%EC%A0%84%EB%AC%B8%EA%B0%80-%EC%8B%9C%EC%8A%A4%ED%85%9C/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>탐색 알고리즘</title>
+      <link>https://yansigit.github.io/blog/%ED%83%90%EC%83%89-%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98/</link>
+      <pubDate>Wed, 07 Jul 2021 00:04:34 +0900</pubDate>
+      
+      <guid>https://yansigit.github.io/blog/%ED%83%90%EC%83%89-%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>튜링 테스트와 머신러닝 기초</title>
+      <link>https://yansigit.github.io/blog/%ED%8A%9C%EB%A7%81-%ED%85%8C%EC%8A%A4%ED%8A%B8%EC%99%80-%EB%A8%B8%EC%8B%A0%EB%9F%AC%EB%8B%9D-%EA%B8%B0%EC%B4%88/</link>
+      <pubDate>Wed, 07 Jul 2021 00:04:34 +0900</pubDate>
+      
+      <guid>https://yansigit.github.io/blog/%ED%8A%9C%EB%A7%81-%ED%85%8C%EC%8A%A4%ED%8A%B8%EC%99%80-%EB%A8%B8%EC%8B%A0%EB%9F%AC%EB%8B%9D-%EA%B8%B0%EC%B4%88/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Little Tips Installing Flutter</title>
+      <link>https://yansigit.github.io/blog/little-tips-installing-flutter/</link>
+      <pubDate>Sat, 19 Sep 2020 14:16:38 +0900</pubDate>
+      
+      <guid>https://yansigit.github.io/blog/little-tips-installing-flutter/</guid>
+      <description>&lt;p&gt;Notes for dealing with problems while installing flutter&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>운영체제 - CPU</title>
+      <link>https://yansigit.github.io/blog/%EC%9A%B4%EC%98%81%EC%B2%B4%EC%A0%9C-cpu/</link>
+      <pubDate>Fri, 18 Sep 2020 23:24:53 +0900</pubDate>
+      
+      <guid>https://yansigit.github.io/blog/%EC%9A%B4%EC%98%81%EC%B2%B4%EC%A0%9C-cpu/</guid>
+      <description>&lt;p&gt;CPU&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>운영체제 - CPU 스케줄링</title>
+      <link>https://yansigit.github.io/blog/%EC%9A%B4%EC%98%81%EC%B2%B4%EC%A0%9C-cpu-%EC%8A%A4%EC%BC%80%EC%A4%84%EB%A7%81/</link>
+      <pubDate>Fri, 18 Sep 2020 23:24:53 +0900</pubDate>
+      
+      <guid>https://yansigit.github.io/blog/%EC%9A%B4%EC%98%81%EC%B2%B4%EC%A0%9C-cpu-%EC%8A%A4%EC%BC%80%EC%A4%84%EB%A7%81/</guid>
+      <description>&lt;p&gt;CPU 스케줄링&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>운영체제 - CPU 스케줄링 알고리즘</title>
+      <link>https://yansigit.github.io/blog/%EC%9A%B4%EC%98%81%EC%B2%B4%EC%A0%9C-cpu-%EC%8A%A4%EC%BC%80%EC%A4%84%EB%A7%81-%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98/</link>
+      <pubDate>Fri, 18 Sep 2020 23:24:53 +0900</pubDate>
+      
+      <guid>https://yansigit.github.io/blog/%EC%9A%B4%EC%98%81%EC%B2%B4%EC%A0%9C-cpu-%EC%8A%A4%EC%BC%80%EC%A4%84%EB%A7%81-%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98/</guid>
+      <description>&lt;p&gt;CPU 스케줄링 알고리즘&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>운영체제 - RAID</title>
+      <link>https://yansigit.github.io/blog/%EC%9A%B4%EC%98%81%EC%B2%B4%EC%A0%9C-raid/</link>
+      <pubDate>Fri, 18 Sep 2020 23:24:53 +0900</pubDate>
+      
+      <guid>https://yansigit.github.io/blog/%EC%9A%B4%EC%98%81%EC%B2%B4%EC%A0%9C-raid/</guid>
+      <description>&lt;p&gt;RAID&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>운영체제 - 가상 메모리</title>
+      <link>https://yansigit.github.io/blog/%EC%9A%B4%EC%98%81%EC%B2%B4%EC%A0%9C-%EA%B0%80%EC%83%81-%EB%A9%94%EB%AA%A8%EB%A6%AC/</link>
+      <pubDate>Fri, 18 Sep 2020 23:24:53 +0900</pubDate>
+      
+      <guid>https://yansigit.github.io/blog/%EC%9A%B4%EC%98%81%EC%B2%B4%EC%A0%9C-%EA%B0%80%EC%83%81-%EB%A9%94%EB%AA%A8%EB%A6%AC/</guid>
+      <description>&lt;p&gt;가상 메모리&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>운영체제 - 가상메모리 관리</title>
+      <link>https://yansigit.github.io/blog/%EC%9A%B4%EC%98%81%EC%B2%B4%EC%A0%9C-%EA%B0%80%EC%83%81%EB%A9%94%EB%AA%A8%EB%A6%AC-%EA%B4%80%EB%A6%AC/</link>
+      <pubDate>Fri, 18 Sep 2020 23:24:53 +0900</pubDate>
+      
+      <guid>https://yansigit.github.io/blog/%EC%9A%B4%EC%98%81%EC%B2%B4%EC%A0%9C-%EA%B0%80%EC%83%81%EB%A9%94%EB%AA%A8%EB%A6%AC-%EA%B4%80%EB%A6%AC/</guid>
+      <description>&lt;p&gt;가상메모리 관리&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>운영체제 - 공유자원과 임계구역</title>
+      <link>https://yansigit.github.io/blog/%EC%9A%B4%EC%98%81%EC%B2%B4%EC%A0%9C-%EA%B3%B5%EC%9C%A0%EC%9E%90%EC%9B%90%EA%B3%BC-%EC%9E%84%EA%B3%84%EA%B5%AC%EC%97%AD/</link>
+      <pubDate>Fri, 18 Sep 2020 23:24:53 +0900</pubDate>
+      
+      <guid>https://yansigit.github.io/blog/%EC%9A%B4%EC%98%81%EC%B2%B4%EC%A0%9C-%EA%B3%B5%EC%9C%A0%EC%9E%90%EC%9B%90%EA%B3%BC-%EC%9E%84%EA%B3%84%EA%B5%AC%EC%97%AD/</guid>
+      <description>&lt;p&gt;공유자원과 임계구역&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>운영체제 - 교착상태</title>
+      <link>https://yansigit.github.io/blog/%EC%9A%B4%EC%98%81%EC%B2%B4%EC%A0%9C-%EA%B5%90%EC%B0%A9%EC%83%81%ED%83%9C/</link>
+      <pubDate>Fri, 18 Sep 2020 23:24:53 +0900</pubDate>
+      
+      <guid>https://yansigit.github.io/blog/%EC%9A%B4%EC%98%81%EC%B2%B4%EC%A0%9C-%EA%B5%90%EC%B0%A9%EC%83%81%ED%83%9C/</guid>
+      <description>&lt;p&gt;교착상태&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>운영체제 - 네트워크 저장장치</title>
+      <link>https://yansigit.github.io/blog/%EC%9A%B4%EC%98%81%EC%B2%B4%EC%A0%9C-%EB%84%A4%ED%8A%B8%EC%9B%8C%ED%81%AC-%EC%A0%80%EC%9E%A5%EC%9E%A5%EC%B9%98/</link>
+      <pubDate>Fri, 18 Sep 2020 23:24:53 +0900</pubDate>
+      
+      <guid>https://yansigit.github.io/blog/%EC%9A%B4%EC%98%81%EC%B2%B4%EC%A0%9C-%EB%84%A4%ED%8A%B8%EC%9B%8C%ED%81%AC-%EC%A0%80%EC%9E%A5%EC%9E%A5%EC%B9%98/</guid>
+      <description>&lt;p&gt;네트워크 저장장치&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>운영체제 - 네트워크와 인터넷</title>
+      <link>https://yansigit.github.io/blog/%EC%9A%B4%EC%98%81%EC%B2%B4%EC%A0%9C-%EB%84%A4%ED%8A%B8%EC%9B%8C%ED%81%AC%EC%99%80-%EC%9D%B8%ED%84%B0%EB%84%B7/</link>
+      <pubDate>Fri, 18 Sep 2020 23:24:53 +0900</pubDate>
+      
+      <guid>https://yansigit.github.io/blog/%EC%9A%B4%EC%98%81%EC%B2%B4%EC%A0%9C-%EB%84%A4%ED%8A%B8%EC%9B%8C%ED%81%AC%EC%99%80-%EC%9D%B8%ED%84%B0%EB%84%B7/</guid>
+      <description>&lt;p&gt;네트워크와 인터넷&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>운영체제 - 디스크 스케줄링</title>
+      <link>https://yansigit.github.io/blog/%EC%9A%B4%EC%98%81%EC%B2%B4%EC%A0%9C-%EB%94%94%EC%8A%A4%ED%81%AC-%EC%8A%A4%EC%BC%80%EC%A4%84%EB%A7%81/</link>
+      <pubDate>Fri, 18 Sep 2020 23:24:53 +0900</pubDate>
+      
+      <guid>https://yansigit.github.io/blog/%EC%9A%B4%EC%98%81%EC%B2%B4%EC%A0%9C-%EB%94%94%EC%8A%A4%ED%81%AC-%EC%8A%A4%EC%BC%80%EC%A4%84%EB%A7%81/</guid>
+      <description>&lt;p&gt;디스크 스케줄링&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>운영체제 - 메인보드</title>
+      <link>https://yansigit.github.io/blog/%EC%9A%B4%EC%98%81%EC%B2%B4%EC%A0%9C-%EB%A9%94%EC%9D%B8%EB%B3%B4%EB%93%9C/</link>
+      <pubDate>Fri, 18 Sep 2020 23:24:53 +0900</pubDate>
+      
+      <guid>https://yansigit.github.io/blog/%EC%9A%B4%EC%98%81%EC%B2%B4%EC%A0%9C-%EB%A9%94%EC%9D%B8%EB%B3%B4%EB%93%9C/</guid>
+      <description>&lt;p&gt;메인보드&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>운영체제 - 물리 메모리 관리</title>
+      <link>https://yansigit.github.io/blog/%EC%9A%B4%EC%98%81%EC%B2%B4%EC%A0%9C-%EB%AC%BC%EB%A6%AC-%EB%A9%94%EB%AA%A8%EB%A6%AC-%EA%B4%80%EB%A6%AC/</link>
+      <pubDate>Fri, 18 Sep 2020 23:24:53 +0900</pubDate>
+      
+      <guid>https://yansigit.github.io/blog/%EC%9A%B4%EC%98%81%EC%B2%B4%EC%A0%9C-%EB%AC%BC%EB%A6%AC-%EB%A9%94%EB%AA%A8%EB%A6%AC-%EA%B4%80%EB%A6%AC/</guid>
+      <description>&lt;p&gt;물리 메모리 관리&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>운영체제 - 스레드</title>
+      <link>https://yansigit.github.io/blog/%EC%9A%B4%EC%98%81%EC%B2%B4%EC%A0%9C-%EC%8A%A4%EB%A0%88%EB%93%9C/</link>
+      <pubDate>Fri, 18 Sep 2020 23:24:53 +0900</pubDate>
+      
+      <guid>https://yansigit.github.io/blog/%EC%9A%B4%EC%98%81%EC%B2%B4%EC%A0%9C-%EC%8A%A4%EB%A0%88%EB%93%9C/</guid>
+      <description>&lt;p&gt;스레드&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>운영체제 - 스레싱</title>
+      <link>https://yansigit.github.io/blog/%EC%9A%B4%EC%98%81%EC%B2%B4%EC%A0%9C-%EC%8A%A4%EB%A0%88%EC%8B%B1/</link>
+      <pubDate>Fri, 18 Sep 2020 23:24:53 +0900</pubDate>
+      
+      <guid>https://yansigit.github.io/blog/%EC%9A%B4%EC%98%81%EC%B2%B4%EC%A0%9C-%EC%8A%A4%EB%A0%88%EC%8B%B1/</guid>
+      <description>&lt;p&gt;스레싱&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>운영체제 - 인터럽트와 프로세스 통신</title>
+      <link>https://yansigit.github.io/blog/%EC%9A%B4%EC%98%81%EC%B2%B4%EC%A0%9C-%EC%9D%B8%ED%84%B0%EB%9F%BD%ED%8A%B8%EC%99%80-%ED%94%84%EB%A1%9C%EC%84%B8%EC%8A%A4-%ED%86%B5%EC%8B%A0/</link>
+      <pubDate>Fri, 18 Sep 2020 23:24:53 +0900</pubDate>
+      
+      <guid>https://yansigit.github.io/blog/%EC%9A%B4%EC%98%81%EC%B2%B4%EC%A0%9C-%EC%9D%B8%ED%84%B0%EB%9F%BD%ED%8A%B8%EC%99%80-%ED%94%84%EB%A1%9C%EC%84%B8%EC%8A%A4-%ED%86%B5%EC%8B%A0/</guid>
+      <description>&lt;p&gt;인터럽트와 프로세스 통신&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>운영체제 - 입출력 시스템</title>
+      <link>https://yansigit.github.io/blog/%EC%9A%B4%EC%98%81%EC%B2%B4%EC%A0%9C-%EC%9E%85%EC%B6%9C%EB%A0%A5-%EC%8B%9C%EC%8A%A4%ED%85%9C/</link>
+      <pubDate>Fri, 18 Sep 2020 23:24:53 +0900</pubDate>
+      
+      <guid>https://yansigit.github.io/blog/%EC%9A%B4%EC%98%81%EC%B2%B4%EC%A0%9C-%EC%9E%85%EC%B6%9C%EB%A0%A5-%EC%8B%9C%EC%8A%A4%ED%85%9C/</guid>
+      <description>&lt;p&gt;입출력 시스템&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>운영체제 - 파일 시스템</title>
+      <link>https://yansigit.github.io/blog/%EC%9A%B4%EC%98%81%EC%B2%B4%EC%A0%9C-%ED%8C%8C%EC%9D%BC-%EC%8B%9C%EC%8A%A4%ED%85%9C/</link>
+      <pubDate>Fri, 18 Sep 2020 23:24:53 +0900</pubDate>
+      
+      <guid>https://yansigit.github.io/blog/%EC%9A%B4%EC%98%81%EC%B2%B4%EC%A0%9C-%ED%8C%8C%EC%9D%BC-%EC%8B%9C%EC%8A%A4%ED%85%9C/</guid>
+      <description>&lt;p&gt;파일 시스템&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>운영체제 - 파일, 파이프, 소켓 프로그래밍</title>
+      <link>https://yansigit.github.io/blog/%EC%9A%B4%EC%98%81%EC%B2%B4%EC%A0%9C-%ED%8C%8C%EC%9D%BC-%ED%8C%8C%EC%9D%B4%ED%94%84-%EC%86%8C%EC%BC%93-%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%B0%8D/</link>
+      <pubDate>Fri, 18 Sep 2020 23:24:53 +0900</pubDate>
+      
+      <guid>https://yansigit.github.io/blog/%EC%9A%B4%EC%98%81%EC%B2%B4%EC%A0%9C-%ED%8C%8C%EC%9D%BC-%ED%8C%8C%EC%9D%B4%ED%94%84-%EC%86%8C%EC%BC%93-%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%B0%8D/</guid>
+      <description>&lt;p&gt;파일, 파이프, 소켓 프로그래밍&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>운영체제 - 페이지 교체 알고리즘</title>
+      <link>https://yansigit.github.io/blog/%EC%9A%B4%EC%98%81%EC%B2%B4%EC%A0%9C-%ED%8E%98%EC%9D%B4%EC%A7%80-%EA%B5%90%EC%B2%B4-%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98/</link>
+      <pubDate>Fri, 18 Sep 2020 23:24:53 +0900</pubDate>
+      
+      <guid>https://yansigit.github.io/blog/%EC%9A%B4%EC%98%81%EC%B2%B4%EC%A0%9C-%ED%8E%98%EC%9D%B4%EC%A7%80-%EA%B5%90%EC%B2%B4-%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98/</guid>
+      <description>&lt;p&gt;페이지 교체 알고리즘&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>운영체제 - 프로세스</title>
+      <link>https://yansigit.github.io/blog/%EC%9A%B4%EC%98%81%EC%B2%B4%EC%A0%9C-%ED%94%84%EB%A1%9C%EC%84%B8%EC%8A%A4/</link>
+      <pubDate>Fri, 18 Sep 2020 23:24:53 +0900</pubDate>
+      
+      <guid>https://yansigit.github.io/blog/%EC%9A%B4%EC%98%81%EC%B2%B4%EC%A0%9C-%ED%94%84%EB%A1%9C%EC%84%B8%EC%8A%A4/</guid>
+      <description>&lt;p&gt;프로세스&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>운영체제 - 프로세스 제어</title>
+      <link>https://yansigit.github.io/blog/%EC%9A%B4%EC%98%81%EC%B2%B4%EC%A0%9C-%ED%94%84%EB%A1%9C%EC%84%B8%EC%8A%A4-%EC%A0%9C%EC%96%B4/</link>
+      <pubDate>Fri, 18 Sep 2020 23:24:53 +0900</pubDate>
+      
+      <guid>https://yansigit.github.io/blog/%EC%9A%B4%EC%98%81%EC%B2%B4%EC%A0%9C-%ED%94%84%EB%A1%9C%EC%84%B8%EC%8A%A4-%EC%A0%9C%EC%96%B4/</guid>
+      <description>&lt;p&gt;프로세스 제어&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>운영체제 - 하드디스크와 CD, 파티션</title>
+      <link>https://yansigit.github.io/blog/%EC%9A%B4%EC%98%81%EC%B2%B4%EC%A0%9C-%ED%95%98%EB%93%9C%EB%94%94%EC%8A%A4%ED%81%AC%EC%99%80-cd-%ED%8C%8C%ED%8B%B0%EC%85%98/</link>
+      <pubDate>Fri, 18 Sep 2020 23:24:53 +0900</pubDate>
+      
+      <guid>https://yansigit.github.io/blog/%EC%9A%B4%EC%98%81%EC%B2%B4%EC%A0%9C-%ED%95%98%EB%93%9C%EB%94%94%EC%8A%A4%ED%81%AC%EC%99%80-cd-%ED%8C%8C%ED%8B%B0%EC%85%98/</guid>
+      <description>&lt;p&gt;하드디스크와 CD, 파티션&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>운영체제 - 하드웨어의 구성</title>
+      <link>https://yansigit.github.io/blog/%EC%9A%B4%EC%98%81%EC%B2%B4%EC%A0%9C-%ED%95%98%EB%93%9C%EC%9B%A8%EC%96%B4%EC%9D%98-%EA%B5%AC%EC%84%B1/</link>
+      <pubDate>Fri, 18 Sep 2020 23:24:53 +0900</pubDate>
+      
+      <guid>https://yansigit.github.io/blog/%EC%9A%B4%EC%98%81%EC%B2%B4%EC%A0%9C-%ED%95%98%EB%93%9C%EC%9B%A8%EC%96%B4%EC%9D%98-%EA%B5%AC%EC%84%B1/</guid>
+      <description>&lt;p&gt;하드웨어의 구성&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Computer Networking - Email and DNS</title>
+      <link>https://yansigit.github.io/blog/computer-networking-email-and-dns/</link>
+      <pubDate>Thu, 17 Sep 2020 00:11:07 +0900</pubDate>
+      
+      <guid>https://yansigit.github.io/blog/computer-networking-email-and-dns/</guid>
+      <description>&lt;p&gt;컴퓨터 네트워크 - 이메일과 DNS&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Computer Networking - Final Quick Note</title>
+      <link>https://yansigit.github.io/blog/computer-networking-final-quick-note/</link>
+      <pubDate>Thu, 17 Sep 2020 00:11:07 +0900</pubDate>
+      
+      <guid>https://yansigit.github.io/blog/computer-networking-final-quick-note/</guid>
+      <description>&lt;p&gt;Computer Networking - Final Quick Note&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Computer Networking - Flow Control and Handshake</title>
+      <link>https://yansigit.github.io/blog/computer-networking-flow-control-and-handshake/</link>
+      <pubDate>Thu, 17 Sep 2020 00:11:07 +0900</pubDate>
+      
+      <guid>https://yansigit.github.io/blog/computer-networking-flow-control-and-handshake/</guid>
+      <description>&lt;p&gt;Computer Networking - Flow Control and Handshake&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Computer Networking - HTTP</title>
+      <link>https://yansigit.github.io/blog/computer-networking-http/</link>
+      <pubDate>Thu, 17 Sep 2020 00:11:07 +0900</pubDate>
+      
+      <guid>https://yansigit.github.io/blog/computer-networking-http/</guid>
+      <description>&lt;p&gt;컴퓨터 네트워크 - HTTP&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Computer Networking - Network Multimedia</title>
+      <link>https://yansigit.github.io/blog/computer-networking-network-multimedia/</link>
+      <pubDate>Thu, 17 Sep 2020 00:11:07 +0900</pubDate>
+      
+      <guid>https://yansigit.github.io/blog/computer-networking-network-multimedia/</guid>
+      <description>&lt;p&gt;Computer Networking - Network Multimedia&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Computer Networking - Network TCP</title>
+      <link>https://yansigit.github.io/blog/computer-networking-network-tcp/</link>
+      <pubDate>Thu, 17 Sep 2020 00:11:07 +0900</pubDate>
+      
+      <guid>https://yansigit.github.io/blog/computer-networking-network-tcp/</guid>
+      <description>&lt;p&gt;Computer Networking - Network TCP&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Computer Networking - Networking App</title>
+      <link>https://yansigit.github.io/blog/computer-networking-networking-app/</link>
+      <pubDate>Thu, 17 Sep 2020 00:11:07 +0900</pubDate>
+      
+      <guid>https://yansigit.github.io/blog/computer-networking-networking-app/</guid>
+      <description>&lt;p&gt;Computer Networking - Networking App&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Computer Networking - P2P and Dash</title>
+      <link>https://yansigit.github.io/blog/computer-networking-p2p-and-dash/</link>
+      <pubDate>Thu, 17 Sep 2020 00:11:07 +0900</pubDate>
+      
+      <guid>https://yansigit.github.io/blog/computer-networking-p2p-and-dash/</guid>
+      <description>&lt;p&gt;Computer Networking - P2P and Dash&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Computer Networking - RDT and Pipelined Protocols</title>
+      <link>https://yansigit.github.io/blog/computer-networking-rdt-and-pipelined-protocols/</link>
+      <pubDate>Thu, 17 Sep 2020 00:11:07 +0900</pubDate>
+      
+      <guid>https://yansigit.github.io/blog/computer-networking-rdt-and-pipelined-protocols/</guid>
+      <description>&lt;p&gt;Computer Networking - RDT and Pipelined Protocols&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Computer Networking - Socket Networking and Transport Layer</title>
+      <link>https://yansigit.github.io/blog/computer-networking-socket-networking-and-transport-layer/</link>
+      <pubDate>Thu, 17 Sep 2020 00:11:07 +0900</pubDate>
+      
+      <guid>https://yansigit.github.io/blog/computer-networking-socket-networking-and-transport-layer/</guid>
+      <description>&lt;p&gt;Computer Networking - Socket Networking and Transport Layer&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Computer Networking - TCP Congestion Control</title>
+      <link>https://yansigit.github.io/blog/computer-networking-tcp-congestion-control/</link>
+      <pubDate>Thu, 17 Sep 2020 00:11:07 +0900</pubDate>
+      
+      <guid>https://yansigit.github.io/blog/computer-networking-tcp-congestion-control/</guid>
+      <description>&lt;p&gt;Computer Networking - TCP Congestion Control&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Computer Networking - Transport Layer Protocols</title>
+      <link>https://yansigit.github.io/blog/computer-networking-transport-layer-protocols/</link>
+      <pubDate>Thu, 17 Sep 2020 00:11:07 +0900</pubDate>
+      
+      <guid>https://yansigit.github.io/blog/computer-networking-transport-layer-protocols/</guid>
+      <description>&lt;p&gt;Computer Networking - Transport Layer Protocols&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Computer Networking - UDP</title>
+      <link>https://yansigit.github.io/blog/computer-networking-udp/</link>
+      <pubDate>Thu, 17 Sep 2020 00:11:07 +0900</pubDate>
+      
+      <guid>https://yansigit.github.io/blog/computer-networking-udp/</guid>
+      <description>&lt;p&gt;Computer Networking - UDP&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Computer Networking - VOIP</title>
+      <link>https://yansigit.github.io/blog/computer-networking-voip/</link>
+      <pubDate>Thu, 17 Sep 2020 00:11:07 +0900</pubDate>
+      
+      <guid>https://yansigit.github.io/blog/computer-networking-voip/</guid>
+      <description>&lt;p&gt;Computer Networking - VOIP&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Computer Networking - VOIP-SIP</title>
+      <link>https://yansigit.github.io/blog/computer-networking-voip-sip/</link>
+      <pubDate>Thu, 17 Sep 2020 00:11:07 +0900</pubDate>
+      
+      <guid>https://yansigit.github.io/blog/computer-networking-voip-sip/</guid>
+      <description>&lt;p&gt;Computer Networking - VOIP-SIP&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Computer Networking - 개요</title>
+      <link>https://yansigit.github.io/blog/computer-networking-%EA%B0%9C%EC%9A%94/</link>
+      <pubDate>Thu, 17 Sep 2020 00:11:07 +0900</pubDate>
+      
+      <guid>https://yansigit.github.io/blog/computer-networking-%EA%B0%9C%EC%9A%94/</guid>
+      <description>&lt;p&gt;Computer Networking - 개요&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>ORACLE DB Scott 계정</title>
+      <link>https://yansigit.github.io/blog/oracle-db-scott-%EA%B3%84%EC%A0%95/</link>
+      <pubDate>Wed, 16 Sep 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://yansigit.github.io/blog/oracle-db-scott-%EA%B3%84%EC%A0%95/</guid>
+      <description>&lt;p&gt;ORACLE DB Scott 계정에 대해서&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>ORACLE DB SQL*PLUS 명령어 정리</title>
+      <link>https://yansigit.github.io/blog/oracle-db-sqlplus-%EB%AA%85%EB%A0%B9%EC%96%B4-%EC%A0%95%EB%A6%AC/</link>
+      <pubDate>Wed, 16 Sep 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://yansigit.github.io/blog/oracle-db-sqlplus-%EB%AA%85%EB%A0%B9%EC%96%B4-%EC%A0%95%EB%A6%AC/</guid>
+      <description>&lt;p&gt;ORACLE DB SQL*PLUS 명령어 정리&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>ORACLE DB 계정</title>
+      <link>https://yansigit.github.io/blog/oracle-db-%EA%B3%84%EC%A0%95/</link>
+      <pubDate>Wed, 16 Sep 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://yansigit.github.io/blog/oracle-db-%EA%B3%84%EC%A0%95/</guid>
+      <description>&lt;p&gt;ORACLE DB 계정 설명&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>ORACLE DB 명령어 정리</title>
+      <link>https://yansigit.github.io/blog/oracle-db-%EB%AA%85%EB%A0%B9%EC%96%B4-%EC%A0%95%EB%A6%AC/</link>
+      <pubDate>Wed, 16 Sep 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://yansigit.github.io/blog/oracle-db-%EB%AA%85%EB%A0%B9%EC%96%B4-%EC%A0%95%EB%A6%AC/</guid>
+      <description>&lt;p&gt;ORACLE DB 명령어 정리&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>ORACLE DB 서브 쿼리 정리</title>
+      <link>https://yansigit.github.io/blog/oracle-db-%EC%84%9C%EB%B8%8C-%EC%BF%BC%EB%A6%AC-%EC%A0%95%EB%A6%AC/</link>
+      <pubDate>Wed, 16 Sep 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://yansigit.github.io/blog/oracle-db-%EC%84%9C%EB%B8%8C-%EC%BF%BC%EB%A6%AC-%EC%A0%95%EB%A6%AC/</guid>
+      <description>&lt;p&gt;ORACLE DB 서브 쿼리&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>ORACLE DB 에러 대응</title>
+      <link>https://yansigit.github.io/blog/oracle-db-%EC%97%90%EB%9F%AC-%EB%8C%80%EC%9D%91/</link>
+      <pubDate>Wed, 16 Sep 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://yansigit.github.io/blog/oracle-db-%EC%97%90%EB%9F%AC-%EB%8C%80%EC%9D%91/</guid>
+      <description>&lt;p&gt;ORACLE DB 에러 대응&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>ORACLE DB 연습문제 모음</title>
+      <link>https://yansigit.github.io/blog/oracle-db-%EC%97%B0%EC%8A%B5%EB%AC%B8%EC%A0%9C-%EB%AA%A8%EC%9D%8C/</link>
+      <pubDate>Wed, 16 Sep 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://yansigit.github.io/blog/oracle-db-%EC%97%B0%EC%8A%B5%EB%AC%B8%EC%A0%9C-%EB%AA%A8%EC%9D%8C/</guid>
+      <description>&lt;p&gt;ORACLE DB 연습문제 모음&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>ORACLE DB 이론 정리</title>
+      <link>https://yansigit.github.io/blog/oracle-db-%EC%9D%B4%EB%A1%A0-%EC%A0%95%EB%A6%AC/</link>
+      <pubDate>Wed, 16 Sep 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://yansigit.github.io/blog/oracle-db-%EC%9D%B4%EB%A1%A0-%EC%A0%95%EB%A6%AC/</guid>
+      <description>&lt;p&gt;ORACLE DB 이론 정리&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>ORACLE DB 테이블 조인</title>
+      <link>https://yansigit.github.io/blog/oracle-db-%ED%85%8C%EC%9D%B4%EB%B8%94-%EC%A1%B0%EC%9D%B8/</link>
+      <pubDate>Wed, 16 Sep 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://yansigit.github.io/blog/oracle-db-%ED%85%8C%EC%9D%B4%EB%B8%94-%EC%A1%B0%EC%9D%B8/</guid>
+      <description>&lt;p&gt;ORACLE DB 테이블 조인&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>ORACLE DB 팁 정리</title>
+      <link>https://yansigit.github.io/blog/oracle-db-%ED%8C%81-%EC%A0%95%EB%A6%AC/</link>
+      <pubDate>Wed, 16 Sep 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://yansigit.github.io/blog/oracle-db-%ED%8C%81-%EC%A0%95%EB%A6%AC/</guid>
+      <description>&lt;p&gt;ORACLE DB 팁 정리&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>ORACLE DB 함수 정리</title>
+      <link>https://yansigit.github.io/blog/oracle-db-%ED%95%A8%EC%88%98-%EC%A0%95%EB%A6%AC/</link>
+      <pubDate>Wed, 16 Sep 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://yansigit.github.io/blog/oracle-db-%ED%95%A8%EC%88%98-%EC%A0%95%EB%A6%AC/</guid>
+      <description>&lt;p&gt;ORACLE DB 함수 정리&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>OpenCV Spatial Domain</title>
+      <link>https://yansigit.github.io/blog/opencv-spatial-domain/</link>
+      <pubDate>Wed, 16 Sep 2020 00:08:03 +0900</pubDate>
+      
+      <guid>https://yansigit.github.io/blog/opencv-spatial-domain/</guid>
+      <description>&lt;blockquote&gt;
+&lt;p&gt;지금까지 배운 화소단위 처리는 새로운 영상을 생성할 때 특정 화소만의 값을 이용해 처리&lt;/p&gt;
+&lt;/blockquote&gt;</description>
+    </item>
+    
+    <item>
+      <title>OpenCV Linear Interpolation</title>
+      <link>https://yansigit.github.io/blog/opencv-linear-interpolation/</link>
+      <pubDate>Wed, 16 Sep 2020 00:06:46 +0900</pubDate>
+      
+      <guid>https://yansigit.github.io/blog/opencv-linear-interpolation/</guid>
+      <description>&lt;h2 id=&#34;정수배의-확대&#34;&gt;정수배의 확대&lt;/h2&gt;
+&lt;p&gt;&lt;figure 
+	&gt;
+	&lt;a href=&#34;https://yansigit.github.io/files/%eb%b3%b4%ea%b0%841.png&#34; &gt;
+		&lt;img src=&#34;https://yansigit.github.io/files/%eb%b3%b4%ea%b0%841.png&#34;
+			
+			
+			
+			loading=&#34;lazy&#34;
+			alt=&#34;/files/보간1.png&#34;&gt;
+	&lt;/a&gt;
+	
+	&lt;figcaption&gt;/files/보간1.png&lt;/figcaption&gt;
+	
+&lt;/figure&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;가장 간단한 방법&lt;/li&gt;
+&lt;li&gt;정해진 배율만큼 화소를 반복적으로 복사&lt;/li&gt;
+&lt;li&gt;화질이 좋지 않음&lt;/li&gt;
+&lt;/ul&gt;</description>
+    </item>
+    
+    <item>
+      <title>OpenCV Geometric Transform</title>
+      <link>https://yansigit.github.io/blog/opencv-geometric-transform/</link>
+      <pubDate>Wed, 16 Sep 2020 00:06:11 +0900</pubDate>
+      
+      <guid>https://yansigit.github.io/blog/opencv-geometric-transform/</guid>
+      <description>&lt;blockquote&gt;
+&lt;p&gt;임의의 기하학적 변환에 의해 화소들의 위치와 화소값을 변경&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote&gt;
+&lt;p&gt;화소들을 움직이거나 새로운  화소를 보간법에 의해 생성&lt;/p&gt;
+&lt;/blockquote&gt;</description>
+    </item>
+    
+    <item>
+      <title>OpenCV Histogram</title>
+      <link>https://yansigit.github.io/blog/opencv-histogram/</link>
+      <pubDate>Wed, 16 Sep 2020 00:05:22 +0900</pubDate>
+      
+      <guid>https://yansigit.github.io/blog/opencv-histogram/</guid>
+      <description>&lt;h2 id=&#34;1-개요&#34;&gt;1. 개요&lt;/h2&gt;
+&lt;blockquote&gt;
+&lt;p&gt;이미지의 밝기 분포를 그래프로 표현한 방식&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote&gt;
+&lt;p&gt;즉 각 픽셀의 밝기를 모아 그래프로 표현한 것&lt;/p&gt;
+&lt;/blockquote&gt;</description>
+    </item>
+    
+    <item>
+      <title>Dealing With Camera on OpenCV</title>
+      <link>https://yansigit.github.io/blog/dealing-with-camera-on-opencv/</link>
+      <pubDate>Wed, 16 Sep 2020 00:04:34 +0900</pubDate>
+      
+      <guid>https://yansigit.github.io/blog/dealing-with-camera-on-opencv/</guid>
+      <description>&lt;h2 id=&#34;카메라-처리&#34;&gt;카메라 처리&lt;/h2&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-python&#34; data-lang=&#34;python&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# cv2.VideoCapture(카메라번호)&lt;/span&gt;
+&lt;span class=&#34;n&#34;&gt;cap&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;cv2&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;VideoCapture&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;0&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
+
+&lt;span class=&#34;n&#34;&gt;cap&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;get&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;cv2&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;CAP_PROP_FRAME_WIDTH&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
+&lt;span class=&#34;n&#34;&gt;cap&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;get&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;cv2&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;CAP_PROP_FRAME_HEIGHT&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
+&lt;span class=&#34;n&#34;&gt;cap&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;set&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;cv2&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;CAP_PROP_FRAME_WIDTH&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;320&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
+&lt;span class=&#34;n&#34;&gt;cap&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;set&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;cv2&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;CAP_PROP_FRAME_WIDTH&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;240&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
+
+&lt;span class=&#34;k&#34;&gt;if&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;cap&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;isOpened&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;():&lt;/span&gt;
+		&lt;span class=&#34;k&#34;&gt;while&lt;/span&gt; &lt;span class=&#34;kc&#34;&gt;True&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;
+				&lt;span class=&#34;n&#34;&gt;ret&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;img&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;cap&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;read&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;()&lt;/span&gt; &lt;span class=&#34;c1&#34;&gt;# 다음 프레임 읽기&lt;/span&gt;
+				&lt;span class=&#34;k&#34;&gt;if&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;ret&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;
+						&lt;span class=&#34;n&#34;&gt;cv2&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;imshow&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;s1&#34;&gt;&amp;#39;camera&amp;#39;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;img&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
+						&lt;span class=&#34;k&#34;&gt;if&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;cv2&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;waitKey&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;!=&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;-&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;c1&#34;&gt;# 1ms 동안 키 입력 대기&lt;/span&gt;
+								&lt;span class=&#34;n&#34;&gt;cv2&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;imwrite&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;s1&#34;&gt;&amp;#39;snapshot.jpg&amp;#39;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;img&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;c1&#34;&gt;# 키 입력 있으면 프레임 저장&lt;/span&gt;
+								&lt;span class=&#34;k&#34;&gt;break&lt;/span&gt;
+						&lt;span class=&#34;k&#34;&gt;else&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;
+								&lt;span class=&#34;nb&#34;&gt;print&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;s1&#34;&gt;&amp;#39;프레임 없음&amp;#39;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
+								&lt;span class=&#34;k&#34;&gt;break&lt;/span&gt;
+&lt;span class=&#34;k&#34;&gt;else&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;
+		&lt;span class=&#34;nb&#34;&gt;print&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;&amp;#34;카메라 오픈 오류&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
+
+&lt;span class=&#34;n&#34;&gt;cap&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;release&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;()&lt;/span&gt;
+&lt;span class=&#34;n&#34;&gt;cv2&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;destroyAllWindows&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;()&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;</description>
+    </item>
+    
+    <item>
+      <title>OpenCV 비트연산</title>
+      <link>https://yansigit.github.io/blog/opencv-%EB%B9%84%ED%8A%B8%EC%97%B0%EC%82%B0/</link>
+      <pubDate>Wed, 16 Sep 2020 00:04:09 +0900</pubDate>
+      
+      <guid>https://yansigit.github.io/blog/opencv-%EB%B9%84%ED%8A%B8%EC%97%B0%EC%82%B0/</guid>
+      <description>&lt;h2 id=&#34;비트-연산&#34;&gt;비트 연산&lt;/h2&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-python&#34; data-lang=&#34;python&#34;&gt;&lt;span class=&#34;n&#34;&gt;bitAnd&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;cv2&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;bitwise_and&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;img1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;img2&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
+&lt;span class=&#34;n&#34;&gt;bitOr&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;cv2&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;bitwise_or&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;img1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;img2&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
+&lt;span class=&#34;n&#34;&gt;bitXor&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;cv2&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;bitwise_xor&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;img1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;img2&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
+&lt;span class=&#34;n&#34;&gt;bitNot&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;cv2&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;bitwise_not&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;img1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;</description>
+    </item>
+    
+    <item>
+      <title>OpenCV Blending</title>
+      <link>https://yansigit.github.io/blog/opencv-blending/</link>
+      <pubDate>Wed, 16 Sep 2020 00:03:51 +0900</pubDate>
+      
+      <guid>https://yansigit.github.io/blog/opencv-blending/</guid>
+      <description>&lt;h2 id=&#34;12-블렌딩&#34;&gt;12. 블렌딩&lt;/h2&gt;
+&lt;blockquote&gt;
+&lt;p&gt;OpenCV는 &lt;code&gt;Saturation&lt;/code&gt; 연산을 하고, Numpy는 &lt;code&gt;Modulo&lt;/code&gt; 연산을 한다&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-python&#34; data-lang=&#34;python&#34;&gt;&lt;span class=&#34;n&#34;&gt;a&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;np&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;uint8&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;([[&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;200&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;50&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;]])&lt;/span&gt;
+&lt;span class=&#34;n&#34;&gt;b&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;np&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;uint8&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;([[&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;100&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;100&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;]])&lt;/span&gt;
+
+&lt;span class=&#34;n&#34;&gt;add1&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;a&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;+&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;b&lt;/span&gt;         &lt;span class=&#34;c1&#34;&gt;# [[44 150]]  (오버플로우된 값이 반영)&lt;/span&gt;
+&lt;span class=&#34;n&#34;&gt;add2&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;cv2&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;add&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;a&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;b&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;c1&#34;&gt;# [[255 150]] (uint8 한계치인 255까지만 반영)&lt;/span&gt;
+
+&lt;span class=&#34;n&#34;&gt;sub1&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;a&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;-&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;b&lt;/span&gt;               &lt;span class=&#34;c1&#34;&gt;# [[100 206]] (음수 오버플로우되어 반영)&lt;/span&gt;
+&lt;span class=&#34;n&#34;&gt;sub2&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;cv2&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;substract&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;a&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;b&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;c1&#34;&gt;# [[100 0]]   (unit 한계치인 0까지만 반영)&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;Saturation&lt;/code&gt; : 0~255까지 한계치를 두고 연산&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;Modulo&lt;/code&gt; : 오버플로우가 일어나면 그 일어난 값만큼 다시 한계치에서 더해줌&lt;/li&gt;
+&lt;/ul&gt;</description>
+    </item>
+    
+    <item>
+      <title>OpenCV Thresholding</title>
+      <link>https://yansigit.github.io/blog/opencv-thresholding/</link>
+      <pubDate>Wed, 16 Sep 2020 00:01:55 +0900</pubDate>
+      
+      <guid>https://yansigit.github.io/blog/opencv-thresholding/</guid>
+      <description>&lt;h2 id=&#34;기본&#34;&gt;기본&lt;/h2&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-python&#34; data-lang=&#34;python&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# 1. numpy 이용&lt;/span&gt;
+&lt;span class=&#34;n&#34;&gt;threst_np&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;np&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;zeros_like&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;img&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;c1&#34;&gt;# 원본과 동일한 크기의 0으로 채워진 이미지 생성&lt;/span&gt;
+&lt;span class=&#34;n&#34;&gt;threst_np&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;img&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;127&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;]&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;255&lt;/span&gt; &lt;span class=&#34;c1&#34;&gt;# 127보다 큰 값만 255로 변경&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;</description>
+    </item>
+    
+    <item>
+      <title>OpenCV 컬러 스페이스</title>
+      <link>https://yansigit.github.io/blog/opencv-%EC%BB%AC%EB%9F%AC-%EC%8A%A4%ED%8E%98%EC%9D%B4%EC%8A%A4/</link>
+      <pubDate>Wed, 16 Sep 2020 00:00:18 +0900</pubDate>
+      
+      <guid>https://yansigit.github.io/blog/opencv-%EC%BB%AC%EB%9F%AC-%EC%8A%A4%ED%8E%98%EC%9D%B4%EC%8A%A4/</guid>
+      <description>&lt;h2 id=&#34;1-이진-이미지&#34;&gt;1. 이진 이미지&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;한개의 픽셀을 두가지 값으로만 표현&lt;/li&gt;
+&lt;li&gt;흰색과 검은색으로만 이미지를 표시&lt;/li&gt;
+&lt;/ul&gt;</description>
+    </item>
+    
+    <item>
+      <title>openCV 영역 (ROI) 지정하기</title>
+      <link>https://yansigit.github.io/blog/opencv-%EC%98%81%EC%97%AD-roi-%EC%A7%80%EC%A0%95%ED%95%98%EA%B8%B0/</link>
+      <pubDate>Tue, 15 Sep 2020 23:58:13 +0900</pubDate>
+      
+      <guid>https://yansigit.github.io/blog/opencv-%EC%98%81%EC%97%AD-roi-%EC%A7%80%EC%A0%95%ED%95%98%EA%B8%B0/</guid>
+      <description>&lt;h2 id=&#34;roi&#34;&gt;ROI&lt;/h2&gt;
+&lt;blockquote&gt;
+&lt;p&gt;전체 이미지에서 관심있는 부분만 잘라서 연산 (연산량 단축, 알고리즘 단순화)&lt;/p&gt;
+&lt;/blockquote&gt;</description>
+    </item>
+    
+    <item>
+      <title>Numpy and Matplotlib</title>
+      <link>https://yansigit.github.io/blog/numpy-and-matplotlib/</link>
+      <pubDate>Tue, 15 Sep 2020 23:50:14 +0900</pubDate>
+      
+      <guid>https://yansigit.github.io/blog/numpy-and-matplotlib/</guid>
+      <description>&lt;h2 id=&#34;numpy&#34;&gt;Numpy&lt;/h2&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-python&#34; data-lang=&#34;python&#34;&gt;&lt;span class=&#34;kn&#34;&gt;import&lt;/span&gt; &lt;span class=&#34;nn&#34;&gt;cv2&lt;/span&gt;
+&lt;span class=&#34;kn&#34;&gt;import&lt;/span&gt; &lt;span class=&#34;nn&#34;&gt;numpy&lt;/span&gt; &lt;span class=&#34;k&#34;&gt;as&lt;/span&gt; &lt;span class=&#34;nn&#34;&gt;np&lt;/span&gt;
+
+&lt;span class=&#34;n&#34;&gt;img&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;np&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;zeros&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;((&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;120&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;240&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;),&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;dtype&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;np&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;uint8&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;c1&#34;&gt;# 120,240 2차원 배열 생성&lt;/span&gt;
+&lt;span class=&#34;n&#34;&gt;img&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;25&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;35&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;:]&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;255&lt;/span&gt;
+&lt;span class=&#34;n&#34;&gt;img&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;55&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;65&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;:]&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;115&lt;/span&gt;
+&lt;span class=&#34;n&#34;&gt;img&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;85&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;95&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;:]&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;160&lt;/span&gt;
+&lt;span class=&#34;n&#34;&gt;img&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;[:,&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;35&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;45&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;]&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;205&lt;/span&gt;
+&lt;span class=&#34;n&#34;&gt;img&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;[:,&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;75&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;85&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;]&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;255&lt;/span&gt;
+&lt;span class=&#34;n&#34;&gt;cv2&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;imshow&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;s1&#34;&gt;&amp;#39;Gray&amp;#39;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;img&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
+&lt;span class=&#34;k&#34;&gt;if&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;cv2&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;waitKey&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;0&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;&amp;amp;&lt;/span&gt; &lt;span class=&#34;mh&#34;&gt;0xFF&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;27&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;
+		&lt;span class=&#34;n&#34;&gt;cv2&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;destroyAllWindows&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;()&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;</description>
+    </item>
+    
+    <item>
+      <title>Dealing With Events on Opencv</title>
+      <link>https://yansigit.github.io/blog/dealing-with-events-on-opencv/</link>
+      <pubDate>Tue, 15 Sep 2020 23:46:10 +0900</pubDate>
+      
+      <guid>https://yansigit.github.io/blog/dealing-with-events-on-opencv/</guid>
+      <description>&lt;h2 id=&#34;1-키보드-이벤트&#34;&gt;1. 키보드 이벤트&lt;/h2&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-python&#34; data-lang=&#34;python&#34;&gt;&lt;span class=&#34;n&#34;&gt;key&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;cv2&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;waitKey&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;0&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;&amp;amp;&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;OxFF&lt;/span&gt; &lt;span class=&#34;c1&#34;&gt;# 8비트 마스킹. 몇몇 64비트 환경에서는 32비트를 반환하기 때문에 ord() 값으로 비교하면 다르게 나올 수 있음.&lt;/span&gt;
+&lt;span class=&#34;k&#34;&gt;if&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;key&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;==&lt;/span&gt; &lt;span class=&#34;nb&#34;&gt;ord&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;s1&#34;&gt;&amp;#39;a&amp;#39;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;):&lt;/span&gt; &lt;span class=&#34;c1&#34;&gt;# 키보드 입력이 a 이면&lt;/span&gt;
+		&lt;span class=&#34;nb&#34;&gt;print&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;s1&#34;&gt;&amp;#39;a 입력됨&amp;#39;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;</description>
+    </item>
+    
+    <item>
+      <title>Managing Windows on Opencv</title>
+      <link>https://yansigit.github.io/blog/managing-windows-on-opencv/</link>
+      <pubDate>Tue, 15 Sep 2020 23:45:14 +0900</pubDate>
+      
+      <guid>https://yansigit.github.io/blog/managing-windows-on-opencv/</guid>
+      <description>&lt;p&gt;openCV에서 창 관리&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Drawing Things on Opencv</title>
+      <link>https://yansigit.github.io/blog/drawing-things-on-opencv/</link>
+      <pubDate>Tue, 15 Sep 2020 23:44:12 +0900</pubDate>
+      
+      <guid>https://yansigit.github.io/blog/drawing-things-on-opencv/</guid>
+      <description>&lt;h2 id=&#34;1-직선-그리기&#34;&gt;1. 직선 그리기&lt;/h2&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-python&#34; data-lang=&#34;python&#34;&gt;&lt;span class=&#34;n&#34;&gt;img&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;cv2&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;imread&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;s1&#34;&gt;&amp;#39;blank_500.jpg&amp;#39;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
+
+&lt;span class=&#34;c1&#34;&gt;# start와 end 점을 연결하여 직선을 그림&lt;/span&gt;
+&lt;span class=&#34;c1&#34;&gt;# img = 이미지를 그릴 이미지&lt;/span&gt;
+&lt;span class=&#34;c1&#34;&gt;# start = 시작 좌표 ex; (0,0)&lt;/span&gt;
+&lt;span class=&#34;c1&#34;&gt;# end = 종료 좌표 ex; (500,500)&lt;/span&gt;
+&lt;span class=&#34;c1&#34;&gt;# color = BGR 형태의 color ex; (255, 0, 0)&lt;/span&gt;
+&lt;span class=&#34;c1&#34;&gt;# thickness (int) = 선의 두께, pixel&lt;/span&gt;
+&lt;span class=&#34;c1&#34;&gt;# lineType = 선 그리기 형식. 픽셀 계단 현상 완화 등.. ex; cv2.LINE_AA (안티앨리어싱), cv2.LINE_4 (브레젠햄 4연결)&lt;/span&gt;
+&lt;span class=&#34;n&#34;&gt;cv2&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;line&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;img&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;start&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;end&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;color&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;[,&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;thickness&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;lineType&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;])&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;</description>
+    </item>
+    
+    <item>
+      <title>Reading and Writing Media on Opencv</title>
+      <link>https://yansigit.github.io/blog/reading-and-writing-media-on-opencv/</link>
+      <pubDate>Tue, 15 Sep 2020 23:38:41 +0900</pubDate>
+      
+      <guid>https://yansigit.github.io/blog/reading-and-writing-media-on-opencv/</guid>
+      <description>&lt;h2 id=&#34;1-이미지-읽어-표시하기&#34;&gt;1. 이미지 읽어 표시하기&lt;/h2&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-python&#34; data-lang=&#34;python&#34;&gt;&lt;span class=&#34;kn&#34;&gt;import&lt;/span&gt; &lt;span class=&#34;nn&#34;&gt;cv2&lt;/span&gt;
+
+&lt;span class=&#34;c1&#34;&gt;# fileName(string) = 경로&lt;/span&gt;
+&lt;span class=&#34;c1&#34;&gt;# flag(int) 이미지 파일을 읽을 때 옵션&lt;/span&gt;
+&lt;span class=&#34;c1&#34;&gt;#     cv2.IMREAD_COLOR : 1&lt;/span&gt;
+&lt;span class=&#34;c1&#34;&gt;#     cv2.IMREAD_GRAYSCALE : 0&lt;/span&gt;
+&lt;span class=&#34;c1&#34;&gt;#     cv2.IMREAD_UNCHANGED : -1. 이미지 파일을 alpha channel까지 포함 해 읽음&lt;/span&gt;
+&lt;span class=&#34;c1&#34;&gt;# Returns = 이미지 객체 행렬 (Numpy 행렬)&lt;/span&gt;
+&lt;span class=&#34;c1&#34;&gt;#     img 값은 numpy의 ndarray type이다.&lt;/span&gt;
+&lt;span class=&#34;n&#34;&gt;img&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;cv2&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;imread&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;fileName&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;flag&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
+
+&lt;span class=&#34;k&#34;&gt;if&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;img&lt;/span&gt; &lt;span class=&#34;ow&#34;&gt;is&lt;/span&gt; &lt;span class=&#34;ow&#34;&gt;not&lt;/span&gt; &lt;span class=&#34;kc&#34;&gt;None&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;
+		&lt;span class=&#34;c1&#34;&gt;# title(str) = 윈도우 창의 타이틀&lt;/span&gt;
+		&lt;span class=&#34;n&#34;&gt;cv2&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;imshow&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;title&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;img&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
+		
+		&lt;span class=&#34;c1&#34;&gt;# Return = 입력한 키. -1이면 대기시간 동안 입력 없음&lt;/span&gt;
+		&lt;span class=&#34;c1&#34;&gt;# delay = 입력한 정수 동안 대기. 0 이거나 없으면 무한대기&lt;/span&gt;
+		&lt;span class=&#34;n&#34;&gt;key&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;cv2&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;waitKey&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;([&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;delay&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;])&lt;/span&gt;
+		
+		&lt;span class=&#34;n&#34;&gt;cv2&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;destroyAllWindows&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;()&lt;/span&gt;
+&lt;span class=&#34;k&#34;&gt;else&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;
+		&lt;span class=&#34;nb&#34;&gt;print&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;s1&#34;&gt;&amp;#39;No image file.&amp;#39;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;</description>
+    </item>
+    
+    <item>
+      <title>Port Forwarding on Android Emulator</title>
+      <link>https://yansigit.github.io/blog/port-forwarding-on-android-emulator/</link>
+      <pubDate>Tue, 15 Sep 2020 23:31:39 +0900</pubDate>
+      
+      <guid>https://yansigit.github.io/blog/port-forwarding-on-android-emulator/</guid>
+      <description>&lt;h2 id=&#34;telnet으로-포트-열기&#34;&gt;Telnet으로 포트 열기&lt;/h2&gt;
+&lt;p&gt;&lt;a class=&#34;link&#34; href=&#34;https://developer.android.com/studio/run/emulator-networking?hl=ko&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;https://developer.android.com/studio/run/emulator-networking?hl=ko&lt;/a&gt;&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-powershell&#34; data-lang=&#34;powershell&#34;&gt;&lt;span class=&#34;n&#34;&gt;telnet&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;localhost&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;5554&lt;/span&gt; &lt;span class=&#34;c&#34;&gt;# putty에서는 raw로 연결&lt;/span&gt;
+&lt;span class=&#34;n&#34;&gt;add&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;protocol&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;&amp;gt;&lt;/span&gt;&lt;span class=&#34;err&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&#34;nb&#34;&gt;host-port&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;&amp;gt;&lt;/span&gt;&lt;span class=&#34;err&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&#34;nb&#34;&gt;guest-port&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;&amp;gt;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;</description>
+    </item>
+    
+    <item>
+      <title>Setting React Native Environment Variable</title>
+      <link>https://yansigit.github.io/blog/setting-react-native-environment-variable/</link>
+      <pubDate>Tue, 15 Sep 2020 23:29:35 +0900</pubDate>
+      
+      <guid>https://yansigit.github.io/blog/setting-react-native-environment-variable/</guid>
+      <description>&lt;h2 id=&#34;맥의-경우&#34;&gt;맥의 경우&lt;/h2&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# .bash_profile 혹은 .zshrc 파일에 아래 내용 작성&lt;/span&gt;
+&lt;span class=&#34;nb&#34;&gt;export&lt;/span&gt; &lt;span class=&#34;nv&#34;&gt;ANDROID_HOME&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;nv&#34;&gt;$HOME&lt;/span&gt;/Library/Android/sdk
+&lt;span class=&#34;nb&#34;&gt;export&lt;/span&gt; &lt;span class=&#34;nv&#34;&gt;ANDROID_SDK_ROOT&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;nv&#34;&gt;$ANDROID_HOME&lt;/span&gt;
+&lt;span class=&#34;nb&#34;&gt;export&lt;/span&gt; &lt;span class=&#34;nv&#34;&gt;PATH&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;nv&#34;&gt;$PATH&lt;/span&gt;:&lt;span class=&#34;nv&#34;&gt;$ANDROID_HOME&lt;/span&gt;/emulator
+&lt;span class=&#34;nb&#34;&gt;export&lt;/span&gt; &lt;span class=&#34;nv&#34;&gt;PATH&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;nv&#34;&gt;$PATH&lt;/span&gt;:&lt;span class=&#34;nv&#34;&gt;$ANDROID_HOME&lt;/span&gt;/tools
+&lt;span class=&#34;nb&#34;&gt;export&lt;/span&gt; &lt;span class=&#34;nv&#34;&gt;PATH&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;nv&#34;&gt;$PATH&lt;/span&gt;:&lt;span class=&#34;nv&#34;&gt;$ANDROID_HOME&lt;/span&gt;/tools/bin
+&lt;span class=&#34;nb&#34;&gt;export&lt;/span&gt; &lt;span class=&#34;nv&#34;&gt;PATH&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;nv&#34;&gt;$PATH&lt;/span&gt;:&lt;span class=&#34;nv&#34;&gt;$ANDROID_HOME&lt;/span&gt;/platform-tools
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;</description>
+    </item>
+    
+    <item>
+      <title>React Native Simple Notes</title>
+      <link>https://yansigit.github.io/blog/react-native-simple-notes/</link>
+      <pubDate>Tue, 15 Sep 2020 23:24:53 +0900</pubDate>
+      
+      <guid>https://yansigit.github.io/blog/react-native-simple-notes/</guid>
+      <description>&lt;h2 id=&#34;컴포넌트-기본-구조&#34;&gt;컴포넌트 기본 구조&lt;/h2&gt;
+&lt;p&gt;&lt;code&gt;App.js&lt;/code&gt;&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-jsx&#34; data-lang=&#34;jsx&#34;&gt;&lt;span class=&#34;kr&#34;&gt;import&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;React&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;Component&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;}&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;from&lt;/span&gt; &lt;span class=&#34;s1&#34;&gt;&amp;#39;react&amp;#39;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+
+&lt;span class=&#34;c1&#34;&gt;// Hello Component (View)
+&lt;/span&gt;&lt;span class=&#34;c1&#34;&gt;// 이제 해당 컴포넌트는 JSX 내부에 &amp;lt;Hello /&amp;gt; 식으로 사용 가능
+&lt;/span&gt;&lt;span class=&#34;c1&#34;&gt;&lt;/span&gt;&lt;span class=&#34;kr&#34;&gt;class&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;Hello&lt;/span&gt; &lt;span class=&#34;kr&#34;&gt;extends&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;Component&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
+  &lt;span class=&#34;nx&#34;&gt;render&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;()&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
+    &lt;span class=&#34;k&#34;&gt;return&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;
+      &lt;span class=&#34;p&#34;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;h1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;&amp;gt;&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;hello&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;&lt;span class=&#34;k&#34;&gt;this&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;props&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;name&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;}&amp;lt;/&lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;h1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;&amp;gt;&lt;/span&gt;
+    &lt;span class=&#34;p&#34;&gt;);&lt;/span&gt;
+  &lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
+&lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
+
+&lt;span class=&#34;kr&#34;&gt;export&lt;/span&gt; &lt;span class=&#34;k&#34;&gt;default&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;Hello&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;</description>
+    </item>
+    
+    <item>
+      <title>React Native Quick Error Fixes</title>
+      <link>https://yansigit.github.io/blog/react-native-quick-error-fixes/</link>
+      <pubDate>Tue, 15 Sep 2020 22:56:51 +0900</pubDate>
+      
+      <guid>https://yansigit.github.io/blog/react-native-quick-error-fixes/</guid>
+      <description>&lt;h2 id=&#34;ios-향-빌드-시-체크사항&#34;&gt;iOS 향 빌드 시 체크사항&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;Xcode - 속성 - 컴포넌트에 iOS 시뮬레이터 깔려있는지 확인 (가상머신 이용 시)&lt;/li&gt;
+&lt;li&gt;Location 에서 Command Line Tools가 제대로 지정되어 있는지 확인
+&lt;ul&gt;
+&lt;li&gt;없을 시 Command Line Tools 설치 후 설정&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;</description>
+    </item>
+    
+    <item>
+      <title>Installing Mac OS on Virtualbox on Windows</title>
+      <link>https://yansigit.github.io/blog/installing-mac-os-on-virtualbox-on-windows/</link>
+      <pubDate>Thu, 20 Feb 2020 23:33:21 +0900</pubDate>
+      
+      <guid>https://yansigit.github.io/blog/installing-mac-os-on-virtualbox-on-windows/</guid>
+      <description>&lt;h2 id=&#34;1-개요&#34;&gt;1. 개요&lt;/h2&gt;
+&lt;p&gt;맥을 사자니 돈이 너무 없고, 해킨토시를 하자니 노트북이라 깔고 설정하기 귀찮다면&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;답은 바로 가상머신&lt;/strong&gt;&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Virtualbox With Docker(hyper V)</title>
+      <link>https://yansigit.github.io/blog/virtualbox-with-dockerhyper-v/</link>
+      <pubDate>Thu, 20 Feb 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://yansigit.github.io/blog/virtualbox-with-dockerhyper-v/</guid>
+      <description>&lt;h2 id=&#34;쉬운-설정법&#34;&gt;쉬운 설정법&lt;/h2&gt;
+&lt;p&gt;버추얼박스 6.0 버전부터 Hyper-V를 켠 상태로도 이용할 수 있게 되었다.&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>About Http/3</title>
+      <link>https://yansigit.github.io/blog/about-http/3/</link>
+      <pubDate>Sun, 16 Feb 2020 17:01:05 +0900</pubDate>
+      
+      <guid>https://yansigit.github.io/blog/about-http/3/</guid>
+      <description>&lt;p&gt;HTTP/2 나온지 얼마나 됬다고&amp;hellip;&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Golang Cheet Sheets for Algo Test</title>
+      <link>https://yansigit.github.io/blog/golang-cheet-sheets-for-algo-test/</link>
+      <pubDate>Mon, 10 Feb 2020 14:27:41 +0900</pubDate>
+      
+      <guid>https://yansigit.github.io/blog/golang-cheet-sheets-for-algo-test/</guid>
+      <description>&lt;h1 id=&#34;scan&#34;&gt;Scan&lt;/h1&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-go&#34; data-lang=&#34;go&#34;&gt;&lt;span class=&#34;kd&#34;&gt;var&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;test&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;5&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;]&lt;/span&gt;&lt;span class=&#34;kt&#34;&gt;int&lt;/span&gt;
+&lt;span class=&#34;k&#34;&gt;for&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;i&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;:=&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;0&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;i&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;5&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;i&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;++&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
+   &lt;span class=&#34;nx&#34;&gt;fmt&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nf&#34;&gt;Scan&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;&amp;amp;&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;test&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;i&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;])&lt;/span&gt;
+&lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
+&lt;span class=&#34;nx&#34;&gt;fmt&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nf&#34;&gt;Print&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;test&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
+&lt;span class=&#34;c1&#34;&gt;// 입력 1 4 5 2 3
+&lt;/span&gt;&lt;span class=&#34;c1&#34;&gt;// 출력 [1,4,5,2,3]
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;</description>
+    </item>
+    
+    <item>
+      <title>Mongodb Cheat Sheet for Golang</title>
+      <link>https://yansigit.github.io/blog/mongodb-cheat-sheet-for-golang/</link>
+      <pubDate>Sun, 09 Feb 2020 00:57:11 +0900</pubDate>
+      
+      <guid>https://yansigit.github.io/blog/mongodb-cheat-sheet-for-golang/</guid>
+      <description>&lt;h2 id=&#34;mgm-init&#34;&gt;mgm init&lt;/h2&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-go&#34; data-lang=&#34;go&#34;&gt;&lt;span class=&#34;nx&#34;&gt;_&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;mgm&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nf&#34;&gt;SetDefaultConfig&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;kc&#34;&gt;nil&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;s&#34;&gt;&amp;#34;Wiki_DB&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;options&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nf&#34;&gt;Client&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;().&lt;/span&gt;&lt;span class=&#34;nf&#34;&gt;ApplyURI&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;s&#34;&gt;&amp;#34;mongodb://localhost:27017&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;))&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;</description>
+    </item>
+    
+    <item>
+      <title>Understanding Nil and Null in Golang</title>
+      <link>https://yansigit.github.io/blog/understanding-nil-and-null-in-golang/</link>
+      <pubDate>Sat, 08 Feb 2020 21:08:49 +0900</pubDate>
+      
+      <guid>https://yansigit.github.io/blog/understanding-nil-and-null-in-golang/</guid>
+      <description>&lt;p&gt;고 언어에서 nil 과 null&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Using Mongodb in Golang</title>
+      <link>https://yansigit.github.io/blog/using-mongodb-in-golang/</link>
+      <pubDate>Fri, 07 Feb 2020 22:40:26 +0900</pubDate>
+      
+      <guid>https://yansigit.github.io/blog/using-mongodb-in-golang/</guid>
+      <description>&lt;h1 id=&#34;odm-for-mongodb&#34;&gt;ODM for MongoDB&lt;/h1&gt;
+&lt;p&gt;MongoDB에도 &lt;code&gt;ORM&lt;/code&gt;과 비슷한 &lt;code&gt;ODM&lt;/code&gt; 프레임웍이 있는데 바로 &lt;a class=&#34;link&#34; href=&#34;https://github.com/Kamva/mgm&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;MGM&lt;/a&gt; 이라는 프로젝트. 저번달에 따끈따끈하게 나온 프로젝트인거 같다.&lt;/p&gt;
+&lt;p&gt;사실 MongoDB 같은 경우에는 SQL 기반이 아니라 JSON 혹은 BSON 기반이라 ODM을 쓸것까지는 없을 것 같지만, 아직 MongoDB에 익숙하지 않기도 하고 짜여진 구조체를 기반으로 편리하게 데이터베이스와 소통할 수 있다는 장점과 빠른 개발이 가능할것이라는 생각에 한번 사용해보기로 했다.&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Client Software for Mongo Db Mongodb Compass</title>
+      <link>https://yansigit.github.io/blog/client-software-for-mongo-db-mongodb-compass/</link>
+      <pubDate>Fri, 07 Feb 2020 22:40:13 +0900</pubDate>
+      
+      <guid>https://yansigit.github.io/blog/client-software-for-mongo-db-mongodb-compass/</guid>
+      <description>&lt;p&gt;Mongo DB 관리 클라이언트, MongoDB Compass&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Time Format in Golang</title>
+      <link>https://yansigit.github.io/blog/time-format-in-golang/</link>
+      <pubDate>Thu, 06 Feb 2020 23:30:05 +0900</pubDate>
+      
+      <guid>https://yansigit.github.io/blog/time-format-in-golang/</guid>
+      <description>&lt;h1 id=&#34;time-format-in-go-language&#34;&gt;Time format in Go Language&lt;/h1&gt;
+&lt;p&gt;보통 프로그래밍 언어에서 시간과 날짜를 다룰 때 레이아웃은 &lt;code&gt;YYYY-MM-DD HH:MM:SS&lt;/code&gt;와 같이 영문자를 이용한 방식이다.&lt;/p&gt;
+&lt;p&gt;고 언어에서는 타 언어와 다르게 숫자로 포맷을 지정해줘야 한다.&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Markdown Editor Typora</title>
+      <link>https://yansigit.github.io/blog/markdown-editor-typora/</link>
+      <pubDate>Mon, 27 Jan 2020 22:09:09 +0900</pubDate>
+      
+      <guid>https://yansigit.github.io/blog/markdown-editor-typora/</guid>
+      <description>&lt;h1 id=&#34;markdown-editor&#34;&gt;Markdown Editor&lt;/h1&gt;
+&lt;p&gt;지금까지 블로그 글을 쓸 때, 나는 Webstorm의 마크다운 플러그인을 이용해 IDE에서 직접 써왔다.&lt;/p&gt;
+&lt;p&gt;마크다운 전용 에디터가 존재하는 것은 알고 있었지만 깔기도 귀찮았을 뿐더러 사용에 지장도 딱히 없다고 느꼈기 때문이다.&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Hot Reloading on Golang Project</title>
+      <link>https://yansigit.github.io/blog/hot-reloading-on-golang-project/</link>
+      <pubDate>Mon, 27 Jan 2020 19:47:58 +0900</pubDate>
+      
+      <guid>https://yansigit.github.io/blog/hot-reloading-on-golang-project/</guid>
+      <description>&lt;h1 id=&#34;hot-reloading&#34;&gt;Hot Reloading&lt;/h1&gt;
+&lt;p&gt;웹 어플리케이션을 개발할 때 항상 유용하게 사용하는 기능이 Hot-Reloading 기능이다.&lt;/p&gt;
+&lt;p&gt;템플릿이나 기능을 약간 바꾸고 확인하고 싶을 때,
+코드를 변경하고 일일히 빌드를 새로 해주기란 여간 귀찮은 일이 아니기 때문이다.&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Comparing Float in Golang</title>
+      <link>https://yansigit.github.io/blog/comparing-float-in-golang/</link>
+      <pubDate>Fri, 24 Jan 2020 02:22:48 +0900</pubDate>
+      
+      <guid>https://yansigit.github.io/blog/comparing-float-in-golang/</guid>
+      <description>&lt;p&gt;Go 언어에서 Float 변수 비교하기&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>PostmarketOS on Nexus5</title>
+      <link>https://yansigit.github.io/blog/postmarketos-on-nexus5/</link>
+      <pubDate>Wed, 22 Jan 2020 21:31:21 +0900</pubDate>
+      
+      <guid>https://yansigit.github.io/blog/postmarketos-on-nexus5/</guid>
+      <description>&lt;h1 id=&#34;intro&#34;&gt;INTRO&lt;/h1&gt;
+&lt;p&gt;실험 대상은 넥서스 5. 굳이 넥서스 5를 고른 이유는, 구글의 레퍼런스 폰인만큼 부트로더 언락도 쉽고
+이미 여러 프로젝트의 개발 1호기로 사용되고 있기에 우분투나 페도라 등에서 혹시 이미 넥서스5용 OS를 개발해놓지 않았을까
+하는 기대감 때문이었다. 결과적으로는 NO 라고 이야기 할 수 있지만.&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Go Cross Compile</title>
+      <link>https://yansigit.github.io/blog/go-cross-compile/</link>
+      <pubDate>Wed, 22 Jan 2020 21:16:37 +0900</pubDate>
+      
+      <guid>https://yansigit.github.io/blog/go-cross-compile/</guid>
+      <description>&lt;h1 id=&#34;how&#34;&gt;HOW&lt;/h1&gt;
+&lt;p&gt;고 언어의 장점 중 하나는 크로스-컴파일 및 멀티플랫폼 지원이 쉽다는 것이다.&lt;/p&gt;
+&lt;p&gt;간단한 환경 변수 설정을 통해 얼마든지 다양한 플랫폼으로의 빌드가 가능하다.&lt;/p&gt;
+&lt;p&gt;명령어로도 빌드가 얼마든지 가능하지만 좀 더 쉬운 접근을 위해 &lt;code&gt;makefile&lt;/code&gt; 또한 이용 가능하다.&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>About Go Module</title>
+      <link>https://yansigit.github.io/blog/about-go-module/</link>
+      <pubDate>Tue, 21 Jan 2020 01:50:58 +0900</pubDate>
+      
+      <guid>https://yansigit.github.io/blog/about-go-module/</guid>
+      <description>&lt;p&gt;고 모듈이 등장하기 전까지, 개발자들은 GOPATH 등의 환경변수를 이용해
+프로젝트 및 패키지 종속성을 관리해야 했다.&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

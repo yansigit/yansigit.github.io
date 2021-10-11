@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>make on Code like Feather</title>
+    <link>https://yansigit.github.io/tags/make/</link>
+    <description>Recent content in make on Code like Feather</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>ko-kr</language>
+    <lastBuildDate>Wed, 22 Jan 2020 21:16:37 +0900</lastBuildDate><atom:link href="https://yansigit.github.io/tags/make/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Go Cross Compile</title>
+      <link>https://yansigit.github.io/blog/go-cross-compile/</link>
+      <pubDate>Wed, 22 Jan 2020 21:16:37 +0900</pubDate>
+      
+      <guid>https://yansigit.github.io/blog/go-cross-compile/</guid>
+      <description>&lt;h1 id=&#34;how&#34;&gt;HOW&lt;/h1&gt;
+&lt;p&gt;고 언어의 장점 중 하나는 크로스-컴파일 및 멀티플랫폼 지원이 쉽다는 것이다.&lt;/p&gt;
+&lt;p&gt;간단한 환경 변수 설정을 통해 얼마든지 다양한 플랫폼으로의 빌드가 가능하다.&lt;/p&gt;
+&lt;p&gt;명령어로도 빌드가 얼마든지 가능하지만 좀 더 쉬운 접근을 위해 &lt;code&gt;makefile&lt;/code&gt; 또한 이용 가능하다.&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

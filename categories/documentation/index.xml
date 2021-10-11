@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Documentation on Code like Feather</title>
+    <link>https://yansigit.github.io/categories/documentation/</link>
+    <description>Recent content in Documentation on Code like Feather</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>ko-kr</language><atom:link href="https://yansigit.github.io/categories/documentation/index.xml" rel="self" type="application/rss+xml" />
+  </channel>
+</rss>

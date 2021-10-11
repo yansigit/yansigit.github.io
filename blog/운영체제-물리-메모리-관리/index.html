@@ -1,0 +1,1051 @@
+<!DOCTYPE html>
+<html lang="ko-kr">
+    <head><meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content='물리 메모리 관리'><title>운영체제 - 물리 메모리 관리</title>
+
+<link rel='canonical' href='https://yansigit.github.io/blog/%EC%9A%B4%EC%98%81%EC%B2%B4%EC%A0%9C-%EB%AC%BC%EB%A6%AC-%EB%A9%94%EB%AA%A8%EB%A6%AC-%EA%B4%80%EB%A6%AC/'>
+
+<link rel="stylesheet" href="/scss/style.min.css"><meta property='og:title' content='운영체제 - 물리 메모리 관리'>
+<meta property='og:description' content='물리 메모리 관리'>
+<meta property='og:url' content='https://yansigit.github.io/blog/%EC%9A%B4%EC%98%81%EC%B2%B4%EC%A0%9C-%EB%AC%BC%EB%A6%AC-%EB%A9%94%EB%AA%A8%EB%A6%AC-%EA%B4%80%EB%A6%AC/'>
+<meta property='og:site_name' content='Code like Feather'>
+<meta property='og:type' content='article'><meta property='article:section' content='Posts' /><meta property='article:tag' content='os' /><meta property='article:tag' content='operation-system' /><meta property='article:published_time' content='2020-09-18T23:24:53&#43;09:00'/><meta property='article:modified_time' content='2020-09-18T23:24:53&#43;09:00'/><meta property='og:image' content='https://yansigit.github.io/images/lighthouse.jpg' />
+<meta name="twitter:title" content="운영체제 - 물리 메모리 관리">
+<meta name="twitter:description" content="물리 메모리 관리"><meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content='https://yansigit.github.io/images/lighthouse.jpg' />
+    </head>
+    <body class="
+    article-page has-toc
+">
+    <script>
+        (function() {
+            const colorSchemeKey = 'StackColorScheme';
+            if(!localStorage.getItem(colorSchemeKey)){
+                localStorage.setItem(colorSchemeKey, "auto");
+            }
+        })();
+    </script><script>
+    (function() {
+        const colorSchemeKey = 'StackColorScheme';
+        const colorSchemeItem = localStorage.getItem(colorSchemeKey);
+        const supportDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches === true;
+
+        if (colorSchemeItem == 'dark' || colorSchemeItem === 'auto' && supportDarkMode) {
+            
+
+            document.documentElement.dataset.scheme = 'dark';
+        } else {
+            document.documentElement.dataset.scheme = 'light';
+        }
+    })();
+</script>
+<div class="container main-container flex 
+    
+        extended
+    
+">
+    
+        <div id="article-toolbar">
+            <a href="https://yansigit.github.io" class="back-home">
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-chevron-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <polyline points="15 6 9 12 15 18" />
+</svg>
+
+
+
+                <span>Back</span>
+            </a>
+        </div>
+    
+<main class="main full-width">
+    <article class="main-article">
+    <header class="article-header">
+
+    <div class="article-details">
+    
+    <header class="article-category">
+        
+            <a href="/categories/os/" >
+                os
+            </a>
+        
+    </header>
+    
+
+    <h2 class="article-title">
+        <a href="/blog/%EC%9A%B4%EC%98%81%EC%B2%B4%EC%A0%9C-%EB%AC%BC%EB%A6%AC-%EB%A9%94%EB%AA%A8%EB%A6%AC-%EA%B4%80%EB%A6%AC/">운영체제 - 물리 메모리 관리</a>
+    </h2>
+
+    
+    <h3 class="article-subtitle">
+        물리 메모리 관리
+    </h3>
+    
+
+    
+    <footer class="article-time">
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-calendar-time" width="56" height="56" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M11.795 21h-6.795a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v4" />
+  <circle cx="18" cy="18" r="4" />
+  <path d="M15 3v4" />
+  <path d="M7 3v4" />
+  <path d="M3 11h16" />
+  <path d="M18 16.496v1.504l1 1" />
+</svg>
+                <time class="article-time--published">Sep 18, 2020</time>
+            </div>
+        
+
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <polyline points="12 7 12 12 15 15" />
+</svg>
+
+
+
+                <time class="article-time--reading">
+                    5 minute read
+                </time>
+            </div>
+        
+    </footer>
+    
+</div>
+</header>
+
+    <section class="article-content">
+    <p>물리 메모리 관리</p>
+<h1 id="물리메모리-관리">물리메모리 관리</h1>
+<h1 id="1-메모리-주소">1. 메모리 주소</h1>
+<ul>
+<li>1Byte 단위로 나뉨</li>
+<li>보통 0번지부터 시작</li>
+<li>메모리에 있는 내용을 가져오거나 작업 결과를 메모리에 저장하기 위해 메모리 주소 레지스터를 사용</li>
+</ul>
+<h1 id="2-메모리-관리의-복잡성">2. 메모리 관리의 복잡성</h1>
+<ul>
+<li>폰 노이만 구조 컴퓨터에서 유일한 작업공간
+<ul>
+<li>모든 프로그램은 메모리에 올라와야 실행 가능</li>
+</ul>
+</li>
+<li>일괄처리 시스템
+<ul>
+<li>한번에 하나의 프로그램만 실행</li>
+<li>메모리 관리가 단순</li>
+</ul>
+</li>
+<li>시분할 시스템
+<ul>
+<li>운영체제를 포함한 모든 응용 프로그램이 모두 메모리에 올라감</li>
+<li>관리가 복잡</li>
+</ul>
+</li>
+</ul>
+<h2 id="메모리-관리의-이중성">메모리 관리의 이중성</h2>
+<ul>
+<li>프로세스 입장에서는 메모리를 독차지하려 함</li>
+<li>메모리 관리자 입장에서는 되도록 관리를 효율적으로 하고싶어함</li>
+</ul>
+<h1 id="3-언어-번역-프로그램의-종류">3. 언어 번역 프로그램의 종류</h1>
+<ul>
+<li>컴파일러 : 소스코드를 컴퓨터가 실행할 수 있는 기계어로 번역한 후 한꺼번에 실행</li>
+<li>인터프리터 : 소스코드를 한 행씩 번역하며 실행</li>
+</ul>
+<h2 id="컴파일러의-목적">컴파일러의 목적</h2>
+<ul>
+<li>오류 발견</li>
+<li>코드 최적화</li>
+</ul>
+<h2 id="컴파일러와-인터프리터의-차이">컴파일러와 인터프리터의 차이</h2>
+<p><figure 
+	>
+	<a href="/posts/%eb%ac%bc%eb%a6%ac%eb%a9%94%eb%aa%a8%eb%a6%ac-%ea%b4%80%eb%a6%ac/Untitled.png" >
+		<img src="/posts/%eb%ac%bc%eb%a6%ac%eb%a9%94%eb%aa%a8%eb%a6%ac-%ea%b4%80%eb%a6%ac/Untitled.png"
+			
+			
+			
+			loading="lazy"
+			alt="image">
+	</a>
+	
+	<figcaption>image</figcaption>
+	
+</figure></p>
+<h2 id="컴파일-과정">컴파일 과정</h2>
+<p><figure 
+	>
+	<a href="/posts/%eb%ac%bc%eb%a6%ac%eb%a9%94%eb%aa%a8%eb%a6%ac-%ea%b4%80%eb%a6%ac/Untitled%201.png" >
+		<img src="/posts/%eb%ac%bc%eb%a6%ac%eb%a9%94%eb%aa%a8%eb%a6%ac-%ea%b4%80%eb%a6%ac/Untitled%201.png"
+			
+			
+			
+			loading="lazy"
+			alt="image">
+	</a>
+	
+	<figcaption>image</figcaption>
+	
+</figure></p>
+<ol>
+<li>소스코드 작성 및 컴파일
+<ul>
+<li>에러찾기와 최적화</li>
+</ul>
+</li>
+<li>목적 코드 (기계어), 라이브러리 연결</li>
+<li>동적 라이브러리를 포함하여 최종 실행
+<ul>
+<li>기존 라이브러리는 내부 함수가 변경되면 재컴파일 해야함</li>
+<li>동적 라이브러리는 실행시에 포함되므로 재컴파일 필요 없음 (., SO)</li>
+</ul>
+</li>
+</ol>
+<h1 id="3-메모리-관리자">3. 메모리 관리자</h1>
+<ul>
+<li>메모리 관리를 담당하는 하드웨어</li>
+<li>어떠한 프로세스가, 어떤 위치의 메모리에 올려져야 할지, 어디 재배치할지 할지 결정</li>
+</ul>
+<h2 id="메모리-관리자의-작업-및-정책">메모리 관리자의 작업 및 정책</h2>
+<ul>
+<li><strong>가져오기 작업/정책</strong>
+<ul>
+<li>프로세스와 데이터를 메모리로 가져오는 작업</li>
+<li>프로세스가 필요로 하는 데이터를 언제 메모리로 가져올지 정책으로 결정</li>
+</ul>
+</li>
+<li><strong>배치 작업/정책</strong>
+<ul>
+<li>가져온 프로세스와 데이터를 메모리의 어떤 부분에 올릴지 정책을 통해 결정</li>
+</ul>
+</li>
+<li><strong>재배치 작업/정책</strong>
+<ul>
+<li>꽉 차 있는 메모리에 새로운 프로세스를 가져오기 위해 오래된 프로세스를 내보냄</li>
+<li>이 때 어떤 프로세스를 내보낼 지 정책을 통해 결정</li>
+</ul>
+</li>
+</ul>
+<h2 id="물리-주소-공간-논리-주소-공간">물리 주소 공간, 논리 주소 공간</h2>
+<ul>
+<li><strong>물리 주소 공간</strong>
+<ul>
+<li>하드웨어 입장에서 바라본 주소 공간.</li>
+<li>컴퓨터마다 크기가 다름</li>
+</ul>
+</li>
+<li><strong>논리 주소 공간</strong>
+<ul>
+<li>사용자 입장에서 바라본 주소 공간</li>
+</ul>
+</li>
+</ul>
+<h2 id="단순-메모리-구조">단순 메모리 구조</h2>
+<p><figure 
+	>
+	<a href="/posts/%eb%ac%bc%eb%a6%ac%eb%a9%94%eb%aa%a8%eb%a6%ac-%ea%b4%80%eb%a6%ac/Untitled%202.png" >
+		<img src="/posts/%eb%ac%bc%eb%a6%ac%eb%a9%94%eb%aa%a8%eb%a6%ac-%ea%b4%80%eb%a6%ac/Untitled%202.png"
+			
+			
+			
+			loading="lazy"
+			alt="image">
+	</a>
+	
+	<figcaption>image</figcaption>
+	
+</figure></p>
+<ul>
+<li>일괄 처리 시스템에서 사용</li>
+<li>메모리를 운영체제 영역, 사용자 영역 두개로 나누어 관리</li>
+<li>사용자 프로세스는 운영체제 영역을 피해 메모리에 적재</li>
+<li>사용자 프로세스를 메모리에 올릴 때 메모리의 최상위 **(.)**부터 적재
+<ul>
+<li>그러나 메모리를 거꾸로 사용하기 위해 주소를 변경하는것은 복잡해 잘 사용안함</li>
+</ul>
+</li>
+</ul>
+<h3 id="경계-레지스터">경계 레지스터</h3>
+<ul>
+<li>운영체제 영역과 사용자 영역 경계 지점의 주소를 가진 레지스터 <strong>(.)</strong></li>
+<li>CPU 내에 있는 경계 레지스터가 사용자 영역이 운영체제 영역으로 침범하는 것을 막아줌</li>
+<li>메모리 관리자는 사용자가 작업을 요청할 때 마다 경계 레지스터의 값을 벗어나는지 검사
+<ul>
+<li>경계 레지스터를 벗어나는 작업을 요청하는 프로세스가 있다면 그 프로세스를 종료</li>
+</ul>
+</li>
+</ul>
+<h2 id="절대-주소">절대 주소</h2>
+<ul>
+<li>실제 물리 주소</li>
+</ul>
+<h2 id="상대-주소">상대 주소</h2>
+<ul>
+<li>사용자 영역이 시작되는 번지를 0번지로 변경해 사용</li>
+<li>사용자 프로세스 입장에서 바라본 주소</li>
+<li>절대 주소와 관계없이 항상 0번지부터 시작</li>
+</ul>
+<h2 id="절대-주소와-상대-주소의-차이">절대 주소와 상대 주소의 차이</h2>
+<p><figure 
+	>
+	<a href="/posts/%eb%ac%bc%eb%a6%ac%eb%a9%94%eb%aa%a8%eb%a6%ac-%ea%b4%80%eb%a6%ac/Untitled%203.png" >
+		<img src="/posts/%eb%ac%bc%eb%a6%ac%eb%a9%94%eb%aa%a8%eb%a6%ac-%ea%b4%80%eb%a6%ac/Untitled%203.png"
+			
+			
+			
+			loading="lazy"
+			alt="image">
+	</a>
+	
+	<figcaption>image</figcaption>
+	
+</figure></p>
+<h2 id="상대-주소를-절대-주소로-변환하는-과정">상대 주소를 절대 주소로 변환하는 과정</h2>
+<p><figure 
+	>
+	<a href="/posts/%eb%ac%bc%eb%a6%ac%eb%a9%94%eb%aa%a8%eb%a6%ac-%ea%b4%80%eb%a6%ac/Untitled%204.png" >
+		<img src="/posts/%eb%ac%bc%eb%a6%ac%eb%a9%94%eb%aa%a8%eb%a6%ac-%ea%b4%80%eb%a6%ac/Untitled%204.png"
+			
+			
+			
+			loading="lazy"
+			alt="image">
+	</a>
+	
+	<figcaption>image</figcaption>
+	
+</figure></p>
+<ul>
+<li>메모리 접근 시 상대 주소를 사용하면 결과적으로 절대 주소로 변환됨</li>
+<li>상대 주소값 + 재배치 레지스터값 = 절대 주소</li>
+<li>재배치 레지스터
+<ul>
+<li>주소 변환의 기본이 되는 주소값을 가진 레지스터</li>
+<li>메모리에서 사용자 영역의 시작 주소값이 저장됨</li>
+</ul>
+</li>
+</ul>
+<h1 id="4-메모리-오버레이">4. 메모리 오버레이</h1>
+<blockquote>
+<p>프로그램의 크기가 실제 메모리보다 클 때, 전체 프로그램을 메모리에 가져오는 대신 적당한 크기로 잘라서 가져오는 기법</p>
+</blockquote>
+<h2 id="작동-방식">작동 방식</h2>
+<p><figure 
+	>
+	<a href="/posts/%eb%ac%bc%eb%a6%ac%eb%a9%94%eb%aa%a8%eb%a6%ac-%ea%b4%80%eb%a6%ac/Untitled%205.png" >
+		<img src="/posts/%eb%ac%bc%eb%a6%ac%eb%a9%94%eb%aa%a8%eb%a6%ac-%ea%b4%80%eb%a6%ac/Untitled%205.png"
+			
+			
+			
+			loading="lazy"
+			alt="image">
+	</a>
+	
+	<figcaption>image</figcaption>
+	
+</figure></p>
+<ul>
+<li>프로그램이 실행되면 필요한 모듈만 메모리에 올라옴</li>
+<li>한정된 메모리에서 메모리보다 더 큰 프로그램 실행 가능</li>
+<li>프로그램 전체가 아닌 일부만 메모리에 올라와도 실행 가능</li>
+</ul>
+<h1 id="5-스왑-영역">5. 스왑 영역</h1>
+<ul>
+<li>메모리가 모자라서 쫓겨난 프로세스를 저장장치의 특별한 공간에 모아두는 영역</li>
+<li>저장장치는 장소만 빌려주고 메모리 관리자가 관리하는 영역</li>
+<li>사용자는 실제 메모리 + 스왑 영역의 크기를 합쳐 전체 메모리로 인식</li>
+</ul>
+<h2 id="스왑인">스왑인</h2>
+<ul>
+<li>스왑 영역에서 메모리로 데이터를 가져오는 작업</li>
+</ul>
+<h2 id="스왑아웃">스왑아웃</h2>
+<ul>
+<li>메모리에서 스왑 영역으로 데이터를 내보내는 작업</li>
+</ul>
+<h1 id="6-메모리-분할-방식">6. 메모리 분할 방식</h1>
+<blockquote>
+<p>메모리에 여러 개의 프로세스를 배치하는 법</p>
+</blockquote>
+<p><figure 
+	>
+	<a href="/posts/%eb%ac%bc%eb%a6%ac%eb%a9%94%eb%aa%a8%eb%a6%ac-%ea%b4%80%eb%a6%ac/Untitled%206.png" >
+		<img src="/posts/%eb%ac%bc%eb%a6%ac%eb%a9%94%eb%aa%a8%eb%a6%ac-%ea%b4%80%eb%a6%ac/Untitled%206.png"
+			
+			
+			
+			loading="lazy"
+			alt="image">
+	</a>
+	
+	<figcaption>image</figcaption>
+	
+</figure></p>
+<p><figure 
+	>
+	<a href="/posts/%eb%ac%bc%eb%a6%ac%eb%a9%94%eb%aa%a8%eb%a6%ac-%ea%b4%80%eb%a6%ac/Untitled%207.png" >
+		<img src="/posts/%eb%ac%bc%eb%a6%ac%eb%a9%94%eb%aa%a8%eb%a6%ac-%ea%b4%80%eb%a6%ac/Untitled%207.png"
+			
+			
+			
+			loading="lazy"
+			alt="image">
+	</a>
+	
+	<figcaption>image</figcaption>
+	
+</figure></p>
+<h2 id="가변-분할-방식">가변 분할 방식</h2>
+<ul>
+<li>프로세스의 크기에 따라 메모리를 나누는 것</li>
+<li>연속 메모리 할당</li>
+<li>장점
+<ul>
+<li>프로세스를 한 덩어리, 연속적으로 처리해 처리가 쉬움</li>
+</ul>
+</li>
+<li>단점
+<ul>
+<li>프로세스 하나가 종료되면 중간에 비어있는 메모리 처리 등 메모리 관리가 복잡</li>
+</ul>
+</li>
+</ul>
+<h2 id="고정-분할-방식">고정 분할 방식</h2>
+<ul>
+<li>프로세스의 크기와 상관없이 메모리를 같은 크기로 나누는 것</li>
+<li>비연속 메모리 할당</li>
+<li>장점
+<ul>
+<li>메모리를 일정한 크기로 나눠 관리하기에 메모리 관리 수월</li>
+</ul>
+</li>
+<li>단점
+<ul>
+<li>메모리 낭비가 일어날 수 있음</li>
+</ul>
+</li>
+</ul>
+<h2 id="가변-분할-방식의-자리-배정">가변 분할 방식의 자리 배정</h2>
+<p><figure 
+	>
+	<a href="/posts/%eb%ac%bc%eb%a6%ac%eb%a9%94%eb%aa%a8%eb%a6%ac-%ea%b4%80%eb%a6%ac/Untitled%208.png" >
+		<img src="/posts/%eb%ac%bc%eb%a6%ac%eb%a9%94%eb%aa%a8%eb%a6%ac-%ea%b4%80%eb%a6%ac/Untitled%208.png"
+			
+			
+			
+			loading="lazy"
+			alt="image">
+	</a>
+	
+	<figcaption>image</figcaption>
+	
+</figure></p>
+<p><figure 
+	>
+	<a href="/posts/%eb%ac%bc%eb%a6%ac%eb%a9%94%eb%aa%a8%eb%a6%ac-%ea%b4%80%eb%a6%ac/Untitled%209.png" >
+		<img src="/posts/%eb%ac%bc%eb%a6%ac%eb%a9%94%eb%aa%a8%eb%a6%ac-%ea%b4%80%eb%a6%ac/Untitled%209.png"
+			
+			
+			
+			loading="lazy"
+			alt="image">
+	</a>
+	
+	<figcaption>image</figcaption>
+	
+</figure></p>
+<ul>
+<li>대기중인 프로세스가 들어갈 수 있을만한 자리가 반드시 나야함</li>
+</ul>
+<h2 id="가변-분할-방식과-외부-단편화">가변 분할 방식과 외부 단편화</h2>
+<p><figure 
+	>
+	<a href="/posts/%eb%ac%bc%eb%a6%ac%eb%a9%94%eb%aa%a8%eb%a6%ac-%ea%b4%80%eb%a6%ac/Untitled%2010.png" >
+		<img src="/posts/%eb%ac%bc%eb%a6%ac%eb%a9%94%eb%aa%a8%eb%a6%ac-%ea%b4%80%eb%a6%ac/Untitled%2010.png"
+			
+			
+			
+			loading="lazy"
+			alt="image">
+	</a>
+	
+	<figcaption>image</figcaption>
+	
+</figure></p>
+<ul>
+<li>가변 분할 방식에서 발생할 수 밖에 없는 중간의 작은 빈 공간을 외부 단편화라고 함</li>
+</ul>
+<h3 id="외부-단편화-해결법">외부 단편화 해결법</h3>
+<p><figure 
+	>
+	<a href="/posts/%eb%ac%bc%eb%a6%ac%eb%a9%94%eb%aa%a8%eb%a6%ac-%ea%b4%80%eb%a6%ac/Untitled%2011.png" >
+		<img src="/posts/%eb%ac%bc%eb%a6%ac%eb%a9%94%eb%aa%a8%eb%a6%ac-%ea%b4%80%eb%a6%ac/Untitled%2011.png"
+			
+			
+			
+			loading="lazy"
+			alt="image">
+	</a>
+	
+	<figcaption>image</figcaption>
+	
+</figure></p>
+<ul>
+<li>메모리 배치 방식 최적화
+<ul>
+<li><strong>최초 배치</strong>
+<ul>
+<li>프로세스를 메모리에 배치할 때 메모리에서 적재 가능한 공간을 순서대로 검색하여 첫번째로 발견한 공간에 프로세스를 배치</li>
+<li>빈 공간을 모두 확인할 필요 없음</li>
+</ul>
+</li>
+<li><strong>최적 배치</strong>
+<ul>
+<li>메모리의 빈 공간을 모두 확인한 후 적당한 크기 가운데 가장 작은 공간에 배치</li>
+<li>빈 공간을 모두 확인해야 함
+<ul>
+<li>그러나 딱 맞는 공간을 찾을 경우 단편화 발생하지 않을 수 있다.</li>
+<li>딱 맞는 공간이 없을 때는 작은 조각을 만들수밖에 없음</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><strong>최악 배치</strong>
+<ul>
+<li>빈 공간을 모두 확인한 후 가장 큰 공간에 프로세스를 배치</li>
+<li>빈 공간을 모두 확인해야 함
+<ul>
+<li>프로세스를 배치하고 남는 공간이 크기 때문에 쓸모가 있음</li>
+<li>빈 공간의 크기가 클 때는 효과적이지만 점점 줄어들수록 작은 조각을 만들 수 밖에 없음</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>조각 모음
+<ul>
+<li>과정
+<ol>
+<li>프로세스의 동작을 멈춤</li>
+<li>프로세스를 적당한 위치로 이동 (프로세스의 상대 주소값 변경)</li>
+<li>작업을 마친 후 프로세스 다시 시작</li>
+</ol>
+</li>
+<li>현재 실행중인 프로세스를 종료하고 메모리를 옮겨야 하므로 실제로는 사용 잘 안함</li>
+</ul>
+</li>
+</ul>
+<h2 id="고정-분할-방식의-자리-배정">고정 분할 방식의 자리 배정</h2>
+<p><figure 
+	>
+	<a href="/posts/%eb%ac%bc%eb%a6%ac%eb%a9%94%eb%aa%a8%eb%a6%ac-%ea%b4%80%eb%a6%ac/Untitled%2012.png" >
+		<img src="/posts/%eb%ac%bc%eb%a6%ac%eb%a9%94%eb%aa%a8%eb%a6%ac-%ea%b4%80%eb%a6%ac/Untitled%2012.png"
+			
+			
+			
+			loading="lazy"
+			alt="image">
+	</a>
+	
+	<figcaption>image</figcaption>
+	
+</figure></p>
+<p><figure 
+	>
+	<a href="/posts/%eb%ac%bc%eb%a6%ac%eb%a9%94%eb%aa%a8%eb%a6%ac-%ea%b4%80%eb%a6%ac/Untitled%2013.png" >
+		<img src="/posts/%eb%ac%bc%eb%a6%ac%eb%a9%94%eb%aa%a8%eb%a6%ac-%ea%b4%80%eb%a6%ac/Untitled%2013.png"
+			
+			
+			
+			loading="lazy"
+			alt="image">
+	</a>
+	
+	<figcaption>image</figcaption>
+	
+</figure></p>
+<ul>
+<li>C같은 경우 C1, C2로 나뉘는데
+<ul>
+<li>C2가 들어갈 메모리 공간이 없으므로 스왑 영역으로 들어가게 된다.</li>
+</ul>
+</li>
+</ul>
+<h2 id="고정-분할-방식과-내부-단편화">고정 분할 방식과 내부 단편화</h2>
+<ul>
+<li>각 메모리 족가에 프로세스를 배치하고 공간이 남는 현상</li>
+<li>내부 단편화를 줄이기 위해 메모리 칸 크기에 신중해야 하지만 얼마로 나누느냐에 대한 정답은 없음</li>
+</ul>
+<h2 id="가변-분할-방식과-고정-분할-방식-비교">가변 분할 방식과 고정 분할 방식 비교</h2>
+<p><figure 
+	>
+	<a href="/posts/%eb%ac%bc%eb%a6%ac%eb%a9%94%eb%aa%a8%eb%a6%ac-%ea%b4%80%eb%a6%ac/Untitled%2014.png" >
+		<img src="/posts/%eb%ac%bc%eb%a6%ac%eb%a9%94%eb%aa%a8%eb%a6%ac-%ea%b4%80%eb%a6%ac/Untitled%2014.png"
+			
+			
+			
+			loading="lazy"
+			alt="image">
+	</a>
+	
+	<figcaption>image</figcaption>
+	
+</figure></p>
+<h2 id="분할-방식--버디-시스템">분할 방식 : 버디 시스템</h2>
+<ul>
+<li>가변 분할 방식과 고정 분할 방식의 장점들을 취합하려 시도</li>
+</ul>
+<ol>
+<li><strong>메모리를 1/2 크기로 잘라가며</strong> 프로세스 크기에 적절한 <strong>메모리 공간을 할당</strong>함</li>
+<li>나뉜 메모리의 각 구역에는 프로세스가 1개만 들어감</li>
+<li>프로세스가 종료되면 주변의 빈 조각과 합쳐서 하나의 큰 덩어리를 만듬</li>
+</ol>
+<h2 id="자리-배정-방법">자리 배정 방법</h2>
+<p><figure 
+	>
+	<a href="/posts/%eb%ac%bc%eb%a6%ac%eb%a9%94%eb%aa%a8%eb%a6%ac-%ea%b4%80%eb%a6%ac/Untitled%2015.png" >
+		<img src="/posts/%eb%ac%bc%eb%a6%ac%eb%a9%94%eb%aa%a8%eb%a6%ac-%ea%b4%80%eb%a6%ac/Untitled%2015.png"
+			
+			
+			
+			loading="lazy"
+			alt="image">
+	</a>
+	
+	<figcaption>image</figcaption>
+	
+</figure></p>
+<p><figure 
+	>
+	<a href="/posts/%eb%ac%bc%eb%a6%ac%eb%a9%94%eb%aa%a8%eb%a6%ac-%ea%b4%80%eb%a6%ac/Untitled%2016.png" >
+		<img src="/posts/%eb%ac%bc%eb%a6%ac%eb%a9%94%eb%aa%a8%eb%a6%ac-%ea%b4%80%eb%a6%ac/Untitled%2016.png"
+			
+			
+			
+			loading="lazy"
+			alt="image">
+	</a>
+	
+	<figcaption>image</figcaption>
+	
+</figure></p>
+<p><figure 
+	>
+	<a href="/posts/%eb%ac%bc%eb%a6%ac%eb%a9%94%eb%aa%a8%eb%a6%ac-%ea%b4%80%eb%a6%ac/Untitled%2017.png" >
+		<img src="/posts/%eb%ac%bc%eb%a6%ac%eb%a9%94%eb%aa%a8%eb%a6%ac-%ea%b4%80%eb%a6%ac/Untitled%2017.png"
+			
+			
+			
+			loading="lazy"
+			alt="image">
+	</a>
+	
+	<figcaption>image</figcaption>
+	
+</figure></p>
+<h2 id="버디-시스템-특징">버디 시스템 특징</h2>
+<ul>
+<li>가변 분할 방식처럼 메모리가 프로세스 크기대로 나뉨</li>
+<li>고정 분할 방식처럼 하나의 구역에 다른 프로세스가 들어갈 수 없고, 내부 단편화 발생</li>
+<li>비슷한 크기의 조각이 서로 모이는 효과가 있음
+<ul>
+<li>작은 조각을 통합해 큰 조각을 만들기 용이함</li>
+</ul>
+</li>
+</ul>
+<h1 id="7-변수와-메모리-할당">7. 변수와 메모리 할당</h1>
+<p><figure 
+	>
+	<a href="/posts/%eb%ac%bc%eb%a6%ac%eb%a9%94%eb%aa%a8%eb%a6%ac-%ea%b4%80%eb%a6%ac/Untitled%2018.png" >
+		<img src="/posts/%eb%ac%bc%eb%a6%ac%eb%a9%94%eb%aa%a8%eb%a6%ac-%ea%b4%80%eb%a6%ac/Untitled%2018.png"
+			
+			
+			
+			loading="lazy"
+			alt="image">
+	</a>
+	
+	<figcaption>image</figcaption>
+	
+</figure></p>
+<p><figure 
+	>
+	<a href="/posts/%eb%ac%bc%eb%a6%ac%eb%a9%94%eb%aa%a8%eb%a6%ac-%ea%b4%80%eb%a6%ac/Untitled%2019.png" >
+		<img src="/posts/%eb%ac%bc%eb%a6%ac%eb%a9%94%eb%aa%a8%eb%a6%ac-%ea%b4%80%eb%a6%ac/Untitled%2019.png"
+			
+			
+			
+			loading="lazy"
+			alt="image">
+	</a>
+	
+	<figcaption>image</figcaption>
+	
+</figure></p>
+<p><figure 
+	>
+	<a href="/posts/%eb%ac%bc%eb%a6%ac%eb%a9%94%eb%aa%a8%eb%a6%ac-%ea%b4%80%eb%a6%ac/Untitled%2020.png" >
+		<img src="/posts/%eb%ac%bc%eb%a6%ac%eb%a9%94%eb%aa%a8%eb%a6%ac-%ea%b4%80%eb%a6%ac/Untitled%2020.png"
+			
+			
+			
+			loading="lazy"
+			alt="image">
+	</a>
+	
+	<figcaption>image</figcaption>
+	
+</figure></p>
+<ul>
+<li>컴파일러는 변수를 사용할 때마다 사용 범위를 넘는지 점검</li>
+<li>컴파일러는 모든 변수를 메모리 주소로 바꾸어 기계어로 된 실행 파일을 만듬</li>
+<li>컴파일러에 의해 만들어진 변수의 주소는 상대주소임</li>
+</ul>
+</section>
+
+
+    <footer class="article-footer">
+    
+    <section class="article-tags">
+        
+            <a href="/tags/os/">os</a>
+        
+            <a href="/tags/operation-system/">operation-system</a>
+        
+    </section>
+
+
+    
+    <section class="article-copyright">
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-copyright" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <path d="M14.5 9a3.5 4 0 1 0 0 6" />
+</svg>
+
+
+
+        <span>Licensed under CC BY-NC-SA 4.0</span>
+    </section>
+    </footer>
+
+
+    
+</article>
+
+    <aside class="related-contents--wrapper">
+    
+    
+        <h2 class="section-title">Related contents</h2>
+        <div class="related-contents">
+            <div class="flex article-list--tile">
+                
+                    
+<article class="">
+    <a href="/blog/%EC%9A%B4%EC%98%81%EC%B2%B4%EC%A0%9C-cpu/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">운영체제 - CPU</h2>
+        </div>
+    </a>
+</article>
+                
+                    
+<article class="">
+    <a href="/blog/%EC%9A%B4%EC%98%81%EC%B2%B4%EC%A0%9C-cpu-%EC%8A%A4%EC%BC%80%EC%A4%84%EB%A7%81/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">운영체제 - CPU 스케줄링</h2>
+        </div>
+    </a>
+</article>
+                
+                    
+<article class="">
+    <a href="/blog/%EC%9A%B4%EC%98%81%EC%B2%B4%EC%A0%9C-cpu-%EC%8A%A4%EC%BC%80%EC%A4%84%EB%A7%81-%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">운영체제 - CPU 스케줄링 알고리즘</h2>
+        </div>
+    </a>
+</article>
+                
+                    
+<article class="">
+    <a href="/blog/%EC%9A%B4%EC%98%81%EC%B2%B4%EC%A0%9C-raid/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">운영체제 - RAID</h2>
+        </div>
+    </a>
+</article>
+                
+                    
+<article class="">
+    <a href="/blog/%EC%9A%B4%EC%98%81%EC%B2%B4%EC%A0%9C-%EA%B0%80%EC%83%81-%EB%A9%94%EB%AA%A8%EB%A6%AC/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">운영체제 - 가상 메모리</h2>
+        </div>
+    </a>
+</article>
+                
+            </div>
+        </div>
+    
+</aside>
+
+     
+    
+        
+    <script src="https://utteranc.es/client.js" 
+        repo="yansigit/yansigit.github.io"
+        issue-term="pathname"
+        
+        label="Utterances Comment"
+        
+        crossorigin="anonymous"
+        async
+        >
+</script>
+
+<style>
+    .utterances {
+        max-width: unset;
+    }
+</style>
+
+<script>
+    function setUtterancesTheme(theme) {
+        let utterances = document.querySelector('.utterances iframe');
+        if (utterances) {
+            utterances.contentWindow.postMessage(
+                {
+                    type: 'set-theme',
+                    theme: `github-${theme}`
+                },
+                'https://utteranc.es'
+            );
+        }
+    }
+
+    addEventListener('message', event => {
+        if (event.origin !== 'https://utteranc.es') return;
+        setUtterancesTheme(document.documentElement.dataset.scheme)
+    });
+
+    window.addEventListener('onColorSchemeChange', (e) => {
+        setUtterancesTheme(e.detail)
+    })
+</script>
+
+
+    
+
+    <footer class="site-footer">
+    <section class="copyright">
+        &copy; 
+        
+            2020 - 
+        
+        2021 Code like Feather
+    </section>
+    
+    <section class="powerby">
+        Built with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> <br />
+        Theme <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="3.2.0">Stack</a></b> designed by <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a>
+    </section>
+</footer>
+
+
+    
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    
+    <div class="pswp__bg"></div>
+
+    
+    <div class="pswp__scroll-wrap">
+
+        
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                
+                
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"integrity="sha256-ePwmChbbvXbsO02lbM3HoHbSHTHFAeChekF1xKJdleo="crossorigin="anonymous"
+                defer="true"
+                >
+            </script><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"integrity="sha256-UKkzOn/w1mBxRmLLGrSeyB4e1xbrp4xylgAWb3M42pU="crossorigin="anonymous"
+                defer="true"
+                >
+            </script><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.css"integrity="sha256-c0uckgykQ9v5k&#43;IqViZOZKc47Jn7KQil4/MP3ySA3F8="crossorigin="anonymous"
+            ><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.css"integrity="sha256-SBLU4vv6CA6lHsZ1XyTdhyjJxCjPif/TRkjnsyGAGnE="crossorigin="anonymous"
+            >
+
+            </main>
+    
+        <aside class="sidebar right-sidebar sticky">
+            <section class="widget archives">
+                <div class="widget-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-hash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <line x1="5" y1="9" x2="19" y2="9" />
+  <line x1="5" y1="15" x2="19" y2="15" />
+  <line x1="11" y1="4" x2="7" y2="20" />
+  <line x1="17" y1="4" x2="13" y2="20" />
+</svg>
+
+
+
+                </div>
+                <h2 class="widget-title section-title">Table of contents</h2>
+                
+                <div class="widget--toc">
+                    <nav id="TableOfContents">
+  <ol>
+    <li><a href="#메모리-관리의-이중성">메모리 관리의 이중성</a></li>
+  </ol>
+
+  <ol>
+    <li><a href="#컴파일러의-목적">컴파일러의 목적</a></li>
+    <li><a href="#컴파일러와-인터프리터의-차이">컴파일러와 인터프리터의 차이</a></li>
+    <li><a href="#컴파일-과정">컴파일 과정</a></li>
+  </ol>
+
+  <ol>
+    <li><a href="#메모리-관리자의-작업-및-정책">메모리 관리자의 작업 및 정책</a></li>
+    <li><a href="#물리-주소-공간-논리-주소-공간">물리 주소 공간, 논리 주소 공간</a></li>
+    <li><a href="#단순-메모리-구조">단순 메모리 구조</a>
+      <ol>
+        <li><a href="#경계-레지스터">경계 레지스터</a></li>
+      </ol>
+    </li>
+    <li><a href="#절대-주소">절대 주소</a></li>
+    <li><a href="#상대-주소">상대 주소</a></li>
+    <li><a href="#절대-주소와-상대-주소의-차이">절대 주소와 상대 주소의 차이</a></li>
+    <li><a href="#상대-주소를-절대-주소로-변환하는-과정">상대 주소를 절대 주소로 변환하는 과정</a></li>
+  </ol>
+
+  <ol>
+    <li><a href="#작동-방식">작동 방식</a></li>
+  </ol>
+
+  <ol>
+    <li><a href="#스왑인">스왑인</a></li>
+    <li><a href="#스왑아웃">스왑아웃</a></li>
+  </ol>
+
+  <ol>
+    <li><a href="#가변-분할-방식">가변 분할 방식</a></li>
+    <li><a href="#고정-분할-방식">고정 분할 방식</a></li>
+    <li><a href="#가변-분할-방식의-자리-배정">가변 분할 방식의 자리 배정</a></li>
+    <li><a href="#가변-분할-방식과-외부-단편화">가변 분할 방식과 외부 단편화</a>
+      <ol>
+        <li><a href="#외부-단편화-해결법">외부 단편화 해결법</a></li>
+      </ol>
+    </li>
+    <li><a href="#고정-분할-방식의-자리-배정">고정 분할 방식의 자리 배정</a></li>
+    <li><a href="#고정-분할-방식과-내부-단편화">고정 분할 방식과 내부 단편화</a></li>
+    <li><a href="#가변-분할-방식과-고정-분할-방식-비교">가변 분할 방식과 고정 분할 방식 비교</a></li>
+    <li><a href="#분할-방식--버디-시스템">분할 방식 : 버디 시스템</a></li>
+    <li><a href="#자리-배정-방법">자리 배정 방법</a></li>
+    <li><a href="#버디-시스템-특징">버디 시스템 특징</a></li>
+  </ol>
+</nav>
+                </div>
+            </section>
+        </aside>
+    
+
+        </div>
+        <script 
+                src="https://cdn.jsdelivr.net/npm/node-vibrant@3.1.5/dist/vibrant.min.js"integrity="sha256-5NovOZc4iwiAWTYIFiIM7DxKUXKWvpVEuMEPLzcm5/g="crossorigin="anonymous"
+                defer="false"
+                >
+            </script><script type="text/javascript" src="/ts/main.js" defer></script>
+<script>
+    (function () {
+        const customFont = document.createElement('link');
+        customFont.href = "https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap";
+
+        customFont.type = "text/css";
+        customFont.rel = "stylesheet";
+
+        document.head.appendChild(customFont);
+    }());
+</script>
+
+    </body>
+</html>

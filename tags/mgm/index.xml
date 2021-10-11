@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>mgm on Code like Feather</title>
+    <link>https://yansigit.github.io/tags/mgm/</link>
+    <description>Recent content in mgm on Code like Feather</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>ko-kr</language>
+    <lastBuildDate>Fri, 07 Feb 2020 22:40:26 +0900</lastBuildDate><atom:link href="https://yansigit.github.io/tags/mgm/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Using Mongodb in Golang</title>
+      <link>https://yansigit.github.io/blog/using-mongodb-in-golang/</link>
+      <pubDate>Fri, 07 Feb 2020 22:40:26 +0900</pubDate>
+      
+      <guid>https://yansigit.github.io/blog/using-mongodb-in-golang/</guid>
+      <description>&lt;h1 id=&#34;odm-for-mongodb&#34;&gt;ODM for MongoDB&lt;/h1&gt;
+&lt;p&gt;MongoDB에도 &lt;code&gt;ORM&lt;/code&gt;과 비슷한 &lt;code&gt;ODM&lt;/code&gt; 프레임웍이 있는데 바로 &lt;a class=&#34;link&#34; href=&#34;https://github.com/Kamva/mgm&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;MGM&lt;/a&gt; 이라는 프로젝트. 저번달에 따끈따끈하게 나온 프로젝트인거 같다.&lt;/p&gt;
+&lt;p&gt;사실 MongoDB 같은 경우에는 SQL 기반이 아니라 JSON 혹은 BSON 기반이라 ODM을 쓸것까지는 없을 것 같지만, 아직 MongoDB에 익숙하지 않기도 하고 짜여진 구조체를 기반으로 편리하게 데이터베이스와 소통할 수 있다는 장점과 빠른 개발이 가능할것이라는 생각에 한번 사용해보기로 했다.&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

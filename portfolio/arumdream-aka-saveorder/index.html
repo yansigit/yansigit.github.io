@@ -1,0 +1,692 @@
+<!DOCTYPE html>
+<html lang="ko-kr">
+    <head><meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content='Mobile application for easy self-ordering for everyone using Flutter, C#, ASP.NET'><title>Arumdream - Easy Mobile App for Self-Orderings</title>
+
+<link rel='canonical' href='https://yansigit.github.io/portfolio/arumdream-aka-saveorder/'>
+
+<link rel="stylesheet" href="/scss/style.min.css"><meta property='og:title' content='Arumdream - Easy Mobile App for Self-Orderings'>
+<meta property='og:description' content='Mobile application for easy self-ordering for everyone using Flutter, C#, ASP.NET'>
+<meta property='og:url' content='https://yansigit.github.io/portfolio/arumdream-aka-saveorder/'>
+<meta property='og:site_name' content='Code like Feather'>
+<meta property='og:type' content='article'><meta property='article:section' content='Portfolio' /><meta property='article:tag' content='project' /><meta property='article:tag' content='pos' /><meta property='article:tag' content='kiosk' /><meta property='article:tag' content='aws' /><meta property='article:tag' content='flutter' /><meta property='article:tag' content='go' /><meta property='article:tag' content='mobile' /><meta property='article:tag' content='cafe' /><meta property='article:tag' content='portfolio' /><meta property='article:published_time' content='2021-03-20T17:55:28&#43;08:00'/><meta property='article:modified_time' content='2020-03-20T17:55:28&#43;08:00'/><meta property='og:image' content='https://yansigit.github.io/images/lighthouse.jpg' />
+<meta name="twitter:title" content="Arumdream - Easy Mobile App for Self-Orderings">
+<meta name="twitter:description" content="Mobile application for easy self-ordering for everyone using Flutter, C#, ASP.NET"><meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content='https://yansigit.github.io/images/lighthouse.jpg' />
+    </head>
+    <body class="
+    article-page has-toc
+">
+    <script>
+        (function() {
+            const colorSchemeKey = 'StackColorScheme';
+            if(!localStorage.getItem(colorSchemeKey)){
+                localStorage.setItem(colorSchemeKey, "auto");
+            }
+        })();
+    </script><script>
+    (function() {
+        const colorSchemeKey = 'StackColorScheme';
+        const colorSchemeItem = localStorage.getItem(colorSchemeKey);
+        const supportDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches === true;
+
+        if (colorSchemeItem == 'dark' || colorSchemeItem === 'auto' && supportDarkMode) {
+            
+
+            document.documentElement.dataset.scheme = 'dark';
+        } else {
+            document.documentElement.dataset.scheme = 'light';
+        }
+    })();
+</script>
+<div class="container main-container flex 
+    
+        extended
+    
+">
+    
+        <div id="article-toolbar">
+            <a href="https://yansigit.github.io" class="back-home">
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-chevron-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <polyline points="15 6 9 12 15 18" />
+</svg>
+
+
+
+                <span>Back</span>
+            </a>
+        </div>
+    
+<main class="main full-width">
+    <article class="main-article">
+    <header class="article-header">
+
+    <div class="article-details">
+    
+    <header class="article-category">
+        
+            <a href="/categories/portfolio/" >
+                Portfolio
+            </a>
+        
+    </header>
+    
+
+    <h2 class="article-title">
+        <a href="/portfolio/arumdream-aka-saveorder/">Arumdream - Easy Mobile App for Self-Orderings</a>
+    </h2>
+
+    
+    <h3 class="article-subtitle">
+        Mobile application for easy self-ordering for everyone using Flutter, C#, ASP.NET
+    </h3>
+    
+
+    
+    <footer class="article-time">
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-calendar-time" width="56" height="56" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M11.795 21h-6.795a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v4" />
+  <circle cx="18" cy="18" r="4" />
+  <path d="M15 3v4" />
+  <path d="M7 3v4" />
+  <path d="M3 11h16" />
+  <path d="M18 16.496v1.504l1 1" />
+</svg>
+                <time class="article-time--published">Mar 20, 2021</time>
+            </div>
+        
+
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <polyline points="12 7 12 12 15 15" />
+</svg>
+
+
+
+                <time class="article-time--reading">
+                    4 minute read
+                </time>
+            </div>
+        
+    </footer>
+    
+</div>
+</header>
+
+    <section class="article-content">
+    <h2 id="stacks-being-used-in-this-project">Stacks being used in this project</h2>
+<p><figure 
+	>
+	<a href="https://img.shields.io/badge/c%23-%23239120.svg?style=for-the-badge&amp;logo=c-sharp&amp;logoColor=white" >
+		<img src="https://img.shields.io/badge/c%23-%23239120.svg?style=for-the-badge&amp;logo=c-sharp&amp;logoColor=white"
+			
+			
+			
+			loading="lazy"
+			alt="C#">
+	</a>
+	
+	<figcaption>C#</figcaption>
+	
+</figure>
+<figure 
+	>
+	<a href="https://img.shields.io/badge/AWS-%23FF9900.svg?style=for-the-badge&amp;logo=amazon-aws&amp;logoColor=white" >
+		<img src="https://img.shields.io/badge/AWS-%23FF9900.svg?style=for-the-badge&amp;logo=amazon-aws&amp;logoColor=white"
+			
+			
+			
+			loading="lazy"
+			alt="AWS">
+	</a>
+	
+	<figcaption>AWS</figcaption>
+	
+</figure>
+<figure 
+	>
+	<a href="https://img.shields.io/badge/MariaDB-003545?style=for-the-badge&amp;logo=mariadb&amp;logoColor=white" >
+		<img src="https://img.shields.io/badge/MariaDB-003545?style=for-the-badge&amp;logo=mariadb&amp;logoColor=white"
+			
+			
+			
+			loading="lazy"
+			alt="MariaDB">
+	</a>
+	
+	<figcaption>MariaDB</figcaption>
+	
+</figure>
+<figure 
+	>
+	<a href="https://img.shields.io/badge/Flutter-%2302569B.svg?style=for-the-badge&amp;logo=Flutter&amp;logoColor=white" >
+		<img src="https://img.shields.io/badge/Flutter-%2302569B.svg?style=for-the-badge&amp;logo=Flutter&amp;logoColor=white"
+			
+			
+			
+			loading="lazy"
+			alt="Flutter">
+	</a>
+	
+	<figcaption>Flutter</figcaption>
+	
+</figure></p>
+<h2 id="what-is-this-project-about">What is this project about?</h2>
+<p>It is a project that extends the concept of &ldquo;The Friendly Kiosk Project&rdquo; to mobile solutions.</p>
+<p>There was an unexpected amount of resistance to the kiosk itself
+so to serve as many people as possible,
+We wanted to create a cross-platform, non-face-to-face solution for both Android and iOS.</p>
+<p>POS solution was also developed to improve the inconvenience experience of existing
+web-based POS system using C# and WPF-like Cross-Platform GUI Framework called Avalonia.</p>
+<details>
+<summary>한국어</summary>
+알기쉬운 키오스크의 컨셉을 이어 모바일 솔루션으로 확장한 프로젝트입니다.
+<p>키오스크 자체에 거부감을 가지고 있는 사람이 의외로 있었기에, 최대한 많은 분들께 서비스를 제공하기 위해
+해당 인원을 수용하면서 안드로이드, iOS 모두 사용 가능한 크로스플랫폼 비대면 솔루션을 제작하고자 했습니다.</p>
+<p>또 기존 알기쉬운 키오스크 솔루션의 불편했던 점을 개선하기 위해 POS 솔루션 또한
+C# 기반의 윈도우 어플리케이션으로 제작하였습니다.</p>
+</details>
+<h2 id="structure">Structure</h2>
+<p><figure 
+	
+		class="gallery-image" 
+		style="
+			flex-grow: 188; 
+			flex-basis: 453px"
+	>
+	<a href="/portfolio/arumdream-aka-saveorder/img.png" data-size="1848x979">
+		<img src="/portfolio/arumdream-aka-saveorder/img.png"
+			width="1848"
+			height="979"
+			srcset="/portfolio/arumdream-aka-saveorder/img_hucca03e3814ad536fd08b5b806cf7c96c_359305_480x0_resize_box_3.png 480w, /portfolio/arumdream-aka-saveorder/img_hucca03e3814ad536fd08b5b806cf7c96c_359305_1024x0_resize_box_3.png 1024w"
+			loading="lazy"
+			alt="img.png">
+	</a>
+	
+	<figcaption>img.png</figcaption>
+	
+</figure></p>
+<h2 id="mobile-app">Mobile App</h2>
+<p><figure 
+	
+		class="gallery-image" 
+		style="
+			flex-grow: 191; 
+			flex-basis: 459px"
+	>
+	<a href="/portfolio/arumdream-aka-saveorder/img_1.png" data-size="1848x965">
+		<img src="/portfolio/arumdream-aka-saveorder/img_1.png"
+			width="1848"
+			height="965"
+			srcset="/portfolio/arumdream-aka-saveorder/img_1_hufdcdff3bc0125b2df3d7915f7e6683b3_261278_480x0_resize_box_3.png 480w, /portfolio/arumdream-aka-saveorder/img_1_hufdcdff3bc0125b2df3d7915f7e6683b3_261278_1024x0_resize_box_3.png 1024w"
+			loading="lazy"
+			alt="img_1.png">
+	</a>
+	
+	<figcaption>img_1.png</figcaption>
+	
+</figure>
+<figure 
+	
+		class="gallery-image" 
+		style="
+			flex-grow: 202; 
+			flex-basis: 485px"
+	>
+	<a href="/portfolio/arumdream-aka-saveorder/img_4.png" data-size="1709x845">
+		<img src="/portfolio/arumdream-aka-saveorder/img_4.png"
+			width="1709"
+			height="845"
+			srcset="/portfolio/arumdream-aka-saveorder/img_4_hu6c243764c03bf926c986e3cccda6b146_470018_480x0_resize_box_3.png 480w, /portfolio/arumdream-aka-saveorder/img_4_hu6c243764c03bf926c986e3cccda6b146_470018_1024x0_resize_box_3.png 1024w"
+			loading="lazy"
+			alt="img_4.png">
+	</a>
+	
+	<figcaption>img_4.png</figcaption>
+	
+</figure></p>
+<ul>
+<li>Flutter</li>
+<li>GetX</li>
+</ul>
+<h2 id="pos">POS</h2>
+<p><figure 
+	
+		class="gallery-image" 
+		style="
+			flex-grow: 139; 
+			flex-basis: 333px"
+	>
+	<a href="/portfolio/arumdream-aka-saveorder/img_5.png" data-size="1707x1228">
+		<img src="/portfolio/arumdream-aka-saveorder/img_5.png"
+			width="1707"
+			height="1228"
+			srcset="/portfolio/arumdream-aka-saveorder/img_5_hu846c271d5e0a49a21fa6d60e76e1498a_287695_480x0_resize_box_3.png 480w, /portfolio/arumdream-aka-saveorder/img_5_hu846c271d5e0a49a21fa6d60e76e1498a_287695_1024x0_resize_box_3.png 1024w"
+			loading="lazy"
+			alt="img_5.png">
+	</a>
+	
+	<figcaption>img_5.png</figcaption>
+	
+</figure></p>
+<ul>
+<li>C# (.NET 5)</li>
+<li>Avalonia</li>
+</ul>
+<h2 id="backend-aws">Backend (AWS)</h2>
+<p><figure 
+	
+		class="gallery-image" 
+		style="
+			flex-grow: 261; 
+			flex-basis: 626px"
+	>
+	<a href="/portfolio/arumdream-aka-saveorder/img_6.png" data-size="1707x654">
+		<img src="/portfolio/arumdream-aka-saveorder/img_6.png"
+			width="1707"
+			height="654"
+			srcset="/portfolio/arumdream-aka-saveorder/img_6_hu670d2b64454be43c4ded8b0cef67bfb6_166678_480x0_resize_box_3.png 480w, /portfolio/arumdream-aka-saveorder/img_6_hu670d2b64454be43c4ded8b0cef67bfb6_166678_1024x0_resize_box_3.png 1024w"
+			loading="lazy"
+			alt="img_6.png">
+	</a>
+	
+	<figcaption>img_6.png</figcaption>
+	
+</figure></p>
+<ul>
+<li>Beanstalk (ASP.NET 5)</li>
+<li>RDS (MYSQL)</li>
+</ul>
+<h2 id="what-did-i-do">What did I do?</h2>
+<blockquote>
+<p>As a lead developer, I drew the entire system flow and structure.<br>
+And also developed the Mobile self-order application, AWS Backend, and Desktop POS Solution.
+Details are on below.</p>
+</blockquote>
+<ul>
+<li>Built cross-platform mobile application using flutter.</li>
+<li>Built cross-platform desktop application using C# (Dotnet 5) and Avalonia GUI Framework.</li>
+<li>Built cross-platform Backend Code using C# (ASP.NET Core 5) using AWS Beanstalk
+<ul>
+<li>Used AWS lambda first, but it had cold-start issue, so we&rsquo;ve decided to switch to beanstalk.</li>
+</ul>
+</li>
+</ul>
+<h2 id="technical-challenges">Technical challenges</h2>
+<h3 id="lambda-to-beanstalk">Lambda to Beanstalk</h3>
+<p>At the first, We were using AWS lambda and Node.
+The response time was not bad,
+But in the case of Lambda, it was inconvenient when I had to debug something.
+And also, it was not suitable for the food ordering app that communicates frequently
+As AWS lambda charging a fee for a connection.
+So I decided to move to AWS Elastic Beanstalk, which uses EC2 Virtual Machine.
+The language was also changed to C# for more
+convenient development and maintenance by unifying backend code base with POS.
+The backend was written in ASP.NET 5, and for the POS, it&rsquo;s based on DOTNET5 and Avalonia.
+At the result, I was able to speed up developing both of backend and POS system.</p>
+<h3 id="securing-api-backend">Securing API Backend</h3>
+<p>Another challenge was implementing Login System through API Server.
+I tried to use the JWT-based token method,
+but I had to study C# and ASP.NET which were new for me,
+and since it was my first time to implement the token method,
+the method was little confusing, I didn&rsquo;t have enough time to learn it.
+Also, I had to build all the systems in about a month.
+I had to find another way somehow.
+So the way I managed is simply login with email and password
+returning the user&rsquo;s Secret Key stored in the DB.
+I don&rsquo;t think it&rsquo;s a good way to go. there were vulnerabilities such as a case
+the DB is hijacked, the secret key is also able to be stolen.
+But I think it was the best shot with limited time and limited knowledge I had that time.</p>
+<h3 id="cross-platform-development-with-c">Cross Platform Development with C#</h3>
+<p>Improving the project, I considered several new devices to run POS Application.
+Linux and Windows, Android were all in option like before.
+For these various option I chose C# and dotnet core which support cross-platform runtime.
+However, the .NET Framework does not yet support cross-platform GUI.
+So, I had to find an alternative way.
+Avalonia was one of the largest open source cross-platform GUI frameworks.
+I decided to use this.
+It was not well documented and the community was not large,
+so I went through a lot of trial and error,
+but I was finally able to develop an application with a quite pretty design.
+If I develop this app again, I would like to use MAUI,
+which is Microsoft&rsquo;s brand-new official GUI framework and
+supports cross-platform including mobile.</p>
+<h2 id="team">Team</h2>
+<ul>
+<li>Team Leader
+<ul>
+<li>Minwoo Kim</li>
+</ul>
+</li>
+<li>Lead Developer
+<ul>
+<li>Seongbin Yoon</li>
+</ul>
+</li>
+<li>Developer
+<ul>
+<li>Seoyoon Lee</li>
+</ul>
+</li>
+<li>Marketing
+<ul>
+<li>Dabin Son</li>
+</ul>
+</li>
+<li>Design
+<ul>
+<li>Yejin Yoon</li>
+</ul>
+</li>
+</ul>
+<h2 id="supports">Supports</h2>
+<ul>
+<li>Ulsan Youth Centre</li>
+<li>LINC+ Centre of University of Ulsan</li>
+</ul>
+</section>
+
+
+    <footer class="article-footer">
+    
+    <section class="article-tags">
+        
+            <a href="/tags/project/">project</a>
+        
+            <a href="/tags/pos/">pos</a>
+        
+            <a href="/tags/kiosk/">kiosk</a>
+        
+            <a href="/tags/aws/">aws</a>
+        
+            <a href="/tags/flutter/">flutter</a>
+        
+            <a href="/tags/go/">go</a>
+        
+            <a href="/tags/mobile/">mobile</a>
+        
+            <a href="/tags/cafe/">cafe</a>
+        
+            <a href="/tags/portfolio/">portfolio</a>
+        
+    </section>
+
+
+    
+    <section class="article-copyright">
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-copyright" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <path d="M14.5 9a3.5 4 0 1 0 0 6" />
+</svg>
+
+
+
+        <span>Licensed under CC BY-NC-SA 4.0</span>
+    </section>
+    <section class="article-lastmod">
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <polyline points="12 7 12 12 15 15" />
+</svg>
+
+
+
+        <span>
+            Last updated on Mar 20, 2020 17:55 &#43;0800
+        </span>
+    </section></footer>
+
+
+    
+</article>
+
+    <aside class="related-contents--wrapper">
+    
+    
+        <h2 class="section-title">Related contents</h2>
+        <div class="related-contents">
+            <div class="flex article-list--tile">
+                
+                    
+<article class="">
+    <a href="/portfolio/cafe-kiosk-system/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">The Friendly Kiosk Project</h2>
+        </div>
+    </a>
+</article>
+                
+                    
+<article class="">
+    <a href="/portfolio/baseball-winning-prediction/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">Baseball Winning Prediction with React based Website</h2>
+        </div>
+    </a>
+</article>
+                
+            </div>
+        </div>
+    
+</aside>
+
+     
+    
+        
+    <script src="https://utteranc.es/client.js" 
+        repo="yansigit/yansigit.github.io"
+        issue-term="pathname"
+        
+        label="Utterances Comment"
+        
+        crossorigin="anonymous"
+        async
+        >
+</script>
+
+<style>
+    .utterances {
+        max-width: unset;
+    }
+</style>
+
+<script>
+    function setUtterancesTheme(theme) {
+        let utterances = document.querySelector('.utterances iframe');
+        if (utterances) {
+            utterances.contentWindow.postMessage(
+                {
+                    type: 'set-theme',
+                    theme: `github-${theme}`
+                },
+                'https://utteranc.es'
+            );
+        }
+    }
+
+    addEventListener('message', event => {
+        if (event.origin !== 'https://utteranc.es') return;
+        setUtterancesTheme(document.documentElement.dataset.scheme)
+    });
+
+    window.addEventListener('onColorSchemeChange', (e) => {
+        setUtterancesTheme(e.detail)
+    })
+</script>
+
+
+    
+
+    <footer class="site-footer">
+    <section class="copyright">
+        &copy; 
+        
+            2020 - 
+        
+        2021 Code like Feather
+    </section>
+    
+    <section class="powerby">
+        Built with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> <br />
+        Theme <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="3.2.0">Stack</a></b> designed by <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a>
+    </section>
+</footer>
+
+
+    
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    
+    <div class="pswp__bg"></div>
+
+    
+    <div class="pswp__scroll-wrap">
+
+        
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                
+                
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"integrity="sha256-ePwmChbbvXbsO02lbM3HoHbSHTHFAeChekF1xKJdleo="crossorigin="anonymous"
+                defer="true"
+                >
+            </script><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"integrity="sha256-UKkzOn/w1mBxRmLLGrSeyB4e1xbrp4xylgAWb3M42pU="crossorigin="anonymous"
+                defer="true"
+                >
+            </script><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.css"integrity="sha256-c0uckgykQ9v5k&#43;IqViZOZKc47Jn7KQil4/MP3ySA3F8="crossorigin="anonymous"
+            ><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.css"integrity="sha256-SBLU4vv6CA6lHsZ1XyTdhyjJxCjPif/TRkjnsyGAGnE="crossorigin="anonymous"
+            >
+
+            </main>
+    
+        <aside class="sidebar right-sidebar sticky">
+            <section class="widget archives">
+                <div class="widget-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-hash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <line x1="5" y1="9" x2="19" y2="9" />
+  <line x1="5" y1="15" x2="19" y2="15" />
+  <line x1="11" y1="4" x2="7" y2="20" />
+  <line x1="17" y1="4" x2="13" y2="20" />
+</svg>
+
+
+
+                </div>
+                <h2 class="widget-title section-title">Table of contents</h2>
+                
+                <div class="widget--toc">
+                    <nav id="TableOfContents">
+  <ol>
+    <li><a href="#stacks-being-used-in-this-project">Stacks being used in this project</a></li>
+    <li><a href="#what-is-this-project-about">What is this project about?</a></li>
+    <li><a href="#structure">Structure</a></li>
+    <li><a href="#mobile-app">Mobile App</a></li>
+    <li><a href="#pos">POS</a></li>
+    <li><a href="#backend-aws">Backend (AWS)</a></li>
+    <li><a href="#what-did-i-do">What did I do?</a></li>
+    <li><a href="#technical-challenges">Technical challenges</a>
+      <ol>
+        <li><a href="#lambda-to-beanstalk">Lambda to Beanstalk</a></li>
+        <li><a href="#securing-api-backend">Securing API Backend</a></li>
+        <li><a href="#cross-platform-development-with-c">Cross Platform Development with C#</a></li>
+      </ol>
+    </li>
+    <li><a href="#team">Team</a></li>
+    <li><a href="#supports">Supports</a></li>
+  </ol>
+</nav>
+                </div>
+            </section>
+        </aside>
+    
+
+        </div>
+        <script 
+                src="https://cdn.jsdelivr.net/npm/node-vibrant@3.1.5/dist/vibrant.min.js"integrity="sha256-5NovOZc4iwiAWTYIFiIM7DxKUXKWvpVEuMEPLzcm5/g="crossorigin="anonymous"
+                defer="false"
+                >
+            </script><script type="text/javascript" src="/ts/main.js" defer></script>
+<script>
+    (function () {
+        const customFont = document.createElement('link');
+        customFont.href = "https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap";
+
+        customFont.type = "text/css";
+        customFont.rel = "stylesheet";
+
+        document.head.appendChild(customFont);
+    }());
+</script>
+
+    </body>
+</html>

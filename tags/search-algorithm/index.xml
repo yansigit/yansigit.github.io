@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>search algorithm on Code like Feather</title>
+    <link>https://yansigit.github.io/tags/search-algorithm/</link>
+    <description>Recent content in search algorithm on Code like Feather</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>ko-kr</language>
+    <lastBuildDate>Wed, 07 Jul 2021 00:04:34 +0900</lastBuildDate><atom:link href="https://yansigit.github.io/tags/search-algorithm/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>탐색 알고리즘</title>
+      <link>https://yansigit.github.io/blog/%ED%83%90%EC%83%89-%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98/</link>
+      <pubDate>Wed, 07 Jul 2021 00:04:34 +0900</pubDate>
+      
+      <guid>https://yansigit.github.io/blog/%ED%83%90%EC%83%89-%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98/</guid>
+      <description></description>
+    </item>
+    
+  </channel>
+</rss>

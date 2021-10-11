@@ -1,0 +1,663 @@
+<!DOCTYPE html>
+<html lang="ko-kr">
+    <head><meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content='스레싱'><title>운영체제 - 스레싱</title>
+
+<link rel='canonical' href='https://yansigit.github.io/blog/%EC%9A%B4%EC%98%81%EC%B2%B4%EC%A0%9C-%EC%8A%A4%EB%A0%88%EC%8B%B1/'>
+
+<link rel="stylesheet" href="/scss/style.min.css"><meta property='og:title' content='운영체제 - 스레싱'>
+<meta property='og:description' content='스레싱'>
+<meta property='og:url' content='https://yansigit.github.io/blog/%EC%9A%B4%EC%98%81%EC%B2%B4%EC%A0%9C-%EC%8A%A4%EB%A0%88%EC%8B%B1/'>
+<meta property='og:site_name' content='Code like Feather'>
+<meta property='og:type' content='article'><meta property='article:section' content='Posts' /><meta property='article:tag' content='os' /><meta property='article:tag' content='operation-system' /><meta property='article:published_time' content='2020-09-18T23:24:53&#43;09:00'/><meta property='article:modified_time' content='2020-09-18T23:24:53&#43;09:00'/><meta property='og:image' content='https://yansigit.github.io/images/lighthouse.jpg' />
+<meta name="twitter:title" content="운영체제 - 스레싱">
+<meta name="twitter:description" content="스레싱"><meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content='https://yansigit.github.io/images/lighthouse.jpg' />
+    </head>
+    <body class="
+    article-page has-toc
+">
+    <script>
+        (function() {
+            const colorSchemeKey = 'StackColorScheme';
+            if(!localStorage.getItem(colorSchemeKey)){
+                localStorage.setItem(colorSchemeKey, "auto");
+            }
+        })();
+    </script><script>
+    (function() {
+        const colorSchemeKey = 'StackColorScheme';
+        const colorSchemeItem = localStorage.getItem(colorSchemeKey);
+        const supportDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches === true;
+
+        if (colorSchemeItem == 'dark' || colorSchemeItem === 'auto' && supportDarkMode) {
+            
+
+            document.documentElement.dataset.scheme = 'dark';
+        } else {
+            document.documentElement.dataset.scheme = 'light';
+        }
+    })();
+</script>
+<div class="container main-container flex 
+    
+        extended
+    
+">
+    
+        <div id="article-toolbar">
+            <a href="https://yansigit.github.io" class="back-home">
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-chevron-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <polyline points="15 6 9 12 15 18" />
+</svg>
+
+
+
+                <span>Back</span>
+            </a>
+        </div>
+    
+<main class="main full-width">
+    <article class="main-article">
+    <header class="article-header">
+
+    <div class="article-details">
+    
+    <header class="article-category">
+        
+            <a href="/categories/os/" >
+                os
+            </a>
+        
+    </header>
+    
+
+    <h2 class="article-title">
+        <a href="/blog/%EC%9A%B4%EC%98%81%EC%B2%B4%EC%A0%9C-%EC%8A%A4%EB%A0%88%EC%8B%B1/">운영체제 - 스레싱</a>
+    </h2>
+
+    
+    <h3 class="article-subtitle">
+        스레싱
+    </h3>
+    
+
+    
+    <footer class="article-time">
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-calendar-time" width="56" height="56" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M11.795 21h-6.795a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v4" />
+  <circle cx="18" cy="18" r="4" />
+  <path d="M15 3v4" />
+  <path d="M7 3v4" />
+  <path d="M3 11h16" />
+  <path d="M18 16.496v1.504l1 1" />
+</svg>
+                <time class="article-time--published">Sep 18, 2020</time>
+            </div>
+        
+
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <polyline points="12 7 12 12 15 15" />
+</svg>
+
+
+
+                <time class="article-time--reading">
+                    3 minute read
+                </time>
+            </div>
+        
+    </footer>
+    
+</div>
+</header>
+
+    <section class="article-content">
+    <p>스레싱</p>
+<h1 id="스레싱">스레싱</h1>
+<h2 id="스레싱-1">스레싱</h2>
+<ul>
+<li>잦은 페이지 부재로 하드디스크 입출력이 너무 많아져 작업이 멈춘 것 같은 상태</li>
+</ul>
+<h2 id="스레싱-발생-시점">스레싱 발생 시점</h2>
+<ul>
+<li>CPU가 작업하는 시간보다 스왑 영역으로 페이지를 보내고 새로운 페이지를 메모리에 가져오는 작업이 빈번해져서 CPU가 작업할 수 없는 상태에 이르게 되는 시점</li>
+<li>물리 메모리의 크기를 늘리면 스레싱 발생 지점이 늦춰져서 프로세스를 원만하게 실행할 수 있음</li>
+</ul>
+<p><figure 
+	>
+	<a href="/posts/%ec%8a%a4%eb%a0%88%ec%8b%b1/Untitled.png" >
+		<img src="/posts/%ec%8a%a4%eb%a0%88%ec%8b%b1/Untitled.png"
+			
+			
+			
+			loading="lazy"
+			alt="image">
+	</a>
+	
+	<figcaption>image</figcaption>
+	
+</figure></p>
+<h2 id="스레싱과-프레임-할당">스레싱과 프레임 할당</h2>
+<ul>
+<li>프로세스에 너무 적은 프레임을 할당하면 페이지 부재가 빈번히 일어남</li>
+<li>프로세스에 너무 많은 프레임을 할당하면 페이지 부재는 줄지만 메모리가 낭비됨</li>
+<li>프로세스에 프레임을 할당하는 방식은 크게 <strong>정적 할당</strong>과 <strong>동적 할당</strong>으로 구분</li>
+</ul>
+<h2 id="정적-할당">정적 할당</h2>
+<h3 id="균등-할당">균등 할당</h3>
+<ul>
+<li>프로세스의 크기과 상관 없이 사용 가능한 프레임을 모든 프로세스에 동일하게 할당</li>
+<li>크기가 큰 프로세스의 경우 필요한 만큼 프레임을 할당받지 못함
+<ul>
+<li>페이지 부재 빈번</li>
+<li>크기가 작은 프로세스의 경우 메모리 낭비</li>
+</ul>
+</li>
+</ul>
+<h3 id="비례-할당">비례 할당</h3>
+<ul>
+<li>프로세스의 크기에 비례하여 프레임 할당</li>
+<li>고정 할당보다는 좀 더 현실적
+<ul>
+<li>그러나 실행중에 필요로 하는 프레임을 유동적으로 반영하지 못함</li>
+<li>사용하지 않을 메모리를 미리 확보하는 셈이라 공간 낭비</li>
+</ul>
+</li>
+</ul>
+<h2 id="동적-할당---작업집합-모델">동적 할당 - 작업집합 모델</h2>
+<p><figure 
+	>
+	<a href="/posts/%ec%8a%a4%eb%a0%88%ec%8b%b1/Untitled%201.png" >
+		<img src="/posts/%ec%8a%a4%eb%a0%88%ec%8b%b1/Untitled%201.png"
+			
+			
+			
+			loading="lazy"
+			alt="image">
+	</a>
+	
+	<figcaption>image</figcaption>
+	
+</figure></p>
+<ul>
+<li>최근 일정 시간 동안 참조된 페이지들을 집합으로 만들고, 이 집합에 있는 페이지들을 물리 메모리에 유지
+<ul>
+<li>작업집합 크기 : 작업집합 모델에서 물리 메모리에 유지할 페이지 크기</li>
+<li>작업집합 윈도우 : 작업집합에 포함되는 페이지 범위</li>
+</ul>
+</li>
+<li>델타 동안 참조된 10개의 페이지 중 작업집합에는 WS(.)={1, 7, 5, 2, 3}이 삽입되며, 이 페이지들은 다음번 윈도우에 도달할 때까지 물리 메모리에 보존</li>
+</ul>
+<p><figure 
+	>
+	<a href="/posts/%ec%8a%a4%eb%a0%88%ec%8b%b1/Untitled%202.png" >
+		<img src="/posts/%ec%8a%a4%eb%a0%88%ec%8b%b1/Untitled%202.png"
+			
+			
+			
+			loading="lazy"
+			alt="image">
+	</a>
+	
+	<figcaption>image</figcaption>
+	
+</figure></p>
+<ul>
+<li>작업집합 크기
+<ul>
+<li>작업집합에 들어갈 최대 페이지 수</li>
+<li>작업 집합 갱신 주기 (.번 페이지 접근시 마다)</li>
+</ul>
+</li>
+</ul>
+<h2 id="작업-집합-윈도우의-크기와-프로세스-실행-성능">작업 집합 윈도우의 크기와 프로세스 실행 성능</h2>
+<ul>
+<li>작업집합 윈도우를 너무 크게 잡으면 필요 없는 페이지가 메모리에 남아서 다른 프로세스에 영향을 미침</li>
+<li>윈도우를 너무 작게 잡으면 필요한 페이지가 스왑 영역으로 옮겨져서 프로세스의 성능이 떨어짐</li>
+<li>적정크기의 작업집합을 유지함으로써 메모리를 효율적으로 관리 할 수 있음</li>
+</ul>
+<h2 id="동적할당---페이지-부재-빈도">동적할당 - 페이지 부재 빈도</h2>
+<p><figure 
+	>
+	<a href="/posts/%ec%8a%a4%eb%a0%88%ec%8b%b1/Untitled%203.png" >
+		<img src="/posts/%ec%8a%a4%eb%a0%88%ec%8b%b1/Untitled%203.png"
+			
+			
+			
+			loading="lazy"
+			alt="image">
+	</a>
+	
+	<figcaption>image</figcaption>
+	
+</figure></p>
+<ul>
+<li>페이지 부재 횟수를 기록하여 페이지 부재 비율을 계산하는 방식</li>
+<li>페이지 부재 비율이 상한선을 초과하면 프레임을 추가하여 늘림</li>
+<li>페이지 부재 비율이 하한선 밑으로 내려가면 할당한 프레임을 회수</li>
+<li>페이지 부재 빈도 방식은 프로세스를 실행하면서 추가적으로 페이지를 할당하거나 회수하여 적정 페이지 할당량을 조절</li>
+</ul>
+<h2 id="전역-교체와-지역-교체">전역 교체와 지역 교체</h2>
+<p><figure 
+	>
+	<a href="/posts/%ec%8a%a4%eb%a0%88%ec%8b%b1/Untitled%204.png" >
+		<img src="/posts/%ec%8a%a4%eb%a0%88%ec%8b%b1/Untitled%204.png"
+			
+			
+			
+			loading="lazy"
+			alt="image">
+	</a>
+	
+	<figcaption>image</figcaption>
+	
+</figure></p>
+<ul>
+<li><strong>전역 교체</strong>
+<ul>
+<li>전체 프레임을 상대로 교체 알고리즘 적용</li>
+</ul>
+</li>
+<li><strong>지역 교체</strong>
+<ul>
+<li>현재 실행중인 프로세스의 프레임만을 대상으로 교체 알고리즘 적용</li>
+</ul>
+</li>
+</ul>
+<h2 id="지역-교체의-장단점">지역 교체의 장단점</h2>
+<ul>
+<li><strong>장점</strong> : 자신에게 할당된 프레임의 전체 개수에 변화가 없기 때문에 페이지 교체가 다른 프로세스에 영향을 미치지 않음</li>
+<li><strong>단점</strong> : 자주 사용하는 페이지가 스왑 영역으로 옮겨져 시스템의 효율이 떨어짐</li>
+</ul>
+<h2 id="페이지-테이블의-크기">페이지 테이블의 크기</h2>
+<p><figure 
+	>
+	<a href="/posts/%ec%8a%a4%eb%a0%88%ec%8b%b1/Untitled%205.png" >
+		<img src="/posts/%ec%8a%a4%eb%a0%88%ec%8b%b1/Untitled%205.png"
+			
+			
+			
+			loading="lazy"
+			alt="image">
+	</a>
+	
+	<figcaption>image</figcaption>
+	
+</figure></p>
+<ul>
+<li>페이지 테이블이 차지하는 공간은 1,048,576개 X 20Bit = 약 2.62MB (각 프로세스마다)</li>
+</ul>
+<h2 id="프로세스의-프레임-공유-예">프로세스의 프레임 공유 예</h2>
+<p><figure 
+	>
+	<a href="/posts/%ec%8a%a4%eb%a0%88%ec%8b%b1/Untitled%206.png" >
+		<img src="/posts/%ec%8a%a4%eb%a0%88%ec%8b%b1/Untitled%206.png"
+			
+			
+			
+			loading="lazy"
+			alt="image">
+	</a>
+	
+	<figcaption>image</figcaption>
+	
+</figure></p>
+<p><figure 
+	>
+	<a href="/posts/%ec%8a%a4%eb%a0%88%ec%8b%b1/Untitled%207.png" >
+		<img src="/posts/%ec%8a%a4%eb%a0%88%ec%8b%b1/Untitled%207.png"
+			
+			
+			
+			loading="lazy"
+			alt="image">
+	</a>
+	
+	<figcaption>image</figcaption>
+	
+</figure></p>
+<ul>
+<li>예를 들어 크롬을 두개 실행했을 경우 실행 부분은 메모리를 공유하고 데이터 부분만 따로 사용</li>
+</ul>
+<h2 id="쓰기-시점-복사">쓰기 시점 복사</h2>
+<p><figure 
+	>
+	<a href="/posts/%ec%8a%a4%eb%a0%88%ec%8b%b1/Untitled%208.png" >
+		<img src="/posts/%ec%8a%a4%eb%a0%88%ec%8b%b1/Untitled%208.png"
+			
+			
+			
+			loading="lazy"
+			alt="image">
+	</a>
+	
+	<figcaption>image</figcaption>
+	
+</figure></p>
+<ul>
+<li>예를들어 크롬을 포크했을 때 기존의 메모리를 사용하고 있다가 데이터의 변화가 있을 때 그제서야 데이터 영역을 복사해 새로 할당해 주는 것
+<ul>
+<li>데이터의 변화가 있을 때 까지 복사를 미루는 방식</li>
+<li>메모리를 효율적으로 사용하기 위함</li>
+</ul>
+</li>
+</ul>
+</section>
+
+
+    <footer class="article-footer">
+    
+    <section class="article-tags">
+        
+            <a href="/tags/os/">os</a>
+        
+            <a href="/tags/operation-system/">operation-system</a>
+        
+    </section>
+
+
+    
+    <section class="article-copyright">
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-copyright" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <path d="M14.5 9a3.5 4 0 1 0 0 6" />
+</svg>
+
+
+
+        <span>Licensed under CC BY-NC-SA 4.0</span>
+    </section>
+    </footer>
+
+
+    
+</article>
+
+    <aside class="related-contents--wrapper">
+    
+    
+        <h2 class="section-title">Related contents</h2>
+        <div class="related-contents">
+            <div class="flex article-list--tile">
+                
+                    
+<article class="">
+    <a href="/blog/%EC%9A%B4%EC%98%81%EC%B2%B4%EC%A0%9C-cpu/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">운영체제 - CPU</h2>
+        </div>
+    </a>
+</article>
+                
+                    
+<article class="">
+    <a href="/blog/%EC%9A%B4%EC%98%81%EC%B2%B4%EC%A0%9C-cpu-%EC%8A%A4%EC%BC%80%EC%A4%84%EB%A7%81/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">운영체제 - CPU 스케줄링</h2>
+        </div>
+    </a>
+</article>
+                
+                    
+<article class="">
+    <a href="/blog/%EC%9A%B4%EC%98%81%EC%B2%B4%EC%A0%9C-cpu-%EC%8A%A4%EC%BC%80%EC%A4%84%EB%A7%81-%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">운영체제 - CPU 스케줄링 알고리즘</h2>
+        </div>
+    </a>
+</article>
+                
+                    
+<article class="">
+    <a href="/blog/%EC%9A%B4%EC%98%81%EC%B2%B4%EC%A0%9C-raid/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">운영체제 - RAID</h2>
+        </div>
+    </a>
+</article>
+                
+                    
+<article class="">
+    <a href="/blog/%EC%9A%B4%EC%98%81%EC%B2%B4%EC%A0%9C-%EA%B0%80%EC%83%81-%EB%A9%94%EB%AA%A8%EB%A6%AC/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">운영체제 - 가상 메모리</h2>
+        </div>
+    </a>
+</article>
+                
+            </div>
+        </div>
+    
+</aside>
+
+     
+    
+        
+    <script src="https://utteranc.es/client.js" 
+        repo="yansigit/yansigit.github.io"
+        issue-term="pathname"
+        
+        label="Utterances Comment"
+        
+        crossorigin="anonymous"
+        async
+        >
+</script>
+
+<style>
+    .utterances {
+        max-width: unset;
+    }
+</style>
+
+<script>
+    function setUtterancesTheme(theme) {
+        let utterances = document.querySelector('.utterances iframe');
+        if (utterances) {
+            utterances.contentWindow.postMessage(
+                {
+                    type: 'set-theme',
+                    theme: `github-${theme}`
+                },
+                'https://utteranc.es'
+            );
+        }
+    }
+
+    addEventListener('message', event => {
+        if (event.origin !== 'https://utteranc.es') return;
+        setUtterancesTheme(document.documentElement.dataset.scheme)
+    });
+
+    window.addEventListener('onColorSchemeChange', (e) => {
+        setUtterancesTheme(e.detail)
+    })
+</script>
+
+
+    
+
+    <footer class="site-footer">
+    <section class="copyright">
+        &copy; 
+        
+            2020 - 
+        
+        2021 Code like Feather
+    </section>
+    
+    <section class="powerby">
+        Built with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> <br />
+        Theme <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="3.2.0">Stack</a></b> designed by <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a>
+    </section>
+</footer>
+
+
+    
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    
+    <div class="pswp__bg"></div>
+
+    
+    <div class="pswp__scroll-wrap">
+
+        
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                
+                
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"integrity="sha256-ePwmChbbvXbsO02lbM3HoHbSHTHFAeChekF1xKJdleo="crossorigin="anonymous"
+                defer="true"
+                >
+            </script><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"integrity="sha256-UKkzOn/w1mBxRmLLGrSeyB4e1xbrp4xylgAWb3M42pU="crossorigin="anonymous"
+                defer="true"
+                >
+            </script><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.css"integrity="sha256-c0uckgykQ9v5k&#43;IqViZOZKc47Jn7KQil4/MP3ySA3F8="crossorigin="anonymous"
+            ><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.css"integrity="sha256-SBLU4vv6CA6lHsZ1XyTdhyjJxCjPif/TRkjnsyGAGnE="crossorigin="anonymous"
+            >
+
+            </main>
+    
+        <aside class="sidebar right-sidebar sticky">
+            <section class="widget archives">
+                <div class="widget-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-hash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <line x1="5" y1="9" x2="19" y2="9" />
+  <line x1="5" y1="15" x2="19" y2="15" />
+  <line x1="11" y1="4" x2="7" y2="20" />
+  <line x1="17" y1="4" x2="13" y2="20" />
+</svg>
+
+
+
+                </div>
+                <h2 class="widget-title section-title">Table of contents</h2>
+                
+                <div class="widget--toc">
+                    <nav id="TableOfContents">
+  <ol>
+    <li><a href="#스레싱-1">스레싱</a></li>
+    <li><a href="#스레싱-발생-시점">스레싱 발생 시점</a></li>
+    <li><a href="#스레싱과-프레임-할당">스레싱과 프레임 할당</a></li>
+    <li><a href="#정적-할당">정적 할당</a>
+      <ol>
+        <li><a href="#균등-할당">균등 할당</a></li>
+        <li><a href="#비례-할당">비례 할당</a></li>
+      </ol>
+    </li>
+    <li><a href="#동적-할당---작업집합-모델">동적 할당 - 작업집합 모델</a></li>
+    <li><a href="#작업-집합-윈도우의-크기와-프로세스-실행-성능">작업 집합 윈도우의 크기와 프로세스 실행 성능</a></li>
+    <li><a href="#동적할당---페이지-부재-빈도">동적할당 - 페이지 부재 빈도</a></li>
+    <li><a href="#전역-교체와-지역-교체">전역 교체와 지역 교체</a></li>
+    <li><a href="#지역-교체의-장단점">지역 교체의 장단점</a></li>
+    <li><a href="#페이지-테이블의-크기">페이지 테이블의 크기</a></li>
+    <li><a href="#프로세스의-프레임-공유-예">프로세스의 프레임 공유 예</a></li>
+    <li><a href="#쓰기-시점-복사">쓰기 시점 복사</a></li>
+  </ol>
+</nav>
+                </div>
+            </section>
+        </aside>
+    
+
+        </div>
+        <script 
+                src="https://cdn.jsdelivr.net/npm/node-vibrant@3.1.5/dist/vibrant.min.js"integrity="sha256-5NovOZc4iwiAWTYIFiIM7DxKUXKWvpVEuMEPLzcm5/g="crossorigin="anonymous"
+                defer="false"
+                >
+            </script><script type="text/javascript" src="/ts/main.js" defer></script>
+<script>
+    (function () {
+        const customFont = document.createElement('link');
+        customFont.href = "https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap";
+
+        customFont.type = "text/css";
+        customFont.rel = "stylesheet";
+
+        document.head.appendChild(customFont);
+    }());
+</script>
+
+    </body>
+</html>

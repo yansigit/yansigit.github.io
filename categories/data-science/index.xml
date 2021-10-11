@@ -1,0 +1,182 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>data-science on Code like Feather</title>
+    <link>https://yansigit.github.io/categories/data-science/</link>
+    <description>Recent content in data-science on Code like Feather</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>ko-kr</language>
+    <lastBuildDate>Wed, 07 Jul 2021 00:04:34 +0900</lastBuildDate><atom:link href="https://yansigit.github.io/categories/data-science/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Classification</title>
+      <link>https://yansigit.github.io/blog/classification/</link>
+      <pubDate>Wed, 07 Jul 2021 00:04:34 +0900</pubDate>
+      
+      <guid>https://yansigit.github.io/blog/classification/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Clustering (군집화)</title>
+      <link>https://yansigit.github.io/blog/clustering-%EA%B5%B0%EC%A7%91%ED%99%94/</link>
+      <pubDate>Wed, 07 Jul 2021 00:04:34 +0900</pubDate>
+      
+      <guid>https://yansigit.github.io/blog/clustering-%EA%B5%B0%EC%A7%91%ED%99%94/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Data Processing</title>
+      <link>https://yansigit.github.io/blog/data-processing/</link>
+      <pubDate>Wed, 07 Jul 2021 00:04:34 +0900</pubDate>
+      
+      <guid>https://yansigit.github.io/blog/data-processing/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Deep Neural Network</title>
+      <link>https://yansigit.github.io/blog/deep-neural-network/</link>
+      <pubDate>Wed, 07 Jul 2021 00:04:34 +0900</pubDate>
+      
+      <guid>https://yansigit.github.io/blog/deep-neural-network/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Dicision Tree</title>
+      <link>https://yansigit.github.io/blog/dicision-tree/</link>
+      <pubDate>Wed, 07 Jul 2021 00:04:34 +0900</pubDate>
+      
+      <guid>https://yansigit.github.io/blog/dicision-tree/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Dimensionality Reduction (차원축소)</title>
+      <link>https://yansigit.github.io/blog/dimensionality-reduction-%EC%B0%A8%EC%9B%90%EC%B6%95%EC%86%8C/</link>
+      <pubDate>Wed, 07 Jul 2021 00:04:34 +0900</pubDate>
+      
+      <guid>https://yansigit.github.io/blog/dimensionality-reduction-%EC%B0%A8%EC%9B%90%EC%B6%95%EC%86%8C/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Neural Network</title>
+      <link>https://yansigit.github.io/blog/neural-network/</link>
+      <pubDate>Wed, 07 Jul 2021 00:04:34 +0900</pubDate>
+      
+      <guid>https://yansigit.github.io/blog/neural-network/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Regression (회귀)</title>
+      <link>https://yansigit.github.io/blog/regression-%ED%9A%8C%EA%B7%80/</link>
+      <pubDate>Wed, 07 Jul 2021 00:04:34 +0900</pubDate>
+      
+      <guid>https://yansigit.github.io/blog/regression-%ED%9A%8C%EA%B7%80/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Supervised Learning</title>
+      <link>https://yansigit.github.io/blog/supervised-learning/</link>
+      <pubDate>Wed, 07 Jul 2021 00:04:34 +0900</pubDate>
+      
+      <guid>https://yansigit.github.io/blog/supervised-learning/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Unsupervised Learning</title>
+      <link>https://yansigit.github.io/blog/unsupervised-learning/</link>
+      <pubDate>Wed, 07 Jul 2021 00:04:34 +0900</pubDate>
+      
+      <guid>https://yansigit.github.io/blog/unsupervised-learning/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>게임트리</title>
+      <link>https://yansigit.github.io/blog/%EA%B2%8C%EC%9E%84%ED%8A%B8%EB%A6%AC/</link>
+      <pubDate>Wed, 07 Jul 2021 00:04:34 +0900</pubDate>
+      
+      <guid>https://yansigit.github.io/blog/%EA%B2%8C%EC%9E%84%ED%8A%B8%EB%A6%AC/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>딥러닝 인터뷰</title>
+      <link>https://yansigit.github.io/blog/%EB%94%A5%EB%9F%AC%EB%8B%9D-%EC%9D%B8%ED%84%B0%EB%B7%B0/</link>
+      <pubDate>Wed, 07 Jul 2021 00:04:34 +0900</pubDate>
+      
+      <guid>https://yansigit.github.io/blog/%EB%94%A5%EB%9F%AC%EB%8B%9D-%EC%9D%B8%ED%84%B0%EB%B7%B0/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>머신러닝</title>
+      <link>https://yansigit.github.io/blog/%EB%A8%B8%EC%8B%A0%EB%9F%AC%EB%8B%9D/</link>
+      <pubDate>Wed, 07 Jul 2021 00:04:34 +0900</pubDate>
+      
+      <guid>https://yansigit.github.io/blog/%EB%A8%B8%EC%8B%A0%EB%9F%AC%EB%8B%9D/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>머신러닝 용어정리</title>
+      <link>https://yansigit.github.io/blog/%EB%A8%B8%EC%8B%A0%EB%9F%AC%EB%8B%9D-%EC%9A%A9%EC%96%B4%EC%A0%95%EB%A6%AC/</link>
+      <pubDate>Wed, 07 Jul 2021 00:04:34 +0900</pubDate>
+      
+      <guid>https://yansigit.github.io/blog/%EB%A8%B8%EC%8B%A0%EB%9F%AC%EB%8B%9D-%EC%9A%A9%EC%96%B4%EC%A0%95%EB%A6%AC/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>베이즈 정리와 확신도</title>
+      <link>https://yansigit.github.io/blog/%EB%B2%A0%EC%9D%B4%EC%A6%88-%EC%A0%95%EB%A6%AC%EC%99%80-%ED%99%95%EC%8B%A0%EB%8F%84/</link>
+      <pubDate>Wed, 07 Jul 2021 00:04:34 +0900</pubDate>
+      
+      <guid>https://yansigit.github.io/blog/%EB%B2%A0%EC%9D%B4%EC%A6%88-%EC%A0%95%EB%A6%AC%EC%99%80-%ED%99%95%EC%8B%A0%EB%8F%84/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>부정확한 언어 - 퍼지이론</title>
+      <link>https://yansigit.github.io/blog/%EB%B6%80%EC%A0%95%ED%99%95%ED%95%9C-%EC%96%B8%EC%96%B4-%ED%8D%BC%EC%A7%80%EC%9D%B4%EB%A1%A0/</link>
+      <pubDate>Wed, 07 Jul 2021 00:04:34 +0900</pubDate>
+      
+      <guid>https://yansigit.github.io/blog/%EB%B6%80%EC%A0%95%ED%99%95%ED%95%9C-%EC%96%B8%EC%96%B4-%ED%8D%BC%EC%A7%80%EC%9D%B4%EB%A1%A0/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>유전 알고리즘</title>
+      <link>https://yansigit.github.io/blog/%EC%9C%A0%EC%A0%84-%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98/</link>
+      <pubDate>Wed, 07 Jul 2021 00:04:34 +0900</pubDate>
+      
+      <guid>https://yansigit.github.io/blog/%EC%9C%A0%EC%A0%84-%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>전문가 시스템</title>
+      <link>https://yansigit.github.io/blog/%EC%A0%84%EB%AC%B8%EA%B0%80-%EC%8B%9C%EC%8A%A4%ED%85%9C/</link>
+      <pubDate>Wed, 07 Jul 2021 00:04:34 +0900</pubDate>
+      
+      <guid>https://yansigit.github.io/blog/%EC%A0%84%EB%AC%B8%EA%B0%80-%EC%8B%9C%EC%8A%A4%ED%85%9C/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>튜링 테스트와 머신러닝 기초</title>
+      <link>https://yansigit.github.io/blog/%ED%8A%9C%EB%A7%81-%ED%85%8C%EC%8A%A4%ED%8A%B8%EC%99%80-%EB%A8%B8%EC%8B%A0%EB%9F%AC%EB%8B%9D-%EA%B8%B0%EC%B4%88/</link>
+      <pubDate>Wed, 07 Jul 2021 00:04:34 +0900</pubDate>
+      
+      <guid>https://yansigit.github.io/blog/%ED%8A%9C%EB%A7%81-%ED%85%8C%EC%8A%A4%ED%8A%B8%EC%99%80-%EB%A8%B8%EC%8B%A0%EB%9F%AC%EB%8B%9D-%EA%B8%B0%EC%B4%88/</guid>
+      <description></description>
+    </item>
+    
+  </channel>
+</rss>

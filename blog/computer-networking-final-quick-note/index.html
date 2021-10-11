@@ -1,0 +1,2222 @@
+<!DOCTYPE html>
+<html lang="ko-kr">
+    <head><meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content='컴퓨터 네트워크 - Final Quick Note'><title>Computer Networking - Final Quick Note</title>
+
+<link rel='canonical' href='https://yansigit.github.io/blog/computer-networking-final-quick-note/'>
+
+<link rel="stylesheet" href="/scss/style.min.css"><meta property='og:title' content='Computer Networking - Final Quick Note'>
+<meta property='og:description' content='컴퓨터 네트워크 - Final Quick Note'>
+<meta property='og:url' content='https://yansigit.github.io/blog/computer-networking-final-quick-note/'>
+<meta property='og:site_name' content='Code like Feather'>
+<meta property='og:type' content='article'><meta property='article:section' content='Posts' /><meta property='article:tag' content='computer-networking' /><meta property='article:tag' content='network' /><meta property='article:tag' content='networking' /><meta property='article:published_time' content='2020-09-17T00:11:07&#43;09:00'/><meta property='article:modified_time' content='2020-09-17T00:11:07&#43;09:00'/><meta property='og:image' content='https://yansigit.github.io/images/lighthouse.jpg' />
+<meta name="twitter:title" content="Computer Networking - Final Quick Note">
+<meta name="twitter:description" content="컴퓨터 네트워크 - Final Quick Note"><meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content='https://yansigit.github.io/images/lighthouse.jpg' />
+    </head>
+    <body class="
+    article-page has-toc
+">
+    <script>
+        (function() {
+            const colorSchemeKey = 'StackColorScheme';
+            if(!localStorage.getItem(colorSchemeKey)){
+                localStorage.setItem(colorSchemeKey, "auto");
+            }
+        })();
+    </script><script>
+    (function() {
+        const colorSchemeKey = 'StackColorScheme';
+        const colorSchemeItem = localStorage.getItem(colorSchemeKey);
+        const supportDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches === true;
+
+        if (colorSchemeItem == 'dark' || colorSchemeItem === 'auto' && supportDarkMode) {
+            
+
+            document.documentElement.dataset.scheme = 'dark';
+        } else {
+            document.documentElement.dataset.scheme = 'light';
+        }
+    })();
+</script>
+<div class="container main-container flex 
+    
+        extended
+    
+">
+    
+        <div id="article-toolbar">
+            <a href="https://yansigit.github.io" class="back-home">
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-chevron-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <polyline points="15 6 9 12 15 18" />
+</svg>
+
+
+
+                <span>Back</span>
+            </a>
+        </div>
+    
+<main class="main full-width">
+    <article class="main-article">
+    <header class="article-header">
+
+    <div class="article-details">
+    
+    <header class="article-category">
+        
+            <a href="/categories/computer-networking/" >
+                computer-networking
+            </a>
+        
+    </header>
+    
+
+    <h2 class="article-title">
+        <a href="/blog/computer-networking-final-quick-note/">Computer Networking - Final Quick Note</a>
+    </h2>
+
+    
+    <h3 class="article-subtitle">
+        컴퓨터 네트워크 - Final Quick Note
+    </h3>
+    
+
+    
+    <footer class="article-time">
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-calendar-time" width="56" height="56" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M11.795 21h-6.795a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v4" />
+  <circle cx="18" cy="18" r="4" />
+  <path d="M15 3v4" />
+  <path d="M7 3v4" />
+  <path d="M3 11h16" />
+  <path d="M18 16.496v1.504l1 1" />
+</svg>
+                <time class="article-time--published">Sep 17, 2020</time>
+            </div>
+        
+
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <polyline points="12 7 12 12 15 15" />
+</svg>
+
+
+
+                <time class="article-time--reading">
+                    15 minute read
+                </time>
+            </div>
+        
+    </footer>
+    
+</div>
+</header>
+
+    <section class="article-content">
+    <p>Computer Networking - Final Quick Note</p>
+<h1 id="computer-network-final-quick-note">Computer-Network-Final-Quick-Note</h1>
+<h2 id="reliable-data-transfer-rdt">Reliable Data Transfer (RDT)</h2>
+<p><figure 
+	>
+	<a href="/posts/computer-network-final-quick-note/Untitled.png" >
+		<img src="/posts/computer-network-final-quick-note/Untitled.png"
+			
+			
+			
+			loading="lazy"
+			alt="image">
+	</a>
+	
+	<figcaption>image</figcaption>
+	
+</figure></p>
+<ul>
+<li><code>udt_send()</code>와 <code>deliver_dat()</code>는 RDT에서 직접 호출
+<ul>
+<li><strong>ACTION</strong> 이라고 지칭</li>
+</ul>
+</li>
+<li><code>rdt_send()</code>는 application layer에서, <code>rdt_rcv()</code>는 underline channel에서 호출
+<ul>
+<li><strong>EVENT</strong> 라고 지칭</li>
+</ul>
+</li>
+</ul>
+<h2 id="rdt-10--reliable-tranfer-on-reliable-channel">RDT 1.0 : Reliable tranfer on reliable channel</h2>
+<p><figure 
+	>
+	<a href="/posts/computer-network-final-quick-note/Untitled%202.png" >
+		<img src="/posts/computer-network-final-quick-note/Untitled%202.png"
+			
+			
+			
+			loading="lazy"
+			alt="image">
+	</a>
+	
+	<figcaption>image</figcaption>
+	
+</figure></p>
+<ul>
+<li>하위  채널도 완벽한 Reliable
+<ul>
+<li>비트 에러 없음</li>
+<li>패킷 로스 없음</li>
+</ul>
+</li>
+<li>그러나 실제로는 하위 채널은 Reliable 하지 않음</li>
+</ul>
+<h2 id="rdt-20--channel-with-bit-errors">RDT 2.0 : Channel with bit errors</h2>
+<p><figure 
+	>
+	<a href="/posts/computer-network-final-quick-note/Untitled%203.png" >
+		<img src="/posts/computer-network-final-quick-note/Untitled%203.png"
+			
+			
+			
+			loading="lazy"
+			alt="image">
+	</a>
+	
+	<figcaption>image</figcaption>
+	
+</figure></p>
+<ul>
+<li>하위 채널이 Reliable 하지 못함
+<ul>
+<li>비트 에러가 있을 수 있음</li>
+</ul>
+</li>
+<li>비트 에러 복구 방법
+<ul>
+<li>Acks</li>
+<li>NAKs
+<ul>
+<li>Receiver가 Sender에게 명시적으로 패킷에 에러가 있음을 알려줌</li>
+</ul>
+</li>
+<li>Sender는 NAKs를 받으면 패킷 재전송</li>
+</ul>
+</li>
+<li>RDT 2.0에서의 새 매커니즘
+<ul>
+<li>에러 디텍트</li>
+<li>피드백 (ACK, NAK)</li>
+</ul>
+</li>
+</ul>
+<h2 id="rdt-20-문제--만약-ack-nak가-corrupted">RDT 2.0 문제 : 만약 ACK, NAK가 Corrupted?</h2>
+<ul>
+<li>Sender는 Receiver에게 무슨 일이 일어났는지 알 수 없음</li>
+<li>무작정 재전송하긴 힘듬
+<ul>
+<li>ACK을 받아야 위쪽에서 오는 데이터를 대기할 수 있음</li>
+<li>ACK가 와서 인식되지 않으면 같은 패킷만 계속 재전송</li>
+</ul>
+</li>
+<li>Duplicate 막기
+<ul>
+<li>Sender는 각 패킷에 Seq Number 기입해둠</li>
+<li>Receiver는 그 Seq Number를 보고 이미 받은 패킷이면 Discard 시킴</li>
+</ul>
+</li>
+</ul>
+<h2 id="stop-and-wait-protocol">Stop and Wait Protocol</h2>
+<ul>
+<li>Sender는 한 패킷을 보내고 Receiver의 리스폰스를 기다림</li>
+<li>아래 RDT들은 모두 Stop and Wait Protocol 사용 (ACK를 기다림)</li>
+</ul>
+<h2 id="rdt-21--seq-number로-중복-방지">RDT 2.1 : Seq Number로 중복 방지</h2>
+<p><figure 
+	>
+	<a href="/posts/computer-network-final-quick-note/Untitled%204.png" >
+		<img src="/posts/computer-network-final-quick-note/Untitled%204.png"
+			
+			
+			
+			loading="lazy"
+			alt="image">
+	</a>
+	
+	<figcaption>image</figcaption>
+	
+</figure></p>
+<ul>
+<li><code>sndpkt = make_pkt(0, data, ckecksum)</code>, <code>sndpkt = make_pkt(1, data, ckecksum)</code>으로 sequence number까지 보내주는 모습</li>
+<li><code>corrupt(rcvpkt)||isNAK(rcvpkt)</code> 으로 ACK 혹은 NAK corrupt 체크
+<ul>
+<li><strong>corrupt 되었다면 일반 NAK같이 치부함</strong></li>
+</ul>
+</li>
+<li>Twice as many states (<strong>만약 seq가 2개라면 4개의 상태가 필요하다는 뜻</strong>)
+<ul>
+<li>State must remember whether expected packet should have seq number of 0 or 1</li>
+</ul>
+</li>
+</ul>
+<p><figure 
+	>
+	<a href="/posts/computer-network-final-quick-note/Untitled%205.png" >
+		<img src="/posts/computer-network-final-quick-note/Untitled%205.png"
+			
+			
+			
+			loading="lazy"
+			alt="image">
+	</a>
+	
+	<figcaption>image</figcaption>
+	
+</figure></p>
+<ul>
+<li><strong>Receiver는 받은 패킷이 중복된 패킷인지 체크</strong>해야 한다
+<ul>
+<li>0번의 패킷을 기다리는데 1번이 오거나, 1번의 패킷을 기다리는데 0번이 오면 <code>extract</code> 하지 않고 바로 ACK 패킷을 만들어 보내는 모습.
+<ul>
+<li>즉 Discard 해버린다</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><strong>Receiver는 Sender가 ACK|NAK을 잘 전달받았는지 알지 못함</strong></li>
+</ul>
+<h2 id="rdt-22--nak-free-protocol">RDT 2.2 : NAK-FREE Protocol</h2>
+<p><figure 
+	>
+	<a href="/posts/computer-network-final-quick-note/Untitled%206.png" >
+		<img src="/posts/computer-network-final-quick-note/Untitled%206.png"
+			
+			
+			
+			loading="lazy"
+			alt="image">
+	</a>
+	
+	<figcaption>image</figcaption>
+	
+</figure></p>
+<ul>
+<li><strong>ACK만 사용</strong></li>
+<li>기다리고 있는 것과 <strong>다른 Seq Number를 가진 ACK가 오면 NAK를 받은 것 처럼</strong> 처리</li>
+</ul>
+<h2 id="rdt-30--error-loss-모두-처리">RDT 3.0 : ERROR, LOSS 모두 처리</h2>
+<ul>
+<li>밑의 채널이 불안정해 패킷 에러, 로스 둘 다 가능</li>
+<li><strong>구현</strong>
+<ol>
+<li>Sender는 ACK를 충분한 시간만큼 기다림</li>
+<li>시간 안에 ACK가 오지 않으면 패킷 재전송</li>
+<li>만약 패킷이 그냥 Delay 된 것이였다?
+<ul>
+<li>재전송된 패킷은 중복 패킷이 되겠지만, Seq Number 덕분에 그냥 Discard됨</li>
+</ul>
+</li>
+</ol>
+<ul>
+<li>카운트 다운 타이머 필요</li>
+</ul>
+</li>
+</ul>
+<p><figure 
+	>
+	<a href="/posts/computer-network-final-quick-note/Untitled%207.png" >
+		<img src="/posts/computer-network-final-quick-note/Untitled%207.png"
+			
+			
+			
+			loading="lazy"
+			alt="image">
+	</a>
+	
+	<figcaption>image</figcaption>
+	
+</figure></p>
+<ul>
+<li><code>start_timer</code>로 &ldquo;resonable&rdquo; 한 시간동안 기다림
+<ul>
+<li>timeout 되면 패킷을 재전송하고 타이머 재시작</li>
+</ul>
+</li>
+<li><strong>corrupt 되거나 잘못된 seq number의 ACK이 오면 그냥 무시</strong></li>
+<li>제대로된 ACK가 오면 타이머 멈추고 다음으로 넘어감</li>
+</ul>
+<h2 id="rdt-30-동작">RDT 3.0 동작</h2>
+<p><figure 
+	>
+	<a href="/posts/computer-network-final-quick-note/Untitled%208.png" >
+		<img src="/posts/computer-network-final-quick-note/Untitled%208.png"
+			
+			
+			
+			loading="lazy"
+			alt="image">
+	</a>
+	
+	<figcaption>image</figcaption>
+	
+</figure></p>
+<p><figure 
+	>
+	<a href="/posts/computer-network-final-quick-note/Untitled%209.png" >
+		<img src="/posts/computer-network-final-quick-note/Untitled%209.png"
+			
+			
+			
+			loading="lazy"
+			alt="image">
+	</a>
+	
+	<figcaption>image</figcaption>
+	
+</figure></p>
+<ul>
+<li>지금까지 혼동하고 있었는데 이걸보면 Sequence는 일련의 한정된 패킷에 넘버링 하는게 아니라, 버퍼 개념인 듯 하다.</li>
+<li>즉 여기서는 버퍼가 두칸짜리고 이걸 계속 상위 레이어에서 데이터를 받아서 채우고 Receiver에 전달하는 것.</li>
+<li>(d)의 경우에는 ACK 전달이 Delay됨.</li>
+</ul>
+<h2 id="rdt-30의-문제">RDT 3.0의 문제</h2>
+<p><figure 
+	>
+	<a href="/posts/computer-network-final-quick-note/Untitled%2010.png" >
+		<img src="/posts/computer-network-final-quick-note/Untitled%2010.png"
+			
+			
+			
+			loading="lazy"
+			alt="image">
+	</a>
+	
+	<figcaption>image</figcaption>
+	
+</figure>
+r
+<figure 
+	>
+	<a href="/posts/computer-network-final-quick-note/Untitled%2011.png" >
+		<img src="/posts/computer-network-final-quick-note/Untitled%2011.png"
+			
+			
+			
+			loading="lazy"
+			alt="image">
+	</a>
+	
+	<figcaption>image</figcaption>
+	
+</figure></p>
+<ul>
+<li>제대로 작동은 하지만 작동이 엄청 느리다</li>
+<li>사실상 못쓴다</li>
+<li><strong>RTT</strong>
+<ul>
+<li>패킷을 보내고 답을 받는데까지 시간</li>
+<li>2 X <em>PropDelay</em></li>
+</ul>
+</li>
+<li>그러니까 실제 패킷을 전송하는데 할애한 시간인 <code>L/R</code> 에 전체 시간인 <code>RTT + L/R</code>을 나누면 <strong>Utilization (효율)</strong> 을 알 수 있다.. 이말이다.
+<ul>
+<li>위의 예에서는 <code>1Gbps 링크</code>, <code>15 prop delay</code>, <code>8000bit 짜리 패킷</code>을 보내는 것을 가정
+<ul>
+<li><code>RTT</code> = 2 * <code>prop delay</code> 이므로 (대충 그림상)</li>
+<li>(8000/10^9) / (30 + 8000/10^9) → 0.00027</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>위에서 봤듯이 사실 RDT 전부 ACK를 기다리는 모습들. 즉 Stop and Wait 프로토콜을 사용하기에 느림
+<ul>
+<li>그래서 파이프 라이닝이 나옴</li>
+</ul>
+</li>
+</ul>
+<h2 id="pipelining-protocols">Pipelining Protocols</h2>
+<ul>
+<li>Sender는 ACK를 받지 않더라도 계속 여러개의 패킷을 보낼 수 있음</li>
+<li>TCP 프로토콜에 사용됨</li>
+</ul>
+<h2 id="utilization-이용률-상승">Utilization (이용률) 상승</h2>
+<p><figure 
+	>
+	<a href="/posts/computer-network-final-quick-note/Untitled%2012.png" >
+		<img src="/posts/computer-network-final-quick-note/Untitled%2012.png"
+			
+			
+			
+			loading="lazy"
+			alt="image">
+	</a>
+	
+	<figcaption>image</figcaption>
+	
+</figure></p>
+<ul>
+<li>위의 예에서는 3개의 패킷을 동시에 보내 3배만큼 효율 증가</li>
+<li>Receive 측에서 ACK를 보내긴 함</li>
+</ul>
+<h2 id="go-back-n">Go-Back-N</h2>
+<ul>
+<li>최대 N개까지는 ACK를 받지 않고 패킷을 보낼 수 있다</li>
+<li>Receiver는 <code>Cumulative ACK</code>만을 보냄
+<ul>
+<li>누적 패킷</li>
+<li>Gap이 있다면 Ack 패킷을 보내지 않음
+<ul>
+<li>즉 만약 패킷1을 받았는데.. 패킷2가 전달이 되지 않은 경우?</li>
+<li>패킷3이 전달되어 Ack를 보낼 때 Ack1을 보낸다.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>한개의 타이머만 유지
+<ul>
+<li>타임아웃이 발생하면, Ack로 정상 전송 여부가 판별되지 않은 모든 패킷을 다시 보낸다</li>
+</ul>
+</li>
+</ul>
+<h1 id="2-go-back-n-gbn">2. Go-Back-N (GBN)</h1>
+<blockquote>
+<p>Sliding Window Protocol 이라고도 부름</p>
+</blockquote>
+<h2 id="sender">Sender</h2>
+<p><figure 
+	>
+	<a href="/posts/computer-network-final-quick-note/Untitled%2013.png" >
+		<img src="/posts/computer-network-final-quick-note/Untitled%2013.png"
+			
+			
+			
+			loading="lazy"
+			alt="image">
+	</a>
+	
+	<figcaption>image</figcaption>
+	
+</figure></p>
+<ul>
+<li><code>window</code> : 최대 N개의 패킷을 보낼 수 있는 범위</li>
+<li><strong><code>send_base</code></strong> : 현재 Window에서 처음 보내는 패킷</li>
+<li><strong><code>nextseqnum</code></strong> : (상위 레이어에서 패킷이 아직 안와서) 다음에 보낼 패킷</li>
+<li>설명하자면..
+<ul>
+<li><strong>초록색</strong>은 Ack를 받고 정상 전송이 컨펌된 패킷들</li>
+<li><strong>노란색</strong>은 보내긴 했으나 Ack가 도달 안된 패킷들</li>
+<li><strong>파란색</strong>은 현재 Window 내에서 전송 가능한 가용 패킷 용량</li>
+<li><strong>하얀색</strong>은 아직 Window 범위 내에 있지 않아 사용 불가능한 칸이다.</li>
+</ul>
+<ol>
+<li><strong>만약 상위 레이어에서 데이터가 내려오면</strong>
+<ul>
+<li><strong>Window 칸 모두 파란색</strong>이다
+<ul>
+<li>해당 패킷들을 만들어 보내고</li>
+<li>그 수만큼 파란색 칸은 노란색이 되고</li>
+<li><code>nextseqnum</code>도 해당 수만큼 오른쪽으로 이동</li>
+<li>보내놓은 패킷이 없어서 타이머가 종료된 상태였는데, 처음 패킷을 보냈으므로 <strong>타이머 시작</strong></li>
+</ul>
+</li>
+<li><strong>Window 내에 노란색도 있고 파란색도 있다</strong>
+<ul>
+<li>해당 패킷들을 만들어 보내고</li>
+<li>그 수만큼 파란색 칸은 노란색이 되고</li>
+<li>nextseqnum도 해당 수만큼 오른쪽으로 이동</li>
+</ul>
+</li>
+<li><strong>Window 칸 모두 노란색이다</strong>
+<ul>
+<li><code>nextseqnum</code>이 현재 window를 이탈한 상태라는 것</li>
+<li>즉 가용한 패킷 용량을 다 사용했으므로 데이터 전송을 거부</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><strong>만약 Ack가 도착하면</strong>
+<ul>
+<li>해당 Ack가 컨펌한 패킷들만큼 노란색 칸이 초록색 칸으로 채워지고</li>
+<li>또 그만큼 <code>send_base</code>가 오른쪽으로 이동</li>
+<li><code>window</code>는 바뀐 <code>send_base</code>에 맞춰 그만큼 재설정됨</li>
+</ul>
+<ol>
+<li><strong>그랬는데 만약 모든 칸이 초록색이라면</strong>
+<ul>
+<li>모든 보낸 패킷이 Ack에 의해 컨펌되었으므로 <strong>타이머 종료</strong></li>
+</ul>
+</li>
+<li><strong>아직 컨펌되지 않은 패킷이 있다면</strong>
+<ul>
+<li><strong>타이머 재시작</strong></li>
+</ul>
+</li>
+</ol>
+</li>
+<li><strong>타임아웃이 발생하면</strong>
+<ul>
+<li><strong>타이머 재시작</strong>하고</li>
+<li><strong>노란색 패킷들을 다시 보냄</strong></li>
+</ul>
+</li>
+</ol>
+</li>
+</ul>
+<h2 id="sender-fsm">Sender FSM</h2>
+<p><figure 
+	>
+	<a href="/posts/computer-network-final-quick-note/Untitled%2014.png" >
+		<img src="/posts/computer-network-final-quick-note/Untitled%2014.png"
+			
+			
+			
+			loading="lazy"
+			alt="image">
+	</a>
+	
+	<figcaption>image</figcaption>
+	
+</figure></p>
+<ul>
+<li>위에서 얘기한 내용을 FSM으로 표현한 것</li>
+</ul>
+<h2 id="receiver-fsm">Receiver FSM</h2>
+<p><figure 
+	>
+	<a href="/posts/computer-network-final-quick-note/Untitled%2015.png" >
+		<img src="/posts/computer-network-final-quick-note/Untitled%2015.png"
+			
+			
+			
+			loading="lazy"
+			alt="image">
+	</a>
+	
+	<figcaption>image</figcaption>
+	
+</figure></p>
+<ul>
+<li><code>expectedseqnum</code> : 받아야 할 패킷의 시퀀스 넘버</li>
+<li><strong>패킷이 순서대로 왔을 경우</strong>
+<ul>
+<li><strong>제대로 수신된 제일 마지막 패킷을 기준으로 ACK 하나를 보냄</strong></li>
+<li><code>expectedsuqnum</code> 하나만 기억하면 됨</li>
+</ul>
+</li>
+<li><strong>패킷의 순서가 엉망인 경우</strong>
+<ul>
+<li>그냥 버려버리고</li>
+<li><strong>순서대로 제대로 온 패킷의 마지막 시퀀스 넘버 ACK를 보낸다</strong></li>
+</ul>
+</li>
+</ul>
+<h2 id="모식도">모식도</h2>
+<p><figure 
+	>
+	<a href="/posts/computer-network-final-quick-note/Untitled%2016.png" >
+		<img src="/posts/computer-network-final-quick-note/Untitled%2016.png"
+			
+			
+			
+			loading="lazy"
+			alt="image">
+	</a>
+	
+	<figcaption>image</figcaption>
+	
+</figure></p>
+<ul>
+<li>Sender는 패킷 0,1,2,3 을 보낸다</li>
+<li>Receiver는 패킷2가 Loss 됬으므로 마지막으로 제대로 수신된 패킷1의 ACK를 계속 보낸다.</li>
+<li>Sender는 ACK1를 받아 0,1은 컨펌됨을 알고 send_base를 2로 이동</li>
+<li>그리고 그 과정에서 Window에 포함되는 4,5가 비는데, 데이터가 오면 전송시킨다</li>
+<li>Receiver는 해당 패킷을 기대하는게 아니므로 계속해서 패킷1의 ACK를 보냄</li>
+<li>그러다보면 타임아웃이 일어남</li>
+<li>Sender는 타이머를 재시작하고 Ack로 컨펌되지 않은 2,3,4,5 패킷을 보냄</li>
+<li>Receiver는 기대하고 있는 패킷이 왔으므로 수신 작업을 함</li>
+</ul>
+<h2 id="selective-repeat-sr">Selective Repeat (SR)</h2>
+<h3 id="gbn과의-차이점">GBN과의 차이점</h3>
+<ul>
+<li><strong>Receiver</strong>
+<ul>
+<li><strong>개별적으로 패킷들에 ACK</strong> 해줌</li>
+<li><strong>순서대로 오지 않은 패킷도 버퍼함</strong>
+<ul>
+<li>즉 패킷 9를 받지못하고 패킷 10을 받아도</li>
+<li>버퍼에 패킷 10을 저장해뒀다가 패킷 9가 오면 한꺼번에 올려줌</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><strong>Sender</strong>
+<ul>
+<li><strong>각각의 패킷에 대해 타이머를 유지 관리</strong></li>
+<li><strong>타임아웃이 오면 해당 패킷만 재전송</strong></li>
+</ul>
+</li>
+</ul>
+<h3 id="sender--receiver">Sender / Receiver</h3>
+<p><figure 
+	>
+	<a href="/posts/computer-network-final-quick-note/Untitled%2017.png" >
+		<img src="/posts/computer-network-final-quick-note/Untitled%2017.png"
+			
+			
+			
+			loading="lazy"
+			alt="image">
+	</a>
+	
+	<figcaption>image</figcaption>
+	
+</figure></p>
+<h3 id="모식도-1">모식도</h3>
+<p><figure 
+	>
+	<a href="/posts/computer-network-final-quick-note/Untitled%2018.png" >
+		<img src="/posts/computer-network-final-quick-note/Untitled%2018.png"
+			
+			
+			
+			loading="lazy"
+			alt="image">
+	</a>
+	
+	<figcaption>image</figcaption>
+	
+</figure></p>
+<ul>
+<li>Sender가 패킷 0,1,2,3 보냄</li>
+<li>패킷2에 로스가 일어남</li>
+<li>Receiver는 패킷 0,1,3 받고 각각 Ack 보냄. 패킷3은 버퍼에 들어감</li>
+<li>Sender는 0,1이 컨펌된것을 인지하고 Sender_base를 2로 옮김 (단 Ack3의 경우에는 Ack2가 아직 도달 안했으므로, 패킷3이 전송 잘 되었다는것만 기억.)</li>
+<li>그 과정에서 포함되는 4,5 자리. 데이터가 오면 패킷 4,5로 전송</li>
+<li>Receiver는 패킷을 받고 버퍼에 저장. Ack 4, Ack 5도 전송함</li>
+<li>패킷 4,5도 잘 전달되었다는 것을 기억.</li>
+<li>Sender는 패킷2 타이머가 타임아웃됨을 인지</li>
+<li>따라서 패킷2를 재전송</li>
+<li>Receiver는 패킷2를 받고 버퍼에 있던 패킷들과 함께 상위 레이어로 전송, Ack2를 Sender에 전해줌</li>
+</ul>
+<h3 id="문제점">문제점</h3>
+<p><figure 
+	>
+	<a href="/posts/computer-network-final-quick-note/Untitled%2019.png" >
+		<img src="/posts/computer-network-final-quick-note/Untitled%2019.png"
+			
+			
+			
+			loading="lazy"
+			alt="image">
+	</a>
+	
+	<figcaption>image</figcaption>
+	
+</figure></p>
+<ul>
+<li>위같이 시퀀스 넘버를 짤 경우, Receiver 입장에서는 Sender의 사정을 알 수 없으므로</li>
+<li>처음 패킷0,1,2에 대한 Ack들이 통째로 로스될 경우..
+<ul>
+<li>Sender는 재차 기존 패킷0,1,2를 재전송하고</li>
+<li>Receiver는 그 재전송된 패킷이 새로운 칸의 0,1의 패킷으로 생각하고 버퍼에 넣어버린다.</li>
+</ul>
+</li>
+<li>그래서 <strong>시퀀스 넘버 Range는 Window 사이즈보다 두 배 이상 커야 한다</strong>.</li>
+</ul>
+<h2 id="tcp-특성">TCP 특성</h2>
+<ul>
+<li>메세지 크기 제한이 없음</li>
+<li>플로우 컨트롤 : Receiver가 핸들 가능한 속도로 맞춰줌</li>
+<li>Pipelined
+<ul>
+<li>혼잡 제어, 플로우 컨트롤로 인해 윈도우 사이즈 계속 변함</li>
+</ul>
+</li>
+</ul>
+<h2 id="tcp-segment-구조">TCP segment 구조</h2>
+<p><figure 
+	>
+	<a href="/posts/computer-network-final-quick-note/Untitled.png" >
+		<img src="/posts/computer-network-final-quick-note/Untitled.png"
+			
+			
+			
+			loading="lazy"
+			alt="Computer-Network-TCP%2051c0253249f64f00b375108f77902f12/Untitled.png">
+	</a>
+	
+	<figcaption>Computer-Network-TCP%2051c0253249f64f00b375108f77902f12/Untitled.png</figcaption>
+	
+</figure></p>
+<ul>
+<li>FLAG들
+<ul>
+<li>U : Urgent. 빨리 보내야 하는 세그먼트. 잘 안씀</li>
+<li>A : Ack</li>
+<li>P : Push now. 잘 안씀</li>
+<li>R : Reset. 비정상 종료</li>
+<li>S : SYN. 연결을 처음 맺을 때 사용</li>
+<li>F : FIN. 정상적 종료</li>
+</ul>
+</li>
+<li>Receive WIndow : Receiver가 받고자 하는 바이트 수. Flow control 때 사용</li>
+<li>Checksum : 말 그대로 체크섬</li>
+</ul>
+<h2 id="tcp-timeout">TCP Timeout</h2>
+<ul>
+<li>RTT 보다 큰 시간 기다려야</li>
+<li>SampleRTT
+<ul>
+<li>세그먼트를 실제로 보내보고 Ack가 올 때 까지 시간 측정</li>
+<li>평균값 추정</li>
+</ul>
+</li>
+<li>계산 예제 : Est0 = 100, Sam1 = 100, Sam2 = 50, Sam3 = 200, Alpha=0.1 일 때 Est1, Est2, Est3를 구하라
+<ul>
+<li>Est1 = 0.9<em>Est0 + 0.1</em>Sam1</li>
+<li>Est2 = 0.9<em>Est1 + 0.1</em>Sam2</li>
+<li>Est3 = 0.9<em>Est2 + 0.1</em>Sam3</li>
+</ul>
+</li>
+<li><strong>Timeout_Interval = EstimatedRTT + 4*DevRTT</strong>
+<ul>
+<li><strong>DevRTT = (1-b)<em>DevRTT + b</em>|SampleRTT - EstimatedRTT|</strong></li>
+<li>SampleRTT와 EstimatedRTT 차이가 많이 나면 마진을 많이 두는 식</li>
+<li>최소 1초 이상은 나오게 되어 있는데, 컴퓨터 입장에서는 1초가 긴 시간이므로 다른 방법 사용 가능</li>
+</ul>
+</li>
+</ul>
+<h2 id="tcp-rdt-reliable-data-transfer">TCP RDT (Reliable Data Transfer)</h2>
+<h3 id="tcp-sender-events">TCP Sender Events</h3>
+<ul>
+<li><strong>TCP 소켓이 앱에서 데이터를 받을 때</strong>
+<ul>
+<li>세그먼트 넘버와 함께 세그먼트 생성</li>
+<li>타이머가 작동중이지 않으면 시작시킴
+<ul>
+<li>가장 오래 Unacked 상태인 세그먼트라고 가정</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><strong>타임아웃이 일어날 때</strong>
+<ul>
+<li>타임아웃이 일어난 세그먼트 재전송</li>
+<li>타이머 재시작</li>
+</ul>
+</li>
+<li><strong>Ack를 받을 때</strong>
+<ul>
+<li>새로운 Ack일 경우
+<ul>
+<li>Ack 된 (컨펌된) 세그먼트 체크 (SendBase 우측으로 이동)</li>
+<li>아직 <em>Unacked</em>인 세그먼트가 있다면 타이머 시작</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="tcp-ack-생성-절차">TCP Ack 생성 절차</h2>
+<ul>
+<li>적합한 Seq Num 세그먼트가 도착
+<ul>
+<li>다음 세그먼트를 50ms 가량 기다리고 도착하지 않으면 Ack 전송</li>
+</ul>
+</li>
+<li>다음 세그먼트 기다리는 와중 적합한 Seq Num 도착
+<ul>
+<li>하나의 단일 누적 Ack를 보냄</li>
+</ul>
+</li>
+<li>적합한 Seq Num보다 큰 세그먼트 도착. Gap Detected.
+<ul>
+<li>Duplicated ACK를 보내 적합한 Seq Num 알려줌</li>
+</ul>
+</li>
+<li>Gap을 완전히, 혹은 일부 메꿔줄 수 있는 세그먼트 도착
+<ul>
+<li>더 낮은 Seq Num이 필요하다는 것을 Ack 통해 알려줌</li>
+</ul>
+</li>
+</ul>
+<h2 id="tcp-fast-retransmit">TCP Fast Retransmit</h2>
+<ul>
+<li>Duplicate ACKs가 발생하면 패킷 로스로 판단, 즉각 재전송</li>
+</ul>
+<h2 id="tcp-flow-control">TCP Flow Control</h2>
+<ul>
+<li>Receiver 측에서 Sender를 컨트롤하여 너무 빠른 속도로 데이터를 보내지 않게 조절</li>
+<li>Receiver가 헤더의 <code>Receive Window (rwnd)</code>를 사용해 Sender에게 가용한 버퍼의 크기 알려줌</li>
+<li>Sender는 <code>Unacked 패킷</code>의 양을 <code>rwnd</code> 값을 넘지 않게 조절해 오버플로우 방지</li>
+</ul>
+<h2 id="handshake">HandShake</h2>
+<ul>
+<li>서로 양쪽의 시퀀스 넘버와 버퍼값을 알려주고 합의</li>
+</ul>
+<h2 id="2-way-handshake">2-way handshake</h2>
+<ul>
+<li>딜레이가 가변적</li>
+<li>패킷 로스 등 재전송이 필요한 경우가 있을 수 있음</li>
+<li>지금은 Handshake 중이기 때문에 Order가 보장되지 않음</li>
+<li>Can&rsquo;t &ldquo;See&rdquo; other side each other yet</li>
+</ul>
+<h2 id="3-way-handshake">3-way handshake</h2>
+<p><figure 
+	>
+	<a href="/posts/computer-network-final-quick-note/Untitled%204.png" >
+		<img src="/posts/computer-network-final-quick-note/Untitled%204.png"
+			
+			
+			
+			loading="lazy"
+			alt="Computer-Netowork-TCP-Flow-Control-and-Handshake%20a8a72799ddb84c4d877d90dc0b22024d/Untitled%204.png">
+	</a>
+	
+	<figcaption>Computer-Netowork-TCP-Flow-Control-and-Handshake%20a8a72799ddb84c4d877d90dc0b22024d/Untitled%204.png</figcaption>
+	
+</figure></p>
+<h2 id="tcp-closing-a-connection">TCP: Closing a connection</h2>
+<p><figure 
+	>
+	<a href="/posts/computer-network-final-quick-note/Untitled%206.png" >
+		<img src="/posts/computer-network-final-quick-note/Untitled%206.png"
+			
+			
+			
+			loading="lazy"
+			alt="Computer-Netowork-TCP-Flow-Control-and-Handshake%20a8a72799ddb84c4d877d90dc0b22024d/Untitled%206.png">
+	</a>
+	
+	<figcaption>Computer-Netowork-TCP-Flow-Control-and-Handshake%20a8a72799ddb84c4d877d90dc0b22024d/Untitled%206.png</figcaption>
+	
+</figure></p>
+<ul>
+<li>클라는 위에서 왜 TIMED_WAIT → CLOSED 까지 기다리고 있을까?
+<ul>
+<li>만약 서버의 FIN에 대한 자신의 Ack Response가 유실되었을 경우, 서버가 <code>FINbit=1</code>을 재전송할 경우 다시 Ack를 보내줘야 하기에 충분한 시간동안 기다려 주는 것</li>
+</ul>
+</li>
+</ul>
+<h2 id="tcp-congestion-control">TCP Congestion Control</h2>
+<ul>
+<li>
+<p>증가시킬때는 천천히, 감소시킬때는 빠르게</p>
+</li>
+<li>
+<p>Additive Increase, Multiplicative decrease</p>
+<ul>
+<li><code>congestion window (cwnd)</code>를 패킷 로스가 감지될 때 까지 <code>1MSS</code>만큼 매 <code>RTT</code>마다 늘림</li>
+<li>패킷 로스가 감지되면 <code>cwnd</code>를 반으로 줄임</li>
+</ul>
+</li>
+<li>
+<p><strong>TCP Sending Rate</strong></p>
+<p><figure 
+	>
+	<a href="/posts/computer-network-final-quick-note/Untitled%2010.png" >
+		<img src="/posts/computer-network-final-quick-note/Untitled%2010.png"
+			
+			
+			
+			loading="lazy"
+			alt="Computer-Network-TCP-Congestion-Control%20a97541deec9549d5b912476d44813883/Untitled%2010.png">
+	</a>
+	
+	<figcaption>Computer-Network-TCP-Congestion-Control%20a97541deec9549d5b912476d44813883/Untitled%2010.png</figcaption>
+	
+</figure></p>
+</li>
+</ul>
+<h2 id="tcp-slow-start">TCP Slow Start</h2>
+<p><figure 
+	>
+	<a href="/posts/computer-network-final-quick-note/Untitled%2011.png" >
+		<img src="/posts/computer-network-final-quick-note/Untitled%2011.png"
+			
+			
+			
+			loading="lazy"
+			alt="Computer-Network-TCP-Congestion-Control%20a97541deec9549d5b912476d44813883/Untitled%2011.png">
+	</a>
+	
+	<figcaption>Computer-Network-TCP-Congestion-Control%20a97541deec9549d5b912476d44813883/Untitled%2011.png</figcaption>
+	
+</figure></p>
+<ul>
+<li>처음에는 <code>cwnd = 1 MMS</code>로 시작</li>
+<li>이를 지수적으로 증가시킴
+<ul>
+<li>각각의 RTT마다 <code>cwnd</code>를 두배씩 증가시킴</li>
+<li>ACK를 받을 때 마다 <code>+1</code>을 해줌으로서 구현</li>
+</ul>
+</li>
+</ul>
+<h2 id="tcp의-손실-감지-반응">TCP의 손실 감지, 반응</h2>
+<ul>
+<li><strong>타임아웃이 발생하면</strong>
+<ul>
+<li><code>cwnd = 1 MMS</code>로 초기화</li>
+<li><code>ssthresh</code>를 타임아웃이 발생했을 때 크기의 반으로 설정</li>
+<li>다음 <code>cwnd</code>를 지수적으로 (1..2..4..8) 증가시킴</li>
+<li><code>ssthresh</code>에 도달하면 선형적으로 (1..2..3..4) 증가시킴</li>
+</ul>
+</li>
+<li><strong>3개의 중복 ACK가 발생</strong> (<strong>패킷로스 이벤트 발생</strong>)
+<ul>
+<li>
+<p><strong>TCP Tahoe</strong></p>
+<p><figure 
+	>
+	<a href="/posts/computer-network-final-quick-note/Untitled.png" >
+		<img src="/posts/computer-network-final-quick-note/Untitled.png"
+			
+			
+			
+			loading="lazy"
+			alt="Computer-Network-Final-Quick-Note%20a0c2deefe78b40d890713797e3bc04a6/Untitled.png">
+	</a>
+	
+	<figcaption>Computer-Network-Final-Quick-Note%20a0c2deefe78b40d890713797e3bc04a6/Untitled.png</figcaption>
+	
+</figure></p>
+<ul>
+<li>타임아웃 발생시와 동일하게 처리</li>
+</ul>
+</li>
+<li>
+<p><strong>TCP RENO</strong></p>
+<p><figure 
+	>
+	<a href="/posts/computer-network-final-quick-note/Untitled%201.png" >
+		<img src="/posts/computer-network-final-quick-note/Untitled%201.png"
+			
+			
+			
+			loading="lazy"
+			alt="Computer-Network-Final-Quick-Note%20a0c2deefe78b40d890713797e3bc04a6/Untitled%201.png">
+	</a>
+	
+	<figcaption>Computer-Network-Final-Quick-Note%20a0c2deefe78b40d890713797e3bc04a6/Untitled%201.png</figcaption>
+	
+</figure></p>
+<ul>
+<li><code>cwnd</code>를 반으로 줄이고 선형적으로 증가시킴</li>
+<li>위 예제에서는 반으로 줄이고 + 3을 해줬는데 아무튼 구현법에 따라 다른듯</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="tcp-쓰루풋">TCP 쓰루풋</h2>
+<p><figure 
+	>
+	<a href="/posts/computer-network-final-quick-note/Untitled%2014.png" >
+		<img src="/posts/computer-network-final-quick-note/Untitled%2014.png"
+			
+			
+			
+			loading="lazy"
+			alt="Computer-Network-TCP-Congestion-Control%20a97541deec9549d5b912476d44813883/Untitled%2014.png">
+	</a>
+	
+	<figcaption>Computer-Network-TCP-Congestion-Control%20a97541deec9549d5b912476d44813883/Untitled%2014.png</figcaption>
+	
+</figure></p>
+<h2 id="tcp-공평성">TCP 공평성</h2>
+<ul>
+<li>연결 1,2가 같은 네트워크를 사용한다고 했을 때</li>
+<li>처음에는 쓰루풋이 달라도 패킷로스 등을 거치며 Slow Start, CA 등으로 쓰루풋이 동일하게 수렴</li>
+<li><strong>Parallel TCP</strong> (꼼수?)
+<ul>
+<li>병렬적으로 연결을 맺어 속도 향상시킴</li>
+<li>웹 브라우저에서 자주 사용</li>
+</ul>
+</li>
+<li>단점
+<ul>
+<li>멀티미디어 앱들은 속도에 지정 받을 수 있음</li>
+<li>따라서 UDP 많이 사용</li>
+</ul>
+</li>
+</ul>
+<h2 id="ecn-explict-congestion-notification">ECN (Explict Congestion Notification)</h2>
+<ul>
+<li>네트워크 라우터들이 혼잡 상황을 판단하고 Source, Dest에 알려줌</li>
+<li>IP헤더의 ToS 필드 이용</li>
+<li><strong>예</strong>
+<ol>
+<li>Source에서는 헤더에 ECN=00 으로 세팅되어 전송됨</li>
+<li>만약 네트워크에 혼잡이 있다면 중간에 라우터에서 이를 ECN=11으로 바꿈</li>
+<li>Destination에서는 패킷을 받아보고 ECN이 설정되어 있다면 ECE=1 (ECN echo) 설정해 ACK를 보내줘 Source에게도 네트워크에 혼잡이 있다는 것을 알려줌</li>
+</ol>
+</li>
+</ul>
+<h2 id="multimedia-audio">Multimedia: Audio</h2>
+<ul>
+<li>아날로그 오디오 신호는 주기적인 속도로 샘플링 진행</li>
+<li>각각의 샘플들은 Quantized 됨</li>
+<li>Quantized된 값들은 Bits로 표현됨</li>
+<li><strong>계산법</strong>
+<ul>
+<li>8000 samples/sec 이고 256 (2^8) quantized values
+<ul>
+<li><strong>8000 X 8 = 64000bps</strong></li>
+</ul>
+</li>
+</ul>
+</li>
+<li>원본 손실이 일어남</li>
+</ul>
+<h2 id="multimedia-video">Multimedia: Video</h2>
+<ul>
+<li>비디오 : 일련의 이미지
+<ul>
+<li>24 images/sec 등</li>
+</ul>
+</li>
+<li>인코딩 : 이미지간의 중복 이용해 비트를 줄임
+<ul>
+<li>Spatial
+<ul>
+<li>중복된 색깔을 이용</li>
+</ul>
+</li>
+<li>Temporal
+<ul>
+<li>전의 이미지와 다음 이미지간의 차이점만 보냄</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>CBR : 고정된 비디오 인코딩 레이트</li>
+<li>VBR : 가변적인 인코딩 레이트
+<ul>
+<li>인코딩이 변화하는 것에 따라 가변적</li>
+</ul>
+</li>
+</ul>
+<h2 id="multimedia-networking">Multimedia Networking</h2>
+<ul>
+<li>Streaming: Stored audio, video
+<ul>
+<li>다운로드와 동시에 실행 가능</li>
+<li>서버에 저장된 미디어</li>
+<li>유튜브</li>
+</ul>
+</li>
+<li>Conversational Voice/Video over IP
+<ul>
+<li>Interactive</li>
+<li>Delay Tolerance (딜레이 허용) 제한</li>
+<li>Skype</li>
+</ul>
+</li>
+<li>Streaming live audio, video
+<ul>
+<li>Live Sport Events</li>
+</ul>
+</li>
+</ul>
+<h2 id="streaming-stored-video">Streaming stored video</h2>
+<p><figure 
+	>
+	<a href="/posts/computer-network-final-quick-note/Untitled%201.png" >
+		<img src="/posts/computer-network-final-quick-note/Untitled%201.png"
+			
+			
+			
+			loading="lazy"
+			alt="Computer-Network-Multimedia%20587155c1a38047a6a00f9d40875e3299/Untitled%201.png">
+	</a>
+	
+	<figcaption>Computer-Network-Multimedia%20587155c1a38047a6a00f9d40875e3299/Untitled%201.png</figcaption>
+	
+</figure></p>
+<h2 id="streaming-stored-video--challenge">Streaming stored video : Challenge</h2>
+<ul>
+<li>Keeping continuous
+<ul>
+<li>플레이에 지연 걸리지 않게</li>
+<li>But network status changing</li>
+<li>Client-side buffer needed</li>
+</ul>
+</li>
+<li>Video packet can be lost</li>
+<li>Client interact
+<ul>
+<li>Stop, Play, Rewind</li>
+</ul>
+</li>
+</ul>
+<h2 id="streaming-stored-video--client-side-buffering">Streaming stored video : Client side buffering</h2>
+<p><figure 
+	>
+	<a href="/posts/computer-network-final-quick-note/Untitled%202.png" >
+		<img src="/posts/computer-network-final-quick-note/Untitled%202.png"
+			
+			
+			
+			loading="lazy"
+			alt="Computer-Network-Multimedia%20587155c1a38047a6a00f9d40875e3299/Untitled%202.png">
+	</a>
+	
+	<figcaption>Computer-Network-Multimedia%20587155c1a38047a6a00f9d40875e3299/Untitled%202.png</figcaption>
+	
+</figure></p>
+<ul>
+<li>버퍼 내용의 양은 가변적</li>
+<li>initial playout delay tradeoff
+<ul>
+<li>초기 버퍼값을 높게 설정하면
+<ul>
+<li>버퍼링이 많이 걸리지 않을 수 있다</li>
+<li>그러나 처음 영상을 재생할 때 까지의 시간이 많이 소요</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="streaming-multimedia--udp">Streaming multimedia : UDP</h2>
+<ul>
+<li>보통 <code>send rate</code> = <code>encoding rate</code> = <code>constant rate</code></li>
+<li>전송 속도는 혼잡도에 상관없음</li>
+<li>TCP보다 <code>Playout delay</code> 상대적으로 적음</li>
+<li>에러 복구가 필요하다면 에플리케이션 레벨에서 처리</li>
+<li>UDP는 방화벽에 자주 막히는 문제가 있음</li>
+</ul>
+<h2 id="streaming-multimedia--http-tcp">Streaming multimedia : HTTP (TCP)</h2>
+<ul>
+<li>혼잡 제어 때문에 전송속도 가변적</li>
+<li>Playout delay가 좀 더 큼</li>
+<li>방화벽에 잘 안막히는 장점</li>
+</ul>
+<h2 id="voip">VOIP</h2>
+<ul>
+<li>통신 가능한 만큼의 딜레이 관리가 필요</li>
+<li>Session initialization
+<ul>
+<li>전화하는 사람이 IP, 포트, 인코딩 알고리즘 전달 방법</li>
+</ul>
+</li>
+</ul>
+<h2 id="voip-특징">VOIP 특징</h2>
+<ul>
+<li>번갈아가면서 말함</li>
+<li>64kbps during talking
+<ul>
+<li>오직 말할때만 패킷 생성</li>
+<li><strong>20ms chunks at 8Kbytes/sec (64kbps) → 160 bytes of data</strong>
+<ul>
+<li>Talk Spurt에서 각 20ms마다 160바이트의 데이터가 생성</li>
+<li><strong>여기에 UDP나 TCP 등의 헤더가 붙음</strong></li>
+<li>앱은 매 20ms마다 소켓을 통해 세그먼트를 보냄</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="voip-playout-delay--fixed">VOIP Playout delay : Fixed</h2>
+<ul>
+<li><code>q</code>라는 고정된 딜레이 값을 사용</li>
+<li><code>q</code> 이상으로 딜레이가 발생한다면 해당 패킷은 필요없으므로 버림</li>
+<li>너무 큰 값을 사용하면 딜레이 커짐, 적은 패킷 유실</li>
+<li>작은 값을 사용하면 소통은 잘 되나 패킷 유실이 많이 일어날 수 있음</li>
+</ul>
+<h2 id="voip-playout-delay--adaptive">VOIP Playout delay : Adaptive</h2>
+<ul>
+<li>
+<p><strong>목표</strong></p>
+<ul>
+<li>Low playout delay</li>
+<li>low late loss rate</li>
+</ul>
+</li>
+<li>
+<p>네트워크 딜레이를 계속 추정 + 마진을 넣어 딜레이를 가변적으로 적용</p>
+<ol>
+<li>각 Talk spurt 첫부분에 딜레이를 적용</li>
+<li>Slience 구간이 지난 이후</li>
+<li>다음 Talk spurt이 시작 될 때 딜레이를 재계산하여 적용</li>
+</ol>
+</li>
+<li>
+<p><strong>패킷 딜레이 계산 방법</strong></p>
+<p><figure 
+	>
+	<a href="/posts/computer-network-final-quick-note/Untitled%202.png" >
+		<img src="/posts/computer-network-final-quick-note/Untitled%202.png"
+			
+			
+			
+			loading="lazy"
+			alt="Computer-Network-VOIP%2085c316c48ae749acb2e3ed75389646f6/Untitled%202.png">
+	</a>
+	
+	<figcaption>Computer-Network-VOIP%2085c316c48ae749acb2e3ed75389646f6/Untitled%202.png</figcaption>
+	
+</figure></p>
+</li>
+<li>
+<p><strong>평균 편차 계산</strong></p>
+</li>
+</ul>
+<p><figure 
+	>
+	<a href="/posts/computer-network-final-quick-note/Untitled%202.png" >
+		<img src="/posts/computer-network-final-quick-note/Untitled%202.png"
+			
+			
+			
+			loading="lazy"
+			alt="Computer-Network-Final-Quick-Note%20a0c2deefe78b40d890713797e3bc04a6/Untitled%202.png">
+	</a>
+	
+	<figcaption>Computer-Network-Final-Quick-Note%20a0c2deefe78b40d890713797e3bc04a6/Untitled%202.png</figcaption>
+	
+</figure></p>
+<ul>
+<li>
+<p><strong>Playout time</strong></p>
+<p><figure 
+	>
+	<a href="/posts/computer-network-final-quick-note/Untitled%203.png" >
+		<img src="/posts/computer-network-final-quick-note/Untitled%203.png"
+			
+			
+			
+			loading="lazy"
+			alt="Computer-Network-Final-Quick-Note%20a0c2deefe78b40d890713797e3bc04a6/Untitled%203.png">
+	</a>
+	
+	<figcaption>Computer-Network-Final-Quick-Note%20a0c2deefe78b40d890713797e3bc04a6/Untitled%203.png</figcaption>
+	
+</figure></p>
+</li>
+</ul>
+<h2 id="receiver가-talkspurt-시작점-판별하는-방법">Receiver가 Talkspurt 시작점 판별하는 방법</h2>
+<ul>
+<li>패킷 유실이 없다면 타임 스탬프 확인
+<ul>
+<li>Talkspurt 내의 패킷들은 20ms 간격</li>
+<li>그 이상의 딜레이가 있었다는 것은 그 사이에 <code>침묵</code> 구간이 있었다는 것
+<ul>
+<li>Seq1 → (40ms) → Seq2</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>패킷 유실이 있었던 것 같다면
+<ul>
+<li>타임스탬프 뿐만 아니라 시퀀스 넘버도 확인</li>
+<li>Seq1 → (40ms) → Seq3</li>
+</ul>
+</li>
+</ul>
+<h2 id="voip--패킷-로스-복구">VOIP : 패킷 로스 복구</h2>
+<ul>
+<li>VOIP에서는 ACK/NAK 방식 사용 안함
+<ul>
+<li>딜레이 때문</li>
+</ul>
+</li>
+<li><strong>FEC (Foward Error Correction) 방식 이용</strong>
+<ul>
+<li>충분한 비트 미리 보내서 해당 데이터를 바탕으로 복구</li>
+</ul>
+</li>
+</ul>
+<h2 id="simple-fec">Simple FEC</h2>
+<p><figure 
+	>
+	<a href="/posts/computer-network-final-quick-note/Untitled%203.png" >
+		<img src="/posts/computer-network-final-quick-note/Untitled%203.png"
+			
+			
+			
+			loading="lazy"
+			alt="Computer-Network-VOIP%2085c316c48ae749acb2e3ed75389646f6/Untitled%203.png">
+	</a>
+	
+	<figcaption>Computer-Network-VOIP%2085c316c48ae749acb2e3ed75389646f6/Untitled%203.png</figcaption>
+	
+</figure></p>
+<ul>
+<li>XOR 사용해 복구 비트 만듬</li>
+<li>한개까지만 복구 가능</li>
+</ul>
+<h2 id="piggybacking-fec">PiggyBacking FEC</h2>
+<p><figure 
+	>
+	<a href="/posts/computer-network-final-quick-note/Untitled%204.png" >
+		<img src="/posts/computer-network-final-quick-note/Untitled%204.png"
+			
+			
+			
+			loading="lazy"
+			alt="Computer-Network-VOIP%2085c316c48ae749acb2e3ed75389646f6/Untitled%204.png">
+	</a>
+	
+	<figcaption>Computer-Network-VOIP%2085c316c48ae749acb2e3ed75389646f6/Untitled%204.png</figcaption>
+	
+</figure></p>
+<ul>
+<li>숟가락 얹는 방식</li>
+<li>내 다음 청크에 낮은 음질의 백업 음성 탑재</li>
+</ul>
+<h2 id="interleaving-방식">Interleaving 방식</h2>
+<ul>
+<li>20ms 단위로 송신하던 것을 5ms 단위로 쪼개어 뒤섞어 재구성</li>
+<li>받을 때 다시 원래 순서로 맞추어 재생</li>
+</ul>
+<h2 id="skype">Skype</h2>
+<ul>
+<li>클라이언트끼리 서로 직접 연결해 통화</li>
+<li>수퍼노드
+<ul>
+<li>특별한 기능을 가진 스카이프 피어</li>
+<li>자신에게 접속해 있는 클라이언트 리스트 유지</li>
+</ul>
+</li>
+<li>오버레이 네트워크
+<ul>
+<li>수퍼노드들의 네트워크</li>
+<li>유저 리스트 등 보관 및 공유</li>
+</ul>
+</li>
+</ul>
+<h2 id="skype-동작">Skype 동작</h2>
+<ol>
+<li>수퍼노드 접속 (TCP)</li>
+<li>로그인 서버를 통해 로그인</li>
+<li>수퍼노드를 통해 전화할 유저 IP 가져옴</li>
+<li>얻은 IP 주소를 통해 전화</li>
+</ol>
+<h2 id="skype-문제">Skype 문제</h2>
+<ul>
+<li>NAT 문제
+<ul>
+<li>NAT 바깥에서 피어에게 연결 불가능</li>
+<li>수퍼 노트들 통해 중개하는 방법 사용</li>
+</ul>
+</li>
+</ul>
+<h2 id="rtp-real-time-protocol">RTP (Real Time Protocol)</h2>
+<ul>
+<li>실시간 데이터 전송을 위해 사용하는 프로토콜</li>
+<li>UDP 사용</li>
+</ul>
+<h2 id="rtp-예시">RTP 예시</h2>
+<ul>
+<li>64 Kbps (8 KBytes per second)의 PCM encoded voice를 RTP로 전송
+<ul>
+<li>20ms 마다 160Bytes 오디오 청크</li>
+<li>여기에다가 RTP 헤더 + UDP 헤더 추가됨</li>
+<li>RTP 패킷은 UDP 안에 캡슐레이션 되므로</li>
+</ul>
+</li>
+</ul>
+<h2 id="rtp-헤더">RTP 헤더</h2>
+<p><figure 
+	>
+	<a href="/posts/computer-network-final-quick-note/Untitled%207.png" >
+		<img src="/posts/computer-network-final-quick-note/Untitled%207.png"
+			
+			
+			
+			loading="lazy"
+			alt="Computer-Network-VOIP%2085c316c48ae749acb2e3ed75389646f6/Untitled%207.png">
+	</a>
+	
+	<figcaption>Computer-Network-VOIP%2085c316c48ae749acb2e3ed75389646f6/Untitled%207.png</figcaption>
+	
+</figure></p>
+<ul>
+<li>Payload Type: 어떤 타입의 미디어인가 (보이스.. 미디어&hellip;)
+<ul>
+<li>Payload type 0: PCM mu-law, 64 kbps</li>
+<li>Payload type 3: GSM, 13 kbps</li>
+<li>Payload type 7: LPC, 2.4 kbps</li>
+<li>Payload type 26: Motion JPEG</li>
+<li>Payload type 31: H.261</li>
+<li>Payload type 33: MPEG2 video</li>
+</ul>
+</li>
+<li>Sequence number
+<ul>
+<li>RTP 패킷 별로 하나씩 증가</li>
+<li>패킷 로스가 감지되면 FEC를 통해 에러 복구 등 실행</li>
+</ul>
+</li>
+<li>Timestamp
+<ul>
+<li>실제 시간 아님</li>
+<li>RTP 패킷에 있는 첫번째 바이트의 Sampling instant</li>
+<li>Source가 Active할 때 App이 160개의 encoded samples를 생성한다면, 각 RTP 패킷의 timestamp는 160씩 늘어남</li>
+<li>inactive 상태일 때는 Constant Rate로 늘어남</li>
+</ul>
+</li>
+<li>SSRC field
+<ul>
+<li>Source의 유니크 ID</li>
+</ul>
+</li>
+</ul>
+<h2 id="rtcp">RTCP</h2>
+<ul>
+<li>RTP와 옵션적으로 사용</li>
+<li>RTCP 패킷은 Sender, Receiver의 Statistics를 포함
+<ul>
+<li>얼마의 패킷을 보냈고, 얼마의 패킷이 로스됬고..</li>
+</ul>
+</li>
+<li>Sender가 동작 제어하는데 도움</li>
+</ul>
+<h2 id="rtcp--패킷-타입">RTCP : 패킷 타입</h2>
+<ul>
+<li>Receiver report packets
+<ul>
+<li>패킷 로스, 마지막으로 받은 시퀀스 넘버 등</li>
+</ul>
+</li>
+<li>Sender report packets
+<ul>
+<li>현재 시간, 보낸 패킷들, 보낸 바이트 등</li>
+</ul>
+</li>
+<li>Source description packets
+<ul>
+<li>Sender의 메일, 이름 등..</li>
+</ul>
+</li>
+</ul>
+<h2 id="rtcp--동기화">RTCP : 동기화</h2>
+<ul>
+<li>Voice, Video 동기화 가능</li>
+</ul>
+<h2 id="rtcp--bandwidth-scaling">RTCP : Bandwidth scaling</h2>
+<ul>
+<li>RTCP는 전체 대역폭의 5%만 차지하자
+<ul>
+<li>너무 많이 리포트 보내면 대역폭 잡아먹으니까</li>
+</ul>
+</li>
+<li>예 : Sender가 2Mbps로 데이터를 보낸다면
+<ul>
+<li>100Kbps만 RTCP가 쓴다는 것</li>
+<li>여기서도 75%는 Receiver가, 25%는 Sender가 나눠가짐
+<ul>
+<li>Receivers가 많다면 해당 75%를 균등하게 나눠 사용</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="sip--session-init-protocol">SIP : Session Init Protocol</h2>
+<ul>
+<li>모든 전화, 비디오 콜이 인터넷을 통해 이루어지도록</li>
+<li>번호보다는 이름, 이메일로 신원 확인</li>
+<li>Collee가 어디서든, 어떤 장치를 쓰던 접근 가능하게</li>
+</ul>
+<h2 id="sip-서비스들">SIP 서비스들</h2>
+<ul>
+<li>Coller가 Collee에게 전화하고 싶다는 사실을 Collee에게 전달</li>
+<li>미디어 타입, 인코딩 방식 협의</li>
+<li>전화 종료</li>
+<li>mnemonic (의미있는) 식별자들을 IP로 변경
+<ul>
+<li>이름, 이메일 등..</li>
+</ul>
+</li>
+<li>통화 관리
+<ul>
+<li>새로운 미디어 스트림 추가</li>
+<li>인코딩 방식 변경</li>
+<li>전화 홀드, 전달, 추가 등</li>
+</ul>
+</li>
+</ul>
+<h2 id="sip-예제">SIP 예제</h2>
+<p><figure 
+	>
+	<a href="/posts/computer-network-final-quick-note/Untitled.png" >
+		<img src="/posts/computer-network-final-quick-note/Untitled.png"
+			
+			
+			
+			loading="lazy"
+			alt="Computer-Network-VOIP-SIP%20e61661aea74044b7aed1c3c8a95ca9e1/Untitled.png">
+	</a>
+	
+	<figcaption>Computer-Network-VOIP-SIP%20e61661aea74044b7aed1c3c8a95ca9e1/Untitled.png</figcaption>
+	
+</figure></p>
+<ul>
+<li>인코딩 협상
+<ul>
+<li>만약 상대방이 요청한 인코딩을 자신의 시스템이 지원하지 않는다면 606 Not Acceptable
+<ul>
+<li>상대방은 다른 인코딩 방식을 설정해 새 INVITE 메세지를 보낼 수 있음</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>RTP(UDP) 뿐만 아니라 TCP도 사용 가능</li>
+</ul>
+<h2 id="sip-register">SIP Register</h2>
+<p><figure 
+	>
+	<a href="/posts/computer-network-final-quick-note/Untitled%201.png" >
+		<img src="/posts/computer-network-final-quick-note/Untitled%201.png"
+			
+			
+			
+			loading="lazy"
+			alt="Computer-Network-VOIP-SIP%20e61661aea74044b7aed1c3c8a95ca9e1/Untitled%201.png">
+	</a>
+	
+	<figcaption>Computer-Network-VOIP-SIP%20e61661aea74044b7aed1c3c8a95ca9e1/Untitled%201.png</figcaption>
+	
+</figure></p>
+<ul>
+<li>사용자가 SIP Client를 실행시키면 클라이언트는 SIP REGISTER에 메세지를 보내 등록</li>
+</ul>
+<h2 id="sip-proxy">SIP Proxy</h2>
+<p><figure 
+	>
+	<a href="/posts/computer-network-final-quick-note/Untitled%202.png" >
+		<img src="/posts/computer-network-final-quick-note/Untitled%202.png"
+			
+			
+			
+			loading="lazy"
+			alt="Computer-Network-VOIP-SIP%20e61661aea74044b7aed1c3c8a95ca9e1/Untitled%202.png">
+	</a>
+	
+	<figcaption>Computer-Network-VOIP-SIP%20e61661aea74044b7aed1c3c8a95ca9e1/Untitled%202.png</figcaption>
+	
+</figure></p>
+<ul>
+<li>Local DNS Server와 유사한 역할</li>
+<li>Alice가 프록시 서버로 invite 메세지를 보내면
+<ul>
+<li>해당 메세지는 상대방 Bob의 주소(이름)을 포함</li>
+<li>프록시 서버는 다른 프록시 서버 등을 통해 라우팅하여 Bob에게 메세지 전달</li>
+<li>Response를 받으면 다시 그것을 Alice에게 전달
+<ul>
+<li>Response에는 Bob의 IP가 포함</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="multimedia-support-of-network">Multimedia support of network</h2>
+<p><figure 
+	>
+	<a href="/posts/computer-network-final-quick-note/Untitled%203.png" >
+		<img src="/posts/computer-network-final-quick-note/Untitled%203.png"
+			
+			
+			
+			loading="lazy"
+			alt="Computer-Network-VOIP-SIP%20e61661aea74044b7aed1c3c8a95ca9e1/Untitled%203.png">
+	</a>
+	
+	<figcaption>Computer-Network-VOIP-SIP%20e61661aea74044b7aed1c3c8a95ca9e1/Untitled%203.png</figcaption>
+	
+</figure></p>
+<ul>
+<li>Best effort
+<ul>
+<li>서비스 없음</li>
+</ul>
+</li>
+<li>Differentiated Service (서비스 차등화)
+<ul>
+<li>Soft Guarantee available</li>
+<li>Packet marking</li>
+<li>Scheduling policing</li>
+<li>복잡성 중간, 가끔 사용</li>
+</ul>
+</li>
+<li>Per-Connection QoS
+<ul>
+<li>Hard Guarantee available</li>
+<li>Packet marking, Scheduling policing</li>
+<li>Call admission
+<ul>
+<li>보장해 줄 수 있다면 허용, 아니라면 통신 비허가</li>
+</ul>
+</li>
+<li>복잡성 높아 실제로는 사용안함</li>
+</ul>
+</li>
+</ul>
+<h2 id="best-effort-networks">Best effort networks</h2>
+<ul>
+<li>좋은 라우터, 링크로 땜빵</li>
+<li>비용 많이 듬</li>
+<li>얼마만큼의 bandwidth가 충분한지 트래픽 추정 필요</li>
+</ul>
+<h2 id="class-of-service">Class of Service</h2>
+<ul>
+<li>예를 들어 VOIP의 경우 실시간성 데이터이므로 HTTP보다 <strong>우선순위</strong> 높여줌
+<ul>
+<li>여기서 <strong>Packet marking</strong>이 사용됨</li>
+</ul>
+</li>
+<li>그런데 VOIP의 우선순위를 높게 줘서 대역폭을 다먹어서 HTTP로 통신이 불가능해졌다면?
+<ul>
+<li><strong>QoS policing</strong>을 주어 연결속도 제한</li>
+</ul>
+</li>
+<li>근데 QoS 걸어버리면 VOIP 패킷이 없을때도 HTTP는 제한된 속도로 통신할 수 밖에 없음
+<ul>
+<li>효과적인 QoS policing 정책 없을까?</li>
+</ul>
+</li>
+</ul>
+<h2 id="policing-mechanims">Policing mechanims</h2>
+<ul>
+<li>평균 패킷 제한
+<ul>
+<li>(장기적으로) Unit time 당 얼마나 많은 패킷을 보낼 수 있는지 결정</li>
+</ul>
+</li>
+<li>Peak Rate
+<ul>
+<li>분당, 초당 얼마의 패킷을 보낼 수있는지 결정</li>
+</ul>
+</li>
+<li>Burst size
+<ul>
+<li>한번에 (연속적으로) 패킷을 보낼 때 얼마나 많이 보낼 수 있는지 결정</li>
+</ul>
+</li>
+</ul>
+<h2 id="policing-mechanisms-token-bucket">Policing mechanisms: <strong>Token bucket</strong></h2>
+<ul>
+<li><strong>Token bucket</strong> : 제일 많이 사용</li>
+<li>방법론
+<ul>
+<li>가상의 통이 있는데 여기에는 티켓이 1초당 10개 생성됨</li>
+<li>패킷이 지나갈 때 마다 티켓을 한장 소모하고 가야함</li>
+<li>만약 가상의 통이 비어있다면 (티켓이 없다면) 패킷은 티켓이 생길 때 까지 대기했다가 지나가야함</li>
+</ul>
+</li>
+<li><strong>티켓(토큰)이 생성되는 시간을 통해 속도 조절</strong>
+<ul>
+<li>초당 A개의 토큰을 생성한다면 패킷도 초당 10개 지나갈 수 있음</li>
+</ul>
+</li>
+<li><strong>통의 크기를 조절해 Burst Size 조절</strong>
+<ul>
+<li>통의 크기가 B라면, Burst Size도 B
+<ul>
+<li>기다리는 시간 없이 연속적으로 보낼 수 있는 양</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>따라서 주어진 T 시간에 대해 보낼 수 있는 패킷의 양은
+<ul>
+<li>A * T + B</li>
+</ul>
+</li>
+</ul>
+<h2 id="policing-and-qos-guarantees">Policing and QoS Guarantees</h2>
+<p><figure 
+	>
+	<a href="/posts/computer-network-final-quick-note/Untitled%209.png" >
+		<img src="/posts/computer-network-final-quick-note/Untitled%209.png"
+			
+			
+			
+			loading="lazy"
+			alt="Computer-Network-VOIP-SIP%20e61661aea74044b7aed1c3c8a95ca9e1/Untitled%209.png">
+	</a>
+	
+	<figcaption>Computer-Network-VOIP-SIP%20e61661aea74044b7aed1c3c8a95ca9e1/Untitled%209.png</figcaption>
+	
+</figure></p>
+<ul>
+<li>Token bucket과 WFQ (Weighted fair queueing) 를 같이 쓰면 큐 Delay의 Guaranteed upper bound를 구할 수 있음
+<ul>
+<li>Dmax = b / WFQ</li>
+<li>WFQ = ((W1) / (W1+..+Wn)) * R</li>
+</ul>
+</li>
+</ul>
+<h2 id="differentiated-services">Differentiated Services</h2>
+<ul>
+<li>차등화된 서비스 제공</li>
+<li><strong>간단한 펑션은 네트워크 코어에 유지하고, 복잡한 펑션은 엣지 라우터나 호스트에 유지</strong></li>
+<li><strong>직접 클래스를 구현하진 않고, 클래스를 만들 수 있는 기능들을 정의</strong></li>
+</ul>
+<h2 id="diffserv-architecture">Diffserv Architecture</h2>
+<ul>
+<li>엣지 라우터와 코어 라우터로 나뉨</li>
+<li><strong>Edge Router</strong>
+<ul>
+<li>Flow 별 트래픽 관리</li>
+<li><strong>패킷 마킹</strong>
+<ul>
+<li>in-profile
+<ul>
+<li>Flow가 선언한 만큼의 속도 안에서 쓰고있는 패킷들에 마킹됨</li>
+</ul>
+</li>
+<li>out-profile
+<ul>
+<li>Flow가 선언한 만큼의 속도 이상을 사용하고 있는 패킷들에 마킹됨</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><strong>Core Router</strong>
+<ul>
+<li>Class 별 트래픽 관리</li>
+<li>엣지 라우터에서 마킹한 것에 기반하여 버퍼링, 스케줄링</li>
+<li>in-profile 패킷들에 우선순위를 먼저 줌</li>
+</ul>
+</li>
+</ul>
+<h2 id="edge-router-packet-marking">Edge-router packet marking</h2>
+<ul>
+<li>Profile = &lt;협의된 전송 속도 R, 버킷 사이즈 B&gt;</li>
+<li>Flow 마다 Profile을 베이스로 패킷을 마킹함</li>
+<li>마킹 사용법
+<ul>
+<li><strong>Class-Based Marking</strong>
+<ul>
+<li>클래스 별로 마킹</li>
+</ul>
+</li>
+<li><strong>Intra-Class Marking</strong>
+<ul>
+<li>클래스 내에서도 in-profile인지 out-profile인지에 따라 마킹 가능</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="diffserv-packet-marking-detail">Diffserv packet marking: Detail</h2>
+<ul>
+<li>ToS를 이용해 마킹</li>
+<li>6비트짜리 Differentiated Service Code Point (DSCP) 필드 이용</li>
+</ul>
+<h2 id="per-connection-qos-guarantees">Per-Connection QoS Guarantees</h2>
+<p><figure 
+	>
+	<a href="/posts/computer-network-final-quick-note/Untitled%2010.png" >
+		<img src="/posts/computer-network-final-quick-note/Untitled%2010.png"
+			
+			
+			
+			loading="lazy"
+			alt="Computer-Network-VOIP-SIP%20e61661aea74044b7aed1c3c8a95ca9e1/Untitled%2010.png">
+	</a>
+	
+	<figcaption>Computer-Network-VOIP-SIP%20e61661aea74044b7aed1c3c8a95ca9e1/Untitled%2010.png</figcaption>
+	
+</figure></p>
+<ul>
+<li><strong>아예 연결별로 QoS를 지정</strong></li>
+<li>예를 들어 1.5Mbps링크에 2개의 1Mbps 연결이 시도되고 있다면
+<ul>
+<li>한개만 허용하고 다른 한개는 막아버림</li>
+<li><strong>Call Admission</strong></li>
+</ul>
+</li>
+</ul>
+</section>
+
+
+    <footer class="article-footer">
+    
+    <section class="article-tags">
+        
+            <a href="/tags/computer-networking/">computer-networking</a>
+        
+            <a href="/tags/network/">network</a>
+        
+            <a href="/tags/networking/">networking</a>
+        
+    </section>
+
+
+    
+    <section class="article-copyright">
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-copyright" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <path d="M14.5 9a3.5 4 0 1 0 0 6" />
+</svg>
+
+
+
+        <span>Licensed under CC BY-NC-SA 4.0</span>
+    </section>
+    </footer>
+
+
+    
+</article>
+
+    <aside class="related-contents--wrapper">
+    
+    
+        <h2 class="section-title">Related contents</h2>
+        <div class="related-contents">
+            <div class="flex article-list--tile">
+                
+                    
+<article class="">
+    <a href="/blog/computer-networking-email-and-dns/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">Computer Networking - Email and DNS</h2>
+        </div>
+    </a>
+</article>
+                
+                    
+<article class="">
+    <a href="/blog/computer-networking-flow-control-and-handshake/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">Computer Networking - Flow Control and Handshake</h2>
+        </div>
+    </a>
+</article>
+                
+                    
+<article class="">
+    <a href="/blog/computer-networking-http/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">Computer Networking - HTTP</h2>
+        </div>
+    </a>
+</article>
+                
+                    
+<article class="">
+    <a href="/blog/computer-networking-network-multimedia/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">Computer Networking - Network Multimedia</h2>
+        </div>
+    </a>
+</article>
+                
+                    
+<article class="">
+    <a href="/blog/computer-networking-network-tcp/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">Computer Networking - Network TCP</h2>
+        </div>
+    </a>
+</article>
+                
+            </div>
+        </div>
+    
+</aside>
+
+     
+    
+        
+    <script src="https://utteranc.es/client.js" 
+        repo="yansigit/yansigit.github.io"
+        issue-term="pathname"
+        
+        label="Utterances Comment"
+        
+        crossorigin="anonymous"
+        async
+        >
+</script>
+
+<style>
+    .utterances {
+        max-width: unset;
+    }
+</style>
+
+<script>
+    function setUtterancesTheme(theme) {
+        let utterances = document.querySelector('.utterances iframe');
+        if (utterances) {
+            utterances.contentWindow.postMessage(
+                {
+                    type: 'set-theme',
+                    theme: `github-${theme}`
+                },
+                'https://utteranc.es'
+            );
+        }
+    }
+
+    addEventListener('message', event => {
+        if (event.origin !== 'https://utteranc.es') return;
+        setUtterancesTheme(document.documentElement.dataset.scheme)
+    });
+
+    window.addEventListener('onColorSchemeChange', (e) => {
+        setUtterancesTheme(e.detail)
+    })
+</script>
+
+
+    
+
+    <footer class="site-footer">
+    <section class="copyright">
+        &copy; 
+        
+            2020 - 
+        
+        2021 Code like Feather
+    </section>
+    
+    <section class="powerby">
+        Built with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> <br />
+        Theme <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="3.2.0">Stack</a></b> designed by <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a>
+    </section>
+</footer>
+
+
+    
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    
+    <div class="pswp__bg"></div>
+
+    
+    <div class="pswp__scroll-wrap">
+
+        
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                
+                
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"integrity="sha256-ePwmChbbvXbsO02lbM3HoHbSHTHFAeChekF1xKJdleo="crossorigin="anonymous"
+                defer="true"
+                >
+            </script><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"integrity="sha256-UKkzOn/w1mBxRmLLGrSeyB4e1xbrp4xylgAWb3M42pU="crossorigin="anonymous"
+                defer="true"
+                >
+            </script><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.css"integrity="sha256-c0uckgykQ9v5k&#43;IqViZOZKc47Jn7KQil4/MP3ySA3F8="crossorigin="anonymous"
+            ><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.css"integrity="sha256-SBLU4vv6CA6lHsZ1XyTdhyjJxCjPif/TRkjnsyGAGnE="crossorigin="anonymous"
+            >
+
+            </main>
+    
+        <aside class="sidebar right-sidebar sticky">
+            <section class="widget archives">
+                <div class="widget-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-hash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <line x1="5" y1="9" x2="19" y2="9" />
+  <line x1="5" y1="15" x2="19" y2="15" />
+  <line x1="11" y1="4" x2="7" y2="20" />
+  <line x1="17" y1="4" x2="13" y2="20" />
+</svg>
+
+
+
+                </div>
+                <h2 class="widget-title section-title">Table of contents</h2>
+                
+                <div class="widget--toc">
+                    <nav id="TableOfContents">
+  <ol>
+    <li><a href="#reliable-data-transfer-rdt">Reliable Data Transfer (RDT)</a></li>
+    <li><a href="#rdt-10--reliable-tranfer-on-reliable-channel">RDT 1.0 : Reliable tranfer on reliable channel</a></li>
+    <li><a href="#rdt-20--channel-with-bit-errors">RDT 2.0 : Channel with bit errors</a></li>
+    <li><a href="#rdt-20-문제--만약-ack-nak가-corrupted">RDT 2.0 문제 : 만약 ACK, NAK가 Corrupted?</a></li>
+    <li><a href="#stop-and-wait-protocol">Stop and Wait Protocol</a></li>
+    <li><a href="#rdt-21--seq-number로-중복-방지">RDT 2.1 : Seq Number로 중복 방지</a></li>
+    <li><a href="#rdt-22--nak-free-protocol">RDT 2.2 : NAK-FREE Protocol</a></li>
+    <li><a href="#rdt-30--error-loss-모두-처리">RDT 3.0 : ERROR, LOSS 모두 처리</a></li>
+    <li><a href="#rdt-30-동작">RDT 3.0 동작</a></li>
+    <li><a href="#rdt-30의-문제">RDT 3.0의 문제</a></li>
+    <li><a href="#pipelining-protocols">Pipelining Protocols</a></li>
+    <li><a href="#utilization-이용률-상승">Utilization (이용률) 상승</a></li>
+    <li><a href="#go-back-n">Go-Back-N</a></li>
+  </ol>
+
+  <ol>
+    <li><a href="#sender">Sender</a></li>
+    <li><a href="#sender-fsm">Sender FSM</a></li>
+    <li><a href="#receiver-fsm">Receiver FSM</a></li>
+    <li><a href="#모식도">모식도</a></li>
+    <li><a href="#selective-repeat-sr">Selective Repeat (SR)</a>
+      <ol>
+        <li><a href="#gbn과의-차이점">GBN과의 차이점</a></li>
+        <li><a href="#sender--receiver">Sender / Receiver</a></li>
+        <li><a href="#모식도-1">모식도</a></li>
+        <li><a href="#문제점">문제점</a></li>
+      </ol>
+    </li>
+    <li><a href="#tcp-특성">TCP 특성</a></li>
+    <li><a href="#tcp-segment-구조">TCP segment 구조</a></li>
+    <li><a href="#tcp-timeout">TCP Timeout</a></li>
+    <li><a href="#tcp-rdt-reliable-data-transfer">TCP RDT (Reliable Data Transfer)</a>
+      <ol>
+        <li><a href="#tcp-sender-events">TCP Sender Events</a></li>
+      </ol>
+    </li>
+    <li><a href="#tcp-ack-생성-절차">TCP Ack 생성 절차</a></li>
+    <li><a href="#tcp-fast-retransmit">TCP Fast Retransmit</a></li>
+    <li><a href="#tcp-flow-control">TCP Flow Control</a></li>
+    <li><a href="#handshake">HandShake</a></li>
+    <li><a href="#2-way-handshake">2-way handshake</a></li>
+    <li><a href="#3-way-handshake">3-way handshake</a></li>
+    <li><a href="#tcp-closing-a-connection">TCP: Closing a connection</a></li>
+    <li><a href="#tcp-congestion-control">TCP Congestion Control</a></li>
+    <li><a href="#tcp-slow-start">TCP Slow Start</a></li>
+    <li><a href="#tcp의-손실-감지-반응">TCP의 손실 감지, 반응</a></li>
+    <li><a href="#tcp-쓰루풋">TCP 쓰루풋</a></li>
+    <li><a href="#tcp-공평성">TCP 공평성</a></li>
+    <li><a href="#ecn-explict-congestion-notification">ECN (Explict Congestion Notification)</a></li>
+    <li><a href="#multimedia-audio">Multimedia: Audio</a></li>
+    <li><a href="#multimedia-video">Multimedia: Video</a></li>
+    <li><a href="#multimedia-networking">Multimedia Networking</a></li>
+    <li><a href="#streaming-stored-video">Streaming stored video</a></li>
+    <li><a href="#streaming-stored-video--challenge">Streaming stored video : Challenge</a></li>
+    <li><a href="#streaming-stored-video--client-side-buffering">Streaming stored video : Client side buffering</a></li>
+    <li><a href="#streaming-multimedia--udp">Streaming multimedia : UDP</a></li>
+    <li><a href="#streaming-multimedia--http-tcp">Streaming multimedia : HTTP (TCP)</a></li>
+    <li><a href="#voip">VOIP</a></li>
+    <li><a href="#voip-특징">VOIP 특징</a></li>
+    <li><a href="#voip-playout-delay--fixed">VOIP Playout delay : Fixed</a></li>
+    <li><a href="#voip-playout-delay--adaptive">VOIP Playout delay : Adaptive</a></li>
+    <li><a href="#receiver가-talkspurt-시작점-판별하는-방법">Receiver가 Talkspurt 시작점 판별하는 방법</a></li>
+    <li><a href="#voip--패킷-로스-복구">VOIP : 패킷 로스 복구</a></li>
+    <li><a href="#simple-fec">Simple FEC</a></li>
+    <li><a href="#piggybacking-fec">PiggyBacking FEC</a></li>
+    <li><a href="#interleaving-방식">Interleaving 방식</a></li>
+    <li><a href="#skype">Skype</a></li>
+    <li><a href="#skype-동작">Skype 동작</a></li>
+    <li><a href="#skype-문제">Skype 문제</a></li>
+    <li><a href="#rtp-real-time-protocol">RTP (Real Time Protocol)</a></li>
+    <li><a href="#rtp-예시">RTP 예시</a></li>
+    <li><a href="#rtp-헤더">RTP 헤더</a></li>
+    <li><a href="#rtcp">RTCP</a></li>
+    <li><a href="#rtcp--패킷-타입">RTCP : 패킷 타입</a></li>
+    <li><a href="#rtcp--동기화">RTCP : 동기화</a></li>
+    <li><a href="#rtcp--bandwidth-scaling">RTCP : Bandwidth scaling</a></li>
+    <li><a href="#sip--session-init-protocol">SIP : Session Init Protocol</a></li>
+    <li><a href="#sip-서비스들">SIP 서비스들</a></li>
+    <li><a href="#sip-예제">SIP 예제</a></li>
+    <li><a href="#sip-register">SIP Register</a></li>
+    <li><a href="#sip-proxy">SIP Proxy</a></li>
+    <li><a href="#multimedia-support-of-network">Multimedia support of network</a></li>
+    <li><a href="#best-effort-networks">Best effort networks</a></li>
+    <li><a href="#class-of-service">Class of Service</a></li>
+    <li><a href="#policing-mechanims">Policing mechanims</a></li>
+    <li><a href="#policing-mechanisms-token-bucket">Policing mechanisms: <strong>Token bucket</strong></a></li>
+    <li><a href="#policing-and-qos-guarantees">Policing and QoS Guarantees</a></li>
+    <li><a href="#differentiated-services">Differentiated Services</a></li>
+    <li><a href="#diffserv-architecture">Diffserv Architecture</a></li>
+    <li><a href="#edge-router-packet-marking">Edge-router packet marking</a></li>
+    <li><a href="#diffserv-packet-marking-detail">Diffserv packet marking: Detail</a></li>
+    <li><a href="#per-connection-qos-guarantees">Per-Connection QoS Guarantees</a></li>
+  </ol>
+</nav>
+                </div>
+            </section>
+        </aside>
+    
+
+        </div>
+        <script 
+                src="https://cdn.jsdelivr.net/npm/node-vibrant@3.1.5/dist/vibrant.min.js"integrity="sha256-5NovOZc4iwiAWTYIFiIM7DxKUXKWvpVEuMEPLzcm5/g="crossorigin="anonymous"
+                defer="false"
+                >
+            </script><script type="text/javascript" src="/ts/main.js" defer></script>
+<script>
+    (function () {
+        const customFont = document.createElement('link');
+        customFont.href = "https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap";
+
+        customFont.type = "text/css";
+        customFont.rel = "stylesheet";
+
+        document.head.appendChild(customFont);
+    }());
+</script>
+
+    </body>
+</html>

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>null on Code like Feather</title>
+    <link>https://yansigit.github.io/tags/null/</link>
+    <description>Recent content in null on Code like Feather</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>ko-kr</language>
+    <lastBuildDate>Sat, 08 Feb 2020 21:08:49 +0900</lastBuildDate><atom:link href="https://yansigit.github.io/tags/null/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Understanding Nil and Null in Golang</title>
+      <link>https://yansigit.github.io/blog/understanding-nil-and-null-in-golang/</link>
+      <pubDate>Sat, 08 Feb 2020 21:08:49 +0900</pubDate>
+      
+      <guid>https://yansigit.github.io/blog/understanding-nil-and-null-in-golang/</guid>
+      <description>&lt;p&gt;고 언어에서 nil 과 null&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

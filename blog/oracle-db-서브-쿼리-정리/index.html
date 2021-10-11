@@ -1,0 +1,523 @@
+<!DOCTYPE html>
+<html lang="ko-kr">
+    <head><meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content='ORACLE DB 서브 쿼리'><title>ORACLE DB 서브 쿼리 정리</title>
+
+<link rel='canonical' href='https://yansigit.github.io/blog/oracle-db-%EC%84%9C%EB%B8%8C-%EC%BF%BC%EB%A6%AC-%EC%A0%95%EB%A6%AC/'>
+
+<link rel="stylesheet" href="/scss/style.min.css"><meta property='og:title' content='ORACLE DB 서브 쿼리 정리'>
+<meta property='og:description' content='ORACLE DB 서브 쿼리'>
+<meta property='og:url' content='https://yansigit.github.io/blog/oracle-db-%EC%84%9C%EB%B8%8C-%EC%BF%BC%EB%A6%AC-%EC%A0%95%EB%A6%AC/'>
+<meta property='og:site_name' content='Code like Feather'>
+<meta property='og:type' content='article'><meta property='article:section' content='Posts' /><meta property='article:tag' content='oracle' /><meta property='article:tag' content='db' /><meta property='article:tag' content='oracle-db' /><meta property='article:published_time' content='2020-09-16T00:00:00&#43;00:00'/><meta property='article:modified_time' content='2020-09-16T00:00:00&#43;00:00'/><meta property='og:image' content='https://yansigit.github.io/images/lighthouse.jpg' />
+<meta name="twitter:title" content="ORACLE DB 서브 쿼리 정리">
+<meta name="twitter:description" content="ORACLE DB 서브 쿼리"><meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content='https://yansigit.github.io/images/lighthouse.jpg' />
+    </head>
+    <body class="
+    article-page has-toc
+">
+    <script>
+        (function() {
+            const colorSchemeKey = 'StackColorScheme';
+            if(!localStorage.getItem(colorSchemeKey)){
+                localStorage.setItem(colorSchemeKey, "auto");
+            }
+        })();
+    </script><script>
+    (function() {
+        const colorSchemeKey = 'StackColorScheme';
+        const colorSchemeItem = localStorage.getItem(colorSchemeKey);
+        const supportDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches === true;
+
+        if (colorSchemeItem == 'dark' || colorSchemeItem === 'auto' && supportDarkMode) {
+            
+
+            document.documentElement.dataset.scheme = 'dark';
+        } else {
+            document.documentElement.dataset.scheme = 'light';
+        }
+    })();
+</script>
+<div class="container main-container flex 
+    
+        extended
+    
+">
+    
+        <div id="article-toolbar">
+            <a href="https://yansigit.github.io" class="back-home">
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-chevron-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <polyline points="15 6 9 12 15 18" />
+</svg>
+
+
+
+                <span>Back</span>
+            </a>
+        </div>
+    
+<main class="main full-width">
+    <article class="main-article">
+    <header class="article-header">
+
+    <div class="article-details">
+    
+    <header class="article-category">
+        
+            <a href="/categories/oracle-db/" >
+                oracle-db
+            </a>
+        
+    </header>
+    
+
+    <h2 class="article-title">
+        <a href="/blog/oracle-db-%EC%84%9C%EB%B8%8C-%EC%BF%BC%EB%A6%AC-%EC%A0%95%EB%A6%AC/">ORACLE DB 서브 쿼리 정리</a>
+    </h2>
+
+    
+    <h3 class="article-subtitle">
+        ORACLE DB 서브 쿼리
+    </h3>
+    
+
+    
+    <footer class="article-time">
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-calendar-time" width="56" height="56" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M11.795 21h-6.795a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v4" />
+  <circle cx="18" cy="18" r="4" />
+  <path d="M15 3v4" />
+  <path d="M7 3v4" />
+  <path d="M3 11h16" />
+  <path d="M18 16.496v1.504l1 1" />
+</svg>
+                <time class="article-time--published">Sep 16, 2020</time>
+            </div>
+        
+
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <polyline points="12 7 12 12 15 15" />
+</svg>
+
+
+
+                <time class="article-time--reading">
+                    1 minute read
+                </time>
+            </div>
+        
+    </footer>
+    
+</div>
+</header>
+
+    <section class="article-content">
+    <p>ORACLE DB 서브 쿼리</p>
+<h2 id="서브-쿼리">서브 쿼리</h2>
+<blockquote>
+<p>하나의 쿼리 처리에서 얻어진 결과를 다른 쿼리의 조건식에 전달해 결과 검색</p>
+</blockquote>
+<h2 id="언제-쓰이나">언제 쓰이나?</h2>
+<ul>
+<li>KING 사원과 같은 부서에서 근무하는 사원 출력
+<ol>
+<li>먼저 KING  사원의 부서번호를 구함</li>
+<li>그 결과인 10으로 <code>where deptno = 10</code>을 통해 쿼리</li>
+</ol>
+</li>
+<li>FORD 사원의 급여보다 많이 받는 사원 출력
+<ol>
+<li>역시 먼저 FORD 사원의 급여를 구해야함</li>
+</ol>
+</li>
+<li>JONES 사원과 동일한 매니저인 사원 출력
+<ol>
+<li>역시 JONES 사원의 매니저 번호를 구해야함</li>
+</ol>
+</li>
+</ul>
+<h2 id="서브-쿼리-구문-형식">서브 쿼리 구문 형식</h2>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sql" data-lang="sql"><span class="k">select</span><span class="w"> </span><span class="n">ename</span><span class="w">
+</span><span class="w"></span><span class="k">from</span><span class="w"> </span><span class="n">emp</span><span class="w">
+</span><span class="w"></span><span class="k">where</span><span class="w"> </span><span class="n">deptno</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="k">select</span><span class="w"> </span><span class="n">deptno</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">emp</span><span class="w"> </span><span class="k">where</span><span class="w"> </span><span class="n">ename</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;KING&#39;</span><span class="w">
+</span><span class="w">
+</span><span class="w"></span><span class="k">select</span><span class="w"> </span><span class="n">ename</span><span class="w">
+</span><span class="w"></span><span class="k">from</span><span class="w"> </span><span class="n">emp</span><span class="w">
+</span><span class="w"></span><span class="k">where</span><span class="w"> </span><span class="n">salary</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="p">(</span><span class="k">select</span><span class="w"> </span><span class="n">salary</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">emp</span><span class="w"> </span><span class="k">where</span><span class="w"> </span><span class="n">ename</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;FORD&#39;</span><span class="p">)</span><span class="w">
+</span><span class="w">
+</span><span class="w"></span><span class="k">select</span><span class="w"> </span><span class="n">empno</span><span class="p">,</span><span class="w"> </span><span class="n">ename</span><span class="p">,</span><span class="w"> </span><span class="n">salary</span><span class="w">
+</span><span class="w"></span><span class="k">from</span><span class="w"> </span><span class="n">emp</span><span class="w">
+</span><span class="w"></span><span class="k">where</span><span class="w"> </span><span class="n">salary</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="k">select</span><span class="w"> </span><span class="k">max</span><span class="p">(</span><span class="n">salary</span><span class="p">)</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">emp</span><span class="w"> </span><span class="k">where</span><span class="w"> </span><span class="n">deptno</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">10</span><span class="p">)</span><span class="w">
+</span></code></pre></div><ul>
+<li>WHERE 조건 연산자 옆에 괄호로 묶어 표현함</li>
+<li><code>order by</code> 절은 사용할 수 없음</li>
+</ul>
+<h2 id="서브-쿼리를-이용한-조인-쿼리-표현">서브 쿼리를 이용한 조인 쿼리 표현</h2>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sql" data-lang="sql"><span class="k">select</span><span class="w"> </span><span class="n">e</span><span class="p">.</span><span class="n">ename</span><span class="p">,</span><span class="w"> </span><span class="n">d</span><span class="p">.</span><span class="n">dname</span><span class="w">
+</span><span class="w"></span><span class="k">from</span><span class="w"> </span><span class="n">emp</span><span class="w"> </span><span class="n">e</span><span class="p">,</span><span class="w"> </span><span class="p">(</span><span class="k">select</span><span class="w"> </span><span class="n">deptno</span><span class="p">,</span><span class="w"> </span><span class="n">dname</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">dept</span><span class="w"> </span><span class="k">where</span><span class="w"> </span><span class="n">deptno</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">10</span><span class="p">)</span><span class="w"> </span><span class="n">d</span><span class="w">
+</span><span class="w"></span><span class="k">where</span><span class="w"> </span><span class="n">e</span><span class="p">.</span><span class="n">deptno</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">d</span><span class="p">.</span><span class="n">deptno</span><span class="w">
+</span></code></pre></div><ul>
+<li>해당 (서브쿼리절)을 인라인 뷰 라고도 한다.</li>
+</ul>
+<h2 id="다중-행-서브쿼리">다중 행 서브쿼리</h2>
+<blockquote>
+<p>서브 쿼리에서 반환되는 결과가 하나의 행 이상</p>
+</blockquote>
+<h3 id="다중-연산자">다중 연산자</h3>
+<h3 id="in"><code>IN</code></h3>
+<p>비교조건에서 서브 쿼리의 출력 결과 중 하나라도 일치하면 참</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sql" data-lang="sql"><span class="p">...</span><span class="w"> </span><span class="k">where</span><span class="w"> </span><span class="n">deptno</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="p">(</span><span class="k">select</span><span class="w"> </span><span class="n">deptno</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">emp</span><span class="w"> </span><span class="k">where</span><span class="w"> </span><span class="n">ename</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;BLAKE&#39;</span><span class="p">)</span><span class="w">
+</span><span class="w">
+</span><span class="w"></span><span class="p">...</span><span class="w"> </span><span class="k">where</span><span class="w"> </span><span class="p">(</span><span class="n">job</span><span class="p">,</span><span class="w"> </span><span class="n">dedptno</span><span class="p">)</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="p">(</span><span class="k">select</span><span class="w"> </span><span class="n">job</span><span class="p">,</span><span class="w"> </span><span class="n">deptno</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">emp</span><span class="w"> </span><span class="k">where</span><span class="w"> </span><span class="n">ename</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;ALLEN&#39;</span><span class="p">)</span><span class="w">
+</span></code></pre></div><h4 id="all"><code>ALL</code></h4>
+<p>서브 쿼리의 출력값들에 대한 where 비교조건이 모두 참인 결과만 출력</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sql" data-lang="sql"><span class="c1">-- (그냥 예시임)
+</span><span class="c1">-- 30번 부서 연봉
+</span><span class="c1"></span><span class="k">select</span><span class="w"> </span><span class="n">sal</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">emp</span><span class="w"> </span><span class="k">where</span><span class="w"> </span><span class="n">deptno</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">30</span><span class="p">;</span><span class="w">
+</span><span class="w">
+</span><span class="w"></span><span class="n">sal</span><span class="w">
+</span><span class="w"></span><span class="c1">----
+</span><span class="c1"></span><span class="mi">1600</span><span class="w">
+</span><span class="w"></span><span class="mi">2850</span><span class="w">
+</span><span class="w"></span><span class="mi">950</span><span class="w">
+</span><span class="w"></span><span class="mi">1500</span><span class="w">
+</span><span class="w">
+</span><span class="w"></span><span class="o">#</span><span class="w"> </span><span class="mi">30</span><span class="err">번</span><span class="w"> </span><span class="err">부서</span><span class="w"> </span><span class="err">사원들의</span><span class="w"> </span><span class="err">급여보다</span><span class="w"> </span><span class="err">더</span><span class="w"> </span><span class="err">많이</span><span class="w"> </span><span class="err">받는</span><span class="w"> </span><span class="err">사원들</span><span class="w"> </span><span class="err">연봉</span><span class="w"> </span><span class="err">출력</span><span class="w">
+</span><span class="w"></span><span class="k">select</span><span class="w"> </span><span class="n">sal</span><span class="w">
+</span><span class="w"></span><span class="k">from</span><span class="w"> </span><span class="n">emp</span><span class="w">
+</span><span class="w"></span><span class="k">where</span><span class="w"> </span><span class="n">sal</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="k">all</span><span class="w"> </span><span class="p">(</span><span class="k">select</span><span class="w"> </span><span class="n">sal</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">emp</span><span class="w"> </span><span class="k">where</span><span class="w"> </span><span class="n">deptno</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">30</span><span class="p">)</span><span class="w">
+</span><span class="w">
+</span><span class="w"></span><span class="n">sal</span><span class="w">
+</span><span class="w"></span><span class="c1">----
+</span><span class="c1"></span><span class="mi">2950</span><span class="w">
+</span><span class="w"></span><span class="mi">3000</span><span class="w">
+</span><span class="w"></span><span class="mi">5000</span><span class="w">
+</span></code></pre></div><h4 id="any"><code>ANY</code></h4>
+<p>서브 쿼리 출력값들 각각에 대해 where 비교조건이 참인 결과를 모두 다 출력</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sql" data-lang="sql"><span class="k">select</span><span class="w"> </span><span class="n">sal</span><span class="w">
+</span><span class="w"></span><span class="k">from</span><span class="w"> </span><span class="n">emp</span><span class="w">
+</span><span class="w"></span><span class="k">where</span><span class="w"> </span><span class="n">sal</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="k">any</span><span class="w"> </span><span class="p">(</span><span class="k">select</span><span class="w"> </span><span class="n">sal</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">emp</span><span class="w"> </span><span class="k">where</span><span class="w"> </span><span class="n">deptno</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">30</span><span class="p">)</span><span class="w">
+</span><span class="w">
+</span><span class="w"></span><span class="n">sal</span><span class="w">
+</span><span class="w"></span><span class="c1">----
+</span><span class="c1">-- 30번 부서의 최소 연봉 이상인 연봉 모두 출력
+</span></code></pre></div>
+</section>
+
+
+    <footer class="article-footer">
+    
+    <section class="article-tags">
+        
+            <a href="/tags/oracle/">oracle</a>
+        
+            <a href="/tags/db/">db</a>
+        
+            <a href="/tags/oracle-db/">oracle-db</a>
+        
+    </section>
+
+
+    
+    <section class="article-copyright">
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-copyright" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <path d="M14.5 9a3.5 4 0 1 0 0 6" />
+</svg>
+
+
+
+        <span>Licensed under CC BY-NC-SA 4.0</span>
+    </section>
+    </footer>
+
+
+    
+</article>
+
+    <aside class="related-contents--wrapper">
+    
+    
+        <h2 class="section-title">Related contents</h2>
+        <div class="related-contents">
+            <div class="flex article-list--tile">
+                
+                    
+<article class="">
+    <a href="/blog/oracle-db-sqlplus-%EB%AA%85%EB%A0%B9%EC%96%B4-%EC%A0%95%EB%A6%AC/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">ORACLE DB SQL*PLUS 명령어 정리</h2>
+        </div>
+    </a>
+</article>
+                
+                    
+<article class="">
+    <a href="/blog/oracle-db-scott-%EA%B3%84%EC%A0%95/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">ORACLE DB Scott 계정</h2>
+        </div>
+    </a>
+</article>
+                
+                    
+<article class="">
+    <a href="/blog/oracle-db-%EA%B3%84%EC%A0%95/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">ORACLE DB 계정</h2>
+        </div>
+    </a>
+</article>
+                
+                    
+<article class="">
+    <a href="/blog/oracle-db-%EB%AA%85%EB%A0%B9%EC%96%B4-%EC%A0%95%EB%A6%AC/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">ORACLE DB 명령어 정리</h2>
+        </div>
+    </a>
+</article>
+                
+                    
+<article class="">
+    <a href="/blog/oracle-db-%EC%97%90%EB%9F%AC-%EB%8C%80%EC%9D%91/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">ORACLE DB 에러 대응</h2>
+        </div>
+    </a>
+</article>
+                
+            </div>
+        </div>
+    
+</aside>
+
+     
+    
+        
+    <script src="https://utteranc.es/client.js" 
+        repo="yansigit/yansigit.github.io"
+        issue-term="pathname"
+        
+        label="Utterances Comment"
+        
+        crossorigin="anonymous"
+        async
+        >
+</script>
+
+<style>
+    .utterances {
+        max-width: unset;
+    }
+</style>
+
+<script>
+    function setUtterancesTheme(theme) {
+        let utterances = document.querySelector('.utterances iframe');
+        if (utterances) {
+            utterances.contentWindow.postMessage(
+                {
+                    type: 'set-theme',
+                    theme: `github-${theme}`
+                },
+                'https://utteranc.es'
+            );
+        }
+    }
+
+    addEventListener('message', event => {
+        if (event.origin !== 'https://utteranc.es') return;
+        setUtterancesTheme(document.documentElement.dataset.scheme)
+    });
+
+    window.addEventListener('onColorSchemeChange', (e) => {
+        setUtterancesTheme(e.detail)
+    })
+</script>
+
+
+    
+
+    <footer class="site-footer">
+    <section class="copyright">
+        &copy; 
+        
+            2020 - 
+        
+        2021 Code like Feather
+    </section>
+    
+    <section class="powerby">
+        Built with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> <br />
+        Theme <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="3.2.0">Stack</a></b> designed by <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a>
+    </section>
+</footer>
+
+
+    
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    
+    <div class="pswp__bg"></div>
+
+    
+    <div class="pswp__scroll-wrap">
+
+        
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                
+                
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"integrity="sha256-ePwmChbbvXbsO02lbM3HoHbSHTHFAeChekF1xKJdleo="crossorigin="anonymous"
+                defer="true"
+                >
+            </script><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"integrity="sha256-UKkzOn/w1mBxRmLLGrSeyB4e1xbrp4xylgAWb3M42pU="crossorigin="anonymous"
+                defer="true"
+                >
+            </script><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.css"integrity="sha256-c0uckgykQ9v5k&#43;IqViZOZKc47Jn7KQil4/MP3ySA3F8="crossorigin="anonymous"
+            ><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.css"integrity="sha256-SBLU4vv6CA6lHsZ1XyTdhyjJxCjPif/TRkjnsyGAGnE="crossorigin="anonymous"
+            >
+
+            </main>
+    
+        <aside class="sidebar right-sidebar sticky">
+            <section class="widget archives">
+                <div class="widget-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-hash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <line x1="5" y1="9" x2="19" y2="9" />
+  <line x1="5" y1="15" x2="19" y2="15" />
+  <line x1="11" y1="4" x2="7" y2="20" />
+  <line x1="17" y1="4" x2="13" y2="20" />
+</svg>
+
+
+
+                </div>
+                <h2 class="widget-title section-title">Table of contents</h2>
+                
+                <div class="widget--toc">
+                    <nav id="TableOfContents">
+  <ol>
+    <li><a href="#서브-쿼리">서브 쿼리</a></li>
+    <li><a href="#언제-쓰이나">언제 쓰이나?</a></li>
+    <li><a href="#서브-쿼리-구문-형식">서브 쿼리 구문 형식</a></li>
+    <li><a href="#서브-쿼리를-이용한-조인-쿼리-표현">서브 쿼리를 이용한 조인 쿼리 표현</a></li>
+    <li><a href="#다중-행-서브쿼리">다중 행 서브쿼리</a>
+      <ol>
+        <li><a href="#다중-연산자">다중 연산자</a></li>
+        <li><a href="#in"><code>IN</code></a>
+          <ol>
+            <li><a href="#all"><code>ALL</code></a></li>
+            <li><a href="#any"><code>ANY</code></a></li>
+          </ol>
+        </li>
+      </ol>
+    </li>
+  </ol>
+</nav>
+                </div>
+            </section>
+        </aside>
+    
+
+        </div>
+        <script 
+                src="https://cdn.jsdelivr.net/npm/node-vibrant@3.1.5/dist/vibrant.min.js"integrity="sha256-5NovOZc4iwiAWTYIFiIM7DxKUXKWvpVEuMEPLzcm5/g="crossorigin="anonymous"
+                defer="false"
+                >
+            </script><script type="text/javascript" src="/ts/main.js" defer></script>
+<script>
+    (function () {
+        const customFont = document.createElement('link');
+        customFont.href = "https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap";
+
+        customFont.type = "text/css";
+        customFont.rel = "stylesheet";
+
+        document.head.appendChild(customFont);
+    }());
+</script>
+
+    </body>
+</html>

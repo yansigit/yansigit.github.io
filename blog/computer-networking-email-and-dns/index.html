@@ -1,0 +1,912 @@
+<!DOCTYPE html>
+<html lang="ko-kr">
+    <head><meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content='컴퓨터 네트워크 - 이메일과 DNS'><title>Computer Networking - Email and DNS</title>
+
+<link rel='canonical' href='https://yansigit.github.io/blog/computer-networking-email-and-dns/'>
+
+<link rel="stylesheet" href="/scss/style.min.css"><meta property='og:title' content='Computer Networking - Email and DNS'>
+<meta property='og:description' content='컴퓨터 네트워크 - 이메일과 DNS'>
+<meta property='og:url' content='https://yansigit.github.io/blog/computer-networking-email-and-dns/'>
+<meta property='og:site_name' content='Code like Feather'>
+<meta property='og:type' content='article'><meta property='article:section' content='Posts' /><meta property='article:tag' content='computer-networking' /><meta property='article:tag' content='network' /><meta property='article:tag' content='networking' /><meta property='article:tag' content='email' /><meta property='article:tag' content='dns' /><meta property='article:published_time' content='2020-09-17T00:11:07&#43;09:00'/><meta property='article:modified_time' content='2020-09-17T00:11:07&#43;09:00'/><meta property='og:image' content='https://yansigit.github.io/images/lighthouse.jpg' />
+<meta name="twitter:title" content="Computer Networking - Email and DNS">
+<meta name="twitter:description" content="컴퓨터 네트워크 - 이메일과 DNS"><meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content='https://yansigit.github.io/images/lighthouse.jpg' />
+    </head>
+    <body class="
+    article-page has-toc
+">
+    <script>
+        (function() {
+            const colorSchemeKey = 'StackColorScheme';
+            if(!localStorage.getItem(colorSchemeKey)){
+                localStorage.setItem(colorSchemeKey, "auto");
+            }
+        })();
+    </script><script>
+    (function() {
+        const colorSchemeKey = 'StackColorScheme';
+        const colorSchemeItem = localStorage.getItem(colorSchemeKey);
+        const supportDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches === true;
+
+        if (colorSchemeItem == 'dark' || colorSchemeItem === 'auto' && supportDarkMode) {
+            
+
+            document.documentElement.dataset.scheme = 'dark';
+        } else {
+            document.documentElement.dataset.scheme = 'light';
+        }
+    })();
+</script>
+<div class="container main-container flex 
+    
+        extended
+    
+">
+    
+        <div id="article-toolbar">
+            <a href="https://yansigit.github.io" class="back-home">
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-chevron-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <polyline points="15 6 9 12 15 18" />
+</svg>
+
+
+
+                <span>Back</span>
+            </a>
+        </div>
+    
+<main class="main full-width">
+    <article class="main-article">
+    <header class="article-header">
+
+    <div class="article-details">
+    
+    <header class="article-category">
+        
+            <a href="/categories/computer-networking/" >
+                computer-networking
+            </a>
+        
+    </header>
+    
+
+    <h2 class="article-title">
+        <a href="/blog/computer-networking-email-and-dns/">Computer Networking - Email and DNS</a>
+    </h2>
+
+    
+    <h3 class="article-subtitle">
+        컴퓨터 네트워크 - 이메일과 DNS
+    </h3>
+    
+
+    
+    <footer class="article-time">
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-calendar-time" width="56" height="56" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M11.795 21h-6.795a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v4" />
+  <circle cx="18" cy="18" r="4" />
+  <path d="M15 3v4" />
+  <path d="M7 3v4" />
+  <path d="M3 11h16" />
+  <path d="M18 16.496v1.504l1 1" />
+</svg>
+                <time class="article-time--published">Sep 17, 2020</time>
+            </div>
+        
+
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <polyline points="12 7 12 12 15 15" />
+</svg>
+
+
+
+                <time class="article-time--reading">
+                    5 minute read
+                </time>
+            </div>
+        
+    </footer>
+    
+</div>
+</header>
+
+    <section class="article-content">
+    <p>컴퓨터 네트워크 - 이메일과 DNS</p>
+<h1 id="computer-netowork-email-and-dns">Computer-Netowork-Email-and-DNS</h1>
+<h1 id="e-mail">E-mail</h1>
+<h2 id="세-주요-컴포넌트">세 주요 컴포넌트</h2>
+<ul>
+<li>User Agents</li>
+<li>메일 서버</li>
+<li>SMTP (Simple Mail Transfer Protocol)</li>
+</ul>
+<h2 id="user-agent">User Agent</h2>
+<ul>
+<li>메일 리더</li>
+<li>메일을 쓰고, 편집하고, 읽음</li>
+<li>Outlook, Thunderbird 등</li>
+<li>들어오고 나가는 메세지들은 서버에 저장됨</li>
+</ul>
+<h2 id="메일-서버">메일 서버</h2>
+<ul>
+<li>Mailbox
+<ul>
+<li>유저에게 온 메세지들을 담음</li>
+</ul>
+</li>
+<li>Message Queue
+<ul>
+<li>보내질 메세지들을 일시적으로 담는 큐</li>
+</ul>
+</li>
+<li>SMTP 프로토콜
+<ul>
+<li>메일 서버간에 이메일 메세지들을 보낼 때 사용됨</li>
+<li><strong>클라이언트</strong>: 메세지를 전송하는 메일 서버</li>
+<li><strong>서버</strong>: 메세지를 받는 메일서버</li>
+</ul>
+</li>
+</ul>
+<h2 id="smtp">SMTP</h2>
+<ul>
+<li>TCP
+<ul>
+<li>신뢰성 있는 전송을 위해</li>
+<li>25번 포트</li>
+</ul>
+</li>
+<li>Direct Transfer
+<ul>
+<li>직접 TCP 연결을 통해 메일 서버들이 통신하며 메세지를 주고받음</li>
+</ul>
+</li>
+<li>단계
+<ul>
+<li>Handshaking</li>
+<li>메세지 전송</li>
+<li>통신 종료</li>
+</ul>
+</li>
+<li>Command/Response Interaction
+<ul>
+<li>HTTP와 유사</li>
+<li>commands: ASCII</li>
+<li>response: 상태 코드 등</li>
+</ul>
+</li>
+<li>메세지는 반드시 7bit ASCII로 되어 있어야 함</li>
+<li>Persistent connection을 사용</li>
+<li>메세지의 끝은 <EOL>.<EOL>로 구분
+<ul>
+<li>EOL=CRLF=New Line</li>
+</ul>
+</li>
+</ul>
+<h2 id="메일이-보내지는-과정">메일이 보내지는 과정</h2>
+<ol>
+<li>Alice가 UA를 통해 메세지 작성</li>
+<li>Alice의 UA는 메일 서버에게 메세지를 보냄</li>
+<li>해당 메세지는 메일 서버의 Message Queue에 들어감</li>
+<li>Alice의 메일 서버가 SMTP를통해 TCP 연결 요청 → Bob의 메일 서버로</li>
+<li>SMTP 클라이언트 (Alice의 메일 서버)는 TCP 연결을 통해 Bob의 메일 서버에 메세지 전송</li>
+<li>Bob의 메일 서버는 Bob의 메일박스에 메세지 저장</li>
+<li>Bob은 UA를 사용해 메세지 확인</li>
+</ol>
+<h2 id="smtp와-http-비교">SMTP와 HTTP 비교</h2>
+<ul>
+<li>HTTP: 데이터를 Pull</li>
+<li>SMTP: 데이터를 Push</li>
+<li>양쪽 모두 ASCII 기반 command/response interaction과 status code를 사용</li>
+<li>HTTP는 각각의 오브젝트가 하나의 Response 메세지에 포함되어 전송</li>
+<li>SMTP는 각각의 오브젝트가 여러개의 메세지에 담겨 전송될 수 있음</li>
+</ul>
+<h2 id="mail-message-format">Mail Message Format</h2>
+<p><figure 
+	>
+	<a href="/posts/computer-network-email-and-dns/Untitled.png" >
+		<img src="/posts/computer-network-email-and-dns/Untitled.png"
+			
+			
+			
+			loading="lazy"
+			alt="image">
+	</a>
+	
+	<figcaption>image</figcaption>
+	
+</figure></p>
+<h2 id="mail-access-protocols">Mail Access Protocols</h2>
+<blockquote>
+<p>메일 서버에서 UA를 통해 메세지를 가지고 올 때 사용</p>
+</blockquote>
+<ul>
+<li>POP</li>
+<li>IMAP
+<ul>
+<li>POP보다 더 많은 기능</li>
+</ul>
+</li>
+<li>HTTP
+<ul>
+<li>Google, Hotmail 등</li>
+</ul>
+</li>
+</ul>
+<h2 id="pop3">POP3</h2>
+<p><figure 
+	>
+	<a href="/posts/computer-network-email-and-dns/Untitled%201.png" >
+		<img src="/posts/computer-network-email-and-dns/Untitled%201.png"
+			
+			
+			
+			loading="lazy"
+			alt="image">
+	</a>
+	
+	<figcaption>image</figcaption>
+	
+</figure></p>
+<ul>
+<li>Download and Delete Mode
+<ul>
+<li>메세지를 읽으면 서버에서는 삭제된다</li>
+</ul>
+</li>
+<li>Download and Keep Mode
+<ul>
+<li>메세지를 읽어도 메세지의 사본이 서버에 유지된다</li>
+</ul>
+</li>
+<li>POP3 = Stateless
+<ul>
+<li>지난 연결에 대한 상태 정보를 가지고 있지 않다</li>
+</ul>
+</li>
+</ul>
+<h2 id="imap">IMAP</h2>
+<ul>
+<li>모든 메세지가 한곳 (서버) 에 저장된다</li>
+<li>유저가 메세지들을 폴더를 통해 관리할 수 있다</li>
+<li>상태 정보를 유지
+<ul>
+<li>폴더 이름</li>
+<li>메세지 ID와 폴더 이름의 매핑 등</li>
+</ul>
+</li>
+</ul>
+<h1 id="3-dns-domain-name-system">3. DNS (Domain Name System)</h1>
+<blockquote>
+<p>IP 주소와 도메인 네임을 어떻게 연결하는가?</p>
+</blockquote>
+<ul>
+<li>분산된 데이터베이스
+<ul>
+<li>네임 서버로 이루어진 계층화된 시스템</li>
+</ul>
+</li>
+<li>애플리케이션 프로토콜
+<ul>
+<li>호스트와 네임서버가 통신</li>
+<li>코어 인터넷 펑션이지만 애플리케이션 단에서 구현
+<ul>
+<li>코어 단에서 구현하면 너무 복잡해지기 때문</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="dns-services">DNS Services</h2>
+<ul>
+<li>Hostname을 IP 주소로 변환</li>
+<li>Host aliasing
+<ul>
+<li>Canonical (실제) Hostname과 더불어 별도의 alias names을 관리</li>
+<li>예) <a class="link" href="http://w2.east-asia.ibmserver.com"  target="_blank" rel="noopener"
+    >w2.east-asia.ibmserver.com</a> → <a class="link" href="http://www.ibm.com"  target="_blank" rel="noopener"
+    >www.ibm.com</a></li>
+</ul>
+</li>
+<li>트래픽 분산
+<ul>
+<li>한 HostName을 여러개의 IP 주소에다 배정할 수 있다.
+<ul>
+<li>DNS가 로드 밸런싱도 해주네</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>왜 중앙집중화 되어있지 않나
+<ul>
+<li>어떤 재해로 인해 모든 지구상 호스트가 해당 DNS 서버에 접속불가라면?
+<ul>
+<li>끔찍하지..</li>
+</ul>
+</li>
+<li>해당 주변의 네트워크 트래픽 관리를 위해</li>
+<li>DNS서버가 먼 해외에 있다면?
+<ul>
+<li>인터넷 접속에 지연이 심해질 것</li>
+</ul>
+</li>
+<li>유지보수를 위해
+<ul>
+<li>단 하나의 DNS 서버만 존재한다면 서버를 끄기가 조심스러워 지겠지</li>
+</ul>
+</li>
+<li>즉 확장성이 없다!</li>
+</ul>
+</li>
+</ul>
+<h2 id="dns-계층-구조">DNS 계층 구조</h2>
+<p><figure 
+	>
+	<a href="/posts/computer-network-email-and-dns/Untitled%202.png" >
+		<img src="/posts/computer-network-email-and-dns/Untitled%202.png"
+			
+			
+			
+			loading="lazy"
+			alt="image">
+	</a>
+	
+	<figcaption>image</figcaption>
+	
+</figure></p>
+<h2 id="root-name-servers">Root name servers</h2>
+<ul>
+<li>DNS query를 받은 로컬 DNS 서버가 hostname을 알지 못할 때 질의받음</li>
+<li>얘도 모를 경우 Authoritative name server에 질의함</li>
+</ul>
+<h2 id="tld-top-level-domain-servers">TLD (Top-Level Domain) servers</h2>
+<ul>
+<li>최상위 도메인 (TLD) 관련하여 책임짐</li>
+</ul>
+<h2 id="authoritative-dns-server">Authoritative DNS server</h2>
+<ul>
+<li>기관이나 인터넷 서비스 운영자가 운영, 관리</li>
+<li>자기들이 이름붙인 호스트들과 그 IP들을 매핑하는 정보를 관리</li>
+</ul>
+<h2 id="local-dns-name-server">Local DNS name server</h2>
+<ul>
+<li>계층에 그렇게 단단히 구성되어 있지는 않다</li>
+<li>각각의 ISP는 하나 이상의 DNS를 가지고 있다</li>
+<li>호스트에서 DNS query를 받으면
+<ul>
+<li>먼저 캐시를 살펴봐서 정보가 있다면 그걸로 응답 (권위 없는 응답)</li>
+<li>만약 캐시에 없다면 프록시로 동작, 다른 DNS 서버에 query를 포워딩</li>
+<li>캐시 된 정보는 out of date 된 정보일 수도 있다</li>
+</ul>
+</li>
+</ul>
+<h1 id="4-dns-name-resolution-과정">4. DNS Name Resolution 과정</h1>
+<h2 id="iterated-query">Iterated Query</h2>
+<p><figure 
+	>
+	<a href="/posts/computer-network-email-and-dns/Untitled%203.png" >
+		<img src="/posts/computer-network-email-and-dns/Untitled%203.png"
+			
+			
+			
+			loading="lazy"
+			alt="image">
+	</a>
+	
+	<figcaption>image</figcaption>
+	
+</figure></p>
+<blockquote>
+<p>&ldquo;나는 잘 모르겠으니 이 서버에다가 물어봐&rdquo;</p>
+</blockquote>
+<ol>
+<li>호스트가 로컬 DNS 서버에 질의
+<ul>
+<li>&ldquo;나 mail.naver.com에 접속하고 싶은데 IP 뭐야&rdquo;</li>
+</ul>
+</li>
+<li>로컬 DNS 서버에 해당 정보 캐시가 없으면 Root에 질의</li>
+<li>Root에도 없으면 Root가 말함
+<ul>
+<li>&ldquo;나는 잘 모르겠으니 TLD DNS server (com) 에다 물어봐&rdquo;</li>
+<li>하고 해당 정보를 알려줌</li>
+</ul>
+</li>
+<li>로컬 DNS 서버는 그 정보를 가지고 TLD DNS server에 질의</li>
+<li>TLD DNS server에도 없으면 TLD 서버가 말함
+<ul>
+<li>&ldquo;나는 잘 모르겠으니 Authoritative DNS server (naver.com) 에다 물어봐&rdquo;</li>
+<li>하고 해당 정보를 알려줌</li>
+</ul>
+</li>
+<li>Authoritative DNS server는 실제 해당 매핑을 관리하는 주체이기 때문에 무조건 알고있음 (권위 있는 응답)</li>
+<li>로컬 DNS 서버는 최종 응답을 받았고 그 정보를 호스트에다가 전달해줌</li>
+</ol>
+<h2 id="recursive-query">Recursive Query</h2>
+<p><figure 
+	>
+	<a href="/posts/computer-network-email-and-dns/Untitled%204.png" >
+		<img src="/posts/computer-network-email-and-dns/Untitled%204.png"
+			
+			
+			
+			loading="lazy"
+			alt="image">
+	</a>
+	
+	<figcaption>image</figcaption>
+	
+</figure></p>
+<blockquote>
+<p>&ldquo;로컬 DNS 서버도 다음 DNS 서버에 하청을 준다&rdquo;</p>
+</blockquote>
+<ol>
+<li>호스트가 로컬 DNS 서버에 질의</li>
+<li>로컬 DNS에 해당 정보 캐시가 없으면 Root에 질의</li>
+<li>Root에도 없으면 Root가 TLD DNS server에 질의</li>
+<li>TLD DNS server에도 없으면 TLD DNS server가 Authoritative DNS server에 질의</li>
+<li>이렇게 Recursive하게 응답을 받고 받고 받아서</li>
+<li>로컬 DNS 서버가 호스트에게 최종응답 전달</li>
+</ol>
+<h2 id="dns-캐싱">DNS 캐싱</h2>
+<ul>
+<li>네임 서버가 HostName-IP 매핑을 알게 되면 캐시함
+<ul>
+<li>단 TTL이 있다</li>
+</ul>
+</li>
+<li>이 캐시 정보가 오래된 정보일 수 있음
+<ul>
+<li>도메인 할당할때 많이 겪어봤지?</li>
+</ul>
+</li>
+<li>당장 업데이트 해달라고 요쳥할 수도 있음
+<ul>
+<li>RFC2136</li>
+</ul>
+</li>
+</ul>
+<h2 id="dns-레코드">DNS 레코드</h2>
+<blockquote>
+<p>RR = 네임 서버가 관리하는 DNS 데이터 엔트리</p>
+</blockquote>
+<blockquote>
+<p><strong>RR Format = (name, value, type, TTL)</strong></p>
+</blockquote>
+<h3 id="type-a">Type A</h3>
+<ul>
+<li>name : hostname</li>
+<li>value: IP address</li>
+<li>ex) <strong>(<a class="link" href="http://www.naver.com"  target="_blank" rel="noopener"
+    >www.naver.com</a>, 152.142.67.41, A, 100)</strong></li>
+</ul>
+<h3 id="type-ns">Type NS</h3>
+<ul>
+<li>name: domain</li>
+<li>value: 해당 도메인을 관리하고 있는 네임 서버를 지정
+<ul>
+<li>웹호스팅이나 Cloudflare할 때 네임서버 지정했던거</li>
+</ul>
+</li>
+<li>ex) <strong>(naver.com, ns1.cloudflare.com, NS, 100)</strong></li>
+</ul>
+<h3 id="type-cname">Type CNAME</h3>
+<ul>
+<li>name: 별명 정보</li>
+<li>value: 실제 (canonical) 도메인</li>
+<li>ex) <strong>(<a class="link" href="http://www.ibm.com"  target="_blank" rel="noopener"
+    >www.ibm.com</a>, w3.east.asia.ibm.com, CNAME, 100)</strong></li>
+</ul>
+<h3 id="type-mx">Type MX</h3>
+<ul>
+<li>value: name에 연결될 메일 서버의 주소</li>
+<li>ex) <strong>(ibm.com, mail.ibm.com, MX, 100)</strong></li>
+</ul>
+<h2 id="dns-프로토콜-메세지-구조">DNS 프로토콜 메세지 구조</h2>
+<blockquote>
+<p>Query와 Reply 메세지가 있으며, 둘은 같은 메세지 포맷을 공유한다.</p>
+</blockquote>
+<p><figure 
+	>
+	<a href="/posts/computer-network-email-and-dns/Untitled%205.png" >
+		<img src="/posts/computer-network-email-and-dns/Untitled%205.png"
+			
+			
+			
+			loading="lazy"
+			alt="image">
+	</a>
+	
+	<figcaption>image</figcaption>
+	
+</figure></p>
+<h3 id="메세지-헤더">메세지 헤더</h3>
+<ul>
+<li><strong>Identification</strong>
+<ul>
+<li>DNS query와 해당 query를 위한 reply는 같은 값의 Identification을 가진다.</li>
+</ul>
+</li>
+<li><strong>Flags</strong>
+<ul>
+<li>query 메세지다</li>
+<li>reply 메세지다</li>
+<li>Recursion 방식으로 해주세요</li>
+<li>Recursion 방식이 가능하다</li>
+<li>Reply가 Authoriative이다 (캐시된 정보가 아니다)</li>
+</ul>
+</li>
+<li>Questions
+<ul>
+<li>Query 내용</li>
+</ul>
+</li>
+<li>Answers
+<ul>
+<li>RR 형태로 답이 옴</li>
+</ul>
+</li>
+</ul>
+<h2 id="dns-레코드-넣기">DNS 레코드 넣기</h2>
+<blockquote>
+<p>사설 네임서버를 쓸 만큼 큰 회사라고 가정했을 때</p>
+</blockquote>
+<ol>
+<li>DNS 등록자에게 내 도메인과 네임서버 정보 등록
+<ul>
+<li>도메인, Authoritative name server, IP address 제출</li>
+<li><strong>(mydomain.com, ns1.mydomain.com, NS, 1600)</strong></li>
+<li><strong>(ns1.mydomain.com, 222.111.212.111, A, 1600)</strong></li>
+</ul>
+</li>
+<li>사설 네임서버 안에서 <a class="link" href="http://www.mydomain.com"  target="_blank" rel="noopener"
+    >www.mydomain.com</a>에 연결할 IP라던가</li>
+<li>MX로 메일서버를 연결한다던가 하면 됨</li>
+</ol>
+</section>
+
+
+    <footer class="article-footer">
+    
+    <section class="article-tags">
+        
+            <a href="/tags/computer-networking/">computer-networking</a>
+        
+            <a href="/tags/network/">network</a>
+        
+            <a href="/tags/networking/">networking</a>
+        
+            <a href="/tags/email/">email</a>
+        
+            <a href="/tags/dns/">dns</a>
+        
+    </section>
+
+
+    
+    <section class="article-copyright">
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-copyright" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <path d="M14.5 9a3.5 4 0 1 0 0 6" />
+</svg>
+
+
+
+        <span>Licensed under CC BY-NC-SA 4.0</span>
+    </section>
+    </footer>
+
+
+    
+</article>
+
+    <aside class="related-contents--wrapper">
+    
+    
+        <h2 class="section-title">Related contents</h2>
+        <div class="related-contents">
+            <div class="flex article-list--tile">
+                
+                    
+<article class="">
+    <a href="/blog/computer-networking-final-quick-note/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">Computer Networking - Final Quick Note</h2>
+        </div>
+    </a>
+</article>
+                
+                    
+<article class="">
+    <a href="/blog/computer-networking-flow-control-and-handshake/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">Computer Networking - Flow Control and Handshake</h2>
+        </div>
+    </a>
+</article>
+                
+                    
+<article class="">
+    <a href="/blog/computer-networking-http/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">Computer Networking - HTTP</h2>
+        </div>
+    </a>
+</article>
+                
+                    
+<article class="">
+    <a href="/blog/computer-networking-network-multimedia/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">Computer Networking - Network Multimedia</h2>
+        </div>
+    </a>
+</article>
+                
+                    
+<article class="">
+    <a href="/blog/computer-networking-network-tcp/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">Computer Networking - Network TCP</h2>
+        </div>
+    </a>
+</article>
+                
+            </div>
+        </div>
+    
+</aside>
+
+     
+    
+        
+    <script src="https://utteranc.es/client.js" 
+        repo="yansigit/yansigit.github.io"
+        issue-term="pathname"
+        
+        label="Utterances Comment"
+        
+        crossorigin="anonymous"
+        async
+        >
+</script>
+
+<style>
+    .utterances {
+        max-width: unset;
+    }
+</style>
+
+<script>
+    function setUtterancesTheme(theme) {
+        let utterances = document.querySelector('.utterances iframe');
+        if (utterances) {
+            utterances.contentWindow.postMessage(
+                {
+                    type: 'set-theme',
+                    theme: `github-${theme}`
+                },
+                'https://utteranc.es'
+            );
+        }
+    }
+
+    addEventListener('message', event => {
+        if (event.origin !== 'https://utteranc.es') return;
+        setUtterancesTheme(document.documentElement.dataset.scheme)
+    });
+
+    window.addEventListener('onColorSchemeChange', (e) => {
+        setUtterancesTheme(e.detail)
+    })
+</script>
+
+
+    
+
+    <footer class="site-footer">
+    <section class="copyright">
+        &copy; 
+        
+            2020 - 
+        
+        2021 Code like Feather
+    </section>
+    
+    <section class="powerby">
+        Built with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> <br />
+        Theme <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="3.2.0">Stack</a></b> designed by <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a>
+    </section>
+</footer>
+
+
+    
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    
+    <div class="pswp__bg"></div>
+
+    
+    <div class="pswp__scroll-wrap">
+
+        
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                
+                
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"integrity="sha256-ePwmChbbvXbsO02lbM3HoHbSHTHFAeChekF1xKJdleo="crossorigin="anonymous"
+                defer="true"
+                >
+            </script><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"integrity="sha256-UKkzOn/w1mBxRmLLGrSeyB4e1xbrp4xylgAWb3M42pU="crossorigin="anonymous"
+                defer="true"
+                >
+            </script><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.css"integrity="sha256-c0uckgykQ9v5k&#43;IqViZOZKc47Jn7KQil4/MP3ySA3F8="crossorigin="anonymous"
+            ><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.css"integrity="sha256-SBLU4vv6CA6lHsZ1XyTdhyjJxCjPif/TRkjnsyGAGnE="crossorigin="anonymous"
+            >
+
+            </main>
+    
+        <aside class="sidebar right-sidebar sticky">
+            <section class="widget archives">
+                <div class="widget-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-hash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <line x1="5" y1="9" x2="19" y2="9" />
+  <line x1="5" y1="15" x2="19" y2="15" />
+  <line x1="11" y1="4" x2="7" y2="20" />
+  <line x1="17" y1="4" x2="13" y2="20" />
+</svg>
+
+
+
+                </div>
+                <h2 class="widget-title section-title">Table of contents</h2>
+                
+                <div class="widget--toc">
+                    <nav id="TableOfContents">
+  <ol>
+    <li><a href="#세-주요-컴포넌트">세 주요 컴포넌트</a></li>
+    <li><a href="#user-agent">User Agent</a></li>
+    <li><a href="#메일-서버">메일 서버</a></li>
+    <li><a href="#smtp">SMTP</a></li>
+    <li><a href="#메일이-보내지는-과정">메일이 보내지는 과정</a></li>
+    <li><a href="#smtp와-http-비교">SMTP와 HTTP 비교</a></li>
+    <li><a href="#mail-message-format">Mail Message Format</a></li>
+    <li><a href="#mail-access-protocols">Mail Access Protocols</a></li>
+    <li><a href="#pop3">POP3</a></li>
+    <li><a href="#imap">IMAP</a></li>
+  </ol>
+
+  <ol>
+    <li><a href="#dns-services">DNS Services</a></li>
+    <li><a href="#dns-계층-구조">DNS 계층 구조</a></li>
+    <li><a href="#root-name-servers">Root name servers</a></li>
+    <li><a href="#tld-top-level-domain-servers">TLD (Top-Level Domain) servers</a></li>
+    <li><a href="#authoritative-dns-server">Authoritative DNS server</a></li>
+    <li><a href="#local-dns-name-server">Local DNS name server</a></li>
+  </ol>
+
+  <ol>
+    <li><a href="#iterated-query">Iterated Query</a></li>
+    <li><a href="#recursive-query">Recursive Query</a></li>
+    <li><a href="#dns-캐싱">DNS 캐싱</a></li>
+    <li><a href="#dns-레코드">DNS 레코드</a>
+      <ol>
+        <li><a href="#type-a">Type A</a></li>
+        <li><a href="#type-ns">Type NS</a></li>
+        <li><a href="#type-cname">Type CNAME</a></li>
+        <li><a href="#type-mx">Type MX</a></li>
+      </ol>
+    </li>
+    <li><a href="#dns-프로토콜-메세지-구조">DNS 프로토콜 메세지 구조</a>
+      <ol>
+        <li><a href="#메세지-헤더">메세지 헤더</a></li>
+      </ol>
+    </li>
+    <li><a href="#dns-레코드-넣기">DNS 레코드 넣기</a></li>
+  </ol>
+</nav>
+                </div>
+            </section>
+        </aside>
+    
+
+        </div>
+        <script 
+                src="https://cdn.jsdelivr.net/npm/node-vibrant@3.1.5/dist/vibrant.min.js"integrity="sha256-5NovOZc4iwiAWTYIFiIM7DxKUXKWvpVEuMEPLzcm5/g="crossorigin="anonymous"
+                defer="false"
+                >
+            </script><script type="text/javascript" src="/ts/main.js" defer></script>
+<script>
+    (function () {
+        const customFont = document.createElement('link');
+        customFont.href = "https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap";
+
+        customFont.type = "text/css";
+        customFont.rel = "stylesheet";
+
+        document.head.appendChild(customFont);
+    }());
+</script>
+
+    </body>
+</html>

@@ -1,0 +1,793 @@
+<!DOCTYPE html>
+<html lang="ko-kr">
+    <head><meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content='openCV 영역 처리'><title>OpenCV Spatial Domain</title>
+
+<link rel='canonical' href='https://yansigit.github.io/blog/opencv-spatial-domain/'>
+
+<link rel="stylesheet" href="/scss/style.min.css"><meta property='og:title' content='OpenCV Spatial Domain'>
+<meta property='og:description' content='openCV 영역 처리'>
+<meta property='og:url' content='https://yansigit.github.io/blog/opencv-spatial-domain/'>
+<meta property='og:site_name' content='Code like Feather'>
+<meta property='og:type' content='article'><meta property='article:section' content='Posts' /><meta property='article:tag' content='opencv' /><meta property='article:tag' content='python' /><meta property='article:published_time' content='2020-09-16T00:08:03&#43;09:00'/><meta property='article:modified_time' content='2020-09-16T00:08:03&#43;09:00'/><meta property='og:image' content='https://yansigit.github.io/images/lighthouse.jpg' />
+<meta name="twitter:title" content="OpenCV Spatial Domain">
+<meta name="twitter:description" content="openCV 영역 처리"><meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content='https://yansigit.github.io/images/lighthouse.jpg' />
+    </head>
+    <body class="
+    article-page has-toc
+">
+    <script>
+        (function() {
+            const colorSchemeKey = 'StackColorScheme';
+            if(!localStorage.getItem(colorSchemeKey)){
+                localStorage.setItem(colorSchemeKey, "auto");
+            }
+        })();
+    </script><script>
+    (function() {
+        const colorSchemeKey = 'StackColorScheme';
+        const colorSchemeItem = localStorage.getItem(colorSchemeKey);
+        const supportDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches === true;
+
+        if (colorSchemeItem == 'dark' || colorSchemeItem === 'auto' && supportDarkMode) {
+            
+
+            document.documentElement.dataset.scheme = 'dark';
+        } else {
+            document.documentElement.dataset.scheme = 'light';
+        }
+    })();
+</script>
+<div class="container main-container flex 
+    
+        extended
+    
+">
+    
+        <div id="article-toolbar">
+            <a href="https://yansigit.github.io" class="back-home">
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-chevron-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <polyline points="15 6 9 12 15 18" />
+</svg>
+
+
+
+                <span>Back</span>
+            </a>
+        </div>
+    
+<main class="main full-width">
+    <article class="main-article">
+    <header class="article-header">
+
+    <div class="article-details">
+    
+    <header class="article-category">
+        
+            <a href="/categories/opencv/" >
+                opencv
+            </a>
+        
+    </header>
+    
+
+    <h2 class="article-title">
+        <a href="/blog/opencv-spatial-domain/">OpenCV Spatial Domain</a>
+    </h2>
+
+    
+    <h3 class="article-subtitle">
+        openCV 영역 처리
+    </h3>
+    
+
+    
+    <footer class="article-time">
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-calendar-time" width="56" height="56" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M11.795 21h-6.795a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v4" />
+  <circle cx="18" cy="18" r="4" />
+  <path d="M15 3v4" />
+  <path d="M7 3v4" />
+  <path d="M3 11h16" />
+  <path d="M18 16.496v1.504l1 1" />
+</svg>
+                <time class="article-time--published">Sep 16, 2020</time>
+            </div>
+        
+
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <polyline points="12 7 12 12 15 15" />
+</svg>
+
+
+
+                <time class="article-time--reading">
+                    4 minute read
+                </time>
+            </div>
+        
+    </footer>
+    
+</div>
+</header>
+
+    <section class="article-content">
+    <blockquote>
+<p>지금까지 배운 화소단위 처리는 새로운 영상을 생성할 때 특정 화소만의 값을 이용해 처리</p>
+</blockquote>
+<blockquote>
+<p>영역처리는 출력 화소를 만들기 위해 입력화소 뿐만 아니라 그 이웃한 화소들도 이용</p>
+</blockquote>
+<ul>
+<li>영역처리 방법
+<ul>
+<li>컨볼루션 (회선)</li>
+<li>양각효과</li>
+<li>평균값 필터링</li>
+<li>중간값 필터링</li>
+<li>샤프닝</li>
+<li>윤곽선 검출</li>
+</ul>
+</li>
+</ul>
+<h2 id="컨볼루션-회선">컨볼루션 (회선)</h2>
+<blockquote>
+<p>출력화소의 값을 계산하기 위해 입력화소, 이웃화소값에 회선 마스크의 값을 곱하여 구하는 기법</p>
+</blockquote>
+<p><figure 
+	>
+	<a href="/files/mask1.png" >
+		<img src="/files/mask1.png"
+			
+			
+			
+			loading="lazy"
+			alt="image">
+	</a>
+	
+	<figcaption>image</figcaption>
+	
+</figure></p>
+<ul>
+<li>회선마스크의 경우 대부분 3X3, 5X5 크기를 많이 사용.</li>
+<li>회선마스크의 크기가 증가할수록 계산의 양은 지수함수적으로 증가</li>
+<li>이 방법으로는 구할수없는 영상의 가장자리 픽셀들의 경우
+<ul>
+<li>빈 마스크의 계수를 0으로 가정하여 계산하거나</li>
+<li>계산을 아예 하지 않거나 (제일 많이 사용)</li>
+<li>경계부분의 화소를 복사</li>
+</ul>
+</li>
+<li>보통 RGB의 경우 HSI 컬러 스페이스로 변환해 밝기 채널에 대해서만 연산을 수행한다</li>
+</ul>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="c1"># 컨볼루션 연산 담당 함수</span>
+<span class="n">result</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">filter2D</span><span class="p">(</span><span class="n">소스이미지</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="n">필터</span><span class="p">)</span>
+</code></pre></div><h3 id="평균값-필터링-블러링">평균값 필터링 (블러링)</h3>
+<blockquote>
+<p>현 픽셀의 값을 주위 픽셀들의 평균값으로 대체</p>
+</blockquote>
+<p><figure 
+	>
+	<a href="/files/mask2.png" >
+		<img src="/files/mask2.png"
+			
+			
+			
+			loading="lazy"
+			alt="image">
+	</a>
+	
+	<figcaption>image</figcaption>
+	
+</figure></p>
+<ul>
+<li>평균값의 마스크의 경우 위와같이 모든 구역의 합은 1이 되도록한다.</li>
+</ul>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="kn">import</span> <span class="nn">cv2</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+
+<span class="n">img</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">imread</span><span class="p">(</span><span class="s1">&#39;dog.jpg&#39;</span><span class="p">)</span>
+
+<span class="n">blur_filter</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">((</span><span class="mi">5</span><span class="p">,</span> <span class="mi">5</span><span class="p">))</span><span class="o">/</span><span class="mi">25</span>
+<span class="n">blured</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">filter2D</span><span class="p">(</span><span class="n">img</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="n">blur_filter</span><span class="p">)</span> <span class="c1"># 필터 가지고 직접 생성</span>
+
+<span class="n">blured</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">blur</span><span class="p">(</span><span class="n">img</span><span class="p">,</span> <span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">5</span><span class="p">))</span> <span class="c1"># 자동으로 필터 생성 후 블러처리까지</span>
+<span class="n">blured</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">boxFilter</span><span class="p">(</span><span class="n">img</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">5</span><span class="p">))</span> <span class="c1"># 역시 자동으로 필터 생성 후 블러처리까지</span>
+
+<span class="n">cv2</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="s1">&#39;결과&#39;</span><span class="p">,</span> <span class="n">blured</span><span class="p">)</span>
+<span class="n">cv2</span><span class="o">.</span><span class="n">waitKey</span><span class="p">()</span>
+<span class="n">cv2</span><span class="o">.</span><span class="n">destroyAllWindows</span><span class="p">()</span>
+</code></pre></div><h3 id="이미지-합치기-팁">이미지 합치기 (팁)</h3>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="c1"># 가로로 스택처럼 합쳐짐</span>
+<span class="n">merged</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">hstack</span><span class="p">((</span><span class="n">img1</span><span class="p">,</span> <span class="n">img2</span><span class="p">,</span> <span class="n">img3</span><span class="p">))</span>
+</code></pre></div><h3 id="가우시안-블러링">가우시안 블러링</h3>
+<blockquote>
+<p>중앙 값이 가장 크고 멀어질수록 그 값이 작아지는 가중 평균값 필터를 사용</p>
+</blockquote>
+<p><figure 
+	>
+	<a href="/files/mask3.png" >
+		<img src="/files/mask3.png"
+			
+			
+			
+			loading="lazy"
+			alt="image">
+	</a>
+	
+	<figcaption>image</figcaption>
+	
+</figure></p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="c1"># 직접 필터 생성하여 블러</span>
+<span class="n">k1</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span>
+							 <span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span>
+							 <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">]])</span> <span class="o">*</span> <span class="p">(</span><span class="mi">1</span><span class="o">/</span><span class="mi">16</span><span class="p">)</span>
+<span class="n">blur1</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">filter2D</span><span class="p">(</span><span class="n">img</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="n">k1</span><span class="p">)</span>
+
+<span class="n">k2</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">getGaussianKernel</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+<span class="n">blur2</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">filter2D</span><span class="p">(</span><span class="n">img</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="n">k2</span><span class="o">*</span><span class="n">k2</span><span class="o">.</span><span class="n">T</span><span class="p">)</span> <span class="c1"># 1차원 배열 2차원으로</span>
+
+<span class="c1"># cv2.GaussianBlur(이미지, 필터크기, 표준편차)</span>
+<span class="n">blur3</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">GaussianBlur</span><span class="p">(</span><span class="n">img</span><span class="p">,</span> <span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="mi">3</span><span class="p">),</span> <span class="mi">0</span><span class="p">)</span>
+</code></pre></div><h3 id="중간값-필터링">중간값 필터링</h3>
+<blockquote>
+<p>현 픽셀 주위에 있는 픽셀값들을 정렬해 그것들의 중간값으로 현 픽셀의 값을 대체</p>
+</blockquote>
+<blockquote>
+<p>Salt and Pepper의 노이즈는 0또는 255같은 극단값이기에 그러한 잡음을 제거하는데 효과적</p>
+</blockquote>
+<p><figure 
+	>
+	<a href="/files/mask4.png" >
+		<img src="/files/mask4.png"
+			
+			
+			
+			loading="lazy"
+			alt="image">
+	</a>
+	
+	<figcaption>image</figcaption>
+	
+</figure></p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="c1"># (소스, 커널크기)</span>
+<span class="n">blur</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">medianBlur</span><span class="p">(</span><span class="n">img</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span>
+</code></pre></div><ul>
+<li>수채화 효과가 나타나기도 함</li>
+</ul>
+<h3 id="바이레터럴-필터">바이레터럴 필터</h3>
+<blockquote>
+<p>블러링 필터는 잡음을 제거하는데 효과가 있으나 경계가 흐릿해짐</p>
+</blockquote>
+<blockquote>
+<p>개선을 위해 가우시안 필터 + 경계 필터 2개를 사용. 속도는 느림.</p>
+</blockquote>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="c1"># (소스, 필터직경, 컬러스페이스_표준편차, 좌표공간_표준편차)</span>
+<span class="c1"># 보통 두개 표준편차는 같은 값 씀</span>
+<span class="n">blur</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">bilateralFilter</span><span class="p">(</span><span class="n">img</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">75</span><span class="p">,</span> <span class="mi">75</span><span class="p">)</span>
+</code></pre></div><h2 id="경계선-검출">경계선 검출</h2>
+<blockquote>
+<p>색상값 또는 밝기의 변화가 큰 부분이 경계 부분이라고 가정하고 추출</p>
+</blockquote>
+<h3 id="에지의-요인">에지의 요인</h3>
+<p><figure 
+	>
+	<a href="/files/mask5.png" >
+		<img src="/files/mask5.png"
+			
+			
+			
+			loading="lazy"
+			alt="image">
+	</a>
+	
+	<figcaption>image</figcaption>
+	
+</figure></p>
+<ul>
+<li><strong>물체면의 차이</strong> Surface-Normal Discontinuity
+<ul>
+<li>물체 표면의 법선 벡터가 급격히 변하는 곳</li>
+<li>뚜껑 윗부분과 벽 부분처럼 거의 90도 차이가 남</li>
+</ul>
+</li>
+<li><strong>거리의 차이</strong> Depth Discontinuity
+<ul>
+<li>카메라로부터 거리가 급격히 변하는 곳</li>
+<li>병과 그 배경은 깊이감이 다름</li>
+</ul>
+</li>
+<li><strong>물체표면 반사도의 차이</strong> Surface-Reflectance Discontinuity
+<ul>
+<li>기하학적으로는 차이가 없지만 색깔이 급변하는 곳</li>
+<li>글씨가 쓰여있고 안쓰여있고</li>
+</ul>
+</li>
+<li><strong>조명의 차이</strong> Illumination Discontinuity
+<ul>
+<li>그림자가 있는 부분 없는 부분</li>
+</ul>
+</li>
+</ul>
+<h3 id="에지-프로파일">에지 프로파일</h3>
+<blockquote>
+<p>밝기의 변화를 그래프화 한 것</p>
+</blockquote>
+<ul>
+<li>스텝 에지
+<ul>
+<li>계단처럼 밝기가 급격히 변화</li>
+</ul>
+</li>
+<li>램프 에지
+<ul>
+<li>밝기가 서서히 변화</li>
+</ul>
+</li>
+<li>라인 에지
+<ul>
+<li>두 개의 스텝 에지가 겹침</li>
+</ul>
+</li>
+<li>루프 에지
+<ul>
+<li>두 개의 램프 에지가 겹침</li>
+</ul>
+</li>
+</ul>
+<h3 id="로버츠-마스크">로버츠 마스크</h3>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="c1"># 로버츠 커널</span>
+<span class="n">gx_kernel</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">]])</span>
+<span class="n">gy_kernel</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">]])</span>
+
+<span class="n">edge_gx</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">filter2D</span><span class="p">(</span><span class="n">img</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="n">gx_kernel</span><span class="p">)</span>
+<span class="n">edge_gy</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">filter2D</span><span class="p">(</span><span class="n">img</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="n">gy_kernel</span><span class="p">)</span>
+
+<span class="n">marged</span> <span class="o">=</span> <span class="n">edge_gx</span> <span class="o">+</span> <span class="n">edge_gy</span>
+</code></pre></div><ul>
+<li>가장 먼저 고안됨</li>
+<li>마스크 크기가 작아 연산이 빠름</li>
+<li>잡음에 민감</li>
+</ul>
+<h3 id="프리윗-마스크">프리윗 마스크</h3>
+<p><figure 
+	>
+	<a href="/files/mask6.png" >
+		<img src="/files/mask6.png"
+			
+			
+			
+			loading="lazy"
+			alt="image">
+	</a>
+	
+	<figcaption>image</figcaption>
+	
+</figure></p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="n">gx_kernel</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">]])</span>
+<span class="n">gy_kernel</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">]])</span>
+
+<span class="n">edge_gx</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">filter2D</span><span class="p">(</span><span class="n">img</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="n">gx_kernel</span><span class="p">)</span>
+<span class="n">edge_gy</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">filter2D</span><span class="p">(</span><span class="n">img</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="n">gy_kernel</span><span class="p">)</span>
+
+<span class="n">marged</span> <span class="o">=</span> <span class="n">edge_gx</span> <span class="o">+</span> <span class="n">edge_gy</span>
+</code></pre></div><ul>
+<li>대각선보다 수평 에지와 수직 에지를 잘 검출</li>
+<li>소벨 마스크보다는 연산 빠름</li>
+</ul>
+<h3 id="소벨-마스크">소벨 마스크</h3>
+<p><figure 
+	>
+	<a href="/files/mask7.png" >
+		<img src="/files/mask7.png"
+			
+			
+			
+			loading="lazy"
+			alt="image">
+	</a>
+	
+	<figcaption>image</figcaption>
+	
+</figure></p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="n">gx_kernel</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="p">[</span><span class="o">-</span><span class="mi">2</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span> <span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">]])</span>
+<span class="n">gy_kernel</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">2</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">]])</span>
+
+<span class="n">edge_gx</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">filter2D</span><span class="p">(</span><span class="n">img</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="n">gx_kernel</span><span class="p">)</span>
+<span class="n">edge_gy</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">filter2D</span><span class="p">(</span><span class="n">img</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="n">gy_kernel</span><span class="p">)</span>
+
+<span class="c1"># (소스, -1, x여부, y여부, ksize=(필터크기))</span>
+<span class="c1"># 사실 x여부, y여부가 아니라 미분 차수라는데 난 잘 모르니깐..</span>
+<span class="n">sobelx</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">Sobel</span><span class="p">(</span><span class="n">img</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">ksize</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
+<span class="n">sobely</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">Sobel</span><span class="p">(</span><span class="n">img</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">ksize</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
+</code></pre></div><ul>
+<li>수평, 수직보다 대각선 에지를 잘 검출</li>
+<li>비교적 잡음에 강함</li>
+</ul>
+<h3 id="라플라시안-마스크">라플라시안 마스크</h3>
+<p><figure 
+	>
+	<a href="/files/mask8.png" >
+		<img src="/files/mask8.png"
+			
+			
+			
+			loading="lazy"
+			alt="image">
+	</a>
+	
+	<figcaption>image</figcaption>
+	
+</figure></p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="n">edge</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">Laplacian</span><span class="p">(</span><span class="n">img</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+</code></pre></div><ul>
+<li>잡음에 매우 민감해 사전에 가우시안 필터로 노이즈를 제거하고 사용하는것을 추천</li>
+<li>X, Y 동시에 검출하는 모습</li>
+</ul>
+<h3 id="케니-엣지">케니 엣지</h3>
+<blockquote>
+<p>가장 유명한 엣지 검출법. 네 가지의 단계를 거쳐 엣지 검출</p>
+</blockquote>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="c1"># (소스, minVal, maxVal)</span>
+<span class="c1"># 보통 2배, 3배 차이 권장</span>
+<span class="n">edges</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">Canny</span><span class="p">(</span><span class="n">img</span><span class="p">,</span> <span class="mi">150</span><span class="p">,</span> <span class="mi">300</span><span class="p">)</span>
+</code></pre></div><ol>
+<li>Noise Reduction
+<ul>
+<li>이미지의 노이즈를 제거.</li>
+<li>5 X 5의 가우시안 필터 사용</li>
+</ul>
+</li>
+<li>Edge Gradient Detection
+<ul>
+<li>Gradient들의 방향과 각도 확인</li>
+<li>경계값에서는 주변과 색이 다르기 때문에 미분값이 급속도로 변함</li>
+<li>이를 통해 경계값 후보군 선별</li>
+<li>소벨 엣지를 쓴다</li>
+</ul>
+</li>
+<li>Non maximum Suppression
+<ul>
+<li>이미지의 픽셀을 Full Scan하여 엣지가 아닌 픽셀은 제거</li>
+</ul>
+</li>
+<li>Hysteresis Thresholding
+<ul>
+<li>지금까지 엣지로 판단된 픽셀이 진짜 엣지인지 판별</li>
+<li>maxVal, minVal을 설정
+<ul>
+<li>maxVal 이상은 강한 엣지,</li>
+<li>minVal ~ maxVal 은 약한 엣지로 설정</li>
+<li>약한 엣지가 진짜 엣지인지 확인
+<ul>
+<li>강한 엣지와 연결이 되어있으면 엣지로 판단</li>
+<li>아니라면 제거</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ol>
+</section>
+
+
+    <footer class="article-footer">
+    
+    <section class="article-tags">
+        
+            <a href="/tags/opencv/">opencv</a>
+        
+            <a href="/tags/python/">python</a>
+        
+    </section>
+
+
+    
+    <section class="article-copyright">
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-copyright" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <path d="M14.5 9a3.5 4 0 1 0 0 6" />
+</svg>
+
+
+
+        <span>Licensed under CC BY-NC-SA 4.0</span>
+    </section>
+    </footer>
+
+
+    
+</article>
+
+    <aside class="related-contents--wrapper">
+    
+    
+        <h2 class="section-title">Related contents</h2>
+        <div class="related-contents">
+            <div class="flex article-list--tile">
+                
+                    
+<article class="">
+    <a href="/blog/opencv-linear-interpolation/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">OpenCV Linear Interpolation</h2>
+        </div>
+    </a>
+</article>
+                
+                    
+<article class="">
+    <a href="/blog/opencv-geometric-transform/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">OpenCV Geometric Transform</h2>
+        </div>
+    </a>
+</article>
+                
+                    
+<article class="">
+    <a href="/blog/opencv-histogram/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">OpenCV Histogram</h2>
+        </div>
+    </a>
+</article>
+                
+                    
+<article class="">
+    <a href="/blog/dealing-with-camera-on-opencv/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">Dealing With Camera on OpenCV</h2>
+        </div>
+    </a>
+</article>
+                
+                    
+<article class="">
+    <a href="/blog/opencv-%EB%B9%84%ED%8A%B8%EC%97%B0%EC%82%B0/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">OpenCV 비트연산</h2>
+        </div>
+    </a>
+</article>
+                
+            </div>
+        </div>
+    
+</aside>
+
+     
+    
+        
+    <script src="https://utteranc.es/client.js" 
+        repo="yansigit/yansigit.github.io"
+        issue-term="pathname"
+        
+        label="Utterances Comment"
+        
+        crossorigin="anonymous"
+        async
+        >
+</script>
+
+<style>
+    .utterances {
+        max-width: unset;
+    }
+</style>
+
+<script>
+    function setUtterancesTheme(theme) {
+        let utterances = document.querySelector('.utterances iframe');
+        if (utterances) {
+            utterances.contentWindow.postMessage(
+                {
+                    type: 'set-theme',
+                    theme: `github-${theme}`
+                },
+                'https://utteranc.es'
+            );
+        }
+    }
+
+    addEventListener('message', event => {
+        if (event.origin !== 'https://utteranc.es') return;
+        setUtterancesTheme(document.documentElement.dataset.scheme)
+    });
+
+    window.addEventListener('onColorSchemeChange', (e) => {
+        setUtterancesTheme(e.detail)
+    })
+</script>
+
+
+    
+
+    <footer class="site-footer">
+    <section class="copyright">
+        &copy; 
+        
+            2020 - 
+        
+        2021 Code like Feather
+    </section>
+    
+    <section class="powerby">
+        Built with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> <br />
+        Theme <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="3.2.0">Stack</a></b> designed by <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a>
+    </section>
+</footer>
+
+
+    
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    
+    <div class="pswp__bg"></div>
+
+    
+    <div class="pswp__scroll-wrap">
+
+        
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                
+                
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"integrity="sha256-ePwmChbbvXbsO02lbM3HoHbSHTHFAeChekF1xKJdleo="crossorigin="anonymous"
+                defer="true"
+                >
+            </script><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"integrity="sha256-UKkzOn/w1mBxRmLLGrSeyB4e1xbrp4xylgAWb3M42pU="crossorigin="anonymous"
+                defer="true"
+                >
+            </script><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.css"integrity="sha256-c0uckgykQ9v5k&#43;IqViZOZKc47Jn7KQil4/MP3ySA3F8="crossorigin="anonymous"
+            ><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.css"integrity="sha256-SBLU4vv6CA6lHsZ1XyTdhyjJxCjPif/TRkjnsyGAGnE="crossorigin="anonymous"
+            >
+
+            </main>
+    
+        <aside class="sidebar right-sidebar sticky">
+            <section class="widget archives">
+                <div class="widget-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-hash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <line x1="5" y1="9" x2="19" y2="9" />
+  <line x1="5" y1="15" x2="19" y2="15" />
+  <line x1="11" y1="4" x2="7" y2="20" />
+  <line x1="17" y1="4" x2="13" y2="20" />
+</svg>
+
+
+
+                </div>
+                <h2 class="widget-title section-title">Table of contents</h2>
+                
+                <div class="widget--toc">
+                    <nav id="TableOfContents">
+  <ol>
+    <li><a href="#컨볼루션-회선">컨볼루션 (회선)</a>
+      <ol>
+        <li><a href="#평균값-필터링-블러링">평균값 필터링 (블러링)</a></li>
+        <li><a href="#이미지-합치기-팁">이미지 합치기 (팁)</a></li>
+        <li><a href="#가우시안-블러링">가우시안 블러링</a></li>
+        <li><a href="#중간값-필터링">중간값 필터링</a></li>
+        <li><a href="#바이레터럴-필터">바이레터럴 필터</a></li>
+      </ol>
+    </li>
+    <li><a href="#경계선-검출">경계선 검출</a>
+      <ol>
+        <li><a href="#에지의-요인">에지의 요인</a></li>
+        <li><a href="#에지-프로파일">에지 프로파일</a></li>
+        <li><a href="#로버츠-마스크">로버츠 마스크</a></li>
+        <li><a href="#프리윗-마스크">프리윗 마스크</a></li>
+        <li><a href="#소벨-마스크">소벨 마스크</a></li>
+        <li><a href="#라플라시안-마스크">라플라시안 마스크</a></li>
+        <li><a href="#케니-엣지">케니 엣지</a></li>
+      </ol>
+    </li>
+  </ol>
+</nav>
+                </div>
+            </section>
+        </aside>
+    
+
+        </div>
+        <script 
+                src="https://cdn.jsdelivr.net/npm/node-vibrant@3.1.5/dist/vibrant.min.js"integrity="sha256-5NovOZc4iwiAWTYIFiIM7DxKUXKWvpVEuMEPLzcm5/g="crossorigin="anonymous"
+                defer="false"
+                >
+            </script><script type="text/javascript" src="/ts/main.js" defer></script>
+<script>
+    (function () {
+        const customFont = document.createElement('link');
+        customFont.href = "https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap";
+
+        customFont.type = "text/css";
+        customFont.rel = "stylesheet";
+
+        document.head.appendChild(customFont);
+    }());
+</script>
+
+    </body>
+</html>

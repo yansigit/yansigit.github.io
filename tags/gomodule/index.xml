@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>gomodule on Code like Feather</title>
+    <link>https://yansigit.github.io/tags/gomodule/</link>
+    <description>Recent content in gomodule on Code like Feather</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>ko-kr</language>
+    <lastBuildDate>Tue, 21 Jan 2020 01:50:58 +0900</lastBuildDate><atom:link href="https://yansigit.github.io/tags/gomodule/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>About Go Module</title>
+      <link>https://yansigit.github.io/blog/about-go-module/</link>
+      <pubDate>Tue, 21 Jan 2020 01:50:58 +0900</pubDate>
+      
+      <guid>https://yansigit.github.io/blog/about-go-module/</guid>
+      <description>&lt;p&gt;고 모듈이 등장하기 전까지, 개발자들은 GOPATH 등의 환경변수를 이용해
+프로젝트 및 패키지 종속성을 관리해야 했다.&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

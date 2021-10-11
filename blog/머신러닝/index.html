@@ -1,0 +1,602 @@
+<!DOCTYPE html>
+<html lang="ko-kr">
+    <head><meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content='머신러닝이란 무엇인가'><title>머신러닝</title>
+
+<link rel='canonical' href='https://yansigit.github.io/blog/%EB%A8%B8%EC%8B%A0%EB%9F%AC%EB%8B%9D/'>
+
+<link rel="stylesheet" href="/scss/style.min.css"><meta property='og:title' content='머신러닝'>
+<meta property='og:description' content='머신러닝이란 무엇인가'>
+<meta property='og:url' content='https://yansigit.github.io/blog/%EB%A8%B8%EC%8B%A0%EB%9F%AC%EB%8B%9D/'>
+<meta property='og:site_name' content='Code like Feather'>
+<meta property='og:type' content='article'><meta property='article:section' content='Posts' /><meta property='article:tag' content='machine-learning' /><meta property='article:tag' content='deep-learning' /><meta property='article:tag' content='data-processing' /><meta property='article:tag' content='data-science' /><meta property='article:published_time' content='2021-07-07T00:04:34&#43;09:00'/><meta property='article:modified_time' content='2021-07-07T00:04:34&#43;09:00'/><meta property='og:image' content='https://yansigit.github.io/images/lighthouse.jpg' />
+<meta name="twitter:title" content="머신러닝">
+<meta name="twitter:description" content="머신러닝이란 무엇인가"><meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content='https://yansigit.github.io/images/lighthouse.jpg' />
+    </head>
+    <body class="
+    article-page has-toc
+">
+    <script>
+        (function() {
+            const colorSchemeKey = 'StackColorScheme';
+            if(!localStorage.getItem(colorSchemeKey)){
+                localStorage.setItem(colorSchemeKey, "auto");
+            }
+        })();
+    </script><script>
+    (function() {
+        const colorSchemeKey = 'StackColorScheme';
+        const colorSchemeItem = localStorage.getItem(colorSchemeKey);
+        const supportDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches === true;
+
+        if (colorSchemeItem == 'dark' || colorSchemeItem === 'auto' && supportDarkMode) {
+            
+
+            document.documentElement.dataset.scheme = 'dark';
+        } else {
+            document.documentElement.dataset.scheme = 'light';
+        }
+    })();
+</script>
+<div class="container main-container flex 
+    
+        extended
+    
+">
+    
+        <div id="article-toolbar">
+            <a href="https://yansigit.github.io" class="back-home">
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-chevron-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <polyline points="15 6 9 12 15 18" />
+</svg>
+
+
+
+                <span>Back</span>
+            </a>
+        </div>
+    
+<main class="main full-width">
+    <article class="main-article">
+    <header class="article-header">
+
+    <div class="article-details">
+    
+    <header class="article-category">
+        
+            <a href="/categories/machine-learning/" >
+                machine-learning
+            </a>
+        
+            <a href="/categories/deep-learning/" >
+                deep-learning
+            </a>
+        
+            <a href="/categories/data-science/" >
+                data-science
+            </a>
+        
+    </header>
+    
+
+    <h2 class="article-title">
+        <a href="/blog/%EB%A8%B8%EC%8B%A0%EB%9F%AC%EB%8B%9D/">머신러닝</a>
+    </h2>
+
+    
+    <h3 class="article-subtitle">
+        머신러닝이란 무엇인가
+    </h3>
+    
+
+    
+    <footer class="article-time">
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-calendar-time" width="56" height="56" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M11.795 21h-6.795a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v4" />
+  <circle cx="18" cy="18" r="4" />
+  <path d="M15 3v4" />
+  <path d="M7 3v4" />
+  <path d="M3 11h16" />
+  <path d="M18 16.496v1.504l1 1" />
+</svg>
+                <time class="article-time--published">Jul 07, 2021</time>
+            </div>
+        
+
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <polyline points="12 7 12 12 15 15" />
+</svg>
+
+
+
+                <time class="article-time--reading">
+                    2 minute read
+                </time>
+            </div>
+        
+    </footer>
+    
+</div>
+</header>
+
+    <section class="article-content">
+    <h1 id="머신-러닝">머신 러닝</h1>
+<h2 id="연역적-학습-vs-귀납적-학습">연역적 학습 VS 귀납적 학습</h2>
+<ul>
+<li>연역적
+<ul>
+<li>모든 포유동물은 심장을 기자고 있다</li>
+<li>모든 말은 포유동물이다</li>
+<li>→ 모든 말은 심장을 가지고 있다</li>
+</ul>
+</li>
+<li>귀납법
+<ul>
+<li>참새는 하늘을 난다</li>
+<li>제비는 하늘을 난다</li>
+<li>모든 새는 하늘을 난다</li>
+</ul>
+</li>
+</ul>
+<h2 id="귀납적-학습">귀납적 학습</h2>
+<ul>
+<li>사례들을 일반화하여 패턴, 모델 추출</li>
+<li>일반적인 기계학습의 대상</li>
+<li>학습 데이터를 잘 설명할 수 있는 패턴을 찾는 것</li>
+</ul>
+<h2 id="전통적인-프로그래밍과-머신러닝">전통적인 프로그래밍과 머신러닝</h2>
+<p><figure 
+	>
+	<a href="/posts/%eb%a8%b8%ec%8b%a0-%eb%9f%ac%eb%8b%9d/Untitled.png" >
+		<img src="/posts/%eb%a8%b8%ec%8b%a0-%eb%9f%ac%eb%8b%9d/Untitled.png"
+			
+			
+			
+			loading="lazy"
+			alt="%E1%84%86%E1%85%A5%E1%84%89%E1%85%B5%E1%86%AB%20%E1%84%85%E1%85%A5%E1%84%82%E1%85%B5%E1%86%BC/Untitled.png">
+	</a>
+	
+	<figcaption>%E1%84%86%E1%85%A5%E1%84%89%E1%85%B5%E1%86%AB%20%E1%84%85%E1%85%A5%E1%84%82%E1%85%B5%E1%86%BC/Untitled.png</figcaption>
+	
+</figure></p>
+<ul>
+<li>전통적인 프로그래밍 → 데이터와 규칙을 주면 답이 나옴</li>
+<li>머신러닝 → 데이터와 답을 주면 규칙이 나옴</li>
+</ul>
+<h2 id="사람의-학습과-기계-학습의-비교">사람의 학습과 기계 학습의 비교</h2>
+<p><figure 
+	>
+	<a href="/posts/%eb%a8%b8%ec%8b%a0-%eb%9f%ac%eb%8b%9d/Untitled%201.png" >
+		<img src="/posts/%eb%a8%b8%ec%8b%a0-%eb%9f%ac%eb%8b%9d/Untitled%201.png"
+			
+			
+			
+			loading="lazy"
+			alt="%E1%84%86%E1%85%A5%E1%84%89%E1%85%B5%E1%86%AB%20%E1%84%85%E1%85%A5%E1%84%82%E1%85%B5%E1%86%BC/Untitled%201.png">
+	</a>
+	
+	<figcaption>%E1%84%86%E1%85%A5%E1%84%89%E1%85%B5%E1%86%AB%20%E1%84%85%E1%85%A5%E1%84%82%E1%85%B5%E1%86%BC/Untitled%201.png</figcaption>
+	
+</figure></p>
+<h2 id="머신러닝-응용-분야">머신러닝 응용 분야</h2>
+<ul>
+<li>복잡한 데이터들이 있고, 이들 데이터에 기반해 결정을 내려야 하는 분야</li>
+<li>문자인식</li>
+<li>자율주행</li>
+<li>광고, 상품 추천</li>
+<li>안면인식 등..</li>
+<li>보안시스템 (해킹방어)</li>
+</ul>
+<h2 id="지도학습-supoervised-learning">지도학습 (Supoervised Learning)</h2>
+<ul>
+<li>입력 - 출력의 데이터들로부터 새로운 입력에 대한 출력을 결정할 수 있는 패턴 추출</li>
+<li>분류 (Classification)</li>
+<li>회귀 (Regression)</li>
+</ul>
+<h2 id="비지도학습-unsupervised-learning-자율학습">비지도학습 (Unsupervised Learning, 자율학습)</h2>
+<ul>
+<li><strong>출력</strong>에 대한 정보가 없는 데이터로부터 필요한 패턴 추출</li>
+<li>군집 (Clustering)</li>
+<li>차원축소 (Dimension Reduction)</li>
+</ul>
+<h2 id="강화학습-reinforcement-learning">강화학습 (Reinforcement Learning)</h2>
+<ul>
+<li>출력에 대한 정확한 정보는 제공하지 않음</li>
+<li>평가정보 (Reward)는 주어지는 문제에 대해 각 상태에서의 행동을 결정</li>
+</ul>
+<h2 id="판별모델-discriminative-model">판별모델 (Discriminative Model)</h2>
+<ul>
+<li>Supervised Learning</li>
+<li>반 고흐가 그렸는지 예측하는 판별 모델</li>
+<li>샘플 X가 주어졌을 때 레이블 Y의 확률을 Estimate</li>
+</ul>
+<p><figure 
+	>
+	<a href="/posts/%eb%a8%b8%ec%8b%a0-%eb%9f%ac%eb%8b%9d/Untitled%202.png" >
+		<img src="/posts/%eb%a8%b8%ec%8b%a0-%eb%9f%ac%eb%8b%9d/Untitled%202.png"
+			
+			
+			
+			loading="lazy"
+			alt="%E1%84%86%E1%85%A5%E1%84%89%E1%85%B5%E1%86%AB%20%E1%84%85%E1%85%A5%E1%84%82%E1%85%B5%E1%86%BC/Untitled%202.png">
+	</a>
+	
+	<figcaption>%E1%84%86%E1%85%A5%E1%84%89%E1%85%B5%E1%86%AB%20%E1%84%85%E1%85%A5%E1%84%82%E1%85%B5%E1%86%BC/Untitled%202.png</figcaption>
+	
+</figure></p>
+<ul>
+<li>P(Y|X)를 직접적으로 도출
+<ul>
+<li>데이터 X가 주어졌을 때 클래스 레이블 Y가 나타날 조건부확률을 직접적으로 도출</li>
+<li>입력값 X의 차원이 높아질수록 계산량이 증가 → 학습이 어려워짐</li>
+<li>대부분 지도학습에 해당
+<ul>
+<li>클래스 레이블 정보 Y가 필요하기 때문</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Dicision Boundary를 학습하는 것이 목표
+<ul>
+<li>분별모델은 데이터 X가 주어졌을 때 Y1에 속할지, Y2에 속할지 구분하는데 관심</li>
+</ul>
+</li>
+</ul>
+<h2 id="생성모델-generative-model">생성모델 (Generative Model)</h2>
+<ul>
+<li>Unsupervised Learning</li>
+<li>새로운 데이터 셋을  생성하는 방법을 기술</li>
+<li>이 모델에서 샘플링하면 새로운 데이터를 생성 가능</li>
+<li>생성 모델은 확률적이여야 한다</li>
+<li>예시) 말 이미지를 생성하는 모델
+<ul>
+<li>말의 외관을 결정하는 일반적인 규칙을 학습해야 한다</li>
+<li>이 규칙은 확률적이여야 함 → 고정된 계산만 수행한다면 매번 동일한 값을 출력하기 때문</li>
+<li>결론적으로 원본 training set에 있을 것 같지만 완전히 새롭고 다른 샘플을 생성해야함</li>
+</ul>
+</li>
+</ul>
+<p><figure 
+	>
+	<a href="/posts/%eb%a8%b8%ec%8b%a0-%eb%9f%ac%eb%8b%9d/Untitled%203.png" >
+		<img src="/posts/%eb%a8%b8%ec%8b%a0-%eb%9f%ac%eb%8b%9d/Untitled%203.png"
+			
+			
+			
+			loading="lazy"
+			alt="%E1%84%86%E1%85%A5%E1%84%89%E1%85%B5%E1%86%AB%20%E1%84%85%E1%85%A5%E1%84%82%E1%85%B5%E1%86%BC/Untitled%203.png">
+	</a>
+	
+	<figcaption>%E1%84%86%E1%85%A5%E1%84%89%E1%85%B5%E1%86%AB%20%E1%84%85%E1%85%A5%E1%84%82%E1%85%B5%E1%86%BC/Untitled%203.png</figcaption>
+	
+</figure></p>
+<ul>
+<li>P(Y|X)를 간접적으로 도출
+<ul>
+<li>데이터 X가 생성되는 과정을 두개의 확률모형으로 모델링</li>
+<li>베이즈 정리를 이용해 P(Y|X)를  간접적으로 도출</li>
+</ul>
+</li>
+<li>P(Y)와 P(X|Y)의 확분포를 학습하는 것이 목표
+<ul>
+<li>범주의 분포를 학습하는 것이 목표</li>
+<li>화가의 화풍을 학습시켜 어떤 그림을 그 화풍으로 변환하는 등..</li>
+</ul>
+</li>
+</ul>
+</section>
+
+
+    <footer class="article-footer">
+    
+    <section class="article-tags">
+        
+            <a href="/tags/machine-learning/">machine-learning</a>
+        
+            <a href="/tags/deep-learning/">deep-learning</a>
+        
+            <a href="/tags/data-processing/">data-processing</a>
+        
+            <a href="/tags/data-science/">data-science</a>
+        
+    </section>
+
+
+    
+    <section class="article-copyright">
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-copyright" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <path d="M14.5 9a3.5 4 0 1 0 0 6" />
+</svg>
+
+
+
+        <span>Licensed under CC BY-NC-SA 4.0</span>
+    </section>
+    </footer>
+
+
+    
+</article>
+
+    <aside class="related-contents--wrapper">
+    
+    
+        <h2 class="section-title">Related contents</h2>
+        <div class="related-contents">
+            <div class="flex article-list--tile">
+                
+                    
+<article class="">
+    <a href="/blog/classification/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">Classification</h2>
+        </div>
+    </a>
+</article>
+                
+                    
+<article class="">
+    <a href="/blog/clustering-%EA%B5%B0%EC%A7%91%ED%99%94/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">Clustering (군집화)</h2>
+        </div>
+    </a>
+</article>
+                
+                    
+<article class="">
+    <a href="/blog/data-processing/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">Data Processing</h2>
+        </div>
+    </a>
+</article>
+                
+                    
+<article class="">
+    <a href="/blog/deep-neural-network/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">Deep Neural Network</h2>
+        </div>
+    </a>
+</article>
+                
+                    
+<article class="">
+    <a href="/blog/dicision-tree/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">Dicision Tree</h2>
+        </div>
+    </a>
+</article>
+                
+            </div>
+        </div>
+    
+</aside>
+
+     
+    
+        
+    <script src="https://utteranc.es/client.js" 
+        repo="yansigit/yansigit.github.io"
+        issue-term="pathname"
+        
+        label="Utterances Comment"
+        
+        crossorigin="anonymous"
+        async
+        >
+</script>
+
+<style>
+    .utterances {
+        max-width: unset;
+    }
+</style>
+
+<script>
+    function setUtterancesTheme(theme) {
+        let utterances = document.querySelector('.utterances iframe');
+        if (utterances) {
+            utterances.contentWindow.postMessage(
+                {
+                    type: 'set-theme',
+                    theme: `github-${theme}`
+                },
+                'https://utteranc.es'
+            );
+        }
+    }
+
+    addEventListener('message', event => {
+        if (event.origin !== 'https://utteranc.es') return;
+        setUtterancesTheme(document.documentElement.dataset.scheme)
+    });
+
+    window.addEventListener('onColorSchemeChange', (e) => {
+        setUtterancesTheme(e.detail)
+    })
+</script>
+
+
+    
+
+    <footer class="site-footer">
+    <section class="copyright">
+        &copy; 
+        
+            2020 - 
+        
+        2021 Code like Feather
+    </section>
+    
+    <section class="powerby">
+        Built with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> <br />
+        Theme <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="3.2.0">Stack</a></b> designed by <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a>
+    </section>
+</footer>
+
+
+    
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    
+    <div class="pswp__bg"></div>
+
+    
+    <div class="pswp__scroll-wrap">
+
+        
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                
+                
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"integrity="sha256-ePwmChbbvXbsO02lbM3HoHbSHTHFAeChekF1xKJdleo="crossorigin="anonymous"
+                defer="true"
+                >
+            </script><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"integrity="sha256-UKkzOn/w1mBxRmLLGrSeyB4e1xbrp4xylgAWb3M42pU="crossorigin="anonymous"
+                defer="true"
+                >
+            </script><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.css"integrity="sha256-c0uckgykQ9v5k&#43;IqViZOZKc47Jn7KQil4/MP3ySA3F8="crossorigin="anonymous"
+            ><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.css"integrity="sha256-SBLU4vv6CA6lHsZ1XyTdhyjJxCjPif/TRkjnsyGAGnE="crossorigin="anonymous"
+            >
+
+            </main>
+    
+        <aside class="sidebar right-sidebar sticky">
+            <section class="widget archives">
+                <div class="widget-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-hash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <line x1="5" y1="9" x2="19" y2="9" />
+  <line x1="5" y1="15" x2="19" y2="15" />
+  <line x1="11" y1="4" x2="7" y2="20" />
+  <line x1="17" y1="4" x2="13" y2="20" />
+</svg>
+
+
+
+                </div>
+                <h2 class="widget-title section-title">Table of contents</h2>
+                
+                <div class="widget--toc">
+                    <nav id="TableOfContents">
+  <ol>
+    <li><a href="#연역적-학습-vs-귀납적-학습">연역적 학습 VS 귀납적 학습</a></li>
+    <li><a href="#귀납적-학습">귀납적 학습</a></li>
+    <li><a href="#전통적인-프로그래밍과-머신러닝">전통적인 프로그래밍과 머신러닝</a></li>
+    <li><a href="#사람의-학습과-기계-학습의-비교">사람의 학습과 기계 학습의 비교</a></li>
+    <li><a href="#머신러닝-응용-분야">머신러닝 응용 분야</a></li>
+    <li><a href="#지도학습-supoervised-learning">지도학습 (Supoervised Learning)</a></li>
+    <li><a href="#비지도학습-unsupervised-learning-자율학습">비지도학습 (Unsupervised Learning, 자율학습)</a></li>
+    <li><a href="#강화학습-reinforcement-learning">강화학습 (Reinforcement Learning)</a></li>
+    <li><a href="#판별모델-discriminative-model">판별모델 (Discriminative Model)</a></li>
+    <li><a href="#생성모델-generative-model">생성모델 (Generative Model)</a></li>
+  </ol>
+</nav>
+                </div>
+            </section>
+        </aside>
+    
+
+        </div>
+        <script 
+                src="https://cdn.jsdelivr.net/npm/node-vibrant@3.1.5/dist/vibrant.min.js"integrity="sha256-5NovOZc4iwiAWTYIFiIM7DxKUXKWvpVEuMEPLzcm5/g="crossorigin="anonymous"
+                defer="false"
+                >
+            </script><script type="text/javascript" src="/ts/main.js" defer></script>
+<script>
+    (function () {
+        const customFont = document.createElement('link');
+        customFont.href = "https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap";
+
+        customFont.type = "text/css";
+        customFont.rel = "stylesheet";
+
+        document.head.appendChild(customFont);
+    }());
+</script>
+
+    </body>
+</html>

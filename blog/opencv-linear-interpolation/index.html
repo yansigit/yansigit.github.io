@@ -1,0 +1,645 @@
+<!DOCTYPE html>
+<html lang="ko-kr">
+    <head><meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content='openCV 보간'><title>OpenCV Linear Interpolation</title>
+
+<link rel='canonical' href='https://yansigit.github.io/blog/opencv-linear-interpolation/'>
+
+<link rel="stylesheet" href="/scss/style.min.css"><meta property='og:title' content='OpenCV Linear Interpolation'>
+<meta property='og:description' content='openCV 보간'>
+<meta property='og:url' content='https://yansigit.github.io/blog/opencv-linear-interpolation/'>
+<meta property='og:site_name' content='Code like Feather'>
+<meta property='og:type' content='article'><meta property='article:section' content='Posts' /><meta property='article:tag' content='opencv' /><meta property='article:tag' content='python' /><meta property='article:published_time' content='2020-09-16T00:06:46&#43;09:00'/><meta property='article:modified_time' content='2020-09-16T00:06:46&#43;09:00'/><meta property='og:image' content='https://yansigit.github.io/images/lighthouse.jpg' />
+<meta name="twitter:title" content="OpenCV Linear Interpolation">
+<meta name="twitter:description" content="openCV 보간"><meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content='https://yansigit.github.io/images/lighthouse.jpg' />
+    </head>
+    <body class="
+    article-page has-toc
+">
+    <script>
+        (function() {
+            const colorSchemeKey = 'StackColorScheme';
+            if(!localStorage.getItem(colorSchemeKey)){
+                localStorage.setItem(colorSchemeKey, "auto");
+            }
+        })();
+    </script><script>
+    (function() {
+        const colorSchemeKey = 'StackColorScheme';
+        const colorSchemeItem = localStorage.getItem(colorSchemeKey);
+        const supportDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches === true;
+
+        if (colorSchemeItem == 'dark' || colorSchemeItem === 'auto' && supportDarkMode) {
+            
+
+            document.documentElement.dataset.scheme = 'dark';
+        } else {
+            document.documentElement.dataset.scheme = 'light';
+        }
+    })();
+</script>
+<div class="container main-container flex 
+    
+        extended
+    
+">
+    
+        <div id="article-toolbar">
+            <a href="https://yansigit.github.io" class="back-home">
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-chevron-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <polyline points="15 6 9 12 15 18" />
+</svg>
+
+
+
+                <span>Back</span>
+            </a>
+        </div>
+    
+<main class="main full-width">
+    <article class="main-article">
+    <header class="article-header">
+
+    <div class="article-details">
+    
+    <header class="article-category">
+        
+            <a href="/categories/opencv/" >
+                opencv
+            </a>
+        
+    </header>
+    
+
+    <h2 class="article-title">
+        <a href="/blog/opencv-linear-interpolation/">OpenCV Linear Interpolation</a>
+    </h2>
+
+    
+    <h3 class="article-subtitle">
+        openCV 보간
+    </h3>
+    
+
+    
+    <footer class="article-time">
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-calendar-time" width="56" height="56" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M11.795 21h-6.795a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v4" />
+  <circle cx="18" cy="18" r="4" />
+  <path d="M15 3v4" />
+  <path d="M7 3v4" />
+  <path d="M3 11h16" />
+  <path d="M18 16.496v1.504l1 1" />
+</svg>
+                <time class="article-time--published">Sep 16, 2020</time>
+            </div>
+        
+
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <polyline points="12 7 12 12 15 15" />
+</svg>
+
+
+
+                <time class="article-time--reading">
+                    2 minute read
+                </time>
+            </div>
+        
+    </footer>
+    
+</div>
+</header>
+
+    <section class="article-content">
+    <h2 id="정수배의-확대">정수배의 확대</h2>
+<p><figure 
+	>
+	<a href="/files/%eb%b3%b4%ea%b0%841.png" >
+		<img src="/files/%eb%b3%b4%ea%b0%841.png"
+			
+			
+			
+			loading="lazy"
+			alt="/files/보간1.png">
+	</a>
+	
+	<figcaption>/files/보간1.png</figcaption>
+	
+</figure></p>
+<ul>
+<li>가장 간단한 방법</li>
+<li>정해진 배율만큼 화소를 반복적으로 복사</li>
+<li>화질이 좋지 않음</li>
+</ul>
+<h2 id="정수배의-역수만큼-축소">정수배의 역수만큼 축소</h2>
+<p><figure 
+	>
+	<a href="/files/%eb%b3%b4%ea%b0%842.png" >
+		<img src="/files/%eb%b3%b4%ea%b0%842.png"
+			
+			
+			
+			loading="lazy"
+			alt="/files/보간2.png">
+	</a>
+	
+	<figcaption>/files/보간2.png</figcaption>
+	
+</figure></p>
+<ul>
+<li>정해진 배율만큼 건너뛰면서 화소 선택</li>
+<li>예를 들어 2분의 1로 축소하는 경우 모든 짝수번째 행과 짝수번째 열의 모든 픽셀을 출력 영상에 복사</li>
+<li>영상의 세밀한 정보 (특히 문서의 경우)가 소실될 수 있다</li>
+</ul>
+<h2 id="사상-mapping">사상 (Mapping)</h2>
+<blockquote>
+<p>주어진 조건에 따라 한 좌표가 다른 좌표로 대응</p>
+</blockquote>
+<h3 id="전방향-매핑-forward-mapping"><strong>전방향 매핑 (Forward Mapping)</strong></h3>
+<ul>
+<li>입력 영상의 좌표값을 출력 영상의 좌표값으로 변환</li>
+<li>홀과 오버랩 문제가 발생 가능</li>
+</ul>
+<p><figure 
+	>
+	<a href="/files/%eb%b3%b4%ea%b0%843.png" >
+		<img src="/files/%eb%b3%b4%ea%b0%843.png"
+			
+			
+			
+			loading="lazy"
+			alt="/files/보간3.png">
+	</a>
+	
+	<figcaption>/files/보간3.png</figcaption>
+	
+</figure></p>
+<pre><code>- **홀** : 출력영상으로 매핑되는 입력화소가 없는 경우
+- **오버랩** : 두 입력화소가 같은 출력화소에 매핑되는 경우
+- 위의 그림의 경우 아래 두 화소는 정상적으로 하나씩 매핑이 되었으나
+출력영상의 첫째 픽셀에 두개의 화소가 매핑되어 오버랩이 발생하고
+두번째 픽셀에는 아무 픽셀도 매핑되지 않아 홀이 발생한 모습
+</code></pre>
+<h3 id="전방향-매핑의-문제점">전방향 매핑의 문제점</h3>
+<ul>
+<li>크기가 5인 1차원 배열 소스를 1.4배 확대한다고 가정한다면..
+<ul>
+<li><code>destination (pixel) index = source index * 1.4</code> 인데&hellip;
+<ul>
+<li>인덱스값은 정수가 되어야 하므로 반올림해줘야 한다.</li>
+<li>즉 소스가 0, 1, 2, 3, 4 일 경우 destination은 0, 1, 3, 4, 6이 되는데 이러면 2, 5가 빠져버리는 <strong>홀</strong>이 발생하게 된다.</li>
+<li>그래서 <code>source index = destination index / 1.4</code> 이렇게 역으로 취해줘서 <strong>(역방향 매핑)</strong> 각 destination 픽셀에 맞는 정수 인덱스에 대응하는 소스 픽셀값을 가져오면 된다.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>크기가 7인 1차원 배열 소스를 1.4배 축소한다고 하면&hellip;
+<ul>
+<li><code>destination index = source index / 1.4</code>
+<ul>
+<li><code>소스={0,1,2,3,4}</code> 일 경우 <code>{0,1,1,2,3}</code> 으로 중복으로 매핑되어버리는 <strong>오버랩</strong>이 발생.</li>
+<li>해결책은 역시 <code>source index = destination index * 1.4</code> 로 역방향 매핑해주어 destination index를 하나하나 차근차근 대입하여 소스 픽셀값을 가져오는 것</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="역방향-매핑-reverse-mapping---확대">역방향 매핑 (Reverse Mapping) - 확대</h3>
+<ul>
+<li>출력 영상의 좌표값을 입력 영상의 좌표값으로 변환</li>
+</ul>
+<p><figure 
+	>
+	<a href="/files/%eb%b3%b4%ea%b0%844.png" >
+		<img src="/files/%eb%b3%b4%ea%b0%844.png"
+			
+			
+			
+			loading="lazy"
+			alt="/files/보간4.png">
+	</a>
+	
+	<figcaption>/files/보간4.png</figcaption>
+	
+</figure></p>
+<ul>
+<li>출력영상의 픽셀 좌표들을 줄이면 그게 매핑되야할 입력 영상의 좌표들이다.</li>
+</ul>
+<h3 id="역방향-매핑-reverse-mapping---축소">역방향 매핑 (Reverse Mapping) - 축소</h3>
+<p><figure 
+	>
+	<a href="/files/%eb%b3%b4%ea%b0%845.png" >
+		<img src="/files/%eb%b3%b4%ea%b0%845.png"
+			
+			
+			
+			loading="lazy"
+			alt="/files/보간5.png">
+	</a>
+	
+	<figcaption>/files/보간5.png</figcaption>
+	
+</figure></p>
+<ul>
+<li>역시 출력영상을 늘리면 그게 매핑되어야 할 입력 영상의 좌표들이 된다.</li>
+</ul>
+<h2 id="보간법">보간법</h2>
+<ul>
+<li>영상의 크기가 너무 작아서 확대해야 하거나 크기가 너무 커서 적당한 크기로 축소해야 하는 경우 등에서 영상을 보간해야 할 필요가 있을 수 있다</li>
+<li>영상의 화질이 좋기 위해서는 처리량(수행시간)이 늘어나야 함</li>
+</ul>
+<h3 id="최근접-이웃-보간법">최근접 이웃 보간법</h3>
+<p><figure 
+	>
+	<a href="/files/%eb%b3%b4%ea%b0%846.png" >
+		<img src="/files/%eb%b3%b4%ea%b0%846.png"
+			
+			
+			
+			loading="lazy"
+			alt="/files/보간6.png">
+	</a>
+	
+	<figcaption>/files/보간6.png</figcaption>
+	
+</figure></p>
+<ul>
+<li>생성된 주소에 가장 가까운 화소를 출력 화소로 결정
+<ul>
+<li>위의 예에서는 (실수값으로 온) T가 A에 제일 가까우므로 A로 결정</li>
+</ul>
+</li>
+<li>처리속도가 빠름</li>
+<li>화질이 좋지못함</li>
+</ul>
+<h3 id="양선형-보간법">양선형 보간법</h3>
+<p><figure 
+	>
+	<a href="/files/%eb%b3%b4%ea%b0%847.png" >
+		<img src="/files/%eb%b3%b4%ea%b0%847.png"
+			
+			
+			
+			loading="lazy"
+			alt="/files/보간7.png">
+	</a>
+	
+	<figcaption>/files/보간7.png</figcaption>
+	
+</figure></p>
+<p><figure 
+	>
+	<a href="/files/%eb%b3%b4%ea%b0%848.png" >
+		<img src="/files/%eb%b3%b4%ea%b0%848.png"
+			
+			
+			
+			loading="lazy"
+			alt="/files/보간8.png">
+	</a>
+	
+	<figcaption>/files/보간8.png</figcaption>
+	
+</figure></p>
+<p><figure 
+	>
+	<a href="/files/%eb%b3%b4%ea%b0%849.png" >
+		<img src="/files/%eb%b3%b4%ea%b0%849.png"
+			
+			
+			
+			loading="lazy"
+			alt="/files/보간9.png">
+	</a>
+	
+	<figcaption>/files/보간9.png</figcaption>
+	
+</figure></p>
+<ul>
+<li>생성된 주소에 가장 가까운 네 화소들의 가중 합으로 출력 화소 결정</li>
+<li><strong>각 가중치는 각 화소로부터의 거리에 반비례</strong>
+<ul>
+<li>형광칠한 부분이 그거 의미. 위 그림 보면서 이해하면 매우 쉬움.</li>
+</ul>
+</li>
+<li>최근접 이웃 보간법보다 화질 좋으나, 더 많은 계산 소요</li>
+</ul>
+</section>
+
+
+    <footer class="article-footer">
+    
+    <section class="article-tags">
+        
+            <a href="/tags/opencv/">opencv</a>
+        
+            <a href="/tags/python/">python</a>
+        
+    </section>
+
+
+    
+    <section class="article-copyright">
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-copyright" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <path d="M14.5 9a3.5 4 0 1 0 0 6" />
+</svg>
+
+
+
+        <span>Licensed under CC BY-NC-SA 4.0</span>
+    </section>
+    </footer>
+
+
+    
+</article>
+
+    <aside class="related-contents--wrapper">
+    
+    
+        <h2 class="section-title">Related contents</h2>
+        <div class="related-contents">
+            <div class="flex article-list--tile">
+                
+                    
+<article class="">
+    <a href="/blog/opencv-spatial-domain/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">OpenCV Spatial Domain</h2>
+        </div>
+    </a>
+</article>
+                
+                    
+<article class="">
+    <a href="/blog/opencv-geometric-transform/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">OpenCV Geometric Transform</h2>
+        </div>
+    </a>
+</article>
+                
+                    
+<article class="">
+    <a href="/blog/opencv-histogram/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">OpenCV Histogram</h2>
+        </div>
+    </a>
+</article>
+                
+                    
+<article class="">
+    <a href="/blog/dealing-with-camera-on-opencv/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">Dealing With Camera on OpenCV</h2>
+        </div>
+    </a>
+</article>
+                
+                    
+<article class="">
+    <a href="/blog/opencv-%EB%B9%84%ED%8A%B8%EC%97%B0%EC%82%B0/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">OpenCV 비트연산</h2>
+        </div>
+    </a>
+</article>
+                
+            </div>
+        </div>
+    
+</aside>
+
+     
+    
+        
+    <script src="https://utteranc.es/client.js" 
+        repo="yansigit/yansigit.github.io"
+        issue-term="pathname"
+        
+        label="Utterances Comment"
+        
+        crossorigin="anonymous"
+        async
+        >
+</script>
+
+<style>
+    .utterances {
+        max-width: unset;
+    }
+</style>
+
+<script>
+    function setUtterancesTheme(theme) {
+        let utterances = document.querySelector('.utterances iframe');
+        if (utterances) {
+            utterances.contentWindow.postMessage(
+                {
+                    type: 'set-theme',
+                    theme: `github-${theme}`
+                },
+                'https://utteranc.es'
+            );
+        }
+    }
+
+    addEventListener('message', event => {
+        if (event.origin !== 'https://utteranc.es') return;
+        setUtterancesTheme(document.documentElement.dataset.scheme)
+    });
+
+    window.addEventListener('onColorSchemeChange', (e) => {
+        setUtterancesTheme(e.detail)
+    })
+</script>
+
+
+    
+
+    <footer class="site-footer">
+    <section class="copyright">
+        &copy; 
+        
+            2020 - 
+        
+        2021 Code like Feather
+    </section>
+    
+    <section class="powerby">
+        Built with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> <br />
+        Theme <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="3.2.0">Stack</a></b> designed by <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a>
+    </section>
+</footer>
+
+
+    
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    
+    <div class="pswp__bg"></div>
+
+    
+    <div class="pswp__scroll-wrap">
+
+        
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                
+                
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"integrity="sha256-ePwmChbbvXbsO02lbM3HoHbSHTHFAeChekF1xKJdleo="crossorigin="anonymous"
+                defer="true"
+                >
+            </script><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"integrity="sha256-UKkzOn/w1mBxRmLLGrSeyB4e1xbrp4xylgAWb3M42pU="crossorigin="anonymous"
+                defer="true"
+                >
+            </script><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.css"integrity="sha256-c0uckgykQ9v5k&#43;IqViZOZKc47Jn7KQil4/MP3ySA3F8="crossorigin="anonymous"
+            ><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.css"integrity="sha256-SBLU4vv6CA6lHsZ1XyTdhyjJxCjPif/TRkjnsyGAGnE="crossorigin="anonymous"
+            >
+
+            </main>
+    
+        <aside class="sidebar right-sidebar sticky">
+            <section class="widget archives">
+                <div class="widget-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-hash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <line x1="5" y1="9" x2="19" y2="9" />
+  <line x1="5" y1="15" x2="19" y2="15" />
+  <line x1="11" y1="4" x2="7" y2="20" />
+  <line x1="17" y1="4" x2="13" y2="20" />
+</svg>
+
+
+
+                </div>
+                <h2 class="widget-title section-title">Table of contents</h2>
+                
+                <div class="widget--toc">
+                    <nav id="TableOfContents">
+  <ol>
+    <li><a href="#정수배의-확대">정수배의 확대</a></li>
+    <li><a href="#정수배의-역수만큼-축소">정수배의 역수만큼 축소</a></li>
+    <li><a href="#사상-mapping">사상 (Mapping)</a>
+      <ol>
+        <li><a href="#전방향-매핑-forward-mapping"><strong>전방향 매핑 (Forward Mapping)</strong></a></li>
+        <li><a href="#전방향-매핑의-문제점">전방향 매핑의 문제점</a></li>
+        <li><a href="#역방향-매핑-reverse-mapping---확대">역방향 매핑 (Reverse Mapping) - 확대</a></li>
+        <li><a href="#역방향-매핑-reverse-mapping---축소">역방향 매핑 (Reverse Mapping) - 축소</a></li>
+      </ol>
+    </li>
+    <li><a href="#보간법">보간법</a>
+      <ol>
+        <li><a href="#최근접-이웃-보간법">최근접 이웃 보간법</a></li>
+        <li><a href="#양선형-보간법">양선형 보간법</a></li>
+      </ol>
+    </li>
+  </ol>
+</nav>
+                </div>
+            </section>
+        </aside>
+    
+
+        </div>
+        <script 
+                src="https://cdn.jsdelivr.net/npm/node-vibrant@3.1.5/dist/vibrant.min.js"integrity="sha256-5NovOZc4iwiAWTYIFiIM7DxKUXKWvpVEuMEPLzcm5/g="crossorigin="anonymous"
+                defer="false"
+                >
+            </script><script type="text/javascript" src="/ts/main.js" defer></script>
+<script>
+    (function () {
+        const customFont = document.createElement('link');
+        customFont.href = "https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap";
+
+        customFont.type = "text/css";
+        customFont.rel = "stylesheet";
+
+        document.head.appendChild(customFont);
+    }());
+</script>
+
+    </body>
+</html>

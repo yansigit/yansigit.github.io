@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>go on Code like Feather</title>
+    <link>https://yansigit.github.io/categories/go/</link>
+    <description>Recent content in go on Code like Feather</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>ko-kr</language>
+    <lastBuildDate>Mon, 10 Feb 2020 14:27:41 +0900</lastBuildDate><atom:link href="https://yansigit.github.io/categories/go/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Golang Cheet Sheets for Algo Test</title>
+      <link>https://yansigit.github.io/blog/golang-cheet-sheets-for-algo-test/</link>
+      <pubDate>Mon, 10 Feb 2020 14:27:41 +0900</pubDate>
+      
+      <guid>https://yansigit.github.io/blog/golang-cheet-sheets-for-algo-test/</guid>
+      <description>&lt;h1 id=&#34;scan&#34;&gt;Scan&lt;/h1&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-go&#34; data-lang=&#34;go&#34;&gt;&lt;span class=&#34;kd&#34;&gt;var&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;test&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;5&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;]&lt;/span&gt;&lt;span class=&#34;kt&#34;&gt;int&lt;/span&gt;
+&lt;span class=&#34;k&#34;&gt;for&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;i&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;:=&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;0&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;i&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;5&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;i&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;++&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
+   &lt;span class=&#34;nx&#34;&gt;fmt&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nf&#34;&gt;Scan&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;&amp;amp;&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;test&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;i&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;])&lt;/span&gt;
+&lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
+&lt;span class=&#34;nx&#34;&gt;fmt&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nf&#34;&gt;Print&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;test&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
+&lt;span class=&#34;c1&#34;&gt;// 입력 1 4 5 2 3
+&lt;/span&gt;&lt;span class=&#34;c1&#34;&gt;// 출력 [1,4,5,2,3]
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;</description>
+    </item>
+    
+    <item>
+      <title>Understanding Nil and Null in Golang</title>
+      <link>https://yansigit.github.io/blog/understanding-nil-and-null-in-golang/</link>
+      <pubDate>Sat, 08 Feb 2020 21:08:49 +0900</pubDate>
+      
+      <guid>https://yansigit.github.io/blog/understanding-nil-and-null-in-golang/</guid>
+      <description>&lt;p&gt;고 언어에서 nil 과 null&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Time Format in Golang</title>
+      <link>https://yansigit.github.io/blog/time-format-in-golang/</link>
+      <pubDate>Thu, 06 Feb 2020 23:30:05 +0900</pubDate>
+      
+      <guid>https://yansigit.github.io/blog/time-format-in-golang/</guid>
+      <description>&lt;h1 id=&#34;time-format-in-go-language&#34;&gt;Time format in Go Language&lt;/h1&gt;
+&lt;p&gt;보통 프로그래밍 언어에서 시간과 날짜를 다룰 때 레이아웃은 &lt;code&gt;YYYY-MM-DD HH:MM:SS&lt;/code&gt;와 같이 영문자를 이용한 방식이다.&lt;/p&gt;
+&lt;p&gt;고 언어에서는 타 언어와 다르게 숫자로 포맷을 지정해줘야 한다.&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Hot Reloading on Golang Project</title>
+      <link>https://yansigit.github.io/blog/hot-reloading-on-golang-project/</link>
+      <pubDate>Mon, 27 Jan 2020 19:47:58 +0900</pubDate>
+      
+      <guid>https://yansigit.github.io/blog/hot-reloading-on-golang-project/</guid>
+      <description>&lt;h1 id=&#34;hot-reloading&#34;&gt;Hot Reloading&lt;/h1&gt;
+&lt;p&gt;웹 어플리케이션을 개발할 때 항상 유용하게 사용하는 기능이 Hot-Reloading 기능이다.&lt;/p&gt;
+&lt;p&gt;템플릿이나 기능을 약간 바꾸고 확인하고 싶을 때,
+코드를 변경하고 일일히 빌드를 새로 해주기란 여간 귀찮은 일이 아니기 때문이다.&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Comparing Float in Golang</title>
+      <link>https://yansigit.github.io/blog/comparing-float-in-golang/</link>
+      <pubDate>Fri, 24 Jan 2020 02:22:48 +0900</pubDate>
+      
+      <guid>https://yansigit.github.io/blog/comparing-float-in-golang/</guid>
+      <description>&lt;p&gt;Go 언어에서 Float 변수 비교하기&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Go Cross Compile</title>
+      <link>https://yansigit.github.io/blog/go-cross-compile/</link>
+      <pubDate>Wed, 22 Jan 2020 21:16:37 +0900</pubDate>
+      
+      <guid>https://yansigit.github.io/blog/go-cross-compile/</guid>
+      <description>&lt;h1 id=&#34;how&#34;&gt;HOW&lt;/h1&gt;
+&lt;p&gt;고 언어의 장점 중 하나는 크로스-컴파일 및 멀티플랫폼 지원이 쉽다는 것이다.&lt;/p&gt;
+&lt;p&gt;간단한 환경 변수 설정을 통해 얼마든지 다양한 플랫폼으로의 빌드가 가능하다.&lt;/p&gt;
+&lt;p&gt;명령어로도 빌드가 얼마든지 가능하지만 좀 더 쉬운 접근을 위해 &lt;code&gt;makefile&lt;/code&gt; 또한 이용 가능하다.&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>About Go Module</title>
+      <link>https://yansigit.github.io/blog/about-go-module/</link>
+      <pubDate>Tue, 21 Jan 2020 01:50:58 +0900</pubDate>
+      
+      <guid>https://yansigit.github.io/blog/about-go-module/</guid>
+      <description>&lt;p&gt;고 모듈이 등장하기 전까지, 개발자들은 GOPATH 등의 환경변수를 이용해
+프로젝트 및 패키지 종속성을 관리해야 했다.&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

@@ -1,0 +1,607 @@
+<!DOCTYPE html>
+<html lang="ko-kr">
+    <head><meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content='컴퓨터 네트워크 - Flow Control and Handshake'><title>Computer Networking - Flow Control and Handshake</title>
+
+<link rel='canonical' href='https://yansigit.github.io/blog/computer-networking-flow-control-and-handshake/'>
+
+<link rel="stylesheet" href="/scss/style.min.css"><meta property='og:title' content='Computer Networking - Flow Control and Handshake'>
+<meta property='og:description' content='컴퓨터 네트워크 - Flow Control and Handshake'>
+<meta property='og:url' content='https://yansigit.github.io/blog/computer-networking-flow-control-and-handshake/'>
+<meta property='og:site_name' content='Code like Feather'>
+<meta property='og:type' content='article'><meta property='article:section' content='Posts' /><meta property='article:tag' content='computer-networking' /><meta property='article:tag' content='network' /><meta property='article:tag' content='networking' /><meta property='article:tag' content='flow-control' /><meta property='article:tag' content='handshaking' /><meta property='article:tag' content='handshake' /><meta property='article:tag' content='tcp' /><meta property='article:published_time' content='2020-09-17T00:11:07&#43;09:00'/><meta property='article:modified_time' content='2020-09-17T00:11:07&#43;09:00'/><meta property='og:image' content='https://yansigit.github.io/images/lighthouse.jpg' />
+<meta name="twitter:title" content="Computer Networking - Flow Control and Handshake">
+<meta name="twitter:description" content="컴퓨터 네트워크 - Flow Control and Handshake"><meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content='https://yansigit.github.io/images/lighthouse.jpg' />
+    </head>
+    <body class="
+    article-page has-toc
+">
+    <script>
+        (function() {
+            const colorSchemeKey = 'StackColorScheme';
+            if(!localStorage.getItem(colorSchemeKey)){
+                localStorage.setItem(colorSchemeKey, "auto");
+            }
+        })();
+    </script><script>
+    (function() {
+        const colorSchemeKey = 'StackColorScheme';
+        const colorSchemeItem = localStorage.getItem(colorSchemeKey);
+        const supportDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches === true;
+
+        if (colorSchemeItem == 'dark' || colorSchemeItem === 'auto' && supportDarkMode) {
+            
+
+            document.documentElement.dataset.scheme = 'dark';
+        } else {
+            document.documentElement.dataset.scheme = 'light';
+        }
+    })();
+</script>
+<div class="container main-container flex 
+    
+        extended
+    
+">
+    
+        <div id="article-toolbar">
+            <a href="https://yansigit.github.io" class="back-home">
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-chevron-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <polyline points="15 6 9 12 15 18" />
+</svg>
+
+
+
+                <span>Back</span>
+            </a>
+        </div>
+    
+<main class="main full-width">
+    <article class="main-article">
+    <header class="article-header">
+
+    <div class="article-details">
+    
+    <header class="article-category">
+        
+            <a href="/categories/computer-networking/" >
+                computer-networking
+            </a>
+        
+    </header>
+    
+
+    <h2 class="article-title">
+        <a href="/blog/computer-networking-flow-control-and-handshake/">Computer Networking - Flow Control and Handshake</a>
+    </h2>
+
+    
+    <h3 class="article-subtitle">
+        컴퓨터 네트워크 - Flow Control and Handshake
+    </h3>
+    
+
+    
+    <footer class="article-time">
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-calendar-time" width="56" height="56" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M11.795 21h-6.795a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v4" />
+  <circle cx="18" cy="18" r="4" />
+  <path d="M15 3v4" />
+  <path d="M7 3v4" />
+  <path d="M3 11h16" />
+  <path d="M18 16.496v1.504l1 1" />
+</svg>
+                <time class="article-time--published">Sep 17, 2020</time>
+            </div>
+        
+
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <polyline points="12 7 12 12 15 15" />
+</svg>
+
+
+
+                <time class="article-time--reading">
+                    2 minute read
+                </time>
+            </div>
+        
+    </footer>
+    
+</div>
+</header>
+
+    <section class="article-content">
+    <p>Computer Networking - Flow Control and Handshake</p>
+<h1 id="computer-netowork-tcp-flow-control-and-handshake">Computer-Netowork-TCP-Flow-Control-and-Handshake</h1>
+<h1 id="1-tcp-flow-control">1. TCP Flow Control</h1>
+<ul>
+<li>Reciver 측에서 버퍼에다가 데이터를 저장하는데 Sender가 너무 빠르게 보내면 데이터가 유실될 수 있음 (Overflow)</li>
+<li>그러므로 Receiver 측에서 Sender를 컨트롤하여 너무 빠른 속도로 데이터를 보내지 않도록 조절</li>
+</ul>
+<h2 id="절차">절차</h2>
+<p><figure 
+	>
+	<a href="/posts/computer-network-tcp-flow-control-and-handshake/Untitled.png" >
+		<img src="/posts/computer-network-tcp-flow-control-and-handshake/Untitled.png"
+			
+			
+			
+			loading="lazy"
+			alt="image">
+	</a>
+	
+	<figcaption>image</figcaption>
+	
+</figure></p>
+<ul>
+<li>Receiver는 가용한 버퍼의 크기를 TCP header의 <code>rwnd</code> 값을 통해 Sender에게 알려줌 (광고)
+<ul>
+<li>RcvBuffer의 크기는 기본적으로 4096 Bytes 이지만 OS에서 보통 자동으로 할당해줌</li>
+</ul>
+</li>
+<li>Sender는 <code>Unacked 패킷</code>의 양을 <code>rwnd</code> 값을 넘지 않도록 조절해 오버플로우 방지</li>
+</ul>
+<h1 id="2-connection-management">2. Connection Management</h1>
+<p><figure 
+	>
+	<a href="/posts/computer-network-tcp-flow-control-and-handshake/Untitled%201.png" >
+		<img src="/posts/computer-network-tcp-flow-control-and-handshake/Untitled%201.png"
+			
+			
+			
+			loading="lazy"
+			alt="image">
+	</a>
+	
+	<figcaption>image</figcaption>
+	
+</figure></p>
+<ul>
+<li>TCP는 Sender/Receiver가 Handshake하는 절차를 거침</li>
+<li>도중에 서로 Connection Parameters (Variables)에 대해 동의함
+<ul>
+<li>양쪽의 시퀀스 넘버와 버퍼값을 서로 알려주고 동의</li>
+</ul>
+</li>
+</ul>
+<h2 id="2-way-handshake">2-way handshake</h2>
+<p><figure 
+	>
+	<a href="/posts/computer-network-tcp-flow-control-and-handshake/Untitled%202.png" >
+		<img src="/posts/computer-network-tcp-flow-control-and-handshake/Untitled%202.png"
+			
+			
+			
+			loading="lazy"
+			alt="image">
+	</a>
+	
+	<figcaption>image</figcaption>
+	
+</figure></p>
+<h2 id="2-way-handshake-문제점">2-way handshake 문제점</h2>
+<ul>
+<li>딜레이가 가변적</li>
+<li>패킷 로스 등 재전송이 필요한 경우가 있을 수 있음</li>
+<li>지금은 Handshake 중이기 때문에 Order가 보장되지 않음</li>
+<li>Can&rsquo;t &ldquo;See&rdquo; other side each other yet</li>
+</ul>
+<p><figure 
+	>
+	<a href="/posts/computer-network-tcp-flow-control-and-handshake/Untitled%203.png" >
+		<img src="/posts/computer-network-tcp-flow-control-and-handshake/Untitled%203.png"
+			
+			
+			
+			loading="lazy"
+			alt="image">
+	</a>
+	
+	<figcaption>image</figcaption>
+	
+</figure></p>
+<ul>
+<li>왼쪽의 경우
+<ul>
+<li>Delay 때문에 클라이언트가 다시 req_conn(x)를 보냈다</li>
+<li>그러나 재전송된 패킷이 서버에 도달하기 전에 TCP 연결이 맺어져버렸고</li>
+<li>데이터 송수신도 끝나 TCP 연결은 종료되었다</li>
+<li>이 재전송된 패킷은 그 이후에 서버에 도착했다</li>
+<li>서버는 이를 받아들여 TCP 연결을 또 열어버린다</li>
+<li>그러나 이는 클라이언트가 없는 반쪽짜리 연결이다 (쓸모없는)</li>
+</ul>
+</li>
+<li>오른쪽의 경우
+<ul>
+<li>TCP 전송이 끝난 후 재전송된 req_conn(x) 뿐만 아니라 재전송된 데이터까지 다 받아버렸다</li>
+<li>결국 서버 혼자 새 TCP 연결을 열고 데이터까지 받아버린 꼴이다</li>
+</ul>
+</li>
+</ul>
+<h2 id="tcp-3-way-handshake">TCP 3-way handshake</h2>
+<p><figure 
+	>
+	<a href="/posts/computer-network-tcp-flow-control-and-handshake/Untitled%204.png" >
+		<img src="/posts/computer-network-tcp-flow-control-and-handshake/Untitled%204.png"
+			
+			
+			
+			loading="lazy"
+			alt="image">
+	</a>
+	
+	<figcaption>image</figcaption>
+	
+</figure></p>
+<ul>
+<li>예를 들어 클라이언트는 <code>ACK(y)</code>를 보낼 때 HTTP Request를 같이 보낼 수 있다</li>
+</ul>
+<p><figure 
+	>
+	<a href="/posts/computer-network-tcp-flow-control-and-handshake/Untitled%205.png" >
+		<img src="/posts/computer-network-tcp-flow-control-and-handshake/Untitled%205.png"
+			
+			
+			
+			loading="lazy"
+			alt="image">
+	</a>
+	
+	<figcaption>image</figcaption>
+	
+</figure></p>
+<h2 id="tcp-closing-a-connection">TCP: Closing a connection</h2>
+<p><figure 
+	>
+	<a href="/posts/computer-network-tcp-flow-control-and-handshake/Untitled%206.png" >
+		<img src="/posts/computer-network-tcp-flow-control-and-handshake/Untitled%206.png"
+			
+			
+			
+			loading="lazy"
+			alt="image">
+	</a>
+	
+	<figcaption>image</figcaption>
+	
+</figure></p>
+<ul>
+<li>클라이언트, 서버 둘 다 연결 끊을 수 있음
+<ul>
+<li>FIN 플래그에 1을 주면 됨</li>
+</ul>
+</li>
+<li>Respond to received FIN with ACK
+<ul>
+<li>on receiving FIN, ACK can be combined with own FIN</li>
+<li>즉 위에서 서버가 클라의 <code>FINbit=1</code> 에 대한 <code>Ack</code>를 보낼 때 자신의 <code>FINbit=1</code>을 같이 보낼수도 있었다.</li>
+</ul>
+</li>
+<li>simultaneous FIN exchanges can be handled</li>
+<li>클라는 위에서 왜 TIMED_WAIT → CLOSED 까지 기다리고 있을까?
+<ul>
+<li>만약 서버의 FIN에 대한 자신의 Ack Response가 유실되었을 경우, 서버가 <code>FINbit=1</code>을 재전송할 경우 다시 Ack를 보내줘야 하기에 충분한 시간동안 기다려 주는 것</li>
+</ul>
+</li>
+</ul>
+</section>
+
+
+    <footer class="article-footer">
+    
+    <section class="article-tags">
+        
+            <a href="/tags/computer-networking/">computer-networking</a>
+        
+            <a href="/tags/network/">network</a>
+        
+            <a href="/tags/networking/">networking</a>
+        
+            <a href="/tags/flow-control/">flow-control</a>
+        
+            <a href="/tags/handshaking/">handshaking</a>
+        
+            <a href="/tags/handshake/">handshake</a>
+        
+            <a href="/tags/tcp/">tcp</a>
+        
+    </section>
+
+
+    
+    <section class="article-copyright">
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-copyright" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <path d="M14.5 9a3.5 4 0 1 0 0 6" />
+</svg>
+
+
+
+        <span>Licensed under CC BY-NC-SA 4.0</span>
+    </section>
+    </footer>
+
+
+    
+</article>
+
+    <aside class="related-contents--wrapper">
+    
+    
+        <h2 class="section-title">Related contents</h2>
+        <div class="related-contents">
+            <div class="flex article-list--tile">
+                
+                    
+<article class="">
+    <a href="/blog/computer-networking-network-tcp/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">Computer Networking - Network TCP</h2>
+        </div>
+    </a>
+</article>
+                
+                    
+<article class="">
+    <a href="/blog/computer-networking-tcp-congestion-control/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">Computer Networking - TCP Congestion Control</h2>
+        </div>
+    </a>
+</article>
+                
+                    
+<article class="">
+    <a href="/blog/computer-networking-email-and-dns/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">Computer Networking - Email and DNS</h2>
+        </div>
+    </a>
+</article>
+                
+                    
+<article class="">
+    <a href="/blog/computer-networking-final-quick-note/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">Computer Networking - Final Quick Note</h2>
+        </div>
+    </a>
+</article>
+                
+                    
+<article class="">
+    <a href="/blog/computer-networking-http/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">Computer Networking - HTTP</h2>
+        </div>
+    </a>
+</article>
+                
+            </div>
+        </div>
+    
+</aside>
+
+     
+    
+        
+    <script src="https://utteranc.es/client.js" 
+        repo="yansigit/yansigit.github.io"
+        issue-term="pathname"
+        
+        label="Utterances Comment"
+        
+        crossorigin="anonymous"
+        async
+        >
+</script>
+
+<style>
+    .utterances {
+        max-width: unset;
+    }
+</style>
+
+<script>
+    function setUtterancesTheme(theme) {
+        let utterances = document.querySelector('.utterances iframe');
+        if (utterances) {
+            utterances.contentWindow.postMessage(
+                {
+                    type: 'set-theme',
+                    theme: `github-${theme}`
+                },
+                'https://utteranc.es'
+            );
+        }
+    }
+
+    addEventListener('message', event => {
+        if (event.origin !== 'https://utteranc.es') return;
+        setUtterancesTheme(document.documentElement.dataset.scheme)
+    });
+
+    window.addEventListener('onColorSchemeChange', (e) => {
+        setUtterancesTheme(e.detail)
+    })
+</script>
+
+
+    
+
+    <footer class="site-footer">
+    <section class="copyright">
+        &copy; 
+        
+            2020 - 
+        
+        2021 Code like Feather
+    </section>
+    
+    <section class="powerby">
+        Built with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> <br />
+        Theme <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="3.2.0">Stack</a></b> designed by <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a>
+    </section>
+</footer>
+
+
+    
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    
+    <div class="pswp__bg"></div>
+
+    
+    <div class="pswp__scroll-wrap">
+
+        
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                
+                
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"integrity="sha256-ePwmChbbvXbsO02lbM3HoHbSHTHFAeChekF1xKJdleo="crossorigin="anonymous"
+                defer="true"
+                >
+            </script><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"integrity="sha256-UKkzOn/w1mBxRmLLGrSeyB4e1xbrp4xylgAWb3M42pU="crossorigin="anonymous"
+                defer="true"
+                >
+            </script><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.css"integrity="sha256-c0uckgykQ9v5k&#43;IqViZOZKc47Jn7KQil4/MP3ySA3F8="crossorigin="anonymous"
+            ><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.css"integrity="sha256-SBLU4vv6CA6lHsZ1XyTdhyjJxCjPif/TRkjnsyGAGnE="crossorigin="anonymous"
+            >
+
+            </main>
+    
+        <aside class="sidebar right-sidebar sticky">
+            <section class="widget archives">
+                <div class="widget-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-hash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <line x1="5" y1="9" x2="19" y2="9" />
+  <line x1="5" y1="15" x2="19" y2="15" />
+  <line x1="11" y1="4" x2="7" y2="20" />
+  <line x1="17" y1="4" x2="13" y2="20" />
+</svg>
+
+
+
+                </div>
+                <h2 class="widget-title section-title">Table of contents</h2>
+                
+                <div class="widget--toc">
+                    <nav id="TableOfContents">
+  <ol>
+    <li><a href="#절차">절차</a></li>
+  </ol>
+
+  <ol>
+    <li><a href="#2-way-handshake">2-way handshake</a></li>
+    <li><a href="#2-way-handshake-문제점">2-way handshake 문제점</a></li>
+    <li><a href="#tcp-3-way-handshake">TCP 3-way handshake</a></li>
+    <li><a href="#tcp-closing-a-connection">TCP: Closing a connection</a></li>
+  </ol>
+</nav>
+                </div>
+            </section>
+        </aside>
+    
+
+        </div>
+        <script 
+                src="https://cdn.jsdelivr.net/npm/node-vibrant@3.1.5/dist/vibrant.min.js"integrity="sha256-5NovOZc4iwiAWTYIFiIM7DxKUXKWvpVEuMEPLzcm5/g="crossorigin="anonymous"
+                defer="false"
+                >
+            </script><script type="text/javascript" src="/ts/main.js" defer></script>
+<script>
+    (function () {
+        const customFont = document.createElement('link');
+        customFont.href = "https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap";
+
+        customFont.type = "text/css";
+        customFont.rel = "stylesheet";
+
+        document.head.appendChild(customFont);
+    }());
+</script>
+
+    </body>
+</html>

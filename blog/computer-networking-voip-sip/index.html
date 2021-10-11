@@ -1,0 +1,887 @@
+<!DOCTYPE html>
+<html lang="ko-kr">
+    <head><meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content='컴퓨터 네트워크 - VOIP-SIP'><title>Computer Networking - VOIP-SIP</title>
+
+<link rel='canonical' href='https://yansigit.github.io/blog/computer-networking-voip-sip/'>
+
+<link rel="stylesheet" href="/scss/style.min.css"><meta property='og:title' content='Computer Networking - VOIP-SIP'>
+<meta property='og:description' content='컴퓨터 네트워크 - VOIP-SIP'>
+<meta property='og:url' content='https://yansigit.github.io/blog/computer-networking-voip-sip/'>
+<meta property='og:site_name' content='Code like Feather'>
+<meta property='og:type' content='article'><meta property='article:section' content='Posts' /><meta property='article:tag' content='computer-networking' /><meta property='article:tag' content='network' /><meta property='article:tag' content='sip' /><meta property='article:tag' content='networking' /><meta property='article:tag' content='voip' /><meta property='article:published_time' content='2020-09-17T00:11:07&#43;09:00'/><meta property='article:modified_time' content='2020-09-17T00:11:07&#43;09:00'/><meta property='og:image' content='https://yansigit.github.io/images/lighthouse.jpg' />
+<meta name="twitter:title" content="Computer Networking - VOIP-SIP">
+<meta name="twitter:description" content="컴퓨터 네트워크 - VOIP-SIP"><meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content='https://yansigit.github.io/images/lighthouse.jpg' />
+    </head>
+    <body class="
+    article-page has-toc
+">
+    <script>
+        (function() {
+            const colorSchemeKey = 'StackColorScheme';
+            if(!localStorage.getItem(colorSchemeKey)){
+                localStorage.setItem(colorSchemeKey, "auto");
+            }
+        })();
+    </script><script>
+    (function() {
+        const colorSchemeKey = 'StackColorScheme';
+        const colorSchemeItem = localStorage.getItem(colorSchemeKey);
+        const supportDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches === true;
+
+        if (colorSchemeItem == 'dark' || colorSchemeItem === 'auto' && supportDarkMode) {
+            
+
+            document.documentElement.dataset.scheme = 'dark';
+        } else {
+            document.documentElement.dataset.scheme = 'light';
+        }
+    })();
+</script>
+<div class="container main-container flex 
+    
+        extended
+    
+">
+    
+        <div id="article-toolbar">
+            <a href="https://yansigit.github.io" class="back-home">
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-chevron-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <polyline points="15 6 9 12 15 18" />
+</svg>
+
+
+
+                <span>Back</span>
+            </a>
+        </div>
+    
+<main class="main full-width">
+    <article class="main-article">
+    <header class="article-header">
+
+    <div class="article-details">
+    
+    <header class="article-category">
+        
+            <a href="/categories/computer-networking/" >
+                computer-networking
+            </a>
+        
+    </header>
+    
+
+    <h2 class="article-title">
+        <a href="/blog/computer-networking-voip-sip/">Computer Networking - VOIP-SIP</a>
+    </h2>
+
+    
+    <h3 class="article-subtitle">
+        컴퓨터 네트워크 - VOIP-SIP
+    </h3>
+    
+
+    
+    <footer class="article-time">
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-calendar-time" width="56" height="56" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M11.795 21h-6.795a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v4" />
+  <circle cx="18" cy="18" r="4" />
+  <path d="M15 3v4" />
+  <path d="M7 3v4" />
+  <path d="M3 11h16" />
+  <path d="M18 16.496v1.504l1 1" />
+</svg>
+                <time class="article-time--published">Sep 17, 2020</time>
+            </div>
+        
+
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <polyline points="12 7 12 12 15 15" />
+</svg>
+
+
+
+                <time class="article-time--reading">
+                    4 minute read
+                </time>
+            </div>
+        
+    </footer>
+    
+</div>
+</header>
+
+    <section class="article-content">
+    <p>Computer Networking - VOIP-SIP</p>
+<h1 id="computer-network-voip-sip">Computer-Network-VOIP-SIP</h1>
+<h2 id="sip--session-init-protocol">SIP : Session Init Protocol</h2>
+<ul>
+<li>모든 전화, 비디오 콜이 인터넷 통해서 이루어지도록</li>
+<li>번호보다는 이름이나 이메일로 신원 확인</li>
+<li>전화 받는 사람(Collee)가 어디서든, 어떤 장치를 쓰던 Reachable 하게</li>
+</ul>
+<h2 id="sip-서비스들">SIP 서비스들</h2>
+<ul>
+<li>Call 셋업 시 SIP가 제공하는 메커니즘들
+<ul>
+<li>Coller가 Collee에게 전화하고 싶다는 사실을 Collee에게 알려줌</li>
+<li>이로서 미디어 타입, 인코딩 방식 등 협의</li>
+<li>전화 종료</li>
+</ul>
+</li>
+<li>mnemonic (의미있는) 식별자들을 IP 주소로 변경
+<ul>
+<li>이메일, 이름 등</li>
+</ul>
+</li>
+<li>통화 관리
+<ul>
+<li>새로운 미디어 스트림 추가 (음성 → 비디오 전화 등)</li>
+<li>인코딩 방식 변경</li>
+<li>다른 통화상태 추가</li>
+<li>전화 홀드, 전달 등</li>
+</ul>
+</li>
+</ul>
+<h2 id="example">Example</h2>
+<p><figure 
+	>
+	<a href="/posts/computer-network-voip-sip/Untitled.png" >
+		<img src="/posts/computer-network-voip-sip/Untitled.png"
+			
+			
+			
+			loading="lazy"
+			alt="image">
+	</a>
+	
+	<figcaption>image</figcaption>
+	
+</figure></p>
+<ul>
+<li>인코딩 협상
+<ul>
+<li>만약 상대방이 요청한 인코딩을 자신의 시스템이 지원하지 않는다면 606 Not Acceptable
+<ul>
+<li>상대방은 다른 인코딩 방식을 설정해 새 INVITE 메세지를 보낼 수 있음</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>RTP(UDP) 뿐만 아니라 TCP도 사용 가능</li>
+</ul>
+<h2 id="이름-변환-user-location">이름 변환, User Location</h2>
+<ul>
+<li>Collee의 IP 주소를 알아내야 하는데 IP는 계속 바뀜
+<ul>
+<li>USER는 돌아다니고</li>
+<li>DHCP 프로토콜</li>
+<li>기기마다 다른 IP</li>
+</ul>
+</li>
+</ul>
+<h2 id="sip-registrar">SIP registrar</h2>
+<p><figure 
+	>
+	<a href="/posts/computer-network-voip-sip/Untitled%201.png" >
+		<img src="/posts/computer-network-voip-sip/Untitled%201.png"
+			
+			
+			
+			loading="lazy"
+			alt="image">
+	</a>
+	
+	<figcaption>image</figcaption>
+	
+</figure></p>
+<ul>
+<li>사용자가 SIP Client를 실행시키면 클라이언트는 SIP REGISTER에 메세지를 보내 등록</li>
+</ul>
+<h2 id="sip-proxy">SIP Proxy</h2>
+<ul>
+<li>Local DNS Server와 유사한 역할</li>
+<li>Alice가 프록시 서버로 invite 메세지를 보내면
+<ul>
+<li>해당 메세지는 상대방 Bob의 주소(이름)을 포함</li>
+<li>프록시 서버는 다른 프록시 서버 등을 통해 라우팅하여 Bob에게 메세지 전달</li>
+<li>Response를 받으면 다시 그것을 Alice에게 전달
+<ul>
+<li>Response에는 Bob의 IP가 포함</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="sip-example">SIP example</h2>
+<p><figure 
+	>
+	<a href="/posts/computer-network-voip-sip/Untitled%202.png" >
+		<img src="/posts/computer-network-voip-sip/Untitled%202.png"
+			
+			
+			
+			loading="lazy"
+			alt="image">
+	</a>
+	
+	<figcaption>image</figcaption>
+	
+</figure></p>
+<h1 id="network-and-multimedia">Network and Multimedia</h1>
+<h2 id="multimedia-support-of-network">Multimedia support of network</h2>
+<p><figure 
+	>
+	<a href="/posts/computer-network-voip-sip/Untitled%203.png" >
+		<img src="/posts/computer-network-voip-sip/Untitled%203.png"
+			
+			
+			
+			loading="lazy"
+			alt="image">
+	</a>
+	
+	<figcaption>image</figcaption>
+	
+</figure></p>
+<ul>
+<li>Best Effort
+<ul>
+<li>None services available</li>
+</ul>
+</li>
+<li>Differentiated service (서비스 차등화)
+<ul>
+<li>Soft Guarantee available</li>
+<li>Packet Marking
+<ul>
+<li>패킷에 중요도 마킹</li>
+</ul>
+</li>
+<li>Scheduling policing</li>
+<li>복잡성 중간. 조금 사용</li>
+</ul>
+</li>
+<li>Per-connection QoS
+<ul>
+<li>Hard Guarantee available</li>
+<li>Packet Marking</li>
+<li>Scheduling policing</li>
+<li>Call admission
+<ul>
+<li>보장해줄 수 있다면 허용, 아니라면 통신 비허가</li>
+</ul>
+</li>
+<li>복잡성이 높아 실제로는 사용 거의 안함</li>
+</ul>
+</li>
+</ul>
+<h2 id="best-effort-networks">Best effort networks</h2>
+<ul>
+<li>충분한 용량을 줘서 딜레이나 로스 없이 하겠다</li>
+<li>좋은 라우터, 링크로 하겠다</li>
+<li>비용이 많이 듬</li>
+<li>Challenges
+<ul>
+<li>그럼 얼마만큼의 bandwith가 충분한 양인가?</li>
+<li>트래픽 추정도 필요함</li>
+</ul>
+</li>
+</ul>
+<h2 id="class-of-service">Class of Service</h2>
+<ul>
+<li>서비스에 클래스를 두어 차등화하겠다</li>
+<li>클래스 별로 다른 서비스를 제공</li>
+</ul>
+<h2 id="class-of-service--sinario-1">Class of Service : Sinario 1</h2>
+<p><figure 
+	>
+	<a href="/posts/computer-network-voip-sip/Untitled%204.png" >
+		<img src="/posts/computer-network-voip-sip/Untitled%204.png"
+			
+			
+			
+			loading="lazy"
+			alt="image">
+	</a>
+	
+	<figcaption>image</figcaption>
+	
+</figure></p>
+<ul>
+<li>VOIP의 경우 실시간성 데이터이므로 우선순위가 높아지면 좋음</li>
+<li>VOIP인지 HTTP 클래스인지 식별하기 위해 <strong>Packet Marking</strong> 사용</li>
+</ul>
+<h2 id="class-of-service--qos-garantees">Class of Service : QoS garantees</h2>
+<p><figure 
+	>
+	<a href="/posts/computer-network-voip-sip/Untitled%205.png" >
+		<img src="/posts/computer-network-voip-sip/Untitled%205.png"
+			
+			
+			
+			loading="lazy"
+			alt="image">
+	</a>
+	
+	<figcaption>image</figcaption>
+	
+</figure></p>
+<ul>
+<li>그런데 VOIP에 우선순위를 높게 줬더니 링크 캐퍼시티를 전부 사용해버린다면?
+<ul>
+<li>HTTP 연결은 아예 못하게 되어버림</li>
+<li>그러므로 <strong>QoS policing</strong>를 주어 연결속도 제한</li>
+</ul>
+</li>
+</ul>
+<h2 id="class-of-service--qos-problem">Class of Service : QoS Problem</h2>
+<p><figure 
+	>
+	<a href="/posts/computer-network-voip-sip/Untitled%206.png" >
+		<img src="/posts/computer-network-voip-sip/Untitled%206.png"
+			
+			
+			
+			loading="lazy"
+			alt="image">
+	</a>
+	
+	<figcaption>image</figcaption>
+	
+</figure></p>
+<ul>
+<li>그런데 예를들어 VOIP에 1Mbps, HTTP에 0.5Mbps 식으로 고정적으로 할당해버리면
+<ul>
+<li>만약 VOIP가 Idle 상태일때도 HTTP는 0.5Mbps만 사용 가능</li>
+<li>그러므로 링크 낭비</li>
+<li>따라서 최대한 효과적으로 사용할 수 있는 방법 궁리해야함</li>
+</ul>
+</li>
+</ul>
+<h2 id="packet-scheduling">Packet Scheduling</h2>
+<p><figure 
+	>
+	<a href="/posts/computer-network-voip-sip/Untitled%207.png" >
+		<img src="/posts/computer-network-voip-sip/Untitled%207.png"
+			
+			
+			
+			loading="lazy"
+			alt="image">
+	</a>
+	
+	<figcaption>image</figcaption>
+	
+</figure></p>
+<p><figure 
+	>
+	<a href="/posts/computer-network-voip-sip/Untitled%208.png" >
+		<img src="/posts/computer-network-voip-sip/Untitled%208.png"
+			
+			
+			
+			loading="lazy"
+			alt="image">
+	</a>
+	
+	<figcaption>image</figcaption>
+	
+</figure></p>
+<ul>
+<li>큐에 쌓인 패킷들 중에 어떤 패킷을 보낼 지 정하는 것 (지난학기때 배움)</li>
+<li>방법들
+<ul>
+<li>FCFS (선입선출)</li>
+<li>Simple Multi-Class Proirity</li>
+<li>Round robin</li>
+<li>Weighted fair queueing (WFQ)</li>
+</ul>
+</li>
+</ul>
+<h2 id="policing-mechanisms">Policing mechanisms</h2>
+<ul>
+<li>QoS 정책</li>
+<li>평균 패킷 제한
+<ul>
+<li>(장기적으로) Unit time 당 얼마나 많은 패킷을 보낼 수 있는지 결정</li>
+</ul>
+</li>
+<li>Peak Rate
+<ul>
+<li>분당, 초당 얼마의 패킷을 보낼 수있는지 결정</li>
+</ul>
+</li>
+<li>Burst size
+<ul>
+<li>한번에 (연속적으로) 패킷을 보낼 때 얼마나 많이 보낼 수 있는지 결정</li>
+</ul>
+</li>
+</ul>
+<h2 id="policing-mechanisms-token-bucket">Policing mechanisms: <strong>Token bucket</strong></h2>
+<ul>
+<li><strong>Token bucket</strong> : 제일 많이 사용</li>
+<li>방법론
+<ul>
+<li>가상의 통이 있는데 여기에는 티켓이 1초당 10개 생성됨</li>
+<li>패킷이 지나갈 때 마다 티켓을 한장 소모하고 가야함</li>
+<li>만약 가상의 통이 비어있다면 (티켓이 없다면) 패킷은 티켓이 생길 때 까지 대기했다가 지나가야함</li>
+</ul>
+</li>
+<li><strong>티켓(토큰)이 생성되는 시간을 통해 속도 조절</strong>
+<ul>
+<li>초당 A개의 토큰을 생성한다면 패킷도 초당 10개 지나갈 수 있음</li>
+</ul>
+</li>
+<li><strong>통의 크기를 조절해 Burst Size 조절</strong>
+<ul>
+<li>통의 크기가 B라면, Burst Size도 B
+<ul>
+<li>기다리는 시간 없이 연속적으로 보낼 수 있는 양</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>따라서 주어진 T 시간에 대해 보낼 수 있는 패킷의 양은
+<ul>
+<li>A * T + B</li>
+</ul>
+</li>
+</ul>
+<h2 id="policing-and-qos-guarantees">Policing and QoS Guarantees</h2>
+<ul>
+<li>Tocken bucket과 WFQ를 같이 쓰면 라우터 큐 딜레이의 Guaranteed upper bound를 구할 있다</li>
+</ul>
+<p><figure 
+	>
+	<a href="/posts/computer-network-voip-sip/Untitled%209.png" >
+		<img src="/posts/computer-network-voip-sip/Untitled%209.png"
+			
+			
+			
+			loading="lazy"
+			alt="image">
+	</a>
+	
+	<figcaption>image</figcaption>
+	
+</figure></p>
+<ul>
+<li>즉 Dmax of Red = b / ((W1)/W1+..+Wn) * R)</li>
+</ul>
+<h2 id="differentiated-services">Differentiated Services</h2>
+<ul>
+<li>차등화된 서비스 제공</li>
+<li>간단한 펑션은 네트워크 코어에 유지하고, 복잡한 펑션은 엣지 라우터나 호스트에 유지</li>
+<li>직접 클래스를 구현하진 않고, 클래스를 만들 수 있는 기능들을 정의</li>
+</ul>
+<h2 id="diffserv-architecture">Diffserv Architecture</h2>
+<ul>
+<li><strong>Edge Router</strong>
+<ul>
+<li>Flow 별 트래픽 관리</li>
+<li>패킷 마킹
+<ul>
+<li>in-profile
+<ul>
+<li>Flow가 선언한 만큼의 속도 안에서 쓰고있는 패킷들에 마킹됨</li>
+</ul>
+</li>
+<li>out-profile
+<ul>
+<li>Flow가 선언한 만큼의 속도 이상을 사용하고 있는 패킷들에 마킹됨</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><strong>Core Router</strong>
+<ul>
+<li>Class 별 트래픽 관리</li>
+<li>엣지 라우터에서 마킹한 것에 기반하여 버퍼링, 스케줄링</li>
+<li>in-profile 패킷들에 우선순위를 먼저 줌</li>
+</ul>
+</li>
+</ul>
+<h2 id="edge-router-packet-marking">Edge-router packet marking</h2>
+<ul>
+<li>Profile = 협의된 전송 속도 R, 버킷 사이즈 B</li>
+<li>Flow 마다 Profile을 베이스로 패킷을 마킹함</li>
+<li>마킹 사용법
+<ul>
+<li>Class-Based Marking
+<ul>
+<li>클래스 별로 마킹</li>
+</ul>
+</li>
+<li>Intra-Class Marking
+<ul>
+<li>클래스 내에서도 in-profile인지 out-profile인지에 따라 마킹 가능</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="diffserv-packet-marking-detail">Diffserv packet marking: Detail</h2>
+<ul>
+<li>ToS를 이용해 마킹</li>
+<li>6비트짜리 Differentiated Service Code Point (DSCP) 필드 이용</li>
+</ul>
+<h2 id="per-connection-qos-guarantees">Per-Connection QoS Guarantees</h2>
+<p><figure 
+	>
+	<a href="/posts/computer-network-voip-sip/Untitled%2010.png" >
+		<img src="/posts/computer-network-voip-sip/Untitled%2010.png"
+			
+			
+			
+			loading="lazy"
+			alt="image">
+	</a>
+	
+	<figcaption>image</figcaption>
+	
+</figure></p>
+<ul>
+<li>아예 연결별로 QoS를 지정</li>
+<li>예를 들어 1.5Mbps링크에 2개의 1Mbps 연결이 시도되고 있다면
+<ul>
+<li>한개만 허용하고 다른 한개는 막아버림</li>
+<li><strong>Call Admission</strong></li>
+</ul>
+</li>
+</ul>
+</section>
+
+
+    <footer class="article-footer">
+    
+    <section class="article-tags">
+        
+            <a href="/tags/computer-networking/">computer-networking</a>
+        
+            <a href="/tags/network/">network</a>
+        
+            <a href="/tags/sip/">sip</a>
+        
+            <a href="/tags/networking/">networking</a>
+        
+            <a href="/tags/voip/">voip</a>
+        
+    </section>
+
+
+    
+    <section class="article-copyright">
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-copyright" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <path d="M14.5 9a3.5 4 0 1 0 0 6" />
+</svg>
+
+
+
+        <span>Licensed under CC BY-NC-SA 4.0</span>
+    </section>
+    </footer>
+
+
+    
+</article>
+
+    <aside class="related-contents--wrapper">
+    
+    
+        <h2 class="section-title">Related contents</h2>
+        <div class="related-contents">
+            <div class="flex article-list--tile">
+                
+                    
+<article class="">
+    <a href="/blog/computer-networking-voip/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">Computer Networking - VOIP</h2>
+        </div>
+    </a>
+</article>
+                
+                    
+<article class="">
+    <a href="/blog/computer-networking-email-and-dns/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">Computer Networking - Email and DNS</h2>
+        </div>
+    </a>
+</article>
+                
+                    
+<article class="">
+    <a href="/blog/computer-networking-final-quick-note/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">Computer Networking - Final Quick Note</h2>
+        </div>
+    </a>
+</article>
+                
+                    
+<article class="">
+    <a href="/blog/computer-networking-flow-control-and-handshake/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">Computer Networking - Flow Control and Handshake</h2>
+        </div>
+    </a>
+</article>
+                
+                    
+<article class="">
+    <a href="/blog/computer-networking-http/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">Computer Networking - HTTP</h2>
+        </div>
+    </a>
+</article>
+                
+            </div>
+        </div>
+    
+</aside>
+
+     
+    
+        
+    <script src="https://utteranc.es/client.js" 
+        repo="yansigit/yansigit.github.io"
+        issue-term="pathname"
+        
+        label="Utterances Comment"
+        
+        crossorigin="anonymous"
+        async
+        >
+</script>
+
+<style>
+    .utterances {
+        max-width: unset;
+    }
+</style>
+
+<script>
+    function setUtterancesTheme(theme) {
+        let utterances = document.querySelector('.utterances iframe');
+        if (utterances) {
+            utterances.contentWindow.postMessage(
+                {
+                    type: 'set-theme',
+                    theme: `github-${theme}`
+                },
+                'https://utteranc.es'
+            );
+        }
+    }
+
+    addEventListener('message', event => {
+        if (event.origin !== 'https://utteranc.es') return;
+        setUtterancesTheme(document.documentElement.dataset.scheme)
+    });
+
+    window.addEventListener('onColorSchemeChange', (e) => {
+        setUtterancesTheme(e.detail)
+    })
+</script>
+
+
+    
+
+    <footer class="site-footer">
+    <section class="copyright">
+        &copy; 
+        
+            2020 - 
+        
+        2021 Code like Feather
+    </section>
+    
+    <section class="powerby">
+        Built with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> <br />
+        Theme <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="3.2.0">Stack</a></b> designed by <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a>
+    </section>
+</footer>
+
+
+    
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    
+    <div class="pswp__bg"></div>
+
+    
+    <div class="pswp__scroll-wrap">
+
+        
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                
+                
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"integrity="sha256-ePwmChbbvXbsO02lbM3HoHbSHTHFAeChekF1xKJdleo="crossorigin="anonymous"
+                defer="true"
+                >
+            </script><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"integrity="sha256-UKkzOn/w1mBxRmLLGrSeyB4e1xbrp4xylgAWb3M42pU="crossorigin="anonymous"
+                defer="true"
+                >
+            </script><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.css"integrity="sha256-c0uckgykQ9v5k&#43;IqViZOZKc47Jn7KQil4/MP3ySA3F8="crossorigin="anonymous"
+            ><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.css"integrity="sha256-SBLU4vv6CA6lHsZ1XyTdhyjJxCjPif/TRkjnsyGAGnE="crossorigin="anonymous"
+            >
+
+            </main>
+    
+        <aside class="sidebar right-sidebar sticky">
+            <section class="widget archives">
+                <div class="widget-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-hash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <line x1="5" y1="9" x2="19" y2="9" />
+  <line x1="5" y1="15" x2="19" y2="15" />
+  <line x1="11" y1="4" x2="7" y2="20" />
+  <line x1="17" y1="4" x2="13" y2="20" />
+</svg>
+
+
+
+                </div>
+                <h2 class="widget-title section-title">Table of contents</h2>
+                
+                <div class="widget--toc">
+                    <nav id="TableOfContents">
+  <ol>
+    <li><a href="#sip--session-init-protocol">SIP : Session Init Protocol</a></li>
+    <li><a href="#sip-서비스들">SIP 서비스들</a></li>
+    <li><a href="#example">Example</a></li>
+    <li><a href="#이름-변환-user-location">이름 변환, User Location</a></li>
+    <li><a href="#sip-registrar">SIP registrar</a></li>
+    <li><a href="#sip-proxy">SIP Proxy</a></li>
+    <li><a href="#sip-example">SIP example</a></li>
+  </ol>
+
+  <ol>
+    <li><a href="#multimedia-support-of-network">Multimedia support of network</a></li>
+    <li><a href="#best-effort-networks">Best effort networks</a></li>
+    <li><a href="#class-of-service">Class of Service</a></li>
+    <li><a href="#class-of-service--sinario-1">Class of Service : Sinario 1</a></li>
+    <li><a href="#class-of-service--qos-garantees">Class of Service : QoS garantees</a></li>
+    <li><a href="#class-of-service--qos-problem">Class of Service : QoS Problem</a></li>
+    <li><a href="#packet-scheduling">Packet Scheduling</a></li>
+    <li><a href="#policing-mechanisms">Policing mechanisms</a></li>
+    <li><a href="#policing-mechanisms-token-bucket">Policing mechanisms: <strong>Token bucket</strong></a></li>
+    <li><a href="#policing-and-qos-guarantees">Policing and QoS Guarantees</a></li>
+    <li><a href="#differentiated-services">Differentiated Services</a></li>
+    <li><a href="#diffserv-architecture">Diffserv Architecture</a></li>
+    <li><a href="#edge-router-packet-marking">Edge-router packet marking</a></li>
+    <li><a href="#diffserv-packet-marking-detail">Diffserv packet marking: Detail</a></li>
+    <li><a href="#per-connection-qos-guarantees">Per-Connection QoS Guarantees</a></li>
+  </ol>
+</nav>
+                </div>
+            </section>
+        </aside>
+    
+
+        </div>
+        <script 
+                src="https://cdn.jsdelivr.net/npm/node-vibrant@3.1.5/dist/vibrant.min.js"integrity="sha256-5NovOZc4iwiAWTYIFiIM7DxKUXKWvpVEuMEPLzcm5/g="crossorigin="anonymous"
+                defer="false"
+                >
+            </script><script type="text/javascript" src="/ts/main.js" defer></script>
+<script>
+    (function () {
+        const customFont = document.createElement('link');
+        customFont.href = "https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap";
+
+        customFont.type = "text/css";
+        customFont.rel = "stylesheet";
+
+        document.head.appendChild(customFont);
+    }());
+</script>
+
+    </body>
+</html>

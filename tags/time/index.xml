@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>time on Code like Feather</title>
+    <link>https://yansigit.github.io/tags/time/</link>
+    <description>Recent content in time on Code like Feather</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>ko-kr</language>
+    <lastBuildDate>Thu, 06 Feb 2020 23:30:05 +0900</lastBuildDate><atom:link href="https://yansigit.github.io/tags/time/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Time Format in Golang</title>
+      <link>https://yansigit.github.io/blog/time-format-in-golang/</link>
+      <pubDate>Thu, 06 Feb 2020 23:30:05 +0900</pubDate>
+      
+      <guid>https://yansigit.github.io/blog/time-format-in-golang/</guid>
+      <description>&lt;h1 id=&#34;time-format-in-go-language&#34;&gt;Time format in Go Language&lt;/h1&gt;
+&lt;p&gt;보통 프로그래밍 언어에서 시간과 날짜를 다룰 때 레이아웃은 &lt;code&gt;YYYY-MM-DD HH:MM:SS&lt;/code&gt;와 같이 영문자를 이용한 방식이다.&lt;/p&gt;
+&lt;p&gt;고 언어에서는 타 언어와 다르게 숫자로 포맷을 지정해줘야 한다.&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

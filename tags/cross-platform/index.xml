@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>cross-platform on Code like Feather</title>
+    <link>https://yansigit.github.io/tags/cross-platform/</link>
+    <description>Recent content in cross-platform on Code like Feather</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>ko-kr</language>
+    <lastBuildDate>Sat, 19 Sep 2020 14:16:38 +0900</lastBuildDate><atom:link href="https://yansigit.github.io/tags/cross-platform/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Little Tips Installing Flutter</title>
+      <link>https://yansigit.github.io/blog/little-tips-installing-flutter/</link>
+      <pubDate>Sat, 19 Sep 2020 14:16:38 +0900</pubDate>
+      
+      <guid>https://yansigit.github.io/blog/little-tips-installing-flutter/</guid>
+      <description>&lt;p&gt;Notes for dealing with problems while installing flutter&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>React Native Quick Error Fixes</title>
+      <link>https://yansigit.github.io/blog/react-native-quick-error-fixes/</link>
+      <pubDate>Tue, 15 Sep 2020 22:56:51 +0900</pubDate>
+      
+      <guid>https://yansigit.github.io/blog/react-native-quick-error-fixes/</guid>
+      <description>&lt;h2 id=&#34;ios-향-빌드-시-체크사항&#34;&gt;iOS 향 빌드 시 체크사항&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;Xcode - 속성 - 컴포넌트에 iOS 시뮬레이터 깔려있는지 확인 (가상머신 이용 시)&lt;/li&gt;
+&lt;li&gt;Location 에서 Command Line Tools가 제대로 지정되어 있는지 확인
+&lt;ul&gt;
+&lt;li&gt;없을 시 Command Line Tools 설치 후 설정&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

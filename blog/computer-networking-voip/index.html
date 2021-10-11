@@ -1,0 +1,918 @@
+<!DOCTYPE html>
+<html lang="ko-kr">
+    <head><meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content='컴퓨터 네트워크 - VOIP'><title>Computer Networking - VOIP</title>
+
+<link rel='canonical' href='https://yansigit.github.io/blog/computer-networking-voip/'>
+
+<link rel="stylesheet" href="/scss/style.min.css"><meta property='og:title' content='Computer Networking - VOIP'>
+<meta property='og:description' content='컴퓨터 네트워크 - VOIP'>
+<meta property='og:url' content='https://yansigit.github.io/blog/computer-networking-voip/'>
+<meta property='og:site_name' content='Code like Feather'>
+<meta property='og:type' content='article'><meta property='article:section' content='Posts' /><meta property='article:tag' content='computer-networking' /><meta property='article:tag' content='network' /><meta property='article:tag' content='networking' /><meta property='article:tag' content='voip' /><meta property='article:published_time' content='2020-09-17T00:11:07&#43;09:00'/><meta property='article:modified_time' content='2020-09-17T00:11:07&#43;09:00'/><meta property='og:image' content='https://yansigit.github.io/images/lighthouse.jpg' />
+<meta name="twitter:title" content="Computer Networking - VOIP">
+<meta name="twitter:description" content="컴퓨터 네트워크 - VOIP"><meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content='https://yansigit.github.io/images/lighthouse.jpg' />
+    </head>
+    <body class="
+    article-page has-toc
+">
+    <script>
+        (function() {
+            const colorSchemeKey = 'StackColorScheme';
+            if(!localStorage.getItem(colorSchemeKey)){
+                localStorage.setItem(colorSchemeKey, "auto");
+            }
+        })();
+    </script><script>
+    (function() {
+        const colorSchemeKey = 'StackColorScheme';
+        const colorSchemeItem = localStorage.getItem(colorSchemeKey);
+        const supportDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches === true;
+
+        if (colorSchemeItem == 'dark' || colorSchemeItem === 'auto' && supportDarkMode) {
+            
+
+            document.documentElement.dataset.scheme = 'dark';
+        } else {
+            document.documentElement.dataset.scheme = 'light';
+        }
+    })();
+</script>
+<div class="container main-container flex 
+    
+        extended
+    
+">
+    
+        <div id="article-toolbar">
+            <a href="https://yansigit.github.io" class="back-home">
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-chevron-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <polyline points="15 6 9 12 15 18" />
+</svg>
+
+
+
+                <span>Back</span>
+            </a>
+        </div>
+    
+<main class="main full-width">
+    <article class="main-article">
+    <header class="article-header">
+
+    <div class="article-details">
+    
+    <header class="article-category">
+        
+            <a href="/categories/computer-networking/" >
+                computer-networking
+            </a>
+        
+    </header>
+    
+
+    <h2 class="article-title">
+        <a href="/blog/computer-networking-voip/">Computer Networking - VOIP</a>
+    </h2>
+
+    
+    <h3 class="article-subtitle">
+        컴퓨터 네트워크 - VOIP
+    </h3>
+    
+
+    
+    <footer class="article-time">
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-calendar-time" width="56" height="56" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M11.795 21h-6.795a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v4" />
+  <circle cx="18" cy="18" r="4" />
+  <path d="M15 3v4" />
+  <path d="M7 3v4" />
+  <path d="M3 11h16" />
+  <path d="M18 16.496v1.504l1 1" />
+</svg>
+                <time class="article-time--published">Sep 17, 2020</time>
+            </div>
+        
+
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <polyline points="12 7 12 12 15 15" />
+</svg>
+
+
+
+                <time class="article-time--reading">
+                    5 minute read
+                </time>
+            </div>
+        
+    </footer>
+    
+</div>
+</header>
+
+    <section class="article-content">
+    <p>Computer Networking - VOIP</p>
+<h1 id="computer-network-voip">Computer-Network-VOIP</h1>
+<h2 id="voip">VOIP</h2>
+<ul>
+<li>&lsquo;통신 가능한&rsquo; 만큼의 딜레이 관리가 필요
+<ul>
+<li>D &lt; 150ms : Good</li>
+<li>D &gt; 400ms : bad</li>
+</ul>
+</li>
+<li><strong>Session initialization</strong>
+<ul>
+<li>어떻게 전화하는 사람이 IP, 포트, 인코딩 알고리즘을 전달하는가?</li>
+</ul>
+</li>
+<li>Value-Added Services
+<ul>
+<li>Call forwarding, screening, recording&hellip;</li>
+<li>Emergency call</li>
+</ul>
+</li>
+</ul>
+<h2 id="voip-특징">VOIP 특징</h2>
+<ul>
+<li>Speaker&rsquo;s audio
+<ul>
+<li>번갈아가면서 말함</li>
+<li>한 사람이 말하면 한 사람은 침묵하면서 들음</li>
+<li>64 kbps during talking
+<ul>
+<li><strong>Multimedia: Audio</strong> 참고</li>
+<li>오직 말할때만 패킷 생성</li>
+<li>20ms chunks at 8Kbytes/sec (64kbps) → 160 bytes of data
+<ul>
+<li>Talk spurt에서각 20ms 마다 160바이트의 데이터가 생성</li>
+<li>거기에 UDP나 TCP 등의 헤더가 붙음</li>
+<li>앱은 매 20ms마다 소켓에 세그먼트를 보내게 됨</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="voip-packet-loss-delay">VOIP: Packet loss, delay</h2>
+<ul>
+<li>네트워크 혼잡 때문에 데이터그램 유실</li>
+<li>소리가 듣는 사람한테 너무 늦게 도착
+<ul>
+<li>보통 400ms 내에 도착해야함</li>
+</ul>
+</li>
+<li>어떤 인코딩을 쓰느냐, 어떤 Loss 보간법을 쓰느냐에 따라 1~10퍼센트 까지 유실 허용</li>
+</ul>
+<h2 id="voip-buffer">VOIP Buffer</h2>
+<p><figure 
+	>
+	<a href="/posts/computer-network-voip/Untitled.png" >
+		<img src="/posts/computer-network-voip/Untitled.png"
+			
+			
+			
+			loading="lazy"
+			alt="image">
+	</a>
+	
+	<figcaption>image</figcaption>
+	
+</figure></p>
+<ul>
+<li>VOIP 역시 버퍼를 사용해 끊김을 방지한다</li>
+<li>그렇다면 <code>Playout delay</code>의 양은 어느 정도가 좋을까?</li>
+</ul>
+<h2 id="voip-fixed-playout-delay">VOIP: Fixed playout delay</h2>
+<p><figure 
+	>
+	<a href="/posts/computer-network-voip/Untitled%201.png" >
+		<img src="/posts/computer-network-voip/Untitled%201.png"
+			
+			
+			
+			loading="lazy"
+			alt="image">
+	</a>
+	
+	<figcaption>image</figcaption>
+	
+</figure></p>
+<ul>
+<li><code>q</code>라는 고정된 딜레이 값을 사용</li>
+<li><code>q</code> 이상으로 딜레이가 발생한다면 해당 패킷은 필요없으므로 버림</li>
+<li>너무 큰 값을 사용하면 딜레이 커짐, 적은 패킷 유실</li>
+<li>작은 값을 사용하면 소통은 잘 되나 패킷 유실이 많이 일어날 수 있음</li>
+</ul>
+<h2 id="voip-adaptive-playout-delay">VOIP: Adaptive playout delay</h2>
+<ul>
+<li>
+<p><strong>목표</strong></p>
+<ul>
+<li>Low playout delay</li>
+<li>low late loss rate</li>
+</ul>
+</li>
+<li>
+<p>네트워크 딜레이를 계속 추정 + 마진을 넣어 딜레이를 가변적으로 적용</p>
+<ol>
+<li>각 Talk spurt 첫부분에 딜레이를 적용</li>
+<li>Slience 구간이 지난 이후</li>
+<li>다음 Talk spurt이 시작 될 때 딜레이를 재계산하여 적용</li>
+</ol>
+</li>
+<li>
+<p><strong>패킷 딜레이 계산 방법</strong></p>
+<p><figure 
+	>
+	<a href="/posts/computer-network-voip/Untitled%202.png" >
+		<img src="/posts/computer-network-voip/Untitled%202.png"
+			
+			
+			
+			loading="lazy"
+			alt="image">
+	</a>
+	
+	<figcaption>image</figcaption>
+	
+</figure></p>
+<ul>
+<li>TCP RTT 추정할 때 그 방식 그대로 씀</li>
+</ul>
+</li>
+</ul>
+<h2 id="receiver가-talkspurt-시작점-판별하는-방법">Receiver가 Talkspurt 시작점 판별하는 방법</h2>
+<ul>
+<li><strong>패킷 유실이 없다면, 타임스탬프 확인</strong>
+<ul>
+<li>Talkspurt 내의 패킷들은 20ms 간격임</li>
+<li>그 이상 딜레이가 있었다는 것은 그 사이에 Silence 구간이 있었다는 것
+<ul>
+<li>Seq1 →(40ms)→ Seq2</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>패킷 유실이 있었던 것 같다면
+<ul>
+<li>타임스탬프 뿐만 아니라 시퀀스 넘버도 확인</li>
+<li>Seq1 →(40ms)→ Seq3</li>
+</ul>
+</li>
+</ul>
+<h2 id="voip-패킷-로스-복구">VOIP: 패킷 로스 복구</h2>
+<ul>
+<li>VOIP는 딜레이가 많이 없어야함
+<ul>
+<li>기존의 ACK/NAK 방식은 딜레이가 많이 걸릴 수 밖에 없음</li>
+<li>그럼 어떻게 복구해야 할까?
+<ul>
+<li><strong>Foward Error Correction (FEC)</strong>
+<ul>
+<li>재전송을 하지 않고 충분한 비트를 미리 보내서 보낸 데이터를 바탕으로 복구</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="simple-fec">Simple FEC</h2>
+<ul>
+<li>N개의 청크 그룹마다 하나의 추가적인 청크를 만듬
+<ul>
+<li>원본 청크들를 XOR하여 만듬</li>
+<li>결과적으로 N+1 개의 청크가 되어 Bandwith도 1/N 늘어나는 셈</li>
+</ul>
+</li>
+<li>예시) 1010이라는 청크가 있다고 하면 → 10100 으로 됨
+<ul>
+<li>
+<p>각각의 자리를 XOR하여 비트를 만듬</p>
+<p><figure 
+	>
+	<a href="/posts/computer-network-voip/Untitled%203.png" >
+		<img src="/posts/computer-network-voip/Untitled%203.png"
+			
+			
+			
+			loading="lazy"
+			alt="image">
+	</a>
+	
+	<figcaption>image</figcaption>
+	
+</figure></p>
+</li>
+<li>
+<p>만약 10X00 으로 하나의 청크가 로스되었다면?</p>
+<ul>
+<li>정상적으로 수신한 청크들을 다시 각각의 자리로 XOR하면 로스된 패킷을 알 수 있음</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>조건 : N+1에서 최대한 1개까지 패킷 로스됬을 때 복구 가능</li>
+<li>또 N이 커질수록 패킷 유실 확률이 커지므로 적절한 값 정해야 함</li>
+</ul>
+<h2 id="piggybacking-fec">PiggyBacking FEC</h2>
+<ul>
+<li>숟가락 얻는 방식</li>
+</ul>
+<p><figure 
+	>
+	<a href="/posts/computer-network-voip/Untitled%204.png" >
+		<img src="/posts/computer-network-voip/Untitled%204.png"
+			
+			
+			
+			loading="lazy"
+			alt="image">
+	</a>
+	
+	<figcaption>image</figcaption>
+	
+</figure></p>
+<ul>
+<li>보낼 때 다음 청크에 Original Stream에서 더 낮은 음질의 백업 음성을 추가로 송신</li>
+<li>만약 한 청크가 유실되면 다음 청크의 예비 음성을 이용해 복구</li>
+<li>한개의 예비 음성 뿐만 아니라 구현에 따라 두개 세개도 가능</li>
+</ul>
+<h2 id="interleaving-방식">Interleaving 방식</h2>
+<ul>
+<li>뒤섞이는 방식</li>
+</ul>
+<p><figure 
+	>
+	<a href="/posts/computer-network-voip/Untitled%205.png" >
+		<img src="/posts/computer-network-voip/Untitled%205.png"
+			
+			
+			
+			loading="lazy"
+			alt="image">
+	</a>
+	
+	<figcaption>image</figcaption>
+	
+</figure></p>
+<ul>
+<li>예를들어 20ms 단위 청크로 송신하던 것을 다시 5ms 단위로 쪼개어 뒤섞어 재구성</li>
+<li>그 다음 받을 때 다시 원래 순서로 맞추어 재생하는 방법</li>
+<li>이렇게 송신하면 만약 한 청크가 유실되더라도 뒤섞여있었기 때문에 중간중간 구멍이 작아 사람의 입장에서는 통신에는 아무 지장이 없다는 것</li>
+<li>단점은 Playback 딜레이가 커진다는 것
+<ul>
+<li>충분한 청크들을 모두 받아야 재구성 가능하기 때문</li>
+</ul>
+</li>
+</ul>
+<h2 id="skype">Skype</h2>
+<ul>
+<li>사설 프로토콜</li>
+</ul>
+<p><figure 
+	>
+	<a href="/posts/computer-network-voip/Untitled%206.png" >
+		<img src="/posts/computer-network-voip/Untitled%206.png"
+			
+			
+			
+			loading="lazy"
+			alt="image">
+	</a>
+	
+	<figcaption>image</figcaption>
+	
+</figure></p>
+<ul>
+<li>P2P 컴포넌트들
+<ul>
+<li>클라이언트
+<ul>
+<li>서로간에 직접 연결하여 통화</li>
+</ul>
+</li>
+<li>수퍼노드
+<ul>
+<li>특별한 기능을 가진 스카이프 Peer</li>
+<li>자신에게 접속해있는 클라이언트 리스트 유지</li>
+</ul>
+</li>
+<li>오버레이 네트워크
+<ul>
+<li>수퍼노드들은 서로간에 네트워크를 형성</li>
+<li>서로 유저 리스트 등 보관 및 공유</li>
+</ul>
+</li>
+<li>스카이프 로그인 서비스</li>
+</ul>
+</li>
+<li>동작 방법
+<ol>
+<li>수퍼노드에 접속 (TCP)</li>
+<li>로그인 서버를 통해 로그인</li>
+<li>수퍼노드를 통해 전화할 유저의 IP 주소 가져옴</li>
+<li>얻은 IP 주소를 통해 전화</li>
+</ol>
+</li>
+<li><strong>문제</strong>
+<ul>
+<li>전화할 두 사람이 NAT 뒤에 있다면?
+<ul>
+<li>Peer in NAT → Peer out of NAT : 연결 가능</li>
+<li>Peer out of NAT → Peer in NAT : 연결 불가능</li>
+</ul>
+</li>
+<li>그래서 수퍼 노드를 이용해 중개하는 방식을 씀
+<ul>
+<li>A Peer in NAT → 수퍼노드 A</li>
+<li>B Peer in NAT → 수퍼노드 B</li>
+<li>수퍼노드 A ↔ 수퍼노드 B</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h1 id="rtp">RTP</h1>
+<h2 id="real-time-protocol">Real Time Protocol</h2>
+<ul>
+<li>실시간 데이터를 전송하기 위해 사용하는 프로토콜</li>
+<li>Audio, Video 전송하는 패킷 구조를 정의</li>
+<li>RTP 패킷
+<ul>
+<li>Payload Type 정의
+<ul>
+<li>Video</li>
+<li>Audio..</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>RTP는 엔드 시스템에서 동작</li>
+<li><strong>UDP가 사용됨</strong></li>
+<li>두 VOIP 어플리케이션이 RTP를 사용한다면 호환 가능할지도</li>
+</ul>
+<h2 id="rtp-example">RTP example</h2>
+<ul>
+<li>Sending 64 kbps PCM-encoded voice over RTP
+<ul>
+<li>Application collects encoded data in chunks
+<ul>
+<li>Every 20 msec = 160 bytes in a chunk</li>
+</ul>
+</li>
+<li>Audio chunk + RTP header from RTP packet in UDP segment</li>
+</ul>
+</li>
+<li>RTP header indicates type of audio encoding in each packet
+<ul>
+<li>Sender can change encoding during conference</li>
+</ul>
+</li>
+<li>RTP header contains seq_num, timestamps</li>
+</ul>
+<h2 id="rtp-and-qos">RTP and QoS</h2>
+<ul>
+<li>RTP는 QoS 보장 되지 않음</li>
+<li>중간의 라우터들은 RTP 인식하지 않음
+<ul>
+<li>Best-Effort 만 할거임</li>
+</ul>
+</li>
+</ul>
+<h2 id="rtp-헤더">RTP 헤더</h2>
+<p><figure 
+	>
+	<a href="/posts/computer-network-voip/Untitled%207.png" >
+		<img src="/posts/computer-network-voip/Untitled%207.png"
+			
+			
+			
+			loading="lazy"
+			alt="image">
+	</a>
+	
+	<figcaption>image</figcaption>
+	
+</figure></p>
+<ul>
+<li>Payload Type: 어떤 타입의 미디어인가 (보이스.. 미디어&hellip;)
+<ul>
+<li>Payload type 0: PCM mu-law, 64 kbps</li>
+<li>Payload type 3: GSM, 13 kbps</li>
+<li>Payload type 7: LPC, 2.4 kbps</li>
+<li>Payload type 26: Motion JPEG</li>
+<li>Payload type 31: H.261</li>
+<li>Payload type 33: MPEG2 video</li>
+</ul>
+</li>
+<li>Sequence number
+<ul>
+<li>RTP 패킷 별로 하나씩 증가</li>
+<li>패킷 로스가 감지되면 FEC를 통해 에러 복구 등 실행</li>
+</ul>
+</li>
+<li>Timestamp
+<ul>
+<li>실제 시간이 아님 (Sampling instant)
+<ul>
+<li>RTP 패킷에 있는 첫번째 바이트의 Sampling instant</li>
+<li>Audio의 경우, 타임 스탬프는 각 Sampling period마다 하나 씩 증가
+<ul>
+<li>예) Each 125 usecs for 8 KHz sampling clock</li>
+</ul>
+</li>
+<li>if app generates chunks of 160 encoded samples, timestamp increases by 160 for each RTP packet when source is active</li>
+<li>Timescamp clock continues to increase at constant rate when source is inactive</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>SSRC field
+<ul>
+<li>Source의 Unique ID</li>
+</ul>
+</li>
+</ul>
+<h2 id="rtcp">RTCP</h2>
+<ul>
+<li>RTP와 옵션적으로 사용</li>
+<li>RTCP 패킷은 Sender, Receiver의 Statistics를 포함
+<ul>
+<li>얼마의 패킷을 보냈고, 얼마의 패킷이 로스됬고 등등..</li>
+</ul>
+</li>
+<li>Sender가 동작 제어 하는데 도움이 된다</li>
+</ul>
+<h2 id="rtcp-패킷-타입">RTCP: 패킷 타입</h2>
+<ul>
+<li>Receiver report packets
+<ul>
+<li>패킷 로스, 마지막으로 받은 시퀀스 넘버 등</li>
+</ul>
+</li>
+<li>Sender report packets
+<ul>
+<li>현재 시간, 보낸 패킷들, 보낸 바이트 등</li>
+</ul>
+</li>
+<li>Source description packets
+<ul>
+<li>Sender의 메일, 이름 등등..</li>
+</ul>
+</li>
+</ul>
+<h2 id="rtcp-동기화">RTCP: 동기화</h2>
+<ul>
+<li>Voice, Video 동기화 가능 (싱크)</li>
+</ul>
+<h2 id="rtcp-bandwidth-scaling">RTCP: Bandwidth scaling</h2>
+<ul>
+<li>RTCP는 전체 대역폭의 5%만 차지하자</li>
+<li>너무 많이 리포트 보내면 메인 미디어 대역폭을 너무 잡아먹으니</li>
+<li>Example: Sender가 2Mbps로 데이터를 보낸다면
+<ul>
+<li>100Kbps만 RTCP가 쓰자
+<ul>
+<li>여기서도 75%는 Receiver가, 25%만 Sender가 쓰자
+<ul>
+<li>여기서도 Receiver가 많을 수 있기에 이 75Kbps를 균등하게 나눠 사용</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</section>
+
+
+    <footer class="article-footer">
+    
+    <section class="article-tags">
+        
+            <a href="/tags/computer-networking/">computer-networking</a>
+        
+            <a href="/tags/network/">network</a>
+        
+            <a href="/tags/networking/">networking</a>
+        
+            <a href="/tags/voip/">voip</a>
+        
+    </section>
+
+
+    
+    <section class="article-copyright">
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-copyright" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <path d="M14.5 9a3.5 4 0 1 0 0 6" />
+</svg>
+
+
+
+        <span>Licensed under CC BY-NC-SA 4.0</span>
+    </section>
+    </footer>
+
+
+    
+</article>
+
+    <aside class="related-contents--wrapper">
+    
+    
+        <h2 class="section-title">Related contents</h2>
+        <div class="related-contents">
+            <div class="flex article-list--tile">
+                
+                    
+<article class="">
+    <a href="/blog/computer-networking-voip-sip/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">Computer Networking - VOIP-SIP</h2>
+        </div>
+    </a>
+</article>
+                
+                    
+<article class="">
+    <a href="/blog/computer-networking-email-and-dns/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">Computer Networking - Email and DNS</h2>
+        </div>
+    </a>
+</article>
+                
+                    
+<article class="">
+    <a href="/blog/computer-networking-final-quick-note/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">Computer Networking - Final Quick Note</h2>
+        </div>
+    </a>
+</article>
+                
+                    
+<article class="">
+    <a href="/blog/computer-networking-flow-control-and-handshake/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">Computer Networking - Flow Control and Handshake</h2>
+        </div>
+    </a>
+</article>
+                
+                    
+<article class="">
+    <a href="/blog/computer-networking-http/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">Computer Networking - HTTP</h2>
+        </div>
+    </a>
+</article>
+                
+            </div>
+        </div>
+    
+</aside>
+
+     
+    
+        
+    <script src="https://utteranc.es/client.js" 
+        repo="yansigit/yansigit.github.io"
+        issue-term="pathname"
+        
+        label="Utterances Comment"
+        
+        crossorigin="anonymous"
+        async
+        >
+</script>
+
+<style>
+    .utterances {
+        max-width: unset;
+    }
+</style>
+
+<script>
+    function setUtterancesTheme(theme) {
+        let utterances = document.querySelector('.utterances iframe');
+        if (utterances) {
+            utterances.contentWindow.postMessage(
+                {
+                    type: 'set-theme',
+                    theme: `github-${theme}`
+                },
+                'https://utteranc.es'
+            );
+        }
+    }
+
+    addEventListener('message', event => {
+        if (event.origin !== 'https://utteranc.es') return;
+        setUtterancesTheme(document.documentElement.dataset.scheme)
+    });
+
+    window.addEventListener('onColorSchemeChange', (e) => {
+        setUtterancesTheme(e.detail)
+    })
+</script>
+
+
+    
+
+    <footer class="site-footer">
+    <section class="copyright">
+        &copy; 
+        
+            2020 - 
+        
+        2021 Code like Feather
+    </section>
+    
+    <section class="powerby">
+        Built with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> <br />
+        Theme <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="3.2.0">Stack</a></b> designed by <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a>
+    </section>
+</footer>
+
+
+    
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    
+    <div class="pswp__bg"></div>
+
+    
+    <div class="pswp__scroll-wrap">
+
+        
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                
+                
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"integrity="sha256-ePwmChbbvXbsO02lbM3HoHbSHTHFAeChekF1xKJdleo="crossorigin="anonymous"
+                defer="true"
+                >
+            </script><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"integrity="sha256-UKkzOn/w1mBxRmLLGrSeyB4e1xbrp4xylgAWb3M42pU="crossorigin="anonymous"
+                defer="true"
+                >
+            </script><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.css"integrity="sha256-c0uckgykQ9v5k&#43;IqViZOZKc47Jn7KQil4/MP3ySA3F8="crossorigin="anonymous"
+            ><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.css"integrity="sha256-SBLU4vv6CA6lHsZ1XyTdhyjJxCjPif/TRkjnsyGAGnE="crossorigin="anonymous"
+            >
+
+            </main>
+    
+        <aside class="sidebar right-sidebar sticky">
+            <section class="widget archives">
+                <div class="widget-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-hash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <line x1="5" y1="9" x2="19" y2="9" />
+  <line x1="5" y1="15" x2="19" y2="15" />
+  <line x1="11" y1="4" x2="7" y2="20" />
+  <line x1="17" y1="4" x2="13" y2="20" />
+</svg>
+
+
+
+                </div>
+                <h2 class="widget-title section-title">Table of contents</h2>
+                
+                <div class="widget--toc">
+                    <nav id="TableOfContents">
+  <ol>
+    <li><a href="#voip">VOIP</a></li>
+    <li><a href="#voip-특징">VOIP 특징</a></li>
+    <li><a href="#voip-packet-loss-delay">VOIP: Packet loss, delay</a></li>
+    <li><a href="#voip-buffer">VOIP Buffer</a></li>
+    <li><a href="#voip-fixed-playout-delay">VOIP: Fixed playout delay</a></li>
+    <li><a href="#voip-adaptive-playout-delay">VOIP: Adaptive playout delay</a></li>
+    <li><a href="#receiver가-talkspurt-시작점-판별하는-방법">Receiver가 Talkspurt 시작점 판별하는 방법</a></li>
+    <li><a href="#voip-패킷-로스-복구">VOIP: 패킷 로스 복구</a></li>
+    <li><a href="#simple-fec">Simple FEC</a></li>
+    <li><a href="#piggybacking-fec">PiggyBacking FEC</a></li>
+    <li><a href="#interleaving-방식">Interleaving 방식</a></li>
+    <li><a href="#skype">Skype</a></li>
+  </ol>
+
+  <ol>
+    <li><a href="#real-time-protocol">Real Time Protocol</a></li>
+    <li><a href="#rtp-example">RTP example</a></li>
+    <li><a href="#rtp-and-qos">RTP and QoS</a></li>
+    <li><a href="#rtp-헤더">RTP 헤더</a></li>
+    <li><a href="#rtcp">RTCP</a></li>
+    <li><a href="#rtcp-패킷-타입">RTCP: 패킷 타입</a></li>
+    <li><a href="#rtcp-동기화">RTCP: 동기화</a></li>
+    <li><a href="#rtcp-bandwidth-scaling">RTCP: Bandwidth scaling</a></li>
+  </ol>
+</nav>
+                </div>
+            </section>
+        </aside>
+    
+
+        </div>
+        <script 
+                src="https://cdn.jsdelivr.net/npm/node-vibrant@3.1.5/dist/vibrant.min.js"integrity="sha256-5NovOZc4iwiAWTYIFiIM7DxKUXKWvpVEuMEPLzcm5/g="crossorigin="anonymous"
+                defer="false"
+                >
+            </script><script type="text/javascript" src="/ts/main.js" defer></script>
+<script>
+    (function () {
+        const customFont = document.createElement('link');
+        customFont.href = "https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap";
+
+        customFont.type = "text/css";
+        customFont.rel = "stylesheet";
+
+        document.head.appendChild(customFont);
+    }());
+</script>
+
+    </body>
+</html>

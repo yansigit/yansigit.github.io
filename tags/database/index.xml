@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>database on Code like Feather</title>
+    <link>https://yansigit.github.io/tags/database/</link>
+    <description>Recent content in database on Code like Feather</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>ko-kr</language>
+    <lastBuildDate>Fri, 07 Feb 2020 22:40:13 +0900</lastBuildDate><atom:link href="https://yansigit.github.io/tags/database/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Client Software for Mongo Db Mongodb Compass</title>
+      <link>https://yansigit.github.io/blog/client-software-for-mongo-db-mongodb-compass/</link>
+      <pubDate>Fri, 07 Feb 2020 22:40:13 +0900</pubDate>
+      
+      <guid>https://yansigit.github.io/blog/client-software-for-mongo-db-mongodb-compass/</guid>
+      <description>&lt;p&gt;Mongo DB 관리 클라이언트, MongoDB Compass&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

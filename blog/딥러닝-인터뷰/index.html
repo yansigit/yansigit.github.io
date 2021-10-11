@@ -1,0 +1,615 @@
+<!DOCTYPE html>
+<html lang="ko-kr">
+    <head><meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content='유튜브에서 본 딥러닝 인터뷰 질문들 정리'><title>딥러닝 인터뷰</title>
+
+<link rel='canonical' href='https://yansigit.github.io/blog/%EB%94%A5%EB%9F%AC%EB%8B%9D-%EC%9D%B8%ED%84%B0%EB%B7%B0/'>
+
+<link rel="stylesheet" href="/scss/style.min.css"><meta property='og:title' content='딥러닝 인터뷰'>
+<meta property='og:description' content='유튜브에서 본 딥러닝 인터뷰 질문들 정리'>
+<meta property='og:url' content='https://yansigit.github.io/blog/%EB%94%A5%EB%9F%AC%EB%8B%9D-%EC%9D%B8%ED%84%B0%EB%B7%B0/'>
+<meta property='og:site_name' content='Code like Feather'>
+<meta property='og:type' content='article'><meta property='article:section' content='Posts' /><meta property='article:tag' content='machine-learning' /><meta property='article:tag' content='deep-learning' /><meta property='article:tag' content='data-processing' /><meta property='article:tag' content='data-science' /><meta property='article:published_time' content='2021-07-07T00:04:34&#43;09:00'/><meta property='article:modified_time' content='2021-07-07T00:04:34&#43;09:00'/><meta property='og:image' content='https://yansigit.github.io/images/lighthouse.jpg' />
+<meta name="twitter:title" content="딥러닝 인터뷰">
+<meta name="twitter:description" content="유튜브에서 본 딥러닝 인터뷰 질문들 정리"><meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content='https://yansigit.github.io/images/lighthouse.jpg' />
+    </head>
+    <body class="
+    article-page has-toc
+">
+    <script>
+        (function() {
+            const colorSchemeKey = 'StackColorScheme';
+            if(!localStorage.getItem(colorSchemeKey)){
+                localStorage.setItem(colorSchemeKey, "auto");
+            }
+        })();
+    </script><script>
+    (function() {
+        const colorSchemeKey = 'StackColorScheme';
+        const colorSchemeItem = localStorage.getItem(colorSchemeKey);
+        const supportDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches === true;
+
+        if (colorSchemeItem == 'dark' || colorSchemeItem === 'auto' && supportDarkMode) {
+            
+
+            document.documentElement.dataset.scheme = 'dark';
+        } else {
+            document.documentElement.dataset.scheme = 'light';
+        }
+    })();
+</script>
+<div class="container main-container flex 
+    
+        extended
+    
+">
+    
+        <div id="article-toolbar">
+            <a href="https://yansigit.github.io" class="back-home">
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-chevron-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <polyline points="15 6 9 12 15 18" />
+</svg>
+
+
+
+                <span>Back</span>
+            </a>
+        </div>
+    
+<main class="main full-width">
+    <article class="main-article">
+    <header class="article-header">
+
+    <div class="article-details">
+    
+    <header class="article-category">
+        
+            <a href="/categories/machine-learning/" >
+                machine-learning
+            </a>
+        
+            <a href="/categories/deep-learning/" >
+                deep-learning
+            </a>
+        
+            <a href="/categories/data-science/" >
+                data-science
+            </a>
+        
+    </header>
+    
+
+    <h2 class="article-title">
+        <a href="/blog/%EB%94%A5%EB%9F%AC%EB%8B%9D-%EC%9D%B8%ED%84%B0%EB%B7%B0/">딥러닝 인터뷰</a>
+    </h2>
+
+    
+    <h3 class="article-subtitle">
+        유튜브에서 본 딥러닝 인터뷰 질문들 정리
+    </h3>
+    
+
+    
+    <footer class="article-time">
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-calendar-time" width="56" height="56" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M11.795 21h-6.795a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v4" />
+  <circle cx="18" cy="18" r="4" />
+  <path d="M15 3v4" />
+  <path d="M7 3v4" />
+  <path d="M3 11h16" />
+  <path d="M18 16.496v1.504l1 1" />
+</svg>
+                <time class="article-time--published">Jul 07, 2021</time>
+            </div>
+        
+
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <polyline points="12 7 12 12 15 15" />
+</svg>
+
+
+
+                <time class="article-time--reading">
+                    3 minute read
+                </time>
+            </div>
+        
+    </footer>
+    
+</div>
+</header>
+
+    <section class="article-content">
+    <h1 id="딥러닝-인터뷰">딥러닝 인터뷰</h1>
+<h2 id="diff-between-ai-ml-and-deep-learning">Diff between AI, ML and Deep Learning</h2>
+<ul>
+<li>AI: technique which enables machines to mimic human behaviour.</li>
+<li>ML: using statical methods to enable machines to improve with experience</li>
+<li>Deep learning: Subset of ML, using multi layer neural network</li>
+</ul>
+<h2 id="do-you-think-deep-learning-is-better-than-machine-learning-if-so-why">Do you think deep learning is better than machine learning? if so, why?</h2>
+<ul>
+<li>머신 러닝은 데이터가 많아질수록 느려짐, 딥러닝은 그렇지 않음</li>
+<li>머신 러닝은 feature를 직접 지정해줘야 함. 딥러닝은 알아서 학습</li>
+</ul>
+<h2 id="what-is-perceptron-and-how-does-it-work">What is Perceptron? And how does it work?</h2>
+<h2 id="what-is-the-role-of-weights-and-bias">What is the role of weights and bias?</h2>
+<h2 id="what-is-the-activation-function">What is the activation function?</h2>
+<h2 id="steps-of-perceptron">Steps of perceptron</h2>
+<ul>
+<li>Init the weights and threshold</li>
+<li>Provide the input and calculate the output</li>
+<li>Update the weights</li>
+<li>Repeat Steps 2 and 3</li>
+</ul>
+<h2 id="what-is-costloss-function">What is cost/loss function</h2>
+<ul>
+<li>A cost function is a measure of the accuracy of the neural network with respoect to a given training sample and expected output</li>
+<li>it provides the perfomance of a neural network.
+<ul>
+<li>in deep learning, the goal is to minimize the cost function.</li>
+<li>use gradient descent</li>
+</ul>
+</li>
+</ul>
+<h2 id="gradient-descent">Gradient descent</h2>
+<ul>
+<li>optimization algorithm used to minimize some function by iteratively moving in the direction of steepest descent.</li>
+</ul>
+<h2 id="mini-batch-gradient">Mini-batch gradient</h2>
+<p><figure 
+	>
+	<a href="/posts/%eb%94%a5%eb%9f%ac%eb%8b%9d-%ec%9d%b8%ed%84%b0%eb%b7%b0/Untitled.png" >
+		<img src="/posts/%eb%94%a5%eb%9f%ac%eb%8b%9d-%ec%9d%b8%ed%84%b0%eb%b7%b0/Untitled.png"
+			
+			
+			
+			loading="lazy"
+			alt="%E1%84%83%E1%85%B5%E1%86%B8%E1%84%85%E1%85%A5%E1%84%82%E1%85%B5%E1%86%BC%20%E1%84%8B%E1%85%B5%E1%86%AB%E1%84%90%E1%85%A5%E1%84%87%E1%85%B2/Untitled.png">
+	</a>
+	
+	<figcaption>%E1%84%83%E1%85%B5%E1%86%B8%E1%84%85%E1%85%A5%E1%84%82%E1%85%B5%E1%86%BC%20%E1%84%8B%E1%85%B5%E1%86%AB%E1%84%90%E1%85%A5%E1%84%87%E1%85%B2/Untitled.png</figcaption>
+	
+</figure></p>
+<ul>
+<li>more efficient compared to stochastic gradient descent</li>
+<li>generalization by finding the flat minima</li>
+<li>mini-batches allows help to approximate the gradient of the entire training set which helps us to avoid local minima</li>
+</ul>
+<h2 id="what-are-the-steps-for-using-a-gradient-descent-algorithm">What are the steps for using a gradient descent algorithm</h2>
+<ul>
+<li>init random weight and bias</li>
+<li>pass an input thru the network and get values from the output layer</li>
+<li>calculate the error between the actual value and the predicted value</li>
+<li>go to each neuron which contributes to the error and then change  its respective values to reduce the error</li>
+<li>reiterate until you find the best weights of the network</li>
+</ul>
+<h2 id="what-are-the-shortcomings-of-a-single-layer-perceptron">What are the shortcomings of a single layer perceptron?</h2>
+<ul>
+<li>Single layer perceptron only can classify linearly saparable data points.</li>
+<li>Complex problems requiring lots of parameters cannot be solved.</li>
+</ul>
+<h2 id="what-is-multi-layer-perceptron">What is Multi Layer Perceptron?</h2>
+<p><figure 
+	>
+	<a href="/posts/%eb%94%a5%eb%9f%ac%eb%8b%9d-%ec%9d%b8%ed%84%b0%eb%b7%b0/Untitled%201.png" >
+		<img src="/posts/%eb%94%a5%eb%9f%ac%eb%8b%9d-%ec%9d%b8%ed%84%b0%eb%b7%b0/Untitled%201.png"
+			
+			
+			
+			loading="lazy"
+			alt="%E1%84%83%E1%85%B5%E1%86%B8%E1%84%85%E1%85%A5%E1%84%82%E1%85%B5%E1%86%BC%20%E1%84%8B%E1%85%B5%E1%86%AB%E1%84%90%E1%85%A5%E1%84%87%E1%85%B2/Untitled%201.png">
+	</a>
+	
+	<figcaption>%E1%84%83%E1%85%B5%E1%86%B8%E1%84%85%E1%85%A5%E1%84%82%E1%85%B5%E1%86%BC%20%E1%84%8B%E1%85%B5%E1%86%AB%E1%84%90%E1%85%A5%E1%84%87%E1%85%B2/Untitled%201.png</figcaption>
+	
+</figure></p>
+<ul>
+<li>MLP is a deep artificial neural network composed by multiple perceptron</li>
+<li>Input Layer + Hidden Layer + Output Layer
+<ul>
+<li>입력값을 받음 + 실제 계산 레이어 + 결정/추론 아웃풋</li>
+</ul>
+</li>
+</ul>
+<h2 id="what-are-the-different-parts-of-a-multi-layer-perceptron">What are the different parts of a multi layer perceptron?</h2>
+<ul>
+<li>Input Nodes
+<ul>
+<li>입력값을 Hidden Nodes에 패스</li>
+</ul>
+</li>
+<li>Hidden Nodes
+<ul>
+<li>실제 계산 수행</li>
+<li>Transfer information from input to output</li>
+</ul>
+</li>
+<li>Output Nodes
+<ul>
+<li>값 출력 및 추론 담당</li>
+</ul>
+</li>
+</ul>
+<h2 id="what-is-data-normalization-and-why-do-we-need-it">What is Data Normalization and Why do we need it?</h2>
+<ul>
+<li>
+<p>Rescale values to fit in a specific range</p>
+<ul>
+<li>To assure better convergence during backpropagation</li>
+</ul>
+</li>
+<li>
+<p>신경망의 학습을 빠르게 하기 위해</p>
+<ul>
+<li>각각 Unnormalized, Normalized 데이터들의 비용 함수</li>
+</ul>
+<p><figure 
+	>
+	<a href="/posts/%eb%94%a5%eb%9f%ac%eb%8b%9d-%ec%9d%b8%ed%84%b0%eb%b7%b0/Untitled%202.png" >
+		<img src="/posts/%eb%94%a5%eb%9f%ac%eb%8b%9d-%ec%9d%b8%ed%84%b0%eb%b7%b0/Untitled%202.png"
+			
+			
+			
+			loading="lazy"
+			alt="%E1%84%83%E1%85%B5%E1%86%B8%E1%84%85%E1%85%A5%E1%84%82%E1%85%B5%E1%86%BC%20%E1%84%8B%E1%85%B5%E1%86%AB%E1%84%90%E1%85%A5%E1%84%87%E1%85%B2/Untitled%202.png">
+	</a>
+	
+	<figcaption>%E1%84%83%E1%85%B5%E1%86%B8%E1%84%85%E1%85%A5%E1%84%82%E1%85%B5%E1%86%BC%20%E1%84%8B%E1%85%B5%E1%86%AB%E1%84%90%E1%85%A5%E1%84%87%E1%85%B2/Untitled%202.png</figcaption>
+	
+</figure></p>
+<ul>
+<li>Normalized의 경우 어디서 시작하던 쉽게 최적값에 도달 가능</li>
+</ul>
+</li>
+</ul>
+<h2 id="backpropagation">Backpropagation</h2>
+<ul>
+<li>Calculate the error and propagate it back to the earlier layers.</li>
+</ul>
+<h2 id="hyper-parameter">Hyper Parameter</h2>
+<ul>
+<li>모델링 시 사용자가 직접 세팅해주는 값 (즉 일반적으로 말하는 파라미터)</li>
+<li>Hidden Layers, Test Results, Learning rate, KNN에서의 K값 등&hellip;</li>
+</ul>
+<h2 id="dropout">Dropout</h2>
+<p><figure 
+	>
+	<a href="/posts/%eb%94%a5%eb%9f%ac%eb%8b%9d-%ec%9d%b8%ed%84%b0%eb%b7%b0/Untitled%203.png" >
+		<img src="/posts/%eb%94%a5%eb%9f%ac%eb%8b%9d-%ec%9d%b8%ed%84%b0%eb%b7%b0/Untitled%203.png"
+			
+			
+			
+			loading="lazy"
+			alt="%E1%84%83%E1%85%B5%E1%86%B8%E1%84%85%E1%85%A5%E1%84%82%E1%85%B5%E1%86%BC%20%E1%84%8B%E1%85%B5%E1%86%AB%E1%84%90%E1%85%A5%E1%84%87%E1%85%B2/Untitled%203.png">
+	</a>
+	
+	<figcaption>%E1%84%83%E1%85%B5%E1%86%B8%E1%84%85%E1%85%A5%E1%84%82%E1%85%B5%E1%86%BC%20%E1%84%8B%E1%85%B5%E1%86%AB%E1%84%90%E1%85%A5%E1%84%87%E1%85%B2/Untitled%203.png</figcaption>
+	
+</figure></p>
+<ul>
+<li>Regularization technique to avoid overfitting by model complexity</li>
+</ul>
+</section>
+
+
+    <footer class="article-footer">
+    
+    <section class="article-tags">
+        
+            <a href="/tags/machine-learning/">machine-learning</a>
+        
+            <a href="/tags/deep-learning/">deep-learning</a>
+        
+            <a href="/tags/data-processing/">data-processing</a>
+        
+            <a href="/tags/data-science/">data-science</a>
+        
+    </section>
+
+
+    
+    <section class="article-copyright">
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-copyright" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <path d="M14.5 9a3.5 4 0 1 0 0 6" />
+</svg>
+
+
+
+        <span>Licensed under CC BY-NC-SA 4.0</span>
+    </section>
+    </footer>
+
+
+    
+</article>
+
+    <aside class="related-contents--wrapper">
+    
+    
+        <h2 class="section-title">Related contents</h2>
+        <div class="related-contents">
+            <div class="flex article-list--tile">
+                
+                    
+<article class="">
+    <a href="/blog/classification/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">Classification</h2>
+        </div>
+    </a>
+</article>
+                
+                    
+<article class="">
+    <a href="/blog/clustering-%EA%B5%B0%EC%A7%91%ED%99%94/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">Clustering (군집화)</h2>
+        </div>
+    </a>
+</article>
+                
+                    
+<article class="">
+    <a href="/blog/data-processing/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">Data Processing</h2>
+        </div>
+    </a>
+</article>
+                
+                    
+<article class="">
+    <a href="/blog/deep-neural-network/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">Deep Neural Network</h2>
+        </div>
+    </a>
+</article>
+                
+                    
+<article class="">
+    <a href="/blog/dicision-tree/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">Dicision Tree</h2>
+        </div>
+    </a>
+</article>
+                
+            </div>
+        </div>
+    
+</aside>
+
+     
+    
+        
+    <script src="https://utteranc.es/client.js" 
+        repo="yansigit/yansigit.github.io"
+        issue-term="pathname"
+        
+        label="Utterances Comment"
+        
+        crossorigin="anonymous"
+        async
+        >
+</script>
+
+<style>
+    .utterances {
+        max-width: unset;
+    }
+</style>
+
+<script>
+    function setUtterancesTheme(theme) {
+        let utterances = document.querySelector('.utterances iframe');
+        if (utterances) {
+            utterances.contentWindow.postMessage(
+                {
+                    type: 'set-theme',
+                    theme: `github-${theme}`
+                },
+                'https://utteranc.es'
+            );
+        }
+    }
+
+    addEventListener('message', event => {
+        if (event.origin !== 'https://utteranc.es') return;
+        setUtterancesTheme(document.documentElement.dataset.scheme)
+    });
+
+    window.addEventListener('onColorSchemeChange', (e) => {
+        setUtterancesTheme(e.detail)
+    })
+</script>
+
+
+    
+
+    <footer class="site-footer">
+    <section class="copyright">
+        &copy; 
+        
+            2020 - 
+        
+        2021 Code like Feather
+    </section>
+    
+    <section class="powerby">
+        Built with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> <br />
+        Theme <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="3.2.0">Stack</a></b> designed by <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a>
+    </section>
+</footer>
+
+
+    
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    
+    <div class="pswp__bg"></div>
+
+    
+    <div class="pswp__scroll-wrap">
+
+        
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                
+                
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"integrity="sha256-ePwmChbbvXbsO02lbM3HoHbSHTHFAeChekF1xKJdleo="crossorigin="anonymous"
+                defer="true"
+                >
+            </script><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"integrity="sha256-UKkzOn/w1mBxRmLLGrSeyB4e1xbrp4xylgAWb3M42pU="crossorigin="anonymous"
+                defer="true"
+                >
+            </script><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.css"integrity="sha256-c0uckgykQ9v5k&#43;IqViZOZKc47Jn7KQil4/MP3ySA3F8="crossorigin="anonymous"
+            ><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.css"integrity="sha256-SBLU4vv6CA6lHsZ1XyTdhyjJxCjPif/TRkjnsyGAGnE="crossorigin="anonymous"
+            >
+
+            </main>
+    
+        <aside class="sidebar right-sidebar sticky">
+            <section class="widget archives">
+                <div class="widget-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-hash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <line x1="5" y1="9" x2="19" y2="9" />
+  <line x1="5" y1="15" x2="19" y2="15" />
+  <line x1="11" y1="4" x2="7" y2="20" />
+  <line x1="17" y1="4" x2="13" y2="20" />
+</svg>
+
+
+
+                </div>
+                <h2 class="widget-title section-title">Table of contents</h2>
+                
+                <div class="widget--toc">
+                    <nav id="TableOfContents">
+  <ol>
+    <li><a href="#diff-between-ai-ml-and-deep-learning">Diff between AI, ML and Deep Learning</a></li>
+    <li><a href="#do-you-think-deep-learning-is-better-than-machine-learning-if-so-why">Do you think deep learning is better than machine learning? if so, why?</a></li>
+    <li><a href="#what-is-perceptron-and-how-does-it-work">What is Perceptron? And how does it work?</a></li>
+    <li><a href="#what-is-the-role-of-weights-and-bias">What is the role of weights and bias?</a></li>
+    <li><a href="#what-is-the-activation-function">What is the activation function?</a></li>
+    <li><a href="#steps-of-perceptron">Steps of perceptron</a></li>
+    <li><a href="#what-is-costloss-function">What is cost/loss function</a></li>
+    <li><a href="#gradient-descent">Gradient descent</a></li>
+    <li><a href="#mini-batch-gradient">Mini-batch gradient</a></li>
+    <li><a href="#what-are-the-steps-for-using-a-gradient-descent-algorithm">What are the steps for using a gradient descent algorithm</a></li>
+    <li><a href="#what-are-the-shortcomings-of-a-single-layer-perceptron">What are the shortcomings of a single layer perceptron?</a></li>
+    <li><a href="#what-is-multi-layer-perceptron">What is Multi Layer Perceptron?</a></li>
+    <li><a href="#what-are-the-different-parts-of-a-multi-layer-perceptron">What are the different parts of a multi layer perceptron?</a></li>
+    <li><a href="#what-is-data-normalization-and-why-do-we-need-it">What is Data Normalization and Why do we need it?</a></li>
+    <li><a href="#backpropagation">Backpropagation</a></li>
+    <li><a href="#hyper-parameter">Hyper Parameter</a></li>
+    <li><a href="#dropout">Dropout</a></li>
+  </ol>
+</nav>
+                </div>
+            </section>
+        </aside>
+    
+
+        </div>
+        <script 
+                src="https://cdn.jsdelivr.net/npm/node-vibrant@3.1.5/dist/vibrant.min.js"integrity="sha256-5NovOZc4iwiAWTYIFiIM7DxKUXKWvpVEuMEPLzcm5/g="crossorigin="anonymous"
+                defer="false"
+                >
+            </script><script type="text/javascript" src="/ts/main.js" defer></script>
+<script>
+    (function () {
+        const customFont = document.createElement('link');
+        customFont.href = "https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap";
+
+        customFont.type = "text/css";
+        customFont.rel = "stylesheet";
+
+        document.head.appendChild(customFont);
+    }());
+</script>
+
+    </body>
+</html>

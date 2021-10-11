@@ -1,0 +1,1133 @@
+<!DOCTYPE html>
+<html lang="ko-kr">
+    <head><meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content='컴퓨터 네트워크 - RDT and Pipelined Protocols'><title>Computer Networking - RDT and Pipelined Protocols</title>
+
+<link rel='canonical' href='https://yansigit.github.io/blog/computer-networking-rdt-and-pipelined-protocols/'>
+
+<link rel="stylesheet" href="/scss/style.min.css"><meta property='og:title' content='Computer Networking - RDT and Pipelined Protocols'>
+<meta property='og:description' content='컴퓨터 네트워크 - RDT and Pipelined Protocols'>
+<meta property='og:url' content='https://yansigit.github.io/blog/computer-networking-rdt-and-pipelined-protocols/'>
+<meta property='og:site_name' content='Code like Feather'>
+<meta property='og:type' content='article'><meta property='article:section' content='Posts' /><meta property='article:tag' content='computer-networking' /><meta property='article:tag' content='network' /><meta property='article:tag' content='networking' /><meta property='article:tag' content='rdt' /><meta property='article:tag' content='pipelined-protocol' /><meta property='article:published_time' content='2020-09-17T00:11:07&#43;09:00'/><meta property='article:modified_time' content='2020-09-17T00:11:07&#43;09:00'/><meta property='og:image' content='https://yansigit.github.io/images/lighthouse.jpg' />
+<meta name="twitter:title" content="Computer Networking - RDT and Pipelined Protocols">
+<meta name="twitter:description" content="컴퓨터 네트워크 - RDT and Pipelined Protocols"><meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content='https://yansigit.github.io/images/lighthouse.jpg' />
+    </head>
+    <body class="
+    article-page has-toc
+">
+    <script>
+        (function() {
+            const colorSchemeKey = 'StackColorScheme';
+            if(!localStorage.getItem(colorSchemeKey)){
+                localStorage.setItem(colorSchemeKey, "auto");
+            }
+        })();
+    </script><script>
+    (function() {
+        const colorSchemeKey = 'StackColorScheme';
+        const colorSchemeItem = localStorage.getItem(colorSchemeKey);
+        const supportDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches === true;
+
+        if (colorSchemeItem == 'dark' || colorSchemeItem === 'auto' && supportDarkMode) {
+            
+
+            document.documentElement.dataset.scheme = 'dark';
+        } else {
+            document.documentElement.dataset.scheme = 'light';
+        }
+    })();
+</script>
+<div class="container main-container flex 
+    
+        extended
+    
+">
+    
+        <div id="article-toolbar">
+            <a href="https://yansigit.github.io" class="back-home">
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-chevron-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <polyline points="15 6 9 12 15 18" />
+</svg>
+
+
+
+                <span>Back</span>
+            </a>
+        </div>
+    
+<main class="main full-width">
+    <article class="main-article">
+    <header class="article-header">
+
+    <div class="article-details">
+    
+    <header class="article-category">
+        
+            <a href="/categories/computer-networking/" >
+                computer-networking
+            </a>
+        
+    </header>
+    
+
+    <h2 class="article-title">
+        <a href="/blog/computer-networking-rdt-and-pipelined-protocols/">Computer Networking - RDT and Pipelined Protocols</a>
+    </h2>
+
+    
+    <h3 class="article-subtitle">
+        컴퓨터 네트워크 - RDT and Pipelined Protocols
+    </h3>
+    
+
+    
+    <footer class="article-time">
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-calendar-time" width="56" height="56" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M11.795 21h-6.795a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v4" />
+  <circle cx="18" cy="18" r="4" />
+  <path d="M15 3v4" />
+  <path d="M7 3v4" />
+  <path d="M3 11h16" />
+  <path d="M18 16.496v1.504l1 1" />
+</svg>
+                <time class="article-time--published">Sep 17, 2020</time>
+            </div>
+        
+
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <polyline points="12 7 12 12 15 15" />
+</svg>
+
+
+
+                <time class="article-time--reading">
+                    6 minute read
+                </time>
+            </div>
+        
+    </footer>
+    
+</div>
+</header>
+
+    <section class="article-content">
+    <p>Computer Networking - RDT and Pipelined Protocols</p>
+<h1 id="computer-network-rdt-and-pipelined-protocols">Computer-Network-RDT-and-Pipelined-Protocols</h1>
+<h1 id="reliable-data-transfer-rdt">Reliable Data Transfer (RDT)</h1>
+<h2 id="what-is-rdt">What is RDT</h2>
+<p><figure 
+	>
+	<a href="/posts/computer-network-rdt-and-pipelined-protocols/Untitled.png" >
+		<img src="/posts/computer-network-rdt-and-pipelined-protocols/Untitled.png"
+			
+			
+			
+			loading="lazy"
+			alt="image">
+	</a>
+	
+	<figcaption>image</figcaption>
+	
+</figure></p>
+<ul>
+<li>Transport layer provides reliable channel to application layer</li>
+<li>그러나 Transport layer도 하위의 layer 기반이며, 이는 Unreliable channel이다.
+<ul>
+<li>그럼 Transfer layer는 어떻게 Reliable channel을 구현하는가?</li>
+</ul>
+</li>
+</ul>
+<hr>
+<ul>
+<li><code>udt_send()</code>와 <code>deliver_dat()</code>는 RDT에서 직접 호출
+<ul>
+<li><strong>ACTION</strong> 이라고 지칭</li>
+</ul>
+</li>
+<li><code>rdt_send()</code>는 application layer에서, <code>rdt_rcv()</code>는 underline channel에서 호출
+<ul>
+<li><strong>EVENT</strong> 라고 지칭</li>
+</ul>
+</li>
+</ul>
+<h2 id="lets-try-to-develop-rdt">Let&rsquo;s try to develop RDT</h2>
+<ul>
+<li>Assume we only need One-Way transfer
+<ul>
+<li>But control info will flow on both directions</li>
+</ul>
+</li>
+<li>Use Finite State Machines (FSM) to specify sender, receiver
+<ul>
+<li>
+<p><strong>FSM</strong></p>
+<ul>
+<li>상태를 중심으로 구현</li>
+<li>교재에서는 이렇게 표시</li>
+</ul>
+<p><figure 
+	>
+	<a href="/posts/computer-network-rdt-and-pipelined-protocols/Untitled%201.png" >
+		<img src="/posts/computer-network-rdt-and-pipelined-protocols/Untitled%201.png"
+			
+			
+			
+			loading="lazy"
+			alt="image">
+	</a>
+	
+	<figcaption>image</figcaption>
+	
+</figure></p>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="rdt-10--reliable-tansfer-위의-reliable-channel">RDT 1.0 : reliable tansfer 위의 reliable channel</h2>
+<ul>
+<li>
+<p>하위 채널도 완벽하게 Reliable</p>
+<ul>
+<li>비트 에러 없음</li>
+<li>패킷 로스 없음</li>
+</ul>
+</li>
+<li>
+<p>FSM을 이용해 Sender, Receiver를 표현</p>
+<p><figure 
+	>
+	<a href="/posts/computer-network-rdt-and-pipelined-protocols/Untitled%202.png" >
+		<img src="/posts/computer-network-rdt-and-pipelined-protocols/Untitled%202.png"
+			
+			
+			
+			loading="lazy"
+			alt="image">
+	</a>
+	
+	<figcaption>image</figcaption>
+	
+</figure></p>
+<ul>
+<li>Sender는 하위 채널에 데이터를 전송</li>
+<li>Receiver는 하위 채널로부터 데이터를 수신</li>
+</ul>
+</li>
+<li>
+<p>그러나 실제로는 하위 채널은 Reliable하지 못함</p>
+</li>
+</ul>
+<h2 id="rdt-20--channel-with-bit-errors">RDT 2.0 : Channel with bit errors</h2>
+<ul>
+<li>하위 채널이 Reliable 하지 못함
+<ul>
+<li>비트 에러가 있을 수 있음</li>
+</ul>
+</li>
+<li>그렇다면 어떻게 에러를 복구하는가
+<ul>
+<li><strong>ACks</strong> (acknowledgements)
+<ul>
+<li>Receiver가 명시적으로 Sender에게 패킷을 잘 받았음을 알려줌</li>
+</ul>
+</li>
+<li><strong>NAKs</strong> (negative acknowledgements)
+<ul>
+<li>Receiver가 Sender에게 명시적으로 패킷에 에러가 있음을 알려줌</li>
+</ul>
+</li>
+<li>Sender는 <strong>NAKs</strong>를 받으면 패킷을 재전송해줌</li>
+</ul>
+</li>
+<li>RDT 2.0에서의 새 메커니즘
+<ul>
+<li>Error detection</li>
+<li>Feedback (ACK, NAK)</li>
+</ul>
+</li>
+</ul>
+<p><figure 
+	>
+	<a href="/posts/computer-network-rdt-and-pipelined-protocols/Untitled%203.png" >
+		<img src="/posts/computer-network-rdt-and-pipelined-protocols/Untitled%203.png"
+			
+			
+			
+			loading="lazy"
+			alt="image">
+	</a>
+	
+	<figcaption>image</figcaption>
+	
+</figure></p>
+<h2 id="but-what-if-acknak-corrupted">BUT WHAT IF ACK|NAK corrupted?</h2>
+<ul>
+<li>Sender doesn&rsquo;t know what happened at receiver
+<ul>
+<li>ACK인지 NAK인지 판별 불가능</li>
+</ul>
+</li>
+<li>Can&rsquo;t just retransmit: possible duplicate
+<ul>
+<li>ACK를 받아야 위쪽에서 새 데이터를 받고 패킷을 만드는데 ACK인지 판별이 불가능하니 계속 같은 패킷만 재전송 할수도 있다</li>
+</ul>
+</li>
+<li>Duplicate 막기
+<ul>
+<li>Sender는 각 패킷에 Sequence number를 기입해둠</li>
+<li>Receiver는 그 Sequence number를 보고 이미 받은 패킷이면 Discard 시킴</li>
+</ul>
+</li>
+</ul>
+<h2 id="stop-and-wait-protocol">Stop and Wait Protocol</h2>
+<ul>
+<li>Sender sends one packet and waits for receiver&rsquo;s response</li>
+</ul>
+<h2 id="rdt-21--sequence-number로-중복-방지">RDT 2.1 : Sequence number로 중복 방지</h2>
+<p><figure 
+	>
+	<a href="/posts/computer-network-rdt-and-pipelined-protocols/Untitled%204.png" >
+		<img src="/posts/computer-network-rdt-and-pipelined-protocols/Untitled%204.png"
+			
+			
+			
+			loading="lazy"
+			alt="image">
+	</a>
+	
+	<figcaption>image</figcaption>
+	
+</figure></p>
+<ul>
+<li><code>sndpkt = make_pkt(0, data, ckecksum)</code>, <code>sndpkt = make_pkt(1, data, ckecksum)</code>으로 sequence number까지 보내주는 모습</li>
+<li><code>corrupt(rcvpkt)||isNAK(rcvpkt)</code> 으로 ACK 혹은 NAK corrupt 체크
+<ul>
+<li><strong>corrupt 되었다면 일반 NAK같이 치부함</strong></li>
+</ul>
+</li>
+<li>Twice as many states (<strong>만약 seq가 2개라면 4개의 상태가 필요하다는 뜻</strong>)
+<ul>
+<li>State must remember whether expected packet should have seq number of 0 or 1</li>
+</ul>
+</li>
+</ul>
+<p><figure 
+	>
+	<a href="/posts/computer-network-rdt-and-pipelined-protocols/Untitled%205.png" >
+		<img src="/posts/computer-network-rdt-and-pipelined-protocols/Untitled%205.png"
+			
+			
+			
+			loading="lazy"
+			alt="image">
+	</a>
+	
+	<figcaption>image</figcaption>
+	
+</figure></p>
+<ul>
+<li><strong>Receiver는 받은 패킷이 중복된 패킷인지 체크</strong>해야 한다
+<ul>
+<li>0번의 패킷을 기다리는데 1번이 오거나, 1번의 패킷을 기다리는데 0번이 오면 <code>extract</code> 하지 않고 바로 ACK 패킷을 만들어 보내는 모습.
+<ul>
+<li>즉 Discard 해버린다</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><strong>Receiver는 Sender가 ACK|NAK을 잘 전달받았는지 알지 못함</strong></li>
+</ul>
+<h2 id="rdt-22--nak-free-protocol">RDT 2.2 : NAK-FREE Protocol</h2>
+<p><figure 
+	>
+	<a href="/posts/computer-network-rdt-and-pipelined-protocols/Untitled%206.png" >
+		<img src="/posts/computer-network-rdt-and-pipelined-protocols/Untitled%206.png"
+			
+			
+			
+			loading="lazy"
+			alt="image">
+	</a>
+	
+	<figcaption>image</figcaption>
+	
+</figure></p>
+<ul>
+<li>ACK만 사용함</li>
+<li>기다리고 있는것과 다른 Seq number의 정보를 가진 ACK가 오면 NAK를 받은것처럼 처리
+<ul>
+<li>Sender 측에서는 현재 패킷 <code>udt_send(sndpkt)</code> 즉 전 절차에서 만들어진 <code>make_pkt(0, data, checksum)</code> 을 다시 보냄</li>
+<li>Receiver 측에서도 현재 패킷 <code>udt_send(sndpkt)</code> 즉 전 절차에서 만들어진 <code>make_pkt(ACK1, shksum)</code>을 그대로 보냄으로서 NAK 역할을 하게 함</li>
+</ul>
+</li>
+</ul>
+<h2 id="rdt-30--error-loss-모두-처리">RDT 3.0 : ERROR, LOSS 모두 처리</h2>
+<ul>
+<li>Underlying channel can also lose packets
+<ul>
+<li>Data, ACKs 둘 다 LOSS 가능</li>
+</ul>
+</li>
+<li>Approatch
+<ol>
+<li>Sender waits &ldquo;resonable&rdquo; amount of time for ACK</li>
+<li><strong>시간안에 안오면 패킷 재전송</strong></li>
+<li>만약 패킷이 그냥 Delay 된거였다면 (not lost)
+<ul>
+<li>재전송된 패킷은 중복 패킷이 되겠지만, Sequence number 덕분에 그냥 Discard 해줄 것</li>
+<li>Receiver must specify seq number of packet being ACKed</li>
+</ul>
+</li>
+</ol>
+<ul>
+<li>카운트 다운 타이머가 필요할 것</li>
+</ul>
+</li>
+</ul>
+<hr>
+<p><figure 
+	>
+	<a href="/posts/computer-network-rdt-and-pipelined-protocols/Untitled%207.png" >
+		<img src="/posts/computer-network-rdt-and-pipelined-protocols/Untitled%207.png"
+			
+			
+			
+			loading="lazy"
+			alt="image">
+	</a>
+	
+	<figcaption>image</figcaption>
+	
+</figure></p>
+<ul>
+<li><code>start_timer</code>로 &ldquo;resonable&rdquo; 한 시간동안 기다림
+<ul>
+<li>timeout 되면 패킷을 재전송하고 타이머 재시작</li>
+</ul>
+</li>
+<li><strong>corrupt 되거나 잘못된 seq number의 ACK이 오면 그냥 무시</strong></li>
+<li>제대로된 ACK가 오면 타이머 멈추고 다음으로 넘어감</li>
+</ul>
+<h2 id="rdt-30-동작">RDT 3.0 동작</h2>
+<p><figure 
+	>
+	<a href="/posts/computer-network-rdt-and-pipelined-protocols/Untitled%208.png" >
+		<img src="/posts/computer-network-rdt-and-pipelined-protocols/Untitled%208.png"
+			
+			
+			
+			loading="lazy"
+			alt="image">
+	</a>
+	
+	<figcaption>image</figcaption>
+	
+</figure></p>
+<p><figure 
+	>
+	<a href="/posts/computer-network-rdt-and-pipelined-protocols/Untitled%209.png" >
+		<img src="/posts/computer-network-rdt-and-pipelined-protocols/Untitled%209.png"
+			
+			
+			
+			loading="lazy"
+			alt="image">
+	</a>
+	
+	<figcaption>image</figcaption>
+	
+</figure></p>
+<ul>
+<li>지금까지 혼동하고 있었는데 이걸보면 Sequence는 일련의 한정된 패킷에 넘버링 하는게 아니라, 버퍼 개념인 듯 하다.</li>
+<li>즉 여기서는 버퍼가 두칸짜리고 이걸 계속 상위 레이어에서 데이터를 받아서 채우고 Receiver에 전달하는 것.</li>
+<li>(d)의 경우에는 ACK 전달이 Delay되었는데도 중간에 Seq num이 다른 패킷과 ACK는 무시함으로써 정상 작동하는 모습을 보여준다.</li>
+</ul>
+<h2 id="rdt-30-문제--퍼포먼스">RDT 3.0 문제 : 퍼포먼스</h2>
+<p><figure 
+	>
+	<a href="/posts/computer-network-rdt-and-pipelined-protocols/Untitled%2010.png" >
+		<img src="/posts/computer-network-rdt-and-pipelined-protocols/Untitled%2010.png"
+			
+			
+			
+			loading="lazy"
+			alt="image">
+	</a>
+	
+	<figcaption>image</figcaption>
+	
+</figure></p>
+<p><figure 
+	>
+	<a href="/posts/computer-network-rdt-and-pipelined-protocols/Untitled%2011.png" >
+		<img src="/posts/computer-network-rdt-and-pipelined-protocols/Untitled%2011.png"
+			
+			
+			
+			loading="lazy"
+			alt="image">
+	</a>
+	
+	<figcaption>image</figcaption>
+	
+</figure></p>
+<ul>
+<li>제대로 작동은 하지만 작동이 엄청 느리다</li>
+<li>사실상 못쓴다</li>
+<li><strong>RTT</strong>
+<ul>
+<li>패킷을 보내고 답을 받는데까지 시간</li>
+<li>2 X <em>PropDelay</em></li>
+</ul>
+</li>
+<li>그러니까 실제 패킷을 전송하는데 할애한 시간인 <code>L/R</code> 에 전체 시간인 <code>RTT + L/R</code>을 나누면 효율을 알 수 있다.. 이말이다.
+<ul>
+<li>구해보니 효율이 처참하다.</li>
+</ul>
+</li>
+</ul>
+<h1 id="pinelined-protocols">Pinelined Protocols</h1>
+<ul>
+<li>Sender는 Ack를 받지 않더라도 계속 여러개의 패킷을 보낼 수 있음</li>
+<li>TCP 프로토콜에 사용됨</li>
+</ul>
+<h2 id="increased-utilization">Increased Utilization</h2>
+<p><figure 
+	>
+	<a href="/posts/computer-network-rdt-and-pipelined-protocols/Untitled%2012.png" >
+		<img src="/posts/computer-network-rdt-and-pipelined-protocols/Untitled%2012.png"
+			
+			
+			
+			loading="lazy"
+			alt="image">
+	</a>
+	
+	<figcaption>image</figcaption>
+	
+</figure></p>
+<ul>
+<li>3개의 패킷을 동시에 보내므로 효율성이 증가하였다</li>
+<li>Receiver 측에서는 Ack를 보내긴 한다</li>
+<li>다만 Sender 측에서는 패킷을 보낼 때 3개를 동시에 보내며, Ack를 받고 다음 패킷을 보낼때도 마찬가지다</li>
+</ul>
+<h2 id="go-back-n">Go-Back-N</h2>
+<ul>
+<li>최대 N개까지 Ack를 받지않고 패킷을 보낼 수 있다</li>
+<li>Receiver는 <code>Cumulative Ack</code>만을 보낸다
+<ul>
+<li>예를 들어 Ack10이라는 Ack를 보냈다면  0~10까지의 패킷을 정상적으로 수신했다는 것</li>
+<li><strong>Gap 이 있으면 Ack 패킷을 보내지 않음</strong>
+<ul>
+<li>즉 만약 패킷1을 받았는데.. 패킷2가 전달이 되지 않은 경우?</li>
+<li>패킷3이 전달되어 Ack를 보낼 때 Ack1을 보낸다.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>한개의 타이머만 유지
+<ul>
+<li>타임아웃 발생하면, Ack로 정상 전송 여부가 판별되지 않은 모든 패킷을 다시 보낸다</li>
+</ul>
+</li>
+</ul>
+<h2 id="selective-repeat-sr">Selective Repeat (SR)</h2>
+<ul>
+<li>최대 N개까지 Ack를 받지않고 패킷을 보낼 수 있다</li>
+<li>Receiver는 각각의 패킷에 대해서 개별적인 Ack를 보낸다
+<ul>
+<li>예를 들어 Ack10이라는 Ack를 보냈다면 10번째 패킷을 정상적으로 수신했다는 것</li>
+<li>그 이전의 패킷은 정상 수신여부 모름</li>
+</ul>
+</li>
+<li>각각의 패킷에 대해 타이머를 관리
+<ul>
+<li>타임 아웃이 발생하면 해당 Ack를 받지 않은 패킷만 다시 전송</li>
+<li>오버헤드가 더 크다</li>
+</ul>
+</li>
+</ul>
+<p>Go-Back-N (GBN)</p>
+<blockquote>
+<p>Sliding Window Protocol 이라고도 부름</p>
+</blockquote>
+<h2 id="sender">Sender</h2>
+<p><figure 
+	>
+	<a href="/posts/computer-network-rdt-and-pipelined-protocols/Untitled%2013.png" >
+		<img src="/posts/computer-network-rdt-and-pipelined-protocols/Untitled%2013.png"
+			
+			
+			
+			loading="lazy"
+			alt="image">
+	</a>
+	
+	<figcaption>image</figcaption>
+	
+</figure></p>
+<ul>
+<li><code>window</code> : 최대 N개의 패킷을 보낼 수 있는 범위</li>
+<li><strong><code>send_base</code></strong> : 현재 Window에서 처음 보내는 패킷</li>
+<li><strong><code>nextseqnum</code></strong> : (상위 레이어에서 패킷이 아직 안와서) 다음에 보낼 패킷</li>
+<li>설명하자면..
+<ul>
+<li><strong>초록색</strong>은 Ack를 받고 정상 전송이 컨펌된 패킷들</li>
+<li><strong>노란색</strong>은 보내긴 했으나 Ack가 도달 안된 패킷들</li>
+<li><strong>파란색</strong>은 현재 Window 내에서 전송 가능한 가용 패킷 용량</li>
+<li><strong>하얀색</strong>은 아직 Window 범위 내에 있지 않아 사용 불가능한 칸이다.</li>
+</ul>
+<ol>
+<li><strong>만약 상위 레이어에서 데이터가 내려오면</strong>
+<ul>
+<li><strong>Window 칸 모두 파란색</strong>이다
+<ul>
+<li>해당 패킷들을 만들어 보내고</li>
+<li>그 수만큼 파란색 칸은 노란색이 되고</li>
+<li><code>nextseqnum</code>도 해당 수만큼 오른쪽으로 이동</li>
+<li>보내놓은 패킷이 없어서 타이머가 종료된 상태였는데, 처음 패킷을 보냈으므로 <strong>타이머 시작</strong></li>
+</ul>
+</li>
+<li><strong>Window 내에 노란색도 있고 파란색도 있다</strong>
+<ul>
+<li>해당 패킷들을 만들어 보내고</li>
+<li>그 수만큼 파란색 칸은 노란색이 되고</li>
+<li>nextseqnum도 해당 수만큼 오른쪽으로 이동</li>
+</ul>
+</li>
+<li><strong>Window 칸 모두 노란색이다</strong>
+<ul>
+<li><code>nextseqnum</code>이 현재 window를 이탈한 상태라는 것</li>
+<li>즉 가용한 패킷 용량을 다 사용했으므로 데이터 전송을 거부</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><strong>만약 Ack가 도착하면</strong>
+<ul>
+<li>해당 Ack가 컨펌한 패킷들만큼 노란색 칸이 초록색 칸으로 채워지고</li>
+<li>또 그만큼 <code>send_base</code>가 오른쪽으로 이동</li>
+<li><code>window</code>는 바뀐 <code>send_base</code>에 맞춰 그만큼 재설정됨</li>
+</ul>
+<ol>
+<li><strong>그랬는데 만약 모든 칸이 초록색이라면</strong>
+<ul>
+<li>모든 보낸 패킷이 Ack에 의해 컨펌되었으므로 <strong>타이머 종료</strong></li>
+</ul>
+</li>
+<li><strong>아직 컨펌되지 않은 패킷이 있다면</strong>
+<ul>
+<li><strong>타이머 재시작</strong></li>
+</ul>
+</li>
+</ol>
+</li>
+<li><strong>타임아웃이 발생하면</strong>
+<ul>
+<li><strong>타이머 재시작</strong>하고</li>
+<li><strong>노란색 패킷들을 다시 보냄</strong></li>
+</ul>
+</li>
+</ol>
+</li>
+</ul>
+<h2 id="sender-fsm">Sender FSM</h2>
+<p><figure 
+	>
+	<a href="/posts/computer-network-rdt-and-pipelined-protocols/Untitled%2014.png" >
+		<img src="/posts/computer-network-rdt-and-pipelined-protocols/Untitled%2014.png"
+			
+			
+			
+			loading="lazy"
+			alt="image">
+	</a>
+	
+	<figcaption>image</figcaption>
+	
+</figure></p>
+<ul>
+<li>위에서 얘기한 내용을 FSM으로 표현한 것</li>
+</ul>
+<h2 id="receiver-fsm">Receiver FSM</h2>
+<p><figure 
+	>
+	<a href="/posts/computer-network-rdt-and-pipelined-protocols/Untitled%2015.png" >
+		<img src="/posts/computer-network-rdt-and-pipelined-protocols/Untitled%2015.png"
+			
+			
+			
+			loading="lazy"
+			alt="image">
+	</a>
+	
+	<figcaption>image</figcaption>
+	
+</figure></p>
+<ul>
+<li><code>expectedseqnum</code> : 받아야 할 패킷의 시퀀스 넘버</li>
+<li><strong>패킷이 순서대로 왔을 경우</strong>
+<ul>
+<li><strong>제대로 수신된 제일 마지막 패킷을 기준으로 ACK 하나를 보냄</strong></li>
+<li><code>expectedsuqnum</code> 하나만 기억하면 됨</li>
+</ul>
+</li>
+<li><strong>패킷의 순서가 엉망인 경우</strong>
+<ul>
+<li>그냥 버려버리고</li>
+<li><strong>순서대로 제대로 온 패킷의 마지막 시퀀스 넘버 ACK를 보낸다</strong></li>
+</ul>
+</li>
+</ul>
+<h2 id="모식도">모식도</h2>
+<p><figure 
+	>
+	<a href="/posts/computer-network-rdt-and-pipelined-protocols/Untitled%2016.png" >
+		<img src="/posts/computer-network-rdt-and-pipelined-protocols/Untitled%2016.png"
+			
+			
+			
+			loading="lazy"
+			alt="image">
+	</a>
+	
+	<figcaption>image</figcaption>
+	
+</figure></p>
+<ul>
+<li>Sender는 패킷 0,1,2,3 을 보낸다</li>
+<li>Receiver는 패킷2가 Loss 됬으므로 마지막으로 제대로 수신된 패킷1의 ACK를 계속 보낸다.</li>
+<li>Sender는 ACK1를 받아 0,1은 컨펌됨을 알고 send_base를 2로 이동</li>
+<li>그리고 그 과정에서 Window에 포함되는 4,5가 비는데, 데이터가 오면 전송시킨다</li>
+<li>Receiver는 해당 패킷을 기대하는게 아니므로 계속해서 패킷1의 ACK를 보냄</li>
+<li>그러다보면 타임아웃이 일어남</li>
+<li>Sender는 타이머를 재시작하고 Ack로 컨펌되지 않은 2,3,4,5 패킷을 보냄</li>
+<li>Receiver는 기대하고 있는 패킷이 왔으므로 수신 작업을 함</li>
+</ul>
+<h1 id="selective-repeat-sr-1">Selective Repeat (SR)</h1>
+<h2 id="go-back-n-과의-차이점">Go-Back-N 과의 차이점</h2>
+<ul>
+<li>Receiver
+<ul>
+<li>개별적으로 패킷을 ACK 처리</li>
+<li>순서대로 오지 않은 패킷도 버퍼함
+<ul>
+<li>즉 패킷9를 받지 못하고 패킷10을 받았을 때에도 버퍼에 패킷10을 저장해두었다가 패킷 9가 오면 한꺼번에 올려줌</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Sender
+<ul>
+<li>각각의 패킷에 대해 타이머를 유지 관리</li>
+<li>타임아웃이 오면 해당 패킷만 재전송</li>
+</ul>
+</li>
+</ul>
+<h2 id="sender--receiver">Sender / Receiver</h2>
+<p><figure 
+	>
+	<a href="/posts/computer-network-rdt-and-pipelined-protocols/Untitled%2017.png" >
+		<img src="/posts/computer-network-rdt-and-pipelined-protocols/Untitled%2017.png"
+			
+			
+			
+			loading="lazy"
+			alt="image">
+	</a>
+	
+	<figcaption>image</figcaption>
+	
+</figure></p>
+<h2 id="모식도-1">모식도</h2>
+<p><figure 
+	>
+	<a href="/posts/computer-network-rdt-and-pipelined-protocols/Untitled%2018.png" >
+		<img src="/posts/computer-network-rdt-and-pipelined-protocols/Untitled%2018.png"
+			
+			
+			
+			loading="lazy"
+			alt="image">
+	</a>
+	
+	<figcaption>image</figcaption>
+	
+</figure></p>
+<ul>
+<li>Sender가 패킷 0,1,2,3 보냄</li>
+<li>패킷2에 로스가 일어남</li>
+<li>Receiver는 패킷 0,1,3 받고 각각 Ack 보냄. 패킷3은 버퍼에 들어감</li>
+<li>Sender는 0,1이 컨펌된것을 인지하고 Sender_base를 2로 옮김 (단 Ack3의 경우에는 Ack2가 아직 도달 안했으므로, 패킷3이 전송 잘 되었다는것만 기억.)</li>
+<li>그 과정에서 포함되는 4,5 자리. 데이터가 오면 패킷 4,5로 전송</li>
+<li>Receiver는 패킷을 받고 버퍼에 저장. Ack 4, Ack 5도 전송함</li>
+<li>패킷 4,5도 잘 전달되었다는 것을 기억.</li>
+<li>Sender는 패킷2 타이머가 타임아웃됨을 인지</li>
+<li>따라서 패킷2를 재전송</li>
+<li>Receiver는 패킷2를 받고 버퍼에 있던 패킷들과 함께 상위 레이어로 전송, Ack2를 Sender에 전해줌</li>
+</ul>
+<h2 id="문제점">문제점</h2>
+<blockquote>
+<p>시퀀스 넘버를 잘 써야한다.</p>
+</blockquote>
+<p><figure 
+	>
+	<a href="/posts/computer-network-rdt-and-pipelined-protocols/Untitled%2019.png" >
+		<img src="/posts/computer-network-rdt-and-pipelined-protocols/Untitled%2019.png"
+			
+			
+			
+			loading="lazy"
+			alt="image">
+	</a>
+	
+	<figcaption>image</figcaption>
+	
+</figure></p>
+<ul>
+<li>위같이 시퀀스 넘버를 짤 경우, Receiver 입장에서는 Sender의 사정을 알 수 없으므로</li>
+<li>처음 패킷0,1,2에 대한 Ack들이 통째로 로스될 경우..
+<ul>
+<li>Sender는 재차 기존 패킷0,1,2를 재전송하고</li>
+<li>Receiver는 그 재전송된 패킷이 새로운 칸의 0,1의 패킷으로 생각하고 버퍼에 넣어버린다.</li>
+</ul>
+</li>
+<li>그래서 시퀀스 넘버 Range는 Window 사이즈보다 두 배 이상 커야 한다.</li>
+</ul>
+</section>
+
+
+    <footer class="article-footer">
+    
+    <section class="article-tags">
+        
+            <a href="/tags/computer-networking/">computer-networking</a>
+        
+            <a href="/tags/network/">network</a>
+        
+            <a href="/tags/networking/">networking</a>
+        
+            <a href="/tags/rdt/">rdt</a>
+        
+            <a href="/tags/pipelined-protocol/">pipelined-protocol</a>
+        
+    </section>
+
+
+    
+    <section class="article-copyright">
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-copyright" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <path d="M14.5 9a3.5 4 0 1 0 0 6" />
+</svg>
+
+
+
+        <span>Licensed under CC BY-NC-SA 4.0</span>
+    </section>
+    </footer>
+
+
+    
+</article>
+
+    <aside class="related-contents--wrapper">
+    
+    
+        <h2 class="section-title">Related contents</h2>
+        <div class="related-contents">
+            <div class="flex article-list--tile">
+                
+                    
+<article class="">
+    <a href="/blog/computer-networking-email-and-dns/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">Computer Networking - Email and DNS</h2>
+        </div>
+    </a>
+</article>
+                
+                    
+<article class="">
+    <a href="/blog/computer-networking-final-quick-note/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">Computer Networking - Final Quick Note</h2>
+        </div>
+    </a>
+</article>
+                
+                    
+<article class="">
+    <a href="/blog/computer-networking-flow-control-and-handshake/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">Computer Networking - Flow Control and Handshake</h2>
+        </div>
+    </a>
+</article>
+                
+                    
+<article class="">
+    <a href="/blog/computer-networking-http/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">Computer Networking - HTTP</h2>
+        </div>
+    </a>
+</article>
+                
+                    
+<article class="">
+    <a href="/blog/computer-networking-network-multimedia/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">Computer Networking - Network Multimedia</h2>
+        </div>
+    </a>
+</article>
+                
+            </div>
+        </div>
+    
+</aside>
+
+     
+    
+        
+    <script src="https://utteranc.es/client.js" 
+        repo="yansigit/yansigit.github.io"
+        issue-term="pathname"
+        
+        label="Utterances Comment"
+        
+        crossorigin="anonymous"
+        async
+        >
+</script>
+
+<style>
+    .utterances {
+        max-width: unset;
+    }
+</style>
+
+<script>
+    function setUtterancesTheme(theme) {
+        let utterances = document.querySelector('.utterances iframe');
+        if (utterances) {
+            utterances.contentWindow.postMessage(
+                {
+                    type: 'set-theme',
+                    theme: `github-${theme}`
+                },
+                'https://utteranc.es'
+            );
+        }
+    }
+
+    addEventListener('message', event => {
+        if (event.origin !== 'https://utteranc.es') return;
+        setUtterancesTheme(document.documentElement.dataset.scheme)
+    });
+
+    window.addEventListener('onColorSchemeChange', (e) => {
+        setUtterancesTheme(e.detail)
+    })
+</script>
+
+
+    
+
+    <footer class="site-footer">
+    <section class="copyright">
+        &copy; 
+        
+            2020 - 
+        
+        2021 Code like Feather
+    </section>
+    
+    <section class="powerby">
+        Built with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> <br />
+        Theme <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="3.2.0">Stack</a></b> designed by <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a>
+    </section>
+</footer>
+
+
+    
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    
+    <div class="pswp__bg"></div>
+
+    
+    <div class="pswp__scroll-wrap">
+
+        
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                
+                
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"integrity="sha256-ePwmChbbvXbsO02lbM3HoHbSHTHFAeChekF1xKJdleo="crossorigin="anonymous"
+                defer="true"
+                >
+            </script><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"integrity="sha256-UKkzOn/w1mBxRmLLGrSeyB4e1xbrp4xylgAWb3M42pU="crossorigin="anonymous"
+                defer="true"
+                >
+            </script><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.css"integrity="sha256-c0uckgykQ9v5k&#43;IqViZOZKc47Jn7KQil4/MP3ySA3F8="crossorigin="anonymous"
+            ><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.css"integrity="sha256-SBLU4vv6CA6lHsZ1XyTdhyjJxCjPif/TRkjnsyGAGnE="crossorigin="anonymous"
+            >
+
+            </main>
+    
+        <aside class="sidebar right-sidebar sticky">
+            <section class="widget archives">
+                <div class="widget-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-hash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <line x1="5" y1="9" x2="19" y2="9" />
+  <line x1="5" y1="15" x2="19" y2="15" />
+  <line x1="11" y1="4" x2="7" y2="20" />
+  <line x1="17" y1="4" x2="13" y2="20" />
+</svg>
+
+
+
+                </div>
+                <h2 class="widget-title section-title">Table of contents</h2>
+                
+                <div class="widget--toc">
+                    <nav id="TableOfContents">
+  <ol>
+    <li><a href="#what-is-rdt">What is RDT</a></li>
+    <li><a href="#lets-try-to-develop-rdt">Let&rsquo;s try to develop RDT</a></li>
+    <li><a href="#rdt-10--reliable-tansfer-위의-reliable-channel">RDT 1.0 : reliable tansfer 위의 reliable channel</a></li>
+    <li><a href="#rdt-20--channel-with-bit-errors">RDT 2.0 : Channel with bit errors</a></li>
+    <li><a href="#but-what-if-acknak-corrupted">BUT WHAT IF ACK|NAK corrupted?</a></li>
+    <li><a href="#stop-and-wait-protocol">Stop and Wait Protocol</a></li>
+    <li><a href="#rdt-21--sequence-number로-중복-방지">RDT 2.1 : Sequence number로 중복 방지</a></li>
+    <li><a href="#rdt-22--nak-free-protocol">RDT 2.2 : NAK-FREE Protocol</a></li>
+    <li><a href="#rdt-30--error-loss-모두-처리">RDT 3.0 : ERROR, LOSS 모두 처리</a></li>
+    <li><a href="#rdt-30-동작">RDT 3.0 동작</a></li>
+    <li><a href="#rdt-30-문제--퍼포먼스">RDT 3.0 문제 : 퍼포먼스</a></li>
+  </ol>
+
+  <ol>
+    <li><a href="#increased-utilization">Increased Utilization</a></li>
+    <li><a href="#go-back-n">Go-Back-N</a></li>
+    <li><a href="#selective-repeat-sr">Selective Repeat (SR)</a></li>
+    <li><a href="#sender">Sender</a></li>
+    <li><a href="#sender-fsm">Sender FSM</a></li>
+    <li><a href="#receiver-fsm">Receiver FSM</a></li>
+    <li><a href="#모식도">모식도</a></li>
+  </ol>
+
+  <ol>
+    <li><a href="#go-back-n-과의-차이점">Go-Back-N 과의 차이점</a></li>
+    <li><a href="#sender--receiver">Sender / Receiver</a></li>
+    <li><a href="#모식도-1">모식도</a></li>
+    <li><a href="#문제점">문제점</a></li>
+  </ol>
+</nav>
+                </div>
+            </section>
+        </aside>
+    
+
+        </div>
+        <script 
+                src="https://cdn.jsdelivr.net/npm/node-vibrant@3.1.5/dist/vibrant.min.js"integrity="sha256-5NovOZc4iwiAWTYIFiIM7DxKUXKWvpVEuMEPLzcm5/g="crossorigin="anonymous"
+                defer="false"
+                >
+            </script><script type="text/javascript" src="/ts/main.js" defer></script>
+<script>
+    (function () {
+        const customFont = document.createElement('link');
+        customFont.href = "https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap";
+
+        customFont.type = "text/css";
+        customFont.rel = "stylesheet";
+
+        document.head.appendChild(customFont);
+    }());
+</script>
+
+    </body>
+</html>

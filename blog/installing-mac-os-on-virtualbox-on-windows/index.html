@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<html lang="ko-kr">
+    <head><meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content='윈도우에서 버추얼박스 이용하여 맥 OS 설치하기'><title>Installing Mac OS on Virtualbox on Windows</title>
+
+<link rel='canonical' href='https://yansigit.github.io/blog/installing-mac-os-on-virtualbox-on-windows/'>
+
+<link rel="stylesheet" href="/scss/style.min.css"><meta property='og:title' content='Installing Mac OS on Virtualbox on Windows'>
+<meta property='og:description' content='윈도우에서 버추얼박스 이용하여 맥 OS 설치하기'>
+<meta property='og:url' content='https://yansigit.github.io/blog/installing-mac-os-on-virtualbox-on-windows/'>
+<meta property='og:site_name' content='Code like Feather'>
+<meta property='og:type' content='article'><meta property='article:section' content='Posts' /><meta property='article:tag' content='mac' /><meta property='article:tag' content='macos' /><meta property='article:tag' content='virtualbox' /><meta property='article:tag' content='windows' /><meta property='article:published_time' content='2020-02-20T23:33:21&#43;09:00'/><meta property='article:modified_time' content='2020-02-20T23:33:21&#43;09:00'/><meta property='og:image' content='https://yansigit.github.io/images/lighthouse.jpg' />
+<meta name="twitter:title" content="Installing Mac OS on Virtualbox on Windows">
+<meta name="twitter:description" content="윈도우에서 버추얼박스 이용하여 맥 OS 설치하기"><meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content='https://yansigit.github.io/images/lighthouse.jpg' />
+    </head>
+    <body class="
+    article-page has-toc
+">
+    <script>
+        (function() {
+            const colorSchemeKey = 'StackColorScheme';
+            if(!localStorage.getItem(colorSchemeKey)){
+                localStorage.setItem(colorSchemeKey, "auto");
+            }
+        })();
+    </script><script>
+    (function() {
+        const colorSchemeKey = 'StackColorScheme';
+        const colorSchemeItem = localStorage.getItem(colorSchemeKey);
+        const supportDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches === true;
+
+        if (colorSchemeItem == 'dark' || colorSchemeItem === 'auto' && supportDarkMode) {
+            
+
+            document.documentElement.dataset.scheme = 'dark';
+        } else {
+            document.documentElement.dataset.scheme = 'light';
+        }
+    })();
+</script>
+<div class="container main-container flex 
+    
+        extended
+    
+">
+    
+        <div id="article-toolbar">
+            <a href="https://yansigit.github.io" class="back-home">
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-chevron-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <polyline points="15 6 9 12 15 18" />
+</svg>
+
+
+
+                <span>Back</span>
+            </a>
+        </div>
+    
+<main class="main full-width">
+    <article class="main-article">
+    <header class="article-header">
+
+    <div class="article-details">
+    
+    <header class="article-category">
+        
+            <a href="/categories/%ED%95%B4%ED%82%A8%ED%86%A0%EC%8B%9C/" >
+                해킨토시
+            </a>
+        
+    </header>
+    
+
+    <h2 class="article-title">
+        <a href="/blog/installing-mac-os-on-virtualbox-on-windows/">Installing Mac OS on Virtualbox on Windows</a>
+    </h2>
+
+    
+    <h3 class="article-subtitle">
+        윈도우에서 버추얼박스 이용하여 맥 OS 설치하기
+    </h3>
+    
+
+    
+    <footer class="article-time">
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-calendar-time" width="56" height="56" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M11.795 21h-6.795a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v4" />
+  <circle cx="18" cy="18" r="4" />
+  <path d="M15 3v4" />
+  <path d="M7 3v4" />
+  <path d="M3 11h16" />
+  <path d="M18 16.496v1.504l1 1" />
+</svg>
+                <time class="article-time--published">Feb 20, 2020</time>
+            </div>
+        
+
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <polyline points="12 7 12 12 15 15" />
+</svg>
+
+
+
+                <time class="article-time--reading">
+                    2 minute read
+                </time>
+            </div>
+        
+    </footer>
+    
+</div>
+</header>
+
+    <section class="article-content">
+    <h2 id="1-개요">1. 개요</h2>
+<p>맥을 사자니 돈이 너무 없고, 해킨토시를 하자니 노트북이라 깔고 설정하기 귀찮다면</p>
+<p><strong>답은 바로 가상머신</strong></p>
+<h2 id="2-vmdk-다운받기">2. VMDK 다운받기</h2>
+<p>먼저 <code>vmdk</code> 가상 하드파일을 다운받는다. 구글에 검색하면 많이 나온다. 눈치껏 제일 안전할 것 같은 사이트를 고르자.</p>
+<p>대략 <code>8GB</code> 정도이며 구글드라이브 주소가 제공된 경우 대역폭 초과로 다운로드가 안될 확률이 많으니 토렌트를 이용하는게 좋다.</p>
+<p>속도도 빨라<code>50MB/S</code> 정도 나온다.</p>
+<h2 id="3-버추얼박스-extension-pack-설치">3. 버추얼박스 Extension Pack 설치</h2>
+<p>버추얼박스는 이미 설치되어 있을테니 <code>Extension Pack</code>만 받아 설치하자</p>
+<p><a class="link" href="https://www.virtualbox.org/wiki/Downloads"  target="_blank" rel="noopener"
+    >버추얼박스 다운로드 페이지</a>에 있다.</p>
+<h2 id="4-가상머신-생성">4. 가상머신 생성</h2>
+<p>이제 가상머신을 만들 차례다.</p>
+<p>메모리는 넉넉잡아 <code>8GB</code> 정도 잡아주고, 디스크는 다운 받아놓은 <code>.vmdk</code> 디스크를 임포트 해주자.</p>
+<p>이제 다 끝났으면 좋겠지만.. 아직 설정할게 남았다.</p>
+<h2 id="5-가상머신-설정">5. 가상머신 설정</h2>
+<p>가상머신 설정 창으로 들어간다.</p>
+<ol>
+<li><code>시스템 - 마더보드 - 칩셋</code> 부분을 <code>PIIX3</code>으로</li>
+<li><code>시스템 - 마더보드 - 프로세서</code> 에서 <code>프로세서 개수</code>를 <code>실제 프로세스 개수의 반 (최소 4개)</code></li>
+<li><code>디스플레이 - 비디오메모리 </code> 부분을 <code>128MB</code></li>
+<li><code>USB - USB 컨트롤러 사용하기</code> 부분을 <code>USB 3.0 컨트롤러</code>로 설정</li>
+</ol>
+<p>그 다음 <code>cmd</code>창을 켜고</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="nb">cd</span> <span class="s2">&#34;C:\Program Files\Oracle\VirtualBox\&#34;
+</span><span class="s2">VBoxManage modifyvm &#34;</span>&lt;가상머신이름&gt;<span class="s2">&#34; --cpuidset 00000001 000106e5 00100800 0098e3fd bfebfbff
+</span><span class="s2">VBoxManage setextradata &#34;</span>&lt;가상머신이름&gt;<span class="s2">&#34; &#34;</span>VBoxInternal/Devices/efi/0/Config/DmiSystemProduct<span class="s2">&#34; &#34;</span>iMac11,3<span class="s2">&#34;
+</span><span class="s2">VBoxManage setextradata &#34;</span>&lt;가상머신이름&gt;<span class="s2">&#34; &#34;</span>VBoxInternal/Devices/efi/0/Config/DmiSystemVersion<span class="s2">&#34; &#34;</span>1.0<span class="s2">&#34;
+</span><span class="s2">VBoxManage setextradata &#34;</span>&lt;가상머신이름&gt;<span class="s2">&#34; &#34;</span>VBoxInternal/Devices/efi/0/Config/DmiBoardProduct<span class="s2">&#34; &#34;</span>Iloveapple<span class="s2">&#34;
+</span><span class="s2">VBoxManage setextradata &#34;</span>&lt;가상머신이름&gt;<span class="s2">&#34; &#34;</span>VBoxInternal/Devices/smc/0/Config/DeviceKey<span class="s2">&#34; &#34;</span>ourhardworkbythesewordsguardedpleasedontsteal<span class="o">(</span>c<span class="o">)</span>AppleComputerInc<span class="s2">&#34;
+</span><span class="s2">VBoxManage setextradata &#34;</span>&lt;가상머신이름&gt;<span class="s2">&#34; &#34;</span>VBoxInternal/Devices/smc/0/Config/GetKeyFromRealSMC<span class="s2">&#34; 1
+</span></code></pre></div><p>위 명령어를 쭉쭉 쳐준다.</p>
+<p><code>ourhardworkbythesewordsguardedpleasedontsteal(c)AppleComputerInc</code> 부분이 참으로 인상깊다.. <strong>미안해요 애플!</strong></p>
+<h2 id="6-가상머신-실행">6. 가상머신 실행</h2>
+<p>다음 가상머신을 실행하면 해킨토시 깔 때 봤던 커널 로그들이 조르륵 뜨기 시작한다.</p>
+<p>괜시리 또 마음이 쫄린다.  무한부팅 걸리거나 커널 패닉이 일어나면 지금까지 했던게 말짱 도루묵이다.</p>
+<p>부팅이 되기를 간절히 기도하며 기다리다 보면.. 안된다..</p>
+<hr>
+<h3 id="20200915-추가">2020/09/15 추가</h3>
+<p>아무래도 Hyper-V 떄문에 안되었던 모양인데, 지금은 아예 해킨토시로 사용하고 있기 때문에 테스트는 해보지 않았다.</p>
+<p>해킨토시 설치 과정과 Intel 무선랜 칩에서 Broadcom 무선랜카드로 변경한 과정은 나중에 포스팅하겠다.</p>
+</section>
+
+
+    <footer class="article-footer">
+    
+    <section class="article-tags">
+        
+            <a href="/tags/mac/">mac</a>
+        
+            <a href="/tags/macos/">macos</a>
+        
+            <a href="/tags/virtualbox/">virtualbox</a>
+        
+            <a href="/tags/windows/">windows</a>
+        
+    </section>
+
+
+    
+    <section class="article-copyright">
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-copyright" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <path d="M14.5 9a3.5 4 0 1 0 0 6" />
+</svg>
+
+
+
+        <span>Licensed under CC BY-NC-SA 4.0</span>
+    </section>
+    </footer>
+
+
+    
+</article>
+
+    <aside class="related-contents--wrapper">
+    
+    
+</aside>
+
+     
+    
+        
+    <script src="https://utteranc.es/client.js" 
+        repo="yansigit/yansigit.github.io"
+        issue-term="pathname"
+        
+        label="Utterances Comment"
+        
+        crossorigin="anonymous"
+        async
+        >
+</script>
+
+<style>
+    .utterances {
+        max-width: unset;
+    }
+</style>
+
+<script>
+    function setUtterancesTheme(theme) {
+        let utterances = document.querySelector('.utterances iframe');
+        if (utterances) {
+            utterances.contentWindow.postMessage(
+                {
+                    type: 'set-theme',
+                    theme: `github-${theme}`
+                },
+                'https://utteranc.es'
+            );
+        }
+    }
+
+    addEventListener('message', event => {
+        if (event.origin !== 'https://utteranc.es') return;
+        setUtterancesTheme(document.documentElement.dataset.scheme)
+    });
+
+    window.addEventListener('onColorSchemeChange', (e) => {
+        setUtterancesTheme(e.detail)
+    })
+</script>
+
+
+    
+
+    <footer class="site-footer">
+    <section class="copyright">
+        &copy; 
+        
+            2020 - 
+        
+        2021 Code like Feather
+    </section>
+    
+    <section class="powerby">
+        Built with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> <br />
+        Theme <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="3.2.0">Stack</a></b> designed by <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a>
+    </section>
+</footer>
+
+
+    
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    
+    <div class="pswp__bg"></div>
+
+    
+    <div class="pswp__scroll-wrap">
+
+        
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                
+                
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"integrity="sha256-ePwmChbbvXbsO02lbM3HoHbSHTHFAeChekF1xKJdleo="crossorigin="anonymous"
+                defer="true"
+                >
+            </script><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"integrity="sha256-UKkzOn/w1mBxRmLLGrSeyB4e1xbrp4xylgAWb3M42pU="crossorigin="anonymous"
+                defer="true"
+                >
+            </script><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.css"integrity="sha256-c0uckgykQ9v5k&#43;IqViZOZKc47Jn7KQil4/MP3ySA3F8="crossorigin="anonymous"
+            ><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.css"integrity="sha256-SBLU4vv6CA6lHsZ1XyTdhyjJxCjPif/TRkjnsyGAGnE="crossorigin="anonymous"
+            >
+
+            </main>
+    
+        <aside class="sidebar right-sidebar sticky">
+            <section class="widget archives">
+                <div class="widget-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-hash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <line x1="5" y1="9" x2="19" y2="9" />
+  <line x1="5" y1="15" x2="19" y2="15" />
+  <line x1="11" y1="4" x2="7" y2="20" />
+  <line x1="17" y1="4" x2="13" y2="20" />
+</svg>
+
+
+
+                </div>
+                <h2 class="widget-title section-title">Table of contents</h2>
+                
+                <div class="widget--toc">
+                    <nav id="TableOfContents">
+  <ol>
+    <li><a href="#1-개요">1. 개요</a></li>
+    <li><a href="#2-vmdk-다운받기">2. VMDK 다운받기</a></li>
+    <li><a href="#3-버추얼박스-extension-pack-설치">3. 버추얼박스 Extension Pack 설치</a></li>
+    <li><a href="#4-가상머신-생성">4. 가상머신 생성</a></li>
+    <li><a href="#5-가상머신-설정">5. 가상머신 설정</a></li>
+    <li><a href="#6-가상머신-실행">6. 가상머신 실행</a>
+      <ol>
+        <li><a href="#20200915-추가">2020/09/15 추가</a></li>
+      </ol>
+    </li>
+  </ol>
+</nav>
+                </div>
+            </section>
+        </aside>
+    
+
+        </div>
+        <script 
+                src="https://cdn.jsdelivr.net/npm/node-vibrant@3.1.5/dist/vibrant.min.js"integrity="sha256-5NovOZc4iwiAWTYIFiIM7DxKUXKWvpVEuMEPLzcm5/g="crossorigin="anonymous"
+                defer="false"
+                >
+            </script><script type="text/javascript" src="/ts/main.js" defer></script>
+<script>
+    (function () {
+        const customFont = document.createElement('link');
+        customFont.href = "https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap";
+
+        customFont.type = "text/css";
+        customFont.rel = "stylesheet";
+
+        document.head.appendChild(customFont);
+    }());
+</script>
+
+    </body>
+</html>

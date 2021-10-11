@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>hyper-v on Code like Feather</title>
+    <link>https://yansigit.github.io/tags/hyper-v/</link>
+    <description>Recent content in hyper-v on Code like Feather</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>ko-kr</language>
+    <lastBuildDate>Thu, 20 Feb 2020 00:00:00 +0000</lastBuildDate><atom:link href="https://yansigit.github.io/tags/hyper-v/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Virtualbox With Docker(hyper V)</title>
+      <link>https://yansigit.github.io/blog/virtualbox-with-dockerhyper-v/</link>
+      <pubDate>Thu, 20 Feb 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://yansigit.github.io/blog/virtualbox-with-dockerhyper-v/</guid>
+      <description>&lt;h2 id=&#34;쉬운-설정법&#34;&gt;쉬운 설정법&lt;/h2&gt;
+&lt;p&gt;버추얼박스 6.0 버전부터 Hyper-V를 켠 상태로도 이용할 수 있게 되었다.&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

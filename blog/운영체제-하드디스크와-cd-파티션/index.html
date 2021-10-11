@@ -1,0 +1,655 @@
+<!DOCTYPE html>
+<html lang="ko-kr">
+    <head><meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content='하드디스크와 CD, 파티션'><title>운영체제 - 하드디스크와 CD, 파티션</title>
+
+<link rel='canonical' href='https://yansigit.github.io/blog/%EC%9A%B4%EC%98%81%EC%B2%B4%EC%A0%9C-%ED%95%98%EB%93%9C%EB%94%94%EC%8A%A4%ED%81%AC%EC%99%80-cd-%ED%8C%8C%ED%8B%B0%EC%85%98/'>
+
+<link rel="stylesheet" href="/scss/style.min.css"><meta property='og:title' content='운영체제 - 하드디스크와 CD, 파티션'>
+<meta property='og:description' content='하드디스크와 CD, 파티션'>
+<meta property='og:url' content='https://yansigit.github.io/blog/%EC%9A%B4%EC%98%81%EC%B2%B4%EC%A0%9C-%ED%95%98%EB%93%9C%EB%94%94%EC%8A%A4%ED%81%AC%EC%99%80-cd-%ED%8C%8C%ED%8B%B0%EC%85%98/'>
+<meta property='og:site_name' content='Code like Feather'>
+<meta property='og:type' content='article'><meta property='article:section' content='Posts' /><meta property='article:tag' content='os' /><meta property='article:tag' content='operation-system' /><meta property='article:published_time' content='2020-09-18T23:24:53&#43;09:00'/><meta property='article:modified_time' content='2020-09-18T23:24:53&#43;09:00'/><meta property='og:image' content='https://yansigit.github.io/images/lighthouse.jpg' />
+<meta name="twitter:title" content="운영체제 - 하드디스크와 CD, 파티션">
+<meta name="twitter:description" content="하드디스크와 CD, 파티션"><meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content='https://yansigit.github.io/images/lighthouse.jpg' />
+    </head>
+    <body class="
+    article-page has-toc
+">
+    <script>
+        (function() {
+            const colorSchemeKey = 'StackColorScheme';
+            if(!localStorage.getItem(colorSchemeKey)){
+                localStorage.setItem(colorSchemeKey, "auto");
+            }
+        })();
+    </script><script>
+    (function() {
+        const colorSchemeKey = 'StackColorScheme';
+        const colorSchemeItem = localStorage.getItem(colorSchemeKey);
+        const supportDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches === true;
+
+        if (colorSchemeItem == 'dark' || colorSchemeItem === 'auto' && supportDarkMode) {
+            
+
+            document.documentElement.dataset.scheme = 'dark';
+        } else {
+            document.documentElement.dataset.scheme = 'light';
+        }
+    })();
+</script>
+<div class="container main-container flex 
+    
+        extended
+    
+">
+    
+        <div id="article-toolbar">
+            <a href="https://yansigit.github.io" class="back-home">
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-chevron-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <polyline points="15 6 9 12 15 18" />
+</svg>
+
+
+
+                <span>Back</span>
+            </a>
+        </div>
+    
+<main class="main full-width">
+    <article class="main-article">
+    <header class="article-header">
+
+    <div class="article-details">
+    
+    <header class="article-category">
+        
+            <a href="/categories/os/" >
+                os
+            </a>
+        
+    </header>
+    
+
+    <h2 class="article-title">
+        <a href="/blog/%EC%9A%B4%EC%98%81%EC%B2%B4%EC%A0%9C-%ED%95%98%EB%93%9C%EB%94%94%EC%8A%A4%ED%81%AC%EC%99%80-cd-%ED%8C%8C%ED%8B%B0%EC%85%98/">운영체제 - 하드디스크와 CD, 파티션</a>
+    </h2>
+
+    
+    <h3 class="article-subtitle">
+        하드디스크와 CD, 파티션
+    </h3>
+    
+
+    
+    <footer class="article-time">
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-calendar-time" width="56" height="56" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M11.795 21h-6.795a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v4" />
+  <circle cx="18" cy="18" r="4" />
+  <path d="M15 3v4" />
+  <path d="M7 3v4" />
+  <path d="M3 11h16" />
+  <path d="M18 16.496v1.504l1 1" />
+</svg>
+                <time class="article-time--published">Sep 18, 2020</time>
+            </div>
+        
+
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <polyline points="12 7 12 12 15 15" />
+</svg>
+
+
+
+                <time class="article-time--reading">
+                    3 minute read
+                </time>
+            </div>
+        
+    </footer>
+    
+</div>
+</header>
+
+    <section class="article-content">
+    <p>하드디스크와 CD, 파티션</p>
+<h1 id="하드디스크와-cd-파티션">하드디스크와 CD, 파티션</h1>
+<h2 id="하드디스크의-구조">하드디스크의 구조</h2>
+<p><figure 
+	>
+	<a href="/.,%20%E1%84%91%E1%85%A1%E1%84%90%E1%85%B5%E1%84%89%E1%85%A7%E1%86%AB%20d995162ccefc4e05b292aea1857c4d9a/Untitled.png" >
+		<img src="/.,%20%E1%84%91%E1%85%A1%E1%84%90%E1%85%B5%E1%84%89%E1%85%A7%E1%86%AB%20d995162ccefc4e05b292aea1857c4d9a/Untitled.png"
+			
+			
+			
+			loading="lazy"
+			alt="%E1%84%92%E1%85%A1%E1%84%83%E1%85%B3%E1%84%83%E1%85%B5%E1%84%89%E1%85%B3%E1%84%8F%E1%85%B3%E1%84%8B%E1%85%AA%20CD,%20%E1%84%91%E1%85%A1%E1%84%90%E1%85%B5%E1%84%89%E1%85%A7%E1%86%AB%20d995162ccefc4e05b292aea1857c4d9a/Untitled.png">
+	</a>
+	
+	<figcaption>%E1%84%92%E1%85%A1%E1%84%83%E1%85%B3%E1%84%83%E1%85%B5%E1%84%89%E1%85%B3%E1%84%8F%E1%85%B3%E1%84%8B%E1%85%AA%20CD,%20%E1%84%91%E1%85%A1%E1%84%90%E1%85%B5%E1%84%89%E1%85%A7%E1%86%AB%20d995162ccefc4e05b292aea1857c4d9a/Untitled.png</figcaption>
+	
+</figure></p>
+<h2 id="플래터">플래터</h2>
+<ul>
+<li>표면에 자성체가 발려 있어 자기를 이용하여 0과 1의 데이터를 저장할 수 있음</li>
+<li>플래터의 표면이 N극을 띠면 0으로, S극을 띠면 1로 인식</li>
+<li>보통 2장 이상으로 구성되며 항상 일정한 속도로 회전</li>
+</ul>
+<h2 id="섹터와-블록">섹터와 블록</h2>
+<ul>
+<li><strong>섹터</strong>
+<ul>
+<li>하드디스크의 가장 작은 저장 단위</li>
+<li>하나의 섹터에는 한 덩어리의 데이터가 저장</li>
+</ul>
+</li>
+<li><strong>블록</strong>
+<ul>
+<li>하드디스크와 컴퓨터 사이에 데이터를 전송하는 논리적인 저장 단위 중 가장 작은 단위</li>
+<li><strong>블록은 여러 개의 섹터로 구성</strong>되며, 윈도우 운영 체제에서는 블록 대신 클러스터라고 표현</li>
+</ul>
+</li>
+<li>하드디스크 입장에서는 섹터가 가장 작은 저장 단위</li>
+<li>운영체제 입장에서는 하드디스크에 데이터를 보내거나 받을 때 블록이 가장 작은 저장 단위</li>
+</ul>
+<h2 id="트랙과-실린더">트랙과 실린더</h2>
+<p><figure 
+	>
+	<a href="/.,%20%E1%84%91%E1%85%A1%E1%84%90%E1%85%B5%E1%84%89%E1%85%A7%E1%86%AB%20d995162ccefc4e05b292aea1857c4d9a/Untitled%201.png" >
+		<img src="/.,%20%E1%84%91%E1%85%A1%E1%84%90%E1%85%B5%E1%84%89%E1%85%A7%E1%86%AB%20d995162ccefc4e05b292aea1857c4d9a/Untitled%201.png"
+			
+			
+			
+			loading="lazy"
+			alt="%E1%84%92%E1%85%A1%E1%84%83%E1%85%B3%E1%84%83%E1%85%B5%E1%84%89%E1%85%B3%E1%84%8F%E1%85%B3%E1%84%8B%E1%85%AA%20CD,%20%E1%84%91%E1%85%A1%E1%84%90%E1%85%B5%E1%84%89%E1%85%A7%E1%86%AB%20d995162ccefc4e05b292aea1857c4d9a/Untitled%201.png">
+	</a>
+	
+	<figcaption>%E1%84%92%E1%85%A1%E1%84%83%E1%85%B3%E1%84%83%E1%85%B5%E1%84%89%E1%85%B3%E1%84%8F%E1%85%B3%E1%84%8B%E1%85%AA%20CD,%20%E1%84%91%E1%85%A1%E1%84%90%E1%85%B5%E1%84%89%E1%85%A7%E1%86%AB%20d995162ccefc4e05b292aea1857c4d9a/Untitled%201.png</figcaption>
+	
+</figure></p>
+<ul>
+<li><strong>트랙</strong> : 플래터에서 회전축을 중심으로 데이터가 기록되는 동심원, 즉 <strong>동일한 동심원상에 있는 섹터의 집합</strong></li>
+<li><strong>실린더</strong> : 개념적으로 여러 개의 플래터에 있는 같은 트랙의 집합</li>
+</ul>
+<h2 id="헤드와-플래터">헤드와 플래터</h2>
+<p><figure 
+	>
+	<a href="/.,%20%E1%84%91%E1%85%A1%E1%84%90%E1%85%B5%E1%84%89%E1%85%A7%E1%86%AB%20d995162ccefc4e05b292aea1857c4d9a/Untitled%202.png" >
+		<img src="/.,%20%E1%84%91%E1%85%A1%E1%84%90%E1%85%B5%E1%84%89%E1%85%A7%E1%86%AB%20d995162ccefc4e05b292aea1857c4d9a/Untitled%202.png"
+			
+			
+			
+			loading="lazy"
+			alt="%E1%84%92%E1%85%A1%E1%84%83%E1%85%B3%E1%84%83%E1%85%B5%E1%84%89%E1%85%B3%E1%84%8F%E1%85%B3%E1%84%8B%E1%85%AA%20CD,%20%E1%84%91%E1%85%A1%E1%84%90%E1%85%B5%E1%84%89%E1%85%A7%E1%86%AB%20d995162ccefc4e05b292aea1857c4d9a/Untitled%202.png">
+	</a>
+	
+	<figcaption>%E1%84%92%E1%85%A1%E1%84%83%E1%85%B3%E1%84%83%E1%85%B5%E1%84%89%E1%85%B3%E1%84%8F%E1%85%B3%E1%84%8B%E1%85%AA%20CD,%20%E1%84%91%E1%85%A1%E1%84%90%E1%85%B5%E1%84%89%E1%85%A7%E1%86%AB%20d995162ccefc4e05b292aea1857c4d9a/Untitled%202.png</figcaption>
+	
+</figure></p>
+<ul>
+<li>하드디스크에서 데이터를 읽거나 쓸 때는 읽기/쓰기 헤드를 사용</li>
+<li>플래터가 회전을 시작하면 표면에 약한 바람이 일어나는데, 헤드는 이 바람에 의해 표면에서 약간 떠 있는 형태로 작동</li>
+<li>플래터의 표면에 생긴 상처는 데이터를 저장할 수 없는 배드 섹터가 됨</li>
+</ul>
+<h2 id="cd">CD</h2>
+<ul>
+<li>휴대할 수 있는 소형 원반에 데이터를 저장</li>
+<li>하드디스크와 마찬가지로 트랙과 섹터로 구성되며, 수평으로 움직이는 헤드가 트랙 사이를 움직이면서 데이터를 읽음</li>
+<li>표면에 미세한 홈이 파여 있어 헤드에서 발사된 레이저가 홈에 들어가 반사가 되지 않으면 0으로, 반사되어 돌아오면 1로 인식</li>
+</ul>
+<h2 id="하드디스크와-cd의-디스크-회전">하드디스크와 CD의 디스크 회전</h2>
+<p><figure 
+	>
+	<a href="/.,%20%E1%84%91%E1%85%A1%E1%84%90%E1%85%B5%E1%84%89%E1%85%A7%E1%86%AB%20d995162ccefc4e05b292aea1857c4d9a/Untitled%203.png" >
+		<img src="/.,%20%E1%84%91%E1%85%A1%E1%84%90%E1%85%B5%E1%84%89%E1%85%A7%E1%86%AB%20d995162ccefc4e05b292aea1857c4d9a/Untitled%203.png"
+			
+			
+			
+			loading="lazy"
+			alt="%E1%84%92%E1%85%A1%E1%84%83%E1%85%B3%E1%84%83%E1%85%B5%E1%84%89%E1%85%B3%E1%84%8F%E1%85%B3%E1%84%8B%E1%85%AA%20CD,%20%E1%84%91%E1%85%A1%E1%84%90%E1%85%B5%E1%84%89%E1%85%A7%E1%86%AB%20d995162ccefc4e05b292aea1857c4d9a/Untitled%203.png">
+	</a>
+	
+	<figcaption>%E1%84%92%E1%85%A1%E1%84%83%E1%85%B3%E1%84%83%E1%85%B5%E1%84%89%E1%85%B3%E1%84%8F%E1%85%B3%E1%84%8B%E1%85%AA%20CD,%20%E1%84%91%E1%85%A1%E1%84%90%E1%85%B5%E1%84%89%E1%85%A7%E1%86%AB%20d995162ccefc4e05b292aea1857c4d9a/Untitled%203.png</figcaption>
+	
+</figure></p>
+<ul>
+<li><strong>각속도 일정 방식 (하드디스크)</strong>
+<ul>
+<li>하드디스크의 플래터는 항상 일정한 속도로 회전하여 바깥쪽 트랙의 속도가 안쪽 트랙의 속도보다 훨씬 빠르므로 가장 바깥쪽에 있는 섹터가 가장 안쪽에 있는 섹터보다 더 큰데, 일정한 시간 동안 이동한 각도가 같다는 의미에서 이러한 방식을 각속도 일정이라고 함</li>
+</ul>
+</li>
+<li><strong>선속도 일정 방식 (.)</strong>
+<ul>
+<li>CD에서 사용하는 선속도 일정 방식은 어느 트랙에서나 단위 시간당 디스크의 이동 거리가 같은데, 이를 구현하려면 헤드가 안쪽 트랙에 있을 때는 디스크의 회전 속도를 빠르게 하고, 헤드가 바깥쪽 트랙으로 이동했을 때는 디스크의 회전 속도를 느리게 해야 함</li>
+</ul>
+</li>
+</ul>
+<h2 id="하드디스크와-cd의-섹터">하드디스크와 CD의 섹터</h2>
+<h3 id="각속도-일정-방식의-섹터">각속도 일정 방식의 섹터</h3>
+<ul>
+<li>각속도 일정 방식의 <strong>하드디스크</strong>는 트랙마다 속도가 다르기 때문에 섹터의 크기도 다름</li>
+<li><strong>장점</strong> : 디스크가 일정한 속도로 회전하기 때문에 구동 장치가 단순하고 조용하게 작동</li>
+<li><strong>단점</strong> : 모든 트랙의 섹터 수가 같고 바깥쪽 섹터의 크기가 안쪽 섹터보다 커서 안쪽 트랙에 비해 바깥쪽 트랙으로 갈수록 낭비되는 공간이 생김</li>
+</ul>
+<h3 id="선속도-일정-방식의-섹터">선속도 일정 방식의 섹터</h3>
+<ul>
+<li>선속도 일정 방식의 <strong>CD</strong>는 모든 트랙의 움직이는 속도가 같고 섹터의 크기도 같아서 안쪽 트랙보다 바깥쪽 트랙에 더 많은 섹터가 존재(모든 트랙의 섹터 수가 다름)</li>
+<li><strong>장점</strong> : CD는 한정된 공간에 많은 데이터를 담을 수 있고 하드디스크처럼 바깥쪽 트랙의 섹터 공간이 낭비되는 문제가 없음</li>
+<li><strong>단점</strong> : 모터 제어가 복잡하고 소음이 발생</li>
+</ul>
+<h2 id="하드디스크에서-데이터를-전송하는-과정">하드디스크에서 데이터를 전송하는 과정</h2>
+<p><figure 
+	>
+	<a href="/.,%20%E1%84%91%E1%85%A1%E1%84%90%E1%85%B5%E1%84%89%E1%85%A7%E1%86%AB%20d995162ccefc4e05b292aea1857c4d9a/Untitled%204.png" >
+		<img src="/.,%20%E1%84%91%E1%85%A1%E1%84%90%E1%85%B5%E1%84%89%E1%85%A7%E1%86%AB%20d995162ccefc4e05b292aea1857c4d9a/Untitled%204.png"
+			
+			
+			
+			loading="lazy"
+			alt="%E1%84%92%E1%85%A1%E1%84%83%E1%85%B3%E1%84%83%E1%85%B5%E1%84%89%E1%85%B3%E1%84%8F%E1%85%B3%E1%84%8B%E1%85%AA%20CD,%20%E1%84%91%E1%85%A1%E1%84%90%E1%85%B5%E1%84%89%E1%85%A7%E1%86%AB%20d995162ccefc4e05b292aea1857c4d9a/Untitled%204.png">
+	</a>
+	
+	<figcaption>%E1%84%92%E1%85%A1%E1%84%83%E1%85%B3%E1%84%83%E1%85%B5%E1%84%89%E1%85%B3%E1%84%8F%E1%85%B3%E1%84%8B%E1%85%AA%20CD,%20%E1%84%91%E1%85%A1%E1%84%90%E1%85%B5%E1%84%89%E1%85%A7%E1%86%AB%20d995162ccefc4e05b292aea1857c4d9a/Untitled%204.png</figcaption>
+	
+</figure></p>
+<h2 id="디스크-장치-관리">디스크 장치 관리</h2>
+<h3 id="파티션">파티션</h3>
+<ul>
+<li><strong>디스크를 논리적으로 분할하는 작업</strong></li>
+<li>파티션 하나에 하나의 파일 시스템이 탑재</li>
+<li>하드디스크가 2개라면 첫 번째 하드디스크와 두 번째 하드디스크가 별도의 파티션으로 보임</li>
+<li>대용량 하드디스크의 경우 하나로 사용하기보다 여러 개로 나누어 사용하면 관리하기가 편함</li>
+<li>여러 개의 하드디스크를 하나의 파티션으로 통합하여 사용하기도 함</li>
+</ul>
+<h3 id="마운트">마운트</h3>
+<ul>
+<li>유닉스 운영체제에서 여러 개의 파티션을 하나로 통합하는 기능</li>
+</ul>
+<h2 id="파티션-구성-예제">파티션 구성 예제</h2>
+<p><figure 
+	>
+	<a href="/.,%20%E1%84%91%E1%85%A1%E1%84%90%E1%85%B5%E1%84%89%E1%85%A7%E1%86%AB%20d995162ccefc4e05b292aea1857c4d9a/Untitled%205.png" >
+		<img src="/.,%20%E1%84%91%E1%85%A1%E1%84%90%E1%85%B5%E1%84%89%E1%85%A7%E1%86%AB%20d995162ccefc4e05b292aea1857c4d9a/Untitled%205.png"
+			
+			
+			
+			loading="lazy"
+			alt="%E1%84%92%E1%85%A1%E1%84%83%E1%85%B3%E1%84%83%E1%85%B5%E1%84%89%E1%85%B3%E1%84%8F%E1%85%B3%E1%84%8B%E1%85%AA%20CD,%20%E1%84%91%E1%85%A1%E1%84%90%E1%85%B5%E1%84%89%E1%85%A7%E1%86%AB%20d995162ccefc4e05b292aea1857c4d9a/Untitled%205.png">
+	</a>
+	
+	<figcaption>%E1%84%92%E1%85%A1%E1%84%83%E1%85%B3%E1%84%83%E1%85%B5%E1%84%89%E1%85%B3%E1%84%8F%E1%85%B3%E1%84%8B%E1%85%AA%20CD,%20%E1%84%91%E1%85%A1%E1%84%90%E1%85%B5%E1%84%89%E1%85%A7%E1%86%AB%20d995162ccefc4e05b292aea1857c4d9a/Untitled%205.png</figcaption>
+	
+</figure></p>
+<h2 id="포매팅">포매팅</h2>
+<ul>
+<li>디스크에 <strong>파일 시스템을 탑재</strong>하고 <strong>디스크 표면을 초기화</strong>하여 사용할 수 있는 형태로 만드는 작업</li>
+<li><strong>빈 저장장치에 파일 테이블을 탑재</strong></li>
+</ul>
+<p><figure 
+	>
+	<a href="/.,%20%E1%84%91%E1%85%A1%E1%84%90%E1%85%B5%E1%84%89%E1%85%A7%E1%86%AB%20d995162ccefc4e05b292aea1857c4d9a/Untitled%206.png" >
+		<img src="/.,%20%E1%84%91%E1%85%A1%E1%84%90%E1%85%B5%E1%84%89%E1%85%A7%E1%86%AB%20d995162ccefc4e05b292aea1857c4d9a/Untitled%206.png"
+			
+			
+			
+			loading="lazy"
+			alt="%E1%84%92%E1%85%A1%E1%84%83%E1%85%B3%E1%84%83%E1%85%B5%E1%84%89%E1%85%B3%E1%84%8F%E1%85%B3%E1%84%8B%E1%85%AA%20CD,%20%E1%84%91%E1%85%A1%E1%84%90%E1%85%B5%E1%84%89%E1%85%A7%E1%86%AB%20d995162ccefc4e05b292aea1857c4d9a/Untitled%206.png">
+	</a>
+	
+	<figcaption>%E1%84%92%E1%85%A1%E1%84%83%E1%85%B3%E1%84%83%E1%85%B5%E1%84%89%E1%85%B3%E1%84%8F%E1%85%B3%E1%84%8B%E1%85%AA%20CD,%20%E1%84%91%E1%85%A1%E1%84%90%E1%85%B5%E1%84%89%E1%85%A7%E1%86%AB%20d995162ccefc4e05b292aea1857c4d9a/Untitled%206.png</figcaption>
+	
+</figure></p>
+<h2 id="빠른-포매팅과-느린-포매팅">빠른 포매팅과 느린 포매팅</h2>
+<ul>
+<li>하드디스크를 처음 사용할 때는 느린 포매팅을 하고, 하드디스크를 사용하다가 다시 포매팅을 해야 할 때는 빠른 포매팅을 하면 됨
+<ul>
+<li><strong>빠른 포매팅</strong> : 데이터는 그대로 둔 채 <strong>파일 테이블을 초기화</strong>하는 방식</li>
+<li>느린 포매팅 : 디스크에 파일 시스템을 탑재하고 디스크 표면을 초기화하는 방식</li>
+</ul>
+</li>
+</ul>
+<h2 id="조각모음">조각모음</h2>
+<ul>
+<li>하드디스크에 조각이 많이 생기면 <strong>큰 파일이 여러 조각으로 나뉘어 저장되고 이를 읽기 위해 하드디스크의 여러 곳을 돌아다녀야 하기 때문에 성능 저하</strong>로 이어짐</li>
+<li>하드 디스크는 주기적으로 조각 모음을 해주어야 함</li>
+</ul>
+<p><figure 
+	>
+	<a href="/.,%20%E1%84%91%E1%85%A1%E1%84%90%E1%85%B5%E1%84%89%E1%85%A7%E1%86%AB%20d995162ccefc4e05b292aea1857c4d9a/Untitled%207.png" >
+		<img src="/.,%20%E1%84%91%E1%85%A1%E1%84%90%E1%85%B5%E1%84%89%E1%85%A7%E1%86%AB%20d995162ccefc4e05b292aea1857c4d9a/Untitled%207.png"
+			
+			
+			
+			loading="lazy"
+			alt="%E1%84%92%E1%85%A1%E1%84%83%E1%85%B3%E1%84%83%E1%85%B5%E1%84%89%E1%85%B3%E1%84%8F%E1%85%B3%E1%84%8B%E1%85%AA%20CD,%20%E1%84%91%E1%85%A1%E1%84%90%E1%85%B5%E1%84%89%E1%85%A7%E1%86%AB%20d995162ccefc4e05b292aea1857c4d9a/Untitled%207.png">
+	</a>
+	
+	<figcaption>%E1%84%92%E1%85%A1%E1%84%83%E1%85%B3%E1%84%83%E1%85%B5%E1%84%89%E1%85%B3%E1%84%8F%E1%85%B3%E1%84%8B%E1%85%AA%20CD,%20%E1%84%91%E1%85%A1%E1%84%90%E1%85%B5%E1%84%89%E1%85%A7%E1%86%AB%20d995162ccefc4e05b292aea1857c4d9a/Untitled%207.png</figcaption>
+	
+</figure></p>
+</section>
+
+
+    <footer class="article-footer">
+    
+    <section class="article-tags">
+        
+            <a href="/tags/os/">os</a>
+        
+            <a href="/tags/operation-system/">operation-system</a>
+        
+    </section>
+
+
+    
+    <section class="article-copyright">
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-copyright" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <path d="M14.5 9a3.5 4 0 1 0 0 6" />
+</svg>
+
+
+
+        <span>Licensed under CC BY-NC-SA 4.0</span>
+    </section>
+    </footer>
+
+
+    
+</article>
+
+    <aside class="related-contents--wrapper">
+    
+    
+        <h2 class="section-title">Related contents</h2>
+        <div class="related-contents">
+            <div class="flex article-list--tile">
+                
+                    
+<article class="">
+    <a href="/blog/%EC%9A%B4%EC%98%81%EC%B2%B4%EC%A0%9C-cpu/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">운영체제 - CPU</h2>
+        </div>
+    </a>
+</article>
+                
+                    
+<article class="">
+    <a href="/blog/%EC%9A%B4%EC%98%81%EC%B2%B4%EC%A0%9C-cpu-%EC%8A%A4%EC%BC%80%EC%A4%84%EB%A7%81/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">운영체제 - CPU 스케줄링</h2>
+        </div>
+    </a>
+</article>
+                
+                    
+<article class="">
+    <a href="/blog/%EC%9A%B4%EC%98%81%EC%B2%B4%EC%A0%9C-cpu-%EC%8A%A4%EC%BC%80%EC%A4%84%EB%A7%81-%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">운영체제 - CPU 스케줄링 알고리즘</h2>
+        </div>
+    </a>
+</article>
+                
+                    
+<article class="">
+    <a href="/blog/%EC%9A%B4%EC%98%81%EC%B2%B4%EC%A0%9C-raid/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">운영체제 - RAID</h2>
+        </div>
+    </a>
+</article>
+                
+                    
+<article class="">
+    <a href="/blog/%EC%9A%B4%EC%98%81%EC%B2%B4%EC%A0%9C-%EA%B0%80%EC%83%81-%EB%A9%94%EB%AA%A8%EB%A6%AC/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">운영체제 - 가상 메모리</h2>
+        </div>
+    </a>
+</article>
+                
+            </div>
+        </div>
+    
+</aside>
+
+     
+    
+        
+    <script src="https://utteranc.es/client.js" 
+        repo="yansigit/yansigit.github.io"
+        issue-term="pathname"
+        
+        label="Utterances Comment"
+        
+        crossorigin="anonymous"
+        async
+        >
+</script>
+
+<style>
+    .utterances {
+        max-width: unset;
+    }
+</style>
+
+<script>
+    function setUtterancesTheme(theme) {
+        let utterances = document.querySelector('.utterances iframe');
+        if (utterances) {
+            utterances.contentWindow.postMessage(
+                {
+                    type: 'set-theme',
+                    theme: `github-${theme}`
+                },
+                'https://utteranc.es'
+            );
+        }
+    }
+
+    addEventListener('message', event => {
+        if (event.origin !== 'https://utteranc.es') return;
+        setUtterancesTheme(document.documentElement.dataset.scheme)
+    });
+
+    window.addEventListener('onColorSchemeChange', (e) => {
+        setUtterancesTheme(e.detail)
+    })
+</script>
+
+
+    
+
+    <footer class="site-footer">
+    <section class="copyright">
+        &copy; 
+        
+            2020 - 
+        
+        2021 Code like Feather
+    </section>
+    
+    <section class="powerby">
+        Built with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> <br />
+        Theme <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="3.2.0">Stack</a></b> designed by <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a>
+    </section>
+</footer>
+
+
+    
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    
+    <div class="pswp__bg"></div>
+
+    
+    <div class="pswp__scroll-wrap">
+
+        
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                
+                
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"integrity="sha256-ePwmChbbvXbsO02lbM3HoHbSHTHFAeChekF1xKJdleo="crossorigin="anonymous"
+                defer="true"
+                >
+            </script><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"integrity="sha256-UKkzOn/w1mBxRmLLGrSeyB4e1xbrp4xylgAWb3M42pU="crossorigin="anonymous"
+                defer="true"
+                >
+            </script><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.css"integrity="sha256-c0uckgykQ9v5k&#43;IqViZOZKc47Jn7KQil4/MP3ySA3F8="crossorigin="anonymous"
+            ><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.css"integrity="sha256-SBLU4vv6CA6lHsZ1XyTdhyjJxCjPif/TRkjnsyGAGnE="crossorigin="anonymous"
+            >
+
+            </main>
+    
+        <aside class="sidebar right-sidebar sticky">
+            <section class="widget archives">
+                <div class="widget-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-hash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <line x1="5" y1="9" x2="19" y2="9" />
+  <line x1="5" y1="15" x2="19" y2="15" />
+  <line x1="11" y1="4" x2="7" y2="20" />
+  <line x1="17" y1="4" x2="13" y2="20" />
+</svg>
+
+
+
+                </div>
+                <h2 class="widget-title section-title">Table of contents</h2>
+                
+                <div class="widget--toc">
+                    <nav id="TableOfContents">
+  <ol>
+    <li><a href="#하드디스크의-구조">하드디스크의 구조</a></li>
+    <li><a href="#플래터">플래터</a></li>
+    <li><a href="#섹터와-블록">섹터와 블록</a></li>
+    <li><a href="#트랙과-실린더">트랙과 실린더</a></li>
+    <li><a href="#헤드와-플래터">헤드와 플래터</a></li>
+    <li><a href="#cd">CD</a></li>
+    <li><a href="#하드디스크와-cd의-디스크-회전">하드디스크와 CD의 디스크 회전</a></li>
+    <li><a href="#하드디스크와-cd의-섹터">하드디스크와 CD의 섹터</a>
+      <ol>
+        <li><a href="#각속도-일정-방식의-섹터">각속도 일정 방식의 섹터</a></li>
+        <li><a href="#선속도-일정-방식의-섹터">선속도 일정 방식의 섹터</a></li>
+      </ol>
+    </li>
+    <li><a href="#하드디스크에서-데이터를-전송하는-과정">하드디스크에서 데이터를 전송하는 과정</a></li>
+    <li><a href="#디스크-장치-관리">디스크 장치 관리</a>
+      <ol>
+        <li><a href="#파티션">파티션</a></li>
+        <li><a href="#마운트">마운트</a></li>
+      </ol>
+    </li>
+    <li><a href="#파티션-구성-예제">파티션 구성 예제</a></li>
+    <li><a href="#포매팅">포매팅</a></li>
+    <li><a href="#빠른-포매팅과-느린-포매팅">빠른 포매팅과 느린 포매팅</a></li>
+    <li><a href="#조각모음">조각모음</a></li>
+  </ol>
+</nav>
+                </div>
+            </section>
+        </aside>
+    
+
+        </div>
+        <script 
+                src="https://cdn.jsdelivr.net/npm/node-vibrant@3.1.5/dist/vibrant.min.js"integrity="sha256-5NovOZc4iwiAWTYIFiIM7DxKUXKWvpVEuMEPLzcm5/g="crossorigin="anonymous"
+                defer="false"
+                >
+            </script><script type="text/javascript" src="/ts/main.js" defer></script>
+<script>
+    (function () {
+        const customFont = document.createElement('link');
+        customFont.href = "https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap";
+
+        customFont.type = "text/css";
+        customFont.rel = "stylesheet";
+
+        document.head.appendChild(customFont);
+    }());
+</script>
+
+    </body>
+</html>

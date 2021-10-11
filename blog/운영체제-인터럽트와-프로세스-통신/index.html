@@ -1,0 +1,719 @@
+<!DOCTYPE html>
+<html lang="ko-kr">
+    <head><meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content='인터럽트와 프로세스 통신'><title>운영체제 - 인터럽트와 프로세스 통신</title>
+
+<link rel='canonical' href='https://yansigit.github.io/blog/%EC%9A%B4%EC%98%81%EC%B2%B4%EC%A0%9C-%EC%9D%B8%ED%84%B0%EB%9F%BD%ED%8A%B8%EC%99%80-%ED%94%84%EB%A1%9C%EC%84%B8%EC%8A%A4-%ED%86%B5%EC%8B%A0/'>
+
+<link rel="stylesheet" href="/scss/style.min.css"><meta property='og:title' content='운영체제 - 인터럽트와 프로세스 통신'>
+<meta property='og:description' content='인터럽트와 프로세스 통신'>
+<meta property='og:url' content='https://yansigit.github.io/blog/%EC%9A%B4%EC%98%81%EC%B2%B4%EC%A0%9C-%EC%9D%B8%ED%84%B0%EB%9F%BD%ED%8A%B8%EC%99%80-%ED%94%84%EB%A1%9C%EC%84%B8%EC%8A%A4-%ED%86%B5%EC%8B%A0/'>
+<meta property='og:site_name' content='Code like Feather'>
+<meta property='og:type' content='article'><meta property='article:section' content='Posts' /><meta property='article:tag' content='os' /><meta property='article:tag' content='operation-system' /><meta property='article:published_time' content='2020-09-18T23:24:53&#43;09:00'/><meta property='article:modified_time' content='2020-09-18T23:24:53&#43;09:00'/><meta property='og:image' content='https://yansigit.github.io/images/lighthouse.jpg' />
+<meta name="twitter:title" content="운영체제 - 인터럽트와 프로세스 통신">
+<meta name="twitter:description" content="인터럽트와 프로세스 통신"><meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content='https://yansigit.github.io/images/lighthouse.jpg' />
+    </head>
+    <body class="
+    article-page has-toc
+">
+    <script>
+        (function() {
+            const colorSchemeKey = 'StackColorScheme';
+            if(!localStorage.getItem(colorSchemeKey)){
+                localStorage.setItem(colorSchemeKey, "auto");
+            }
+        })();
+    </script><script>
+    (function() {
+        const colorSchemeKey = 'StackColorScheme';
+        const colorSchemeItem = localStorage.getItem(colorSchemeKey);
+        const supportDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches === true;
+
+        if (colorSchemeItem == 'dark' || colorSchemeItem === 'auto' && supportDarkMode) {
+            
+
+            document.documentElement.dataset.scheme = 'dark';
+        } else {
+            document.documentElement.dataset.scheme = 'light';
+        }
+    })();
+</script>
+<div class="container main-container flex 
+    
+        extended
+    
+">
+    
+        <div id="article-toolbar">
+            <a href="https://yansigit.github.io" class="back-home">
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-chevron-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <polyline points="15 6 9 12 15 18" />
+</svg>
+
+
+
+                <span>Back</span>
+            </a>
+        </div>
+    
+<main class="main full-width">
+    <article class="main-article">
+    <header class="article-header">
+
+    <div class="article-details">
+    
+    <header class="article-category">
+        
+            <a href="/categories/os/" >
+                os
+            </a>
+        
+    </header>
+    
+
+    <h2 class="article-title">
+        <a href="/blog/%EC%9A%B4%EC%98%81%EC%B2%B4%EC%A0%9C-%EC%9D%B8%ED%84%B0%EB%9F%BD%ED%8A%B8%EC%99%80-%ED%94%84%EB%A1%9C%EC%84%B8%EC%8A%A4-%ED%86%B5%EC%8B%A0/">운영체제 - 인터럽트와 프로세스 통신</a>
+    </h2>
+
+    
+    <h3 class="article-subtitle">
+        인터럽트와 프로세스 통신
+    </h3>
+    
+
+    
+    <footer class="article-time">
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-calendar-time" width="56" height="56" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M11.795 21h-6.795a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v4" />
+  <circle cx="18" cy="18" r="4" />
+  <path d="M15 3v4" />
+  <path d="M7 3v4" />
+  <path d="M3 11h16" />
+  <path d="M18 16.496v1.504l1 1" />
+</svg>
+                <time class="article-time--published">Sep 18, 2020</time>
+            </div>
+        
+
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <polyline points="12 7 12 12 15 15" />
+</svg>
+
+
+
+                <time class="article-time--reading">
+                    3 minute read
+                </time>
+            </div>
+        
+    </footer>
+    
+</div>
+</header>
+
+    <section class="article-content">
+    <p>인터럽트와 프로세스 통신</p>
+<h1 id="인터럽트와-프로세스-통신">인터럽트와 프로세스 통신</h1>
+<h1 id="1-인터럽트-심화">1. 인터럽트 심화</h1>
+<h2 id="폴링">폴링</h2>
+<ul>
+<li>입출력을 요청하면 운영체제가 직접 주기적으로 입출력장치를 확인하여 처리</li>
+</ul>
+<h2 id="인터럽트">인터럽트</h2>
+<ul>
+<li>입출력 관리자에게 입출력을 요청하고 입출력이 완료되면 이벤트를 발생시켜 알림</li>
+<li><strong>동기적 인터럽트</strong>
+<ul>
+<li>프로세스가 실행중인 명령어로 발생</li>
+<li>다른 사용자의 메모리 영역 접근, 오버플로우, 언더플로우, 수를 0으로 나누는 산술 연산 등</li>
+</ul>
+</li>
+<li><strong>비동기적 인터럽트</strong>
+<ul>
+<li>하드딛스크 읽기 오류, 메모리 불량 등 하드웨어적 오류</li>
+<li>사용자가 직접 작동하는 키보드 인터럽트, 마우스 인터럽트</li>
+</ul>
+</li>
+</ul>
+<h2 id="인터럽트-처리-과정">인터럽트 처리 과정</h2>
+<p><figure 
+	>
+	<a href="/posts/%ec%9d%b8%ed%84%b0%eb%9f%bd%ed%8a%b8%ec%99%80-%ed%94%84%eb%a1%9c%ec%84%b8%ec%8a%a4-%ed%86%b5%ec%8b%a0/Untitled.png" >
+		<img src="/posts/%ec%9d%b8%ed%84%b0%eb%9f%bd%ed%8a%b8%ec%99%80-%ed%94%84%eb%a1%9c%ec%84%b8%ec%8a%a4-%ed%86%b5%ec%8b%a0/Untitled.png"
+			
+			
+			
+			loading="lazy"
+			alt="image">
+	</a>
+	
+	<figcaption>image</figcaption>
+	
+</figure></p>
+<ol>
+<li>인터럽트가 발생하면 현재 실행중인 프로세스는 일시정지, 재시작하기 위해 상태 정보를 PCB에 임시 저장함</li>
+<li>인터럽트 컨트롤러가 실행되어 인터럽트 처리 순서 결정</li>
+<li>먼저 처리할 인터럽트가 결정되면 인터럽트 벡터에 등록된 인터럽트 핸들러 (해당 이벤트를 처리할 함수의 시작 주소) 실행</li>
+<li>핸들러가 인터럽트 처리를 마치면 일시정지된 프로세스가 다시 실행되거나 종료</li>
+</ol>
+<h2 id="커널-모드">커널 모드</h2>
+<ul>
+<li>운영체제와 관련된 커널 프로세스가 실행되는 상태</li>
+</ul>
+<h2 id="사용자-모드">사용자 모드</h2>
+<ul>
+<li>사용자 프로세스가 실행되는 상태</li>
+</ul>
+<h2 id="이중-모드">이중 모드</h2>
+<ul>
+<li>운영체제가 커널 모드와 사용자 모드를 전환하며 일 처리를 하는 것</li>
+<li>궁극적인 목적은 자원 보호</li>
+</ul>
+<h2 id="시스템-호출과-api">시스템 호출과 API</h2>
+<p><figure 
+	>
+	<a href="/posts/%ec%9d%b8%ed%84%b0%eb%9f%bd%ed%8a%b8%ec%99%80-%ed%94%84%eb%a1%9c%ec%84%b8%ec%8a%a4-%ed%86%b5%ec%8b%a0/Untitled%201.png" >
+		<img src="/posts/%ec%9d%b8%ed%84%b0%eb%9f%bd%ed%8a%b8%ec%99%80-%ed%94%84%eb%a1%9c%ec%84%b8%ec%8a%a4-%ed%86%b5%ec%8b%a0/Untitled%201.png"
+			
+			
+			
+			loading="lazy"
+			alt="image">
+	</a>
+	
+	<figcaption>image</figcaption>
+	
+</figure></p>
+<ul>
+<li>사용자 프로세스가 자원에 접근하려면 시스템 호출을 이용해야 함</li>
+<li>사용자 프로세스는 API가 준비해놓은 다양한 함수를 이용해 시스템 자원에 접근</li>
+</ul>
+<h1 id="2-프로세스-통신">2. 프로세스 통신</h1>
+<h2 id="종류">종류</h2>
+<p><figure 
+	>
+	<a href="/posts/%ec%9d%b8%ed%84%b0%eb%9f%bd%ed%8a%b8%ec%99%80-%ed%94%84%eb%a1%9c%ec%84%b8%ec%8a%a4-%ed%86%b5%ec%8b%a0/Untitled%202.png" >
+		<img src="/posts/%ec%9d%b8%ed%84%b0%eb%9f%bd%ed%8a%b8%ec%99%80-%ed%94%84%eb%a1%9c%ec%84%b8%ec%8a%a4-%ed%86%b5%ec%8b%a0/Untitled%202.png"
+			
+			
+			
+			loading="lazy"
+			alt="image">
+	</a>
+	
+	<figcaption>image</figcaption>
+	
+</figure></p>
+<ul>
+<li><strong>프로세스 내부 데이터 통신</strong>
+<ul>
+<li>한 프로세스 내에 2개 이상의 스레드가 존재하는 경우의 통신</li>
+<li>전역 변수, 파일을 이용해 데이터를 주고받음</li>
+</ul>
+</li>
+<li><strong>프로세스 간 데이터 통신</strong>
+<ul>
+<li>한 PC에 있는 여러 프로세스끼리 통신</li>
+<li>공용 파일 또는 운영체제가 제공하는 파이프 이용</li>
+</ul>
+</li>
+<li><strong>네트워크를 이용한 데이터 통신</strong>
+<ul>
+<li>여러 컴퓨터가 네트워크로 연결되어 있을 때 통신</li>
+<li>소켓을 이용</li>
+</ul>
+</li>
+</ul>
+<h2 id="분류">분류</h2>
+<p><figure 
+	>
+	<a href="/posts/%ec%9d%b8%ed%84%b0%eb%9f%bd%ed%8a%b8%ec%99%80-%ed%94%84%eb%a1%9c%ec%84%b8%ec%8a%a4-%ed%86%b5%ec%8b%a0/Untitled%203.png" >
+		<img src="/posts/%ec%9d%b8%ed%84%b0%eb%9f%bd%ed%8a%b8%ec%99%80-%ed%94%84%eb%a1%9c%ec%84%b8%ec%8a%a4-%ed%86%b5%ec%8b%a0/Untitled%203.png"
+			
+			
+			
+			loading="lazy"
+			alt="image">
+	</a>
+	
+	<figcaption>image</figcaption>
+	
+</figure></p>
+<h3 id="통신-방향에-따른-분류">통신 방향에 따른 분류</h3>
+<ul>
+<li>양방향 통신
+<ul>
+<li>데이터를 동시에 양쪽 방향으로 전송 가능</li>
+<li>일반적인 통신</li>
+<li>소켓 통신</li>
+</ul>
+</li>
+<li>반양방향 통신
+<ul>
+<li>양쪽 방향으로 통신 가능하나 동시 전송 불가</li>
+<li>무전기</li>
+</ul>
+</li>
+<li>단방향 통신
+<ul>
+<li>한쪽 방향으로만 데이터 전송</li>
+<li>모스 신호</li>
+<li>전역 변수, 파이프</li>
+</ul>
+</li>
+</ul>
+<h3 id="통신-구현-방식에-따른-분류">통신 구현 방식에 따른 분류</h3>
+<ul>
+<li>대기가 있는 통신
+<ul>
+<li>동기화를 지원하는 통신 방식</li>
+<li>데이터를 받는 쪽은 데이터가 도착할 때 까지 대기</li>
+</ul>
+</li>
+<li>대기가 없는 통신
+<ul>
+<li>동기화를 지원하지 않는 통신 방식</li>
+<li>데이터를 받는 쪽은 Busy Waiting을 통해 데이터가 도착했는지 여부를 직접 확인</li>
+</ul>
+</li>
+</ul>
+<h2 id="프로세스-간-통신-방식">프로세스 간 통신 방식</h2>
+<p><figure 
+	>
+	<a href="/posts/%ec%9d%b8%ed%84%b0%eb%9f%bd%ed%8a%b8%ec%99%80-%ed%94%84%eb%a1%9c%ec%84%b8%ec%8a%a4-%ed%86%b5%ec%8b%a0/Untitled%204.png" >
+		<img src="/posts/%ec%9d%b8%ed%84%b0%eb%9f%bd%ed%8a%b8%ec%99%80-%ed%94%84%eb%a1%9c%ec%84%b8%ec%8a%a4-%ed%86%b5%ec%8b%a0/Untitled%204.png"
+			
+			
+			
+			loading="lazy"
+			alt="image">
+	</a>
+	
+	<figcaption>image</figcaption>
+	
+</figure></p>
+<ul>
+<li>데이터를 주거나 받는 쓰기 연산과 읽기 연산으로 이루어짐</li>
+</ul>
+<h2 id="공유메모리-방식">공유메모리 방식</h2>
+<ul>
+<li>공동으로 관리하는 메모리를 사용해 데이터를 주고받음</li>
+<li>데이터를 보내는 쪽은 공유메모리에 쓰기, 받는 쪽은 공유메모리 읽기</li>
+<li>유닉스 공유메모리 관련 함수: shmget(), shmat()</li>
+</ul>
+<h2 id="파일을-이용한-통신">파일을 이용한 통신</h2>
+<p><figure 
+	>
+	<a href="/posts/%ec%9d%b8%ed%84%b0%eb%9f%bd%ed%8a%b8%ec%99%80-%ed%94%84%eb%a1%9c%ec%84%b8%ec%8a%a4-%ed%86%b5%ec%8b%a0/Untitled%205.png" >
+		<img src="/posts/%ec%9d%b8%ed%84%b0%eb%9f%bd%ed%8a%b8%ec%99%80-%ed%94%84%eb%a1%9c%ec%84%b8%ec%8a%a4-%ed%86%b5%ec%8b%a0/Untitled%205.png"
+			
+			
+			
+			loading="lazy"
+			alt="image">
+	</a>
+	
+	<figcaption>image</figcaption>
+	
+</figure></p>
+<ul>
+<li><strong>파일 열기</strong>
+<ul>
+<li>open(“com.txt”, O_RDWR) : com.txt 파일을 읽기와 쓰기를 할 수 있는 형태로 준비</li>
+<li>파일이 열리면 open 함수는 그 파일에 접근할 수 있는 권한인 파일 기술자 fd를 사용자에게 반환</li>
+</ul>
+</li>
+<li><strong>읽기 또는 쓰기 연산</strong>
+<ul>
+<li>write(., “Test”, 5) : fd, 즉 com.txt 파일에 Test라는 문자열을 쓰라는 뜻</li>
+<li>read(., buf, 5) : fd, 즉 com.txt 파일에서 5B를 읽어 변수 buf에 저장</li>
+</ul>
+</li>
+<li><strong>파일 닫기</strong>
+<ul>
+<li>close(.) : fd가 가리키는 파일, 즉 com.txt 파일을 닫음</li>
+</ul>
+</li>
+</ul>
+<h2 id="파이프를-이용한-통신">파이프를 이용한 통신</h2>
+<p><figure 
+	>
+	<a href="/posts/%ec%9d%b8%ed%84%b0%eb%9f%bd%ed%8a%b8%ec%99%80-%ed%94%84%eb%a1%9c%ec%84%b8%ec%8a%a4-%ed%86%b5%ec%8b%a0/Untitled%206.png" >
+		<img src="/posts/%ec%9d%b8%ed%84%b0%eb%9f%bd%ed%8a%b8%ec%99%80-%ed%94%84%eb%a1%9c%ec%84%b8%ec%8a%a4-%ed%86%b5%ec%8b%a0/Untitled%206.png"
+			
+			
+			
+			loading="lazy"
+			alt="image">
+	</a>
+	
+	<figcaption>image</figcaption>
+	
+</figure></p>
+<ul>
+<li>파이프로 양방향 통신을 하려면 파이프 2개 사용</li>
+<li>운영체제가 제공하는 동기화 통신 방식
+<ul>
+<li>파일 입출력과 같이 open() 함수로 기술자를 얻고 close() 함수로 마무리</li>
+</ul>
+</li>
+<li>파이프에 쓰기 연산, 읽기 연산을 통해 송신 수신</li>
+</ul>
+<h3 id="이름-없는-파이프">이름 없는 파이프</h3>
+<ul>
+<li>일반적인 파이프</li>
+</ul>
+<h3 id="이름-있는-파이프">이름 있는 파이프</h3>
+<ul>
+<li>FIFO라는 특수 파일을 이용해 서로 관련없는 프로세스 간 통신에 사용</li>
+</ul>
+<h2 id="소켓을-이용한-통신">소켓을 이용한 통신</h2>
+<p><figure 
+	>
+	<a href="/posts/%ec%9d%b8%ed%84%b0%eb%9f%bd%ed%8a%b8%ec%99%80-%ed%94%84%eb%a1%9c%ec%84%b8%ec%8a%a4-%ed%86%b5%ec%8b%a0/Untitled%207.png" >
+		<img src="/posts/%ec%9d%b8%ed%84%b0%eb%9f%bd%ed%8a%b8%ec%99%80-%ed%94%84%eb%a1%9c%ec%84%b8%ec%8a%a4-%ed%86%b5%ec%8b%a0/Untitled%207.png"
+			
+			
+			
+			loading="lazy"
+			alt="image">
+	</a>
+	
+	<figcaption>image</figcaption>
+	
+</figure></p>
+<ul>
+<li>여러 컴퓨터에 있는 프로세스끼리 통신</li>
+<li>통신하고자 하는 프로세스는 자신의 소켓과 상대의 소켓을 연결 (바인딩)</li>
+<li>소켓에 쓰기 연산을 하면 데이터가 전송되고</li>
+<li>읽기 연산을 하면 데이터를 받게 됨</li>
+</ul>
+</section>
+
+
+    <footer class="article-footer">
+    
+    <section class="article-tags">
+        
+            <a href="/tags/os/">os</a>
+        
+            <a href="/tags/operation-system/">operation-system</a>
+        
+    </section>
+
+
+    
+    <section class="article-copyright">
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-copyright" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <path d="M14.5 9a3.5 4 0 1 0 0 6" />
+</svg>
+
+
+
+        <span>Licensed under CC BY-NC-SA 4.0</span>
+    </section>
+    </footer>
+
+
+    
+</article>
+
+    <aside class="related-contents--wrapper">
+    
+    
+        <h2 class="section-title">Related contents</h2>
+        <div class="related-contents">
+            <div class="flex article-list--tile">
+                
+                    
+<article class="">
+    <a href="/blog/%EC%9A%B4%EC%98%81%EC%B2%B4%EC%A0%9C-cpu/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">운영체제 - CPU</h2>
+        </div>
+    </a>
+</article>
+                
+                    
+<article class="">
+    <a href="/blog/%EC%9A%B4%EC%98%81%EC%B2%B4%EC%A0%9C-cpu-%EC%8A%A4%EC%BC%80%EC%A4%84%EB%A7%81/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">운영체제 - CPU 스케줄링</h2>
+        </div>
+    </a>
+</article>
+                
+                    
+<article class="">
+    <a href="/blog/%EC%9A%B4%EC%98%81%EC%B2%B4%EC%A0%9C-cpu-%EC%8A%A4%EC%BC%80%EC%A4%84%EB%A7%81-%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">운영체제 - CPU 스케줄링 알고리즘</h2>
+        </div>
+    </a>
+</article>
+                
+                    
+<article class="">
+    <a href="/blog/%EC%9A%B4%EC%98%81%EC%B2%B4%EC%A0%9C-raid/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">운영체제 - RAID</h2>
+        </div>
+    </a>
+</article>
+                
+                    
+<article class="">
+    <a href="/blog/%EC%9A%B4%EC%98%81%EC%B2%B4%EC%A0%9C-%EA%B0%80%EC%83%81-%EB%A9%94%EB%AA%A8%EB%A6%AC/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">운영체제 - 가상 메모리</h2>
+        </div>
+    </a>
+</article>
+                
+            </div>
+        </div>
+    
+</aside>
+
+     
+    
+        
+    <script src="https://utteranc.es/client.js" 
+        repo="yansigit/yansigit.github.io"
+        issue-term="pathname"
+        
+        label="Utterances Comment"
+        
+        crossorigin="anonymous"
+        async
+        >
+</script>
+
+<style>
+    .utterances {
+        max-width: unset;
+    }
+</style>
+
+<script>
+    function setUtterancesTheme(theme) {
+        let utterances = document.querySelector('.utterances iframe');
+        if (utterances) {
+            utterances.contentWindow.postMessage(
+                {
+                    type: 'set-theme',
+                    theme: `github-${theme}`
+                },
+                'https://utteranc.es'
+            );
+        }
+    }
+
+    addEventListener('message', event => {
+        if (event.origin !== 'https://utteranc.es') return;
+        setUtterancesTheme(document.documentElement.dataset.scheme)
+    });
+
+    window.addEventListener('onColorSchemeChange', (e) => {
+        setUtterancesTheme(e.detail)
+    })
+</script>
+
+
+    
+
+    <footer class="site-footer">
+    <section class="copyright">
+        &copy; 
+        
+            2020 - 
+        
+        2021 Code like Feather
+    </section>
+    
+    <section class="powerby">
+        Built with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> <br />
+        Theme <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="3.2.0">Stack</a></b> designed by <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a>
+    </section>
+</footer>
+
+
+    
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    
+    <div class="pswp__bg"></div>
+
+    
+    <div class="pswp__scroll-wrap">
+
+        
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                
+                
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"integrity="sha256-ePwmChbbvXbsO02lbM3HoHbSHTHFAeChekF1xKJdleo="crossorigin="anonymous"
+                defer="true"
+                >
+            </script><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"integrity="sha256-UKkzOn/w1mBxRmLLGrSeyB4e1xbrp4xylgAWb3M42pU="crossorigin="anonymous"
+                defer="true"
+                >
+            </script><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.css"integrity="sha256-c0uckgykQ9v5k&#43;IqViZOZKc47Jn7KQil4/MP3ySA3F8="crossorigin="anonymous"
+            ><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.css"integrity="sha256-SBLU4vv6CA6lHsZ1XyTdhyjJxCjPif/TRkjnsyGAGnE="crossorigin="anonymous"
+            >
+
+            </main>
+    
+        <aside class="sidebar right-sidebar sticky">
+            <section class="widget archives">
+                <div class="widget-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-hash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <line x1="5" y1="9" x2="19" y2="9" />
+  <line x1="5" y1="15" x2="19" y2="15" />
+  <line x1="11" y1="4" x2="7" y2="20" />
+  <line x1="17" y1="4" x2="13" y2="20" />
+</svg>
+
+
+
+                </div>
+                <h2 class="widget-title section-title">Table of contents</h2>
+                
+                <div class="widget--toc">
+                    <nav id="TableOfContents">
+  <ol>
+    <li><a href="#폴링">폴링</a></li>
+    <li><a href="#인터럽트">인터럽트</a></li>
+    <li><a href="#인터럽트-처리-과정">인터럽트 처리 과정</a></li>
+    <li><a href="#커널-모드">커널 모드</a></li>
+    <li><a href="#사용자-모드">사용자 모드</a></li>
+    <li><a href="#이중-모드">이중 모드</a></li>
+    <li><a href="#시스템-호출과-api">시스템 호출과 API</a></li>
+  </ol>
+
+  <ol>
+    <li><a href="#종류">종류</a></li>
+    <li><a href="#분류">분류</a>
+      <ol>
+        <li><a href="#통신-방향에-따른-분류">통신 방향에 따른 분류</a></li>
+        <li><a href="#통신-구현-방식에-따른-분류">통신 구현 방식에 따른 분류</a></li>
+      </ol>
+    </li>
+    <li><a href="#프로세스-간-통신-방식">프로세스 간 통신 방식</a></li>
+    <li><a href="#공유메모리-방식">공유메모리 방식</a></li>
+    <li><a href="#파일을-이용한-통신">파일을 이용한 통신</a></li>
+    <li><a href="#파이프를-이용한-통신">파이프를 이용한 통신</a>
+      <ol>
+        <li><a href="#이름-없는-파이프">이름 없는 파이프</a></li>
+        <li><a href="#이름-있는-파이프">이름 있는 파이프</a></li>
+      </ol>
+    </li>
+    <li><a href="#소켓을-이용한-통신">소켓을 이용한 통신</a></li>
+  </ol>
+</nav>
+                </div>
+            </section>
+        </aside>
+    
+
+        </div>
+        <script 
+                src="https://cdn.jsdelivr.net/npm/node-vibrant@3.1.5/dist/vibrant.min.js"integrity="sha256-5NovOZc4iwiAWTYIFiIM7DxKUXKWvpVEuMEPLzcm5/g="crossorigin="anonymous"
+                defer="false"
+                >
+            </script><script type="text/javascript" src="/ts/main.js" defer></script>
+<script>
+    (function () {
+        const customFont = document.createElement('link');
+        customFont.href = "https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap";
+
+        customFont.type = "text/css";
+        customFont.rel = "stylesheet";
+
+        document.head.appendChild(customFont);
+    }());
+</script>
+
+    </body>
+</html>

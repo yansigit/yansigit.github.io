@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>windows on Code like Feather</title>
+    <link>https://yansigit.github.io/tags/windows/</link>
+    <description>Recent content in windows on Code like Feather</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>ko-kr</language>
+    <lastBuildDate>Thu, 20 Feb 2020 23:33:21 +0900</lastBuildDate><atom:link href="https://yansigit.github.io/tags/windows/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Installing Mac OS on Virtualbox on Windows</title>
+      <link>https://yansigit.github.io/blog/installing-mac-os-on-virtualbox-on-windows/</link>
+      <pubDate>Thu, 20 Feb 2020 23:33:21 +0900</pubDate>
+      
+      <guid>https://yansigit.github.io/blog/installing-mac-os-on-virtualbox-on-windows/</guid>
+      <description>&lt;h2 id=&#34;1-개요&#34;&gt;1. 개요&lt;/h2&gt;
+&lt;p&gt;맥을 사자니 돈이 너무 없고, 해킨토시를 하자니 노트북이라 깔고 설정하기 귀찮다면&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;답은 바로 가상머신&lt;/strong&gt;&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

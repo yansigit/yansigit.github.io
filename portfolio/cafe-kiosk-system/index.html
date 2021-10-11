@@ -1,0 +1,819 @@
+<!DOCTYPE html>
+<html lang="ko-kr">
+    <head><meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content='Kiosk and POS System written in Android, C#, Go'><title>The Friendly Kiosk Project</title>
+
+<link rel='canonical' href='https://yansigit.github.io/portfolio/cafe-kiosk-system/'>
+
+<link rel="stylesheet" href="/scss/style.min.css"><meta property='og:title' content='The Friendly Kiosk Project'>
+<meta property='og:description' content='Kiosk and POS System written in Android, C#, Go'>
+<meta property='og:url' content='https://yansigit.github.io/portfolio/cafe-kiosk-system/'>
+<meta property='og:site_name' content='Code like Feather'>
+<meta property='og:type' content='article'><meta property='article:section' content='Portfolio' /><meta property='article:tag' content='project' /><meta property='article:tag' content='pos' /><meta property='article:tag' content='kiosk' /><meta property='article:tag' content='android' /><meta property='article:tag' content='react' /><meta property='article:tag' content='go' /><meta property='article:tag' content='iris' /><meta property='article:tag' content='cafe' /><meta property='article:tag' content='portfolio' /><meta property='article:published_time' content='2020-09-20T17:55:28&#43;08:00'/><meta property='article:modified_time' content='2020-09-20T17:55:28&#43;08:00'/><meta property='og:image' content='https://yansigit.github.io/images/lighthouse.jpg' />
+<meta name="twitter:title" content="The Friendly Kiosk Project">
+<meta name="twitter:description" content="Kiosk and POS System written in Android, C#, Go"><meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content='https://yansigit.github.io/images/lighthouse.jpg' />
+    </head>
+    <body class="
+    article-page has-toc
+">
+    <script>
+        (function() {
+            const colorSchemeKey = 'StackColorScheme';
+            if(!localStorage.getItem(colorSchemeKey)){
+                localStorage.setItem(colorSchemeKey, "auto");
+            }
+        })();
+    </script><script>
+    (function() {
+        const colorSchemeKey = 'StackColorScheme';
+        const colorSchemeItem = localStorage.getItem(colorSchemeKey);
+        const supportDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches === true;
+
+        if (colorSchemeItem == 'dark' || colorSchemeItem === 'auto' && supportDarkMode) {
+            
+
+            document.documentElement.dataset.scheme = 'dark';
+        } else {
+            document.documentElement.dataset.scheme = 'light';
+        }
+    })();
+</script>
+<div class="container main-container flex 
+    
+        extended
+    
+">
+    
+        <div id="article-toolbar">
+            <a href="https://yansigit.github.io" class="back-home">
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-chevron-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <polyline points="15 6 9 12 15 18" />
+</svg>
+
+
+
+                <span>Back</span>
+            </a>
+        </div>
+    
+<main class="main full-width">
+    <article class="main-article">
+    <header class="article-header">
+
+    <div class="article-details">
+    
+    <header class="article-category">
+        
+            <a href="/categories/portfolio/" >
+                Portfolio
+            </a>
+        
+    </header>
+    
+
+    <h2 class="article-title">
+        <a href="/portfolio/cafe-kiosk-system/">The Friendly Kiosk Project</a>
+    </h2>
+
+    
+    <h3 class="article-subtitle">
+        Kiosk and POS System written in Android, C#, Go
+    </h3>
+    
+
+    
+    <footer class="article-time">
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-calendar-time" width="56" height="56" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M11.795 21h-6.795a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v4" />
+  <circle cx="18" cy="18" r="4" />
+  <path d="M15 3v4" />
+  <path d="M7 3v4" />
+  <path d="M3 11h16" />
+  <path d="M18 16.496v1.504l1 1" />
+</svg>
+                <time class="article-time--published">Sep 20, 2020</time>
+            </div>
+        
+
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <polyline points="12 7 12 12 15 15" />
+</svg>
+
+
+
+                <time class="article-time--reading">
+                    6 minute read
+                </time>
+            </div>
+        
+    </footer>
+    
+</div>
+</header>
+
+    <section class="article-content">
+    <h2 id="stacks-being-used-in-this-project">Stacks being used in this project</h2>
+<p><figure 
+	>
+	<a href="https://img.shields.io/badge/c%23-%23239120.svg?style=for-the-badge&amp;logo=c-sharp&amp;logoColor=white" >
+		<img src="https://img.shields.io/badge/c%23-%23239120.svg?style=for-the-badge&amp;logo=c-sharp&amp;logoColor=white"
+			
+			
+			
+			loading="lazy"
+			alt="C#">
+	</a>
+	
+	<figcaption>C#</figcaption>
+	
+</figure>
+<figure 
+	>
+	<a href="https://img.shields.io/badge/go-%2300ADD8.svg?style=for-the-badge&amp;logo=go&amp;logoColor=white" >
+		<img src="https://img.shields.io/badge/go-%2300ADD8.svg?style=for-the-badge&amp;logo=go&amp;logoColor=white"
+			
+			
+			
+			loading="lazy"
+			alt="Go">
+	</a>
+	
+	<figcaption>Go</figcaption>
+	
+</figure>
+<figure 
+	>
+	<a href="https://img.shields.io/badge/jquery-%230769AD.svg?style=for-the-badge&amp;logo=jquery&amp;logoColor=white" >
+		<img src="https://img.shields.io/badge/jquery-%230769AD.svg?style=for-the-badge&amp;logo=jquery&amp;logoColor=white"
+			
+			
+			
+			loading="lazy"
+			alt="jQuery">
+	</a>
+	
+	<figcaption>jQuery</figcaption>
+	
+</figure>
+<figure 
+	>
+	<a href="https://img.shields.io/badge/Android-3DDC84?style=for-the-badge&amp;logo=android&amp;logoColor=white" >
+		<img src="https://img.shields.io/badge/Android-3DDC84?style=for-the-badge&amp;logo=android&amp;logoColor=white"
+			
+			
+			
+			loading="lazy"
+			alt="Android">
+	</a>
+	
+	<figcaption>Android</figcaption>
+	
+</figure>
+<figure 
+	>
+	<a href="https://img.shields.io/badge/sqlite-%2307405e.svg?style=for-the-badge&amp;logo=sqlite&amp;logoColor=white" >
+		<img src="https://img.shields.io/badge/sqlite-%2307405e.svg?style=for-the-badge&amp;logo=sqlite&amp;logoColor=white"
+			
+			
+			
+			loading="lazy"
+			alt="SQLite">
+	</a>
+	
+	<figcaption>SQLite</figcaption>
+	
+</figure></p>
+<h2 id="what-is-this-project-about">What is this project about?</h2>
+<p>The &ldquo;The Friendly Kiosk&rdquo; project is a project that developed, operated, and supplied
+automatic order kiosks and POS systems for order verification.</p>
+<p>Additional visual information about menus, options, and materials is provided
+through image and various functions such as recommendation and search,
+considering the elderly and the developmentally challenged who have difficulty
+recognizing information.</p>
+<p>Image resources were provided by Ulsan City Democratic Protection Center,
+which is conducting &lsquo;The Friendly Menu&rsquo; business.</p>
+<p>The project was actually applied to the cafe and has been in operation since January 2021.</p>
+<details>
+<summary>Korean (한국어)</summary>
+<p>
+해당 '알기쉬운 키오스크' 프로젝트는 자동 주문 키오스크와 주문 확인용 POS 시스템을
+개발하여 운영, 공급한 프로젝트입니다.
+<p>일반인 뿐만 아니라 메뉴에 대한 정보 인식이 힘든 노약자, 발달장애인을 고려하여
+메뉴, 옵션, 재료에 대한 추가적인 시각적 정보를 이미지, 검색 기능을 통해 제공합니다.</p>
+<p>이미지 리소스는 &lsquo;알기쉬운 메뉴판&rsquo; 사업을 진행하고 있는 울산시민주간보호센터에서 제공받았습니다.</p>
+<p>해당 프로젝트는 실제로 카페에 적용되어 2021년 1월부터 운영되고 있습니다.</p>
+</p>
+</details>
+<h2 id="spec">Spec</h2>
+<h3 id="images">IMAGES</h3>
+<blockquote>
+<p>안드로이드 프레임워크 및 공유기 내부망 및 내부 DB를 이용해 동작하는 방식입니다.
+카드를 이용한 주문 및 정산과 앱 내 메뉴 관리가 가능하며 재료 검색 기능을 포함하고 있습니다.</p>
+</blockquote>
+<p><figure 
+	
+		class="gallery-image" 
+		style="
+			flex-grow: 158; 
+			flex-basis: 381px"
+	>
+	<a href="/portfolio/cafe-kiosk-system/img_4.png" data-size="1126x709">
+		<img src="/portfolio/cafe-kiosk-system/img_4.png"
+			width="1126"
+			height="709"
+			srcset="/portfolio/cafe-kiosk-system/img_4_hu4b820169e08d11f4ae5f0e75d9c323d3_2033572_480x0_resize_box_3.png 480w, /portfolio/cafe-kiosk-system/img_4_hu4b820169e08d11f4ae5f0e75d9c323d3_2033572_1024x0_resize_box_3.png 1024w"
+			loading="lazy"
+			alt="img_4.png">
+	</a>
+	
+	<figcaption>img_4.png</figcaption>
+	
+</figure>
+<figure 
+	
+		class="gallery-image" 
+		style="
+			flex-grow: 319; 
+			flex-basis: 766px"
+	>
+	<a href="/portfolio/cafe-kiosk-system/img_1.png" data-size="1782x558">
+		<img src="/portfolio/cafe-kiosk-system/img_1.png"
+			width="1782"
+			height="558"
+			srcset="/portfolio/cafe-kiosk-system/img_1_hu73f6142c48926015d708a60a10dd545e_1565801_480x0_resize_box_3.png 480w, /portfolio/cafe-kiosk-system/img_1_hu73f6142c48926015d708a60a10dd545e_1565801_1024x0_resize_box_3.png 1024w"
+			loading="lazy"
+			alt="img_1.png">
+	</a>
+	
+	<figcaption>img_1.png</figcaption>
+	
+</figure>
+<figure 
+	
+		class="gallery-image" 
+		style="
+			flex-grow: 167; 
+			flex-basis: 401px"
+	>
+	<a href="/portfolio/cafe-kiosk-system/img_3.png" data-size="1377x823">
+		<img src="/portfolio/cafe-kiosk-system/img_3.png"
+			width="1377"
+			height="823"
+			srcset="/portfolio/cafe-kiosk-system/img_3_hucfbec695865aab69b7fd2ba5e8fc7f82_201752_480x0_resize_box_3.png 480w, /portfolio/cafe-kiosk-system/img_3_hucfbec695865aab69b7fd2ba5e8fc7f82_201752_1024x0_resize_box_3.png 1024w"
+			loading="lazy"
+			alt="img_3.png">
+	</a>
+	
+	<figcaption>img_3.png</figcaption>
+	
+</figure></p>
+<h3 id="spec-1">SPEC</h3>
+<p><figure 
+	
+		class="gallery-image" 
+		style="
+			flex-grow: 162; 
+			flex-basis: 389px"
+	>
+	<a href="/portfolio/cafe-kiosk-system/img_7.png" data-size="2065x1272">
+		<img src="/portfolio/cafe-kiosk-system/img_7.png"
+			width="2065"
+			height="1272"
+			srcset="/portfolio/cafe-kiosk-system/img_7_hu81d2a73280f1581b1f955e9339eaef11_984861_480x0_resize_box_3.png 480w, /portfolio/cafe-kiosk-system/img_7_hu81d2a73280f1581b1f955e9339eaef11_984861_1024x0_resize_box_3.png 1024w"
+			loading="lazy"
+			alt="img_7.png">
+	</a>
+	
+	<figcaption>img_7.png</figcaption>
+	
+</figure></p>
+<ul>
+<li>POS
+<ul>
+<li>Hardware
+<ul>
+<li>Windows 7 Based OS (POSReady 7)</li>
+<li>Ivybridge based low voltage Dual-Core CPU (1037U)</li>
+<li>2GB RAM</li>
+</ul>
+</li>
+<li>Software
+<ul>
+<li>Golang
+<ul>
+<li>Iris framework</li>
+</ul>
+</li>
+<li>jQuery</li>
+<li>Sqlite</li>
+<li>C#</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="what-did-you-do">What did you do?</h2>
+<blockquote>
+<p>As a team leader and lead developer, I managed most of the developments and communication
+with organizations and companies outside. Details are on below.</p>
+</blockquote>
+<ul>
+<li>Structured entire system base
+<ul>
+<li>Hardware
+<ul>
+<li>Odroid (Android Dev Board)
+<ul>
+<li>Purchased and managed boards including installing and setting firmware.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Data Structure
+<ul>
+<li>Built table and column structure</li>
+<li>Wrote relations and queries</li>
+</ul>
+</li>
+<li>Chose Languages and Frameworks</li>
+</ul>
+</li>
+<li>Developed Android Kiosk Application
+<ul>
+<li>Designed and coded UI, UX</li>
+<li>Implemented Ordering, Purchasing, Networking, Interaction, DB Part
+<ul>
+<li>Dealing with Credit card reader and Printing thermal printer included</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Developed Web POS System
+<ul>
+<li>Frontend
+<ul>
+<li>Used jQuery and Bootstrap</li>
+<li>Realtime Order details and waiting</li>
+<li>Income Calculation Page</li>
+</ul>
+</li>
+<li>Backend
+<ul>
+<li>Developed Backend using Go and Sqlite</li>
+<li>Developed Thermal Printer server using C#
+<ul>
+<li>Communicating with Go server with TCP protocol</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Communicating with co-op organizations such as University of Ulsan, Centers for the disabled</li>
+</ul>
+<details>
+<summary>Korean (한국어)</summary>
+<ul>
+<li>전체 시스템의 구조를 구상 및 설계하였습니다.<ul>
+<li>시스템 구성요소<ul>
+<li>사용될 하드웨어 및 개발보드 탐색</li>
+</ul>
+</li>
+<li>데이터 구조<ul>
+<li>사용할 DB 엔진 탐색</li>
+<li>테이블, 컬럼 구조</li>
+</ul>
+</li>
+<li>사용될 언어 및 프레임워크</li>
+</ul>
+</li>
+<li>안드로이드 키오스크 어플리케이션을 개발하고 구현하였습니다.<ul>
+<li>UI, UX 설계 및 구현</li>
+<li>주문 및 결제, 네트워크, DB 연동 등 핵심 기반 개발 및 구체화</li>
+<li>카드 결제 리더기 및 영수증 출력기 통신 기반 구현</li>
+</ul>
+</li>
+<li>웹 POS 시스템 전반을 개발하고 구현하였습니다.<ul>
+<li>프론트엔드<ul>
+<li>실시간 주문 확인 페이지</li>
+<li>실시간 주문 대기열 확인 페이지</li>
+<li>정산 페이지</li>
+</ul>
+</li>
+<li>백엔드<ul>
+<li>HTTP 기반 백엔드 서버 및 데이터베이스 전반</li>
+<li>영수증 출력 서버 어플리케이션<ul>
+<li>C#으로 별도 제작</li>
+<li>TCP 방식으로 통신하며 영수증 출력</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>LINC+ 사업단 및 카드회사, 장애인시설 등 연계된 자원들과 소통</li>
+</ul>
+</details>
+<h2 id="technical-challenges">Technical challenges</h2>
+<h3 id="platform">Platform</h3>
+<p>There were several options such as PC Linux, Windows, Android, and I chose Android.</p>
+<p>Linux distros such as Ubuntu, CentOS were nice option to go.
+Lots of languages and frameworks can be run on linux,
+and some distros are lightweight and optimized for embedded environment, such as kiosk machine.
+Unfortunately, There were few external devices (credit card reader, thermal printer) necessary for the project
+officially supporting Linux system.</p>
+<p>For this case, Windows was the best option. Literally every external devices is officially supported,
+and actually recommended by vendors to use Windows OS.
+But Windows development boards were about over $300 to get,
+which was quite expensive for students like us.
+Mini PC was considered too, but we had to find a small board to embed this inside Kiosk machine.</p>
+<p>So, I chose to develop on the Android platform.
+You can purchase a development board at a lower price than Windows one,
+only about $50, and apps can be made quite lightweight and speedy.
+Also, external devices I needed could be used on android platform,
+even thought some features were experimental vendors said.</p>
+<h3 id="billing-and-printing-receipt">Billing and Printing receipt</h3>
+<p>It was the first time to use
+a card reader device and a receipt printer in development project for me,
+So at first I had no idea where to start.
+By referring to technical documents and examples provided by
+vendors and <del>google</del>, we could understand how to control them.
+In the case of the credit card reader one, it was simple.
+The Android app developed by the vendor provided usability for app to app communication
+through intent to process payment. Simply put, the app itself could be used as a function.
+If our order app calls the payment app,
+it sends payment information as a parameter to the payment app,
+and the payment app processes payment and return the result to the order app. Simple!</p>
+<p>Printing receipt was more complicated. We had to send bytecodes
+to the printer machine to print the receipt.
+All newlines, alignments, characters, tabs, and other commands
+had to be done through a predefined bytecode, called ESCPOS.
+It is not such a complicated communication method,
+but it was not a familiar method to create a string first,
+then convert it into bytecode in a predetermined way and then transmit it.
+However, as the development progressed, I was able to get used to it.
+it was difficult to find related documents about this
+because there were not many cases of communication through serial or USB on Android.
+Fortunately, since the vendor provided the example source
+we were able to proceed with the development without lots of difficulties.</p>
+<h3 id="pos-and-android-order-app">POS And Android Order App</h3>
+<p>At the first time, I was about to make desktop application with Go language.
+There were few reasons.</p>
+<p>One of them was because i was really into Go language that time, Almost spreading about
+How Golang can be used in various platforms and environment like java and python do,
+But running as a native application so fast.
+Sadly, Golang doesn&rsquo;t have official GUI Framework.
+3rd party frameworks such as QT and GTK were on options
+But I decided to not use them because of lack of maintainers.</p>
+<p>C# was a good candidate too. but I wasn&rsquo;t sure about making desktop application
+with C# (And dotnet framework) because of its heaviness.
+The POS PC we had to use were with dual-core CPU over 10 years ago with 1GB Ram.
+It turned out that it could manage dotnet core desktop application quite well later,
+But in that time I was concerned about running it on the Low-End PC.
+I knew chrome is running on there quite well (for running Youtube) through,
+So What I decided is to make Web-Based POS Application with Go language.</p>
+<p>What I had to figure out was how to make communication between POS App running on Windows POS PC and
+The Order App running on Android.
+Basic approach such as TCP and UDP were nice,
+but they are not convenient to develop and maintain like HTTP.
+And The POS solution will be made as a web application, so I chose HTTP as a main protocol.
+Also, JSON was used for networking format.
+Almost every language are supporting JSON officially or via library,
+so I thought it could be a nice standard to go. And it worked just like charm.</p>
+<h2 id="team">Team</h2>
+<ul>
+<li>Team Leader
+<ul>
+<li>Seongbin Yoon</li>
+</ul>
+</li>
+<li>Developer
+<ul>
+<li>Minwoo Kim</li>
+<li>Hyorim Jang</li>
+<li>Seulgi Park</li>
+</ul>
+</li>
+</ul>
+<h2 id="supports">Supports</h2>
+<p><figure 
+	
+		class="gallery-image" 
+		style="
+			flex-grow: 502; 
+			flex-basis: 1207px"
+	>
+	<a href="/portfolio/cafe-kiosk-system/img_2.png" data-size="1373x273">
+		<img src="/portfolio/cafe-kiosk-system/img_2.png"
+			width="1373"
+			height="273"
+			srcset="/portfolio/cafe-kiosk-system/img_2_hu35cd70709ea5aab8be4720eaa194fcc9_125436_480x0_resize_box_3.png 480w, /portfolio/cafe-kiosk-system/img_2_hu35cd70709ea5aab8be4720eaa194fcc9_125436_1024x0_resize_box_3.png 1024w"
+			loading="lazy"
+			alt="Supports">
+	</a>
+	
+	<figcaption>Supports</figcaption>
+	
+</figure></p>
+<ul>
+<li>LINC+ Centre of University of Ulsan</li>
+<li>Associates</li>
+</ul>
+</section>
+
+
+    <footer class="article-footer">
+    
+    <section class="article-tags">
+        
+            <a href="/tags/project/">project</a>
+        
+            <a href="/tags/pos/">pos</a>
+        
+            <a href="/tags/kiosk/">kiosk</a>
+        
+            <a href="/tags/android/">android</a>
+        
+            <a href="/tags/react/">react</a>
+        
+            <a href="/tags/go/">go</a>
+        
+            <a href="/tags/iris/">iris</a>
+        
+            <a href="/tags/cafe/">cafe</a>
+        
+            <a href="/tags/portfolio/">portfolio</a>
+        
+    </section>
+
+
+    
+    <section class="article-copyright">
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-copyright" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <path d="M14.5 9a3.5 4 0 1 0 0 6" />
+</svg>
+
+
+
+        <span>Licensed under CC BY-NC-SA 4.0</span>
+    </section>
+    </footer>
+
+
+    
+</article>
+
+    <aside class="related-contents--wrapper">
+    
+    
+        <h2 class="section-title">Related contents</h2>
+        <div class="related-contents">
+            <div class="flex article-list--tile">
+                
+                    
+<article class="">
+    <a href="/portfolio/arumdream-aka-saveorder/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">Arumdream - Easy Mobile App for Self-Orderings</h2>
+        </div>
+    </a>
+</article>
+                
+                    
+<article class="">
+    <a href="/portfolio/baseball-winning-prediction/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">Baseball Winning Prediction with React based Website</h2>
+        </div>
+    </a>
+</article>
+                
+            </div>
+        </div>
+    
+</aside>
+
+     
+    
+        
+    <script src="https://utteranc.es/client.js" 
+        repo="yansigit/yansigit.github.io"
+        issue-term="pathname"
+        
+        label="Utterances Comment"
+        
+        crossorigin="anonymous"
+        async
+        >
+</script>
+
+<style>
+    .utterances {
+        max-width: unset;
+    }
+</style>
+
+<script>
+    function setUtterancesTheme(theme) {
+        let utterances = document.querySelector('.utterances iframe');
+        if (utterances) {
+            utterances.contentWindow.postMessage(
+                {
+                    type: 'set-theme',
+                    theme: `github-${theme}`
+                },
+                'https://utteranc.es'
+            );
+        }
+    }
+
+    addEventListener('message', event => {
+        if (event.origin !== 'https://utteranc.es') return;
+        setUtterancesTheme(document.documentElement.dataset.scheme)
+    });
+
+    window.addEventListener('onColorSchemeChange', (e) => {
+        setUtterancesTheme(e.detail)
+    })
+</script>
+
+
+    
+
+    <footer class="site-footer">
+    <section class="copyright">
+        &copy; 
+        
+            2020 - 
+        
+        2021 Code like Feather
+    </section>
+    
+    <section class="powerby">
+        Built with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> <br />
+        Theme <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="3.2.0">Stack</a></b> designed by <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a>
+    </section>
+</footer>
+
+
+    
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    
+    <div class="pswp__bg"></div>
+
+    
+    <div class="pswp__scroll-wrap">
+
+        
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                
+                
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"integrity="sha256-ePwmChbbvXbsO02lbM3HoHbSHTHFAeChekF1xKJdleo="crossorigin="anonymous"
+                defer="true"
+                >
+            </script><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"integrity="sha256-UKkzOn/w1mBxRmLLGrSeyB4e1xbrp4xylgAWb3M42pU="crossorigin="anonymous"
+                defer="true"
+                >
+            </script><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.css"integrity="sha256-c0uckgykQ9v5k&#43;IqViZOZKc47Jn7KQil4/MP3ySA3F8="crossorigin="anonymous"
+            ><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.css"integrity="sha256-SBLU4vv6CA6lHsZ1XyTdhyjJxCjPif/TRkjnsyGAGnE="crossorigin="anonymous"
+            >
+
+            </main>
+    
+        <aside class="sidebar right-sidebar sticky">
+            <section class="widget archives">
+                <div class="widget-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-hash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <line x1="5" y1="9" x2="19" y2="9" />
+  <line x1="5" y1="15" x2="19" y2="15" />
+  <line x1="11" y1="4" x2="7" y2="20" />
+  <line x1="17" y1="4" x2="13" y2="20" />
+</svg>
+
+
+
+                </div>
+                <h2 class="widget-title section-title">Table of contents</h2>
+                
+                <div class="widget--toc">
+                    <nav id="TableOfContents">
+  <ol>
+    <li><a href="#stacks-being-used-in-this-project">Stacks being used in this project</a></li>
+    <li><a href="#what-is-this-project-about">What is this project about?</a></li>
+    <li><a href="#spec">Spec</a>
+      <ol>
+        <li><a href="#images">IMAGES</a></li>
+        <li><a href="#spec-1">SPEC</a></li>
+      </ol>
+    </li>
+    <li><a href="#what-did-you-do">What did you do?</a></li>
+    <li><a href="#technical-challenges">Technical challenges</a>
+      <ol>
+        <li><a href="#platform">Platform</a></li>
+        <li><a href="#billing-and-printing-receipt">Billing and Printing receipt</a></li>
+        <li><a href="#pos-and-android-order-app">POS And Android Order App</a></li>
+      </ol>
+    </li>
+    <li><a href="#team">Team</a></li>
+    <li><a href="#supports">Supports</a></li>
+  </ol>
+</nav>
+                </div>
+            </section>
+        </aside>
+    
+
+        </div>
+        <script 
+                src="https://cdn.jsdelivr.net/npm/node-vibrant@3.1.5/dist/vibrant.min.js"integrity="sha256-5NovOZc4iwiAWTYIFiIM7DxKUXKWvpVEuMEPLzcm5/g="crossorigin="anonymous"
+                defer="false"
+                >
+            </script><script type="text/javascript" src="/ts/main.js" defer></script>
+<script>
+    (function () {
+        const customFont = document.createElement('link');
+        customFont.href = "https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap";
+
+        customFont.type = "text/css";
+        customFont.rel = "stylesheet";
+
+        document.head.appendChild(customFont);
+    }());
+</script>
+
+    </body>
+</html>

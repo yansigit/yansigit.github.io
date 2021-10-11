@@ -1,0 +1,1035 @@
+<!DOCTYPE html>
+<html lang="ko-kr">
+    <head><meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content='전문가시스템 정리'><title>전문가 시스템</title>
+
+<link rel='canonical' href='https://yansigit.github.io/blog/%EC%A0%84%EB%AC%B8%EA%B0%80-%EC%8B%9C%EC%8A%A4%ED%85%9C/'>
+
+<link rel="stylesheet" href="/scss/style.min.css"><meta property='og:title' content='전문가 시스템'>
+<meta property='og:description' content='전문가시스템 정리'>
+<meta property='og:url' content='https://yansigit.github.io/blog/%EC%A0%84%EB%AC%B8%EA%B0%80-%EC%8B%9C%EC%8A%A4%ED%85%9C/'>
+<meta property='og:site_name' content='Code like Feather'>
+<meta property='og:type' content='article'><meta property='article:section' content='Posts' /><meta property='article:tag' content='machine-learning' /><meta property='article:tag' content='deep-learning' /><meta property='article:tag' content='data-processing' /><meta property='article:tag' content='data-science' /><meta property='article:published_time' content='2021-07-07T00:04:34&#43;09:00'/><meta property='article:modified_time' content='2021-07-07T00:04:34&#43;09:00'/><meta property='og:image' content='https://yansigit.github.io/images/lighthouse.jpg' />
+<meta name="twitter:title" content="전문가 시스템">
+<meta name="twitter:description" content="전문가시스템 정리"><meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content='https://yansigit.github.io/images/lighthouse.jpg' />
+    </head>
+    <body class="
+    article-page has-toc
+">
+    <script>
+        (function() {
+            const colorSchemeKey = 'StackColorScheme';
+            if(!localStorage.getItem(colorSchemeKey)){
+                localStorage.setItem(colorSchemeKey, "auto");
+            }
+        })();
+    </script><script>
+    (function() {
+        const colorSchemeKey = 'StackColorScheme';
+        const colorSchemeItem = localStorage.getItem(colorSchemeKey);
+        const supportDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches === true;
+
+        if (colorSchemeItem == 'dark' || colorSchemeItem === 'auto' && supportDarkMode) {
+            
+
+            document.documentElement.dataset.scheme = 'dark';
+        } else {
+            document.documentElement.dataset.scheme = 'light';
+        }
+    })();
+</script>
+<div class="container main-container flex 
+    
+        extended
+    
+">
+    
+        <div id="article-toolbar">
+            <a href="https://yansigit.github.io" class="back-home">
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-chevron-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <polyline points="15 6 9 12 15 18" />
+</svg>
+
+
+
+                <span>Back</span>
+            </a>
+        </div>
+    
+<main class="main full-width">
+    <article class="main-article">
+    <header class="article-header">
+
+    <div class="article-details">
+    
+    <header class="article-category">
+        
+            <a href="/categories/machine-learning/" >
+                machine-learning
+            </a>
+        
+            <a href="/categories/deep-learning/" >
+                deep-learning
+            </a>
+        
+            <a href="/categories/data-science/" >
+                data-science
+            </a>
+        
+    </header>
+    
+
+    <h2 class="article-title">
+        <a href="/blog/%EC%A0%84%EB%AC%B8%EA%B0%80-%EC%8B%9C%EC%8A%A4%ED%85%9C/">전문가 시스템</a>
+    </h2>
+
+    
+    <h3 class="article-subtitle">
+        전문가시스템 정리
+    </h3>
+    
+
+    
+    <footer class="article-time">
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-calendar-time" width="56" height="56" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M11.795 21h-6.795a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v4" />
+  <circle cx="18" cy="18" r="4" />
+  <path d="M15 3v4" />
+  <path d="M7 3v4" />
+  <path d="M3 11h16" />
+  <path d="M18 16.496v1.504l1 1" />
+</svg>
+                <time class="article-time--published">Jul 07, 2021</time>
+            </div>
+        
+
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <polyline points="12 7 12 12 15 15" />
+</svg>
+
+
+
+                <time class="article-time--reading">
+                    4 minute read
+                </time>
+            </div>
+        
+    </footer>
+    
+</div>
+</header>
+
+    <section class="article-content">
+    <h1 id="전문가시스템">전문가시스템</h1>
+<h1 id="-1-지식-및-전문가시스템">🤖 1. 지식 및 전문가시스템</h1>
+<ul>
+<li>1960~1970 1차 AI 붐 → 1차 겨울: 계산기능한계, 논리체계한계</li>
+<li>1980~1990 2차 AI 붐 → 2차 겨울: AI HW 시장 붕괴, Data 부족, 규칙학습 불가능</li>
+<li>2010~20XX 3차 AI 붐 : 머신러닝, 딥러닝</li>
+</ul>
+<h2 id="데이터">데이터</h2>
+<p><figure 
+	>
+	<a href="/posts/%ec%a0%84%eb%ac%b8%ea%b0%80%ec%8b%9c%ec%8a%a4%ed%85%9c/Untitled.png" >
+		<img src="/posts/%ec%a0%84%eb%ac%b8%ea%b0%80%ec%8b%9c%ec%8a%a4%ed%85%9c/Untitled.png"
+			
+			
+			
+			loading="lazy"
+			alt="%E1%84%8C%E1%85%A5%E1%86%AB%E1%84%86%E1%85%AE%E1%86%AB%E1%84%80%E1%85%A1%E1%84%89%E1%85%B5%E1%84%89%E1%85%B3%E1%84%90%E1%85%A6%E1%86%B7/Untitled.png">
+	</a>
+	
+	<figcaption>%E1%84%8C%E1%85%A5%E1%86%AB%E1%84%86%E1%85%AE%E1%86%AB%E1%84%80%E1%85%A1%E1%84%89%E1%85%B5%E1%84%89%E1%85%B3%E1%84%90%E1%85%A6%E1%86%B7/Untitled.png</figcaption>
+	
+</figure></p>
+<ul>
+<li><strong>데이터</strong>
+<ul>
+<li>특정 분야에서 관측된 아직ㅈ 가공되지 않은 것</li>
+<li>오류나 잡음 포함 가능</li>
+</ul>
+</li>
+<li><strong>정보</strong>
+<ul>
+<li>데이터를 가공하여 어떤 목적이나 의미를 갖도록 한 것</li>
+</ul>
+</li>
+<li><strong>지식</strong></li>
+<li><strong>지혜</strong>
+<ul>
+<li>경험과 학습을 통해서 얻은 지식보다 높은 수준의 통찰</li>
+</ul>
+</li>
+</ul>
+<h2 id="지식"><strong>지식</strong></h2>
+<p><figure 
+	>
+	<a href="/posts/%ec%a0%84%eb%ac%b8%ea%b0%80%ec%8b%9c%ec%8a%a4%ed%85%9c/Untitled%201.png" >
+		<img src="/posts/%ec%a0%84%eb%ac%b8%ea%b0%80%ec%8b%9c%ec%8a%a4%ed%85%9c/Untitled%201.png"
+			
+			
+			
+			loading="lazy"
+			alt="%E1%84%8C%E1%85%A5%E1%86%AB%E1%84%86%E1%85%AE%E1%86%AB%E1%84%80%E1%85%A1%E1%84%89%E1%85%B5%E1%84%89%E1%85%B3%E1%84%90%E1%85%A6%E1%86%B7/Untitled%201.png">
+	</a>
+	
+	<figcaption>%E1%84%8C%E1%85%A5%E1%86%AB%E1%84%86%E1%85%AE%E1%86%AB%E1%84%80%E1%85%A1%E1%84%89%E1%85%B5%E1%84%89%E1%85%B3%E1%84%90%E1%85%A6%E1%86%B7/Untitled%201.png</figcaption>
+	
+</figure></p>
+<ul>
+<li>정보를 취합하고 분석하여 얻은 대상에 대해 사람이 이해한 것</li>
+<li>일반화, 규칙</li>
+<li><strong>표현형식</strong>
+<ul>
+<li>암묵지
+<ul>
+<li>당연한, 형식을 갖추어 표현하기 어려운 학습과 경험을 통해 쌓은 지식</li>
+</ul>
+</li>
+<li>형식지
+<ul>
+<li>비교적 쉽게 형식을 갖추어 표현할 수 있는 지식</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><strong>표현 대상</strong>
+<ul>
+<li>절차적 지식
+<ul>
+<li>문제 해결의 규칙이나 절차 등</li>
+<li>Symbolic</li>
+</ul>
+</li>
+<li>선언적 지식
+<ul>
+<li>어떤 대상의 특성에 대한 지식</li>
+<li>색상 등..</li>
+<li>Non-Symbolic</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="production-rule">Production Rule</h2>
+<ul>
+<li>사실: Boolean</li>
+<li>규칙: If ~ Then 형태의 문장</li>
+<li>규칙 획득 및 표현
+<ul>
+<li>예) 신호등이 녹색일 때는 건널목을 안전하게 건널 수 있고, 빨간색일때는 길을 건너지 말아야 한다</li>
+<li>대상, 속성, 행동/판단 정보 추출
+<ul>
+<li>대상: 신호등</li>
+<li>속성: 녹색, 빨간색</li>
+<li>행동/판단: 건던다, 멈춘다</li>
+</ul>
+</li>
+<li>표현
+<ul>
+<li>IF 신호등 = 녹색 THEN 건넌다, ELIF 신호등 = 빨간색 THEN 멈춘다</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>규칙을 통한 지식 표현
+<ul>
+<li><strong>인과관계</strong>
+<ul>
+<li>원인을 조건부에, 결과는 결론부에 표현</li>
+</ul>
+</li>
+<li><strong>추천</strong>
+<ul>
+<li>상황을 조건부에, 추천내용을 결론부에</li>
+</ul>
+</li>
+<li><strong>지시</strong>
+<ul>
+<li>상황을 조건부에, 지시 내용을 결론부에</li>
+</ul>
+</li>
+<li><strong>전략</strong>
+<ul>
+<li>일련의 규칙들로 표현</li>
+</ul>
+</li>
+<li><strong>휴리스틱</strong>
+<ul>
+<li>일반적으로 바람직한 것을 표현</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="규칙기반-시스템">규칙기반 시스템</h2>
+<ul>
+<li>지식을 규칙의 형태로 표현</li>
+<li>규칙들을 사용해 문제에 대한 해를 찾는 지식기반시스템</li>
+</ul>
+<h2 id="전문가-시스템">전문가 시스템</h2>
+<p><figure 
+	>
+	<a href="/posts/%ec%a0%84%eb%ac%b8%ea%b0%80%ec%8b%9c%ec%8a%a4%ed%85%9c/Untitled%202.png" >
+		<img src="/posts/%ec%a0%84%eb%ac%b8%ea%b0%80%ec%8b%9c%ec%8a%a4%ed%85%9c/Untitled%202.png"
+			
+			
+			
+			loading="lazy"
+			alt="%E1%84%8C%E1%85%A5%E1%86%AB%E1%84%86%E1%85%AE%E1%86%AB%E1%84%80%E1%85%A1%E1%84%89%E1%85%B5%E1%84%89%E1%85%B3%E1%84%90%E1%85%A6%E1%86%B7/Untitled%202.png">
+	</a>
+	
+	<figcaption>%E1%84%8C%E1%85%A5%E1%86%AB%E1%84%86%E1%85%AE%E1%86%AB%E1%84%80%E1%85%A1%E1%84%89%E1%85%B5%E1%84%89%E1%85%B3%E1%84%90%E1%85%A6%E1%86%B7/Untitled%202.png</figcaption>
+	
+</figure></p>
+<p><figure 
+	>
+	<a href="/posts/%ec%a0%84%eb%ac%b8%ea%b0%80%ec%8b%9c%ec%8a%a4%ed%85%9c/Untitled%203.png" >
+		<img src="/posts/%ec%a0%84%eb%ac%b8%ea%b0%80%ec%8b%9c%ec%8a%a4%ed%85%9c/Untitled%203.png"
+			
+			
+			
+			loading="lazy"
+			alt="%E1%84%8C%E1%85%A5%E1%86%AB%E1%84%86%E1%85%AE%E1%86%AB%E1%84%80%E1%85%A1%E1%84%89%E1%85%B5%E1%84%89%E1%85%B3%E1%84%90%E1%85%A6%E1%86%B7/Untitled%203.png">
+	</a>
+	
+	<figcaption>%E1%84%8C%E1%85%A5%E1%86%AB%E1%84%86%E1%85%AE%E1%86%AB%E1%84%80%E1%85%A1%E1%84%89%E1%85%B5%E1%84%89%E1%85%B3%E1%84%90%E1%85%A6%E1%86%B7/Untitled%203.png</figcaption>
+	
+</figure></p>
+<ul>
+<li>특정 문제정역에 대해 전문가 수준의 해를 찾아주는 시스템</li>
+<li>첫번째 겨울 이후 제한된 문제에 집중</li>
+</ul>
+<h2 id="전통적인-프로그램과-전문가시스템-비교">전통적인 프로그램과 전문가시스템 비교</h2>
+<ul>
+<li>전통적인 프로그램은 항상 같은 순서 (알고리즘) 으로 처리</li>
+<li>전문가시스템은 기술된 단계의 순서를 따르지 않음
+<ul>
+<li>정확하지 않은 추론 허용</li>
+<li>확신도에 따라 불완전/불확실한 데이터를 처리</li>
+</ul>
+</li>
+</ul>
+<h2 id="추론-엔진">추론 엔진</h2>
+<p><figure 
+	>
+	<a href="/posts/%ec%a0%84%eb%ac%b8%ea%b0%80%ec%8b%9c%ec%8a%a4%ed%85%9c/Untitled%204.png" >
+		<img src="/posts/%ec%a0%84%eb%ac%b8%ea%b0%80%ec%8b%9c%ec%8a%a4%ed%85%9c/Untitled%204.png"
+			
+			
+			
+			loading="lazy"
+			alt="%E1%84%8C%E1%85%A5%E1%86%AB%E1%84%86%E1%85%AE%E1%86%AB%E1%84%80%E1%85%A1%E1%84%89%E1%85%B5%E1%84%89%E1%85%B3%E1%84%90%E1%85%A6%E1%86%B7/Untitled%204.png">
+	</a>
+	
+	<figcaption>%E1%84%8C%E1%85%A5%E1%86%AB%E1%84%86%E1%85%AE%E1%86%AB%E1%84%80%E1%85%A1%E1%84%89%E1%85%B5%E1%84%89%E1%85%B3%E1%84%90%E1%85%A6%E1%86%B7/Untitled%204.png</figcaption>
+	
+</figure></p>
+<h2 id="추론">추론</h2>
+<ul>
+<li>구축된 지식과 주어진 데이터를 이요하여 가설을 검증하거나, 새로운 사실을 유도하거나, 관련된 정보를 유추</li>
+<li>생성 시스템 (Production System)</li>
+</ul>
+<h2 id="전향-추론-foward-reasoning"><strong>전향 추론 (foward reasoning)</strong></h2>
+<p><figure 
+	>
+	<a href="/posts/%ec%a0%84%eb%ac%b8%ea%b0%80%ec%8b%9c%ec%8a%a4%ed%85%9c/Untitled%205.png" >
+		<img src="/posts/%ec%a0%84%eb%ac%b8%ea%b0%80%ec%8b%9c%ec%8a%a4%ed%85%9c/Untitled%205.png"
+			
+			
+			
+			loading="lazy"
+			alt="%E1%84%8C%E1%85%A5%E1%86%AB%E1%84%86%E1%85%AE%E1%86%AB%E1%84%80%E1%85%A1%E1%84%89%E1%85%B5%E1%84%89%E1%85%B3%E1%84%90%E1%85%A6%E1%86%B7/Untitled%205.png">
+	</a>
+	
+	<figcaption>%E1%84%8C%E1%85%A5%E1%86%AB%E1%84%86%E1%85%AE%E1%86%AB%E1%84%80%E1%85%A1%E1%84%89%E1%85%B5%E1%84%89%E1%85%B3%E1%84%90%E1%85%A6%E1%86%B7/Untitled%205.png</figcaption>
+	
+</figure></p>
+<ul>
+<li>규칙의 조건부와 만족</li>
+<li>규칙의 결론부를 실행</li>
+</ul>
+<h2 id="후향-추론"><strong>후향 추론</strong></h2>
+<p><figure 
+	>
+	<a href="/posts/%ec%a0%84%eb%ac%b8%ea%b0%80%ec%8b%9c%ec%8a%a4%ed%85%9c/Untitled%206.png" >
+		<img src="/posts/%ec%a0%84%eb%ac%b8%ea%b0%80%ec%8b%9c%ec%8a%a4%ed%85%9c/Untitled%206.png"
+			
+			
+			
+			loading="lazy"
+			alt="%E1%84%8C%E1%85%A5%E1%86%AB%E1%84%86%E1%85%AE%E1%86%AB%E1%84%80%E1%85%A1%E1%84%89%E1%85%B5%E1%84%89%E1%85%B3%E1%84%90%E1%85%A6%E1%86%B7/Untitled%206.png">
+	</a>
+	
+	<figcaption>%E1%84%8C%E1%85%A5%E1%86%AB%E1%84%86%E1%85%AE%E1%86%AB%E1%84%80%E1%85%A1%E1%84%89%E1%85%B5%E1%84%89%E1%85%B3%E1%84%90%E1%85%A6%E1%86%B7/Untitled%206.png</figcaption>
+	
+</figure></p>
+<ul>
+<li>결론부에 가지고 있는 규칙을 찾아서</li>
+<li>조건부의 조건들이 모두 만족하는지 확인</li>
+</ul>
+<h2 id="전문가-시스템-구조">전문가 시스템 구조</h2>
+<p><figure 
+	>
+	<a href="/posts/%ec%a0%84%eb%ac%b8%ea%b0%80%ec%8b%9c%ec%8a%a4%ed%85%9c/Untitled%207.png" >
+		<img src="/posts/%ec%a0%84%eb%ac%b8%ea%b0%80%ec%8b%9c%ec%8a%a4%ed%85%9c/Untitled%207.png"
+			
+			
+			
+			loading="lazy"
+			alt="%E1%84%8C%E1%85%A5%E1%86%AB%E1%84%86%E1%85%AE%E1%86%AB%E1%84%80%E1%85%A1%E1%84%89%E1%85%B5%E1%84%89%E1%85%B3%E1%84%90%E1%85%A6%E1%86%B7/Untitled%207.png">
+	</a>
+	
+	<figcaption>%E1%84%8C%E1%85%A5%E1%86%AB%E1%84%86%E1%85%AE%E1%86%AB%E1%84%80%E1%85%A1%E1%84%89%E1%85%B5%E1%84%89%E1%85%B3%E1%84%90%E1%85%A6%E1%86%B7/Untitled%207.png</figcaption>
+	
+</figure></p>
+<ul>
+<li>지식/규칙베이스 : 사실, 규칙</li>
+<li><strong>작업메모리</strong>
+<ul>
+<li>사용자로부터 받은 문제에 대한 정보 관리</li>
+<li>추론과정의 중간결과를 저장, 유도된 최종해 저장</li>
+<li>작업 메모리에 저장되는 모든 것을 사실이라고 함</li>
+</ul>
+</li>
+<li><strong>추론 엔진</strong>
+<ul>
+<li>실행할 수 있는 규칙을 찾아서, 해당 규칙을 실행하는 역할</li>
+<li>패턴 매칭 - 경합 해소 - 규칙 실행의 과정 반복</li>
+</ul>
+</li>
+</ul>
+<h2 id="경합-해소-전략">경합 해소 전략</h2>
+<ul>
+<li>규칙 우선순위
+<ul>
+<li>작업 메모리의 사실과 규칙베이스에 있는 규칙의 조건부를 대조</li>
+<li>일치하는 규칙을 찾는 과정</li>
+</ul>
+</li>
+<li>최신 우선</li>
+<li>최초 우선</li>
+<li>상세 우선
+<ul>
+<li>가장 상세한 조건부를 갖는 규칙</li>
+</ul>
+</li>
+</ul>
+<h2 id="전문가시스템-개발-도구">전문가시스템 개발 도구</h2>
+<ul>
+<li>LISP, Prolog</li>
+<li>Jess, CLIPS, EXSYS, SEOPS</li>
+</ul>
+<h2 id="전문가-시스템-장점">전문가 시스템 장점</h2>
+<ul>
+<li>IF - THEN 규칙
+<ul>
+<li>전문가의 지식을 자연스럽게 표현</li>
+<li>독립적이고 이해하기 쉬움</li>
+</ul>
+</li>
+<li>지식베이스와 추론엔진 분리
+<ul>
+<li>다른 영역에돋 쉽게 적용 가능</li>
+</ul>
+</li>
+<li>확신도를 사용하면 불완전하고 불확실한 지식 표현 가능</li>
+</ul>
+<h2 id="전문가-시스템-단점">전문가 시스템 단점</h2>
+<ul>
+<li>지식을 학습할 수 없음
+<ul>
+<li>전문가가 새로운 지식을 추가, 변경해야 함</li>
+</ul>
+</li>
+<li>비효율적인 탐색</li>
+<li>규칙이 많아지면 상호관계가 불명확해짐. 유지보수가 어려움.</li>
+</ul>
+<h1 id="2-sementic-network">2. Sementic Network</h1>
+<h2 id="의미망">의미망</h2>
+<p><figure 
+	>
+	<a href="/posts/%ec%a0%84%eb%ac%b8%ea%b0%80%ec%8b%9c%ec%8a%a4%ed%85%9c/Untitled%208.png" >
+		<img src="/posts/%ec%a0%84%eb%ac%b8%ea%b0%80%ec%8b%9c%ec%8a%a4%ed%85%9c/Untitled%208.png"
+			
+			
+			
+			loading="lazy"
+			alt="%E1%84%8C%E1%85%A5%E1%86%AB%E1%84%86%E1%85%AE%E1%86%AB%E1%84%80%E1%85%A1%E1%84%89%E1%85%B5%E1%84%89%E1%85%B3%E1%84%90%E1%85%A6%E1%86%B7/Untitled%208.png">
+	</a>
+	
+	<figcaption>%E1%84%8C%E1%85%A5%E1%86%AB%E1%84%86%E1%85%AE%E1%86%AB%E1%84%80%E1%85%A1%E1%84%89%E1%85%B5%E1%84%89%E1%85%B3%E1%84%90%E1%85%A6%E1%86%B7/Untitled%208.png</figcaption>
+	
+</figure></p>
+<ul>
+<li>지식을 이항 관계의 집합으로 표현</li>
+<li>방향성 그래프를 이용해 지식 표현
+<ul>
+<li><strong>노드</strong>
+<ul>
+<li>대상, 개념, 행위, 상태, 사건</li>
+</ul>
+</li>
+<li><strong>간선</strong>
+<ul>
+<li>관계가 있는 노드들을 연결</li>
+<li>관계에 따른 방향</li>
+<li>관계의 이미를 나타내는 라벨 부여</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="관계">관계</h2>
+<h3 id="-is-a">🔵 <strong>is-a</strong></h3>
+<ul>
+<li>
+<p><strong>상위 클래스와 하위 클래스</strong> 관계 ex) 조류, 동물</p>
+</li>
+<li>
+<p><strong>또는 클래스와 객체</strong>의 관계 (트위티, 종달새)</p>
+</li>
+<li>
+<p>계층 관계 표현.</p>
+<ul>
+<li><strong>상위 계층의 속성을 상속</strong></li>
+</ul>
+</li>
+<li>
+<p><strong>추이적</strong> (transitive) 관계 만족 → inheritance</p>
+<p><figure 
+	>
+	<a href="/posts/%ec%a0%84%eb%ac%b8%ea%b0%80%ec%8b%9c%ec%8a%a4%ed%85%9c/Untitled%209.png" >
+		<img src="/posts/%ec%a0%84%eb%ac%b8%ea%b0%80%ec%8b%9c%ec%8a%a4%ed%85%9c/Untitled%209.png"
+			
+			
+			
+			loading="lazy"
+			alt="%E1%84%8C%E1%85%A5%E1%86%AB%E1%84%86%E1%85%AE%E1%86%AB%E1%84%80%E1%85%A1%E1%84%89%E1%85%B5%E1%84%89%E1%85%B3%E1%84%90%E1%85%A6%E1%86%B7/Untitled%209.png">
+	</a>
+	
+	<figcaption>%E1%84%8C%E1%85%A5%E1%86%AB%E1%84%86%E1%85%AE%E1%86%AB%E1%84%80%E1%85%A1%E1%84%89%E1%85%B5%E1%84%89%E1%85%B3%E1%84%90%E1%85%A6%E1%86%B7/Untitled%209.png</figcaption>
+	
+</figure></p>
+</li>
+</ul>
+<h3 id="-has-a">🔵 <strong>has-a</strong></h3>
+<ul>
+<li>
+<p><strong>전체-부분 관계</strong></p>
+</li>
+<li>
+<p>part-of와 역관계</p>
+<ul>
+<li><strong>has-a(X,Y) 이면 part-of(Y,X) 성립</strong></li>
+</ul>
+</li>
+<li>
+<p><strong>추이적</strong> 관계 만족</p>
+<p><figure 
+	>
+	<a href="/posts/%ec%a0%84%eb%ac%b8%ea%b0%80%ec%8b%9c%ec%8a%a4%ed%85%9c/Untitled%2010.png" >
+		<img src="/posts/%ec%a0%84%eb%ac%b8%ea%b0%80%ec%8b%9c%ec%8a%a4%ed%85%9c/Untitled%2010.png"
+			
+			
+			
+			loading="lazy"
+			alt="%E1%84%8C%E1%85%A5%E1%86%AB%E1%84%86%E1%85%AE%E1%86%AB%E1%84%80%E1%85%A1%E1%84%89%E1%85%B5%E1%84%89%E1%85%B3%E1%84%90%E1%85%A6%E1%86%B7/Untitled%2010.png">
+	</a>
+	
+	<figcaption>%E1%84%8C%E1%85%A5%E1%86%AB%E1%84%86%E1%85%AE%E1%86%AB%E1%84%80%E1%85%A1%E1%84%89%E1%85%B5%E1%84%89%E1%85%B3%E1%84%90%E1%85%A6%E1%86%B7/Untitled%2010.png</figcaption>
+	
+</figure></p>
+</li>
+</ul>
+<h2 id="다항-관계-표현">다항 관계 표현</h2>
+<p><figure 
+	>
+	<a href="/posts/%ec%a0%84%eb%ac%b8%ea%b0%80%ec%8b%9c%ec%8a%a4%ed%85%9c/Untitled%2011.png" >
+		<img src="/posts/%ec%a0%84%eb%ac%b8%ea%b0%80%ec%8b%9c%ec%8a%a4%ed%85%9c/Untitled%2011.png"
+			
+			
+			
+			loading="lazy"
+			alt="%E1%84%8C%E1%85%A5%E1%86%AB%E1%84%86%E1%85%AE%E1%86%AB%E1%84%80%E1%85%A1%E1%84%89%E1%85%B5%E1%84%89%E1%85%B3%E1%84%90%E1%85%A6%E1%86%B7/Untitled%2011.png">
+	</a>
+	
+	<figcaption>%E1%84%8C%E1%85%A5%E1%86%AB%E1%84%86%E1%85%AE%E1%86%AB%E1%84%80%E1%85%A1%E1%84%89%E1%85%B5%E1%84%89%E1%85%B3%E1%84%90%E1%85%A6%E1%86%B7/Untitled%2011.png</figcaption>
+	
+</figure></p>
+<ul>
+<li>다항 관계를 이항 관계로 전개</li>
+<li>사물화: 다항 관계를 객체로 간주하여 표현</li>
+<li>예) 길동이는 지난 가을부터 현재까지 고양이를 키우고 있다</li>
+</ul>
+<h2 id="의미망에서-추론">의미망에서 추론</h2>
+<ul>
+<li><strong>상속을 사용</strong></li>
+<li>질문에 대한 의미망과 지식을 나타내는 의미망을 비교</li>
+</ul>
+<p><figure 
+	>
+	<a href="/posts/%ec%a0%84%eb%ac%b8%ea%b0%80%ec%8b%9c%ec%8a%a4%ed%85%9c/Untitled%2012.png" >
+		<img src="/posts/%ec%a0%84%eb%ac%b8%ea%b0%80%ec%8b%9c%ec%8a%a4%ed%85%9c/Untitled%2012.png"
+			
+			
+			
+			loading="lazy"
+			alt="%E1%84%8C%E1%85%A5%E1%86%AB%E1%84%86%E1%85%AE%E1%86%AB%E1%84%80%E1%85%A1%E1%84%89%E1%85%B5%E1%84%89%E1%85%B3%E1%84%90%E1%85%A6%E1%86%B7/Untitled%2012.png">
+	</a>
+	
+	<figcaption>%E1%84%8C%E1%85%A5%E1%86%AB%E1%84%86%E1%85%AE%E1%86%AB%E1%84%80%E1%85%A1%E1%84%89%E1%85%B5%E1%84%89%E1%85%B3%E1%84%90%E1%85%A6%E1%86%B7/Untitled%2012.png</figcaption>
+	
+</figure></p>
+<ul>
+<li>질문 예) 펭귄은 알을 낳는가?
+<ul>
+<li>can(펭귄, 알낳기)에 해당</li>
+<li>is-a 관계의 간선을 따라 조류 노드로 이동</li>
+<li>can(조류, 알낳기)가 있으므로 질문의 답은 참</li>
+</ul>
+</li>
+</ul>
+<h2 id="시맨틱-네트워크-장점">시맨틱 네트워크 장점</h2>
+<ul>
+<li>지식을 시각적으로 표현하영 직관적 이해 용이</li>
+<li>노드 추가, 변경으로 쉽게 지식의 추가 변경 가능</li>
+<li>계층 관계를 정의하여 속성의 상속 관계 지정 가능</li>
+<li>복잡한 지식을 구조화하여 표현 가능</li>
+</ul>
+<h2 id="시맨틱-네트워크-단점">시맨틱 네트워크 단점</h2>
+<ul>
+<li>지식의 양이 많아지면 관리 복잡</li>
+<li>개념이나 관계를 정의하는 표준 지침이 없음
+<ul>
+<li>통일성 부족</li>
+<li>공유나 재사용에 대한 고려 없음</li>
+</ul>
+</li>
+<li>논리적 결합 관계나 인과 관계를 기술하려고 하면 and, or, implies와 같
+은 링크 도입 필요
+<ul>
+<li>일관성을 떨어뜨리고 추론과정을 복잡</li>
+</ul>
+</li>
+<li>기본적으로 정적인 지식의 표현
+<ul>
+<li>추론 과정에서 동적으로 지식의 내용을 바꾸려면 그래프를 동적으
+로 바꿀 수 있도록 해야 함</li>
+</ul>
+</li>
+</ul>
+<h2 id="3-프레임">3. 프레임</h2>
+<p><figure 
+	>
+	<a href="/posts/%ec%a0%84%eb%ac%b8%ea%b0%80%ec%8b%9c%ec%8a%a4%ed%85%9c/Untitled%2013.png" >
+		<img src="/posts/%ec%a0%84%eb%ac%b8%ea%b0%80%ec%8b%9c%ec%8a%a4%ed%85%9c/Untitled%2013.png"
+			
+			
+			
+			loading="lazy"
+			alt="%E1%84%8C%E1%85%A5%E1%86%AB%E1%84%86%E1%85%AE%E1%86%AB%E1%84%80%E1%85%A1%E1%84%89%E1%85%B5%E1%84%89%E1%85%B3%E1%84%90%E1%85%A6%E1%86%B7/Untitled%2013.png">
+	</a>
+	
+	<figcaption>%E1%84%8C%E1%85%A5%E1%86%AB%E1%84%86%E1%85%AE%E1%86%AB%E1%84%80%E1%85%A1%E1%84%89%E1%85%B5%E1%84%89%E1%85%B3%E1%84%90%E1%85%A6%E1%86%B7/Untitled%2013.png</figcaption>
+	
+</figure></p>
+<ul>
+<li>특정 객체, 개념에 대한 전형적인 지식을 슬롯의 집합으로 표현</li>
+<li>객체지향의 느낌</li>
+</ul>
+<h2 id="스크립트">스크립트</h2>
+<p><figure 
+	>
+	<a href="/posts/%ec%a0%84%eb%ac%b8%ea%b0%80%ec%8b%9c%ec%8a%a4%ed%85%9c/Untitled%2014.png" >
+		<img src="/posts/%ec%a0%84%eb%ac%b8%ea%b0%80%ec%8b%9c%ec%8a%a4%ed%85%9c/Untitled%2014.png"
+			
+			
+			
+			loading="lazy"
+			alt="%E1%84%8C%E1%85%A5%E1%86%AB%E1%84%86%E1%85%AE%E1%86%AB%E1%84%80%E1%85%A1%E1%84%89%E1%85%B5%E1%84%89%E1%85%B3%E1%84%90%E1%85%A6%E1%86%B7/Untitled%2014.png">
+	</a>
+	
+	<figcaption>%E1%84%8C%E1%85%A5%E1%86%AB%E1%84%86%E1%85%AE%E1%86%AB%E1%84%80%E1%85%A1%E1%84%89%E1%85%B5%E1%84%89%E1%85%B3%E1%84%90%E1%85%A6%E1%86%B7/Untitled%2014.png</figcaption>
+	
+</figure></p>
+<ul>
+<li>일반적으로 발생할 수 있는 전형적인 상황에 대한 절차적 지식을 표현</li>
+<li>일련의 사건을 시간적 순서를 고려하여 기술</li>
+</ul>
+<h2 id="온톨로지">온톨로지</h2>
+<ul>
+<li>어떤 영역의 지식을 개념, 특성, 속성, 제약조건, 개체에 대한 정보가 기술</li>
+<li>영역에 대한 공통된 어휘 사용</li>
+<li>서로간 토의를 통해 합의를 이룬 것을 표현</li>
+<li>예시
+<ul>
+<li>아마존 쇼핑 카탈로그</li>
+<li>워드넷
+<ul>
+<li>영어 단어의 어휘목록과 어휘목록 사이의 다양한 의미관계 기록</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>시맨틱 웹
+<ul>
+<li>웹의 데이터를 소프트웨어 에이전트가 이해하여 지능적으로 활용 가능하도록 하는 것</li>
+<li>XML 사용</li>
+<li>의미 해석을 위해서는 RDF 사용</li>
+</ul>
+</li>
+</ul>
+<h2 id="심볼-그라운딩-문제">심볼 그라운딩 문제</h2>
+<ul>
+<li>컴퓨터가 기호로 표기된 실제 세계의 의미를 이해할 수 없음
+<ul>
+<li>딥러닝을 이용해 학습시키기</li>
+</ul>
+</li>
+</ul>
+<h2 id="프레임-문제">프레임 문제</h2>
+<ul>
+<li>컴퓨터가 하나의 프레임에 갇혀 하나의 목표만 보고 움직임</li>
+<li>관계있는 지식을 사용하지 않음</li>
+</ul>
+</section>
+
+
+    <footer class="article-footer">
+    
+    <section class="article-tags">
+        
+            <a href="/tags/machine-learning/">machine-learning</a>
+        
+            <a href="/tags/deep-learning/">deep-learning</a>
+        
+            <a href="/tags/data-processing/">data-processing</a>
+        
+            <a href="/tags/data-science/">data-science</a>
+        
+    </section>
+
+
+    
+    <section class="article-copyright">
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-copyright" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <path d="M14.5 9a3.5 4 0 1 0 0 6" />
+</svg>
+
+
+
+        <span>Licensed under CC BY-NC-SA 4.0</span>
+    </section>
+    </footer>
+
+
+    
+</article>
+
+    <aside class="related-contents--wrapper">
+    
+    
+        <h2 class="section-title">Related contents</h2>
+        <div class="related-contents">
+            <div class="flex article-list--tile">
+                
+                    
+<article class="">
+    <a href="/blog/classification/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">Classification</h2>
+        </div>
+    </a>
+</article>
+                
+                    
+<article class="">
+    <a href="/blog/clustering-%EA%B5%B0%EC%A7%91%ED%99%94/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">Clustering (군집화)</h2>
+        </div>
+    </a>
+</article>
+                
+                    
+<article class="">
+    <a href="/blog/data-processing/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">Data Processing</h2>
+        </div>
+    </a>
+</article>
+                
+                    
+<article class="">
+    <a href="/blog/deep-neural-network/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">Deep Neural Network</h2>
+        </div>
+    </a>
+</article>
+                
+                    
+<article class="">
+    <a href="/blog/dicision-tree/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">Dicision Tree</h2>
+        </div>
+    </a>
+</article>
+                
+            </div>
+        </div>
+    
+</aside>
+
+     
+    
+        
+    <script src="https://utteranc.es/client.js" 
+        repo="yansigit/yansigit.github.io"
+        issue-term="pathname"
+        
+        label="Utterances Comment"
+        
+        crossorigin="anonymous"
+        async
+        >
+</script>
+
+<style>
+    .utterances {
+        max-width: unset;
+    }
+</style>
+
+<script>
+    function setUtterancesTheme(theme) {
+        let utterances = document.querySelector('.utterances iframe');
+        if (utterances) {
+            utterances.contentWindow.postMessage(
+                {
+                    type: 'set-theme',
+                    theme: `github-${theme}`
+                },
+                'https://utteranc.es'
+            );
+        }
+    }
+
+    addEventListener('message', event => {
+        if (event.origin !== 'https://utteranc.es') return;
+        setUtterancesTheme(document.documentElement.dataset.scheme)
+    });
+
+    window.addEventListener('onColorSchemeChange', (e) => {
+        setUtterancesTheme(e.detail)
+    })
+</script>
+
+
+    
+
+    <footer class="site-footer">
+    <section class="copyright">
+        &copy; 
+        
+            2020 - 
+        
+        2021 Code like Feather
+    </section>
+    
+    <section class="powerby">
+        Built with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> <br />
+        Theme <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="3.2.0">Stack</a></b> designed by <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a>
+    </section>
+</footer>
+
+
+    
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    
+    <div class="pswp__bg"></div>
+
+    
+    <div class="pswp__scroll-wrap">
+
+        
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                
+                
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"integrity="sha256-ePwmChbbvXbsO02lbM3HoHbSHTHFAeChekF1xKJdleo="crossorigin="anonymous"
+                defer="true"
+                >
+            </script><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"integrity="sha256-UKkzOn/w1mBxRmLLGrSeyB4e1xbrp4xylgAWb3M42pU="crossorigin="anonymous"
+                defer="true"
+                >
+            </script><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.css"integrity="sha256-c0uckgykQ9v5k&#43;IqViZOZKc47Jn7KQil4/MP3ySA3F8="crossorigin="anonymous"
+            ><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.css"integrity="sha256-SBLU4vv6CA6lHsZ1XyTdhyjJxCjPif/TRkjnsyGAGnE="crossorigin="anonymous"
+            >
+
+            </main>
+    
+        <aside class="sidebar right-sidebar sticky">
+            <section class="widget archives">
+                <div class="widget-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-hash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <line x1="5" y1="9" x2="19" y2="9" />
+  <line x1="5" y1="15" x2="19" y2="15" />
+  <line x1="11" y1="4" x2="7" y2="20" />
+  <line x1="17" y1="4" x2="13" y2="20" />
+</svg>
+
+
+
+                </div>
+                <h2 class="widget-title section-title">Table of contents</h2>
+                
+                <div class="widget--toc">
+                    <nav id="TableOfContents">
+  <ol>
+    <li><a href="#데이터">데이터</a></li>
+    <li><a href="#지식"><strong>지식</strong></a></li>
+    <li><a href="#production-rule">Production Rule</a></li>
+    <li><a href="#규칙기반-시스템">규칙기반 시스템</a></li>
+    <li><a href="#전문가-시스템">전문가 시스템</a></li>
+    <li><a href="#전통적인-프로그램과-전문가시스템-비교">전통적인 프로그램과 전문가시스템 비교</a></li>
+    <li><a href="#추론-엔진">추론 엔진</a></li>
+    <li><a href="#추론">추론</a></li>
+    <li><a href="#전향-추론-foward-reasoning"><strong>전향 추론 (foward reasoning)</strong></a></li>
+    <li><a href="#후향-추론"><strong>후향 추론</strong></a></li>
+    <li><a href="#전문가-시스템-구조">전문가 시스템 구조</a></li>
+    <li><a href="#경합-해소-전략">경합 해소 전략</a></li>
+    <li><a href="#전문가시스템-개발-도구">전문가시스템 개발 도구</a></li>
+    <li><a href="#전문가-시스템-장점">전문가 시스템 장점</a></li>
+    <li><a href="#전문가-시스템-단점">전문가 시스템 단점</a></li>
+  </ol>
+
+  <ol>
+    <li><a href="#의미망">의미망</a></li>
+    <li><a href="#관계">관계</a>
+      <ol>
+        <li><a href="#-is-a">🔵 <strong>is-a</strong></a></li>
+        <li><a href="#-has-a">🔵 <strong>has-a</strong></a></li>
+      </ol>
+    </li>
+    <li><a href="#다항-관계-표현">다항 관계 표현</a></li>
+    <li><a href="#의미망에서-추론">의미망에서 추론</a></li>
+    <li><a href="#시맨틱-네트워크-장점">시맨틱 네트워크 장점</a></li>
+    <li><a href="#시맨틱-네트워크-단점">시맨틱 네트워크 단점</a></li>
+    <li><a href="#3-프레임">3. 프레임</a></li>
+    <li><a href="#스크립트">스크립트</a></li>
+    <li><a href="#온톨로지">온톨로지</a></li>
+    <li><a href="#심볼-그라운딩-문제">심볼 그라운딩 문제</a></li>
+    <li><a href="#프레임-문제">프레임 문제</a></li>
+  </ol>
+</nav>
+                </div>
+            </section>
+        </aside>
+    
+
+        </div>
+        <script 
+                src="https://cdn.jsdelivr.net/npm/node-vibrant@3.1.5/dist/vibrant.min.js"integrity="sha256-5NovOZc4iwiAWTYIFiIM7DxKUXKWvpVEuMEPLzcm5/g="crossorigin="anonymous"
+                defer="false"
+                >
+            </script><script type="text/javascript" src="/ts/main.js" defer></script>
+<script>
+    (function () {
+        const customFont = document.createElement('link');
+        customFont.href = "https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap";
+
+        customFont.type = "text/css";
+        customFont.rel = "stylesheet";
+
+        document.head.appendChild(customFont);
+    }());
+</script>
+
+    </body>
+</html>

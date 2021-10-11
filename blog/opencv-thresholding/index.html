@@ -1,0 +1,463 @@
+<!DOCTYPE html>
+<html lang="ko-kr">
+    <head><meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content='openCV 쓰레스홀딩 (이진화)'><title>OpenCV Thresholding</title>
+
+<link rel='canonical' href='https://yansigit.github.io/blog/opencv-thresholding/'>
+
+<link rel="stylesheet" href="/scss/style.min.css"><meta property='og:title' content='OpenCV Thresholding'>
+<meta property='og:description' content='openCV 쓰레스홀딩 (이진화)'>
+<meta property='og:url' content='https://yansigit.github.io/blog/opencv-thresholding/'>
+<meta property='og:site_name' content='Code like Feather'>
+<meta property='og:type' content='article'><meta property='article:section' content='Posts' /><meta property='article:tag' content='opencv' /><meta property='article:tag' content='python' /><meta property='article:published_time' content='2020-09-16T00:01:55&#43;09:00'/><meta property='article:modified_time' content='2020-09-16T00:01:55&#43;09:00'/><meta property='og:image' content='https://yansigit.github.io/images/lighthouse.jpg' />
+<meta name="twitter:title" content="OpenCV Thresholding">
+<meta name="twitter:description" content="openCV 쓰레스홀딩 (이진화)"><meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content='https://yansigit.github.io/images/lighthouse.jpg' />
+    </head>
+    <body class="
+    article-page has-toc
+">
+    <script>
+        (function() {
+            const colorSchemeKey = 'StackColorScheme';
+            if(!localStorage.getItem(colorSchemeKey)){
+                localStorage.setItem(colorSchemeKey, "auto");
+            }
+        })();
+    </script><script>
+    (function() {
+        const colorSchemeKey = 'StackColorScheme';
+        const colorSchemeItem = localStorage.getItem(colorSchemeKey);
+        const supportDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches === true;
+
+        if (colorSchemeItem == 'dark' || colorSchemeItem === 'auto' && supportDarkMode) {
+            
+
+            document.documentElement.dataset.scheme = 'dark';
+        } else {
+            document.documentElement.dataset.scheme = 'light';
+        }
+    })();
+</script>
+<div class="container main-container flex 
+    
+        extended
+    
+">
+    
+        <div id="article-toolbar">
+            <a href="https://yansigit.github.io" class="back-home">
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-chevron-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <polyline points="15 6 9 12 15 18" />
+</svg>
+
+
+
+                <span>Back</span>
+            </a>
+        </div>
+    
+<main class="main full-width">
+    <article class="main-article">
+    <header class="article-header">
+
+    <div class="article-details">
+    
+    <header class="article-category">
+        
+            <a href="/categories/opencv/" >
+                opencv
+            </a>
+        
+    </header>
+    
+
+    <h2 class="article-title">
+        <a href="/blog/opencv-thresholding/">OpenCV Thresholding</a>
+    </h2>
+
+    
+    <h3 class="article-subtitle">
+        openCV 쓰레스홀딩 (이진화)
+    </h3>
+    
+
+    
+    <footer class="article-time">
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-calendar-time" width="56" height="56" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M11.795 21h-6.795a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v4" />
+  <circle cx="18" cy="18" r="4" />
+  <path d="M15 3v4" />
+  <path d="M7 3v4" />
+  <path d="M3 11h16" />
+  <path d="M18 16.496v1.504l1 1" />
+</svg>
+                <time class="article-time--published">Sep 16, 2020</time>
+            </div>
+        
+
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <polyline points="12 7 12 12 15 15" />
+</svg>
+
+
+
+                <time class="article-time--reading">
+                    1 minute read
+                </time>
+            </div>
+        
+    </footer>
+    
+</div>
+</header>
+
+    <section class="article-content">
+    <h2 id="기본">기본</h2>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="c1"># 1. numpy 이용</span>
+<span class="n">threst_np</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros_like</span><span class="p">(</span><span class="n">img</span><span class="p">)</span> <span class="c1"># 원본과 동일한 크기의 0으로 채워진 이미지 생성</span>
+<span class="n">threst_np</span><span class="p">[</span><span class="n">img</span> <span class="o">&gt;</span> <span class="mi">127</span><span class="p">]</span> <span class="o">=</span> <span class="mi">255</span> <span class="c1"># 127보다 큰 값만 255로 변경</span>
+</code></pre></div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="c1"># 2. opencv 이용</span>
+<span class="c1"># 사용된_경계값, 이미지_결과 = cv2.threshold(img, 경계_값, 적용_값, 타입_플래그)</span>
+<span class="n">ret</span><span class="p">,</span> <span class="n">thresh_cv</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">threshold</span><span class="p">(</span><span class="n">img</span><span class="p">,</span> <span class="mi">127</span><span class="p">,</span> <span class="mi">255</span><span class="p">,</span> <span class="n">cv2</span><span class="o">.</span><span class="n">THRESH_BINARY</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">thresh_cv</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;gray&#39;</span><span class="p">)</span>
+</code></pre></div><ul>
+<li><code>threshold</code> 타입 플래그
+<ul>
+<li><code>cv2.THRESH_BINARY</code> : 픽셀값이 경계값을 넘으면 적용값을 지정, 아니면 0</li>
+<li><code>cv2.THRESH_BINARY_INV</code> : 위의 반대</li>
+<li><code>cv2.THRESH_TRUNC</code> : 픽셀값이 경계값을 넘으면 적용값을 지정, 아니면 그대로</li>
+<li><code>cv2.THRESH_TOZERO</code> : 픽셀값이 경계값을 넘으면 원래 값 유지, 아니면 0</li>
+<li><code>cv2.THRESH_TOZERO_INV</code> : 위의 반대</li>
+</ul>
+</li>
+</ul>
+<h2 id="오츠의-알고리즘">오츠의 알고리즘</h2>
+<blockquote>
+<p>대충 그래프상 분포가 peak가 2개가 있다면 그 중간값으로 결정</p>
+</blockquote>
+<blockquote>
+<p>속도가 느림. 노이즈가 많은 영상에는 부적합</p>
+</blockquote>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="n">ret</span><span class="p">,</span> <span class="n">thresh_cv</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">threshold</span><span class="p">(</span><span class="n">img</span><span class="p">,</span> <span class="mi">127</span><span class="p">,</span> <span class="mi">255</span><span class="p">,</span> <span class="n">cv2</span><span class="o">.</span><span class="n">THRESH_BINARY</span> <span class="o">|</span> <span class="n">cv2</span><span class="o">.</span><span class="n">THRESH_OTSU</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">ret</span><span class="p">)</span> <span class="c1"># 전달된 경계값이 무시되고 OTSU 알고리즘에 따라 결정된 경계값이 반환됨</span>
+</code></pre></div><h2 id="적응형-쓰레스홀딩">적응형 쓰레스홀딩</h2>
+<blockquote>
+<p>이미지를 여러 구역으로 나눠 그 주변 픽셀값만 가지고 계산</p>
+</blockquote>
+<blockquote>
+<p>조명이 일정하지 않거나 배경색이 여럿인 경우에도 앞의 방법들보다 잘나옴</p>
+</blockquote>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="c1"># cv2.adaptiveThreshold(입력_영상, 적용값, 경계값_결정_방법, 타입_플래그, 블록_사이즈, 계산된_경계값에서_가감할_상수)</span>
+<span class="c1"># 블록 사이즈는 홀수</span>
+<span class="n">blk_size</span> <span class="o">=</span> <span class="mi">9</span>
+<span class="n">C</span> <span class="o">=</span> <span class="mi">5</span>
+<span class="n">th2</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">adaptiveThreshold</span><span class="p">(</span><span class="n">img</span><span class="p">,</span> <span class="mi">255</span><span class="p">,</span> <span class="n">cv2</span><span class="o">.</span><span class="n">ADAPTIVE_THRESH_MEAN_C</span><span class="p">,</span> <span class="n">cv2</span><span class="o">.</span><span class="n">THREST_BINARY</span><span class="p">,</span> <span class="n">blk_size</span><span class="p">,</span> <span class="n">C</span><span class="p">)</span>
+<span class="n">th3</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">adaptiveThreshold</span><span class="p">(</span><span class="n">img</span><span class="p">,</span> <span class="mi">255</span><span class="p">,</span> <span class="n">cv2</span><span class="o">.</span><span class="n">ADAPTIVE_THRESH_GAUSSIAN_C</span><span class="p">,</span> <span class="n">cv2</span><span class="o">.</span><span class="n">THREST_BINARY</span><span class="p">,</span> <span class="n">blk_size</span><span class="p">,</span> <span class="n">C</span><span class="p">)</span>
+</code></pre></div><ul>
+<li>가우시안 분포를 사용하면 선명함은 떨어지지만 노이즈가 훨씬 적다</li>
+</ul>
+</section>
+
+
+    <footer class="article-footer">
+    
+    <section class="article-tags">
+        
+            <a href="/tags/opencv/">opencv</a>
+        
+            <a href="/tags/python/">python</a>
+        
+    </section>
+
+
+    
+    <section class="article-copyright">
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-copyright" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <path d="M14.5 9a3.5 4 0 1 0 0 6" />
+</svg>
+
+
+
+        <span>Licensed under CC BY-NC-SA 4.0</span>
+    </section>
+    </footer>
+
+
+    
+</article>
+
+    <aside class="related-contents--wrapper">
+    
+    
+        <h2 class="section-title">Related contents</h2>
+        <div class="related-contents">
+            <div class="flex article-list--tile">
+                
+                    
+<article class="">
+    <a href="/blog/opencv-spatial-domain/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">OpenCV Spatial Domain</h2>
+        </div>
+    </a>
+</article>
+                
+                    
+<article class="">
+    <a href="/blog/opencv-linear-interpolation/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">OpenCV Linear Interpolation</h2>
+        </div>
+    </a>
+</article>
+                
+                    
+<article class="">
+    <a href="/blog/opencv-geometric-transform/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">OpenCV Geometric Transform</h2>
+        </div>
+    </a>
+</article>
+                
+                    
+<article class="">
+    <a href="/blog/opencv-histogram/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">OpenCV Histogram</h2>
+        </div>
+    </a>
+</article>
+                
+                    
+<article class="">
+    <a href="/blog/dealing-with-camera-on-opencv/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">Dealing With Camera on OpenCV</h2>
+        </div>
+    </a>
+</article>
+                
+            </div>
+        </div>
+    
+</aside>
+
+     
+    
+        
+    <script src="https://utteranc.es/client.js" 
+        repo="yansigit/yansigit.github.io"
+        issue-term="pathname"
+        
+        label="Utterances Comment"
+        
+        crossorigin="anonymous"
+        async
+        >
+</script>
+
+<style>
+    .utterances {
+        max-width: unset;
+    }
+</style>
+
+<script>
+    function setUtterancesTheme(theme) {
+        let utterances = document.querySelector('.utterances iframe');
+        if (utterances) {
+            utterances.contentWindow.postMessage(
+                {
+                    type: 'set-theme',
+                    theme: `github-${theme}`
+                },
+                'https://utteranc.es'
+            );
+        }
+    }
+
+    addEventListener('message', event => {
+        if (event.origin !== 'https://utteranc.es') return;
+        setUtterancesTheme(document.documentElement.dataset.scheme)
+    });
+
+    window.addEventListener('onColorSchemeChange', (e) => {
+        setUtterancesTheme(e.detail)
+    })
+</script>
+
+
+    
+
+    <footer class="site-footer">
+    <section class="copyright">
+        &copy; 
+        
+            2020 - 
+        
+        2021 Code like Feather
+    </section>
+    
+    <section class="powerby">
+        Built with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> <br />
+        Theme <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="3.2.0">Stack</a></b> designed by <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a>
+    </section>
+</footer>
+
+
+    
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    
+    <div class="pswp__bg"></div>
+
+    
+    <div class="pswp__scroll-wrap">
+
+        
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                
+                
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"integrity="sha256-ePwmChbbvXbsO02lbM3HoHbSHTHFAeChekF1xKJdleo="crossorigin="anonymous"
+                defer="true"
+                >
+            </script><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"integrity="sha256-UKkzOn/w1mBxRmLLGrSeyB4e1xbrp4xylgAWb3M42pU="crossorigin="anonymous"
+                defer="true"
+                >
+            </script><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.css"integrity="sha256-c0uckgykQ9v5k&#43;IqViZOZKc47Jn7KQil4/MP3ySA3F8="crossorigin="anonymous"
+            ><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.css"integrity="sha256-SBLU4vv6CA6lHsZ1XyTdhyjJxCjPif/TRkjnsyGAGnE="crossorigin="anonymous"
+            >
+
+            </main>
+    
+        <aside class="sidebar right-sidebar sticky">
+            <section class="widget archives">
+                <div class="widget-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-hash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <line x1="5" y1="9" x2="19" y2="9" />
+  <line x1="5" y1="15" x2="19" y2="15" />
+  <line x1="11" y1="4" x2="7" y2="20" />
+  <line x1="17" y1="4" x2="13" y2="20" />
+</svg>
+
+
+
+                </div>
+                <h2 class="widget-title section-title">Table of contents</h2>
+                
+                <div class="widget--toc">
+                    <nav id="TableOfContents">
+  <ol>
+    <li><a href="#기본">기본</a></li>
+    <li><a href="#오츠의-알고리즘">오츠의 알고리즘</a></li>
+    <li><a href="#적응형-쓰레스홀딩">적응형 쓰레스홀딩</a></li>
+  </ol>
+</nav>
+                </div>
+            </section>
+        </aside>
+    
+
+        </div>
+        <script 
+                src="https://cdn.jsdelivr.net/npm/node-vibrant@3.1.5/dist/vibrant.min.js"integrity="sha256-5NovOZc4iwiAWTYIFiIM7DxKUXKWvpVEuMEPLzcm5/g="crossorigin="anonymous"
+                defer="false"
+                >
+            </script><script type="text/javascript" src="/ts/main.js" defer></script>
+<script>
+    (function () {
+        const customFont = document.createElement('link');
+        customFont.href = "https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap";
+
+        customFont.type = "text/css";
+        customFont.rel = "stylesheet";
+
+        document.head.appendChild(customFont);
+    }());
+</script>
+
+    </body>
+</html>

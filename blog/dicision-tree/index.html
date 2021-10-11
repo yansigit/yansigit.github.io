@@ -1,0 +1,809 @@
+<!DOCTYPE html>
+<html lang="ko-kr">
+    <head><meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content='결정 트리'><title>Dicision Tree</title>
+
+<link rel='canonical' href='https://yansigit.github.io/blog/dicision-tree/'>
+
+<link rel="stylesheet" href="/scss/style.min.css"><meta property='og:title' content='Dicision Tree'>
+<meta property='og:description' content='결정 트리'>
+<meta property='og:url' content='https://yansigit.github.io/blog/dicision-tree/'>
+<meta property='og:site_name' content='Code like Feather'>
+<meta property='og:type' content='article'><meta property='article:section' content='Posts' /><meta property='article:tag' content='machine-learning' /><meta property='article:tag' content='deep-learning' /><meta property='article:tag' content='data-processing' /><meta property='article:tag' content='data-science' /><meta property='article:published_time' content='2021-07-07T00:04:34&#43;09:00'/><meta property='article:modified_time' content='2021-07-07T00:04:34&#43;09:00'/><meta property='og:image' content='https://yansigit.github.io/images/lighthouse.jpg' />
+<meta name="twitter:title" content="Dicision Tree">
+<meta name="twitter:description" content="결정 트리"><meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content='https://yansigit.github.io/images/lighthouse.jpg' />
+    </head>
+    <body class="
+    article-page has-toc
+">
+    <script>
+        (function() {
+            const colorSchemeKey = 'StackColorScheme';
+            if(!localStorage.getItem(colorSchemeKey)){
+                localStorage.setItem(colorSchemeKey, "auto");
+            }
+        })();
+    </script><script>
+    (function() {
+        const colorSchemeKey = 'StackColorScheme';
+        const colorSchemeItem = localStorage.getItem(colorSchemeKey);
+        const supportDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches === true;
+
+        if (colorSchemeItem == 'dark' || colorSchemeItem === 'auto' && supportDarkMode) {
+            
+
+            document.documentElement.dataset.scheme = 'dark';
+        } else {
+            document.documentElement.dataset.scheme = 'light';
+        }
+    })();
+</script>
+<div class="container main-container flex 
+    
+        extended
+    
+">
+    
+        <div id="article-toolbar">
+            <a href="https://yansigit.github.io" class="back-home">
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-chevron-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <polyline points="15 6 9 12 15 18" />
+</svg>
+
+
+
+                <span>Back</span>
+            </a>
+        </div>
+    
+<main class="main full-width">
+    <article class="main-article">
+    <header class="article-header">
+
+    <div class="article-details">
+    
+    <header class="article-category">
+        
+            <a href="/categories/machine-learning/" >
+                machine-learning
+            </a>
+        
+            <a href="/categories/deep-learning/" >
+                deep-learning
+            </a>
+        
+            <a href="/categories/data-science/" >
+                data-science
+            </a>
+        
+    </header>
+    
+
+    <h2 class="article-title">
+        <a href="/blog/dicision-tree/">Dicision Tree</a>
+    </h2>
+
+    
+    <h3 class="article-subtitle">
+        결정 트리
+    </h3>
+    
+
+    
+    <footer class="article-time">
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-calendar-time" width="56" height="56" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M11.795 21h-6.795a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v4" />
+  <circle cx="18" cy="18" r="4" />
+  <path d="M15 3v4" />
+  <path d="M7 3v4" />
+  <path d="M3 11h16" />
+  <path d="M18 16.496v1.504l1 1" />
+</svg>
+                <time class="article-time--published">Jul 07, 2021</time>
+            </div>
+        
+
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <polyline points="12 7 12 12 15 15" />
+</svg>
+
+
+
+                <time class="article-time--reading">
+                    2 minute read
+                </time>
+            </div>
+        
+    </footer>
+    
+</div>
+</header>
+
+    <section class="article-content">
+    <h1 id="dicision-tree">Dicision Tree</h1>
+<h2 id="information-theory">Information Theory</h2>
+<ul>
+<li>정보량을 수치화하고 그것의 연산을 가능하게 하는 것</li>
+</ul>
+<h3 id="quantity-of-information-정보량">Quantity of Information 정보량</h3>
+<ul>
+<li>불확실성</li>
+<li>확률이 낮은 사건일수록 정보량 (불확실성)은 높다</li>
+<li>확률과 정보량은 반비례관계</li>
+<li>&ldquo;오늘 하루 종일 맑다&rdquo;
+<ul>
+<li>&lsquo;내일은 맑다&rsquo; 의 불확실성</li>
+<li>&lsquo;내일은 큰 비가 온다&rsquo; 의 불확실성</li>
+</ul>
+</li>
+</ul>
+<h3 id="information-entropy">Information Entropy</h3>
+<p><figure 
+	>
+	<a href="/posts/dicision-tree/Untitled.png" >
+		<img src="/posts/dicision-tree/Untitled.png"
+			
+			
+			
+			loading="lazy"
+			alt="Dicision%20Tree/Untitled.png">
+	</a>
+	
+	<figcaption>Dicision%20Tree/Untitled.png</figcaption>
+	
+</figure></p>
+<blockquote>
+<p>H(X)가 정보 엔트로피 값이고, 아래 축은 시행에서 어떤 사건이 일어날 확률입니다. 확률이 0.5일 때 엔트로피가 가장 높은 1임을 볼 수 있고, 확률이 한 쪽으로 편향될수록 엔트로피가 낮아지는 것을 볼 수 있습니다.</p>
+</blockquote>
+<ul>
+<li>확률 변수의 정보량</li>
+<li>얻은 정보가 의미있는 정보인지 (정보량)를 판단</li>
+<li>가장 랜덤일 경우 엔트로피는 1 (최대)</li>
+<li>아닐 경우 1 이하. 고정일 경우 0</li>
+</ul>
+<p><figure 
+	>
+	<a href="/posts/dicision-tree/Untitled%201.png" >
+		<img src="/posts/dicision-tree/Untitled%201.png"
+			
+			
+			
+			loading="lazy"
+			alt="Dicision%20Tree/Untitled%201.png">
+	</a>
+	
+	<figcaption>Dicision%20Tree/Untitled%201.png</figcaption>
+	
+</figure></p>
+<h2 id="상호정보량-mutual-information">상호정보량 Mutual Information</h2>
+<ul>
+<li>하나의 확률변수가 다른 확률변수에 대해 제공하는 정보의 양</li>
+</ul>
+<h1 id="decision-tree">Decision Tree</h1>
+<ul>
+<li>분류, 회귀에서 사용</li>
+<li>트리 형태로 의사결정 지식을 표현한 것</li>
+</ul>
+<p><figure 
+	>
+	<a href="/posts/dicision-tree/Untitled%202.png" >
+		<img src="/posts/dicision-tree/Untitled%202.png"
+			
+			
+			
+			loading="lazy"
+			alt="Dicision%20Tree/Untitled%202.png">
+	</a>
+	
+	<figcaption>Dicision%20Tree/Untitled%202.png</figcaption>
+	
+</figure></p>
+<ul>
+<li>내부 노드 : 비교 속성</li>
+<li>단말 노드 (ternimal node) : 기대값</li>
+<li>간선 (edge) : 속성 값</li>
+</ul>
+<h2 id="decision-tree알고리즘">Decision Tree알고리즘</h2>
+<ul>
+<li>반복적인 노드 분할 과정
+<ul>
+<li>분할 속성 (spliting attribute) 을 선택</li>
+<li>속성값에 따라 서브트리를 생성</li>
+<li>데이터를 속성값에 따라 분배</li>
+</ul>
+</li>
+</ul>
+<h3 id="분할속성-결정-방법">분할속성 결정 방법</h3>
+<h3 id="information-gain-정보-이득">Information Gain (정보 이득)</h3>
+<ul>
+<li>어떤 분류를 통해 얼마나 information에 대한 이득이 생겼는지를 나타냄</li>
+<li>Entropy를 통해 계산</li>
+<li>어떤 Feature를 선택함으로써 더 데이터를 잘 구분하는지</li>
+</ul>
+<h2 id="엔트로피-계산">엔트로피 계산</h2>
+<p><figure 
+	>
+	<a href="/posts/dicision-tree/Untitled%203.png" >
+		<img src="/posts/dicision-tree/Untitled%203.png"
+			
+			
+			
+			loading="lazy"
+			alt="Dicision%20Tree/Untitled%203.png">
+	</a>
+	
+	<figcaption>Dicision%20Tree/Untitled%203.png</figcaption>
+	
+</figure></p>
+<p><figure 
+	>
+	<a href="/posts/dicision-tree/Untitled%204.png" >
+		<img src="/posts/dicision-tree/Untitled%204.png"
+			
+			
+			
+			loading="lazy"
+			alt="Dicision%20Tree/Untitled%204.png">
+	</a>
+	
+	<figcaption>Dicision%20Tree/Untitled%204.png</figcaption>
+	
+</figure></p>
+<p><figure 
+	>
+	<a href="/posts/dicision-tree/Untitled%205.png" >
+		<img src="/posts/dicision-tree/Untitled%205.png"
+			
+			
+			
+			loading="lazy"
+			alt="Dicision%20Tree/Untitled%205.png">
+	</a>
+	
+	<figcaption>Dicision%20Tree/Untitled%205.png</figcaption>
+	
+</figure></p>
+<p><figure 
+	>
+	<a href="/posts/dicision-tree/Untitled%206.png" >
+		<img src="/posts/dicision-tree/Untitled%206.png"
+			
+			
+			
+			loading="lazy"
+			alt="Dicision%20Tree/Untitled%206.png">
+	</a>
+	
+	<figcaption>Dicision%20Tree/Untitled%206.png</figcaption>
+	
+</figure></p>
+<p><figure 
+	>
+	<a href="/posts/dicision-tree/Untitled%207.png" >
+		<img src="/posts/dicision-tree/Untitled%207.png"
+			
+			
+			
+			loading="lazy"
+			alt="Dicision%20Tree/Untitled%207.png">
+	</a>
+	
+	<figcaption>Dicision%20Tree/Untitled%207.png</figcaption>
+	
+</figure></p>
+<h3 id="속성별-정보이득">속성별 정보이득</h3>
+<ul>
+<li>IG(Pattern) = 0.246</li>
+<li>IG(Outline) = 0.151</li>
+<li>IG(Dot) = 0.048</li>
+</ul>
+<h3 id="분할속성-선택">분할속성 선택</h3>
+<ul>
+<li>정보이득이 큰것 선택
+<ul>
+<li>Pattern 선택</li>
+</ul>
+</li>
+</ul>
+<p><figure 
+	>
+	<a href="/posts/dicision-tree/Untitled%208.png" >
+		<img src="/posts/dicision-tree/Untitled%208.png"
+			
+			
+			
+			loading="lazy"
+			alt="Dicision%20Tree/Untitled%208.png">
+	</a>
+	
+	<figcaption>Dicision%20Tree/Untitled%208.png</figcaption>
+	
+</figure></p>
+<h2 id="decision-tree-개선-척도">Decision Tree 개선 척도</h2>
+<ul>
+<li>정보이득비 (빠르게 건너뜀)</li>
+<li>지니지수 (빠르게 건너뜀)</li>
+</ul>
+<h2 id="분할속성-평가-척도-비교">분할속성 평가 척도 비교</h2>
+<p><figure 
+	>
+	<a href="/posts/dicision-tree/Untitled%209.png" >
+		<img src="/posts/dicision-tree/Untitled%209.png"
+			
+			
+			
+			loading="lazy"
+			alt="Dicision%20Tree/Untitled%209.png">
+	</a>
+	
+	<figcaption>Dicision%20Tree/Untitled%209.png</figcaption>
+	
+</figure></p>
+<h2 id="결정트리-알고리즘">결정트리 알고리즘</h2>
+<ul>
+<li>ID3
+<ul>
+<li>범주형 속성값을 갖는 데이터</li>
+</ul>
+</li>
+<li>C4.5
+<ul>
+<li>범주형 + 수치형 속성값</li>
+<li>ID3을 개선</li>
+</ul>
+</li>
+<li>CART
+<ul>
+<li>수치형 속성값</li>
+</ul>
+</li>
+</ul>
+<h2 id="앙상블-ensemble-classifier">앙상블 Ensemble Classifier</h2>
+<p><figure 
+	>
+	<a href="/posts/dicision-tree/Untitled%2010.png" >
+		<img src="/posts/dicision-tree/Untitled%2010.png"
+			
+			
+			
+			loading="lazy"
+			alt="Dicision%20Tree/Untitled%2010.png">
+	</a>
+	
+	<figcaption>Dicision%20Tree/Untitled%2010.png</figcaption>
+	
+</figure></p>
+<h3 id="학습기-결합">학습기 결합</h3>
+<ul>
+<li>선형 분류기와 같은 간단한 인식기로 학습을 수행</li>
+<li>복수 개의 선형 분류기의 학습 결과를 결합해 좋은 성능의 인식기를 만듬</li>
+</ul>
+<h3 id="장점">장점</h3>
+<ul>
+<li>나쁜 운을 피할 수 있다</li>
+<li>성능향상</li>
+<li>데이터 양, 질에 따른 어려움 극복</li>
+<li>결정 경계가 너무 복잡한 경우 사용</li>
+</ul>
+<h3 id="결합">결합</h3>
+<ul>
+<li>병렬적 결합
+<ul>
+<li>한번에 일괄로 분류하여 최종 결과 생성</li>
+</ul>
+</li>
+<li>순차절 결합
+<ul>
+<li>각 분류기의 결과를 순차적으로 조합</li>
+</ul>
+</li>
+</ul>
+<h3 id="결합-방법의-분류">결합 방법의 분류</h3>
+<ul>
+<li><strong>Filter에 의한 방법 (순차)</strong>
+<ul>
+<li>각 분류기 학습때마다 새로운 데이터를 생성</li>
+<li>Boosting, Cascading</li>
+</ul>
+</li>
+<li><strong>Resampling에 의한 방법 (병렬)</strong>
+<ul>
+<li>주어진 전체 데이터로부터 일부 집합을 추출하여 각 분류기를 학습</li>
+<li>Bagging, MadaBoost</li>
+</ul>
+</li>
+<li><strong>Rewrighting에 의한 방법</strong>
+<ul>
+<li>모든 분류기에 대해 동일한 학습 데이터 사용 → 각 데이터에 가중치를 부여해 학습에 대한 영향도 조절</li>
+<li>AdaBoost</li>
+</ul>
+</li>
+</ul>
+<h2 id="배깅-bagging-bootstrap-aggregating">배깅 (Bagging, bootstrap aggregating)</h2>
+<p><figure 
+	>
+	<a href="/posts/dicision-tree/Untitled%2011.png" >
+		<img src="/posts/dicision-tree/Untitled%2011.png"
+			
+			
+			
+			loading="lazy"
+			alt="Dicision%20Tree/Untitled%2011.png">
+	</a>
+	
+	<figcaption>Dicision%20Tree/Untitled%2011.png</figcaption>
+	
+</figure></p>
+<ul>
+<li>부트스트랩을 통해 여러개의 학습데이터 집합을 만들고, 각 학습 데이터 집합별로 분류기를 만들어 이들이 투표나 가중치 투표를 하여 최종 판정</li>
+</ul>
+<h2 id="랜덤-포레스트-random-forest">랜덤 포레스트 (Random Forest)</h2>
+<ul>
+<li>분류기로 결정트리를 사용하는 배깅 기법</li>
+</ul>
+<h2 id="부스팅-boosting">부스팅 (Boosting)</h2>
+<p><figure 
+	>
+	<a href="/posts/dicision-tree/Untitled%2012.png" >
+		<img src="/posts/dicision-tree/Untitled%2012.png"
+			
+			
+			
+			loading="lazy"
+			alt="Dicision%20Tree/Untitled%2012.png">
+	</a>
+	
+	<figcaption>Dicision%20Tree/Untitled%2012.png</figcaption>
+	
+</figure></p>
+<ul>
+<li>K개의 분류기를 순차적으로 만들어가는 앙상블 기법</li>
+<li>분류 정확도에 따라 학습데이터에 가중치를 변경해가면서 분류</li>
+</ul>
+<h2 id="adaboost">AdaBoost</h2>
+<ul>
+<li>검색필요</li>
+</ul>
+</section>
+
+
+    <footer class="article-footer">
+    
+    <section class="article-tags">
+        
+            <a href="/tags/machine-learning/">machine-learning</a>
+        
+            <a href="/tags/deep-learning/">deep-learning</a>
+        
+            <a href="/tags/data-processing/">data-processing</a>
+        
+            <a href="/tags/data-science/">data-science</a>
+        
+    </section>
+
+
+    
+    <section class="article-copyright">
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-copyright" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <path d="M14.5 9a3.5 4 0 1 0 0 6" />
+</svg>
+
+
+
+        <span>Licensed under CC BY-NC-SA 4.0</span>
+    </section>
+    </footer>
+
+
+    
+</article>
+
+    <aside class="related-contents--wrapper">
+    
+    
+        <h2 class="section-title">Related contents</h2>
+        <div class="related-contents">
+            <div class="flex article-list--tile">
+                
+                    
+<article class="">
+    <a href="/blog/classification/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">Classification</h2>
+        </div>
+    </a>
+</article>
+                
+                    
+<article class="">
+    <a href="/blog/clustering-%EA%B5%B0%EC%A7%91%ED%99%94/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">Clustering (군집화)</h2>
+        </div>
+    </a>
+</article>
+                
+                    
+<article class="">
+    <a href="/blog/data-processing/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">Data Processing</h2>
+        </div>
+    </a>
+</article>
+                
+                    
+<article class="">
+    <a href="/blog/deep-neural-network/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">Deep Neural Network</h2>
+        </div>
+    </a>
+</article>
+                
+                    
+<article class="">
+    <a href="/blog/dimensionality-reduction-%EC%B0%A8%EC%9B%90%EC%B6%95%EC%86%8C/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">Dimensionality Reduction (차원축소)</h2>
+        </div>
+    </a>
+</article>
+                
+            </div>
+        </div>
+    
+</aside>
+
+     
+    
+        
+    <script src="https://utteranc.es/client.js" 
+        repo="yansigit/yansigit.github.io"
+        issue-term="pathname"
+        
+        label="Utterances Comment"
+        
+        crossorigin="anonymous"
+        async
+        >
+</script>
+
+<style>
+    .utterances {
+        max-width: unset;
+    }
+</style>
+
+<script>
+    function setUtterancesTheme(theme) {
+        let utterances = document.querySelector('.utterances iframe');
+        if (utterances) {
+            utterances.contentWindow.postMessage(
+                {
+                    type: 'set-theme',
+                    theme: `github-${theme}`
+                },
+                'https://utteranc.es'
+            );
+        }
+    }
+
+    addEventListener('message', event => {
+        if (event.origin !== 'https://utteranc.es') return;
+        setUtterancesTheme(document.documentElement.dataset.scheme)
+    });
+
+    window.addEventListener('onColorSchemeChange', (e) => {
+        setUtterancesTheme(e.detail)
+    })
+</script>
+
+
+    
+
+    <footer class="site-footer">
+    <section class="copyright">
+        &copy; 
+        
+            2020 - 
+        
+        2021 Code like Feather
+    </section>
+    
+    <section class="powerby">
+        Built with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> <br />
+        Theme <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="3.2.0">Stack</a></b> designed by <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a>
+    </section>
+</footer>
+
+
+    
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    
+    <div class="pswp__bg"></div>
+
+    
+    <div class="pswp__scroll-wrap">
+
+        
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                
+                
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"integrity="sha256-ePwmChbbvXbsO02lbM3HoHbSHTHFAeChekF1xKJdleo="crossorigin="anonymous"
+                defer="true"
+                >
+            </script><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"integrity="sha256-UKkzOn/w1mBxRmLLGrSeyB4e1xbrp4xylgAWb3M42pU="crossorigin="anonymous"
+                defer="true"
+                >
+            </script><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.css"integrity="sha256-c0uckgykQ9v5k&#43;IqViZOZKc47Jn7KQil4/MP3ySA3F8="crossorigin="anonymous"
+            ><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.css"integrity="sha256-SBLU4vv6CA6lHsZ1XyTdhyjJxCjPif/TRkjnsyGAGnE="crossorigin="anonymous"
+            >
+
+            </main>
+    
+        <aside class="sidebar right-sidebar sticky">
+            <section class="widget archives">
+                <div class="widget-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-hash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <line x1="5" y1="9" x2="19" y2="9" />
+  <line x1="5" y1="15" x2="19" y2="15" />
+  <line x1="11" y1="4" x2="7" y2="20" />
+  <line x1="17" y1="4" x2="13" y2="20" />
+</svg>
+
+
+
+                </div>
+                <h2 class="widget-title section-title">Table of contents</h2>
+                
+                <div class="widget--toc">
+                    <nav id="TableOfContents">
+  <ol>
+    <li><a href="#information-theory">Information Theory</a>
+      <ol>
+        <li><a href="#quantity-of-information-정보량">Quantity of Information 정보량</a></li>
+        <li><a href="#information-entropy">Information Entropy</a></li>
+      </ol>
+    </li>
+    <li><a href="#상호정보량-mutual-information">상호정보량 Mutual Information</a></li>
+  </ol>
+
+  <ol>
+    <li><a href="#decision-tree알고리즘">Decision Tree알고리즘</a>
+      <ol>
+        <li><a href="#분할속성-결정-방법">분할속성 결정 방법</a></li>
+        <li><a href="#information-gain-정보-이득">Information Gain (정보 이득)</a></li>
+      </ol>
+    </li>
+    <li><a href="#엔트로피-계산">엔트로피 계산</a>
+      <ol>
+        <li><a href="#속성별-정보이득">속성별 정보이득</a></li>
+        <li><a href="#분할속성-선택">분할속성 선택</a></li>
+      </ol>
+    </li>
+    <li><a href="#decision-tree-개선-척도">Decision Tree 개선 척도</a></li>
+    <li><a href="#분할속성-평가-척도-비교">분할속성 평가 척도 비교</a></li>
+    <li><a href="#결정트리-알고리즘">결정트리 알고리즘</a></li>
+    <li><a href="#앙상블-ensemble-classifier">앙상블 Ensemble Classifier</a>
+      <ol>
+        <li><a href="#학습기-결합">학습기 결합</a></li>
+        <li><a href="#장점">장점</a></li>
+        <li><a href="#결합">결합</a></li>
+        <li><a href="#결합-방법의-분류">결합 방법의 분류</a></li>
+      </ol>
+    </li>
+    <li><a href="#배깅-bagging-bootstrap-aggregating">배깅 (Bagging, bootstrap aggregating)</a></li>
+    <li><a href="#랜덤-포레스트-random-forest">랜덤 포레스트 (Random Forest)</a></li>
+    <li><a href="#부스팅-boosting">부스팅 (Boosting)</a></li>
+    <li><a href="#adaboost">AdaBoost</a></li>
+  </ol>
+</nav>
+                </div>
+            </section>
+        </aside>
+    
+
+        </div>
+        <script 
+                src="https://cdn.jsdelivr.net/npm/node-vibrant@3.1.5/dist/vibrant.min.js"integrity="sha256-5NovOZc4iwiAWTYIFiIM7DxKUXKWvpVEuMEPLzcm5/g="crossorigin="anonymous"
+                defer="false"
+                >
+            </script><script type="text/javascript" src="/ts/main.js" defer></script>
+<script>
+    (function () {
+        const customFont = document.createElement('link');
+        customFont.href = "https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap";
+
+        customFont.type = "text/css";
+        customFont.rel = "stylesheet";
+
+        document.head.appendChild(customFont);
+    }());
+</script>
+
+    </body>
+</html>

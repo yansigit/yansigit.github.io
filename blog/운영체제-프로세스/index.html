@@ -1,0 +1,741 @@
+<!DOCTYPE html>
+<html lang="ko-kr">
+    <head><meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content='프로세스'><title>운영체제 - 프로세스</title>
+
+<link rel='canonical' href='https://yansigit.github.io/blog/%EC%9A%B4%EC%98%81%EC%B2%B4%EC%A0%9C-%ED%94%84%EB%A1%9C%EC%84%B8%EC%8A%A4/'>
+
+<link rel="stylesheet" href="/scss/style.min.css"><meta property='og:title' content='운영체제 - 프로세스'>
+<meta property='og:description' content='프로세스'>
+<meta property='og:url' content='https://yansigit.github.io/blog/%EC%9A%B4%EC%98%81%EC%B2%B4%EC%A0%9C-%ED%94%84%EB%A1%9C%EC%84%B8%EC%8A%A4/'>
+<meta property='og:site_name' content='Code like Feather'>
+<meta property='og:type' content='article'><meta property='article:section' content='Posts' /><meta property='article:tag' content='os' /><meta property='article:tag' content='operation-system' /><meta property='article:published_time' content='2020-09-18T23:24:53&#43;09:00'/><meta property='article:modified_time' content='2020-09-18T23:24:53&#43;09:00'/><meta property='og:image' content='https://yansigit.github.io/images/lighthouse.jpg' />
+<meta name="twitter:title" content="운영체제 - 프로세스">
+<meta name="twitter:description" content="프로세스"><meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content='https://yansigit.github.io/images/lighthouse.jpg' />
+    </head>
+    <body class="
+    article-page has-toc
+">
+    <script>
+        (function() {
+            const colorSchemeKey = 'StackColorScheme';
+            if(!localStorage.getItem(colorSchemeKey)){
+                localStorage.setItem(colorSchemeKey, "auto");
+            }
+        })();
+    </script><script>
+    (function() {
+        const colorSchemeKey = 'StackColorScheme';
+        const colorSchemeItem = localStorage.getItem(colorSchemeKey);
+        const supportDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches === true;
+
+        if (colorSchemeItem == 'dark' || colorSchemeItem === 'auto' && supportDarkMode) {
+            
+
+            document.documentElement.dataset.scheme = 'dark';
+        } else {
+            document.documentElement.dataset.scheme = 'light';
+        }
+    })();
+</script>
+<div class="container main-container flex 
+    
+        extended
+    
+">
+    
+        <div id="article-toolbar">
+            <a href="https://yansigit.github.io" class="back-home">
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-chevron-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <polyline points="15 6 9 12 15 18" />
+</svg>
+
+
+
+                <span>Back</span>
+            </a>
+        </div>
+    
+<main class="main full-width">
+    <article class="main-article">
+    <header class="article-header">
+
+    <div class="article-details">
+    
+    <header class="article-category">
+        
+            <a href="/categories/os/" >
+                os
+            </a>
+        
+    </header>
+    
+
+    <h2 class="article-title">
+        <a href="/blog/%EC%9A%B4%EC%98%81%EC%B2%B4%EC%A0%9C-%ED%94%84%EB%A1%9C%EC%84%B8%EC%8A%A4/">운영체제 - 프로세스</a>
+    </h2>
+
+    
+    <h3 class="article-subtitle">
+        프로세스
+    </h3>
+    
+
+    
+    <footer class="article-time">
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-calendar-time" width="56" height="56" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M11.795 21h-6.795a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v4" />
+  <circle cx="18" cy="18" r="4" />
+  <path d="M15 3v4" />
+  <path d="M7 3v4" />
+  <path d="M3 11h16" />
+  <path d="M18 16.496v1.504l1 1" />
+</svg>
+                <time class="article-time--published">Sep 18, 2020</time>
+            </div>
+        
+
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <polyline points="12 7 12 12 15 15" />
+</svg>
+
+
+
+                <time class="article-time--reading">
+                    3 minute read
+                </time>
+            </div>
+        
+    </footer>
+    
+</div>
+</header>
+
+    <section class="article-content">
+    <p>프로세스</p>
+<h1 id="프로세스">프로세스</h1>
+<h1 id="1-프로세스">1. 프로세스</h1>
+<h2 id="프로그램">프로그램</h2>
+<ul>
+<li>저장장치에 저장되어 있는 정적인 상태</li>
+</ul>
+<h2 id="프로세스-1">프로세스</h2>
+<ul>
+<li>실행을 위해 메모리에 올라온 동적인 상태</li>
+</ul>
+<h1 id="2-작업-방식">2. 작업 방식</h1>
+<h2 id="일괄-작업-방식">일괄 작업 방식</h2>
+<p><figure 
+	>
+	<a href="/posts/%ed%94%84%eb%a1%9c%ec%84%b8%ec%8a%a4/Untitled.png" >
+		<img src="/posts/%ed%94%84%eb%a1%9c%ec%84%b8%ec%8a%a4/Untitled.png"
+			
+			
+			
+			loading="lazy"
+			alt="image">
+	</a>
+	
+	<figcaption>image</figcaption>
+	
+</figure></p>
+<ul>
+<li>레스토랑에 테이블이 하나만 있는 것</li>
+<li>큐를 사용 해 주문서를 받은 순서대로 요리</li>
+<li>한 손님의 식사가 끝나야 다음 손님을 받을 수 있음
+<ul>
+<li>효율이 떨어짐</li>
+</ul>
+</li>
+</ul>
+<h2 id="시분할-방식">시분할 방식</h2>
+<p><figure 
+	>
+	<a href="/posts/%ed%94%84%eb%a1%9c%ec%84%b8%ec%8a%a4/Untitled%201.png" >
+		<img src="/posts/%ed%94%84%eb%a1%9c%ec%84%b8%ec%8a%a4/Untitled%201.png"
+			
+			
+			
+			loading="lazy"
+			alt="image">
+	</a>
+	
+	<figcaption>image</figcaption>
+	
+</figure></p>
+<ul>
+<li>요리사 한명이 시간을 적절히 배분해 여러 요리를 동시에 함</li>
+<li>주문 목록에 있는 주문서 중 하나를 가져다가 요리</li>
+<li>모든 요리가 제공되면 주문 목록에서 삭제</li>
+</ul>
+<h2 id="시분할-방식에서의-상황-처리">시분할 방식에서의 상황 처리</h2>
+<p><figure 
+	>
+	<a href="/posts/%ed%94%84%eb%a1%9c%ec%84%b8%ec%8a%a4/Untitled%202.png" >
+		<img src="/posts/%ed%94%84%eb%a1%9c%ec%84%b8%ec%8a%a4/Untitled%202.png"
+			
+			
+			
+			loading="lazy"
+			alt="image">
+	</a>
+	
+	<figcaption>image</figcaption>
+	
+</figure></p>
+<h1 id="3-프로세스-제어-블록-">3. 프로세스 제어 블록 (.)</h1>
+<h2 id="개념">개념</h2>
+<ul>
+<li>운영체제가 해당 프로세스를 위해 관리하는 자료 구조</li>
+</ul>
+<p><figure 
+	>
+	<a href="/posts/%ed%94%84%eb%a1%9c%ec%84%b8%ec%8a%a4/Untitled%203.png" >
+		<img src="/posts/%ed%94%84%eb%a1%9c%ec%84%b8%ec%8a%a4/Untitled%203.png"
+			
+			
+			
+			loading="lazy"
+			alt="image">
+	</a>
+	
+	<figcaption>image</figcaption>
+	
+</figure></p>
+<h2 id="포함-내용">포함 내용</h2>
+<ul>
+<li>프로세스 구분자: 각 프로세스를 구분하는 구분자</li>
+<li>메모리 관련 정보: 프로세스의 메모리 위치 정보</li>
+<li>각종 중간값: 프로세스가 사용했던 중간값</li>
+</ul>
+<h1 id="4-프로세스와-프로그램의-관계">4. 프로세스와 프로그램의 관계</h1>
+<ul>
+<li><strong>프로그램이 프로세스가 된다는 것</strong>
+<ul>
+<li>운영체제로부터 프로세스 제어 블록을 얻는다는 것</li>
+</ul>
+</li>
+<li><strong>프로세스가 종료된다는 것</strong>
+<ul>
+<li>해당 프로세스 제어 블록이 폐기된다는 것</li>
+</ul>
+</li>
+</ul>
+<h1 id="5-프로세스의-네-가지-상태">5. 프로세스의 네 가지 상태</h1>
+<p><figure 
+	>
+	<a href="/posts/%ed%94%84%eb%a1%9c%ec%84%b8%ec%8a%a4/Untitled%204.png" >
+		<img src="/posts/%ed%94%84%eb%a1%9c%ec%84%b8%ec%8a%a4/Untitled%204.png"
+			
+			
+			
+			loading="lazy"
+			alt="image">
+	</a>
+	
+	<figcaption>image</figcaption>
+	
+</figure></p>
+<ul>
+<li>
+<p><strong>생성 상태</strong></p>
+<ul>
+<li>프로세스가 메모리에 올라와 실행 준비를 완료</li>
+<li>프로세스 제어 블록을 할당받음</li>
+</ul>
+</li>
+<li>
+<p><strong>준비 상태</strong></p>
+<ul>
+<li>생성된 프로세스가 CPU를 얻을 때 까지 기다리는 상태</li>
+</ul>
+</li>
+<li>
+<p><strong>실행 상태</strong></p>
+<ul>
+<li>준비 상태에 있던 프로세스 중 하나가 CPU를 얻어 실제 작업을 수행 중</li>
+</ul>
+</li>
+<li>
+<p><strong>완료 상태</strong></p>
+<ul>
+<li>실행 상태의 프로세스가 주어진 시간 동안 작업을 마침</li>
+<li>프로세스 제어 블록 폐기</li>
+</ul>
+</li>
+<li>
+<p><strong>디스패치</strong></p>
+<ul>
+<li>준비 상태의 프로세스 중 하나를 골라 실행 상태로 바꾸는 CPU 스케줄러의 작업</li>
+</ul>
+</li>
+<li>
+<p><strong>타임아웃</strong></p>
+<ul>
+<li>프로세스가 자신에게 주어진 하나의 타임 슬라이스 동안 작업을 끝내지 못하면 다시 준비 상태로 돌아감</li>
+</ul>
+</li>
+</ul>
+<h1 id="6-프로세스의-다섯-가지-상태">6. 프로세스의 다섯 가지 상태</h1>
+<p><figure 
+	>
+	<a href="/posts/%ed%94%84%eb%a1%9c%ec%84%b8%ec%8a%a4/Untitled%205.png" >
+		<img src="/posts/%ed%94%84%eb%a1%9c%ec%84%b8%ec%8a%a4/Untitled%205.png"
+			
+			
+			
+			loading="lazy"
+			alt="image">
+	</a>
+	
+	<figcaption>image</figcaption>
+	
+</figure></p>
+<ul>
+<li>
+<p>생성 상태</p>
+</li>
+<li>
+<p><strong>준비 상태</strong></p>
+<ul>
+<li>프로세서 제어 블록은 준비 큐에서 기다리며 CPU 스케줄러에 의해 관리</li>
+<li>CPU 스케줄러는 준비 상태에서 큐를 몇개 운영할지, 어떤 프로세스의 프로세서 제어 블록을 디스패치 할지 결정</li>
+</ul>
+</li>
+<li>
+<p><strong>실행 상태</strong></p>
+<ul>
+<li>실제 CPU를 얻어 실행중</li>
+<li>주어진 시간, 즉 타임 슬라이스 동안만 작업 가능</li>
+<li>타임 슬라이스를 다 사용하면 타임아웃</li>
+<li>실행 상태 동안 작업이 완료되면 <strong>exit</strong>(.)가 실행되어 프로세스 종료</li>
+<li>실행 상태 중 I/O가 요청되면 CPU는 입출력 관리자에게 입출력을 요청하고 <strong>block</strong>(.) 실행</li>
+<li>해당 프로세스가 대기 상태로 옮긴 후 CPU 스케줄러는 새로운 프로세스를 디스패치</li>
+</ul>
+</li>
+<li>
+<p><strong>대기 상태</strong></p>
+<ul>
+<li>대기 상태의 프로세스는 입출력장치별로 마련된 큐에서 기다림</li>
+<li>입출력이 완료되면 인터럽트 발생, 해당 인터럽트로 깨어날 프로세스를 찾는 <strong>wakeup</strong>(.) 발생</li>
+</ul>
+</li>
+<li>
+<p><strong>완료 상태</strong></p>
+<ul>
+<li>프로세스가 종료되는 상태</li>
+<li>코드와 사용했던 데이터를 메모리에서 삭제</li>
+<li>프로세스 제어 블록 폐기</li>
+<li>오류 등 비정상적인 종료가 일어나면 디버깅을 위해 <strong>코어 덤프</strong> 실행</li>
+</ul>
+</li>
+<li>
+<p>디스패치</p>
+</li>
+<li>
+<p>타임아웃</p>
+</li>
+<li>
+<p><strong>블럭</strong></p>
+<ul>
+<li>입출력이 완료될 때 까지 작업을 진행할 수 없기에 해당 프로세스를 대기상태로 옮기는 작업</li>
+</ul>
+</li>
+<li>
+<p><strong>웨이크업</strong></p>
+<ul>
+<li>입출력이 완료되어 인터럽트가 발생하면, 해당 인터럽트로 깨어날 프로세스를 찾아 그 프로세스의 제어 블록을 <strong>준비 상태</strong>로 이동</li>
+</ul>
+</li>
+<li>
+<p><strong>코어 덤프</strong></p>
+<ul>
+<li>종료 직전의 메모리 상태를 저장장치로 옮기는 것</li>
+</ul>
+</li>
+</ul>
+<h2 id="요약">요약</h2>
+<p><figure 
+	>
+	<a href="/posts/%ed%94%84%eb%a1%9c%ec%84%b8%ec%8a%a4/Untitled%206.png" >
+		<img src="/posts/%ed%94%84%eb%a1%9c%ec%84%b8%ec%8a%a4/Untitled%206.png"
+			
+			
+			
+			loading="lazy"
+			alt="image">
+	</a>
+	
+	<figcaption>image</figcaption>
+	
+</figure></p>
+<h1 id="7-기타-상태들">7. 기타 상태들</h1>
+<h2 id="휴식-상태">휴식 상태</h2>
+<ul>
+<li>유닉스 계열에서 프로그램을 실행하는 동안 Ctrl+Z를 누르면 볼 수 있음</li>
+<li>프로세스가 작업을 일시적으로 쉬고 있는 상태</li>
+<li>종료 상태가 아니기 때문에 원할 때 다시 시작할 수 있음</li>
+</ul>
+<h2 id="보류-상태">보류 상태</h2>
+<ul>
+<li>프로세스가 메모리에서 잠시 쫓겨난 상태
+<ul>
+<li>메모리가 꽉 차서</li>
+<li>프로그램에 오류가 있어서 실행을 미루어야 할 때</li>
+<li>바이러스와 같이 악의적인 프로세스라고 판단</li>
+<li>매우 긴 주기로 반복되는 프로세스라서</li>
+<li>입출력이 너무 지연될 때</li>
+</ul>
+</li>
+</ul>
+<p><figure 
+	>
+	<a href="/posts/%ed%94%84%eb%a1%9c%ec%84%b8%ec%8a%a4/Untitled%207.png" >
+		<img src="/posts/%ed%94%84%eb%a1%9c%ec%84%b8%ec%8a%a4/Untitled%207.png"
+			
+			
+			
+			loading="lazy"
+			alt="image">
+	</a>
+	
+	<figcaption>image</figcaption>
+	
+</figure></p>
+<ul>
+<li><strong>보류-준비 상태</strong>
+<ul>
+<li>준비상태에서 보류되었으면 이쪽으로</li>
+</ul>
+</li>
+<li><strong>보류-대기 상태</strong>
+<ul>
+<li>대기상태에서 보류되었거나</li>
+<li>보류-대기 상태에서 입출력이 완료되어 인터럽트가 일어났다면 이쪽으로</li>
+</ul>
+</li>
+</ul>
+</section>
+
+
+    <footer class="article-footer">
+    
+    <section class="article-tags">
+        
+            <a href="/tags/os/">os</a>
+        
+            <a href="/tags/operation-system/">operation-system</a>
+        
+    </section>
+
+
+    
+    <section class="article-copyright">
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-copyright" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <path d="M14.5 9a3.5 4 0 1 0 0 6" />
+</svg>
+
+
+
+        <span>Licensed under CC BY-NC-SA 4.0</span>
+    </section>
+    </footer>
+
+
+    
+</article>
+
+    <aside class="related-contents--wrapper">
+    
+    
+        <h2 class="section-title">Related contents</h2>
+        <div class="related-contents">
+            <div class="flex article-list--tile">
+                
+                    
+<article class="">
+    <a href="/blog/%EC%9A%B4%EC%98%81%EC%B2%B4%EC%A0%9C-cpu/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">운영체제 - CPU</h2>
+        </div>
+    </a>
+</article>
+                
+                    
+<article class="">
+    <a href="/blog/%EC%9A%B4%EC%98%81%EC%B2%B4%EC%A0%9C-cpu-%EC%8A%A4%EC%BC%80%EC%A4%84%EB%A7%81/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">운영체제 - CPU 스케줄링</h2>
+        </div>
+    </a>
+</article>
+                
+                    
+<article class="">
+    <a href="/blog/%EC%9A%B4%EC%98%81%EC%B2%B4%EC%A0%9C-cpu-%EC%8A%A4%EC%BC%80%EC%A4%84%EB%A7%81-%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">운영체제 - CPU 스케줄링 알고리즘</h2>
+        </div>
+    </a>
+</article>
+                
+                    
+<article class="">
+    <a href="/blog/%EC%9A%B4%EC%98%81%EC%B2%B4%EC%A0%9C-raid/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">운영체제 - RAID</h2>
+        </div>
+    </a>
+</article>
+                
+                    
+<article class="">
+    <a href="/blog/%EC%9A%B4%EC%98%81%EC%B2%B4%EC%A0%9C-%EA%B0%80%EC%83%81-%EB%A9%94%EB%AA%A8%EB%A6%AC/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">운영체제 - 가상 메모리</h2>
+        </div>
+    </a>
+</article>
+                
+            </div>
+        </div>
+    
+</aside>
+
+     
+    
+        
+    <script src="https://utteranc.es/client.js" 
+        repo="yansigit/yansigit.github.io"
+        issue-term="pathname"
+        
+        label="Utterances Comment"
+        
+        crossorigin="anonymous"
+        async
+        >
+</script>
+
+<style>
+    .utterances {
+        max-width: unset;
+    }
+</style>
+
+<script>
+    function setUtterancesTheme(theme) {
+        let utterances = document.querySelector('.utterances iframe');
+        if (utterances) {
+            utterances.contentWindow.postMessage(
+                {
+                    type: 'set-theme',
+                    theme: `github-${theme}`
+                },
+                'https://utteranc.es'
+            );
+        }
+    }
+
+    addEventListener('message', event => {
+        if (event.origin !== 'https://utteranc.es') return;
+        setUtterancesTheme(document.documentElement.dataset.scheme)
+    });
+
+    window.addEventListener('onColorSchemeChange', (e) => {
+        setUtterancesTheme(e.detail)
+    })
+</script>
+
+
+    
+
+    <footer class="site-footer">
+    <section class="copyright">
+        &copy; 
+        
+            2020 - 
+        
+        2021 Code like Feather
+    </section>
+    
+    <section class="powerby">
+        Built with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> <br />
+        Theme <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="3.2.0">Stack</a></b> designed by <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a>
+    </section>
+</footer>
+
+
+    
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    
+    <div class="pswp__bg"></div>
+
+    
+    <div class="pswp__scroll-wrap">
+
+        
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                
+                
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"integrity="sha256-ePwmChbbvXbsO02lbM3HoHbSHTHFAeChekF1xKJdleo="crossorigin="anonymous"
+                defer="true"
+                >
+            </script><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"integrity="sha256-UKkzOn/w1mBxRmLLGrSeyB4e1xbrp4xylgAWb3M42pU="crossorigin="anonymous"
+                defer="true"
+                >
+            </script><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.css"integrity="sha256-c0uckgykQ9v5k&#43;IqViZOZKc47Jn7KQil4/MP3ySA3F8="crossorigin="anonymous"
+            ><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.css"integrity="sha256-SBLU4vv6CA6lHsZ1XyTdhyjJxCjPif/TRkjnsyGAGnE="crossorigin="anonymous"
+            >
+
+            </main>
+    
+        <aside class="sidebar right-sidebar sticky">
+            <section class="widget archives">
+                <div class="widget-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-hash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <line x1="5" y1="9" x2="19" y2="9" />
+  <line x1="5" y1="15" x2="19" y2="15" />
+  <line x1="11" y1="4" x2="7" y2="20" />
+  <line x1="17" y1="4" x2="13" y2="20" />
+</svg>
+
+
+
+                </div>
+                <h2 class="widget-title section-title">Table of contents</h2>
+                
+                <div class="widget--toc">
+                    <nav id="TableOfContents">
+  <ol>
+    <li><a href="#프로그램">프로그램</a></li>
+    <li><a href="#프로세스-1">프로세스</a></li>
+  </ol>
+
+  <ol>
+    <li><a href="#일괄-작업-방식">일괄 작업 방식</a></li>
+    <li><a href="#시분할-방식">시분할 방식</a></li>
+    <li><a href="#시분할-방식에서의-상황-처리">시분할 방식에서의 상황 처리</a></li>
+  </ol>
+
+  <ol>
+    <li><a href="#개념">개념</a></li>
+    <li><a href="#포함-내용">포함 내용</a></li>
+  </ol>
+
+  <ol>
+    <li><a href="#요약">요약</a></li>
+  </ol>
+
+  <ol>
+    <li><a href="#휴식-상태">휴식 상태</a></li>
+    <li><a href="#보류-상태">보류 상태</a></li>
+  </ol>
+</nav>
+                </div>
+            </section>
+        </aside>
+    
+
+        </div>
+        <script 
+                src="https://cdn.jsdelivr.net/npm/node-vibrant@3.1.5/dist/vibrant.min.js"integrity="sha256-5NovOZc4iwiAWTYIFiIM7DxKUXKWvpVEuMEPLzcm5/g="crossorigin="anonymous"
+                defer="false"
+                >
+            </script><script type="text/javascript" src="/ts/main.js" defer></script>
+<script>
+    (function () {
+        const customFont = document.createElement('link');
+        customFont.href = "https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap";
+
+        customFont.type = "text/css";
+        customFont.rel = "stylesheet";
+
+        document.head.appendChild(customFont);
+    }());
+</script>
+
+    </body>
+</html>

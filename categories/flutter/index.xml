@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>flutter on Code like Feather</title>
+    <link>https://yansigit.github.io/categories/flutter/</link>
+    <description>Recent content in flutter on Code like Feather</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>ko-kr</language>
+    <lastBuildDate>Sat, 19 Sep 2020 14:16:38 +0900</lastBuildDate><atom:link href="https://yansigit.github.io/categories/flutter/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Little Tips Installing Flutter</title>
+      <link>https://yansigit.github.io/blog/little-tips-installing-flutter/</link>
+      <pubDate>Sat, 19 Sep 2020 14:16:38 +0900</pubDate>
+      
+      <guid>https://yansigit.github.io/blog/little-tips-installing-flutter/</guid>
+      <description>&lt;p&gt;Notes for dealing with problems while installing flutter&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

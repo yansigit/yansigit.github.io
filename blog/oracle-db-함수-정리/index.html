@@ -1,0 +1,1288 @@
+<!DOCTYPE html>
+<html lang="ko-kr">
+    <head><meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content='ORACLE DB 함수'><title>ORACLE DB 함수 정리</title>
+
+<link rel='canonical' href='https://yansigit.github.io/blog/oracle-db-%ED%95%A8%EC%88%98-%EC%A0%95%EB%A6%AC/'>
+
+<link rel="stylesheet" href="/scss/style.min.css"><meta property='og:title' content='ORACLE DB 함수 정리'>
+<meta property='og:description' content='ORACLE DB 함수'>
+<meta property='og:url' content='https://yansigit.github.io/blog/oracle-db-%ED%95%A8%EC%88%98-%EC%A0%95%EB%A6%AC/'>
+<meta property='og:site_name' content='Code like Feather'>
+<meta property='og:type' content='article'><meta property='article:section' content='Posts' /><meta property='article:tag' content='oracle' /><meta property='article:tag' content='db' /><meta property='article:tag' content='oracle-db' /><meta property='article:published_time' content='2020-09-16T00:00:00&#43;00:00'/><meta property='article:modified_time' content='2020-09-16T00:00:00&#43;00:00'/><meta property='og:image' content='https://yansigit.github.io/images/lighthouse.jpg' />
+<meta name="twitter:title" content="ORACLE DB 함수 정리">
+<meta name="twitter:description" content="ORACLE DB 함수"><meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content='https://yansigit.github.io/images/lighthouse.jpg' />
+    </head>
+    <body class="
+    article-page has-toc
+">
+    <script>
+        (function() {
+            const colorSchemeKey = 'StackColorScheme';
+            if(!localStorage.getItem(colorSchemeKey)){
+                localStorage.setItem(colorSchemeKey, "auto");
+            }
+        })();
+    </script><script>
+    (function() {
+        const colorSchemeKey = 'StackColorScheme';
+        const colorSchemeItem = localStorage.getItem(colorSchemeKey);
+        const supportDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches === true;
+
+        if (colorSchemeItem == 'dark' || colorSchemeItem === 'auto' && supportDarkMode) {
+            
+
+            document.documentElement.dataset.scheme = 'dark';
+        } else {
+            document.documentElement.dataset.scheme = 'light';
+        }
+    })();
+</script>
+<div class="container main-container flex 
+    
+        extended
+    
+">
+    
+        <div id="article-toolbar">
+            <a href="https://yansigit.github.io" class="back-home">
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-chevron-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <polyline points="15 6 9 12 15 18" />
+</svg>
+
+
+
+                <span>Back</span>
+            </a>
+        </div>
+    
+<main class="main full-width">
+    <article class="main-article">
+    <header class="article-header">
+
+    <div class="article-details">
+    
+    <header class="article-category">
+        
+            <a href="/categories/oracle-db/" >
+                oracle-db
+            </a>
+        
+    </header>
+    
+
+    <h2 class="article-title">
+        <a href="/blog/oracle-db-%ED%95%A8%EC%88%98-%EC%A0%95%EB%A6%AC/">ORACLE DB 함수 정리</a>
+    </h2>
+
+    
+    <h3 class="article-subtitle">
+        ORACLE DB 함수
+    </h3>
+    
+
+    
+    <footer class="article-time">
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-calendar-time" width="56" height="56" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M11.795 21h-6.795a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v4" />
+  <circle cx="18" cy="18" r="4" />
+  <path d="M15 3v4" />
+  <path d="M7 3v4" />
+  <path d="M3 11h16" />
+  <path d="M18 16.496v1.504l1 1" />
+</svg>
+                <time class="article-time--published">Sep 16, 2020</time>
+            </div>
+        
+
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <polyline points="12 7 12 12 15 15" />
+</svg>
+
+
+
+                <time class="article-time--reading">
+                    4 minute read
+                </time>
+            </div>
+        
+    </footer>
+    
+</div>
+</header>
+
+    <section class="article-content">
+    <p>ORACLE DB 함수 정리</p>
+<h2 id="함수">함수</h2>
+<h2 id="1-dual-테이블">1. DUAL 테이블</h2>
+<blockquote>
+<p>SELECT 절에 기술할 테이블이 없을 경우 사용</p>
+</blockquote>
+<p>간혹 10+30 결과를 보는 등 쿼리 작업에서 연산식만 사용하는 경우가 있는데</p>
+<p>실행되려면 테이블 값이 꼭 들어가야 하므로 더미 테이블을 사용하는 것</p>
+<p>기존에 사용하는 테이블을 사용하면 해당 테이블의 행 만큼 출력되어 버림</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sql" data-lang="sql"><span class="k">SQL</span><span class="o">&gt;</span><span class="w"> </span><span class="k">select</span><span class="w"> </span><span class="mi">10</span><span class="o">+</span><span class="mi">30</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">dept</span><span class="p">;</span><span class="w">
+</span><span class="w">
+</span><span class="w">     </span><span class="mi">10</span><span class="o">+</span><span class="mi">30</span><span class="w">
+</span><span class="w"></span><span class="c1">----------
+</span><span class="c1"></span><span class="w">        </span><span class="mi">40</span><span class="w">
+</span><span class="w">        </span><span class="mi">40</span><span class="w">
+</span><span class="w">        </span><span class="mi">40</span><span class="w">
+</span><span class="w">        </span><span class="mi">40</span><span class="w">
+</span><span class="w">
+</span><span class="w"></span><span class="k">SQL</span><span class="o">&gt;</span><span class="w"> </span><span class="k">select</span><span class="w"> </span><span class="mi">10</span><span class="o">+</span><span class="mi">30</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">dual</span><span class="p">;</span><span class="w">
+</span><span class="w">
+</span><span class="w">     </span><span class="mi">10</span><span class="o">+</span><span class="mi">30</span><span class="w">
+</span><span class="w"></span><span class="c1">----------
+</span><span class="c1"></span><span class="w">        </span><span class="mi">40</span><span class="w">
+</span></code></pre></div><h2 id="2-숫자-처리-함수">2. 숫자 처리 함수</h2>
+<h3 id="round-반올림-함수">ROUND (반올림) 함수</h3>
+<blockquote>
+<p>지정한 자리 수 이하에서 반올림한 결과를 구해주는 함수</p>
+</blockquote>
+<p><code>ROUND(숫자, 반올림자리수)</code></p>
+<p><figure 
+	>
+	<a href="/posts/oracle-db-functions/Untitled.png" >
+		<img src="/posts/oracle-db-functions/Untitled.png"
+			
+			
+			
+			loading="lazy"
+			alt="image">
+	</a>
+	
+	<figcaption>image</figcaption>
+	
+</figure></p>
+<ul>
+<li>
+<p><strong>반올림 방법</strong></p>
+<ul>
+<li>반올림자리(N)가 <strong>0 또는 양수이면 N+1 위치</strong>에서 반올림</li>
+<li>반올림자리가 <strong>음수이면 N 위치</strong>에서 반올림</li>
+</ul>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sql" data-lang="sql"><span class="k">SQL</span><span class="o">&gt;</span><span class="w"> </span><span class="k">select</span><span class="w"> </span><span class="n">round</span><span class="p">(</span><span class="mi">46</span><span class="p">.</span><span class="mi">592</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">dual</span><span class="p">;</span><span class="w">
+</span><span class="w">
+</span><span class="w"></span><span class="n">ROUND</span><span class="p">(</span><span class="mi">46</span><span class="p">.</span><span class="mi">592</span><span class="p">,</span><span class="mi">0</span><span class="p">)</span><span class="w">
+</span><span class="w"></span><span class="c1">---------------
+</span><span class="c1"></span><span class="w">             </span><span class="mi">47</span><span class="w">
+</span><span class="w">
+</span><span class="w"></span><span class="k">SQL</span><span class="o">&gt;</span><span class="w"> </span><span class="k">select</span><span class="w"> </span><span class="n">round</span><span class="p">(</span><span class="mi">46</span><span class="p">.</span><span class="mi">592</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">)</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">dual</span><span class="p">;</span><span class="w">
+</span><span class="w">
+</span><span class="w"></span><span class="n">ROUND</span><span class="p">(</span><span class="mi">46</span><span class="p">.</span><span class="mi">592</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span><span class="w">
+</span><span class="w"></span><span class="c1">---------------
+</span><span class="c1"></span><span class="w">           </span><span class="mi">46</span><span class="p">.</span><span class="mi">6</span><span class="w">
+</span><span class="w">
+</span><span class="w"></span><span class="k">SQL</span><span class="o">&gt;</span><span class="w"> </span><span class="k">select</span><span class="w"> </span><span class="n">round</span><span class="p">(</span><span class="mi">46</span><span class="p">.</span><span class="mi">592</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">)</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">dual</span><span class="p">;</span><span class="w">
+</span><span class="w">
+</span><span class="w"></span><span class="n">ROUND</span><span class="p">(</span><span class="mi">46</span><span class="p">.</span><span class="mi">592</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span><span class="w">
+</span><span class="w"></span><span class="c1">---------------
+</span><span class="c1"></span><span class="w">          </span><span class="mi">46</span><span class="p">.</span><span class="mi">59</span><span class="w">
+</span><span class="w">
+</span><span class="w"></span><span class="k">SQL</span><span class="o">&gt;</span><span class="w"> </span><span class="k">select</span><span class="w"> </span><span class="n">round</span><span class="p">(</span><span class="mi">46</span><span class="p">.</span><span class="mi">592</span><span class="p">,</span><span class="w"> </span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">dual</span><span class="p">;</span><span class="w">
+</span><span class="w">
+</span><span class="w"></span><span class="n">ROUND</span><span class="p">(</span><span class="mi">46</span><span class="p">.</span><span class="mi">592</span><span class="p">,</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="w">
+</span><span class="w"></span><span class="c1">----------------
+</span><span class="c1"></span><span class="w">              </span><span class="mi">50</span><span class="w">
+</span><span class="w">
+</span><span class="w"></span><span class="k">SQL</span><span class="o">&gt;</span><span class="w"> </span><span class="k">select</span><span class="w"> </span><span class="n">round</span><span class="p">(</span><span class="mi">46</span><span class="p">.</span><span class="mi">592</span><span class="p">,</span><span class="w"> </span><span class="o">-</span><span class="mi">2</span><span class="p">)</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">dual</span><span class="p">;</span><span class="w"> </span><span class="c1">-- 자리값에서 벗어나면 0 출력하는듯
+</span><span class="c1"></span><span class="w">
+</span><span class="w"></span><span class="n">ROUND</span><span class="p">(</span><span class="mi">46</span><span class="p">.</span><span class="mi">592</span><span class="p">,</span><span class="o">-</span><span class="mi">2</span><span class="p">)</span><span class="w">
+</span><span class="w"></span><span class="c1">----------------
+</span><span class="c1"></span><span class="w">               </span><span class="mi">0</span><span class="w">
+</span></code></pre></div></li>
+</ul>
+<h3 id="trunc버림-함수">TRUNC(버림) 함수</h3>
+<blockquote>
+<p>지정한 자리 수 이하에서 버린 결과를 구해주는 함수</p>
+</blockquote>
+<p><code>TRUNC(숫자, 버림자리수)</code></p>
+<ul>
+<li>
+<p>버림 방법</p>
+<ul>
+<li>버림자리수도 반올림 자리수와 마찬가지의 방식을 따른다.</li>
+</ul>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sql" data-lang="sql"><span class="k">SQL</span><span class="o">&gt;</span><span class="w"> </span><span class="k">select</span><span class="w"> </span><span class="n">trunc</span><span class="p">(</span><span class="mi">46</span><span class="p">.</span><span class="mi">592</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">dual</span><span class="p">;</span><span class="w">
+</span><span class="w">
+</span><span class="w"></span><span class="n">TRUNC</span><span class="p">(</span><span class="mi">46</span><span class="p">.</span><span class="mi">592</span><span class="p">,</span><span class="mi">0</span><span class="p">)</span><span class="w">
+</span><span class="w"></span><span class="c1">---------------
+</span><span class="c1"></span><span class="w">             </span><span class="mi">46</span><span class="w">
+</span><span class="w">
+</span><span class="w"></span><span class="k">SQL</span><span class="o">&gt;</span><span class="w"> </span><span class="k">select</span><span class="w"> </span><span class="n">trunc</span><span class="p">(</span><span class="mi">46</span><span class="p">.</span><span class="mi">592</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">)</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">dual</span><span class="p">;</span><span class="w">
+</span><span class="w">
+</span><span class="w"></span><span class="n">TRUNC</span><span class="p">(</span><span class="mi">46</span><span class="p">.</span><span class="mi">592</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span><span class="w">
+</span><span class="w"></span><span class="c1">---------------
+</span><span class="c1"></span><span class="w">          </span><span class="mi">46</span><span class="p">.</span><span class="mi">59</span><span class="w">
+</span><span class="w">
+</span><span class="w"></span><span class="k">SQL</span><span class="o">&gt;</span><span class="w"> </span><span class="k">select</span><span class="w"> </span><span class="n">trunc</span><span class="p">(</span><span class="mi">46</span><span class="p">.</span><span class="mi">592</span><span class="p">,</span><span class="w"> </span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">dual</span><span class="p">;</span><span class="w">
+</span><span class="w">
+</span><span class="w"></span><span class="n">TRUNC</span><span class="p">(</span><span class="mi">46</span><span class="p">.</span><span class="mi">592</span><span class="p">,</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="w">
+</span><span class="w"></span><span class="c1">----------------
+</span><span class="c1"></span><span class="w">              </span><span class="mi">40</span><span class="w">
+</span></code></pre></div></li>
+</ul>
+<h3 id="mod나머지-함수">MOD(나머지) 함수</h3>
+<blockquote>
+<p>나누기 연산을 한 후 나머지를 결과로 리턴</p>
+</blockquote>
+<p><code>MOD(컬럼 | 숫자, 나누기값)</code></p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sql" data-lang="sql"><span class="k">SQL</span><span class="o">&gt;</span><span class="w"> </span><span class="k">select</span><span class="w"> </span><span class="k">mod</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">)</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">dual</span><span class="p">;</span><span class="w">
+</span><span class="w">
+</span><span class="w"></span><span class="k">MOD</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span><span class="w">
+</span><span class="w"></span><span class="c1">----------
+</span><span class="c1"></span><span class="w">         </span><span class="mi">1</span><span class="w">
+</span><span class="w">
+</span><span class="w"></span><span class="k">SQL</span><span class="o">&gt;</span><span class="w"> </span><span class="k">select</span><span class="w"> </span><span class="k">mod</span><span class="p">(</span><span class="n">sal</span><span class="p">,</span><span class="w"> </span><span class="mi">100</span><span class="p">)</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">emp</span><span class="w"> </span><span class="k">where</span><span class="w"> </span><span class="n">deptno</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">10</span><span class="p">;</span><span class="w">
+</span><span class="w">
+</span><span class="w"></span><span class="k">MOD</span><span class="p">(</span><span class="n">SAL</span><span class="p">,</span><span class="mi">100</span><span class="p">)</span><span class="w">
+</span><span class="w"></span><span class="c1">------------
+</span><span class="c1"></span><span class="w">          </span><span class="mi">50</span><span class="w">
+</span><span class="w">           </span><span class="mi">0</span><span class="w">
+</span><span class="w">           </span><span class="mi">0</span><span class="w">
+</span></code></pre></div><h2 id="3-문자-처리-함수">3. 문자 처리 함수</h2>
+<h3 id="upper대문자-lower소문자-함수">UPPER(대문자), LOWER(소문자) 함수</h3>
+<blockquote>
+<p>소문자는 대문자로, 대문자는 소문자로 변환해 출력</p>
+</blockquote>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sql" data-lang="sql"><span class="k">SQL</span><span class="o">&gt;</span><span class="w"> </span><span class="k">select</span><span class="w"> </span><span class="k">upper</span><span class="p">(</span><span class="s1">&#39;hello&#39;</span><span class="p">),</span><span class="w"> </span><span class="k">lower</span><span class="p">(</span><span class="s1">&#39;HELLO&#39;</span><span class="p">)</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">dual</span><span class="p">;</span><span class="w">
+</span><span class="w">
+</span><span class="w"></span><span class="k">UPPER</span><span class="w"> </span><span class="k">LOWER</span><span class="w">
+</span><span class="w"></span><span class="c1">----- -----
+</span><span class="c1"></span><span class="n">HELLO</span><span class="w"> </span><span class="n">hello</span><span class="w">
+</span><span class="w">
+</span><span class="w"></span><span class="k">SQL</span><span class="o">&gt;</span><span class="w"> </span><span class="k">select</span><span class="w"> </span><span class="k">lower</span><span class="p">(</span><span class="n">ename</span><span class="p">)</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">emp</span><span class="w"> </span><span class="k">where</span><span class="w"> </span><span class="n">ename</span><span class="w"> </span><span class="k">like</span><span class="w"> </span><span class="s1">&#39;%A%&#39;</span><span class="p">;</span><span class="w">
+</span><span class="w">
+</span><span class="w"></span><span class="k">LOWER</span><span class="p">(</span><span class="n">ENAM</span><span class="w">
+</span><span class="w"></span><span class="c1">----------
+</span><span class="c1"></span><span class="n">allen</span><span class="w">
+</span><span class="w"></span><span class="n">ward</span><span class="w">
+</span><span class="w"></span><span class="n">martin</span><span class="w">
+</span><span class="w"></span><span class="n">blake</span><span class="w">
+</span><span class="w"></span><span class="n">clark</span><span class="w">
+</span><span class="w"></span><span class="n">adams</span><span class="w">
+</span><span class="w"></span><span class="n">james</span><span class="w">
+</span></code></pre></div><h3 id="initcap-함수">INITCAP 함수</h3>
+<blockquote>
+<p>단어의 첫글자만 대문자로 변환해 출력</p>
+</blockquote>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sql" data-lang="sql"><span class="k">SQL</span><span class="o">&gt;</span><span class="w"> </span><span class="k">select</span><span class="w"> </span><span class="n">initcap</span><span class="p">(</span><span class="s1">&#39;HELLO&#39;</span><span class="p">),</span><span class="w"> </span><span class="n">initcap</span><span class="p">(</span><span class="s1">&#39;hello&#39;</span><span class="p">)</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">dual</span><span class="p">;</span><span class="w">
+</span><span class="w">
+</span><span class="w"></span><span class="n">INITC</span><span class="w"> </span><span class="n">INITC</span><span class="w">
+</span><span class="w"></span><span class="c1">----- -----
+</span><span class="c1"></span><span class="n">Hello</span><span class="w"> </span><span class="n">Hello</span><span class="w">
+</span><span class="w">
+</span><span class="w"></span><span class="k">SQL</span><span class="o">&gt;</span><span class="w"> </span><span class="k">select</span><span class="w"> </span><span class="n">initcap</span><span class="p">(</span><span class="n">ename</span><span class="p">)</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">emp</span><span class="w"> </span><span class="k">where</span><span class="w"> </span><span class="n">ename</span><span class="w"> </span><span class="k">like</span><span class="w"> </span><span class="s1">&#39;%A%&#39;</span><span class="p">;</span><span class="w">
+</span><span class="w">
+</span><span class="w"></span><span class="n">INITCAP</span><span class="p">(</span><span class="n">EN</span><span class="w">
+</span><span class="w"></span><span class="c1">----------
+</span><span class="c1"></span><span class="n">Allen</span><span class="w">
+</span><span class="w"></span><span class="n">Ward</span><span class="w">
+</span><span class="w"></span><span class="n">Martin</span><span class="w">
+</span><span class="w"></span><span class="n">Blake</span><span class="w">
+</span><span class="w"></span><span class="n">Clark</span><span class="w">
+</span><span class="w"></span><span class="n">Adams</span><span class="w">
+</span><span class="w"></span><span class="n">James</span><span class="w">
+</span></code></pre></div><h3 id="length-함수">LENGTH 함수</h3>
+<blockquote>
+<p>문자열의 길이를 구하여 출력</p>
+</blockquote>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sql" data-lang="sql"><span class="k">SQL</span><span class="o">&gt;</span><span class="w"> </span><span class="k">select</span><span class="w"> </span><span class="k">length</span><span class="p">(</span><span class="s1">&#39;hellohello&#39;</span><span class="p">)</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">dual</span><span class="p">;</span><span class="w">
+</span><span class="w">
+</span><span class="w"></span><span class="k">LENGTH</span><span class="p">(</span><span class="s1">&#39;HELLOHELLO&#39;</span><span class="p">)</span><span class="w">
+</span><span class="w"></span><span class="c1">--------------------
+</span><span class="c1"></span><span class="w">                  </span><span class="mi">10</span><span class="w">
+</span><span class="w">
+</span><span class="w"></span><span class="k">SQL</span><span class="o">&gt;</span><span class="w"> </span><span class="k">select</span><span class="w"> </span><span class="n">ename</span><span class="p">,</span><span class="w"> </span><span class="k">length</span><span class="p">(</span><span class="n">ename</span><span class="p">)</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">emp</span><span class="p">;</span><span class="w">
+</span><span class="w">
+</span><span class="w"></span><span class="n">ENAME</span><span class="w">      </span><span class="k">LENGTH</span><span class="p">(</span><span class="n">ENAME</span><span class="p">)</span><span class="w">
+</span><span class="w"></span><span class="c1">---------- -------------
+</span><span class="c1"></span><span class="n">SMITH</span><span class="w">                  </span><span class="mi">5</span><span class="w">
+</span><span class="w"></span><span class="n">ALLEN</span><span class="w">                  </span><span class="mi">5</span><span class="w">
+</span><span class="w"></span><span class="n">WARD</span><span class="w">                   </span><span class="mi">4</span><span class="w">
+</span><span class="w"></span><span class="n">JONES</span><span class="w">                  </span><span class="mi">5</span><span class="w">
+</span><span class="w"></span><span class="n">MARTIN</span><span class="w">                 </span><span class="mi">6</span><span class="w">
+</span><span class="w"></span><span class="n">BLAKE</span><span class="w">                  </span><span class="mi">5</span><span class="w">
+</span><span class="w"></span><span class="n">CLARK</span><span class="w">                  </span><span class="mi">5</span><span class="w">
+</span><span class="w"></span><span class="n">SCOTT</span><span class="w">                  </span><span class="mi">5</span><span class="w">
+</span><span class="w"></span><span class="n">KING</span><span class="w">                   </span><span class="mi">4</span><span class="w">
+</span><span class="w"></span><span class="n">TURNER</span><span class="w">                 </span><span class="mi">6</span><span class="w">
+</span><span class="w"></span><span class="n">ADAMS</span><span class="w">                  </span><span class="mi">5</span><span class="w">
+</span><span class="w">
+</span><span class="w"></span><span class="n">ENAME</span><span class="w">      </span><span class="k">LENGTH</span><span class="p">(</span><span class="n">ENAME</span><span class="p">)</span><span class="w">
+</span><span class="w"></span><span class="c1">---------- -------------
+</span><span class="c1"></span><span class="n">JAMES</span><span class="w">                  </span><span class="mi">5</span><span class="w">
+</span><span class="w"></span><span class="n">FORD</span><span class="w">                   </span><span class="mi">4</span><span class="w">
+</span><span class="w"></span><span class="n">MILLER</span><span class="w">                 </span><span class="mi">6</span><span class="w">
+</span><span class="w">
+</span><span class="w"></span><span class="mi">14</span><span class="w"> </span><span class="k">rows</span><span class="w"> </span><span class="n">selected</span><span class="p">.</span><span class="w">
+</span></code></pre></div><h3 id="instr-함수">INSTR 함수</h3>
+<blockquote>
+<p>특정 컬럼 또는 문자열에서 지정 문자의 위치를 반환</p>
+</blockquote>
+<blockquote>
+<p>검색 문자 순서를 생략하면 첫번째로 발견한 검색문자를 반환</p>
+</blockquote>
+<blockquote>
+<p>검색 시작 위치를 생략하면 처음부터 검색</p>
+</blockquote>
+<p><code>INSTR(컬럼 | 문자열, 컬럼 | 문자열, [검색할 시작위치], [반환할 검색문자 순서])</code></p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sql" data-lang="sql"><span class="c1">-- &#39;welcome to oracle&#39;의 첫번째부터 소문자 &#39;o&#39;를 검색
+</span><span class="c1"></span><span class="k">select</span><span class="w"> </span><span class="n">instr</span><span class="p">(</span><span class="s1">&#39;welcome to oracle&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;o&#39;</span><span class="p">)</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">dual</span><span class="p">;</span><span class="w">
+</span><span class="w">
+</span><span class="w"></span><span class="n">INSTR</span><span class="p">(</span><span class="s1">&#39;WELCOMETOORACLE&#39;</span><span class="p">,</span><span class="s1">&#39;O&#39;</span><span class="p">)</span><span class="w">
+</span><span class="w"></span><span class="c1">----------------------------
+</span><span class="c1"></span><span class="w">                           </span><span class="mi">5</span><span class="w">
+</span><span class="w">
+</span><span class="w"></span><span class="c1">-- &#39;welcome to oracle&#39;의 6번째부터 소문자 &#39;o&#39;를 검색
+</span><span class="c1"></span><span class="k">select</span><span class="w"> </span><span class="n">instr</span><span class="p">(</span><span class="s1">&#39;welcome to oracle&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;o&#39;</span><span class="p">,</span><span class="w"> </span><span class="mi">6</span><span class="p">)</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">dual</span><span class="p">;</span><span class="w">
+</span><span class="w">
+</span><span class="w"></span><span class="n">INSTR</span><span class="p">(</span><span class="s1">&#39;WELCOMETOORACLE&#39;</span><span class="p">,</span><span class="s1">&#39;O&#39;</span><span class="p">,</span><span class="mi">6</span><span class="p">)</span><span class="w">
+</span><span class="w"></span><span class="c1">------------------------------
+</span><span class="c1"></span><span class="w">                            </span><span class="mi">10</span><span class="w">
+</span><span class="w">
+</span><span class="w"></span><span class="c1">-- &#39;welcome to oracle&#39;의 3번째부터 3번째로 검색된 소문자 &#39;o&#39;를 검색
+</span><span class="c1"></span><span class="k">select</span><span class="w"> </span><span class="n">instr</span><span class="p">(</span><span class="s1">&#39;welcome to oracle&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;o&#39;</span><span class="p">,</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w"> </span><span class="mi">3</span><span class="p">)</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">dual</span><span class="p">;</span><span class="w">
+</span><span class="w">
+</span><span class="w"></span><span class="n">INSTR</span><span class="p">(</span><span class="s1">&#39;WELCOMETOORACLE&#39;</span><span class="p">,</span><span class="s1">&#39;O&#39;</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">3</span><span class="p">)</span><span class="w">
+</span><span class="w"></span><span class="c1">--------------------------------
+</span><span class="c1"></span><span class="w">                              </span><span class="mi">12</span><span class="w">
+</span></code></pre></div><h3 id="substr-함수">SUBSTR 함수</h3>
+<blockquote>
+<p>특정 컬럼 또는 문자열에서 지정한 일부분을 추출해 반환</p>
+</blockquote>
+<p><code>SUBSTR(컬럼 | 문자열, 시작위치, [추출문자 개수])</code></p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sql" data-lang="sql"><span class="k">SQL</span><span class="o">&gt;</span><span class="w"> </span><span class="k">select</span><span class="w"> </span><span class="n">substr</span><span class="p">(</span><span class="s1">&#39;welcome to oracle&#39;</span><span class="p">,</span><span class="w"> </span><span class="mi">4</span><span class="p">,</span><span class="w"> </span><span class="mi">3</span><span class="p">)</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">dual</span><span class="p">;</span><span class="w">
+</span><span class="w">
+</span><span class="w"></span><span class="n">SUB</span><span class="w">
+</span><span class="w"></span><span class="c1">---
+</span><span class="c1"></span><span class="n">com</span><span class="w">
+</span><span class="w">
+</span><span class="w"></span><span class="k">SQL</span><span class="o">&gt;</span><span class="w"> </span><span class="k">select</span><span class="w"> </span><span class="n">substr</span><span class="p">(</span><span class="s1">&#39;welcome to oracle&#39;</span><span class="p">,</span><span class="w"> </span><span class="mi">10</span><span class="p">)</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">dual</span><span class="p">;</span><span class="w">
+</span><span class="w">
+</span><span class="w"></span><span class="n">SUBSTR</span><span class="p">(</span><span class="s1">&#39;
+</span><span class="s1">--------
+</span><span class="s1">o oracle
+</span></code></pre></div><h3 id="lpad-rpad-함수">LPAD, RPAD 함수</h3>
+<blockquote>
+<p>오른쪽(왼쪽) 정렬 후 지정 문자를 왼쪽(오른쪽)에 채우는 함수</p>
+</blockquote>
+<p><code>LPAD(컬럼 | 문자열, 자리수, '채울문자')</code></p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sql" data-lang="sql"><span class="k">SQL</span><span class="o">&gt;</span><span class="w"> </span><span class="k">select</span><span class="w"> </span><span class="n">lpad</span><span class="p">(</span><span class="s1">&#39;oracle&#39;</span><span class="p">,</span><span class="w"> </span><span class="mi">10</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;*&#39;</span><span class="p">),</span><span class="w"> </span><span class="n">rpad</span><span class="p">(</span><span class="s1">&#39;database&#39;</span><span class="p">,</span><span class="w"> </span><span class="mi">10</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;*&#39;</span><span class="p">)</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">dual</span><span class="p">;</span><span class="w">
+</span><span class="w">
+</span><span class="w"></span><span class="n">LPAD</span><span class="p">(</span><span class="s1">&#39;ORAC RPAD(&#39;</span><span class="k">DATA</span><span class="w">
+</span><span class="w"></span><span class="c1">---------- ----------
+</span><span class="c1"></span><span class="o">****</span><span class="n">oracle</span><span class="w"> </span><span class="k">database</span><span class="o">**</span><span class="w">
+</span><span class="w">
+</span><span class="w"></span><span class="k">SQL</span><span class="o">&gt;</span><span class="w"> </span><span class="k">select</span><span class="w"> </span><span class="n">lpad</span><span class="p">(</span><span class="s1">&#39;morning&#39;</span><span class="p">,</span><span class="w"> </span><span class="mi">16</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;#%&#39;</span><span class="p">)</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">dual</span><span class="p">;</span><span class="w">
+</span><span class="w">
+</span><span class="w"></span><span class="n">LPAD</span><span class="p">(</span><span class="s1">&#39;MORNING&#39;</span><span class="p">,</span><span class="mi">1</span><span class="w">
+</span><span class="w"></span><span class="c1">----------------
+</span><span class="c1"></span><span class="o">#%#%#%#%#</span><span class="n">morning</span><span class="w">
+</span></code></pre></div><h3 id="ltrim-rtrim-함수">LTRIM, RTRIM 함수</h3>
+<blockquote>
+<p>왼쪽(오른쪽) 지정 문자가 연속이면 지정 문자를 삭제</p>
+</blockquote>
+<p><code>LTRIM(컬럼 | 문자열, '삭제문자');</code></p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sql" data-lang="sql"><span class="k">SQL</span><span class="o">&gt;</span><span class="w"> </span><span class="k">select</span><span class="w"> </span><span class="n">ltrim</span><span class="p">(</span><span class="s1">&#39;****oracle&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;*&#39;</span><span class="p">),</span><span class="w"> </span><span class="n">rtrim</span><span class="p">(</span><span class="s1">&#39;oracle****&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;*&#39;</span><span class="p">)</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">dual</span><span class="p">;</span><span class="w">
+</span><span class="w">
+</span><span class="w"></span><span class="n">LTRIM</span><span class="p">(</span><span class="w"> </span><span class="n">RTRIM</span><span class="p">(</span><span class="w">
+</span><span class="w"></span><span class="c1">------ ------
+</span><span class="c1"></span><span class="n">oracle</span><span class="w"> </span><span class="n">oracle</span><span class="w">
+</span><span class="w">
+</span><span class="w"></span><span class="k">SQL</span><span class="o">&gt;</span><span class="w"> </span><span class="k">select</span><span class="w"> </span><span class="n">ltrim</span><span class="p">(</span><span class="s1">&#39;****ora**cle**&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;*&#39;</span><span class="p">)</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">dual</span><span class="p">;</span><span class="w">
+</span><span class="w">
+</span><span class="w"></span><span class="n">LTRIM</span><span class="p">(</span><span class="s1">&#39;***
+</span><span class="s1">----------
+</span><span class="s1">ora**cle**
+</span></code></pre></div><h3 id="trim-함수">TRIM 함수</h3>
+<blockquote>
+<p>양쪽에 지정 문자가 연속이면 지정 문자를 삭제</p>
+</blockquote>
+<p><code>trim('삭제할문자' from '문자열')</code></p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sql" data-lang="sql"><span class="k">SQL</span><span class="o">&gt;</span><span class="w"> </span><span class="k">select</span><span class="w"> </span><span class="k">trim</span><span class="p">(</span><span class="s1">&#39;*&#39;</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="s1">&#39;****ora**cle*****&#39;</span><span class="p">)</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">dual</span><span class="p">;</span><span class="w">
+</span><span class="w">
+</span><span class="w"></span><span class="k">TRIM</span><span class="p">(</span><span class="s1">&#39;*&#39;</span><span class="w">
+</span><span class="w"></span><span class="c1">--------
+</span><span class="c1"></span><span class="n">ora</span><span class="o">**</span><span class="n">cle</span><span class="w">
+</span></code></pre></div><h2 id="4-날짜-처리-함수">4. 날짜 처리 함수</h2>
+<blockquote>
+<p>대부분 일 단위로 계산</p>
+</blockquote>
+<h3 id="sysdate-함수">SYSDATE 함수</h3>
+<blockquote>
+<p>시스템에 저장된 현재 날짜와 시간을 반환</p>
+</blockquote>
+<blockquote>
+<p><code>SYSDATE+1</code> (내일 날짜), <code>SYSDATE-1</code> (어제 날짜)</p>
+</blockquote>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sql" data-lang="sql"><span class="k">SQL</span><span class="o">&gt;</span><span class="w"> </span><span class="k">select</span><span class="w"> </span><span class="n">sysdate</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">dual</span><span class="p">;</span><span class="w">
+</span><span class="w">
+</span><span class="w"></span><span class="n">SYSDATE</span><span class="w">
+</span><span class="w"></span><span class="c1">---------
+</span><span class="c1"></span><span class="mi">15</span><span class="o">-</span><span class="n">APR</span><span class="o">-</span><span class="mi">20</span><span class="w">
+</span><span class="w">
+</span><span class="w"></span><span class="k">SQL</span><span class="o">&gt;</span><span class="w"> </span><span class="k">select</span><span class="w"> </span><span class="n">sysdate</span><span class="o">+</span><span class="mi">1</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">dual</span><span class="p">;</span><span class="w">
+</span><span class="w">
+</span><span class="w"></span><span class="n">SYSDATE</span><span class="o">+</span><span class="mi">1</span><span class="w">
+</span><span class="w"></span><span class="c1">---------
+</span><span class="c1"></span><span class="mi">16</span><span class="o">-</span><span class="n">APR</span><span class="o">-</span><span class="mi">20</span><span class="w">
+</span><span class="w">
+</span><span class="w"></span><span class="k">SQL</span><span class="o">&gt;</span><span class="w"> </span><span class="k">select</span><span class="w"> </span><span class="n">sysdate</span><span class="o">-</span><span class="mi">1</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">dual</span><span class="p">;</span><span class="w">
+</span><span class="w">
+</span><span class="w"></span><span class="n">SYSDATE</span><span class="o">-</span><span class="mi">1</span><span class="w">
+</span><span class="w"></span><span class="c1">---------
+</span><span class="c1"></span><span class="mi">14</span><span class="o">-</span><span class="n">APR</span><span class="o">-</span><span class="mi">20</span><span class="w">
+</span><span class="w">
+</span><span class="w"></span><span class="c1">-- 20번 부서 사원들의 현재까지 근무 일수를 출력
+</span><span class="c1"></span><span class="k">SQL</span><span class="o">&gt;</span><span class="w"> </span><span class="k">select</span><span class="w"> </span><span class="n">ename</span><span class="p">,</span><span class="w"> </span><span class="n">hiredate</span><span class="p">,</span><span class="w"> </span><span class="n">sysdate</span><span class="o">-</span><span class="n">hiredate</span><span class="w"> </span><span class="s2">&#34;근무일수&#34;</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">emp</span><span class="w"> </span><span class="k">where</span><span class="w"> </span><span class="n">deptno</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">20</span><span class="p">;</span><span class="w">
+</span><span class="w">
+</span><span class="w"></span><span class="n">ENAME</span><span class="w">      </span><span class="n">HIREDATE</span><span class="w">   </span><span class="err">근무일수</span><span class="w">
+</span><span class="w"></span><span class="c1">---------- -------- ----------
+</span><span class="c1"></span><span class="n">SMITH</span><span class="w">      </span><span class="mi">80</span><span class="o">/</span><span class="mi">12</span><span class="o">/</span><span class="mi">17</span><span class="w"> </span><span class="mi">14364</span><span class="p">.</span><span class="mi">8731</span><span class="w">
+</span><span class="w"></span><span class="n">JONES</span><span class="w">      </span><span class="mi">81</span><span class="o">/</span><span class="mi">04</span><span class="o">/</span><span class="mi">02</span><span class="w"> </span><span class="mi">14258</span><span class="p">.</span><span class="mi">8731</span><span class="w">
+</span><span class="w"></span><span class="n">SCOTT</span><span class="w">      </span><span class="mi">87</span><span class="o">/</span><span class="mi">04</span><span class="o">/</span><span class="mi">19</span><span class="w"> </span><span class="mi">12050</span><span class="p">.</span><span class="mi">8731</span><span class="w">
+</span><span class="w"></span><span class="n">ADAMS</span><span class="w">      </span><span class="mi">87</span><span class="o">/</span><span class="mi">05</span><span class="o">/</span><span class="mi">23</span><span class="w"> </span><span class="mi">12016</span><span class="p">.</span><span class="mi">8731</span><span class="w">
+</span><span class="w"></span><span class="n">FORD</span><span class="w">       </span><span class="mi">81</span><span class="o">/</span><span class="mi">12</span><span class="o">/</span><span class="mi">03</span><span class="w"> </span><span class="mi">14013</span><span class="p">.</span><span class="mi">8731</span><span class="w">
+</span><span class="w">
+</span><span class="w"></span><span class="k">SQL</span><span class="o">&gt;</span><span class="w"> </span><span class="k">select</span><span class="w"> </span><span class="n">ename</span><span class="p">,</span><span class="w"> </span><span class="n">hiredate</span><span class="p">,</span><span class="w"> </span><span class="n">trunc</span><span class="p">(</span><span class="n">sysdate</span><span class="o">-</span><span class="n">hiredate</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="w"> </span><span class="s2">&#34;근무일수&#34;</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">emp</span><span class="w"> </span><span class="k">where</span><span class="w"> </span><span class="n">deptno</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">20</span><span class="p">;</span><span class="w">
+</span><span class="w">
+</span><span class="w"></span><span class="n">ENAME</span><span class="w">      </span><span class="n">HIREDATE</span><span class="w">   </span><span class="err">근무일수</span><span class="w">
+</span><span class="w"></span><span class="c1">---------- -------- ----------
+</span><span class="c1"></span><span class="n">SMITH</span><span class="w">      </span><span class="mi">80</span><span class="o">/</span><span class="mi">12</span><span class="o">/</span><span class="mi">17</span><span class="w">      </span><span class="mi">14364</span><span class="w">
+</span><span class="w"></span><span class="n">JONES</span><span class="w">      </span><span class="mi">81</span><span class="o">/</span><span class="mi">04</span><span class="o">/</span><span class="mi">02</span><span class="w">      </span><span class="mi">14258</span><span class="w">
+</span><span class="w"></span><span class="n">SCOTT</span><span class="w">      </span><span class="mi">87</span><span class="o">/</span><span class="mi">04</span><span class="o">/</span><span class="mi">19</span><span class="w">      </span><span class="mi">12050</span><span class="w">
+</span><span class="w"></span><span class="n">ADAMS</span><span class="w">      </span><span class="mi">87</span><span class="o">/</span><span class="mi">05</span><span class="o">/</span><span class="mi">23</span><span class="w">      </span><span class="mi">12016</span><span class="w">
+</span><span class="w"></span><span class="n">FORD</span><span class="w">       </span><span class="mi">81</span><span class="o">/</span><span class="mi">12</span><span class="o">/</span><span class="mi">03</span><span class="w">      </span><span class="mi">14013</span><span class="w">
+</span></code></pre></div><h3 id="months_between-함수">MONTHS_BETWEEN 함수</h3>
+<blockquote>
+<p>날짜와 날짜 사이의 개월 수를 구하는 함수</p>
+</blockquote>
+<p><code>MONTHS_BETWEEN(최근날짜, 이전날짜)</code></p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sql" data-lang="sql"><span class="k">SQL</span><span class="o">&gt;</span><span class="w"> </span><span class="k">select</span><span class="w"> </span><span class="n">ename</span><span class="p">,</span><span class="w"> </span><span class="n">hiredate</span><span class="p">,</span><span class="w"> </span><span class="n">months_between</span><span class="p">(</span><span class="n">sysdate</span><span class="p">,</span><span class="w"> </span><span class="n">hiredate</span><span class="p">)</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">emp</span><span class="p">;</span><span class="w">
+</span><span class="w">
+</span><span class="w"></span><span class="n">ENAME</span><span class="w">      </span><span class="n">HIREDATE</span><span class="w"> </span><span class="n">MONTHS_BETWEEN</span><span class="p">(</span><span class="n">SYSDATE</span><span class="p">,</span><span class="n">HIREDATE</span><span class="p">)</span><span class="w">
+</span><span class="w"></span><span class="c1">---------- -------- --------------------------------
+</span><span class="c1"></span><span class="n">SMITH</span><span class="w">      </span><span class="mi">80</span><span class="o">/</span><span class="mi">12</span><span class="o">/</span><span class="mi">17</span><span class="w">                       </span><span class="mi">471</span><span class="p">.</span><span class="mi">963657</span><span class="w">
+</span><span class="w"></span><span class="n">ALLEN</span><span class="w">      </span><span class="mi">81</span><span class="o">/</span><span class="mi">02</span><span class="o">/</span><span class="mi">20</span><span class="w">                       </span><span class="mi">469</span><span class="p">.</span><span class="mi">866883</span><span class="w">
+</span><span class="w"></span><span class="n">WARD</span><span class="w">       </span><span class="mi">81</span><span class="o">/</span><span class="mi">02</span><span class="o">/</span><span class="mi">22</span><span class="w">                       </span><span class="mi">469</span><span class="p">.</span><span class="mi">802367</span><span class="w">
+</span><span class="w"></span><span class="n">JONES</span><span class="w">      </span><span class="mi">81</span><span class="o">/</span><span class="mi">04</span><span class="o">/</span><span class="mi">02</span><span class="w">                       </span><span class="mi">468</span><span class="p">.</span><span class="mi">447528</span><span class="w">
+</span><span class="w"></span><span class="n">MARTIN</span><span class="w">     </span><span class="mi">81</span><span class="o">/</span><span class="mi">09</span><span class="o">/</span><span class="mi">28</span><span class="w">                       </span><span class="mi">462</span><span class="p">.</span><span class="mi">608818</span><span class="w">
+</span><span class="w"></span><span class="n">BLAKE</span><span class="w">      </span><span class="mi">81</span><span class="o">/</span><span class="mi">05</span><span class="o">/</span><span class="mi">01</span><span class="w">                       </span><span class="mi">467</span><span class="p">.</span><span class="mi">479786</span><span class="w">
+</span><span class="w"></span><span class="n">CLARK</span><span class="w">      </span><span class="mi">81</span><span class="o">/</span><span class="mi">06</span><span class="o">/</span><span class="mi">09</span><span class="w">                       </span><span class="mi">466</span><span class="p">.</span><span class="mi">221722</span><span class="w">
+</span><span class="w"></span><span class="n">SCOTT</span><span class="w">      </span><span class="mi">87</span><span class="o">/</span><span class="mi">04</span><span class="o">/</span><span class="mi">19</span><span class="w">                       </span><span class="mi">395</span><span class="p">.</span><span class="mi">899141</span><span class="w">
+</span><span class="w"></span><span class="n">KING</span><span class="w">       </span><span class="mi">81</span><span class="o">/</span><span class="mi">11</span><span class="o">/</span><span class="mi">17</span><span class="w">                       </span><span class="mi">460</span><span class="p">.</span><span class="mi">963657</span><span class="w">
+</span><span class="w"></span><span class="n">TURNER</span><span class="w">     </span><span class="mi">81</span><span class="o">/</span><span class="mi">09</span><span class="o">/</span><span class="mi">08</span><span class="w">                        </span><span class="mi">463</span><span class="p">.</span><span class="mi">25398</span><span class="w">
+</span><span class="w"></span><span class="n">ADAMS</span><span class="w">      </span><span class="mi">87</span><span class="o">/</span><span class="mi">05</span><span class="o">/</span><span class="mi">23</span><span class="w">                       </span><span class="mi">394</span><span class="p">.</span><span class="mi">770109</span><span class="w">
+</span><span class="w">
+</span><span class="w"></span><span class="n">ENAME</span><span class="w">      </span><span class="n">HIREDATE</span><span class="w"> </span><span class="n">MONTHS_BETWEEN</span><span class="p">(</span><span class="n">SYSDATE</span><span class="p">,</span><span class="n">HIREDATE</span><span class="p">)</span><span class="w">
+</span><span class="w"></span><span class="c1">---------- -------- --------------------------------
+</span><span class="c1"></span><span class="n">JAMES</span><span class="w">      </span><span class="mi">81</span><span class="o">/</span><span class="mi">12</span><span class="o">/</span><span class="mi">03</span><span class="w">                        </span><span class="mi">460</span><span class="p">.</span><span class="mi">41527</span><span class="w">
+</span><span class="w"></span><span class="n">FORD</span><span class="w">       </span><span class="mi">81</span><span class="o">/</span><span class="mi">12</span><span class="o">/</span><span class="mi">03</span><span class="w">                        </span><span class="mi">460</span><span class="p">.</span><span class="mi">41527</span><span class="w">
+</span><span class="w"></span><span class="n">MILLER</span><span class="w">     </span><span class="mi">82</span><span class="o">/</span><span class="mi">01</span><span class="o">/</span><span class="mi">23</span><span class="w">                       </span><span class="mi">458</span><span class="p">.</span><span class="mi">770109</span><span class="w">
+</span><span class="w">
+</span><span class="w"></span><span class="mi">14</span><span class="w"> </span><span class="err">행이</span><span class="w"> </span><span class="err">선택되었습니다</span><span class="p">.</span><span class="w">
+</span></code></pre></div><h3 id="add_months-함수">ADD_MONTHS 함수</h3>
+<blockquote>
+<p>지정한 개월 수를 더한 날짜를 구하는 함수</p>
+</blockquote>
+<p><code>ADD_MONTHS(날짜, 더할 개월 수)</code></p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sql" data-lang="sql"><span class="k">SQL</span><span class="o">&gt;</span><span class="w"> </span><span class="k">select</span><span class="w"> </span><span class="n">sysdate</span><span class="p">,</span><span class="w"> </span><span class="n">add_months</span><span class="p">(</span><span class="n">sysdate</span><span class="p">,</span><span class="w"> </span><span class="mi">12</span><span class="p">)</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">dual</span><span class="p">;</span><span class="w">
+</span><span class="w">
+</span><span class="w"></span><span class="n">SYSDATE</span><span class="w">  </span><span class="n">ADD_MONT</span><span class="w">
+</span><span class="w"></span><span class="c1">-------- --------
+</span><span class="c1"></span><span class="mi">20</span><span class="o">/</span><span class="mi">04</span><span class="o">/</span><span class="mi">15</span><span class="w"> </span><span class="mi">21</span><span class="o">/</span><span class="mi">04</span><span class="o">/</span><span class="mi">15</span><span class="w">
+</span><span class="w">
+</span><span class="w"></span><span class="k">SQL</span><span class="o">&gt;</span><span class="w"> </span><span class="k">select</span><span class="w"> </span><span class="n">hiredate</span><span class="p">,</span><span class="w"> </span><span class="n">add_months</span><span class="p">(</span><span class="n">hiredate</span><span class="p">,</span><span class="w"> </span><span class="mi">6</span><span class="p">)</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">emp</span><span class="w"> </span><span class="k">where</span><span class="w"> </span><span class="n">deptno</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">20</span><span class="p">;</span><span class="w">
+</span><span class="w">
+</span><span class="w"></span><span class="n">HIREDATE</span><span class="w"> </span><span class="n">ADD_MONT</span><span class="w">
+</span><span class="w"></span><span class="c1">-------- --------
+</span><span class="c1"></span><span class="mi">80</span><span class="o">/</span><span class="mi">12</span><span class="o">/</span><span class="mi">17</span><span class="w"> </span><span class="mi">81</span><span class="o">/</span><span class="mi">06</span><span class="o">/</span><span class="mi">17</span><span class="w">
+</span><span class="w"></span><span class="mi">81</span><span class="o">/</span><span class="mi">04</span><span class="o">/</span><span class="mi">02</span><span class="w"> </span><span class="mi">81</span><span class="o">/</span><span class="mi">10</span><span class="o">/</span><span class="mi">02</span><span class="w">
+</span><span class="w"></span><span class="mi">87</span><span class="o">/</span><span class="mi">04</span><span class="o">/</span><span class="mi">19</span><span class="w"> </span><span class="mi">87</span><span class="o">/</span><span class="mi">10</span><span class="o">/</span><span class="mi">19</span><span class="w">
+</span><span class="w"></span><span class="mi">87</span><span class="o">/</span><span class="mi">05</span><span class="o">/</span><span class="mi">23</span><span class="w"> </span><span class="mi">87</span><span class="o">/</span><span class="mi">11</span><span class="o">/</span><span class="mi">23</span><span class="w">
+</span><span class="w"></span><span class="mi">81</span><span class="o">/</span><span class="mi">12</span><span class="o">/</span><span class="mi">03</span><span class="w"> </span><span class="mi">82</span><span class="o">/</span><span class="mi">06</span><span class="o">/</span><span class="mi">03</span><span class="w">
+</span></code></pre></div><h3 id="last_day-함수">LAST_DAY 함수</h3>
+<blockquote>
+<p>해당 날짜가 속한 달의 마지막 날짜를 반환</p>
+</blockquote>
+<p><code>LAST_DAY(날짜)</code></p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sql" data-lang="sql"><span class="k">SQL</span><span class="o">&gt;</span><span class="w"> </span><span class="k">select</span><span class="w"> </span><span class="n">hiredate</span><span class="p">,</span><span class="w"> </span><span class="n">last_day</span><span class="p">(</span><span class="n">hiredate</span><span class="p">)</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">emp</span><span class="w"> </span><span class="k">where</span><span class="w"> </span><span class="n">deptno</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">20</span><span class="p">;</span><span class="w">
+</span><span class="w">
+</span><span class="w"></span><span class="n">HIREDATE</span><span class="w"> </span><span class="n">LAST_DAY</span><span class="w">
+</span><span class="w"></span><span class="c1">-------- --------
+</span><span class="c1"></span><span class="mi">80</span><span class="o">/</span><span class="mi">12</span><span class="o">/</span><span class="mi">17</span><span class="w"> </span><span class="mi">80</span><span class="o">/</span><span class="mi">12</span><span class="o">/</span><span class="mi">31</span><span class="w">
+</span><span class="w"></span><span class="mi">81</span><span class="o">/</span><span class="mi">04</span><span class="o">/</span><span class="mi">02</span><span class="w"> </span><span class="mi">81</span><span class="o">/</span><span class="mi">04</span><span class="o">/</span><span class="mi">30</span><span class="w">
+</span><span class="w"></span><span class="mi">87</span><span class="o">/</span><span class="mi">04</span><span class="o">/</span><span class="mi">19</span><span class="w"> </span><span class="mi">87</span><span class="o">/</span><span class="mi">04</span><span class="o">/</span><span class="mi">30</span><span class="w">
+</span><span class="w"></span><span class="mi">87</span><span class="o">/</span><span class="mi">05</span><span class="o">/</span><span class="mi">23</span><span class="w"> </span><span class="mi">87</span><span class="o">/</span><span class="mi">05</span><span class="o">/</span><span class="mi">31</span><span class="w">
+</span><span class="w"></span><span class="mi">81</span><span class="o">/</span><span class="mi">12</span><span class="o">/</span><span class="mi">03</span><span class="w"> </span><span class="mi">81</span><span class="o">/</span><span class="mi">12</span><span class="o">/</span><span class="mi">31</span><span class="w">
+</span></code></pre></div><h3 id="next_day-함수">NEXT_DAY 함수</h3>
+<blockquote>
+<p>해당 날짜 이후로 명시된 요일에 해당되는 날짜를 반환</p>
+</blockquote>
+<blockquote>
+<p>요일 파라미터에는</p>
+</blockquote>
+<blockquote>
+<p>&lsquo;월&rsquo;, &lsquo;화&rsquo;, &lsquo;MON&rsquo;, &lsquo;TUE&rsquo;, 1(일), 2(월), 3(화) 등 사용 가능</p>
+</blockquote>
+<p><code>NEXT_DAY(날짜, 요일)</code></p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sql" data-lang="sql"><span class="k">select</span><span class="w"> </span><span class="n">next_day</span><span class="p">(</span><span class="n">sysdate</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;월&#39;</span><span class="p">)</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">dual</span><span class="p">;</span><span class="w">
+</span></code></pre></div><h2 id="5-데이터형-변환-함수">5. 데이터형 변환 함수</h2>
+<blockquote>
+<p>숫자, 문자, 날짜의 데이터형을 변환해야 하는 경우 사용</p>
+</blockquote>
+<h3 id="to_number-함수--문자--숫자">TO_NUMBER 함수 # 문자 → 숫자</h3>
+<p><code>TO_NUMBER('숫자문자열')</code></p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sql" data-lang="sql"><span class="k">SQL</span><span class="o">&gt;</span><span class="w"> </span><span class="k">select</span><span class="w"> </span><span class="n">to_number</span><span class="p">(</span><span class="s1">&#39;15522&#39;</span><span class="p">)</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">dual</span><span class="p">;</span><span class="w">
+</span><span class="w">
+</span><span class="w"></span><span class="k">SQL</span><span class="o">&gt;</span><span class="w"> </span><span class="k">select</span><span class="w"> </span><span class="n">to_number</span><span class="p">(</span><span class="s1">&#39;1444&#39;</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">dual</span><span class="p">;</span><span class="w">
+</span><span class="w">
+</span><span class="w"></span><span class="n">TO_NUMBER</span><span class="p">(</span><span class="s1">&#39;1444&#39;</span><span class="p">)</span><span class="o">+</span><span class="mi">1</span><span class="w">
+</span><span class="w"></span><span class="c1">-------------------
+</span><span class="c1"></span><span class="w">               </span><span class="mi">1445</span><span class="w">
+</span></code></pre></div><h3 id="to_char-함수--숫자날짜--문자">TO_CHAR 함수 # 숫자|날짜 → 문자</h3>
+<p><code>TO_CHAR(숫자|날짜, 형별포맷)</code></p>
+<p><figure 
+	>
+	<a href="/posts/oracle-db-functions/Untitled%201.png" >
+		<img src="/posts/oracle-db-functions/Untitled%201.png"
+			
+			
+			
+			loading="lazy"
+			alt="image">
+	</a>
+	
+	<figcaption>image</figcaption>
+	
+</figure></p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sql" data-lang="sql"><span class="k">select</span><span class="w"> </span><span class="n">to_char</span><span class="p">(</span><span class="n">sysdate</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;YYYY/MM/DD HH24:MI:SS DAY&#39;</span><span class="p">)</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">dual</span><span class="p">;</span><span class="w">
+</span><span class="w"></span><span class="k">select</span><span class="w"> </span><span class="n">to_char</span><span class="p">(</span><span class="n">sal</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;L999,999&#39;</span><span class="p">)</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">emp</span><span class="w"> </span><span class="k">where</span><span class="w"> </span><span class="n">deptno</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">20</span><span class="p">;</span><span class="w">
+</span></code></pre></div><h3 id="to_date-함수--문자--날짜">TO_DATE 함수 # 문자 → 날짜</h3>
+<blockquote>
+<p>DATE형은 날짜와 시간을 포함한다</p>
+</blockquote>
+<p><code>TO_DATE(문자열, 해당문자열의 날짜 포맷)</code></p>
+<p><figure 
+	>
+	<a href="/posts/oracle-db-functions/Untitled%202.png" >
+		<img src="/posts/oracle-db-functions/Untitled%202.png"
+			
+			
+			
+			loading="lazy"
+			alt="image">
+	</a>
+	
+	<figcaption>image</figcaption>
+	
+</figure></p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sql" data-lang="sql"><span class="k">select</span><span class="w"> </span><span class="n">to_date</span><span class="p">(</span><span class="s1">&#39;2020-01-20&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;YYYY-MM-DD&#39;</span><span class="p">)</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">dual</span><span class="p">;</span><span class="w">
+</span><span class="w"></span><span class="k">select</span><span class="w"> </span><span class="n">to_date</span><span class="p">(</span><span class="s1">&#39;2020-1월-20&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;YYYY-MON-DD&#39;</span><span class="p">)</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">dual</span><span class="p">;</span><span class="w">
+</span><span class="w"></span><span class="k">select</span><span class="w"> </span><span class="n">to_date</span><span class="p">(</span><span class="s1">&#39;20-1월-20&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;YY-MON-DD&#39;</span><span class="p">)</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">dual</span><span class="p">;</span><span class="w">
+</span></code></pre></div><h2 id="6-기타-함수">6. 기타 함수</h2>
+<h3 id="nvl-함수">NVL 함수</h3>
+<p><code>NVL(컬럼, 변환값)</code></p>
+<blockquote>
+<p>NULL이 있으면 0 또는 다른 값으로 변환</p>
+</blockquote>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sql" data-lang="sql"><span class="k">SQL</span><span class="o">&gt;</span><span class="w"> </span><span class="k">select</span><span class="w"> </span><span class="n">empno</span><span class="p">,</span><span class="w"> </span><span class="n">comm</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">emp</span><span class="p">;</span><span class="w">
+</span><span class="w">
+</span><span class="w">     </span><span class="n">EMPNO</span><span class="w">       </span><span class="n">COMM</span><span class="w">
+</span><span class="w"></span><span class="c1">---------- ----------
+</span><span class="c1"></span><span class="w">      </span><span class="mi">7369</span><span class="w">
+</span><span class="w">      </span><span class="mi">7499</span><span class="w">        </span><span class="mi">300</span><span class="w">
+</span><span class="w">      </span><span class="mi">7521</span><span class="w">        </span><span class="mi">500</span><span class="w">
+</span><span class="w">      </span><span class="mi">7566</span><span class="w">
+</span><span class="w">      </span><span class="mi">7654</span><span class="w">       </span><span class="mi">1400</span><span class="w">
+</span><span class="w">      </span><span class="mi">7698</span><span class="w">
+</span><span class="w">      </span><span class="mi">7782</span><span class="w">
+</span><span class="w">      </span><span class="mi">7788</span><span class="w">
+</span><span class="w">      </span><span class="mi">7839</span><span class="w">
+</span><span class="w">      </span><span class="mi">7844</span><span class="w">          </span><span class="mi">0</span><span class="w">
+</span><span class="w">      </span><span class="mi">7876</span><span class="w">
+</span><span class="w">
+</span><span class="w">     </span><span class="n">EMPNO</span><span class="w">       </span><span class="n">COMM</span><span class="w">
+</span><span class="w"></span><span class="c1">---------- ----------
+</span><span class="c1"></span><span class="w">      </span><span class="mi">7900</span><span class="w">
+</span><span class="w">      </span><span class="mi">7902</span><span class="w">
+</span><span class="w">      </span><span class="mi">7934</span><span class="w">
+</span><span class="w">
+</span><span class="w"></span><span class="mi">14</span><span class="w"> </span><span class="err">행이</span><span class="w"> </span><span class="err">선택되었습니다</span><span class="p">.</span><span class="w">
+</span><span class="w">
+</span><span class="w"></span><span class="k">SQL</span><span class="o">&gt;</span><span class="w"> </span><span class="k">select</span><span class="w"> </span><span class="n">empno</span><span class="p">,</span><span class="w"> </span><span class="n">nvl</span><span class="p">(</span><span class="n">comm</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">emp</span><span class="p">;</span><span class="w">
+</span><span class="w">
+</span><span class="w">     </span><span class="n">EMPNO</span><span class="w"> </span><span class="n">NVL</span><span class="p">(</span><span class="n">COMM</span><span class="p">,</span><span class="mi">0</span><span class="p">)</span><span class="w">
+</span><span class="w"></span><span class="c1">---------- -----------
+</span><span class="c1"></span><span class="w">      </span><span class="mi">7369</span><span class="w">           </span><span class="mi">0</span><span class="w">
+</span><span class="w">      </span><span class="mi">7499</span><span class="w">         </span><span class="mi">300</span><span class="w">
+</span><span class="w">      </span><span class="mi">7521</span><span class="w">         </span><span class="mi">500</span><span class="w">
+</span><span class="w">      </span><span class="mi">7566</span><span class="w">           </span><span class="mi">0</span><span class="w">
+</span><span class="w">      </span><span class="mi">7654</span><span class="w">        </span><span class="mi">1400</span><span class="w">
+</span><span class="w">      </span><span class="mi">7698</span><span class="w">           </span><span class="mi">0</span><span class="w">
+</span><span class="w">      </span><span class="mi">7782</span><span class="w">           </span><span class="mi">0</span><span class="w">
+</span><span class="w">      </span><span class="mi">7788</span><span class="w">           </span><span class="mi">0</span><span class="w">
+</span><span class="w">      </span><span class="mi">7839</span><span class="w">           </span><span class="mi">0</span><span class="w">
+</span><span class="w">      </span><span class="mi">7844</span><span class="w">           </span><span class="mi">0</span><span class="w">
+</span><span class="w">      </span><span class="mi">7876</span><span class="w">           </span><span class="mi">0</span><span class="w">
+</span><span class="w">
+</span><span class="w">     </span><span class="n">EMPNO</span><span class="w"> </span><span class="n">NVL</span><span class="p">(</span><span class="n">COMM</span><span class="p">,</span><span class="mi">0</span><span class="p">)</span><span class="w">
+</span><span class="w"></span><span class="c1">---------- -----------
+</span><span class="c1"></span><span class="w">      </span><span class="mi">7900</span><span class="w">           </span><span class="mi">0</span><span class="w">
+</span><span class="w">      </span><span class="mi">7902</span><span class="w">           </span><span class="mi">0</span><span class="w">
+</span><span class="w">      </span><span class="mi">7934</span><span class="w">           </span><span class="mi">0</span><span class="w">
+</span><span class="w">
+</span><span class="w"></span><span class="mi">14</span><span class="w"> </span><span class="err">행이</span><span class="w"> </span><span class="err">선택되었습니다</span><span class="p">.</span><span class="w">
+</span></code></pre></div><h3 id="decode-함수">DECODE 함수</h3>
+<blockquote>
+<p>SWITCH CASE 와 유사</p>
+</blockquote>
+<blockquote>
+<p>마지막에 비교값 없이 처리값만 넣으면 else 처럼 동작. (즉 기본값)</p>
+</blockquote>
+<p><code>DECODE(표현식|컬럼명, 비교1, 처리1, 비교2, 처리2, ...)</code></p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sql" data-lang="sql"><span class="c1">-- deptno 값을 보고 그에 맞는 문자열 출력
+</span><span class="c1"></span><span class="k">select</span><span class="w"> </span><span class="n">ename</span><span class="p">,</span><span class="w"> </span><span class="n">deptno</span><span class="p">,</span><span class="w"> </span><span class="n">decode</span><span class="p">(</span><span class="n">deptno</span><span class="p">,</span><span class="w">
+</span><span class="w">														</span><span class="mi">10</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;회계&#39;</span><span class="p">,</span><span class="w">
+</span><span class="w">														</span><span class="mi">20</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;영업&#39;</span><span class="p">,</span><span class="w">
+</span><span class="w">														</span><span class="mi">30</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;마케팅&#39;</span><span class="p">,</span><span class="w">
+</span><span class="w">														</span><span class="mi">40</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;경영&#39;</span><span class="p">)</span><span class="w"> </span><span class="s2">&#34;부서명&#34;</span><span class="w">
+</span><span class="w"></span><span class="k">from</span><span class="w"> </span><span class="n">emp</span><span class="p">;</span><span class="w">
+</span><span class="w">
+</span><span class="w"></span><span class="n">ENAME</span><span class="w">          </span><span class="n">DEPTNO</span><span class="w"> </span><span class="err">부서명</span><span class="w">
+</span><span class="w"></span><span class="c1">---------- ---------- ---------------------------
+</span><span class="c1"></span><span class="n">SMITH</span><span class="w">              </span><span class="mi">20</span><span class="w"> </span><span class="err">영업</span><span class="w">
+</span><span class="w"></span><span class="n">ALLEN</span><span class="w">              </span><span class="mi">30</span><span class="w"> </span><span class="err">마케팅</span><span class="w">
+</span><span class="w"></span><span class="n">WARD</span><span class="w">               </span><span class="mi">30</span><span class="w"> </span><span class="err">마케팅</span><span class="w">
+</span><span class="w"></span><span class="n">JONES</span><span class="w">              </span><span class="mi">20</span><span class="w"> </span><span class="err">영업</span><span class="w">
+</span><span class="w"></span><span class="n">MARTIN</span><span class="w">             </span><span class="mi">30</span><span class="w"> </span><span class="err">마케팅</span><span class="w">
+</span><span class="w"></span><span class="n">BLAKE</span><span class="w">              </span><span class="mi">30</span><span class="w"> </span><span class="err">마케팅</span><span class="w">
+</span><span class="w"></span><span class="n">CLARK</span><span class="w">              </span><span class="mi">10</span><span class="w"> </span><span class="err">회계</span><span class="w">
+</span><span class="w"></span><span class="n">SCOTT</span><span class="w">              </span><span class="mi">20</span><span class="w"> </span><span class="err">영업</span><span class="w">
+</span><span class="w"></span><span class="n">KING</span><span class="w">               </span><span class="mi">10</span><span class="w"> </span><span class="err">회계</span><span class="w">
+</span><span class="w"></span><span class="n">TURNER</span><span class="w">             </span><span class="mi">30</span><span class="w"> </span><span class="err">마케팅</span><span class="w">
+</span><span class="w"></span><span class="n">ADAMS</span><span class="w">              </span><span class="mi">20</span><span class="w"> </span><span class="err">영업</span><span class="w">
+</span><span class="w">
+</span><span class="w"></span><span class="n">ENAME</span><span class="w">          </span><span class="n">DEPTNO</span><span class="w"> </span><span class="err">부서명</span><span class="w">
+</span><span class="w"></span><span class="c1">---------- ---------- ---------------------------
+</span><span class="c1"></span><span class="n">JAMES</span><span class="w">              </span><span class="mi">30</span><span class="w"> </span><span class="err">마케팅</span><span class="w">
+</span><span class="w"></span><span class="n">FORD</span><span class="w">               </span><span class="mi">20</span><span class="w"> </span><span class="err">영업</span><span class="w">
+</span><span class="w"></span><span class="n">MILLER</span><span class="w">             </span><span class="mi">10</span><span class="w"> </span><span class="err">회계</span><span class="w">
+</span><span class="w">
+</span><span class="w"></span><span class="c1">-- 기본값 테스트
+</span><span class="c1"></span><span class="k">select</span><span class="w"> </span><span class="n">ename</span><span class="p">,</span><span class="w"> </span><span class="n">deptno</span><span class="p">,</span><span class="w"> </span><span class="n">decode</span><span class="p">(</span><span class="n">deptno</span><span class="p">,</span><span class="w">
+</span><span class="w">														</span><span class="mi">10</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;회계&#39;</span><span class="p">,</span><span class="w">
+</span><span class="w">														</span><span class="mi">20</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;영업&#39;</span><span class="p">,</span><span class="w">
+</span><span class="w">														</span><span class="s1">&#39;테스트&#39;</span><span class="p">)</span><span class="w"> </span><span class="s2">&#34;부서명&#34;</span><span class="w">
+</span><span class="w"></span><span class="k">from</span><span class="w"> </span><span class="n">emp</span><span class="p">;</span><span class="w">
+</span><span class="w">
+</span><span class="w"></span><span class="n">ENAME</span><span class="w">          </span><span class="n">DEPTNO</span><span class="w"> </span><span class="err">부서명</span><span class="w">
+</span><span class="w"></span><span class="c1">---------- ---------- ---------------------------
+</span><span class="c1"></span><span class="n">SMITH</span><span class="w">              </span><span class="mi">20</span><span class="w"> </span><span class="err">영업</span><span class="w">
+</span><span class="w"></span><span class="n">ALLEN</span><span class="w">              </span><span class="mi">30</span><span class="w"> </span><span class="err">테스트</span><span class="w">
+</span><span class="w"></span><span class="n">WARD</span><span class="w">               </span><span class="mi">30</span><span class="w"> </span><span class="err">테스트</span><span class="w">
+</span><span class="w"></span><span class="n">JONES</span><span class="w">              </span><span class="mi">20</span><span class="w"> </span><span class="err">영업</span><span class="w">
+</span><span class="w"></span><span class="n">MARTIN</span><span class="w">             </span><span class="mi">30</span><span class="w"> </span><span class="err">테스트</span><span class="w">
+</span><span class="w"></span><span class="n">BLAKE</span><span class="w">              </span><span class="mi">30</span><span class="w"> </span><span class="err">테스트</span><span class="w">
+</span><span class="w"></span><span class="n">CLARK</span><span class="w">              </span><span class="mi">10</span><span class="w"> </span><span class="err">회계</span><span class="w">
+</span><span class="w"></span><span class="n">SCOTT</span><span class="w">              </span><span class="mi">20</span><span class="w"> </span><span class="err">영업</span><span class="w">
+</span><span class="w"></span><span class="n">KING</span><span class="w">               </span><span class="mi">10</span><span class="w"> </span><span class="err">회계</span><span class="w">
+</span><span class="w"></span><span class="n">TURNER</span><span class="w">             </span><span class="mi">30</span><span class="w"> </span><span class="err">테스트</span><span class="w">
+</span><span class="w"></span><span class="n">ADAMS</span><span class="w">              </span><span class="mi">20</span><span class="w"> </span><span class="err">영업</span><span class="w">
+</span><span class="w">
+</span><span class="w"></span><span class="n">ENAME</span><span class="w">          </span><span class="n">DEPTNO</span><span class="w"> </span><span class="err">부서명</span><span class="w">
+</span><span class="w"></span><span class="c1">---------- ---------- ---------------------------
+</span><span class="c1"></span><span class="n">JAMES</span><span class="w">              </span><span class="mi">30</span><span class="w"> </span><span class="err">테스트</span><span class="w">
+</span><span class="w"></span><span class="n">FORD</span><span class="w">               </span><span class="mi">20</span><span class="w"> </span><span class="err">영업</span><span class="w">
+</span><span class="w"></span><span class="n">MILLER</span><span class="w">             </span><span class="mi">10</span><span class="w"> </span><span class="err">회계</span><span class="w">
+</span></code></pre></div><h3 id="case-함수">CASE 함수</h3>
+<blockquote>
+<p>DECODE 함수는 값이 같을때만 가능</p>
+</blockquote>
+<blockquote>
+<p>CASE 함수는 다양한 비교 연산 가능</p>
+</blockquote>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sql" data-lang="sql"><span class="k">select</span><span class="w"> </span><span class="n">ename</span><span class="p">,</span><span class="w"> </span><span class="n">deptno</span><span class="p">,</span><span class="w">
+</span><span class="w"></span><span class="k">case</span><span class="w">
+</span><span class="w"></span><span class="k">when</span><span class="w"> </span><span class="n">deptno</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">10</span><span class="w"> </span><span class="k">then</span><span class="w"> </span><span class="s1">&#39;회계&#39;</span><span class="w">
+</span><span class="w"></span><span class="k">when</span><span class="w"> </span><span class="n">deptno</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">20</span><span class="w"> </span><span class="k">then</span><span class="w"> </span><span class="s1">&#39;마케팅&#39;</span><span class="w">
+</span><span class="w"></span><span class="k">when</span><span class="w"> </span><span class="n">deptno</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">30</span><span class="w"> </span><span class="k">then</span><span class="w"> </span><span class="s1">&#39;영업&#39;</span><span class="w">
+</span><span class="w"></span><span class="k">when</span><span class="w"> </span><span class="n">deptno</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">40</span><span class="w"> </span><span class="k">then</span><span class="w"> </span><span class="s1">&#39;경영&#39;</span><span class="w">
+</span><span class="w"></span><span class="k">end</span><span class="w"> </span><span class="s2">&#34;부서명&#34;</span><span class="w">
+</span><span class="w"></span><span class="k">from</span><span class="w"> </span><span class="n">emp</span><span class="p">;</span><span class="w">
+</span><span class="w">
+</span><span class="w"></span><span class="n">ENAME</span><span class="w">          </span><span class="n">DEPTNO</span><span class="w"> </span><span class="err">부서명</span><span class="w">
+</span><span class="w"></span><span class="c1">---------- ---------- ---------------------------
+</span><span class="c1"></span><span class="n">SMITH</span><span class="w">              </span><span class="mi">20</span><span class="w"> </span><span class="err">마케팅</span><span class="w">
+</span><span class="w"></span><span class="n">ALLEN</span><span class="w">              </span><span class="mi">30</span><span class="w"> </span><span class="err">영업</span><span class="w">
+</span><span class="w"></span><span class="n">WARD</span><span class="w">               </span><span class="mi">30</span><span class="w"> </span><span class="err">영업</span><span class="w">
+</span><span class="w"></span><span class="n">JONES</span><span class="w">              </span><span class="mi">20</span><span class="w"> </span><span class="err">마케팅</span><span class="w">
+</span><span class="w"></span><span class="n">MARTIN</span><span class="w">             </span><span class="mi">30</span><span class="w"> </span><span class="err">영업</span><span class="w">
+</span><span class="w"></span><span class="n">BLAKE</span><span class="w">              </span><span class="mi">30</span><span class="w"> </span><span class="err">영업</span><span class="w">
+</span><span class="w"></span><span class="n">CLARK</span><span class="w">              </span><span class="mi">10</span><span class="w"> </span><span class="err">회계</span><span class="w">
+</span><span class="w"></span><span class="n">SCOTT</span><span class="w">              </span><span class="mi">20</span><span class="w"> </span><span class="err">마케팅</span><span class="w">
+</span><span class="w"></span><span class="n">KING</span><span class="w">               </span><span class="mi">10</span><span class="w"> </span><span class="err">회계</span><span class="w">
+</span><span class="w"></span><span class="n">TURNER</span><span class="w">             </span><span class="mi">30</span><span class="w"> </span><span class="err">영업</span><span class="w">
+</span><span class="w"></span><span class="n">ADAMS</span><span class="w">              </span><span class="mi">20</span><span class="w"> </span><span class="err">마케팅</span><span class="w">
+</span><span class="w">
+</span><span class="w"></span><span class="n">ENAME</span><span class="w">          </span><span class="n">DEPTNO</span><span class="w"> </span><span class="err">부서명</span><span class="w">
+</span><span class="w"></span><span class="c1">---------- ---------- ---------------------------
+</span><span class="c1"></span><span class="n">JAMES</span><span class="w">              </span><span class="mi">30</span><span class="w"> </span><span class="err">영업</span><span class="w">
+</span><span class="w"></span><span class="n">FORD</span><span class="w">               </span><span class="mi">20</span><span class="w"> </span><span class="err">마케팅</span><span class="w">
+</span><span class="w"></span><span class="n">MILLER</span><span class="w">             </span><span class="mi">10</span><span class="w"> </span><span class="err">회계</span><span class="w">
+</span><span class="w">
+</span><span class="w"></span><span class="mi">14</span><span class="w"> </span><span class="err">행이</span><span class="w"> </span><span class="err">선택되었습니다</span><span class="p">.</span><span class="w">
+</span><span class="w">
+</span><span class="w"></span><span class="k">select</span><span class="w"> </span><span class="n">ename</span><span class="p">,</span><span class="w"> </span><span class="n">job</span><span class="p">,</span><span class="w"> </span><span class="k">case</span><span class="w">
+</span><span class="w"></span><span class="k">when</span><span class="w"> </span><span class="n">job</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;CLERK&#39;</span><span class="w"> </span><span class="k">then</span><span class="w"> </span><span class="n">sal</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="p">(</span><span class="n">sal</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="mi">0</span><span class="p">.</span><span class="mi">2</span><span class="p">)</span><span class="w">
+</span><span class="w"></span><span class="k">when</span><span class="w"> </span><span class="n">job</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;ANALYST&#39;</span><span class="w"> </span><span class="k">then</span><span class="w"> </span><span class="n">sal</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="p">(</span><span class="n">sal</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="mi">0</span><span class="p">.</span><span class="mi">15</span><span class="p">)</span><span class="w">
+</span><span class="w"></span><span class="k">when</span><span class="w"> </span><span class="n">job</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;MANAGER&#39;</span><span class="w"> </span><span class="k">then</span><span class="w"> </span><span class="n">sal</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="p">(</span><span class="n">sal</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="mi">0</span><span class="p">.</span><span class="mi">1</span><span class="p">)</span><span class="w">
+</span><span class="w"></span><span class="k">else</span><span class="w"> </span><span class="n">sal</span><span class="w">
+</span><span class="w"></span><span class="k">end</span><span class="w"> </span><span class="s2">&#34;salary&#34;</span><span class="w">
+</span><span class="w"></span><span class="k">from</span><span class="w"> </span><span class="n">emp</span><span class="p">;</span><span class="w">
+</span></code></pre></div><h2 id="7-그룹-함수">7. 그룹 함수</h2>
+<blockquote>
+<p>전체 데이터를 그룹별로 구분해 통계적인 결과를 구할 때 사용</p>
+</blockquote>
+<blockquote>
+<p>기본 select 쿼리 절에서는 그룹함수와 단순 컬럼 함께 사용 불가</p>
+</blockquote>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sql" data-lang="sql"><span class="k">SQL</span><span class="o">&gt;</span><span class="w"> </span><span class="k">select</span><span class="w"> </span><span class="k">max</span><span class="p">(</span><span class="n">sal</span><span class="p">),</span><span class="w"> </span><span class="n">ename</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">emp</span><span class="p">;</span><span class="w">
+</span><span class="w"></span><span class="k">select</span><span class="w"> </span><span class="k">max</span><span class="p">(</span><span class="n">sal</span><span class="p">),</span><span class="w"> </span><span class="n">ename</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">emp</span><span class="w">
+</span><span class="w">                 </span><span class="o">*</span><span class="w">
+</span><span class="w"></span><span class="mi">1</span><span class="err">행에</span><span class="w"> </span><span class="err">오류</span><span class="p">:</span><span class="w">
+</span><span class="w"></span><span class="n">ORA</span><span class="o">-</span><span class="mi">00937</span><span class="p">:</span><span class="w"> </span><span class="err">단일</span><span class="w"> </span><span class="err">그룹의</span><span class="w"> </span><span class="err">그룹</span><span class="w"> </span><span class="err">함수가</span><span class="w"> </span><span class="err">아닙니다</span><span class="w">
+</span></code></pre></div><h3 id="단일행-함수">단일행 함수</h3>
+<p>입력 데이터를 하나씩 처리하는 함수</p>
+<p><figure 
+	>
+	<a href="/posts/oracle-db-functions/Untitled%203.png" >
+		<img src="/posts/oracle-db-functions/Untitled%203.png"
+			
+			
+			
+			loading="lazy"
+			alt="image">
+	</a>
+	
+	<figcaption>image</figcaption>
+	
+</figure></p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sql" data-lang="sql"><span class="k">select</span><span class="w"> </span><span class="k">length</span><span class="p">(</span><span class="n">ename</span><span class="p">)</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">emp</span><span class="p">;</span><span class="w">
+</span><span class="w">
+</span><span class="w"></span><span class="k">LENGTH</span><span class="p">(</span><span class="n">ENAME</span><span class="p">)</span><span class="w">
+</span><span class="w"></span><span class="c1">-------------
+</span><span class="c1"></span><span class="w">            </span><span class="mi">5</span><span class="w">
+</span><span class="w">            </span><span class="mi">5</span><span class="w">
+</span><span class="w">            </span><span class="mi">4</span><span class="w">
+</span><span class="w">            </span><span class="mi">5</span><span class="w">
+</span><span class="w">            </span><span class="mi">6</span><span class="w">
+</span><span class="w">            </span><span class="mi">5</span><span class="w">
+</span><span class="w">            </span><span class="mi">5</span><span class="w">
+</span><span class="w">            </span><span class="mi">4</span><span class="w">
+</span><span class="w">            </span><span class="mi">6</span><span class="w">
+</span><span class="w">            </span><span class="mi">5</span><span class="w">
+</span><span class="w">            </span><span class="mi">4</span><span class="w">
+</span><span class="w">
+</span><span class="w"></span><span class="k">LENGTH</span><span class="p">(</span><span class="n">ENAME</span><span class="p">)</span><span class="w">
+</span><span class="w"></span><span class="c1">-------------
+</span><span class="c1"></span><span class="w">            </span><span class="mi">6</span><span class="w">
+</span></code></pre></div><h3 id="다중행-함수">다중행 함수</h3>
+<p>입력 데이터를 한 번에 처리해 나오는 결과값이 하나</p>
+<p><figure 
+	>
+	<a href="/posts/oracle-db-functions/Untitled%204.png" >
+		<img src="/posts/oracle-db-functions/Untitled%204.png"
+			
+			
+			
+			loading="lazy"
+			alt="image">
+	</a>
+	
+	<figcaption>image</figcaption>
+	
+</figure></p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sql" data-lang="sql"><span class="k">select</span><span class="w"> </span><span class="k">count</span><span class="p">(</span><span class="n">ename</span><span class="p">)</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">emp</span><span class="p">;</span><span class="w">
+</span><span class="w">
+</span><span class="w"></span><span class="k">COUNT</span><span class="p">(</span><span class="n">ENAME</span><span class="p">)</span><span class="w">
+</span><span class="w"></span><span class="c1">------------
+</span><span class="c1"></span><span class="w">          </span><span class="mi">12</span><span class="w">
+</span></code></pre></div><h3 id="sum-함수">SUM 함수</h3>
+<blockquote>
+<p>지정한 컬럼 값들의 총합을 구하는 함수 (Null 제외)</p>
+</blockquote>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sql" data-lang="sql"><span class="k">select</span><span class="w"> </span><span class="k">sum</span><span class="p">(</span><span class="n">sal</span><span class="p">)</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">emp</span><span class="p">;</span><span class="w">
+</span><span class="w">
+</span><span class="w"></span><span class="k">SUM</span><span class="p">(</span><span class="n">SAL</span><span class="p">)</span><span class="w">
+</span><span class="w"></span><span class="c1">----------
+</span><span class="c1"></span><span class="w">     </span><span class="mi">24925</span><span class="w">
+</span></code></pre></div><h3 id="avg-함수">AVG 함수</h3>
+<blockquote>
+<p>지정한 컬럼 값들의 평균을 구함</p>
+</blockquote>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sql" data-lang="sql"><span class="k">select</span><span class="w"> </span><span class="n">round</span><span class="p">(</span><span class="k">avg</span><span class="p">(</span><span class="n">sal</span><span class="p">),</span><span class="w"> </span><span class="mi">1</span><span class="p">)</span><span class="w"> </span><span class="s2">&#34;평균급여&#34;</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">emp</span><span class="p">;</span><span class="w">
+</span><span class="w">
+</span><span class="w">  </span><span class="k">AVG</span><span class="p">(</span><span class="n">SAL</span><span class="p">)</span><span class="w">
+</span><span class="w"></span><span class="c1">----------
+</span><span class="c1"></span><span class="mi">2077</span><span class="p">.</span><span class="mi">08333</span><span class="w">
+</span></code></pre></div><h3 id="max-min-함수">MAX, MIN 함수</h3>
+<blockquote>
+<p>지정한 컬럼 값들의 최대값, 최소값을 구함</p>
+</blockquote>
+<blockquote>
+<p>문자, 날짜 데이터에도 사용 가능 (사전상 빠른 문자열, 오래된 날짜가 Min)</p>
+</blockquote>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sql" data-lang="sql"><span class="k">select</span><span class="w"> </span><span class="k">min</span><span class="p">(</span><span class="n">sal</span><span class="p">)</span><span class="w"> </span><span class="s2">&#34;최소급여&#34;</span><span class="p">,</span><span class="w"> </span><span class="k">max</span><span class="p">(</span><span class="n">sal</span><span class="p">)</span><span class="w"> </span><span class="s2">&#34;최대급여&#34;</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">emp</span><span class="p">;</span><span class="w">
+</span><span class="w">
+</span><span class="w"></span><span class="err">최소급여</span><span class="w">   </span><span class="err">최대급여</span><span class="w">
+</span><span class="w"></span><span class="c1">---------- ----------
+</span><span class="c1"></span><span class="w">       </span><span class="mi">800</span><span class="w">       </span><span class="mi">5000</span><span class="w">
+</span><span class="w">
+</span><span class="w"></span><span class="k">select</span><span class="w"> </span><span class="k">min</span><span class="p">(</span><span class="n">ename</span><span class="p">),</span><span class="w"> </span><span class="k">max</span><span class="p">(</span><span class="n">ename</span><span class="p">),</span><span class="w"> </span><span class="k">min</span><span class="p">(</span><span class="n">hiredate</span><span class="p">),</span><span class="w"> </span><span class="k">max</span><span class="p">(</span><span class="n">hiredate</span><span class="p">)</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">emp</span><span class="p">;</span><span class="w">
+</span><span class="w">
+</span><span class="w"></span><span class="k">MIN</span><span class="p">(</span><span class="n">ENAME</span><span class="p">)</span><span class="w"> </span><span class="k">MAX</span><span class="p">(</span><span class="n">ENAME</span><span class="p">)</span><span class="w"> </span><span class="k">MIN</span><span class="p">(</span><span class="n">HIRE</span><span class="w"> </span><span class="k">MAX</span><span class="p">(</span><span class="n">HIRE</span><span class="w">
+</span><span class="w"></span><span class="c1">---------- ---------- -------- --------
+</span><span class="c1"></span><span class="n">ALLEN</span><span class="w">      </span><span class="n">WARD</span><span class="w">       </span><span class="mi">80</span><span class="o">/</span><span class="mi">12</span><span class="o">/</span><span class="mi">17</span><span class="w"> </span><span class="mi">82</span><span class="o">/</span><span class="mi">01</span><span class="o">/</span><span class="mi">23</span><span class="w">
+</span></code></pre></div><h3 id="count-함수">COUNT 함수</h3>
+<blockquote>
+<p>테이블 전체 또는 컬럼의 총 행의 갯수를 출력 (Null 제외)</p>
+</blockquote>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sql" data-lang="sql"><span class="k">select</span><span class="w"> </span><span class="k">count</span><span class="p">(</span><span class="o">*</span><span class="p">)</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">sometable</span><span class="p">;</span><span class="w"> </span><span class="c1">-- 테이블의 총 행의 갯수 반환
+</span><span class="c1"></span><span class="k">select</span><span class="w"> </span><span class="k">count</span><span class="p">(</span><span class="n">col</span><span class="p">)</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">sometable</span><span class="p">;</span><span class="w"> </span><span class="c1">-- 해당 컬럼의 총 행의 갯수 반환
+</span><span class="c1"></span><span class="w">
+</span><span class="w"></span><span class="k">select</span><span class="w"> </span><span class="k">count</span><span class="p">(</span><span class="n">comm</span><span class="p">)</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">emp</span><span class="p">;</span><span class="w"> </span><span class="c1">-- 널 값이 있는 행은 제외됨
+</span><span class="c1"></span><span class="w">
+</span><span class="w"></span><span class="k">COUNT</span><span class="p">(</span><span class="n">COMM</span><span class="p">)</span><span class="w">
+</span><span class="w"></span><span class="c1">-----------
+</span><span class="c1"></span><span class="w">          </span><span class="mi">4</span><span class="w">
+</span></code></pre></div><h3 id="group-by-절">GROUP BY 절</h3>
+<blockquote>
+<p>전체 데이터를 그룹별로 나눠 정렬해줌</p>
+</blockquote>
+<blockquote>
+<p>GROUP BY 절을 사용하면 해당 그룹 함수와 함께 해당 컬럼을 같이 select 해 사용 가능</p>
+</blockquote>
+<p><figure 
+	>
+	<a href="/posts/oracle-db-functions/Untitled%205.png" >
+		<img src="/posts/oracle-db-functions/Untitled%205.png"
+			
+			
+			
+			loading="lazy"
+			alt="image">
+	</a>
+	
+	<figcaption>image</figcaption>
+	
+</figure></p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sql" data-lang="sql"><span class="k">SQL</span><span class="o">&gt;</span><span class="w"> </span><span class="k">select</span><span class="w"> </span><span class="n">deptno</span><span class="p">,</span><span class="w"> </span><span class="k">avg</span><span class="p">(</span><span class="n">sal</span><span class="p">)</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">emp</span><span class="w"> </span><span class="k">group</span><span class="w"> </span><span class="k">by</span><span class="w"> </span><span class="n">deptno</span><span class="p">;</span><span class="w">
+</span><span class="w">
+</span><span class="w">    </span><span class="n">DEPTNO</span><span class="w">   </span><span class="k">AVG</span><span class="p">(</span><span class="n">SAL</span><span class="p">)</span><span class="w">
+</span><span class="w"></span><span class="c1">---------- ----------
+</span><span class="c1"></span><span class="w">        </span><span class="mi">30</span><span class="w"> </span><span class="mi">1566</span><span class="p">.</span><span class="mi">66667</span><span class="w">
+</span><span class="w">        </span><span class="mi">10</span><span class="w"> </span><span class="mi">2916</span><span class="p">.</span><span class="mi">66667</span><span class="w">
+</span><span class="w">        </span><span class="mi">20</span><span class="w"> </span><span class="mi">2258</span><span class="p">.</span><span class="mi">33333</span><span class="w">
+</span><span class="w">
+</span><span class="w"></span><span class="k">SQL</span><span class="o">&gt;</span><span class="w"> </span><span class="k">select</span><span class="w"> </span><span class="n">deptno</span><span class="p">,</span><span class="w"> </span><span class="k">count</span><span class="p">(</span><span class="o">*</span><span class="p">),</span><span class="w"> </span><span class="k">count</span><span class="p">(</span><span class="n">comm</span><span class="p">)</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">emp</span><span class="w"> </span><span class="k">group</span><span class="w"> </span><span class="k">by</span><span class="w"> </span><span class="n">deptno</span><span class="p">;</span><span class="w">
+</span><span class="w">
+</span><span class="w">    </span><span class="n">DEPTNO</span><span class="w">   </span><span class="k">COUNT</span><span class="p">(</span><span class="o">*</span><span class="p">)</span><span class="w"> </span><span class="k">COUNT</span><span class="p">(</span><span class="n">COMM</span><span class="p">)</span><span class="w">
+</span><span class="w"></span><span class="c1">---------- ---------- -----------
+</span><span class="c1"></span><span class="w">        </span><span class="mi">30</span><span class="w">          </span><span class="mi">6</span><span class="w">           </span><span class="mi">4</span><span class="w">
+</span><span class="w">        </span><span class="mi">10</span><span class="w">          </span><span class="mi">3</span><span class="w">           </span><span class="mi">0</span><span class="w">
+</span><span class="w">        </span><span class="mi">20</span><span class="w">          </span><span class="mi">3</span><span class="w">           </span><span class="mi">0</span><span class="w">
+</span><span class="w">
+</span><span class="w"></span><span class="k">SQL</span><span class="o">&gt;</span><span class="w"> </span><span class="k">select</span><span class="w"> </span><span class="n">job</span><span class="p">,</span><span class="w"> </span><span class="k">count</span><span class="p">(</span><span class="o">*</span><span class="p">),</span><span class="w"> </span><span class="k">avg</span><span class="p">(</span><span class="n">sal</span><span class="p">)</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">emp</span><span class="w"> </span><span class="k">group</span><span class="w"> </span><span class="k">by</span><span class="w"> </span><span class="n">job</span><span class="p">;</span><span class="w">
+</span><span class="w">
+</span><span class="w"></span><span class="n">JOB</span><span class="w">         </span><span class="k">COUNT</span><span class="p">(</span><span class="o">*</span><span class="p">)</span><span class="w">   </span><span class="k">AVG</span><span class="p">(</span><span class="n">SAL</span><span class="p">)</span><span class="w">
+</span><span class="w"></span><span class="c1">--------- ---------- ----------
+</span><span class="c1"></span><span class="n">CLERK</span><span class="w">              </span><span class="mi">3</span><span class="w"> </span><span class="mi">1016</span><span class="p">.</span><span class="mi">66667</span><span class="w">
+</span><span class="w"></span><span class="n">SALESMAN</span><span class="w">           </span><span class="mi">4</span><span class="w">       </span><span class="mi">1400</span><span class="w">
+</span><span class="w"></span><span class="n">ANALYST</span><span class="w">            </span><span class="mi">1</span><span class="w">       </span><span class="mi">3000</span><span class="w">
+</span><span class="w"></span><span class="n">MANAGER</span><span class="w">            </span><span class="mi">3</span><span class="w"> </span><span class="mi">2758</span><span class="p">.</span><span class="mi">33333</span><span class="w">
+</span><span class="w"></span><span class="n">PRESIDENT</span><span class="w">          </span><span class="mi">1</span><span class="w">       </span><span class="mi">5000</span><span class="w">
+</span></code></pre></div><h3 id="having-절">HAVING 절</h3>
+<blockquote>
+<p>GROUP BY 절에 의해 생성된 결과 중 원하는 조건을 만족하는 데이터만 출력</p>
+</blockquote>
+<blockquote>
+<p>WHERE 절에는 그룹함수를 사용할 수 없음</p>
+</blockquote>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sql" data-lang="sql"><span class="k">SQL</span><span class="o">&gt;</span><span class="w"> </span><span class="k">select</span><span class="w"> </span><span class="n">deptno</span><span class="p">,</span><span class="w"> </span><span class="k">avg</span><span class="p">(</span><span class="n">sal</span><span class="p">)</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">emp</span><span class="w"> </span><span class="k">group</span><span class="w"> </span><span class="k">by</span><span class="w"> </span><span class="n">deptno</span><span class="w"> </span><span class="k">having</span><span class="w"> </span><span class="k">avg</span><span class="p">(</span><span class="n">sal</span><span class="p">)</span><span class="w"> </span><span class="o">&gt;=</span><span class="w"> </span><span class="mi">2000</span><span class="p">;</span><span class="w">
+</span><span class="w">
+</span><span class="w">    </span><span class="n">DEPTNO</span><span class="w">   </span><span class="k">AVG</span><span class="p">(</span><span class="n">SAL</span><span class="p">)</span><span class="w">
+</span><span class="w"></span><span class="c1">---------- ----------
+</span><span class="c1"></span><span class="w">        </span><span class="mi">10</span><span class="w"> </span><span class="mi">2916</span><span class="p">.</span><span class="mi">66667</span><span class="w">
+</span><span class="w">        </span><span class="mi">20</span><span class="w"> </span><span class="mi">2258</span><span class="p">.</span><span class="mi">33333</span><span class="w">
+</span><span class="w">
+</span><span class="w"></span><span class="c1">-- 급여를 1000이상 받는 사원들의 평균 급여가 2000이상인 부서의 번호와 부서별 평균 급여 출력
+</span><span class="c1"></span><span class="k">SQL</span><span class="o">&gt;</span><span class="w"> </span><span class="k">select</span><span class="w"> </span><span class="n">deptno</span><span class="p">,</span><span class="w"> </span><span class="k">avg</span><span class="p">(</span><span class="n">sal</span><span class="p">)</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">emp</span><span class="w"> </span><span class="k">where</span><span class="w"> </span><span class="n">sal</span><span class="o">&gt;=</span><span class="mi">1000</span><span class="w"> </span><span class="k">group</span><span class="w"> </span><span class="k">by</span><span class="w"> </span><span class="n">deptno</span><span class="w"> </span><span class="k">having</span><span class="w"> </span><span class="k">avg</span><span class="p">(</span><span class="n">sal</span><span class="p">)</span><span class="o">&gt;=</span><span class="mi">2000</span><span class="p">;</span><span class="w">
+</span><span class="w">
+</span><span class="w">    </span><span class="n">DEPTNO</span><span class="w">   </span><span class="k">AVG</span><span class="p">(</span><span class="n">SAL</span><span class="p">)</span><span class="w">
+</span><span class="w"></span><span class="c1">---------- ----------
+</span><span class="c1"></span><span class="w">        </span><span class="mi">10</span><span class="w"> </span><span class="mi">2916</span><span class="p">.</span><span class="mi">66667</span><span class="w">
+</span><span class="w">        </span><span class="mi">20</span><span class="w">     </span><span class="mi">2987</span><span class="p">.</span><span class="mi">5</span><span class="w">
+</span></code></pre></div>
+</section>
+
+
+    <footer class="article-footer">
+    
+    <section class="article-tags">
+        
+            <a href="/tags/oracle/">oracle</a>
+        
+            <a href="/tags/db/">db</a>
+        
+            <a href="/tags/oracle-db/">oracle-db</a>
+        
+    </section>
+
+
+    
+    <section class="article-copyright">
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-copyright" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <path d="M14.5 9a3.5 4 0 1 0 0 6" />
+</svg>
+
+
+
+        <span>Licensed under CC BY-NC-SA 4.0</span>
+    </section>
+    </footer>
+
+
+    
+</article>
+
+    <aside class="related-contents--wrapper">
+    
+    
+        <h2 class="section-title">Related contents</h2>
+        <div class="related-contents">
+            <div class="flex article-list--tile">
+                
+                    
+<article class="">
+    <a href="/blog/oracle-db-sqlplus-%EB%AA%85%EB%A0%B9%EC%96%B4-%EC%A0%95%EB%A6%AC/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">ORACLE DB SQL*PLUS 명령어 정리</h2>
+        </div>
+    </a>
+</article>
+                
+                    
+<article class="">
+    <a href="/blog/oracle-db-scott-%EA%B3%84%EC%A0%95/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">ORACLE DB Scott 계정</h2>
+        </div>
+    </a>
+</article>
+                
+                    
+<article class="">
+    <a href="/blog/oracle-db-%EA%B3%84%EC%A0%95/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">ORACLE DB 계정</h2>
+        </div>
+    </a>
+</article>
+                
+                    
+<article class="">
+    <a href="/blog/oracle-db-%EB%AA%85%EB%A0%B9%EC%96%B4-%EC%A0%95%EB%A6%AC/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">ORACLE DB 명령어 정리</h2>
+        </div>
+    </a>
+</article>
+                
+                    
+<article class="">
+    <a href="/blog/oracle-db-%EC%84%9C%EB%B8%8C-%EC%BF%BC%EB%A6%AC-%EC%A0%95%EB%A6%AC/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">ORACLE DB 서브 쿼리 정리</h2>
+        </div>
+    </a>
+</article>
+                
+            </div>
+        </div>
+    
+</aside>
+
+     
+    
+        
+    <script src="https://utteranc.es/client.js" 
+        repo="yansigit/yansigit.github.io"
+        issue-term="pathname"
+        
+        label="Utterances Comment"
+        
+        crossorigin="anonymous"
+        async
+        >
+</script>
+
+<style>
+    .utterances {
+        max-width: unset;
+    }
+</style>
+
+<script>
+    function setUtterancesTheme(theme) {
+        let utterances = document.querySelector('.utterances iframe');
+        if (utterances) {
+            utterances.contentWindow.postMessage(
+                {
+                    type: 'set-theme',
+                    theme: `github-${theme}`
+                },
+                'https://utteranc.es'
+            );
+        }
+    }
+
+    addEventListener('message', event => {
+        if (event.origin !== 'https://utteranc.es') return;
+        setUtterancesTheme(document.documentElement.dataset.scheme)
+    });
+
+    window.addEventListener('onColorSchemeChange', (e) => {
+        setUtterancesTheme(e.detail)
+    })
+</script>
+
+
+    
+
+    <footer class="site-footer">
+    <section class="copyright">
+        &copy; 
+        
+            2020 - 
+        
+        2021 Code like Feather
+    </section>
+    
+    <section class="powerby">
+        Built with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> <br />
+        Theme <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="3.2.0">Stack</a></b> designed by <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a>
+    </section>
+</footer>
+
+
+    
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    
+    <div class="pswp__bg"></div>
+
+    
+    <div class="pswp__scroll-wrap">
+
+        
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                
+                
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"integrity="sha256-ePwmChbbvXbsO02lbM3HoHbSHTHFAeChekF1xKJdleo="crossorigin="anonymous"
+                defer="true"
+                >
+            </script><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"integrity="sha256-UKkzOn/w1mBxRmLLGrSeyB4e1xbrp4xylgAWb3M42pU="crossorigin="anonymous"
+                defer="true"
+                >
+            </script><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.css"integrity="sha256-c0uckgykQ9v5k&#43;IqViZOZKc47Jn7KQil4/MP3ySA3F8="crossorigin="anonymous"
+            ><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.css"integrity="sha256-SBLU4vv6CA6lHsZ1XyTdhyjJxCjPif/TRkjnsyGAGnE="crossorigin="anonymous"
+            >
+
+            </main>
+    
+        <aside class="sidebar right-sidebar sticky">
+            <section class="widget archives">
+                <div class="widget-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-hash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <line x1="5" y1="9" x2="19" y2="9" />
+  <line x1="5" y1="15" x2="19" y2="15" />
+  <line x1="11" y1="4" x2="7" y2="20" />
+  <line x1="17" y1="4" x2="13" y2="20" />
+</svg>
+
+
+
+                </div>
+                <h2 class="widget-title section-title">Table of contents</h2>
+                
+                <div class="widget--toc">
+                    <nav id="TableOfContents">
+  <ol>
+    <li><a href="#함수">함수</a></li>
+    <li><a href="#1-dual-테이블">1. DUAL 테이블</a></li>
+    <li><a href="#2-숫자-처리-함수">2. 숫자 처리 함수</a>
+      <ol>
+        <li><a href="#round-반올림-함수">ROUND (반올림) 함수</a></li>
+        <li><a href="#trunc버림-함수">TRUNC(버림) 함수</a></li>
+        <li><a href="#mod나머지-함수">MOD(나머지) 함수</a></li>
+      </ol>
+    </li>
+    <li><a href="#3-문자-처리-함수">3. 문자 처리 함수</a>
+      <ol>
+        <li><a href="#upper대문자-lower소문자-함수">UPPER(대문자), LOWER(소문자) 함수</a></li>
+        <li><a href="#initcap-함수">INITCAP 함수</a></li>
+        <li><a href="#length-함수">LENGTH 함수</a></li>
+        <li><a href="#instr-함수">INSTR 함수</a></li>
+        <li><a href="#substr-함수">SUBSTR 함수</a></li>
+        <li><a href="#lpad-rpad-함수">LPAD, RPAD 함수</a></li>
+        <li><a href="#ltrim-rtrim-함수">LTRIM, RTRIM 함수</a></li>
+        <li><a href="#trim-함수">TRIM 함수</a></li>
+      </ol>
+    </li>
+    <li><a href="#4-날짜-처리-함수">4. 날짜 처리 함수</a>
+      <ol>
+        <li><a href="#sysdate-함수">SYSDATE 함수</a></li>
+        <li><a href="#months_between-함수">MONTHS_BETWEEN 함수</a></li>
+        <li><a href="#add_months-함수">ADD_MONTHS 함수</a></li>
+        <li><a href="#last_day-함수">LAST_DAY 함수</a></li>
+        <li><a href="#next_day-함수">NEXT_DAY 함수</a></li>
+      </ol>
+    </li>
+    <li><a href="#5-데이터형-변환-함수">5. 데이터형 변환 함수</a>
+      <ol>
+        <li><a href="#to_number-함수--문자--숫자">TO_NUMBER 함수 # 문자 → 숫자</a></li>
+        <li><a href="#to_char-함수--숫자날짜--문자">TO_CHAR 함수 # 숫자|날짜 → 문자</a></li>
+        <li><a href="#to_date-함수--문자--날짜">TO_DATE 함수 # 문자 → 날짜</a></li>
+      </ol>
+    </li>
+    <li><a href="#6-기타-함수">6. 기타 함수</a>
+      <ol>
+        <li><a href="#nvl-함수">NVL 함수</a></li>
+        <li><a href="#decode-함수">DECODE 함수</a></li>
+        <li><a href="#case-함수">CASE 함수</a></li>
+      </ol>
+    </li>
+    <li><a href="#7-그룹-함수">7. 그룹 함수</a>
+      <ol>
+        <li><a href="#단일행-함수">단일행 함수</a></li>
+        <li><a href="#다중행-함수">다중행 함수</a></li>
+        <li><a href="#sum-함수">SUM 함수</a></li>
+        <li><a href="#avg-함수">AVG 함수</a></li>
+        <li><a href="#max-min-함수">MAX, MIN 함수</a></li>
+        <li><a href="#count-함수">COUNT 함수</a></li>
+        <li><a href="#group-by-절">GROUP BY 절</a></li>
+        <li><a href="#having-절">HAVING 절</a></li>
+      </ol>
+    </li>
+  </ol>
+</nav>
+                </div>
+            </section>
+        </aside>
+    
+
+        </div>
+        <script 
+                src="https://cdn.jsdelivr.net/npm/node-vibrant@3.1.5/dist/vibrant.min.js"integrity="sha256-5NovOZc4iwiAWTYIFiIM7DxKUXKWvpVEuMEPLzcm5/g="crossorigin="anonymous"
+                defer="false"
+                >
+            </script><script type="text/javascript" src="/ts/main.js" defer></script>
+<script>
+    (function () {
+        const customFont = document.createElement('link');
+        customFont.href = "https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap";
+
+        customFont.type = "text/css";
+        customFont.rel = "stylesheet";
+
+        document.head.appendChild(customFont);
+    }());
+</script>
+
+    </body>
+</html>

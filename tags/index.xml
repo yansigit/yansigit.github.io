@@ -1,0 +1,794 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Tags on Code like Feather</title>
+    <link>https://yansigit.github.io/tags/</link>
+    <description>Recent content in Tags on Code like Feather</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>ko-kr</language>
+    <lastBuildDate>Wed, 07 Jul 2021 00:04:34 +0900</lastBuildDate><atom:link href="https://yansigit.github.io/tags/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>algorithm</title>
+      <link>https://yansigit.github.io/tags/algorithm/</link>
+      <pubDate>Wed, 07 Jul 2021 00:04:34 +0900</pubDate>
+      
+      <guid>https://yansigit.github.io/tags/algorithm/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>data-processing</title>
+      <link>https://yansigit.github.io/tags/data-processing/</link>
+      <pubDate>Wed, 07 Jul 2021 00:04:34 +0900</pubDate>
+      
+      <guid>https://yansigit.github.io/tags/data-processing/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>data-science</title>
+      <link>https://yansigit.github.io/tags/data-science/</link>
+      <pubDate>Wed, 07 Jul 2021 00:04:34 +0900</pubDate>
+      
+      <guid>https://yansigit.github.io/tags/data-science/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>deep-learning</title>
+      <link>https://yansigit.github.io/tags/deep-learning/</link>
+      <pubDate>Wed, 07 Jul 2021 00:04:34 +0900</pubDate>
+      
+      <guid>https://yansigit.github.io/tags/deep-learning/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>machine-learning</title>
+      <link>https://yansigit.github.io/tags/machine-learning/</link>
+      <pubDate>Wed, 07 Jul 2021 00:04:34 +0900</pubDate>
+      
+      <guid>https://yansigit.github.io/tags/machine-learning/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>search algorithm</title>
+      <link>https://yansigit.github.io/tags/search-algorithm/</link>
+      <pubDate>Wed, 07 Jul 2021 00:04:34 +0900</pubDate>
+      
+      <guid>https://yansigit.github.io/tags/search-algorithm/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>go</title>
+      <link>https://yansigit.github.io/tags/go/</link>
+      <pubDate>Thu, 22 Apr 2021 17:55:28 +0800</pubDate>
+      
+      <guid>https://yansigit.github.io/tags/go/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>golang</title>
+      <link>https://yansigit.github.io/tags/golang/</link>
+      <pubDate>Thu, 22 Apr 2021 17:55:28 +0800</pubDate>
+      
+      <guid>https://yansigit.github.io/tags/golang/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>mongodb</title>
+      <link>https://yansigit.github.io/tags/mongodb/</link>
+      <pubDate>Thu, 22 Apr 2021 17:55:28 +0800</pubDate>
+      
+      <guid>https://yansigit.github.io/tags/mongodb/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>pandas</title>
+      <link>https://yansigit.github.io/tags/pandas/</link>
+      <pubDate>Thu, 22 Apr 2021 17:55:28 +0800</pubDate>
+      
+      <guid>https://yansigit.github.io/tags/pandas/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>prediction</title>
+      <link>https://yansigit.github.io/tags/prediction/</link>
+      <pubDate>Thu, 22 Apr 2021 17:55:28 +0800</pubDate>
+      
+      <guid>https://yansigit.github.io/tags/prediction/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>python</title>
+      <link>https://yansigit.github.io/tags/python/</link>
+      <pubDate>Thu, 22 Apr 2021 17:55:28 +0800</pubDate>
+      
+      <guid>https://yansigit.github.io/tags/python/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>react</title>
+      <link>https://yansigit.github.io/tags/react/</link>
+      <pubDate>Thu, 22 Apr 2021 17:55:28 +0800</pubDate>
+      
+      <guid>https://yansigit.github.io/tags/react/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>react.js</title>
+      <link>https://yansigit.github.io/tags/react.js/</link>
+      <pubDate>Thu, 22 Apr 2021 17:55:28 +0800</pubDate>
+      
+      <guid>https://yansigit.github.io/tags/react.js/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>scikit-learn</title>
+      <link>https://yansigit.github.io/tags/scikit-learn/</link>
+      <pubDate>Thu, 22 Apr 2021 17:55:28 +0800</pubDate>
+      
+      <guid>https://yansigit.github.io/tags/scikit-learn/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>vercel</title>
+      <link>https://yansigit.github.io/tags/vercel/</link>
+      <pubDate>Thu, 22 Apr 2021 17:55:28 +0800</pubDate>
+      
+      <guid>https://yansigit.github.io/tags/vercel/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>aws</title>
+      <link>https://yansigit.github.io/tags/aws/</link>
+      <pubDate>Sat, 20 Mar 2021 17:55:28 +0800</pubDate>
+      
+      <guid>https://yansigit.github.io/tags/aws/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>cafe</title>
+      <link>https://yansigit.github.io/tags/cafe/</link>
+      <pubDate>Sat, 20 Mar 2021 17:55:28 +0800</pubDate>
+      
+      <guid>https://yansigit.github.io/tags/cafe/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>flutter</title>
+      <link>https://yansigit.github.io/tags/flutter/</link>
+      <pubDate>Sat, 20 Mar 2021 17:55:28 +0800</pubDate>
+      
+      <guid>https://yansigit.github.io/tags/flutter/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>kiosk</title>
+      <link>https://yansigit.github.io/tags/kiosk/</link>
+      <pubDate>Sat, 20 Mar 2021 17:55:28 +0800</pubDate>
+      
+      <guid>https://yansigit.github.io/tags/kiosk/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>mobile</title>
+      <link>https://yansigit.github.io/tags/mobile/</link>
+      <pubDate>Sat, 20 Mar 2021 17:55:28 +0800</pubDate>
+      
+      <guid>https://yansigit.github.io/tags/mobile/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>portfolio</title>
+      <link>https://yansigit.github.io/tags/portfolio/</link>
+      <pubDate>Sat, 20 Mar 2021 17:55:28 +0800</pubDate>
+      
+      <guid>https://yansigit.github.io/tags/portfolio/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>pos</title>
+      <link>https://yansigit.github.io/tags/pos/</link>
+      <pubDate>Sat, 20 Mar 2021 17:55:28 +0800</pubDate>
+      
+      <guid>https://yansigit.github.io/tags/pos/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>project</title>
+      <link>https://yansigit.github.io/tags/project/</link>
+      <pubDate>Sat, 20 Mar 2021 17:55:28 +0800</pubDate>
+      
+      <guid>https://yansigit.github.io/tags/project/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>android</title>
+      <link>https://yansigit.github.io/tags/android/</link>
+      <pubDate>Sun, 20 Sep 2020 17:55:28 +0800</pubDate>
+      
+      <guid>https://yansigit.github.io/tags/android/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>iris</title>
+      <link>https://yansigit.github.io/tags/iris/</link>
+      <pubDate>Sun, 20 Sep 2020 17:55:28 +0800</pubDate>
+      
+      <guid>https://yansigit.github.io/tags/iris/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>cross-platform</title>
+      <link>https://yansigit.github.io/tags/cross-platform/</link>
+      <pubDate>Sat, 19 Sep 2020 14:16:38 +0900</pubDate>
+      
+      <guid>https://yansigit.github.io/tags/cross-platform/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>operation-system</title>
+      <link>https://yansigit.github.io/tags/operation-system/</link>
+      <pubDate>Fri, 18 Sep 2020 23:24:53 +0900</pubDate>
+      
+      <guid>https://yansigit.github.io/tags/operation-system/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>os</title>
+      <link>https://yansigit.github.io/tags/os/</link>
+      <pubDate>Fri, 18 Sep 2020 23:24:53 +0900</pubDate>
+      
+      <guid>https://yansigit.github.io/tags/os/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>computer-networking</title>
+      <link>https://yansigit.github.io/tags/computer-networking/</link>
+      <pubDate>Thu, 17 Sep 2020 00:11:07 +0900</pubDate>
+      
+      <guid>https://yansigit.github.io/tags/computer-networking/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>congestion-control</title>
+      <link>https://yansigit.github.io/tags/congestion-control/</link>
+      <pubDate>Thu, 17 Sep 2020 00:11:07 +0900</pubDate>
+      
+      <guid>https://yansigit.github.io/tags/congestion-control/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>dash</title>
+      <link>https://yansigit.github.io/tags/dash/</link>
+      <pubDate>Thu, 17 Sep 2020 00:11:07 +0900</pubDate>
+      
+      <guid>https://yansigit.github.io/tags/dash/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>dns</title>
+      <link>https://yansigit.github.io/tags/dns/</link>
+      <pubDate>Thu, 17 Sep 2020 00:11:07 +0900</pubDate>
+      
+      <guid>https://yansigit.github.io/tags/dns/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>email</title>
+      <link>https://yansigit.github.io/tags/email/</link>
+      <pubDate>Thu, 17 Sep 2020 00:11:07 +0900</pubDate>
+      
+      <guid>https://yansigit.github.io/tags/email/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>flow-control</title>
+      <link>https://yansigit.github.io/tags/flow-control/</link>
+      <pubDate>Thu, 17 Sep 2020 00:11:07 +0900</pubDate>
+      
+      <guid>https://yansigit.github.io/tags/flow-control/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>handshake</title>
+      <link>https://yansigit.github.io/tags/handshake/</link>
+      <pubDate>Thu, 17 Sep 2020 00:11:07 +0900</pubDate>
+      
+      <guid>https://yansigit.github.io/tags/handshake/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>handshaking</title>
+      <link>https://yansigit.github.io/tags/handshaking/</link>
+      <pubDate>Thu, 17 Sep 2020 00:11:07 +0900</pubDate>
+      
+      <guid>https://yansigit.github.io/tags/handshaking/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>http</title>
+      <link>https://yansigit.github.io/tags/http/</link>
+      <pubDate>Thu, 17 Sep 2020 00:11:07 +0900</pubDate>
+      
+      <guid>https://yansigit.github.io/tags/http/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>multimedia</title>
+      <link>https://yansigit.github.io/tags/multimedia/</link>
+      <pubDate>Thu, 17 Sep 2020 00:11:07 +0900</pubDate>
+      
+      <guid>https://yansigit.github.io/tags/multimedia/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>network</title>
+      <link>https://yansigit.github.io/tags/network/</link>
+      <pubDate>Thu, 17 Sep 2020 00:11:07 +0900</pubDate>
+      
+      <guid>https://yansigit.github.io/tags/network/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>network-layers</title>
+      <link>https://yansigit.github.io/tags/network-layers/</link>
+      <pubDate>Thu, 17 Sep 2020 00:11:07 +0900</pubDate>
+      
+      <guid>https://yansigit.github.io/tags/network-layers/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>networking</title>
+      <link>https://yansigit.github.io/tags/networking/</link>
+      <pubDate>Thu, 17 Sep 2020 00:11:07 +0900</pubDate>
+      
+      <guid>https://yansigit.github.io/tags/networking/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>p2p</title>
+      <link>https://yansigit.github.io/tags/p2p/</link>
+      <pubDate>Thu, 17 Sep 2020 00:11:07 +0900</pubDate>
+      
+      <guid>https://yansigit.github.io/tags/p2p/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>pipelined-protocol</title>
+      <link>https://yansigit.github.io/tags/pipelined-protocol/</link>
+      <pubDate>Thu, 17 Sep 2020 00:11:07 +0900</pubDate>
+      
+      <guid>https://yansigit.github.io/tags/pipelined-protocol/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>rdt</title>
+      <link>https://yansigit.github.io/tags/rdt/</link>
+      <pubDate>Thu, 17 Sep 2020 00:11:07 +0900</pubDate>
+      
+      <guid>https://yansigit.github.io/tags/rdt/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>sip</title>
+      <link>https://yansigit.github.io/tags/sip/</link>
+      <pubDate>Thu, 17 Sep 2020 00:11:07 +0900</pubDate>
+      
+      <guid>https://yansigit.github.io/tags/sip/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>socket</title>
+      <link>https://yansigit.github.io/tags/socket/</link>
+      <pubDate>Thu, 17 Sep 2020 00:11:07 +0900</pubDate>
+      
+      <guid>https://yansigit.github.io/tags/socket/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>socket-networking</title>
+      <link>https://yansigit.github.io/tags/socket-networking/</link>
+      <pubDate>Thu, 17 Sep 2020 00:11:07 +0900</pubDate>
+      
+      <guid>https://yansigit.github.io/tags/socket-networking/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>tcp</title>
+      <link>https://yansigit.github.io/tags/tcp/</link>
+      <pubDate>Thu, 17 Sep 2020 00:11:07 +0900</pubDate>
+      
+      <guid>https://yansigit.github.io/tags/tcp/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>transport-layer</title>
+      <link>https://yansigit.github.io/tags/transport-layer/</link>
+      <pubDate>Thu, 17 Sep 2020 00:11:07 +0900</pubDate>
+      
+      <guid>https://yansigit.github.io/tags/transport-layer/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>udp</title>
+      <link>https://yansigit.github.io/tags/udp/</link>
+      <pubDate>Thu, 17 Sep 2020 00:11:07 +0900</pubDate>
+      
+      <guid>https://yansigit.github.io/tags/udp/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>voip</title>
+      <link>https://yansigit.github.io/tags/voip/</link>
+      <pubDate>Thu, 17 Sep 2020 00:11:07 +0900</pubDate>
+      
+      <guid>https://yansigit.github.io/tags/voip/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>db</title>
+      <link>https://yansigit.github.io/tags/db/</link>
+      <pubDate>Wed, 16 Sep 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://yansigit.github.io/tags/db/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>oracle</title>
+      <link>https://yansigit.github.io/tags/oracle/</link>
+      <pubDate>Wed, 16 Sep 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://yansigit.github.io/tags/oracle/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>oracle-db</title>
+      <link>https://yansigit.github.io/tags/oracle-db/</link>
+      <pubDate>Wed, 16 Sep 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://yansigit.github.io/tags/oracle-db/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>opencv</title>
+      <link>https://yansigit.github.io/tags/opencv/</link>
+      <pubDate>Wed, 16 Sep 2020 00:08:03 +0900</pubDate>
+      
+      <guid>https://yansigit.github.io/tags/opencv/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>matplotlib</title>
+      <link>https://yansigit.github.io/tags/matplotlib/</link>
+      <pubDate>Tue, 15 Sep 2020 23:50:14 +0900</pubDate>
+      
+      <guid>https://yansigit.github.io/tags/matplotlib/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>numpy</title>
+      <link>https://yansigit.github.io/tags/numpy/</link>
+      <pubDate>Tue, 15 Sep 2020 23:50:14 +0900</pubDate>
+      
+      <guid>https://yansigit.github.io/tags/numpy/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>react-native</title>
+      <link>https://yansigit.github.io/tags/react-native/</link>
+      <pubDate>Tue, 15 Sep 2020 23:31:39 +0900</pubDate>
+      
+      <guid>https://yansigit.github.io/tags/react-native/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>mac</title>
+      <link>https://yansigit.github.io/tags/mac/</link>
+      <pubDate>Thu, 20 Feb 2020 23:33:21 +0900</pubDate>
+      
+      <guid>https://yansigit.github.io/tags/mac/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>macos</title>
+      <link>https://yansigit.github.io/tags/macos/</link>
+      <pubDate>Thu, 20 Feb 2020 23:33:21 +0900</pubDate>
+      
+      <guid>https://yansigit.github.io/tags/macos/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>virtualbox</title>
+      <link>https://yansigit.github.io/tags/virtualbox/</link>
+      <pubDate>Thu, 20 Feb 2020 23:33:21 +0900</pubDate>
+      
+      <guid>https://yansigit.github.io/tags/virtualbox/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>windows</title>
+      <link>https://yansigit.github.io/tags/windows/</link>
+      <pubDate>Thu, 20 Feb 2020 23:33:21 +0900</pubDate>
+      
+      <guid>https://yansigit.github.io/tags/windows/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>hyper-v</title>
+      <link>https://yansigit.github.io/tags/hyper-v/</link>
+      <pubDate>Thu, 20 Feb 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://yansigit.github.io/tags/hyper-v/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>protocol</title>
+      <link>https://yansigit.github.io/tags/protocol/</link>
+      <pubDate>Sun, 16 Feb 2020 17:01:05 +0900</pubDate>
+      
+      <guid>https://yansigit.github.io/tags/protocol/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>algorithm test</title>
+      <link>https://yansigit.github.io/tags/algorithm-test/</link>
+      <pubDate>Mon, 10 Feb 2020 14:27:41 +0900</pubDate>
+      
+      <guid>https://yansigit.github.io/tags/algorithm-test/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>nil</title>
+      <link>https://yansigit.github.io/tags/nil/</link>
+      <pubDate>Sat, 08 Feb 2020 21:08:49 +0900</pubDate>
+      
+      <guid>https://yansigit.github.io/tags/nil/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>null</title>
+      <link>https://yansigit.github.io/tags/null/</link>
+      <pubDate>Sat, 08 Feb 2020 21:08:49 +0900</pubDate>
+      
+      <guid>https://yansigit.github.io/tags/null/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>mgm</title>
+      <link>https://yansigit.github.io/tags/mgm/</link>
+      <pubDate>Fri, 07 Feb 2020 22:40:26 +0900</pubDate>
+      
+      <guid>https://yansigit.github.io/tags/mgm/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>mongodb-driver</title>
+      <link>https://yansigit.github.io/tags/mongodb-driver/</link>
+      <pubDate>Fri, 07 Feb 2020 22:40:26 +0900</pubDate>
+      
+      <guid>https://yansigit.github.io/tags/mongodb-driver/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>odm</title>
+      <link>https://yansigit.github.io/tags/odm/</link>
+      <pubDate>Fri, 07 Feb 2020 22:40:26 +0900</pubDate>
+      
+      <guid>https://yansigit.github.io/tags/odm/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>database</title>
+      <link>https://yansigit.github.io/tags/database/</link>
+      <pubDate>Fri, 07 Feb 2020 22:40:13 +0900</pubDate>
+      
+      <guid>https://yansigit.github.io/tags/database/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>time</title>
+      <link>https://yansigit.github.io/tags/time/</link>
+      <pubDate>Thu, 06 Feb 2020 23:30:05 +0900</pubDate>
+      
+      <guid>https://yansigit.github.io/tags/time/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>markdown</title>
+      <link>https://yansigit.github.io/tags/markdown/</link>
+      <pubDate>Mon, 27 Jan 2020 22:09:09 +0900</pubDate>
+      
+      <guid>https://yansigit.github.io/tags/markdown/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>markdown editor</title>
+      <link>https://yansigit.github.io/tags/markdown-editor/</link>
+      <pubDate>Mon, 27 Jan 2020 22:09:09 +0900</pubDate>
+      
+      <guid>https://yansigit.github.io/tags/markdown-editor/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>hot-reload</title>
+      <link>https://yansigit.github.io/tags/hot-reload/</link>
+      <pubDate>Mon, 27 Jan 2020 19:47:58 +0900</pubDate>
+      
+      <guid>https://yansigit.github.io/tags/hot-reload/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>float</title>
+      <link>https://yansigit.github.io/tags/float/</link>
+      <pubDate>Fri, 24 Jan 2020 02:22:48 +0900</pubDate>
+      
+      <guid>https://yansigit.github.io/tags/float/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>floating point</title>
+      <link>https://yansigit.github.io/tags/floating-point/</link>
+      <pubDate>Fri, 24 Jan 2020 02:22:48 +0900</pubDate>
+      
+      <guid>https://yansigit.github.io/tags/floating-point/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>linux</title>
+      <link>https://yansigit.github.io/tags/linux/</link>
+      <pubDate>Wed, 22 Jan 2020 21:31:21 +0900</pubDate>
+      
+      <guid>https://yansigit.github.io/tags/linux/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>linux on android</title>
+      <link>https://yansigit.github.io/tags/linux-on-android/</link>
+      <pubDate>Wed, 22 Jan 2020 21:31:21 +0900</pubDate>
+      
+      <guid>https://yansigit.github.io/tags/linux-on-android/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>nexus5</title>
+      <link>https://yansigit.github.io/tags/nexus5/</link>
+      <pubDate>Wed, 22 Jan 2020 21:31:21 +0900</pubDate>
+      
+      <guid>https://yansigit.github.io/tags/nexus5/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>postmarketos</title>
+      <link>https://yansigit.github.io/tags/postmarketos/</link>
+      <pubDate>Wed, 22 Jan 2020 21:31:21 +0900</pubDate>
+      
+      <guid>https://yansigit.github.io/tags/postmarketos/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>cross-comfile</title>
+      <link>https://yansigit.github.io/tags/cross-comfile/</link>
+      <pubDate>Wed, 22 Jan 2020 21:16:37 +0900</pubDate>
+      
+      <guid>https://yansigit.github.io/tags/cross-comfile/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>make</title>
+      <link>https://yansigit.github.io/tags/make/</link>
+      <pubDate>Wed, 22 Jan 2020 21:16:37 +0900</pubDate>
+      
+      <guid>https://yansigit.github.io/tags/make/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>makefile</title>
+      <link>https://yansigit.github.io/tags/makefile/</link>
+      <pubDate>Wed, 22 Jan 2020 21:16:37 +0900</pubDate>
+      
+      <guid>https://yansigit.github.io/tags/makefile/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>gomodule</title>
+      <link>https://yansigit.github.io/tags/gomodule/</link>
+      <pubDate>Tue, 21 Jan 2020 01:50:58 +0900</pubDate>
+      
+      <guid>https://yansigit.github.io/tags/gomodule/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>index</title>
+      <link>https://yansigit.github.io/tags/index/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://yansigit.github.io/tags/index/</guid>
+      <description></description>
+    </item>
+    
+  </channel>
+</rss>

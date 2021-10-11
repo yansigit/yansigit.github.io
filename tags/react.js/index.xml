@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>react.js on Code like Feather</title>
+    <link>https://yansigit.github.io/tags/react.js/</link>
+    <description>Recent content in react.js on Code like Feather</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>ko-kr</language>
+    <lastBuildDate>Thu, 22 Apr 2021 17:55:28 +0800</lastBuildDate><atom:link href="https://yansigit.github.io/tags/react.js/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Baseball Winning Prediction with React based Website</title>
+      <link>https://yansigit.github.io/portfolio/baseball-winning-prediction/</link>
+      <pubDate>Thu, 22 Apr 2021 17:55:28 +0800</pubDate>
+      
+      <guid>https://yansigit.github.io/portfolio/baseball-winning-prediction/</guid>
+      <description>&lt;h2 id=&#34;stacks-being-used-in-this-project&#34;&gt;Stacks being used in this project&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;Python&lt;/li&gt;
+&lt;li&gt;Scikit-Learn&lt;/li&gt;
+&lt;li&gt;React&lt;/li&gt;
+&lt;li&gt;MongoDB&lt;/li&gt;
+&lt;li&gt;Golang&lt;/li&gt;
+&lt;li&gt;Vercel&lt;/li&gt;
+&lt;/ul&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

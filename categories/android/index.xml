@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>android on Code like Feather</title>
+    <link>https://yansigit.github.io/categories/android/</link>
+    <description>Recent content in android on Code like Feather</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>ko-kr</language>
+    <lastBuildDate>Tue, 15 Sep 2020 23:31:39 +0900</lastBuildDate><atom:link href="https://yansigit.github.io/categories/android/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Port Forwarding on Android Emulator</title>
+      <link>https://yansigit.github.io/blog/port-forwarding-on-android-emulator/</link>
+      <pubDate>Tue, 15 Sep 2020 23:31:39 +0900</pubDate>
+      
+      <guid>https://yansigit.github.io/blog/port-forwarding-on-android-emulator/</guid>
+      <description>&lt;h2 id=&#34;telnet으로-포트-열기&#34;&gt;Telnet으로 포트 열기&lt;/h2&gt;
+&lt;p&gt;&lt;a class=&#34;link&#34; href=&#34;https://developer.android.com/studio/run/emulator-networking?hl=ko&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;https://developer.android.com/studio/run/emulator-networking?hl=ko&lt;/a&gt;&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-powershell&#34; data-lang=&#34;powershell&#34;&gt;&lt;span class=&#34;n&#34;&gt;telnet&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;localhost&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;5554&lt;/span&gt; &lt;span class=&#34;c&#34;&gt;# putty에서는 raw로 연결&lt;/span&gt;
+&lt;span class=&#34;n&#34;&gt;add&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;protocol&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;&amp;gt;&lt;/span&gt;&lt;span class=&#34;err&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&#34;nb&#34;&gt;host-port&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;&amp;gt;&lt;/span&gt;&lt;span class=&#34;err&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&#34;nb&#34;&gt;guest-port&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;&amp;gt;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

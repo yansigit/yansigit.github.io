@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>잡담 on Code like Feather</title>
+    <link>https://yansigit.github.io/categories/%EC%9E%A1%EB%8B%B4/</link>
+    <description>Recent content in 잡담 on Code like Feather</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>ko-kr</language>
+    <lastBuildDate>Sun, 16 Feb 2020 17:01:05 +0900</lastBuildDate><atom:link href="https://yansigit.github.io/categories/%EC%9E%A1%EB%8B%B4/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>About Http/3</title>
+      <link>https://yansigit.github.io/blog/about-http/3/</link>
+      <pubDate>Sun, 16 Feb 2020 17:01:05 +0900</pubDate>
+      
+      <guid>https://yansigit.github.io/blog/about-http/3/</guid>
+      <description>&lt;p&gt;HTTP/2 나온지 얼마나 됬다고&amp;hellip;&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Markdown Editor Typora</title>
+      <link>https://yansigit.github.io/blog/markdown-editor-typora/</link>
+      <pubDate>Mon, 27 Jan 2020 22:09:09 +0900</pubDate>
+      
+      <guid>https://yansigit.github.io/blog/markdown-editor-typora/</guid>
+      <description>&lt;h1 id=&#34;markdown-editor&#34;&gt;Markdown Editor&lt;/h1&gt;
+&lt;p&gt;지금까지 블로그 글을 쓸 때, 나는 Webstorm의 마크다운 플러그인을 이용해 IDE에서 직접 써왔다.&lt;/p&gt;
+&lt;p&gt;마크다운 전용 에디터가 존재하는 것은 알고 있었지만 깔기도 귀찮았을 뿐더러 사용에 지장도 딱히 없다고 느꼈기 때문이다.&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

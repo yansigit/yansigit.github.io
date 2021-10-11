@@ -1,0 +1,713 @@
+<!DOCTYPE html>
+<html lang="ko-kr">
+    <head><meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content='RAID'><title>운영체제 - RAID</title>
+
+<link rel='canonical' href='https://yansigit.github.io/blog/%EC%9A%B4%EC%98%81%EC%B2%B4%EC%A0%9C-raid/'>
+
+<link rel="stylesheet" href="/scss/style.min.css"><meta property='og:title' content='운영체제 - RAID'>
+<meta property='og:description' content='RAID'>
+<meta property='og:url' content='https://yansigit.github.io/blog/%EC%9A%B4%EC%98%81%EC%B2%B4%EC%A0%9C-raid/'>
+<meta property='og:site_name' content='Code like Feather'>
+<meta property='og:type' content='article'><meta property='article:section' content='Posts' /><meta property='article:tag' content='os' /><meta property='article:tag' content='operation-system' /><meta property='article:published_time' content='2020-09-18T23:24:53&#43;09:00'/><meta property='article:modified_time' content='2020-09-18T23:24:53&#43;09:00'/><meta property='og:image' content='https://yansigit.github.io/images/lighthouse.jpg' />
+<meta name="twitter:title" content="운영체제 - RAID">
+<meta name="twitter:description" content="RAID"><meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content='https://yansigit.github.io/images/lighthouse.jpg' />
+    </head>
+    <body class="
+    article-page has-toc
+">
+    <script>
+        (function() {
+            const colorSchemeKey = 'StackColorScheme';
+            if(!localStorage.getItem(colorSchemeKey)){
+                localStorage.setItem(colorSchemeKey, "auto");
+            }
+        })();
+    </script><script>
+    (function() {
+        const colorSchemeKey = 'StackColorScheme';
+        const colorSchemeItem = localStorage.getItem(colorSchemeKey);
+        const supportDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches === true;
+
+        if (colorSchemeItem == 'dark' || colorSchemeItem === 'auto' && supportDarkMode) {
+            
+
+            document.documentElement.dataset.scheme = 'dark';
+        } else {
+            document.documentElement.dataset.scheme = 'light';
+        }
+    })();
+</script>
+<div class="container main-container flex 
+    
+        extended
+    
+">
+    
+        <div id="article-toolbar">
+            <a href="https://yansigit.github.io" class="back-home">
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-chevron-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <polyline points="15 6 9 12 15 18" />
+</svg>
+
+
+
+                <span>Back</span>
+            </a>
+        </div>
+    
+<main class="main full-width">
+    <article class="main-article">
+    <header class="article-header">
+
+    <div class="article-details">
+    
+    <header class="article-category">
+        
+            <a href="/categories/os/" >
+                os
+            </a>
+        
+    </header>
+    
+
+    <h2 class="article-title">
+        <a href="/blog/%EC%9A%B4%EC%98%81%EC%B2%B4%EC%A0%9C-raid/">운영체제 - RAID</a>
+    </h2>
+
+    
+    <h3 class="article-subtitle">
+        RAID
+    </h3>
+    
+
+    
+    <footer class="article-time">
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-calendar-time" width="56" height="56" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M11.795 21h-6.795a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v4" />
+  <circle cx="18" cy="18" r="4" />
+  <path d="M15 3v4" />
+  <path d="M7 3v4" />
+  <path d="M3 11h16" />
+  <path d="M18 16.496v1.504l1 1" />
+</svg>
+                <time class="article-time--published">Sep 18, 2020</time>
+            </div>
+        
+
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <polyline points="12 7 12 12 15 15" />
+</svg>
+
+
+
+                <time class="article-time--reading">
+                    3 minute read
+                </time>
+            </div>
+        
+    </footer>
+    
+</div>
+</header>
+
+    <section class="article-content">
+    <p>RAID</p>
+<h1 id="raid">RAID</h1>
+<h1 id="raid-1">RAID</h1>
+<h2 id="raid--array-of-independent-disks">RAID (. Array of Independent Disks)</h2>
+<ul>
+<li>디스크 장애 발생 시 이를 복구하는 시스템</li>
+<li>스트라이핑을 통한 입출력 속도 증가</li>
+<li>하나의 원본 디스크와 같은 크기의 디스크에 같은 내용을 동시에 저장
+<ul>
+<li>하나의 디스크가 고장나면 다른 디스크를 사용해 복구</li>
+</ul>
+</li>
+<li>RAID 0,1,10 외에 RAID 2,3,4,5,6,50,60 등이 있음</li>
+</ul>
+<h2 id="스트라이핑">스트라이핑</h2>
+<ul>
+<li>저장소를 스트립이라는 고정 크기 블록으로 나누어 데이터 저장
+<ul>
+<li>연속된 파일 스트립은 대체로 구별된 디스크에 배치</li>
+<li>파일에 대한 요청이 한 번에 여러 디스크를 사용해 이루어짐</li>
+<li>디스크 요청의 평균 크기를 고려해 결정</li>
+</ul>
+</li>
+<li>스트라이프 (.) : 디스크 배열의 각 디스크에서 동일한 위치에 있는 스트랩의 집합</li>
+</ul>
+<p><figure 
+	>
+	<a href="/posts/raid/Untitled.png" >
+		<img src="/posts/raid/Untitled.png"
+			
+			
+			
+			loading="lazy"
+			alt="image">
+	</a>
+	
+	<figcaption>image</figcaption>
+	
+</figure></p>
+<ul>
+<li>RAID 시 예를 들어 4개의 디스크를 사용해 400Bytes를 저장한다면
+<ul>
+<li>각 디스크에 100Bytes씩 한꺼번에 저장</li>
+<li>4배 속도 가능</li>
+</ul>
+</li>
+<li>스트립의 크기는 개발자, 시스템에 따라 가변적</li>
+</ul>
+<h2 id="raid-0">RAID 0</h2>
+<ul>
+<li>단순 스트라이핑</li>
+<li>같은 규격의 디스크를 병렬로 연결
+<ul>
+<li>여러 데이터를 여러 디스크에 동시에 저장하거나 가져옴
+<ul>
+<li>이론적으로는 입출력 속도가 디스크의 갯수에 따라 증가</li>
+</ul>
+</li>
+<li>복구 기능이 없음
+<ul>
+<li>장애가 발생하면 데이터를 잃음</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>레이드를 사용하면 디스크 하나만 고장나도 전체 데이터 손실이 일어날 수 있음
+<ul>
+<li>따라서 복구 기능없는 RAID 0은 잘 사용하지 않음</li>
+</ul>
+</li>
+</ul>
+<h2 id="raid-1-1">RAID 1</h2>
+<p><figure 
+	>
+	<a href="/posts/raid/Untitled.pngUntitled%201.png" >
+		<img src="/posts/raid/Untitled.pngUntitled%201.png"
+			
+			
+			
+			loading="lazy"
+			alt="image">
+	</a>
+	
+	<figcaption>image</figcaption>
+	
+</figure></p>
+<ul>
+<li>하나의 데이터를 2개의 디스크에 나누어 저장
+<ul>
+<li>장애 시 백업 디스크로 활용</li>
+</ul>
+</li>
+<li>데이터가 똑같이 여러 디스크에 복사됨</li>
+<li>같은 크기의 디스크를 최소 2개 이상 필요
+<ul>
+<li>짝수개의 디스크로 구성</li>
+</ul>
+</li>
+<li>저장하는 데이터와 같은 크기의 디스크가 하나 더 필요
+<ul>
+<li>비용이 증가</li>
+<li>다만 가장 안전함</li>
+</ul>
+</li>
+</ul>
+<h2 id="raid-2-비트-수준-해밍-ecc-패러티">RAID 2 (비트 수준 해밍 ECC 패러티)</h2>
+<p><figure 
+	>
+	<a href="/posts/raid/Untitled.pngUntitled%202.png" >
+		<img src="/posts/raid/Untitled.pngUntitled%202.png"
+			
+			
+			
+			loading="lazy"
+			alt="image">
+	</a>
+	
+	<figcaption>image</figcaption>
+	
+</figure></p>
+<ul>
+<li>오류 교정 코드 (.)를 따로 관리
+<ul>
+<li>ECC를 별도의 디스크에 따로 보관</li>
+<li>1101|101 등</li>
+<li>오류가 발생하면 이 코드를 이용해 디스크 복구</li>
+</ul>
+</li>
+<li>ECC 저장을 위한 추가 디스크를 필요로 함
+<ul>
+<li>RAID 1 보다는 작은 저장공간을 요구</li>
+<li>오류 교정 코드를 계산하는 데 많은 시간을 소비해 잘 사용하지는 않음</li>
+</ul>
+</li>
+<li>각 디스크에 비트 단위로 저장
+<ul>
+<li>보통 4비트를 교정하기 위한 코드는 3비트가 필요</li>
+</ul>
+</li>
+</ul>
+<h2 id="raid-3">RAID 3</h2>
+<p><figure 
+	>
+	<a href="/posts/raid/Untitled.pngUntitled%203.png" >
+		<img src="/posts/raid/Untitled.pngUntitled%203.png"
+			
+			
+			
+			loading="lazy"
+			alt="image">
+	</a>
+	
+	<figcaption>image</figcaption>
+	
+</figure></p>
+<ul>
+<li>오류 검출 패러리 이용 방식
+<ul>
+<li>오류 검출 패러티는 보통 1비트만을 사용
+<ul>
+<li>1101|1 등</li>
+<li>짝수, 홀수 오류 검출 패러티 등&hellip;</li>
+<li>RAID 2보다 작은 저장공간 요구</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>비트 혹은 바이트 수준에서 스프라이트 구성
+<ul>
+<li>데이터가 모든 디스크에 나누어 저장</li>
+</ul>
+</li>
+<li>검출만 하면 어떻게 오류를 복구 하냐?
+<ul>
+<li>디스크 컨트롤러를 통해 어느 디스크가 고장났는지 알 수 있음</li>
+<li>따라서 오류 검출만 하면 해당 디스크에 저장된 비트를 반전시켜 오류 복구 가능</li>
+</ul>
+</li>
+<li>RAID 2 보다는 적지만 코드 계산을 위한 오버헤드가 있음</li>
+</ul>
+<h2 id="raid-4">RAID 4</h2>
+<p><figure 
+	>
+	<a href="/posts/raid/Untitled.pngUntitled%204.png" >
+		<img src="/posts/raid/Untitled.pngUntitled%204.png"
+			
+			
+			
+			loading="lazy"
+			alt="image">
+	</a>
+	
+	<figcaption>image</figcaption>
+	
+</figure></p>
+<ul>
+<li>RAID 3과 유사하나 데이터를 블록 단위로 스트라이핑
+<ul>
+<li>RAID 3은 무조건 모든 디스크가 바빠야 하는데 그걸 해소하기 위함</li>
+<li>데이터가 저장되는 디스크와 패맅 비트가 저장되는 디스크만 동작</li>
+</ul>
+</li>
+</ul>
+<h2 id="raid-5">RAID 5</h2>
+<p><figure 
+	>
+	<a href="/posts/raid/Untitled.pngUntitled%205.png" >
+		<img src="/posts/raid/Untitled.pngUntitled%205.png"
+			
+			
+			
+			loading="lazy"
+			alt="image">
+	</a>
+	
+	<figcaption>image</figcaption>
+	
+</figure></p>
+<ul>
+<li>블록수준 분산 패리티</li>
+<li>패리티 비트를 하나의 디스크가 아니라 여러 디스크에 분산하여 보관함으로써 패리티 비트 디스크의 병목 현상을 완화
+<ul>
+<li>즉 RAID 4의 경우 데이터를 쓰면 무조건 Parity 디스크도 사용해야하기 때문에 해당 디스크 하나에 병목현상이 몰림</li>
+</ul>
+</li>
+<li>RAID 5의 경우 패리티 비트를 해당 데이터가 없는 디스크에 보관</li>
+<li>한 디스크에 장애가 발생하면 다른 디스크에 있는 패리티 비트를 이용하여 데이터를 복구할 수 있음</li>
+</ul>
+<h2 id="raid-6">RAID 6</h2>
+<p><figure 
+	>
+	<a href="/posts/raid/Untitled.pngUntitled%206.png" >
+		<img src="/posts/raid/Untitled.pngUntitled%206.png"
+			
+			
+			
+			loading="lazy"
+			alt="image">
+	</a>
+	
+	<figcaption>image</figcaption>
+	
+</figure></p>
+<ul>
+<li>RAID 5와 같은 방식이지만 패리티 비트가 2개여서 디스크 2개의 장애를 복구할 수 있음</li>
+<li>패리티 비트를 2개씩 운영하기 때문에 RAID 5보다 계산량이 많고 4개의 디스크당 2개의 추가 디스크가 필요하다는 단점이 있음</li>
+</ul>
+<h2 id="raid-10">RAID 10</h2>
+<p><figure 
+	>
+	<a href="/posts/raid/Untitled.pngUntitled%207.png" >
+		<img src="/posts/raid/Untitled.pngUntitled%207.png"
+			
+			
+			
+			loading="lazy"
+			alt="image">
+	</a>
+	
+	<figcaption>image</figcaption>
+	
+</figure></p>
+<ul>
+<li>미러링 기능을 가진 RAID 1과 빠른 데이터 전송이 가능한 RAID 0을 결합한 형태</li>
+<li>디스크를 RAID 0으로 먼저 묶으면 RAID 0+1이 되고, RAID 1로 먼저 묶으면 RAID 10이 됨</li>
+<li>RAID 0+1의 경우 장애가 발생했을 때 복구하기 위해 모든 디스크를 중단해야 하지만 RAID 10은 일부 디스크만 중단하여 복구할 수 있음</li>
+</ul>
+<h2 id="raid-50과-raid-60">RAID 50과 RAID 60</h2>
+<ul>
+<li>RAID 50 : RAID 5로 묶은 두 쌍을 다시 RAID 0으로 묶어 사용</li>
+<li>RAID 60 : RAID 6으로 묶은 두 쌍을 다시 RAID 0으로 묶어 사용</li>
+</ul>
+<p><figure 
+	>
+	<a href="/posts/raid/Untitled.pngUntitled%208.png" >
+		<img src="/posts/raid/Untitled.pngUntitled%208.png"
+			
+			
+			
+			loading="lazy"
+			alt="image">
+	</a>
+	
+	<figcaption>image</figcaption>
+	
+</figure></p>
+</section>
+
+
+    <footer class="article-footer">
+    
+    <section class="article-tags">
+        
+            <a href="/tags/os/">os</a>
+        
+            <a href="/tags/operation-system/">operation-system</a>
+        
+    </section>
+
+
+    
+    <section class="article-copyright">
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-copyright" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <path d="M14.5 9a3.5 4 0 1 0 0 6" />
+</svg>
+
+
+
+        <span>Licensed under CC BY-NC-SA 4.0</span>
+    </section>
+    </footer>
+
+
+    
+</article>
+
+    <aside class="related-contents--wrapper">
+    
+    
+        <h2 class="section-title">Related contents</h2>
+        <div class="related-contents">
+            <div class="flex article-list--tile">
+                
+                    
+<article class="">
+    <a href="/blog/%EC%9A%B4%EC%98%81%EC%B2%B4%EC%A0%9C-cpu/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">운영체제 - CPU</h2>
+        </div>
+    </a>
+</article>
+                
+                    
+<article class="">
+    <a href="/blog/%EC%9A%B4%EC%98%81%EC%B2%B4%EC%A0%9C-cpu-%EC%8A%A4%EC%BC%80%EC%A4%84%EB%A7%81/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">운영체제 - CPU 스케줄링</h2>
+        </div>
+    </a>
+</article>
+                
+                    
+<article class="">
+    <a href="/blog/%EC%9A%B4%EC%98%81%EC%B2%B4%EC%A0%9C-cpu-%EC%8A%A4%EC%BC%80%EC%A4%84%EB%A7%81-%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">운영체제 - CPU 스케줄링 알고리즘</h2>
+        </div>
+    </a>
+</article>
+                
+                    
+<article class="">
+    <a href="/blog/%EC%9A%B4%EC%98%81%EC%B2%B4%EC%A0%9C-%EA%B0%80%EC%83%81-%EB%A9%94%EB%AA%A8%EB%A6%AC/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">운영체제 - 가상 메모리</h2>
+        </div>
+    </a>
+</article>
+                
+                    
+<article class="">
+    <a href="/blog/%EC%9A%B4%EC%98%81%EC%B2%B4%EC%A0%9C-%EA%B0%80%EC%83%81%EB%A9%94%EB%AA%A8%EB%A6%AC-%EA%B4%80%EB%A6%AC/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">운영체제 - 가상메모리 관리</h2>
+        </div>
+    </a>
+</article>
+                
+            </div>
+        </div>
+    
+</aside>
+
+     
+    
+        
+    <script src="https://utteranc.es/client.js" 
+        repo="yansigit/yansigit.github.io"
+        issue-term="pathname"
+        
+        label="Utterances Comment"
+        
+        crossorigin="anonymous"
+        async
+        >
+</script>
+
+<style>
+    .utterances {
+        max-width: unset;
+    }
+</style>
+
+<script>
+    function setUtterancesTheme(theme) {
+        let utterances = document.querySelector('.utterances iframe');
+        if (utterances) {
+            utterances.contentWindow.postMessage(
+                {
+                    type: 'set-theme',
+                    theme: `github-${theme}`
+                },
+                'https://utteranc.es'
+            );
+        }
+    }
+
+    addEventListener('message', event => {
+        if (event.origin !== 'https://utteranc.es') return;
+        setUtterancesTheme(document.documentElement.dataset.scheme)
+    });
+
+    window.addEventListener('onColorSchemeChange', (e) => {
+        setUtterancesTheme(e.detail)
+    })
+</script>
+
+
+    
+
+    <footer class="site-footer">
+    <section class="copyright">
+        &copy; 
+        
+            2020 - 
+        
+        2021 Code like Feather
+    </section>
+    
+    <section class="powerby">
+        Built with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> <br />
+        Theme <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="3.2.0">Stack</a></b> designed by <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a>
+    </section>
+</footer>
+
+
+    
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    
+    <div class="pswp__bg"></div>
+
+    
+    <div class="pswp__scroll-wrap">
+
+        
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                
+                
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"integrity="sha256-ePwmChbbvXbsO02lbM3HoHbSHTHFAeChekF1xKJdleo="crossorigin="anonymous"
+                defer="true"
+                >
+            </script><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"integrity="sha256-UKkzOn/w1mBxRmLLGrSeyB4e1xbrp4xylgAWb3M42pU="crossorigin="anonymous"
+                defer="true"
+                >
+            </script><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.css"integrity="sha256-c0uckgykQ9v5k&#43;IqViZOZKc47Jn7KQil4/MP3ySA3F8="crossorigin="anonymous"
+            ><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.css"integrity="sha256-SBLU4vv6CA6lHsZ1XyTdhyjJxCjPif/TRkjnsyGAGnE="crossorigin="anonymous"
+            >
+
+            </main>
+    
+        <aside class="sidebar right-sidebar sticky">
+            <section class="widget archives">
+                <div class="widget-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-hash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <line x1="5" y1="9" x2="19" y2="9" />
+  <line x1="5" y1="15" x2="19" y2="15" />
+  <line x1="11" y1="4" x2="7" y2="20" />
+  <line x1="17" y1="4" x2="13" y2="20" />
+</svg>
+
+
+
+                </div>
+                <h2 class="widget-title section-title">Table of contents</h2>
+                
+                <div class="widget--toc">
+                    <nav id="TableOfContents">
+  <ol>
+    <li><a href="#raid--array-of-independent-disks">RAID (. Array of Independent Disks)</a></li>
+    <li><a href="#스트라이핑">스트라이핑</a></li>
+    <li><a href="#raid-0">RAID 0</a></li>
+    <li><a href="#raid-1-1">RAID 1</a></li>
+    <li><a href="#raid-2-비트-수준-해밍-ecc-패러티">RAID 2 (비트 수준 해밍 ECC 패러티)</a></li>
+    <li><a href="#raid-3">RAID 3</a></li>
+    <li><a href="#raid-4">RAID 4</a></li>
+    <li><a href="#raid-5">RAID 5</a></li>
+    <li><a href="#raid-6">RAID 6</a></li>
+    <li><a href="#raid-10">RAID 10</a></li>
+    <li><a href="#raid-50과-raid-60">RAID 50과 RAID 60</a></li>
+  </ol>
+</nav>
+                </div>
+            </section>
+        </aside>
+    
+
+        </div>
+        <script 
+                src="https://cdn.jsdelivr.net/npm/node-vibrant@3.1.5/dist/vibrant.min.js"integrity="sha256-5NovOZc4iwiAWTYIFiIM7DxKUXKWvpVEuMEPLzcm5/g="crossorigin="anonymous"
+                defer="false"
+                >
+            </script><script type="text/javascript" src="/ts/main.js" defer></script>
+<script>
+    (function () {
+        const customFont = document.createElement('link');
+        customFont.href = "https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap";
+
+        customFont.type = "text/css";
+        customFont.rel = "stylesheet";
+
+        document.head.appendChild(customFont);
+    }());
+</script>
+
+    </body>
+</html>

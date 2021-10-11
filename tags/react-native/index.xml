@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>react-native on Code like Feather</title>
+    <link>https://yansigit.github.io/tags/react-native/</link>
+    <description>Recent content in react-native on Code like Feather</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>ko-kr</language>
+    <lastBuildDate>Tue, 15 Sep 2020 23:31:39 +0900</lastBuildDate><atom:link href="https://yansigit.github.io/tags/react-native/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Port Forwarding on Android Emulator</title>
+      <link>https://yansigit.github.io/blog/port-forwarding-on-android-emulator/</link>
+      <pubDate>Tue, 15 Sep 2020 23:31:39 +0900</pubDate>
+      
+      <guid>https://yansigit.github.io/blog/port-forwarding-on-android-emulator/</guid>
+      <description>&lt;h2 id=&#34;telnet으로-포트-열기&#34;&gt;Telnet으로 포트 열기&lt;/h2&gt;
+&lt;p&gt;&lt;a class=&#34;link&#34; href=&#34;https://developer.android.com/studio/run/emulator-networking?hl=ko&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;https://developer.android.com/studio/run/emulator-networking?hl=ko&lt;/a&gt;&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-powershell&#34; data-lang=&#34;powershell&#34;&gt;&lt;span class=&#34;n&#34;&gt;telnet&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;localhost&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;5554&lt;/span&gt; &lt;span class=&#34;c&#34;&gt;# putty에서는 raw로 연결&lt;/span&gt;
+&lt;span class=&#34;n&#34;&gt;add&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;protocol&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;&amp;gt;&lt;/span&gt;&lt;span class=&#34;err&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&#34;nb&#34;&gt;host-port&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;&amp;gt;&lt;/span&gt;&lt;span class=&#34;err&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&#34;nb&#34;&gt;guest-port&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;&amp;gt;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;</description>
+    </item>
+    
+    <item>
+      <title>Setting React Native Environment Variable</title>
+      <link>https://yansigit.github.io/blog/setting-react-native-environment-variable/</link>
+      <pubDate>Tue, 15 Sep 2020 23:29:35 +0900</pubDate>
+      
+      <guid>https://yansigit.github.io/blog/setting-react-native-environment-variable/</guid>
+      <description>&lt;h2 id=&#34;맥의-경우&#34;&gt;맥의 경우&lt;/h2&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# .bash_profile 혹은 .zshrc 파일에 아래 내용 작성&lt;/span&gt;
+&lt;span class=&#34;nb&#34;&gt;export&lt;/span&gt; &lt;span class=&#34;nv&#34;&gt;ANDROID_HOME&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;nv&#34;&gt;$HOME&lt;/span&gt;/Library/Android/sdk
+&lt;span class=&#34;nb&#34;&gt;export&lt;/span&gt; &lt;span class=&#34;nv&#34;&gt;ANDROID_SDK_ROOT&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;nv&#34;&gt;$ANDROID_HOME&lt;/span&gt;
+&lt;span class=&#34;nb&#34;&gt;export&lt;/span&gt; &lt;span class=&#34;nv&#34;&gt;PATH&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;nv&#34;&gt;$PATH&lt;/span&gt;:&lt;span class=&#34;nv&#34;&gt;$ANDROID_HOME&lt;/span&gt;/emulator
+&lt;span class=&#34;nb&#34;&gt;export&lt;/span&gt; &lt;span class=&#34;nv&#34;&gt;PATH&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;nv&#34;&gt;$PATH&lt;/span&gt;:&lt;span class=&#34;nv&#34;&gt;$ANDROID_HOME&lt;/span&gt;/tools
+&lt;span class=&#34;nb&#34;&gt;export&lt;/span&gt; &lt;span class=&#34;nv&#34;&gt;PATH&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;nv&#34;&gt;$PATH&lt;/span&gt;:&lt;span class=&#34;nv&#34;&gt;$ANDROID_HOME&lt;/span&gt;/tools/bin
+&lt;span class=&#34;nb&#34;&gt;export&lt;/span&gt; &lt;span class=&#34;nv&#34;&gt;PATH&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;nv&#34;&gt;$PATH&lt;/span&gt;:&lt;span class=&#34;nv&#34;&gt;$ANDROID_HOME&lt;/span&gt;/platform-tools
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;</description>
+    </item>
+    
+    <item>
+      <title>React Native Simple Notes</title>
+      <link>https://yansigit.github.io/blog/react-native-simple-notes/</link>
+      <pubDate>Tue, 15 Sep 2020 23:24:53 +0900</pubDate>
+      
+      <guid>https://yansigit.github.io/blog/react-native-simple-notes/</guid>
+      <description>&lt;h2 id=&#34;컴포넌트-기본-구조&#34;&gt;컴포넌트 기본 구조&lt;/h2&gt;
+&lt;p&gt;&lt;code&gt;App.js&lt;/code&gt;&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-jsx&#34; data-lang=&#34;jsx&#34;&gt;&lt;span class=&#34;kr&#34;&gt;import&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;React&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;Component&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;}&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;from&lt;/span&gt; &lt;span class=&#34;s1&#34;&gt;&amp;#39;react&amp;#39;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+
+&lt;span class=&#34;c1&#34;&gt;// Hello Component (View)
+&lt;/span&gt;&lt;span class=&#34;c1&#34;&gt;// 이제 해당 컴포넌트는 JSX 내부에 &amp;lt;Hello /&amp;gt; 식으로 사용 가능
+&lt;/span&gt;&lt;span class=&#34;c1&#34;&gt;&lt;/span&gt;&lt;span class=&#34;kr&#34;&gt;class&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;Hello&lt;/span&gt; &lt;span class=&#34;kr&#34;&gt;extends&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;Component&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
+  &lt;span class=&#34;nx&#34;&gt;render&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;()&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
+    &lt;span class=&#34;k&#34;&gt;return&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;
+      &lt;span class=&#34;p&#34;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;h1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;&amp;gt;&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;hello&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;&lt;span class=&#34;k&#34;&gt;this&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;props&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;name&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;}&amp;lt;/&lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;h1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;&amp;gt;&lt;/span&gt;
+    &lt;span class=&#34;p&#34;&gt;);&lt;/span&gt;
+  &lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
+&lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
+
+&lt;span class=&#34;kr&#34;&gt;export&lt;/span&gt; &lt;span class=&#34;k&#34;&gt;default&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;Hello&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;</description>
+    </item>
+    
+    <item>
+      <title>React Native Quick Error Fixes</title>
+      <link>https://yansigit.github.io/blog/react-native-quick-error-fixes/</link>
+      <pubDate>Tue, 15 Sep 2020 22:56:51 +0900</pubDate>
+      
+      <guid>https://yansigit.github.io/blog/react-native-quick-error-fixes/</guid>
+      <description>&lt;h2 id=&#34;ios-향-빌드-시-체크사항&#34;&gt;iOS 향 빌드 시 체크사항&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;Xcode - 속성 - 컴포넌트에 iOS 시뮬레이터 깔려있는지 확인 (가상머신 이용 시)&lt;/li&gt;
+&lt;li&gt;Location 에서 Command Line Tools가 제대로 지정되어 있는지 확인
+&lt;ul&gt;
+&lt;li&gt;없을 시 Command Line Tools 설치 후 설정&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

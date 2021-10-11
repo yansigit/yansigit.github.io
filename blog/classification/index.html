@@ -1,0 +1,736 @@
+<!DOCTYPE html>
+<html lang="ko-kr">
+    <head><meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content='분류 알고리즘 정리'><title>Classification</title>
+
+<link rel='canonical' href='https://yansigit.github.io/blog/classification/'>
+
+<link rel="stylesheet" href="/scss/style.min.css"><meta property='og:title' content='Classification'>
+<meta property='og:description' content='분류 알고리즘 정리'>
+<meta property='og:url' content='https://yansigit.github.io/blog/classification/'>
+<meta property='og:site_name' content='Code like Feather'>
+<meta property='og:type' content='article'><meta property='article:section' content='Posts' /><meta property='article:tag' content='machine-learning' /><meta property='article:tag' content='deep-learning' /><meta property='article:tag' content='data-processing' /><meta property='article:tag' content='data-science' /><meta property='article:published_time' content='2021-07-07T00:04:34&#43;09:00'/><meta property='article:modified_time' content='2021-07-07T00:04:34&#43;09:00'/><meta property='og:image' content='https://yansigit.github.io/images/lighthouse.jpg' />
+<meta name="twitter:title" content="Classification">
+<meta name="twitter:description" content="분류 알고리즘 정리"><meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content='https://yansigit.github.io/images/lighthouse.jpg' />
+    </head>
+    <body class="
+    article-page has-toc
+">
+    <script>
+        (function() {
+            const colorSchemeKey = 'StackColorScheme';
+            if(!localStorage.getItem(colorSchemeKey)){
+                localStorage.setItem(colorSchemeKey, "auto");
+            }
+        })();
+    </script><script>
+    (function() {
+        const colorSchemeKey = 'StackColorScheme';
+        const colorSchemeItem = localStorage.getItem(colorSchemeKey);
+        const supportDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches === true;
+
+        if (colorSchemeItem == 'dark' || colorSchemeItem === 'auto' && supportDarkMode) {
+            
+
+            document.documentElement.dataset.scheme = 'dark';
+        } else {
+            document.documentElement.dataset.scheme = 'light';
+        }
+    })();
+</script>
+<div class="container main-container flex 
+    
+        extended
+    
+">
+    
+        <div id="article-toolbar">
+            <a href="https://yansigit.github.io" class="back-home">
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-chevron-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <polyline points="15 6 9 12 15 18" />
+</svg>
+
+
+
+                <span>Back</span>
+            </a>
+        </div>
+    
+<main class="main full-width">
+    <article class="main-article">
+    <header class="article-header">
+
+    <div class="article-details">
+    
+    <header class="article-category">
+        
+            <a href="/categories/machine-learning/" >
+                machine-learning
+            </a>
+        
+            <a href="/categories/deep-learning/" >
+                deep-learning
+            </a>
+        
+            <a href="/categories/data-science/" >
+                data-science
+            </a>
+        
+    </header>
+    
+
+    <h2 class="article-title">
+        <a href="/blog/classification/">Classification</a>
+    </h2>
+
+    
+    <h3 class="article-subtitle">
+        분류 알고리즘 정리
+    </h3>
+    
+
+    
+    <footer class="article-time">
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-calendar-time" width="56" height="56" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M11.795 21h-6.795a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v4" />
+  <circle cx="18" cy="18" r="4" />
+  <path d="M15 3v4" />
+  <path d="M7 3v4" />
+  <path d="M3 11h16" />
+  <path d="M18 16.496v1.504l1 1" />
+</svg>
+                <time class="article-time--published">Jul 07, 2021</time>
+            </div>
+        
+
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <polyline points="12 7 12 12 15 15" />
+</svg>
+
+
+
+                <time class="article-time--reading">
+                    2 minute read
+                </time>
+            </div>
+        
+    </footer>
+    
+</div>
+</header>
+
+    <section class="article-content">
+    <h1 id="classification">Classification</h1>
+<h2 id="naive-bayes-classification">Naive Bayes Classification</h2>
+<p>Bayes의 법칙에 기반해 사후확률을 이용해 분류</p>
+<h3 id="장점">장점</h3>
+<ul>
+<li>간단하고 빠르며 정확</li>
+<li>computation cost 작음 (빠름)</li>
+<li>큰 데이터셋에 적합</li>
+<li>연속형보다 이산형 데이터에서 성능 좋음</li>
+<li>Multiple class 예측을 위해서도 사용 가능</li>
+</ul>
+<h3 id="단점">단점</h3>
+<ul>
+<li>사건 간에 독립성이 있어야 함</li>
+</ul>
+<h2 id="logistic-regression-classification">Logistic Regression Classification</h2>
+<ul>
+<li>이진분류기</li>
+</ul>
+<p><figure 
+	>
+	<a href="/posts/supervised-learning/classification/Untitled.png" >
+		<img src="/posts/supervised-learning/classification/Untitled.png"
+			
+			
+			
+			loading="lazy"
+			alt="Classification/Untitled.png">
+	</a>
+	
+	<figcaption>Classification/Untitled.png</figcaption>
+	
+</figure></p>
+<ul>
+<li>
+<p>분류함수로 <code>Sigmoid</code> 함수 사용</p>
+</li>
+<li>
+<p>비용함수로 평균제곱오차 사용하지 않음</p>
+<p><figure 
+	>
+	<a href="/posts/supervised-learning/classification/Untitled%201.png" >
+		<img src="/posts/supervised-learning/classification/Untitled%201.png"
+			
+			
+			
+			loading="lazy"
+			alt="Classification/Untitled%201.png">
+	</a>
+	
+	<figcaption>Classification/Untitled%201.png</figcaption>
+	
+</figure></p>
+<ul>
+<li>위와같이 울퉁불퉁해서 글로벌 미니멈을 못찾음</li>
+<li>따라서 새로운 비용함수인 <code>크로스 엔트로피</code> 를 비용함수로 사용</li>
+</ul>
+</li>
+</ul>
+<h2 id="multinomal-regression-classification">Multinomal Regression Classification</h2>
+<ul>
+<li>종속변수가 범주형이면서 3개 이상의 범주를 가질때 적용
+<ul>
+<li>예) 대학교로 진학할 때 어떤 전공이 인기있는지</li>
+<li>사람들이 어떤 혈액형을 가지고 있는지</li>
+<li>모두 통계적인 분류</li>
+</ul>
+</li>
+<li>분류함수로 <code>Softmax</code> 함수 사용</li>
+</ul>
+<h2 id="k-nearest-neighbor-knn">K-nearest neighbor (KNN)</h2>
+<p><figure 
+	>
+	<a href="/posts/supervised-learning/classification/Untitled%202.png" >
+		<img src="/posts/supervised-learning/classification/Untitled%202.png"
+			
+			
+			
+			loading="lazy"
+			alt="Classification/Untitled%202.png">
+	</a>
+	
+	<figcaption>Classification/Untitled%202.png</figcaption>
+	
+</figure></p>
+<ul>
+<li>새로운 데이터를 입력받으면 가장 가까이 있는 것이 무엇이냐를 중심으로 새로운 데이터의 종류를 정해줌</li>
+<li>주변의 K개의 갯수를 보고 판단 → KNN이라고 부름
+<ul>
+<li>K → 주변의 데이터 갯수</li>
+</ul>
+</li>
+</ul>
+<h3 id="특징">특징</h3>
+<ul>
+<li>학습단계에서는 실질적인 학습이 일어나지 않고 데이터만 저장
+<ul>
+<li>학습데이터가 크면 메모리 문제</li>
+<li>게으른 학습 (Lazy learning)</li>
+</ul>
+</li>
+<li>새로운 데이터가 주어지면 저장된 데이터 이용해 학습
+<ul>
+<li>시간이 많이 걸림</li>
+</ul>
+</li>
+<li>데이터간의 거리 계산
+<ul>
+<li>수치데이터인 경우
+<ul>
+<li>유클리디언 거리</li>
+</ul>
+</li>
+<li>범주형 데이터가 포함된 경우
+<ul>
+<li>직접 개발</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>효율적인 근접 이웃 탐색
+<ul>
+<li>데이터의 갯수 많아지면 계산시간 증가 문제</li>
+<li>색인 자료구조 사용
+<ul>
+<li>R-트리, K-D 트리 등</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="최근접-k개로부터-결과를-추정하는-방법">최근접 K개로부터 결과를 추정하는 방법</h3>
+<ul>
+<li>분류
+<ul>
+<li>출력이 범주형 값</li>
+<li><strong>다수결 투표</strong>: 개수가 많은 범주 선택</li>
+</ul>
+</li>
+<li>회귀분석
+<ul>
+<li>출력이 수치형 값</li>
+<li>평균: 최근접 K개의 평균값</li>
+<li><strong>가중합 (Weighted Sum)</strong>: 거리에 반비례하는 가중치 사용</li>
+</ul>
+</li>
+</ul>
+<h2 id="support-vector-machine-svm">Support Vector Machine (SVM)</h2>
+<p><figure 
+	>
+	<a href="/posts/supervised-learning/classification/Untitled%203.png" >
+		<img src="/posts/supervised-learning/classification/Untitled%203.png"
+			
+			
+			
+			loading="lazy"
+			alt="Classification/Untitled%203.png">
+	</a>
+	
+	<figcaption>Classification/Untitled%203.png</figcaption>
+	
+</figure></p>
+<ul>
+<li>이진분류기</li>
+<li><code>**초평면**</code>: 분류하는 선</li>
+<li>분류 오차를 줄이면서 동시에 <strong>margin</strong>을 최대로 하는 **<code>Decision Boundary</code>**를 찾음</li>
+<li><strong>margin</strong>: 결정 경계과 가장 가까이에 있는 학습 데이터까지의 거리</li>
+<li>**<code>서포트**벡터</code>: Decision Boundary로부터 가장 가까이에 있는 학습 데이터들</li>
+</ul>
+<h3 id="제약조건-최적화">제약조건 최적화</h3>
+<ul>
+<li>라그랑주 함수 사용</li>
+</ul>
+<h3 id="선형-분리불가-문제의-svm">선형 분리불가 문제의 SVM</h3>
+<ul>
+<li><strong>슬랙변수</strong></li>
+</ul>
+<h3 id="선형-svm">선형 SVM</h3>
+<p><figure 
+	>
+	<a href="/posts/supervised-learning/classification/Untitled%204.png" >
+		<img src="/posts/supervised-learning/classification/Untitled%204.png"
+			
+			
+			
+			loading="lazy"
+			alt="Classification/Untitled%204.png">
+	</a>
+	
+	<figcaption>Classification/Untitled%204.png</figcaption>
+	
+</figure></p>
+<ul>
+<li>선형인 초평면으로 공간 분할</li>
+<li>슬랙변수를 도입하더라도 한계</li>
+</ul>
+<h3 id="데이터의-고차원-사상">데이터의 고차원 사상</h3>
+<p><figure 
+	>
+	<a href="/posts/supervised-learning/classification/Untitled%205.png" >
+		<img src="/posts/supervised-learning/classification/Untitled%205.png"
+			
+			
+			
+			loading="lazy"
+			alt="Classification/Untitled%205.png">
+	</a>
+	
+	<figcaption>Classification/Untitled%205.png</figcaption>
+	
+</figure></p>
+<ul>
+<li>데이터를 고차원의 사상하면 선형 분리 가능</li>
+<li>XOR 문제</li>
+</ul>
+<h2 id="고차원-변환의-문제점">고차원 변환의 문제점</h2>
+<ul>
+<li>차원의 저주 (<code>Curse of Dimensionality</code>) 문제 발생
+<ul>
+<li>학습 데이터가 차원의 수보다 적어져 성능이 저하되는 형상</li>
+</ul>
+</li>
+<li>테스트 데이터에 대한 일반화 (Generalization) 능력 저하 가능
+<ul>
+<li>Margin  최대화를 통해 일반화 능력 유지</li>
+</ul>
+</li>
+<li>계산 비용 증가
+<ul>
+<li>Kerenl Trick 사용으로 해결</li>
+</ul>
+</li>
+</ul>
+<h2 id="kernel-trick">Kernel Trick</h2>
+<ul>
+<li>고차원으로 변환하여 계산하지 않고, 원래 데이터에서 계산</li>
+<li>커널 함수 이용
+<ul>
+<li>다항식 커널 (Polynomial Kernel)</li>
+<li>RBF 커널</li>
+<li>쌍곡 탄젠트 커널 (Hyperbolic Tangent)</li>
+</ul>
+</li>
+</ul>
+<h2 id="비선형-svm에-의한-결정-경계-및-서포트-벡터">비선형 SVM에 의한 결정 경계 및 서포트 벡터</h2>
+<p><figure 
+	>
+	<a href="/posts/supervised-learning/classification/Untitled%206.png" >
+		<img src="/posts/supervised-learning/classification/Untitled%206.png"
+			
+			
+			
+			loading="lazy"
+			alt="Classification/Untitled%206.png">
+	</a>
+	
+	<figcaption>Classification/Untitled%206.png</figcaption>
+	
+</figure></p>
+<h1 id="multiclass-classification">Multiclass Classification</h1>
+<ul>
+<li>2개 이상의 Classes를 분류</li>
+</ul>
+<h3 id="직접-분류">직접 분류</h3>
+<ul>
+<li>Random Forest</li>
+<li>Naive Bayes</li>
+</ul>
+<h3 id="2진-분류-이용">2진 분류 이용</h3>
+<ul>
+<li>SVM</li>
+<li>Linear</li>
+<li>Logistic Regression</li>
+</ul>
+</section>
+
+
+    <footer class="article-footer">
+    
+    <section class="article-tags">
+        
+            <a href="/tags/machine-learning/">machine-learning</a>
+        
+            <a href="/tags/deep-learning/">deep-learning</a>
+        
+            <a href="/tags/data-processing/">data-processing</a>
+        
+            <a href="/tags/data-science/">data-science</a>
+        
+    </section>
+
+
+    
+    <section class="article-copyright">
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-copyright" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <path d="M14.5 9a3.5 4 0 1 0 0 6" />
+</svg>
+
+
+
+        <span>Licensed under CC BY-NC-SA 4.0</span>
+    </section>
+    </footer>
+
+
+    
+</article>
+
+    <aside class="related-contents--wrapper">
+    
+    
+        <h2 class="section-title">Related contents</h2>
+        <div class="related-contents">
+            <div class="flex article-list--tile">
+                
+                    
+<article class="">
+    <a href="/blog/clustering-%EA%B5%B0%EC%A7%91%ED%99%94/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">Clustering (군집화)</h2>
+        </div>
+    </a>
+</article>
+                
+                    
+<article class="">
+    <a href="/blog/data-processing/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">Data Processing</h2>
+        </div>
+    </a>
+</article>
+                
+                    
+<article class="">
+    <a href="/blog/deep-neural-network/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">Deep Neural Network</h2>
+        </div>
+    </a>
+</article>
+                
+                    
+<article class="">
+    <a href="/blog/dicision-tree/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">Dicision Tree</h2>
+        </div>
+    </a>
+</article>
+                
+                    
+<article class="">
+    <a href="/blog/dimensionality-reduction-%EC%B0%A8%EC%9B%90%EC%B6%95%EC%86%8C/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">Dimensionality Reduction (차원축소)</h2>
+        </div>
+    </a>
+</article>
+                
+            </div>
+        </div>
+    
+</aside>
+
+     
+    
+        
+    <script src="https://utteranc.es/client.js" 
+        repo="yansigit/yansigit.github.io"
+        issue-term="pathname"
+        
+        label="Utterances Comment"
+        
+        crossorigin="anonymous"
+        async
+        >
+</script>
+
+<style>
+    .utterances {
+        max-width: unset;
+    }
+</style>
+
+<script>
+    function setUtterancesTheme(theme) {
+        let utterances = document.querySelector('.utterances iframe');
+        if (utterances) {
+            utterances.contentWindow.postMessage(
+                {
+                    type: 'set-theme',
+                    theme: `github-${theme}`
+                },
+                'https://utteranc.es'
+            );
+        }
+    }
+
+    addEventListener('message', event => {
+        if (event.origin !== 'https://utteranc.es') return;
+        setUtterancesTheme(document.documentElement.dataset.scheme)
+    });
+
+    window.addEventListener('onColorSchemeChange', (e) => {
+        setUtterancesTheme(e.detail)
+    })
+</script>
+
+
+    
+
+    <footer class="site-footer">
+    <section class="copyright">
+        &copy; 
+        
+            2020 - 
+        
+        2021 Code like Feather
+    </section>
+    
+    <section class="powerby">
+        Built with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> <br />
+        Theme <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="3.2.0">Stack</a></b> designed by <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a>
+    </section>
+</footer>
+
+
+    
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    
+    <div class="pswp__bg"></div>
+
+    
+    <div class="pswp__scroll-wrap">
+
+        
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                
+                
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"integrity="sha256-ePwmChbbvXbsO02lbM3HoHbSHTHFAeChekF1xKJdleo="crossorigin="anonymous"
+                defer="true"
+                >
+            </script><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"integrity="sha256-UKkzOn/w1mBxRmLLGrSeyB4e1xbrp4xylgAWb3M42pU="crossorigin="anonymous"
+                defer="true"
+                >
+            </script><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.css"integrity="sha256-c0uckgykQ9v5k&#43;IqViZOZKc47Jn7KQil4/MP3ySA3F8="crossorigin="anonymous"
+            ><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.css"integrity="sha256-SBLU4vv6CA6lHsZ1XyTdhyjJxCjPif/TRkjnsyGAGnE="crossorigin="anonymous"
+            >
+
+            </main>
+    
+        <aside class="sidebar right-sidebar sticky">
+            <section class="widget archives">
+                <div class="widget-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-hash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <line x1="5" y1="9" x2="19" y2="9" />
+  <line x1="5" y1="15" x2="19" y2="15" />
+  <line x1="11" y1="4" x2="7" y2="20" />
+  <line x1="17" y1="4" x2="13" y2="20" />
+</svg>
+
+
+
+                </div>
+                <h2 class="widget-title section-title">Table of contents</h2>
+                
+                <div class="widget--toc">
+                    <nav id="TableOfContents">
+  <ol>
+    <li><a href="#naive-bayes-classification">Naive Bayes Classification</a>
+      <ol>
+        <li><a href="#장점">장점</a></li>
+        <li><a href="#단점">단점</a></li>
+      </ol>
+    </li>
+    <li><a href="#logistic-regression-classification">Logistic Regression Classification</a></li>
+    <li><a href="#multinomal-regression-classification">Multinomal Regression Classification</a></li>
+    <li><a href="#k-nearest-neighbor-knn">K-nearest neighbor (KNN)</a>
+      <ol>
+        <li><a href="#특징">특징</a></li>
+        <li><a href="#최근접-k개로부터-결과를-추정하는-방법">최근접 K개로부터 결과를 추정하는 방법</a></li>
+      </ol>
+    </li>
+    <li><a href="#support-vector-machine-svm">Support Vector Machine (SVM)</a>
+      <ol>
+        <li><a href="#제약조건-최적화">제약조건 최적화</a></li>
+        <li><a href="#선형-분리불가-문제의-svm">선형 분리불가 문제의 SVM</a></li>
+        <li><a href="#선형-svm">선형 SVM</a></li>
+        <li><a href="#데이터의-고차원-사상">데이터의 고차원 사상</a></li>
+      </ol>
+    </li>
+    <li><a href="#고차원-변환의-문제점">고차원 변환의 문제점</a></li>
+    <li><a href="#kernel-trick">Kernel Trick</a></li>
+    <li><a href="#비선형-svm에-의한-결정-경계-및-서포트-벡터">비선형 SVM에 의한 결정 경계 및 서포트 벡터</a></li>
+  </ol>
+
+  <ol>
+    <li>
+      <ol>
+        <li><a href="#직접-분류">직접 분류</a></li>
+        <li><a href="#2진-분류-이용">2진 분류 이용</a></li>
+      </ol>
+    </li>
+  </ol>
+</nav>
+                </div>
+            </section>
+        </aside>
+    
+
+        </div>
+        <script 
+                src="https://cdn.jsdelivr.net/npm/node-vibrant@3.1.5/dist/vibrant.min.js"integrity="sha256-5NovOZc4iwiAWTYIFiIM7DxKUXKWvpVEuMEPLzcm5/g="crossorigin="anonymous"
+                defer="false"
+                >
+            </script><script type="text/javascript" src="/ts/main.js" defer></script>
+<script>
+    (function () {
+        const customFont = document.createElement('link');
+        customFont.href = "https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap";
+
+        customFont.type = "text/css";
+        customFont.rel = "stylesheet";
+
+        document.head.appendChild(customFont);
+    }());
+</script>
+
+    </body>
+</html>

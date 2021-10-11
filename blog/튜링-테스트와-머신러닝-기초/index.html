@@ -1,0 +1,507 @@
+<!DOCTYPE html>
+<html lang="ko-kr">
+    <head><meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content='튜링 테스트와 머신러닝'><title>튜링 테스트와 머신러닝 기초</title>
+
+<link rel='canonical' href='https://yansigit.github.io/blog/%ED%8A%9C%EB%A7%81-%ED%85%8C%EC%8A%A4%ED%8A%B8%EC%99%80-%EB%A8%B8%EC%8B%A0%EB%9F%AC%EB%8B%9D-%EA%B8%B0%EC%B4%88/'>
+
+<link rel="stylesheet" href="/scss/style.min.css"><meta property='og:title' content='튜링 테스트와 머신러닝 기초'>
+<meta property='og:description' content='튜링 테스트와 머신러닝'>
+<meta property='og:url' content='https://yansigit.github.io/blog/%ED%8A%9C%EB%A7%81-%ED%85%8C%EC%8A%A4%ED%8A%B8%EC%99%80-%EB%A8%B8%EC%8B%A0%EB%9F%AC%EB%8B%9D-%EA%B8%B0%EC%B4%88/'>
+<meta property='og:site_name' content='Code like Feather'>
+<meta property='og:type' content='article'><meta property='article:section' content='Posts' /><meta property='article:tag' content='machine-learning' /><meta property='article:tag' content='deep-learning' /><meta property='article:tag' content='data-processing' /><meta property='article:tag' content='data-science' /><meta property='article:published_time' content='2021-07-07T00:04:34&#43;09:00'/><meta property='article:modified_time' content='2021-07-07T00:04:34&#43;09:00'/><meta property='og:image' content='https://yansigit.github.io/images/lighthouse.jpg' />
+<meta name="twitter:title" content="튜링 테스트와 머신러닝 기초">
+<meta name="twitter:description" content="튜링 테스트와 머신러닝"><meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content='https://yansigit.github.io/images/lighthouse.jpg' />
+    </head>
+    <body class="
+    article-page has-toc
+">
+    <script>
+        (function() {
+            const colorSchemeKey = 'StackColorScheme';
+            if(!localStorage.getItem(colorSchemeKey)){
+                localStorage.setItem(colorSchemeKey, "auto");
+            }
+        })();
+    </script><script>
+    (function() {
+        const colorSchemeKey = 'StackColorScheme';
+        const colorSchemeItem = localStorage.getItem(colorSchemeKey);
+        const supportDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches === true;
+
+        if (colorSchemeItem == 'dark' || colorSchemeItem === 'auto' && supportDarkMode) {
+            
+
+            document.documentElement.dataset.scheme = 'dark';
+        } else {
+            document.documentElement.dataset.scheme = 'light';
+        }
+    })();
+</script>
+<div class="container main-container flex 
+    
+        extended
+    
+">
+    
+        <div id="article-toolbar">
+            <a href="https://yansigit.github.io" class="back-home">
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-chevron-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <polyline points="15 6 9 12 15 18" />
+</svg>
+
+
+
+                <span>Back</span>
+            </a>
+        </div>
+    
+<main class="main full-width">
+    <article class="main-article">
+    <header class="article-header">
+
+    <div class="article-details">
+    
+    <header class="article-category">
+        
+            <a href="/categories/machine-learning/" >
+                machine-learning
+            </a>
+        
+            <a href="/categories/deep-learning/" >
+                deep-learning
+            </a>
+        
+            <a href="/categories/data-science/" >
+                data-science
+            </a>
+        
+    </header>
+    
+
+    <h2 class="article-title">
+        <a href="/blog/%ED%8A%9C%EB%A7%81-%ED%85%8C%EC%8A%A4%ED%8A%B8%EC%99%80-%EB%A8%B8%EC%8B%A0%EB%9F%AC%EB%8B%9D-%EA%B8%B0%EC%B4%88/">튜링 테스트와 머신러닝 기초</a>
+    </h2>
+
+    
+    <h3 class="article-subtitle">
+        튜링 테스트와 머신러닝
+    </h3>
+    
+
+    
+    <footer class="article-time">
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-calendar-time" width="56" height="56" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M11.795 21h-6.795a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v4" />
+  <circle cx="18" cy="18" r="4" />
+  <path d="M15 3v4" />
+  <path d="M7 3v4" />
+  <path d="M3 11h16" />
+  <path d="M18 16.496v1.504l1 1" />
+</svg>
+                <time class="article-time--published">Jul 07, 2021</time>
+            </div>
+        
+
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <polyline points="12 7 12 12 15 15" />
+</svg>
+
+
+
+                <time class="article-time--reading">
+                    2 minute read
+                </time>
+            </div>
+        
+    </footer>
+    
+</div>
+</header>
+
+    <section class="article-content">
+    <h1 id="튜링-테스트와-기초">튜링 테스트와 기초</h1>
+<h2 id="1-튜링테스트란-무엇인가">1. 튜링테스트란 무엇인가?</h2>
+<ul>
+<li>기계에 지능이 있는지를 인간과의 대화 수준으로 판단하고자 하는 시험입니다.</li>
+<li>1950년 엘런 튜링이 제안하여 튜링테스트라 명명되었습니다.</li>
+<li>응답은 키보드로만 이루어지고, 둘 중 어느쪽이 컴퓨터인지 판별할 수 없다면 시험 통과</li>
+</ul>
+<h2 id="중국인방실험은-무엇인가">중국인방실험은 무엇인가?</h2>
+<ul>
+<li>튜링테스트에 의문을 제기하고자 설계된 시험</li>
+<li>중국어를 모르는 사람이 들어있는 방에 중국어 질문들과 이에 따른 답변을 적은 종이를 준다면 중국어를 모르는 사람이더라도, 컴퓨터로 따지자면 사람의 말을 모르는 기계라도 소통이 가능하다는 맹점을 지적한 실험입니다.</li>
+</ul>
+<h2 id="2-인공지능의-두번의-겨울의-이유와-극복">2. 인공지능의 두번의 겨울의 이유와 극복</h2>
+<h3 id="첫번째-겨울">첫번째 겨울</h3>
+<ul>
+<li>인공지능의 첫번째 겨울은 70년대에 왔습니다.</li>
+<li>이전의 많은 기대치에 비해 좋은 성적을 거두지 못한 AI연구는 동력과 투자를 잃고 내려앉게 됩니다.</li>
+<li>신경망 이론 또한 세찬 비난을 받고 묻히게 됩니다.</li>
+</ul>
+<h3 id="첫번째-겨울-극복">첫번째 겨울 극복</h3>
+<ul>
+<li>그러나 80년대 &lsquo;전문가 시스템&rsquo;이 대두되며 일본을 필두로 다시 AI에 투자를 시작하게 됩니다.</li>
+<li>신경망 이론 또한 역전파 등 새로운 방법을 통해 사장 직전이었던 신경망 이론을 다시금 발전시킵니다.</li>
+</ul>
+<h3 id="인공지능의-두번째-겨울">인공지능의 두번째 겨울</h3>
+<ul>
+<li>인공지능의 두번째 겨울은 80년대 말에 다시 옵니다.</li>
+<li>데스크탑 컴퓨터들이 발전으로 인한 겨울
+<ul>
+<li>굳이 비싼 AI 전문가 시스템인 XCON을 살 이유가 없어짐</li>
+<li>AI 하드웨어 시장이 갑자기 무너진 것입니다</li>
+<li>또한 전문가 시스템의 경우 특별한 경우에만 유용한 반면 데스크탑은 범용성이 뛰어나 어느 작업이든 가능했습니다.</li>
+</ul>
+</li>
+</ul>
+<h3 id="두번째-겨울-극복">두번째 겨울 극복</h3>
+<ul>
+<li>2010년대 말, 알파고를 위시한 AI산업이 대두되며 AI 시장이 다시금 화려하게 부활하게 되었습니다.</li>
+</ul>
+<h2 id="3-인공지능-기계학습-딥러닝">3. 인공지능, 기계학습, 딥러닝</h2>
+<h3 id="인공지능">인공지능</h3>
+<ul>
+<li>인공지능, 즉 AI란 인간이 지닌 지적 능력을 인공적으로 구현한 것을 말합니다.</li>
+</ul>
+<h3 id="기계학습">기계학습</h3>
+<ul>
+<li>기계 학습은 기본적인 규칙만 주어진 상태에서 입력받은 정보를 활용해 스스로 학습하는 것입니다.</li>
+</ul>
+<h3 id="딥러닝">딥러닝</h3>
+<ul>
+<li>딥러닝은 입력과 출력 사이에 있는 인공 뉴런들을 여러개 쌓고 연결한 인공신경망 기법을 다룬 연구입니다.</li>
+<li>인공지능 구현에는 여러가지 방법이 있는데, 기계 학습이 그 중 하나이고, 기계 학습 구현에 딥러닝이 사용될 수 있다고 간단히 정의할 수 있습니다.</li>
+</ul>
+<h2 id="4-외국어를-번역하는-것은-지금도-어려운-문제이다-왜-번역문제가-어려운가-딥러닝을-이용한-번역은-왜-성능이-좋은가">4. 외국어를 번역하는 것은 지금도 어려운 문제이다. 왜 번역문제가 어려운가? 딥러닝을 이용한 번역은 왜 성능이 좋은가?</h2>
+<ul>
+<li>자연 언어의 경우 컴퓨터에게 이를 이해시키는 것은 힘듭니다.</li>
+<li>특히 뉘앙스의 차이나, 줄임말, 문학에서의 시적 허용 등..</li>
+<li>따라서 1대 1 대응으로 번역을 하게 되면 과도하게 딱딱하거나 엉뚱한 번역이 되어버립니다.</li>
+<li>딥러닝을 사용하면 해당 용례에 따른 답변을 제시받아 스스로 학습</li>
+<li>뉘앙스나 줄임말의 경우도 어느정도의 정확도로 컴퓨터에게도 추측이 가능하기에 기존의 1대1 대응 방식보다 성능이 좋게 됩니다.</li>
+</ul>
+</section>
+
+
+    <footer class="article-footer">
+    
+    <section class="article-tags">
+        
+            <a href="/tags/machine-learning/">machine-learning</a>
+        
+            <a href="/tags/deep-learning/">deep-learning</a>
+        
+            <a href="/tags/data-processing/">data-processing</a>
+        
+            <a href="/tags/data-science/">data-science</a>
+        
+    </section>
+
+
+    
+    <section class="article-copyright">
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-copyright" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <path d="M14.5 9a3.5 4 0 1 0 0 6" />
+</svg>
+
+
+
+        <span>Licensed under CC BY-NC-SA 4.0</span>
+    </section>
+    </footer>
+
+
+    
+</article>
+
+    <aside class="related-contents--wrapper">
+    
+    
+        <h2 class="section-title">Related contents</h2>
+        <div class="related-contents">
+            <div class="flex article-list--tile">
+                
+                    
+<article class="">
+    <a href="/blog/classification/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">Classification</h2>
+        </div>
+    </a>
+</article>
+                
+                    
+<article class="">
+    <a href="/blog/clustering-%EA%B5%B0%EC%A7%91%ED%99%94/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">Clustering (군집화)</h2>
+        </div>
+    </a>
+</article>
+                
+                    
+<article class="">
+    <a href="/blog/data-processing/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">Data Processing</h2>
+        </div>
+    </a>
+</article>
+                
+                    
+<article class="">
+    <a href="/blog/deep-neural-network/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">Deep Neural Network</h2>
+        </div>
+    </a>
+</article>
+                
+                    
+<article class="">
+    <a href="/blog/dicision-tree/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">Dicision Tree</h2>
+        </div>
+    </a>
+</article>
+                
+            </div>
+        </div>
+    
+</aside>
+
+     
+    
+        
+    <script src="https://utteranc.es/client.js" 
+        repo="yansigit/yansigit.github.io"
+        issue-term="pathname"
+        
+        label="Utterances Comment"
+        
+        crossorigin="anonymous"
+        async
+        >
+</script>
+
+<style>
+    .utterances {
+        max-width: unset;
+    }
+</style>
+
+<script>
+    function setUtterancesTheme(theme) {
+        let utterances = document.querySelector('.utterances iframe');
+        if (utterances) {
+            utterances.contentWindow.postMessage(
+                {
+                    type: 'set-theme',
+                    theme: `github-${theme}`
+                },
+                'https://utteranc.es'
+            );
+        }
+    }
+
+    addEventListener('message', event => {
+        if (event.origin !== 'https://utteranc.es') return;
+        setUtterancesTheme(document.documentElement.dataset.scheme)
+    });
+
+    window.addEventListener('onColorSchemeChange', (e) => {
+        setUtterancesTheme(e.detail)
+    })
+</script>
+
+
+    
+
+    <footer class="site-footer">
+    <section class="copyright">
+        &copy; 
+        
+            2020 - 
+        
+        2021 Code like Feather
+    </section>
+    
+    <section class="powerby">
+        Built with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> <br />
+        Theme <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="3.2.0">Stack</a></b> designed by <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a>
+    </section>
+</footer>
+
+
+    
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    
+    <div class="pswp__bg"></div>
+
+    
+    <div class="pswp__scroll-wrap">
+
+        
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                
+                
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"integrity="sha256-ePwmChbbvXbsO02lbM3HoHbSHTHFAeChekF1xKJdleo="crossorigin="anonymous"
+                defer="true"
+                >
+            </script><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"integrity="sha256-UKkzOn/w1mBxRmLLGrSeyB4e1xbrp4xylgAWb3M42pU="crossorigin="anonymous"
+                defer="true"
+                >
+            </script><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.css"integrity="sha256-c0uckgykQ9v5k&#43;IqViZOZKc47Jn7KQil4/MP3ySA3F8="crossorigin="anonymous"
+            ><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.css"integrity="sha256-SBLU4vv6CA6lHsZ1XyTdhyjJxCjPif/TRkjnsyGAGnE="crossorigin="anonymous"
+            >
+
+            </main>
+    
+        <aside class="sidebar right-sidebar sticky">
+            <section class="widget archives">
+                <div class="widget-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-hash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <line x1="5" y1="9" x2="19" y2="9" />
+  <line x1="5" y1="15" x2="19" y2="15" />
+  <line x1="11" y1="4" x2="7" y2="20" />
+  <line x1="17" y1="4" x2="13" y2="20" />
+</svg>
+
+
+
+                </div>
+                <h2 class="widget-title section-title">Table of contents</h2>
+                
+                <div class="widget--toc">
+                    <nav id="TableOfContents">
+  <ol>
+    <li><a href="#1-튜링테스트란-무엇인가">1. 튜링테스트란 무엇인가?</a></li>
+    <li><a href="#중국인방실험은-무엇인가">중국인방실험은 무엇인가?</a></li>
+    <li><a href="#2-인공지능의-두번의-겨울의-이유와-극복">2. 인공지능의 두번의 겨울의 이유와 극복</a>
+      <ol>
+        <li><a href="#첫번째-겨울">첫번째 겨울</a></li>
+        <li><a href="#첫번째-겨울-극복">첫번째 겨울 극복</a></li>
+        <li><a href="#인공지능의-두번째-겨울">인공지능의 두번째 겨울</a></li>
+        <li><a href="#두번째-겨울-극복">두번째 겨울 극복</a></li>
+      </ol>
+    </li>
+    <li><a href="#3-인공지능-기계학습-딥러닝">3. 인공지능, 기계학습, 딥러닝</a>
+      <ol>
+        <li><a href="#인공지능">인공지능</a></li>
+        <li><a href="#기계학습">기계학습</a></li>
+        <li><a href="#딥러닝">딥러닝</a></li>
+      </ol>
+    </li>
+    <li><a href="#4-외국어를-번역하는-것은-지금도-어려운-문제이다-왜-번역문제가-어려운가-딥러닝을-이용한-번역은-왜-성능이-좋은가">4. 외국어를 번역하는 것은 지금도 어려운 문제이다. 왜 번역문제가 어려운가? 딥러닝을 이용한 번역은 왜 성능이 좋은가?</a></li>
+  </ol>
+</nav>
+                </div>
+            </section>
+        </aside>
+    
+
+        </div>
+        <script 
+                src="https://cdn.jsdelivr.net/npm/node-vibrant@3.1.5/dist/vibrant.min.js"integrity="sha256-5NovOZc4iwiAWTYIFiIM7DxKUXKWvpVEuMEPLzcm5/g="crossorigin="anonymous"
+                defer="false"
+                >
+            </script><script type="text/javascript" src="/ts/main.js" defer></script>
+<script>
+    (function () {
+        const customFont = document.createElement('link');
+        customFont.href = "https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap";
+
+        customFont.type = "text/css";
+        customFont.rel = "stylesheet";
+
+        document.head.appendChild(customFont);
+    }());
+</script>
+
+    </body>
+</html>

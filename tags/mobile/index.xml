@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>mobile on Code like Feather</title>
+    <link>https://yansigit.github.io/tags/mobile/</link>
+    <description>Recent content in mobile on Code like Feather</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>ko-kr</language>
+    <lastBuildDate>Sat, 20 Mar 2021 17:55:28 +0800</lastBuildDate><atom:link href="https://yansigit.github.io/tags/mobile/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Arumdream - Easy Mobile App for Self-Orderings</title>
+      <link>https://yansigit.github.io/portfolio/arumdream-aka-saveorder/</link>
+      <pubDate>Sat, 20 Mar 2021 17:55:28 +0800</pubDate>
+      
+      <guid>https://yansigit.github.io/portfolio/arumdream-aka-saveorder/</guid>
+      <description>&lt;h2 id=&#34;stacks-being-used-in-this-project&#34;&gt;Stacks being used in this project&lt;/h2&gt;
+&lt;p&gt;&lt;figure 
+	&gt;
+	&lt;a href=&#34;https://img.shields.io/badge/c%23-%23239120.svg?style=for-the-badge&amp;amp;logo=c-sharp&amp;amp;logoColor=white&#34; &gt;
+		&lt;img src=&#34;https://img.shields.io/badge/c%23-%23239120.svg?style=for-the-badge&amp;amp;logo=c-sharp&amp;amp;logoColor=white&#34;
+			
+			
+			
+			loading=&#34;lazy&#34;
+			alt=&#34;C#&#34;&gt;
+	&lt;/a&gt;
+	
+	&lt;figcaption&gt;C#&lt;/figcaption&gt;
+	
+&lt;/figure&gt;
+&lt;figure 
+	&gt;
+	&lt;a href=&#34;https://img.shields.io/badge/AWS-%23FF9900.svg?style=for-the-badge&amp;amp;logo=amazon-aws&amp;amp;logoColor=white&#34; &gt;
+		&lt;img src=&#34;https://img.shields.io/badge/AWS-%23FF9900.svg?style=for-the-badge&amp;amp;logo=amazon-aws&amp;amp;logoColor=white&#34;
+			
+			
+			
+			loading=&#34;lazy&#34;
+			alt=&#34;AWS&#34;&gt;
+	&lt;/a&gt;
+	
+	&lt;figcaption&gt;AWS&lt;/figcaption&gt;
+	
+&lt;/figure&gt;
+&lt;figure 
+	&gt;
+	&lt;a href=&#34;https://img.shields.io/badge/MariaDB-003545?style=for-the-badge&amp;amp;logo=mariadb&amp;amp;logoColor=white&#34; &gt;
+		&lt;img src=&#34;https://img.shields.io/badge/MariaDB-003545?style=for-the-badge&amp;amp;logo=mariadb&amp;amp;logoColor=white&#34;
+			
+			
+			
+			loading=&#34;lazy&#34;
+			alt=&#34;MariaDB&#34;&gt;
+	&lt;/a&gt;
+	
+	&lt;figcaption&gt;MariaDB&lt;/figcaption&gt;
+	
+&lt;/figure&gt;
+&lt;figure 
+	&gt;
+	&lt;a href=&#34;https://img.shields.io/badge/Flutter-%2302569B.svg?style=for-the-badge&amp;amp;logo=Flutter&amp;amp;logoColor=white&#34; &gt;
+		&lt;img src=&#34;https://img.shields.io/badge/Flutter-%2302569B.svg?style=for-the-badge&amp;amp;logo=Flutter&amp;amp;logoColor=white&#34;
+			
+			
+			
+			loading=&#34;lazy&#34;
+			alt=&#34;Flutter&#34;&gt;
+	&lt;/a&gt;
+	
+	&lt;figcaption&gt;Flutter&lt;/figcaption&gt;
+	
+&lt;/figure&gt;&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

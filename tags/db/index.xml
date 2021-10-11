@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>db on Code like Feather</title>
+    <link>https://yansigit.github.io/tags/db/</link>
+    <description>Recent content in db on Code like Feather</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>ko-kr</language>
+    <lastBuildDate>Wed, 16 Sep 2020 00:00:00 +0000</lastBuildDate><atom:link href="https://yansigit.github.io/tags/db/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>ORACLE DB Scott 계정</title>
+      <link>https://yansigit.github.io/blog/oracle-db-scott-%EA%B3%84%EC%A0%95/</link>
+      <pubDate>Wed, 16 Sep 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://yansigit.github.io/blog/oracle-db-scott-%EA%B3%84%EC%A0%95/</guid>
+      <description>&lt;p&gt;ORACLE DB Scott 계정에 대해서&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>ORACLE DB SQL*PLUS 명령어 정리</title>
+      <link>https://yansigit.github.io/blog/oracle-db-sqlplus-%EB%AA%85%EB%A0%B9%EC%96%B4-%EC%A0%95%EB%A6%AC/</link>
+      <pubDate>Wed, 16 Sep 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://yansigit.github.io/blog/oracle-db-sqlplus-%EB%AA%85%EB%A0%B9%EC%96%B4-%EC%A0%95%EB%A6%AC/</guid>
+      <description>&lt;p&gt;ORACLE DB SQL*PLUS 명령어 정리&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>ORACLE DB 계정</title>
+      <link>https://yansigit.github.io/blog/oracle-db-%EA%B3%84%EC%A0%95/</link>
+      <pubDate>Wed, 16 Sep 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://yansigit.github.io/blog/oracle-db-%EA%B3%84%EC%A0%95/</guid>
+      <description>&lt;p&gt;ORACLE DB 계정 설명&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>ORACLE DB 명령어 정리</title>
+      <link>https://yansigit.github.io/blog/oracle-db-%EB%AA%85%EB%A0%B9%EC%96%B4-%EC%A0%95%EB%A6%AC/</link>
+      <pubDate>Wed, 16 Sep 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://yansigit.github.io/blog/oracle-db-%EB%AA%85%EB%A0%B9%EC%96%B4-%EC%A0%95%EB%A6%AC/</guid>
+      <description>&lt;p&gt;ORACLE DB 명령어 정리&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>ORACLE DB 서브 쿼리 정리</title>
+      <link>https://yansigit.github.io/blog/oracle-db-%EC%84%9C%EB%B8%8C-%EC%BF%BC%EB%A6%AC-%EC%A0%95%EB%A6%AC/</link>
+      <pubDate>Wed, 16 Sep 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://yansigit.github.io/blog/oracle-db-%EC%84%9C%EB%B8%8C-%EC%BF%BC%EB%A6%AC-%EC%A0%95%EB%A6%AC/</guid>
+      <description>&lt;p&gt;ORACLE DB 서브 쿼리&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>ORACLE DB 에러 대응</title>
+      <link>https://yansigit.github.io/blog/oracle-db-%EC%97%90%EB%9F%AC-%EB%8C%80%EC%9D%91/</link>
+      <pubDate>Wed, 16 Sep 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://yansigit.github.io/blog/oracle-db-%EC%97%90%EB%9F%AC-%EB%8C%80%EC%9D%91/</guid>
+      <description>&lt;p&gt;ORACLE DB 에러 대응&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>ORACLE DB 연습문제 모음</title>
+      <link>https://yansigit.github.io/blog/oracle-db-%EC%97%B0%EC%8A%B5%EB%AC%B8%EC%A0%9C-%EB%AA%A8%EC%9D%8C/</link>
+      <pubDate>Wed, 16 Sep 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://yansigit.github.io/blog/oracle-db-%EC%97%B0%EC%8A%B5%EB%AC%B8%EC%A0%9C-%EB%AA%A8%EC%9D%8C/</guid>
+      <description>&lt;p&gt;ORACLE DB 연습문제 모음&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>ORACLE DB 이론 정리</title>
+      <link>https://yansigit.github.io/blog/oracle-db-%EC%9D%B4%EB%A1%A0-%EC%A0%95%EB%A6%AC/</link>
+      <pubDate>Wed, 16 Sep 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://yansigit.github.io/blog/oracle-db-%EC%9D%B4%EB%A1%A0-%EC%A0%95%EB%A6%AC/</guid>
+      <description>&lt;p&gt;ORACLE DB 이론 정리&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>ORACLE DB 테이블 조인</title>
+      <link>https://yansigit.github.io/blog/oracle-db-%ED%85%8C%EC%9D%B4%EB%B8%94-%EC%A1%B0%EC%9D%B8/</link>
+      <pubDate>Wed, 16 Sep 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://yansigit.github.io/blog/oracle-db-%ED%85%8C%EC%9D%B4%EB%B8%94-%EC%A1%B0%EC%9D%B8/</guid>
+      <description>&lt;p&gt;ORACLE DB 테이블 조인&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>ORACLE DB 팁 정리</title>
+      <link>https://yansigit.github.io/blog/oracle-db-%ED%8C%81-%EC%A0%95%EB%A6%AC/</link>
+      <pubDate>Wed, 16 Sep 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://yansigit.github.io/blog/oracle-db-%ED%8C%81-%EC%A0%95%EB%A6%AC/</guid>
+      <description>&lt;p&gt;ORACLE DB 팁 정리&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>ORACLE DB 함수 정리</title>
+      <link>https://yansigit.github.io/blog/oracle-db-%ED%95%A8%EC%88%98-%EC%A0%95%EB%A6%AC/</link>
+      <pubDate>Wed, 16 Sep 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://yansigit.github.io/blog/oracle-db-%ED%95%A8%EC%88%98-%EC%A0%95%EB%A6%AC/</guid>
+      <description>&lt;p&gt;ORACLE DB 함수 정리&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Client Software for Mongo Db Mongodb Compass</title>
+      <link>https://yansigit.github.io/blog/client-software-for-mongo-db-mongodb-compass/</link>
+      <pubDate>Fri, 07 Feb 2020 22:40:13 +0900</pubDate>
+      
+      <guid>https://yansigit.github.io/blog/client-software-for-mongo-db-mongodb-compass/</guid>
+      <description>&lt;p&gt;Mongo DB 관리 클라이언트, MongoDB Compass&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

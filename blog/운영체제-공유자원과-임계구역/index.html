@@ -1,0 +1,932 @@
+<!DOCTYPE html>
+<html lang="ko-kr">
+    <head><meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content='공유자원과 임계구역'><title>운영체제 - 공유자원과 임계구역</title>
+
+<link rel='canonical' href='https://yansigit.github.io/blog/%EC%9A%B4%EC%98%81%EC%B2%B4%EC%A0%9C-%EA%B3%B5%EC%9C%A0%EC%9E%90%EC%9B%90%EA%B3%BC-%EC%9E%84%EA%B3%84%EA%B5%AC%EC%97%AD/'>
+
+<link rel="stylesheet" href="/scss/style.min.css"><meta property='og:title' content='운영체제 - 공유자원과 임계구역'>
+<meta property='og:description' content='공유자원과 임계구역'>
+<meta property='og:url' content='https://yansigit.github.io/blog/%EC%9A%B4%EC%98%81%EC%B2%B4%EC%A0%9C-%EA%B3%B5%EC%9C%A0%EC%9E%90%EC%9B%90%EA%B3%BC-%EC%9E%84%EA%B3%84%EA%B5%AC%EC%97%AD/'>
+<meta property='og:site_name' content='Code like Feather'>
+<meta property='og:type' content='article'><meta property='article:section' content='Posts' /><meta property='article:tag' content='os' /><meta property='article:tag' content='operation-system' /><meta property='article:published_time' content='2020-09-18T23:24:53&#43;09:00'/><meta property='article:modified_time' content='2020-09-18T23:24:53&#43;09:00'/><meta property='og:image' content='https://yansigit.github.io/images/lighthouse.jpg' />
+<meta name="twitter:title" content="운영체제 - 공유자원과 임계구역">
+<meta name="twitter:description" content="공유자원과 임계구역"><meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content='https://yansigit.github.io/images/lighthouse.jpg' />
+    </head>
+    <body class="
+    article-page has-toc
+">
+    <script>
+        (function() {
+            const colorSchemeKey = 'StackColorScheme';
+            if(!localStorage.getItem(colorSchemeKey)){
+                localStorage.setItem(colorSchemeKey, "auto");
+            }
+        })();
+    </script><script>
+    (function() {
+        const colorSchemeKey = 'StackColorScheme';
+        const colorSchemeItem = localStorage.getItem(colorSchemeKey);
+        const supportDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches === true;
+
+        if (colorSchemeItem == 'dark' || colorSchemeItem === 'auto' && supportDarkMode) {
+            
+
+            document.documentElement.dataset.scheme = 'dark';
+        } else {
+            document.documentElement.dataset.scheme = 'light';
+        }
+    })();
+</script>
+<div class="container main-container flex 
+    
+        extended
+    
+">
+    
+        <div id="article-toolbar">
+            <a href="https://yansigit.github.io" class="back-home">
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-chevron-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <polyline points="15 6 9 12 15 18" />
+</svg>
+
+
+
+                <span>Back</span>
+            </a>
+        </div>
+    
+<main class="main full-width">
+    <article class="main-article">
+    <header class="article-header">
+
+    <div class="article-details">
+    
+    <header class="article-category">
+        
+            <a href="/categories/os/" >
+                os
+            </a>
+        
+    </header>
+    
+
+    <h2 class="article-title">
+        <a href="/blog/%EC%9A%B4%EC%98%81%EC%B2%B4%EC%A0%9C-%EA%B3%B5%EC%9C%A0%EC%9E%90%EC%9B%90%EA%B3%BC-%EC%9E%84%EA%B3%84%EA%B5%AC%EC%97%AD/">운영체제 - 공유자원과 임계구역</a>
+    </h2>
+
+    
+    <h3 class="article-subtitle">
+        공유자원과 임계구역
+    </h3>
+    
+
+    
+    <footer class="article-time">
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-calendar-time" width="56" height="56" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M11.795 21h-6.795a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v4" />
+  <circle cx="18" cy="18" r="4" />
+  <path d="M15 3v4" />
+  <path d="M7 3v4" />
+  <path d="M3 11h16" />
+  <path d="M18 16.496v1.504l1 1" />
+</svg>
+                <time class="article-time--published">Sep 18, 2020</time>
+            </div>
+        
+
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <polyline points="12 7 12 12 15 15" />
+</svg>
+
+
+
+                <time class="article-time--reading">
+                    4 minute read
+                </time>
+            </div>
+        
+    </footer>
+    
+</div>
+</header>
+
+    <section class="article-content">
+    <p>공유자원과 임계구역</p>
+<h1 id="공유자원과-임계구역">공유자원과 임계구역</h1>
+<h1 id="1-공유-자원">1. 공유 자원</h1>
+<ul>
+<li>여러 프로세스가 공동으로 이용하는 변수, 메모리, 파일</li>
+<li>공동으로 이용되기에 누가 언제 데이터를 읽거나 쓰느냐에 따라 결과가 달라질 수 있음</li>
+</ul>
+<h2 id="경쟁-조건">경쟁 조건</h2>
+<ul>
+<li>2개 이상의 프로세스가 공유 자원을 병행적으로 읽거나 쓰는 상황</li>
+<li>공유 자원 접근 순서에 따라 실행 결과가 달라짐</li>
+</ul>
+<p><figure 
+	>
+	<a href="/posts/%ea%b3%b5%ec%9c%a0%ec%9e%90%ec%9b%90%ea%b3%bc-%ec%9e%84%ea%b3%84%ea%b5%ac%ec%97%ad/Untitled.png" >
+		<img src="/posts/%ea%b3%b5%ec%9c%a0%ec%9e%90%ec%9b%90%ea%b3%bc-%ec%9e%84%ea%b3%84%ea%b5%ac%ec%97%ad/Untitled.png"
+			
+			
+			
+			loading="lazy"
+			alt="image">
+	</a>
+	
+	<figcaption>image</figcaption>
+	
+</figure></p>
+<p><figure 
+	>
+	<a href="/posts/%ea%b3%b5%ec%9c%a0%ec%9e%90%ec%9b%90%ea%b3%bc-%ec%9e%84%ea%b3%84%ea%b5%ac%ec%97%ad/Untitled%201.png" >
+		<img src="/posts/%ea%b3%b5%ec%9c%a0%ec%9e%90%ec%9b%90%ea%b3%bc-%ec%9e%84%ea%b3%84%ea%b5%ac%ec%97%ad/Untitled%201.png"
+			
+			
+			
+			loading="lazy"
+			alt="image">
+	</a>
+	
+	<figcaption>image</figcaption>
+	
+</figure></p>
+<h1 id="2-임계-구역">2. 임계 구역</h1>
+<ul>
+<li>위의 예에서 <code>balance</code>(예금) 부분.</li>
+<li>즉 공유 자원 접근 순서에 따라 달라지는 프로그램 영역</li>
+<li>어떤 프로세스가 임계구역에 들어가면 다른 프로세스는 임계구역 밖에서 기다려야하며, 그 프로세스가 나와야 들어갈 수 있음</li>
+</ul>
+<h2 id="생산자-소비자-문제">생산자-소비자 문제</h2>
+<p><figure 
+	>
+	<a href="/posts/%ea%b3%b5%ec%9c%a0%ec%9e%90%ec%9b%90%ea%b3%bc-%ec%9e%84%ea%b3%84%ea%b5%ac%ec%97%ad/Untitled%202.png" >
+		<img src="/posts/%ea%b3%b5%ec%9c%a0%ec%9e%90%ec%9b%90%ea%b3%bc-%ec%9e%84%ea%b3%84%ea%b5%ac%ec%97%ad/Untitled%202.png"
+			
+			
+			
+			loading="lazy"
+			alt="image">
+	</a>
+	
+	<figcaption>image</figcaption>
+	
+</figure></p>
+<ul>
+<li><code>sum=3</code> 일 때 동시 접근이 가능하게 되면
+<ul>
+<li>producer의 <code>sum+1</code>, customer의 <code>sum-1</code>이 실행 순서에 따라 랜덤으로 출력되어버림</li>
+</ul>
+</li>
+<li>하드웨어 자원의 경우에도 문제가 일어날 수 있음</li>
+</ul>
+<h2 id="해결-조건">해결 조건</h2>
+<h3 id="상호-배제">상호 배제</h3>
+<ul>
+<li>한 프로세스가 임계구역에 들어가면 다른 프로세스는 임계구역 접근X</li>
+</ul>
+<h3 id="한정-대기">한정 대기</h3>
+<ul>
+<li>어떤 프로세스도 무한 대기하지 않아야 함</li>
+</ul>
+<h3 id="진행의-융통성">진행의 융통성</h3>
+<ul>
+<li>한 프로세스가 다른 프로세스의 진행을 방해해서는 안됨</li>
+</ul>
+<h2 id="임계구역-해결-코드-공유-변수로-잠금을-직접-구현">임계구역 해결 코드: 공유 변수로 잠금을 직접 구현</h2>
+<p><figure 
+	>
+	<a href="/posts/%ea%b3%b5%ec%9c%a0%ec%9e%90%ec%9b%90%ea%b3%bc-%ec%9e%84%ea%b3%84%ea%b5%ac%ec%97%ad/Untitled%203.png" >
+		<img src="/posts/%ea%b3%b5%ec%9c%a0%ec%9e%90%ec%9b%90%ea%b3%bc-%ec%9e%84%ea%b3%84%ea%b5%ac%ec%97%ad/Untitled%203.png"
+			
+			
+			
+			loading="lazy"
+			alt="image">
+	</a>
+	
+	<figcaption>image</figcaption>
+	
+</figure></p>
+<ul>
+<li><code>lock=true</code>인 경우 무한 루프 돌면서 대기</li>
+<li><code>lock=false</code>인 경우 lock을 걸고 임계 구역에서 작업하다가 lock을 해제하고 나옴</li>
+</ul>
+<h3 id="문제점">문제점</h3>
+<p><figure 
+	>
+	<a href="/posts/%ea%b3%b5%ec%9c%a0%ec%9e%90%ec%9b%90%ea%b3%bc-%ec%9e%84%ea%b3%84%ea%b5%ac%ec%97%ad/Untitled%204.png" >
+		<img src="/posts/%ea%b3%b5%ec%9c%a0%ec%9e%90%ec%9b%90%ea%b3%bc-%ec%9e%84%ea%b3%84%ea%b5%ac%ec%97%ad/Untitled%204.png"
+			
+			
+			
+			loading="lazy"
+			alt="image">
+	</a>
+	
+	<figcaption>image</figcaption>
+	
+</figure></p>
+<ul>
+<li><code>lock=false</code>일 때, <code>lock=true</code>로 걸고 임계 구역에 진입해야 하는데 그 직전에 타임아웃이 걸린다면?
+<ul>
+<li>다른 프로세스도 임계 구역에 진입하게 되고, 해당 타임아웃으로 대기하고 있던 프로세스도 대기가 끝나 실행될 때 또 임계구역에 진입해버린다</li>
+<li>동시에 임계구역에 진입해버릴 수 있다는 것</li>
+</ul>
+</li>
+</ul>
+<h2 id="임계-구역-해결-코드-상호-배제-조건을-충족하는-코드">임계 구역 해결 코드: 상호 배제 조건을 충족하는 코드</h2>
+<p><figure 
+	>
+	<a href="/posts/%ea%b3%b5%ec%9c%a0%ec%9e%90%ec%9b%90%ea%b3%bc-%ec%9e%84%ea%b3%84%ea%b5%ac%ec%97%ad/Untitled%205.png" >
+		<img src="/posts/%ea%b3%b5%ec%9c%a0%ec%9e%90%ec%9b%90%ea%b3%bc-%ec%9e%84%ea%b3%84%ea%b5%ac%ec%97%ad/Untitled%205.png"
+			
+			
+			
+			loading="lazy"
+			alt="image">
+	</a>
+	
+	<figcaption>image</figcaption>
+	
+</figure></p>
+<ul>
+<li>상호 배제 조건은 만족하지만, 여기서는 타임아웃 타이밍에 따라 상호 무한루프에 빠질 수 있는 위험이 있다.</li>
+</ul>
+<h2 id="임계-구역-해결-코드-상호-배제와-한정-대기-조건을-만족">임계 구역 해결 코드: 상호 배제와 한정 대기 조건을 만족</h2>
+<p><figure 
+	>
+	<a href="/posts/%ea%b3%b5%ec%9c%a0%ec%9e%90%ec%9b%90%ea%b3%bc-%ec%9e%84%ea%b3%84%ea%b5%ac%ec%97%ad/Untitled%206.png" >
+		<img src="/posts/%ea%b3%b5%ec%9c%a0%ec%9e%90%ec%9b%90%ea%b3%bc-%ec%9e%84%ea%b3%84%ea%b5%ac%ec%97%ad/Untitled%206.png"
+			
+			
+			
+			loading="lazy"
+			alt="image">
+	</a>
+	
+	<figcaption>image</figcaption>
+	
+</figure></p>
+<ul>
+<li>상호 배제와 한정 대기 조건을 만족</li>
+<li>그러나 만약 P1이 자주 실행되어야 하는 상황이라면?
+<ul>
+<li>P1은 P2가 실행되어 락을 바꿔줄 때 까지 반드시 대기해야 한다 (반드시 번갈아가며 실행되야하므로)</li>
+<li>그러므로 진행의 융통성을 충족하지 않음</li>
+</ul>
+</li>
+</ul>
+<h2 id="임계-구역-문제-해결-하드웨어의-지원">임계 구역 문제 해결: 하드웨어의 지원</h2>
+<blockquote>
+<p><code>while(.==true);</code> 문과 <code>lock=true</code> 문을 한꺼번에 실행 → <code>testandset(&amp;lock)==true</code></p>
+</blockquote>
+<blockquote>
+<p>검사-지정 코드를 이용하면 명령어 실행 중간에 타임아웃이 걸려 임계구역을 보호하지 못하는 문제가 발생하지 않음</p>
+</blockquote>
+<p><figure 
+	>
+	<a href="/posts/%ea%b3%b5%ec%9c%a0%ec%9e%90%ec%9b%90%ea%b3%bc-%ec%9e%84%ea%b3%84%ea%b5%ac%ec%97%ad/Untitled%207.png" >
+		<img src="/posts/%ea%b3%b5%ec%9c%a0%ec%9e%90%ec%9b%90%ea%b3%bc-%ec%9e%84%ea%b3%84%ea%b5%ac%ec%97%ad/Untitled%207.png"
+			
+			
+			
+			loading="lazy"
+			alt="image">
+	</a>
+	
+	<figcaption>image</figcaption>
+	
+</figure></p>
+<ul>
+<li>이 명령어는 원자성 (쪼개질 수 없음) 을 가져 중간에 인터럽트 될 수 없다.</li>
+</ul>
+<h2 id="임계-구역-문제-해결-피터슨-알고리즘">임계 구역 문제 해결: 피터슨 알고리즘</h2>
+<p><figure 
+	>
+	<a href="/posts/%ea%b3%b5%ec%9c%a0%ec%9e%90%ec%9b%90%ea%b3%bc-%ec%9e%84%ea%b3%84%ea%b5%ac%ec%97%ad/Untitled%208.png" >
+		<img src="/posts/%ea%b3%b5%ec%9c%a0%ec%9e%90%ec%9b%90%ea%b3%bc-%ec%9e%84%ea%b3%84%ea%b5%ac%ec%97%ad/Untitled%208.png"
+			
+			
+			
+			loading="lazy"
+			alt="image">
+	</a>
+	
+	<figcaption>image</figcaption>
+	
+</figure></p>
+<ul>
+<li>임계구역 해결의 세 가지 조건 모두 만족</li>
+<li>2개의 프로세스만 사용 가능하다는 한계</li>
+</ul>
+<h2 id="임계-구역-문제-해결-데커-알고리즘">임계 구역 문제 해결: 데커 알고리즘</h2>
+<p><figure 
+	>
+	<a href="/posts/%ea%b3%b5%ec%9c%a0%ec%9e%90%ec%9b%90%ea%b3%bc-%ec%9e%84%ea%b3%84%ea%b5%ac%ec%97%ad/Untitled%209.png" >
+		<img src="/posts/%ea%b3%b5%ec%9c%a0%ec%9e%90%ec%9b%90%ea%b3%bc-%ec%9e%84%ea%b3%84%ea%b5%ac%ec%97%ad/Untitled%209.png"
+			
+			
+			
+			loading="lazy"
+			alt="image">
+	</a>
+	
+	<figcaption>image</figcaption>
+	
+</figure></p>
+<ul>
+<li>임계구역 해결의 세 가지 조건 모두 만족</li>
+<li>2개의 프로세스만 사용 가능하다는 한계</li>
+</ul>
+<h2 id="임계-구역-문제-해결-세마포어">임계 구역 문제 해결: 세마포어</h2>
+<blockquote>
+<p>프로세스가 작업을 마치면 다음 프로세스에 임계구역을 사용하라는 동기화 신호를 보냄</p>
+</blockquote>
+<p><figure 
+	>
+	<a href="/posts/%ea%b3%b5%ec%9c%a0%ec%9e%90%ec%9b%90%ea%b3%bc-%ec%9e%84%ea%b3%84%ea%b5%ac%ec%97%ad/Untitled%2010.png" >
+		<img src="/posts/%ea%b3%b5%ec%9c%a0%ec%9e%90%ec%9b%90%ea%b3%bc-%ec%9e%84%ea%b3%84%ea%b5%ac%ec%97%ad/Untitled%2010.png"
+			
+			
+			
+			loading="lazy"
+			alt="image">
+	</a>
+	
+	<figcaption>image</figcaption>
+	
+</figure></p>
+<p><figure 
+	>
+	<a href="/posts/%ea%b3%b5%ec%9c%a0%ec%9e%90%ec%9b%90%ea%b3%bc-%ec%9e%84%ea%b3%84%ea%b5%ac%ec%97%ad/Untitled%2011.png" >
+		<img src="/posts/%ea%b3%b5%ec%9c%a0%ec%9e%90%ec%9b%90%ea%b3%bc-%ec%9e%84%ea%b3%84%ea%b5%ac%ec%97%ad/Untitled%2011.png"
+			
+			
+			
+			loading="lazy"
+			alt="image">
+	</a>
+	
+	<figcaption>image</figcaption>
+	
+</figure></p>
+<p><figure 
+	>
+	<a href="/posts/%ea%b3%b5%ec%9c%a0%ec%9e%90%ec%9b%90%ea%b3%bc-%ec%9e%84%ea%b3%84%ea%b5%ac%ec%97%ad/Untitled%2012.png" >
+		<img src="/posts/%ea%b3%b5%ec%9c%a0%ec%9e%90%ec%9b%90%ea%b3%bc-%ec%9e%84%ea%b3%84%ea%b5%ac%ec%97%ad/Untitled%2012.png"
+			
+			
+			
+			loading="lazy"
+			alt="image">
+	</a>
+	
+	<figcaption>image</figcaption>
+	
+</figure></p>
+<ul>
+<li>Semaphore(.) : 전역변수 RS를 n으로 초기화. n은 현재 사용 가능한 자원의 수</li>
+<li>P() : 잠금을 수행하는 코드
+<ul>
+<li>RS&gt;0이면 (사용 가능한 자원이 있으면) : RS를 1만큼 감소시키고 임계구역 진입</li>
+<li>RS≤0이면 : 0보다 커질 때 까지 block()</li>
+</ul>
+</li>
+<li>V() : 잠금 해제와 동기화를 같이 수행
+<ul>
+<li>RS 값을 1 증가시킴</li>
+<li>세마포어에서 기다리는 다른 프로세스에게 wake_up() 신호를 보내 임계구역에 진입해도 좋다는 신호 보냄</li>
+</ul>
+</li>
+<li>뮤텍스랑 같음</li>
+<li>간편하게 구현 가능</li>
+<li>이거도 현재는 잘 안쓰이긴 함</li>
+</ul>
+<h3 id="binary-세마포어-사용-예">BINARY 세마포어 사용 예</h3>
+<ul>
+<li>초기값이 1</li>
+<li>상호 배제를 위해 사용 (하나 들어가면 아무도 못들어감)</li>
+</ul>
+<p><figure 
+	>
+	<a href="/posts/%ea%b3%b5%ec%9c%a0%ec%9e%90%ec%9b%90%ea%b3%bc-%ec%9e%84%ea%b3%84%ea%b5%ac%ec%97%ad/Untitled%2013.png" >
+		<img src="/posts/%ea%b3%b5%ec%9c%a0%ec%9e%90%ec%9b%90%ea%b3%bc-%ec%9e%84%ea%b3%84%ea%b5%ac%ec%97%ad/Untitled%2013.png"
+			
+			
+			
+			loading="lazy"
+			alt="image">
+	</a>
+	
+	<figcaption>image</figcaption>
+	
+</figure></p>
+<h3 id="counting-세마포어-예">COUNTING 세마포어 예</h3>
+<ul>
+<li>초기값이 1 이상</li>
+<li>한개 이상의 자원이 있을 때 사용
+<ul>
+<li>여러개의 프로세스가 임계구역에 접근 가능</li>
+</ul>
+</li>
+</ul>
+<p><figure 
+	>
+	<a href="/posts/%ea%b3%b5%ec%9c%a0%ec%9e%90%ec%9b%90%ea%b3%bc-%ec%9e%84%ea%b3%84%ea%b5%ac%ec%97%ad/Untitled%2014.png" >
+		<img src="/posts/%ea%b3%b5%ec%9c%a0%ec%9e%90%ec%9b%90%ea%b3%bc-%ec%9e%84%ea%b3%84%ea%b5%ac%ec%97%ad/Untitled%2014.png"
+			
+			
+			
+			loading="lazy"
+			alt="image">
+	</a>
+	
+	<figcaption>image</figcaption>
+	
+</figure></p>
+<h3 id="세마포어의-잘못된-사용-예-실수">세마포어의 잘못된 사용 예 (실수)</h3>
+<p><figure 
+	>
+	<a href="/posts/%ea%b3%b5%ec%9c%a0%ec%9e%90%ec%9b%90%ea%b3%bc-%ec%9e%84%ea%b3%84%ea%b5%ac%ec%97%ad/Untitled%2015.png" >
+		<img src="/posts/%ea%b3%b5%ec%9c%a0%ec%9e%90%ec%9b%90%ea%b3%bc-%ec%9e%84%ea%b3%84%ea%b5%ac%ec%97%ad/Untitled%2015.png"
+			
+			
+			
+			loading="lazy"
+			alt="image">
+	</a>
+	
+	<figcaption>image</figcaption>
+	
+</figure></p>
+<ol>
+<li>실수하여 세마포어를 쓰지 않고 공유자원에 접근하는 경우
+<ul>
+<li>그냥 바로 접근이 가능해 임계구역 보호 불가능</li>
+</ul>
+</li>
+<li>실수하여 <code>P()</code>를 두번 써버림
+<ul>
+<li><code>wake_up()</code>신호가 발생되지 않아 세마포어에서 대기하고 있는 프로세스들 무한 대기</li>
+</ul>
+</li>
+<li><code>V()</code>와 <code>P()</code>를 반대로 사용
+<ul>
+<li>역시 상호 배제가 적용되지 않은 상태로 되버리므로 임계구역 보호 불가능</li>
+</ul>
+</li>
+</ol>
+<h2 id="임계구역-해결-방법-모니터">임계구역 해결 방법: 모니터</h2>
+<blockquote>
+<p>공유자원을 내부적으로 숨기고 공유 자원에 접근하기 위한 인터페이스만 제공</p>
+</blockquote>
+<blockquote>
+<p>자원을 보호하고 프로세스 간에 동기화를 시킴</p>
+</blockquote>
+<h3 id="작동-원리">작동 원리</h3>
+<p><figure 
+	>
+	<a href="/posts/%ea%b3%b5%ec%9c%a0%ec%9e%90%ec%9b%90%ea%b3%bc-%ec%9e%84%ea%b3%84%ea%b5%ac%ec%97%ad/Untitled%2016.png" >
+		<img src="/posts/%ea%b3%b5%ec%9c%a0%ec%9e%90%ec%9b%90%ea%b3%bc-%ec%9e%84%ea%b3%84%ea%b5%ac%ec%97%ad/Untitled%2016.png"
+			
+			
+			
+			loading="lazy"
+			alt="image">
+	</a>
+	
+	<figcaption>image</figcaption>
+	
+</figure></p>
+<ul>
+<li>임계구역으로 들어가려는 프로세스는 직접 <code>P()</code> 혹은 <code>V()</code>를 사용하지 않음</li>
+<li>대신 모니터에게 작업을 <strong>요청</strong></li>
+<li>모니터는 요청받은 작업을 모니터 큐에 저장하고 순서대로 처리, 결과만 프로세스에 알려줌</li>
+</ul>
+<h3 id="모니터">모니터</h3>
+<ul>
+<li>모니터는 데이터와 프로시저 (메소드, 함수)를 포함하는 객체
+<ul>
+<li>모니터 안에서만 접근 가능</li>
+</ul>
+</li>
+<li>모니터 경계에서는 상호 배제를 엄격히 지켜야 함
+<ul>
+<li>한번에 한 스레드만 모니터 진입 가능</li>
+<li>모니터는 상호 배제 보장</li>
+</ul>
+</li>
+<li>모니터가 사용되고 있을 때 들어가려는 스레드는 대기해야 함</li>
+<li>모니터 안의 데이터는 모니터 내의 프로시저를 통해서만 접근 가능</li>
+<li>상호배제, 동기화 두가지 모두 구현
+<ul>
+<li><strong>동기화</strong>
+<ul>
+<li>예를 들어 생산자와 소비자의 예에서 소비자가 아직 미처 소비하지도 않았는데 계속해서 데이터를 공급하는 경우</li>
+<li>한정된 큐에서 계속해서 공급하면 오버플로우 발생</li>
+<li>그러므로 생산자는 소비자가 버퍼를 비웠을 때 공급하고, 소비자는 생산자가 버퍼를 채웠을 때 소비해야 하며 이를 동기적으로 실행하는 것이 동기화.</li>
+</ul>
+</li>
+<li>동기화를 구현하기 위해 <strong>조건 변수</strong> 구현
+<ul>
+<li>
+<p><strong>조건 변수</strong></p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="n">wait</span><span class="p">(.)</span>
+<span class="n">signal</span><span class="p">(.)</span>
+</code></pre></div><p>어떤 조건 변수에 대해서 동작을 수행할 때 까지 대기하고 있다가 해당 동작이 완료되면 기다리고 있는 프로세스에게 시그널을 보내면 깨어나 모니터를 얻음</p>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="모니터-코드">모니터 코드</h3>
+<p><figure 
+	>
+	<a href="/posts/%ea%b3%b5%ec%9c%a0%ec%9e%90%ec%9b%90%ea%b3%bc-%ec%9e%84%ea%b3%84%ea%b5%ac%ec%97%ad/Untitled%2017.png" >
+		<img src="/posts/%ea%b3%b5%ec%9c%a0%ec%9e%90%ec%9b%90%ea%b3%bc-%ec%9e%84%ea%b3%84%ea%b5%ac%ec%97%ad/Untitled%2017.png"
+			
+			
+			
+			loading="lazy"
+			alt="image">
+	</a>
+	
+	<figcaption>image</figcaption>
+	
+</figure></p>
+<ul>
+<li>제공하는 인터페이스만 간단히 사용하면 끝</li>
+</ul>
+<h3 id="모니터-내부-코드">모니터 내부 코드</h3>
+<p><figure 
+	>
+	<a href="/posts/%ea%b3%b5%ec%9c%a0%ec%9e%90%ec%9b%90%ea%b3%bc-%ec%9e%84%ea%b3%84%ea%b5%ac%ec%97%ad/Untitled%2018.png" >
+		<img src="/posts/%ea%b3%b5%ec%9c%a0%ec%9e%90%ec%9b%90%ea%b3%bc-%ec%9e%84%ea%b3%84%ea%b5%ac%ec%97%ad/Untitled%2018.png"
+			
+			
+			
+			loading="lazy"
+			alt="image">
+	</a>
+	
+	<figcaption>image</figcaption>
+	
+</figure></p>
+<h3 id="자바-모니터">자바 모니터</h3>
+<ul>
+<li>멀티 스레드를 사용하는 자바 응용 프로그램에서 상호 배제와 동기화를 제공</li>
+<li><code>Synchronized</code> 키워드
+<ul>
+<li>자바 객체에 상호 배제 기능 부여</li>
+</ul>
+</li>
+<li><code>Wait()</code> 메소드
+<ul>
+<li>객체에 대한 잠금을 해제하고 상태 변수를 기다림</li>
+</ul>
+</li>
+<li>스레드는 <code>notify()</code> 혹은 <code>notifyAll()</code> 메소드를 호출해 신호 보냄</li>
+</ul>
+</section>
+
+
+    <footer class="article-footer">
+    
+    <section class="article-tags">
+        
+            <a href="/tags/os/">os</a>
+        
+            <a href="/tags/operation-system/">operation-system</a>
+        
+    </section>
+
+
+    
+    <section class="article-copyright">
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-copyright" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <path d="M14.5 9a3.5 4 0 1 0 0 6" />
+</svg>
+
+
+
+        <span>Licensed under CC BY-NC-SA 4.0</span>
+    </section>
+    </footer>
+
+
+    
+</article>
+
+    <aside class="related-contents--wrapper">
+    
+    
+        <h2 class="section-title">Related contents</h2>
+        <div class="related-contents">
+            <div class="flex article-list--tile">
+                
+                    
+<article class="">
+    <a href="/blog/%EC%9A%B4%EC%98%81%EC%B2%B4%EC%A0%9C-cpu/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">운영체제 - CPU</h2>
+        </div>
+    </a>
+</article>
+                
+                    
+<article class="">
+    <a href="/blog/%EC%9A%B4%EC%98%81%EC%B2%B4%EC%A0%9C-cpu-%EC%8A%A4%EC%BC%80%EC%A4%84%EB%A7%81/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">운영체제 - CPU 스케줄링</h2>
+        </div>
+    </a>
+</article>
+                
+                    
+<article class="">
+    <a href="/blog/%EC%9A%B4%EC%98%81%EC%B2%B4%EC%A0%9C-cpu-%EC%8A%A4%EC%BC%80%EC%A4%84%EB%A7%81-%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">운영체제 - CPU 스케줄링 알고리즘</h2>
+        </div>
+    </a>
+</article>
+                
+                    
+<article class="">
+    <a href="/blog/%EC%9A%B4%EC%98%81%EC%B2%B4%EC%A0%9C-raid/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">운영체제 - RAID</h2>
+        </div>
+    </a>
+</article>
+                
+                    
+<article class="">
+    <a href="/blog/%EC%9A%B4%EC%98%81%EC%B2%B4%EC%A0%9C-%EA%B0%80%EC%83%81-%EB%A9%94%EB%AA%A8%EB%A6%AC/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">운영체제 - 가상 메모리</h2>
+        </div>
+    </a>
+</article>
+                
+            </div>
+        </div>
+    
+</aside>
+
+     
+    
+        
+    <script src="https://utteranc.es/client.js" 
+        repo="yansigit/yansigit.github.io"
+        issue-term="pathname"
+        
+        label="Utterances Comment"
+        
+        crossorigin="anonymous"
+        async
+        >
+</script>
+
+<style>
+    .utterances {
+        max-width: unset;
+    }
+</style>
+
+<script>
+    function setUtterancesTheme(theme) {
+        let utterances = document.querySelector('.utterances iframe');
+        if (utterances) {
+            utterances.contentWindow.postMessage(
+                {
+                    type: 'set-theme',
+                    theme: `github-${theme}`
+                },
+                'https://utteranc.es'
+            );
+        }
+    }
+
+    addEventListener('message', event => {
+        if (event.origin !== 'https://utteranc.es') return;
+        setUtterancesTheme(document.documentElement.dataset.scheme)
+    });
+
+    window.addEventListener('onColorSchemeChange', (e) => {
+        setUtterancesTheme(e.detail)
+    })
+</script>
+
+
+    
+
+    <footer class="site-footer">
+    <section class="copyright">
+        &copy; 
+        
+            2020 - 
+        
+        2021 Code like Feather
+    </section>
+    
+    <section class="powerby">
+        Built with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> <br />
+        Theme <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="3.2.0">Stack</a></b> designed by <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a>
+    </section>
+</footer>
+
+
+    
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    
+    <div class="pswp__bg"></div>
+
+    
+    <div class="pswp__scroll-wrap">
+
+        
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                
+                
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"integrity="sha256-ePwmChbbvXbsO02lbM3HoHbSHTHFAeChekF1xKJdleo="crossorigin="anonymous"
+                defer="true"
+                >
+            </script><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"integrity="sha256-UKkzOn/w1mBxRmLLGrSeyB4e1xbrp4xylgAWb3M42pU="crossorigin="anonymous"
+                defer="true"
+                >
+            </script><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.css"integrity="sha256-c0uckgykQ9v5k&#43;IqViZOZKc47Jn7KQil4/MP3ySA3F8="crossorigin="anonymous"
+            ><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.css"integrity="sha256-SBLU4vv6CA6lHsZ1XyTdhyjJxCjPif/TRkjnsyGAGnE="crossorigin="anonymous"
+            >
+
+            </main>
+    
+        <aside class="sidebar right-sidebar sticky">
+            <section class="widget archives">
+                <div class="widget-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-hash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <line x1="5" y1="9" x2="19" y2="9" />
+  <line x1="5" y1="15" x2="19" y2="15" />
+  <line x1="11" y1="4" x2="7" y2="20" />
+  <line x1="17" y1="4" x2="13" y2="20" />
+</svg>
+
+
+
+                </div>
+                <h2 class="widget-title section-title">Table of contents</h2>
+                
+                <div class="widget--toc">
+                    <nav id="TableOfContents">
+  <ol>
+    <li><a href="#경쟁-조건">경쟁 조건</a></li>
+  </ol>
+
+  <ol>
+    <li><a href="#생산자-소비자-문제">생산자-소비자 문제</a></li>
+    <li><a href="#해결-조건">해결 조건</a>
+      <ol>
+        <li><a href="#상호-배제">상호 배제</a></li>
+        <li><a href="#한정-대기">한정 대기</a></li>
+        <li><a href="#진행의-융통성">진행의 융통성</a></li>
+      </ol>
+    </li>
+    <li><a href="#임계구역-해결-코드-공유-변수로-잠금을-직접-구현">임계구역 해결 코드: 공유 변수로 잠금을 직접 구현</a>
+      <ol>
+        <li><a href="#문제점">문제점</a></li>
+      </ol>
+    </li>
+    <li><a href="#임계-구역-해결-코드-상호-배제-조건을-충족하는-코드">임계 구역 해결 코드: 상호 배제 조건을 충족하는 코드</a></li>
+    <li><a href="#임계-구역-해결-코드-상호-배제와-한정-대기-조건을-만족">임계 구역 해결 코드: 상호 배제와 한정 대기 조건을 만족</a></li>
+    <li><a href="#임계-구역-문제-해결-하드웨어의-지원">임계 구역 문제 해결: 하드웨어의 지원</a></li>
+    <li><a href="#임계-구역-문제-해결-피터슨-알고리즘">임계 구역 문제 해결: 피터슨 알고리즘</a></li>
+    <li><a href="#임계-구역-문제-해결-데커-알고리즘">임계 구역 문제 해결: 데커 알고리즘</a></li>
+    <li><a href="#임계-구역-문제-해결-세마포어">임계 구역 문제 해결: 세마포어</a>
+      <ol>
+        <li><a href="#binary-세마포어-사용-예">BINARY 세마포어 사용 예</a></li>
+        <li><a href="#counting-세마포어-예">COUNTING 세마포어 예</a></li>
+        <li><a href="#세마포어의-잘못된-사용-예-실수">세마포어의 잘못된 사용 예 (실수)</a></li>
+      </ol>
+    </li>
+    <li><a href="#임계구역-해결-방법-모니터">임계구역 해결 방법: 모니터</a>
+      <ol>
+        <li><a href="#작동-원리">작동 원리</a></li>
+        <li><a href="#모니터">모니터</a></li>
+        <li><a href="#모니터-코드">모니터 코드</a></li>
+        <li><a href="#모니터-내부-코드">모니터 내부 코드</a></li>
+        <li><a href="#자바-모니터">자바 모니터</a></li>
+      </ol>
+    </li>
+  </ol>
+</nav>
+                </div>
+            </section>
+        </aside>
+    
+
+        </div>
+        <script 
+                src="https://cdn.jsdelivr.net/npm/node-vibrant@3.1.5/dist/vibrant.min.js"integrity="sha256-5NovOZc4iwiAWTYIFiIM7DxKUXKWvpVEuMEPLzcm5/g="crossorigin="anonymous"
+                defer="false"
+                >
+            </script><script type="text/javascript" src="/ts/main.js" defer></script>
+<script>
+    (function () {
+        const customFont = document.createElement('link');
+        customFont.href = "https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap";
+
+        customFont.type = "text/css";
+        customFont.rel = "stylesheet";
+
+        document.head.appendChild(customFont);
+    }());
+</script>
+
+    </body>
+</html>

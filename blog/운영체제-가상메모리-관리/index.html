@@ -1,0 +1,646 @@
+<!DOCTYPE html>
+<html lang="ko-kr">
+    <head><meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content='가상메모리 관리'><title>운영체제 - 가상메모리 관리</title>
+
+<link rel='canonical' href='https://yansigit.github.io/blog/%EC%9A%B4%EC%98%81%EC%B2%B4%EC%A0%9C-%EA%B0%80%EC%83%81%EB%A9%94%EB%AA%A8%EB%A6%AC-%EA%B4%80%EB%A6%AC/'>
+
+<link rel="stylesheet" href="/scss/style.min.css"><meta property='og:title' content='운영체제 - 가상메모리 관리'>
+<meta property='og:description' content='가상메모리 관리'>
+<meta property='og:url' content='https://yansigit.github.io/blog/%EC%9A%B4%EC%98%81%EC%B2%B4%EC%A0%9C-%EA%B0%80%EC%83%81%EB%A9%94%EB%AA%A8%EB%A6%AC-%EA%B4%80%EB%A6%AC/'>
+<meta property='og:site_name' content='Code like Feather'>
+<meta property='og:type' content='article'><meta property='article:section' content='Posts' /><meta property='article:tag' content='os' /><meta property='article:tag' content='operation-system' /><meta property='article:published_time' content='2020-09-18T23:24:53&#43;09:00'/><meta property='article:modified_time' content='2020-09-18T23:24:53&#43;09:00'/><meta property='og:image' content='https://yansigit.github.io/images/lighthouse.jpg' />
+<meta name="twitter:title" content="운영체제 - 가상메모리 관리">
+<meta name="twitter:description" content="가상메모리 관리"><meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content='https://yansigit.github.io/images/lighthouse.jpg' />
+    </head>
+    <body class="
+    article-page has-toc
+">
+    <script>
+        (function() {
+            const colorSchemeKey = 'StackColorScheme';
+            if(!localStorage.getItem(colorSchemeKey)){
+                localStorage.setItem(colorSchemeKey, "auto");
+            }
+        })();
+    </script><script>
+    (function() {
+        const colorSchemeKey = 'StackColorScheme';
+        const colorSchemeItem = localStorage.getItem(colorSchemeKey);
+        const supportDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches === true;
+
+        if (colorSchemeItem == 'dark' || colorSchemeItem === 'auto' && supportDarkMode) {
+            
+
+            document.documentElement.dataset.scheme = 'dark';
+        } else {
+            document.documentElement.dataset.scheme = 'light';
+        }
+    })();
+</script>
+<div class="container main-container flex 
+    
+        extended
+    
+">
+    
+        <div id="article-toolbar">
+            <a href="https://yansigit.github.io" class="back-home">
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-chevron-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <polyline points="15 6 9 12 15 18" />
+</svg>
+
+
+
+                <span>Back</span>
+            </a>
+        </div>
+    
+<main class="main full-width">
+    <article class="main-article">
+    <header class="article-header">
+
+    <div class="article-details">
+    
+    <header class="article-category">
+        
+            <a href="/categories/os/" >
+                os
+            </a>
+        
+    </header>
+    
+
+    <h2 class="article-title">
+        <a href="/blog/%EC%9A%B4%EC%98%81%EC%B2%B4%EC%A0%9C-%EA%B0%80%EC%83%81%EB%A9%94%EB%AA%A8%EB%A6%AC-%EA%B4%80%EB%A6%AC/">운영체제 - 가상메모리 관리</a>
+    </h2>
+
+    
+    <h3 class="article-subtitle">
+        가상메모리 관리
+    </h3>
+    
+
+    
+    <footer class="article-time">
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-calendar-time" width="56" height="56" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M11.795 21h-6.795a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v4" />
+  <circle cx="18" cy="18" r="4" />
+  <path d="M15 3v4" />
+  <path d="M7 3v4" />
+  <path d="M3 11h16" />
+  <path d="M18 16.496v1.504l1 1" />
+</svg>
+                <time class="article-time--published">Sep 18, 2020</time>
+            </div>
+        
+
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <polyline points="12 7 12 12 15 15" />
+</svg>
+
+
+
+                <time class="article-time--reading">
+                    3 minute read
+                </time>
+            </div>
+        
+    </footer>
+    
+</div>
+</header>
+
+    <section class="article-content">
+    <p>가상메모리 관리</p>
+<h1 id="가상메모리-관리">가상메모리 관리</h1>
+<h1 id="프로세스의-일부만-메모리로-가져오는-이유">프로세스의 일부만 메모리로 가져오는 이유</h1>
+<ul>
+<li>메모리를 효율적으로 관리하기 위해서
+<ul>
+<li>메모리가 꽉 차면 관리가 어려움</li>
+</ul>
+</li>
+<li>응답 속도를 향상시키기 위해서
+<ul>
+<li>용량이 큰 프로세스를 전부 메모리로 가져오려면 응답이 늦어질 수 있음</li>
+</ul>
+</li>
+<li>포토샵을 쓴다면 메인 프로그램만 올리고 필터는 사용자가 필요할 때 마다 메모리로 가져오는 것이 효율적이라는 것</li>
+</ul>
+<h2 id="요구-페이징">요구 페이징</h2>
+<ul>
+<li>사용자가 요구할 때 해당 페이지를 메모리로 가져오는 것</li>
+<li>페이지를 미리 가져오는 방식은 가져온 페이지를 쓰지 않을 경우 메모리를 낭비하게 됨</li>
+<li>따라서 요구 페이징이 메모리의 절약, 효율적 관리, 응답 속도 향상 등의 장점을 가짐</li>
+</ul>
+<h2 id="요구-페이징과-스왑-영역">요구 페이징과 스왑 영역</h2>
+<ul>
+<li>페이지가 스왑 영역에 있는 경우
+<ul>
+<li>요구 페이징으로 인해 처음부터 물리 메모리에 올라가지 못함</li>
+<li>메모리가 꽉 차서 스왑 영역으로 옮긴 경우</li>
+</ul>
+</li>
+</ul>
+<h2 id="페이지-테이블-엔트리-의-구성">페이지 테이블 엔트리 (.의 구성)</h2>
+<p><figure 
+	>
+	<a href="/posts/%ea%b0%80%ec%83%81%eb%a9%94%eb%aa%a8%eb%a6%ac-%ea%b4%80%eb%a6%ac/Untitled.png" >
+		<img src="/posts/%ea%b0%80%ec%83%81%eb%a9%94%eb%aa%a8%eb%a6%ac-%ea%b4%80%eb%a6%ac/Untitled.png"
+			
+			
+			
+			loading="lazy"
+			alt="image">
+	</a>
+	
+	<figcaption>image</figcaption>
+	
+</figure></p>
+<ul>
+<li>페이지 번호</li>
+<li>프레임 번호</li>
+<li>플래그 비트
+<ul>
+<li>접근 비트 : 페이지가 메모리에 올라온 후 사용한 적이 있는가</li>
+<li>변경 비트 : 페이지가 메모리에 올라온 후 데이터의 변경이 있었는가</li>
+<li>유효 비트 : 페이지가 실제 메모리에 있는가</li>
+<li>읽기, 쓰기, 실행 권한 비트</li>
+</ul>
+</li>
+</ul>
+<h2 id="유효-비트">유효 비트</h2>
+<p><figure 
+	>
+	<a href="/posts/%ea%b0%80%ec%83%81%eb%a9%94%eb%aa%a8%eb%a6%ac-%ea%b4%80%eb%a6%ac/Untitled%201.png" >
+		<img src="/posts/%ea%b0%80%ec%83%81%eb%a9%94%eb%aa%a8%eb%a6%ac-%ea%b4%80%eb%a6%ac/Untitled%201.png"
+			
+			
+			
+			loading="lazy"
+			alt="image">
+	</a>
+	
+	<figcaption>image</figcaption>
+	
+</figure></p>
+<ul>
+<li>페이지가 물리 메모리에 있는지, 스왑 영역에 있는지 표시
+<ul>
+<li>유효 비트가 0일 때 : 페이지가 메모리에 있다</li>
+<li>유효 비트가 1일 때 : 페이지가 스왑 영역에 있다</li>
+</ul>
+</li>
+</ul>
+<h2 id="페이지-부재">페이지 부재</h2>
+<ul>
+<li>프로세스가 페이지를 요청했을 때, 메모리에 그 페이지가 없는 상황</li>
+<li>페이지 부재가 발생하면 스왑 영역에서 해당 페이지를 물리 메모리로 옮겨야 함</li>
+</ul>
+<p><figure 
+	>
+	<a href="/posts/%ea%b0%80%ec%83%81%eb%a9%94%eb%aa%a8%eb%a6%ac-%ea%b4%80%eb%a6%ac/Untitled%202.png" >
+		<img src="/posts/%ea%b0%80%ec%83%81%eb%a9%94%eb%aa%a8%eb%a6%ac-%ea%b4%80%eb%a6%ac/Untitled%202.png"
+			
+			
+			
+			loading="lazy"
+			alt="image">
+	</a>
+	
+	<figcaption>image</figcaption>
+	
+</figure></p>
+<h2 id="페이지-부재-처리-과정">페이지 부재 처리 과정</h2>
+<p><figure 
+	>
+	<a href="/posts/%ea%b0%80%ec%83%81%eb%a9%94%eb%aa%a8%eb%a6%ac-%ea%b4%80%eb%a6%ac/Untitled%203.png" >
+		<img src="/posts/%ea%b0%80%ec%83%81%eb%a9%94%eb%aa%a8%eb%a6%ac-%ea%b4%80%eb%a6%ac/Untitled%203.png"
+			
+			
+			
+			loading="lazy"
+			alt="image">
+	</a>
+	
+	<figcaption>image</figcaption>
+	
+</figure></p>
+<ol>
+<li>프로세스가 페이지 3을 요청하면 페이지 테이블의 유효 비트가 1이기 때문에 페이지 부재 발생</li>
+<li>메모리 관리자는 스왑 영역의 0번에 있는 페이지를 메모리의 비어 있는 프레임인 5로 가져옴 (스왑 인)</li>
+<li>프레임 5로 접근하여 해당 데이터를 프로세스에 넘김</li>
+</ol>
+<h2 id="페이지-교체">페이지 교체</h2>
+<ul>
+<li>페이지 부재가 발생하면 스왑 영역의 페이지를 메모리로 올리고 페이지 테이블을 갱신</li>
+<li>빈 프레임이 없을때는 메모리에 있는 프레임 중 하나를 스왑으로 보내야함</li>
+</ul>
+<h2 id="페이지-교체-알고리즘">페이지 교체 알고리즘</h2>
+<ul>
+<li>어떤 페이지를 스왑 영역으로 보낼 것인지 결정</li>
+</ul>
+<h2 id="대상-페이지">대상 페이지</h2>
+<ul>
+<li>페이지 교체 알고리즘에 의해 스왑 영역으로 보낼 페이지</li>
+</ul>
+<h2 id="메모리가-꽉-찬-상태에서-페이지-부재가-발생했을-때-조치">메모리가 꽉 찬 상태에서 페이지 부재가 발생했을 때 조치</h2>
+<p><figure 
+	>
+	<a href="/posts/%ea%b0%80%ec%83%81%eb%a9%94%eb%aa%a8%eb%a6%ac-%ea%b4%80%eb%a6%ac/Untitled%204.png" >
+		<img src="/posts/%ea%b0%80%ec%83%81%eb%a9%94%eb%aa%a8%eb%a6%ac-%ea%b4%80%eb%a6%ac/Untitled%204.png"
+			
+			
+			
+			loading="lazy"
+			alt="image">
+	</a>
+	
+	<figcaption>image</figcaption>
+	
+</figure></p>
+<ol>
+<li>페이지의 유효 비트가 1이라 페이지 부재 발생</li>
+<li>메모리가 꽉 차서 페이지 하나를 스왑으로 보내야 함
+<ul>
+<li>대상 페이지의 유효비트가 0에서 1로, 주소 필드 값이 메모리 주소에서 스왑 영역의 주소로 바뀜</li>
+</ul>
+</li>
+<li>스왑 영역에 있던 페이지는 메모리(프레임)으로 올라감 (스왑 인)
+<ul>
+<li>해당 페이지의 유효비트는 1에서 0으로, 주소 필드 값이 스왑 주소에서 프레임 번호로 바뀜</li>
+</ul>
+</li>
+</ol>
+<h2 id="세그먼테이션-오류와-페이지-부재">세그먼테이션 오류와 페이지 부재</h2>
+<ul>
+<li><strong>세그먼테이션 오류</strong>
+<ul>
+<li>사용자의 프로세스가 주어진 메모리 공간을 벗어나거나, 접근 권한이 없는 곳에 접근할 때 발생</li>
+<li>해당 프로세스를 강제 종료하여 해결</li>
+</ul>
+</li>
+<li><strong>페이지 부재</strong>
+<ul>
+<li>해당 페이지가 물리 메모리에 없을 때 발생하는 오류</li>
+<li>메모리 관리자는 스왑 영역에서 해당 페이지를 불러 물리 메모리로 옮긴 후 작업을 진행</li>
+</ul>
+</li>
+</ul>
+<h2 id="지역성">지역성</h2>
+<ul>
+<li>기억장치에 접근하는 패턴이 특정 영역에 집중되는 성질
+<ul>
+<li>즉 계속 특정 부분 데이터만 계속 사용된다는 거</li>
+</ul>
+</li>
+<li>페이지 교체 알고리즘이 &lsquo;대상 페이지&rsquo;를 지정할 때 지역성을 바탕으로 함</li>
+</ul>
+<h2 id="지역성의-종류">지역성의 종류</h2>
+<p><figure 
+	>
+	<a href="/posts/%ea%b0%80%ec%83%81%eb%a9%94%eb%aa%a8%eb%a6%ac-%ea%b4%80%eb%a6%ac/Untitled%205.png" >
+		<img src="/posts/%ea%b0%80%ec%83%81%eb%a9%94%eb%aa%a8%eb%a6%ac-%ea%b4%80%eb%a6%ac/Untitled%205.png"
+			
+			
+			
+			loading="lazy"
+			alt="image">
+	</a>
+	
+	<figcaption>image</figcaption>
+	
+</figure></p>
+<ul>
+<li><strong>공간의 지역성</strong>
+<ul>
+<li>현재 위치에서 가까운 데이터에 접근할 확률이 먼 거리에 있는 데이터에 접근할 확률보다 높음</li>
+</ul>
+</li>
+<li><strong>시간의 지역성</strong>
+<ul>
+<li>현재를 기준으로 가장 가까운 시간에 접근한 데이터가 오래된 데이터보다 사용될 확률이 높음</li>
+</ul>
+</li>
+<li><strong>순차적 지역성</strong>
+<ul>
+<li>여러 작업이 순서대로 진행되는 경향이 있음</li>
+</ul>
+</li>
+</ul>
+</section>
+
+
+    <footer class="article-footer">
+    
+    <section class="article-tags">
+        
+            <a href="/tags/os/">os</a>
+        
+            <a href="/tags/operation-system/">operation-system</a>
+        
+    </section>
+
+
+    
+    <section class="article-copyright">
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-copyright" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <path d="M14.5 9a3.5 4 0 1 0 0 6" />
+</svg>
+
+
+
+        <span>Licensed under CC BY-NC-SA 4.0</span>
+    </section>
+    </footer>
+
+
+    
+</article>
+
+    <aside class="related-contents--wrapper">
+    
+    
+        <h2 class="section-title">Related contents</h2>
+        <div class="related-contents">
+            <div class="flex article-list--tile">
+                
+                    
+<article class="">
+    <a href="/blog/%EC%9A%B4%EC%98%81%EC%B2%B4%EC%A0%9C-cpu/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">운영체제 - CPU</h2>
+        </div>
+    </a>
+</article>
+                
+                    
+<article class="">
+    <a href="/blog/%EC%9A%B4%EC%98%81%EC%B2%B4%EC%A0%9C-cpu-%EC%8A%A4%EC%BC%80%EC%A4%84%EB%A7%81/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">운영체제 - CPU 스케줄링</h2>
+        </div>
+    </a>
+</article>
+                
+                    
+<article class="">
+    <a href="/blog/%EC%9A%B4%EC%98%81%EC%B2%B4%EC%A0%9C-cpu-%EC%8A%A4%EC%BC%80%EC%A4%84%EB%A7%81-%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">운영체제 - CPU 스케줄링 알고리즘</h2>
+        </div>
+    </a>
+</article>
+                
+                    
+<article class="">
+    <a href="/blog/%EC%9A%B4%EC%98%81%EC%B2%B4%EC%A0%9C-raid/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">운영체제 - RAID</h2>
+        </div>
+    </a>
+</article>
+                
+                    
+<article class="">
+    <a href="/blog/%EC%9A%B4%EC%98%81%EC%B2%B4%EC%A0%9C-%EA%B0%80%EC%83%81-%EB%A9%94%EB%AA%A8%EB%A6%AC/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">운영체제 - 가상 메모리</h2>
+        </div>
+    </a>
+</article>
+                
+            </div>
+        </div>
+    
+</aside>
+
+     
+    
+        
+    <script src="https://utteranc.es/client.js" 
+        repo="yansigit/yansigit.github.io"
+        issue-term="pathname"
+        
+        label="Utterances Comment"
+        
+        crossorigin="anonymous"
+        async
+        >
+</script>
+
+<style>
+    .utterances {
+        max-width: unset;
+    }
+</style>
+
+<script>
+    function setUtterancesTheme(theme) {
+        let utterances = document.querySelector('.utterances iframe');
+        if (utterances) {
+            utterances.contentWindow.postMessage(
+                {
+                    type: 'set-theme',
+                    theme: `github-${theme}`
+                },
+                'https://utteranc.es'
+            );
+        }
+    }
+
+    addEventListener('message', event => {
+        if (event.origin !== 'https://utteranc.es') return;
+        setUtterancesTheme(document.documentElement.dataset.scheme)
+    });
+
+    window.addEventListener('onColorSchemeChange', (e) => {
+        setUtterancesTheme(e.detail)
+    })
+</script>
+
+
+    
+
+    <footer class="site-footer">
+    <section class="copyright">
+        &copy; 
+        
+            2020 - 
+        
+        2021 Code like Feather
+    </section>
+    
+    <section class="powerby">
+        Built with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> <br />
+        Theme <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="3.2.0">Stack</a></b> designed by <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a>
+    </section>
+</footer>
+
+
+    
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    
+    <div class="pswp__bg"></div>
+
+    
+    <div class="pswp__scroll-wrap">
+
+        
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                
+                
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"integrity="sha256-ePwmChbbvXbsO02lbM3HoHbSHTHFAeChekF1xKJdleo="crossorigin="anonymous"
+                defer="true"
+                >
+            </script><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"integrity="sha256-UKkzOn/w1mBxRmLLGrSeyB4e1xbrp4xylgAWb3M42pU="crossorigin="anonymous"
+                defer="true"
+                >
+            </script><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.css"integrity="sha256-c0uckgykQ9v5k&#43;IqViZOZKc47Jn7KQil4/MP3ySA3F8="crossorigin="anonymous"
+            ><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.css"integrity="sha256-SBLU4vv6CA6lHsZ1XyTdhyjJxCjPif/TRkjnsyGAGnE="crossorigin="anonymous"
+            >
+
+            </main>
+    
+        <aside class="sidebar right-sidebar sticky">
+            <section class="widget archives">
+                <div class="widget-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-hash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <line x1="5" y1="9" x2="19" y2="9" />
+  <line x1="5" y1="15" x2="19" y2="15" />
+  <line x1="11" y1="4" x2="7" y2="20" />
+  <line x1="17" y1="4" x2="13" y2="20" />
+</svg>
+
+
+
+                </div>
+                <h2 class="widget-title section-title">Table of contents</h2>
+                
+                <div class="widget--toc">
+                    <nav id="TableOfContents">
+  <ol>
+    <li><a href="#요구-페이징">요구 페이징</a></li>
+    <li><a href="#요구-페이징과-스왑-영역">요구 페이징과 스왑 영역</a></li>
+    <li><a href="#페이지-테이블-엔트리-의-구성">페이지 테이블 엔트리 (.의 구성)</a></li>
+    <li><a href="#유효-비트">유효 비트</a></li>
+    <li><a href="#페이지-부재">페이지 부재</a></li>
+    <li><a href="#페이지-부재-처리-과정">페이지 부재 처리 과정</a></li>
+    <li><a href="#페이지-교체">페이지 교체</a></li>
+    <li><a href="#페이지-교체-알고리즘">페이지 교체 알고리즘</a></li>
+    <li><a href="#대상-페이지">대상 페이지</a></li>
+    <li><a href="#메모리가-꽉-찬-상태에서-페이지-부재가-발생했을-때-조치">메모리가 꽉 찬 상태에서 페이지 부재가 발생했을 때 조치</a></li>
+    <li><a href="#세그먼테이션-오류와-페이지-부재">세그먼테이션 오류와 페이지 부재</a></li>
+    <li><a href="#지역성">지역성</a></li>
+    <li><a href="#지역성의-종류">지역성의 종류</a></li>
+  </ol>
+</nav>
+                </div>
+            </section>
+        </aside>
+    
+
+        </div>
+        <script 
+                src="https://cdn.jsdelivr.net/npm/node-vibrant@3.1.5/dist/vibrant.min.js"integrity="sha256-5NovOZc4iwiAWTYIFiIM7DxKUXKWvpVEuMEPLzcm5/g="crossorigin="anonymous"
+                defer="false"
+                >
+            </script><script type="text/javascript" src="/ts/main.js" defer></script>
+<script>
+    (function () {
+        const customFont = document.createElement('link');
+        customFont.href = "https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap";
+
+        customFont.type = "text/css";
+        customFont.rel = "stylesheet";
+
+        document.head.appendChild(customFont);
+    }());
+</script>
+
+    </body>
+</html>

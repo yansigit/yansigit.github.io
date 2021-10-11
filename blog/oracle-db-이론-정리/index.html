@@ -1,0 +1,1451 @@
+<!DOCTYPE html>
+<html lang="ko-kr">
+    <head><meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content='ORACLE DB 이론'><title>ORACLE DB 이론 정리</title>
+
+<link rel='canonical' href='https://yansigit.github.io/blog/oracle-db-%EC%9D%B4%EB%A1%A0-%EC%A0%95%EB%A6%AC/'>
+
+<link rel="stylesheet" href="/scss/style.min.css"><meta property='og:title' content='ORACLE DB 이론 정리'>
+<meta property='og:description' content='ORACLE DB 이론'>
+<meta property='og:url' content='https://yansigit.github.io/blog/oracle-db-%EC%9D%B4%EB%A1%A0-%EC%A0%95%EB%A6%AC/'>
+<meta property='og:site_name' content='Code like Feather'>
+<meta property='og:type' content='article'><meta property='article:section' content='Posts' /><meta property='article:tag' content='oracle' /><meta property='article:tag' content='db' /><meta property='article:tag' content='oracle-db' /><meta property='article:published_time' content='2020-09-16T00:00:00&#43;00:00'/><meta property='article:modified_time' content='2020-09-16T00:00:00&#43;00:00'/><meta property='og:image' content='https://yansigit.github.io/images/lighthouse.jpg' />
+<meta name="twitter:title" content="ORACLE DB 이론 정리">
+<meta name="twitter:description" content="ORACLE DB 이론"><meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content='https://yansigit.github.io/images/lighthouse.jpg' />
+    </head>
+    <body class="
+    article-page has-toc
+">
+    <script>
+        (function() {
+            const colorSchemeKey = 'StackColorScheme';
+            if(!localStorage.getItem(colorSchemeKey)){
+                localStorage.setItem(colorSchemeKey, "auto");
+            }
+        })();
+    </script><script>
+    (function() {
+        const colorSchemeKey = 'StackColorScheme';
+        const colorSchemeItem = localStorage.getItem(colorSchemeKey);
+        const supportDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches === true;
+
+        if (colorSchemeItem == 'dark' || colorSchemeItem === 'auto' && supportDarkMode) {
+            
+
+            document.documentElement.dataset.scheme = 'dark';
+        } else {
+            document.documentElement.dataset.scheme = 'light';
+        }
+    })();
+</script>
+<div class="container main-container flex 
+    
+        extended
+    
+">
+    
+        <div id="article-toolbar">
+            <a href="https://yansigit.github.io" class="back-home">
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-chevron-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <polyline points="15 6 9 12 15 18" />
+</svg>
+
+
+
+                <span>Back</span>
+            </a>
+        </div>
+    
+<main class="main full-width">
+    <article class="main-article">
+    <header class="article-header">
+
+    <div class="article-details">
+    
+    <header class="article-category">
+        
+            <a href="/categories/oracle-db/" >
+                oracle-db
+            </a>
+        
+    </header>
+    
+
+    <h2 class="article-title">
+        <a href="/blog/oracle-db-%EC%9D%B4%EB%A1%A0-%EC%A0%95%EB%A6%AC/">ORACLE DB 이론 정리</a>
+    </h2>
+
+    
+    <h3 class="article-subtitle">
+        ORACLE DB 이론
+    </h3>
+    
+
+    
+    <footer class="article-time">
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-calendar-time" width="56" height="56" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M11.795 21h-6.795a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v4" />
+  <circle cx="18" cy="18" r="4" />
+  <path d="M15 3v4" />
+  <path d="M7 3v4" />
+  <path d="M3 11h16" />
+  <path d="M18 16.496v1.504l1 1" />
+</svg>
+                <time class="article-time--published">Sep 16, 2020</time>
+            </div>
+        
+
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <polyline points="12 7 12 12 15 15" />
+</svg>
+
+
+
+                <time class="article-time--reading">
+                    7 minute read
+                </time>
+            </div>
+        
+    </footer>
+    
+</div>
+</header>
+
+    <section class="article-content">
+    <p>ORACLE DB 이론 정리</p>
+<h1 id="이론">이론</h1>
+<h1 id="1-자료">1. 자료</h1>
+<h2 id="자료와-정보">자료와 정보</h2>
+<ul>
+<li><strong>자료</strong>
+<ul>
+<li>현실세계의 값, 가공하지 않은 값</li>
+</ul>
+</li>
+<li><strong>정보</strong>
+<ul>
+<li>자료를 가공하여 가치 있는 형태로 만든 것</li>
+<li>의사 결정에 의미 있는 값</li>
+</ul>
+</li>
+</ul>
+<h2 id="표현-단위">표현 단위</h2>
+<blockquote>
+<p>위로 갈수록 컴퓨터, 아래로 갈수록 사람 중심의 개념</p>
+</blockquote>
+<ol>
+<li><strong>비트</strong>
+<ul>
+<li>자료 표현 최소 단위</li>
+</ul>
+</li>
+<li><strong>바이트</strong>
+<ul>
+<li>문자 표현 최소 단위</li>
+</ul>
+</li>
+<li><strong>워드</strong>
+<ul>
+<li>명령 처리 기본 단위 (주소 표현의 최소 단위)</li>
+<li>4바이트</li>
+<li>문자가 모여 워드가 된다</li>
+</ul>
+</li>
+<li><strong>필드</strong>
+<ul>
+<li>자료 처리 (정보 표현)의 최소 단위</li>
+<li>예) 포털 사이트에서 이름 아이디 등 입력하는 거</li>
+<li>항목, 아이템이라고도 함</li>
+</ul>
+</li>
+<li><strong>레코드</strong>
+<ul>
+<li>필드의 모임</li>
+</ul>
+</li>
+<li><strong>파일</strong>
+<ul>
+<li>레코드의 모임</li>
+</ul>
+</li>
+<li><strong>데이터베이스</strong>
+<ul>
+<li>관련이 있는 파일의 집합</li>
+</ul>
+</li>
+</ol>
+<h1 id="2-데이터베이스-관리-시스템">2. 데이터베이스 관리 시스템</h1>
+<h2 id="파일-시스템">파일 시스템</h2>
+<ul>
+<li>데이터를 파일로 관리하기 위해 파일을 생성, 관리하는 기능을 제공하는 소프트웨어</li>
+<li>응용 프로그램마다 필요한 데이터를 별도의 파일로 관리</li>
+<li>문제점
+<ul>
+<li>같은 내용의 데이터가 중복 저장</li>
+<li>응용 프로그램이 파일에 종속적
+<ul>
+<li>사용하는 파일의 구조가 변하면 응용 프로그램도 고쳐야 함</li>
+</ul>
+</li>
+<li>동시 공유, 보안, 회복 기능 부족</li>
+<li>응용 프로그램 개발이 어려움</li>
+<li>데이터 무결성 유지가 어려움</li>
+</ul>
+</li>
+</ul>
+<h2 id="데이터베이스-관리-시스템">데이터베이스 관리 시스템</h2>
+<ul>
+<li>DBMS 라고도 함</li>
+<li>데이터베이스 관리와 사용자의 데이터 처리 요구 수행</li>
+<li>파일 시스템의 문제 해결</li>
+<li>모든 응용 프로그램이 데이터베이스 시스템 공유 가능</li>
+</ul>
+<h2 id="dbms의-주요-기능">DBMS의 주요 기능</h2>
+<ul>
+<li>정의 기능
+<ul>
+<li>데이터베이스 구조를 정의하거나 수정</li>
+</ul>
+</li>
+<li>조작 기능
+<ul>
+<li>데이터를 삽입, 삭제, 수정, 검색</li>
+</ul>
+</li>
+<li>제어 기능
+<ul>
+<li>데이터를 정확하고 안전하게 유지</li>
+</ul>
+</li>
+</ul>
+<h2 id="dmbs의-주요-구성-요소">DMBS의 주요 구성 요소</h2>
+<ul>
+<li><strong>질의 처리기 (Query Processor)</strong>
+<ul>
+<li>사용자의 데이터 처리 요구를 해석하여 처리</li>
+</ul>
+</li>
+<li><strong>저장 데이터 관리자 (Stored Data Manager)</strong>
+<ul>
+<li>디스크에 저장된 데이터베이스와 데이터 사전을 관리하고 접근</li>
+</ul>
+</li>
+</ul>
+<h1 id="3-dbms-발전-과정">3. DBMS 발전 과정</h1>
+<h2 id="1세대">1세대</h2>
+<ul>
+<li>계층 DMBS
+<ul>
+<li>트리 구조</li>
+<li>상위 레코드인 부모가 하위 레코드인 자식을 복수개 담음</li>
+<li>데이터 중복 문제가 존재</li>
+</ul>
+</li>
+<li>네트워크 DBMS
+<ul>
+<li>데이터 중복 문제 해결</li>
+<li>노트와 간선을 이용한 그래프 구조</li>
+<li>복잡한 구조로 변경에 어려움 존재</li>
+</ul>
+</li>
+</ul>
+<h2 id="2세대">2세대</h2>
+<ul>
+<li>관계 DBMS
+<ul>
+<li>데이터베이스를 테이블 형태로 구현</li>
+</ul>
+</li>
+</ul>
+<h2 id="3세대">3세대</h2>
+<ul>
+<li>객체지향 DBMS
+<ul>
+<li>멀티미디어 데이터 원활한 처리</li>
+<li>관계형 DBMS의 비즈니스 데이터만 처리하는 것을 보완하기 위함</li>
+<li>객체를 이용해 데이터베이스 구성</li>
+</ul>
+</li>
+<li>객체관계 DBMS: 객체지향 DB + 관계형 DB</li>
+</ul>
+<h2 id="4세대">4세대</h2>
+<ul>
+<li>NoSQL DBMS
+<ul>
+<li>비정형 데이터를 처리하는데 적합</li>
+<li>안정성과 일관성 유지를 위해 복잡한 기능 포기</li>
+<li>데이터 구조를 미리 정해두지 않아 유연함</li>
+<li>확장성이 뛰어남
+<ul>
+<li>여러 대의 서버에 분산해 저장 처리 가능</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>NewSQL DBMS
+<ul>
+<li>관계 DBMS + NoSQL</li>
+</ul>
+</li>
+</ul>
+<h1 id="4-데이터베이스-시스템">4. 데이터베이스 시스템</h1>
+<blockquote>
+<p>데이터베이스에 데이터를 저장하고, 이를 관리하여 조직에 필요한 정보를 생성해주는 시스템</p>
+</blockquote>
+<h2 id="구조">구조</h2>
+<ul>
+<li>스키마
+<ul>
+<li>데이터베이스에 저장되는 데이터 구조와 제약조건을 정의한 것</li>
+<li>필드의 이름과 자료형을 정의한 것</li>
+</ul>
+</li>
+<li>인스턴스
+<ul>
+<li>스키마에 따라 데이터베이스에 실제로 저장된 값</li>
+<li>예) 고객번호:100 이름:홍길동 나이:25</li>
+</ul>
+</li>
+</ul>
+<h2 id="3단계-데이터베이스-구조">3단계 데이터베이스 구조</h2>
+<blockquote>
+<p>외부 단계로 갈수록 추상화가 높아진다</p>
+</blockquote>
+<blockquote>
+<p>쉽게 말해 집 주인은 인테리어만 보고, 설계자는 철골이나 기반 등 까지 생각한다는 것</p>
+</blockquote>
+<p><figure 
+	>
+	<a href="/posts/oracle-db-theory/Untitled.png" >
+		<img src="/posts/oracle-db-theory/Untitled.png"
+			
+			
+			
+			loading="lazy"
+			alt="image">
+	</a>
+	
+	<figcaption>image</figcaption>
+	
+</figure></p>
+<ul>
+<li><strong>외부 단계</strong>
+<ul>
+<li>개별 사용자 관점</li>
+<li>데이터베이스를 개별 사용자 관점에서 이해하고 표현하는 단계</li>
+<li>데이터베이스 하나에 외부 스키마가 여러개 존재할 수 있음</li>
+</ul>
+</li>
+<li><strong>개념 단계</strong>
+<ul>
+<li>조직 전체의 관점</li>
+<li>데이터베이스 하나에 개념 스키마가 하나만 존재함</li>
+</ul>
+</li>
+<li><strong>내부 단계</strong>
+<ul>
+<li>물리적인 저장 장치의 관점</li>
+<li>내부 스키마는 하나만 존재</li>
+</ul>
+</li>
+</ul>
+<h2 id="3단계-데이터베이스-구조의-매핑사상">3단계 데이터베이스 구조의 매핑(사상)</h2>
+<p><figure 
+	>
+	<a href="/posts/oracle-db-theory/Untitled%201.png" >
+		<img src="/posts/oracle-db-theory/Untitled%201.png"
+			
+			
+			
+			loading="lazy"
+			alt="image">
+	</a>
+	
+	<figcaption>image</figcaption>
+	
+</figure></p>
+<ul>
+<li>스키마 사이의 대응 관계
+<ul>
+<li><strong>외부-개념 매핑</strong>
+<ul>
+<li>응용 인터페이스 라고도 함</li>
+</ul>
+</li>
+<li><strong>개념-내부 매핑</strong>
+<ul>
+<li>저장 인터페이스 라고도 함</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><strong>데이터 독립성</strong>을 위해 매핑하여 정의
+<ul>
+<li><strong>데이터 독립성</strong> : 하위 스키마를 바꾸더라도 상위 스키마가 영향을 받지 않는것</li>
+<li>논리적 데이터 독립성
+<ul>
+<li>개념 스키마가 변경되어도 외부 스키마는 영향을 받지 않음</li>
+<li>외부-개념 스키마 사이의 매핑만 수정하면 됨</li>
+</ul>
+</li>
+<li>물리적 데이터 독립성
+<ul>
+<li>내부 스키마가 변경되어도 개념 스키마는 영향을 받지 않음</li>
+<li>개념-물리 스키마 사이의 매핑만 수정하면 됨</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>사용자가 원하는 데이터에 접근을 쉽게 하기 위해서도 있음</li>
+</ul>
+<h2 id="데이터-사전">데이터 사전</h2>
+<ul>
+<li>시스템 카탈로그 라고도 함</li>
+<li>메타 데이터를 유지
+<ul>
+<li>스키마, 매핑 정보, 제약조건 등을 저장</li>
+</ul>
+</li>
+<li>DBMS가 스스로 생성하고 유지</li>
+<li>일반 사용자도 접근할 수 있으나 열람만 가능</li>
+</ul>
+<h2 id="데이터-디렉토리">데이터 디렉토리</h2>
+<ul>
+<li>데이터 사전에 있는 데이터에 실제로 접근하는데 필요한 위치정보를 저장하는 시스템 데이터베이스</li>
+<li>일반 사용자의 접근 불가</li>
+</ul>
+<h2 id="사용자-데이터베이스">사용자 데이터베이스</h2>
+<ul>
+<li>사용자가 실제로 이용하는 데이터가 저장되어 있는 일반 데이터베이스</li>
+</ul>
+<h1 id="5-데이터베이스-사용자">5. 데이터베이스 사용자</h1>
+<blockquote>
+<p>데이터베이스를 이용하기 위해 접근하는 모든 사람</p>
+</blockquote>
+<p><figure 
+	>
+	<a href="/posts/oracle-db-theory/Untitled%202.png" >
+		<img src="/posts/oracle-db-theory/Untitled%202.png"
+			
+			
+			
+			loading="lazy"
+			alt="image">
+	</a>
+	
+	<figcaption>image</figcaption>
+	
+</figure></p>
+<ul>
+<li>데이터베이스 관리자
+<ul>
+<li>데이터베이스 시스템을 운영 및 관리</li>
+</ul>
+</li>
+<li>최종 사용자
+<ul>
+<li>데이터베이스에 접근하여 데이터를 조작</li>
+</ul>
+</li>
+<li>응용 프로그래머
+<ul>
+<li>응용 프로그램 개발 시 데이터베이스를 이용</li>
+</ul>
+</li>
+</ul>
+<h1 id="6-데이터-언어">6. 데이터 언어</h1>
+<p><figure 
+	>
+	<a href="/posts/oracle-db-theory/Untitled%203.png" >
+		<img src="/posts/oracle-db-theory/Untitled%203.png"
+			
+			
+			
+			loading="lazy"
+			alt="image">
+	</a>
+	
+	<figcaption>image</figcaption>
+	
+</figure></p>
+<p><figure 
+	>
+	<a href="/posts/oracle-db-theory/Untitled%204.png" >
+		<img src="/posts/oracle-db-theory/Untitled%204.png"
+			
+			
+			
+			loading="lazy"
+			alt="image">
+	</a>
+	
+	<figcaption>image</figcaption>
+	
+</figure></p>
+<ul>
+<li><strong>데이터 정의어 (DDL; Data Definition Language)</strong>
+<ul>
+<li>스키마를 정의하거나 수정 또는 삭제하기 위해 사용</li>
+</ul>
+</li>
+<li><strong>데이터 조작어 (DML; Data Manipulation Language)</strong>
+<ul>
+<li>데이터의 삽입, 삭제, 수정, 검색 등의 처리를 요구하기 위해 사용</li>
+<li>절차적 데이터 조작어
+<ul>
+<li>사용자가 어떤 데이터를 원하고 (What) 그 데이터를 얻기 위해 어떻게 (How) 처리해야 하는지도 설명</li>
+</ul>
+</li>
+<li>비절차적 데이터 조작어
+<ul>
+<li>사용자가 어떤 데이터를 원하는지만 설명</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><strong>데이터 제어어 (DCL; Data Control Language)</strong>
+<ul>
+<li>내부적으로 필요한 규칙이나 기법을 정의하기 위해 사용</li>
+<li>사용 목적
+<ul>
+<li>무결성</li>
+<li>보안</li>
+<li>회복</li>
+<li>동시성 제어</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h1 id="7-데이터-모델링">7. 데이터 모델링</h1>
+<blockquote>
+<p>현실 세계에 존재하는 데이터를 조직이 선별한 데이터만을 선별해 데이터베이스로 옮기는 과정</p>
+</blockquote>
+<blockquote>
+<p>데이터베이스 설계의 핵심 과정</p>
+</blockquote>
+<p><figure 
+	>
+	<a href="/posts/oracle-db-theory/Untitled%205.png" >
+		<img src="/posts/oracle-db-theory/Untitled%205.png"
+			
+			
+			
+			loading="lazy"
+			alt="image">
+	</a>
+	
+	<figcaption>image</figcaption>
+	
+</figure></p>
+<h2 id="2단계-데이터-모델링">2단계 데이터 모델링</h2>
+<p><figure 
+	>
+	<a href="/posts/oracle-db-theory/Untitled%206.png" >
+		<img src="/posts/oracle-db-theory/Untitled%206.png"
+			
+			
+			
+			loading="lazy"
+			alt="image">
+	</a>
+	
+	<figcaption>image</figcaption>
+	
+</figure></p>
+<ul>
+<li>개념적 데이터 모델링
+<ul>
+<li>현실 세계의 중요 데이터를 추출해 개념 세계로 옮기는 작업</li>
+</ul>
+</li>
+<li>논리적 데이터 모델링
+<ul>
+<li>개념 세계의 데이터를 데이터베이스에 저장하는 구조로 표현하는 작업</li>
+</ul>
+</li>
+</ul>
+<h1 id="8-데이터-모델">8. 데이터 모델</h1>
+<blockquote>
+<p>데이터 모델링의 결과물을 표현하는 도구</p>
+</blockquote>
+<p><figure 
+	>
+	<a href="/posts/oracle-db-theory/Untitled%207.png" >
+		<img src="/posts/oracle-db-theory/Untitled%207.png"
+			
+			
+			
+			loading="lazy"
+			alt="image">
+	</a>
+	
+	<figcaption>image</figcaption>
+	
+</figure></p>
+<ul>
+<li>개념적 데이터 모델
+<ul>
+<li>사람의 머리로 이해할 수 있도록 현실 세계를 개념적 모데링하여</li>
+<li>데이터베이스의 개념적 구조로 표현하는 도구</li>
+</ul>
+</li>
+<li>논리적 데이터 모델
+<ul>
+<li>개념적 구조를 논리적 모델링하여</li>
+<li>데이터베이스의 논리적 구조로 표현하는 도구</li>
+</ul>
+</li>
+</ul>
+<h2 id="개체-관계-모델-e-r-model">개체 관계 모델 (E-R model)</h2>
+<blockquote>
+<p>개체와 개체 간의 관계를 이용해 현실 세계를 개념적 구조로 구현</p>
+</blockquote>
+<ul>
+<li><strong>개체</strong>
+<ul>
+<li>
+<p>사람, 사물, 개념, 사건 등</p>
+</li>
+<li>
+<p>다른 개체와 구별되는 이름을 가짐</p>
+</li>
+<li>
+<p>각 개체만의 고유한 특성, 상태 등 속성을 하나 이상 가짐</p>
+</li>
+<li>
+<p>서점에 필요한 개체: 고객, 책</p>
+</li>
+<li>
+<p>학교에 필요한 개체: 학과, 과목</p>
+<p><figure 
+	>
+	<a href="/posts/oracle-db-theory/Untitled%208.png" >
+		<img src="/posts/oracle-db-theory/Untitled%208.png"
+			
+			
+			
+			loading="lazy"
+			alt="image">
+	</a>
+	
+	<figcaption>image</figcaption>
+	
+</figure></p>
+</li>
+<li>
+<p><strong>개체 타입</strong></p>
+<ul>
+<li>개체를 고유의 이름과 속성들로 정의한 것</li>
+</ul>
+</li>
+<li>
+<p><strong>개체 인스턴스</strong></p>
+<ul>
+<li>개체를 구성하고 있는 속성이 실제 값을 가짐으로서 실체화된 개체</li>
+</ul>
+</li>
+<li>
+<p><strong>개체 집합</strong></p>
+<ul>
+<li>특정 개체 타입에 대한 개체 인스턴스들을 모아놓은 것</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><strong>속성</strong>
+<ul>
+<li>개체나 관계가 가지고 있는 고유의 특성</li>
+<li>의미 있는 데이터의 가장 작은 논리적 단위</li>
+<li>분류 방법
+<ul>
+<li>갯수
+<ul>
+<li><strong>단일 값 속성</strong>
+<ul>
+<li>고객아이디, 고객명 등</li>
+</ul>
+</li>
+<li><strong>다중 값 속성</strong>
+<ul>
+<li>복수 전공을 할 경우의 전공값 등</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>의미의 분해 가능성
+<ul>
+<li><strong>단순 속성</strong>
+<ul>
+<li>의미를 더 이상 분해 불가능</li>
+<li>책 이름, ISBN 등</li>
+</ul>
+</li>
+<li><strong>복합 속성</strong>
+<ul>
+<li>의미를 분해할 수 있는 속성</li>
+<li>주소 : 국가, 도, 시, 동, 면, 리 등 세분화 가능</li>
+<li>생년월일 : 연, 월, 일 등 세분화 가능</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><strong>유도 속성</strong>
+<ul>
+<li>다른 속성에서 유도되어 결정되는 속성</li>
+<li>할인율에 따른 판매가격 등</li>
+</ul>
+</li>
+<li><strong>NULL 속성</strong>
+<ul>
+<li>NULL 값이 허용되는 속성</li>
+</ul>
+</li>
+<li><strong>KEY 속성</strong>
+<ul>
+<li>각 개체 인스턴트를 식별하는 데 사용되는 속성</li>
+<li>ID, 고객번호 등</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><strong>관계</strong>
+<ul>
+<li>
+<p>개체와 개체가 맺고 있는 의미있는 연관성</p>
+</li>
+<li>
+<p>즉 매핑을 의미</p>
+</li>
+<li>
+<p>관계의 유형</p>
+<ul>
+<li>관계에 참여하는 개체 타입의 수
+<ul>
+<li>이항 관계</li>
+<li>삼항 관계</li>
+<li>순환 관계
+<ul>
+<li>개체 타입 하나가 자기 자신과 맺는 관계</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><strong>매핑 카디널리티</strong>
+<ul>
+<li>
+<p>개체들간에 매핑되는 원소 개수</p>
+</li>
+<li>
+<p>일대일 관계</p>
+<p><figure 
+	>
+	<a href="/posts/oracle-db-theory/Untitled%209.png" >
+		<img src="/posts/oracle-db-theory/Untitled%209.png"
+			
+			
+			
+			loading="lazy"
+			alt="image">
+	</a>
+	
+	<figcaption>image</figcaption>
+	
+</figure></p>
+</li>
+<li>
+<p>일대다 관계</p>
+<p><figure 
+	>
+	<a href="/posts/oracle-db-theory/Untitled%2010.png" >
+		<img src="/posts/oracle-db-theory/Untitled%2010.png"
+			
+			
+			
+			loading="lazy"
+			alt="image">
+	</a>
+	
+	<figcaption>image</figcaption>
+	
+</figure></p>
+</li>
+<li>
+<p>다대다 관계</p>
+<p><figure 
+	>
+	<a href="/posts/oracle-db-theory/Untitled%2011.png" >
+		<img src="/posts/oracle-db-theory/Untitled%2011.png"
+			
+			
+			
+			loading="lazy"
+			alt="image">
+	</a>
+	
+	<figcaption>image</figcaption>
+	
+</figure></p>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>관계 참여 특성</strong></p>
+<ul>
+<li><strong>전체 참여</strong>
+<ul>
+<li>모든 개체 인스턴스가 관계에 <strong>반드시</strong> 참여해야함</li>
+<li>모든 학생은 반드시 학과 수업을 들어야 한다</li>
+</ul>
+</li>
+<li><strong>부분 참여</strong>
+<ul>
+<li>개체 인스턴스 중 일부만 <strong>선택적</strong>으로 관계에 참여해도 됨</li>
+<li>고객 중 일부만 상품을 구매해도 된다</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>관계 종속성</strong></p>
+<ul>
+<li>개체 A가 존재해야 객체 B가 존재할 수 있음</li>
+<li>개체 A가 삭제되면 객체 B도 삭제됨</li>
+<li>약한 개체
+<ul>
+<li>다른 개체의 존재 여부에 의존적임</li>
+</ul>
+</li>
+<li>강한 개체
+<ul>
+<li>다른 개체의 존재 여부를 결정</li>
+</ul>
+</li>
+<li>특징
+<ul>
+<li>강한 개체와 약한 개체는 일반적으로 일대다의 관계를 가짐</li>
+<li>약한 개체는 강한 개체와의 관계에 필수적으로 참여</li>
+<li>약한 개체는 강한 개체의 키를 포함하여 키를 구성</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="개체-관계-모델-다이어그램">개체-관계 모델 다이어그램</h2>
+<p><figure 
+	>
+	<a href="/posts/oracle-db-theory/Untitled%2012.png" >
+		<img src="/posts/oracle-db-theory/Untitled%2012.png"
+			
+			
+			
+			loading="lazy"
+			alt="image">
+	</a>
+	
+	<figcaption>image</figcaption>
+	
+</figure></p>
+<p><figure 
+	>
+	<a href="/posts/oracle-db-theory/Untitled_Diagram_%281%29.png" >
+		<img src="/posts/oracle-db-theory/Untitled_Diagram_%281%29.png"
+			
+			
+			
+			loading="lazy"
+			alt="/posts/oracle-db-theory/Untitled_Diagram_(1).png">
+	</a>
+	
+	<figcaption>/posts/oracle-db-theory/Untitled_Diagram_(1).png</figcaption>
+	
+</figure></p>
+<h1 id="9-논리적-데이터-모델">9. 논리적 데이터 모델</h1>
+<blockquote>
+<p>E-R 다이어그램으로 표현된 개념적 구조를 데이터베이스에 저장할 형태로 표현한 논리적 구조</p>
+</blockquote>
+<blockquote>
+<p>데이터베이스의 논리적 구조 = 데이터베이스 스키마</p>
+</blockquote>
+<blockquote>
+<p>사용자가 생각하는 데이터베이스의 모습 또는 구조</p>
+</blockquote>
+<h2 id="관계-데이터-모델">관계 데이터 모델</h2>
+<ul>
+<li>2차원 테이블 형태</li>
+<li>일반적으로 많이 사용</li>
+</ul>
+<h1 id="10-데이터베이스-설계">10. 데이터베이스 설계</h1>
+<h2 id="정규화를-이용">정규화를 이용</h2>
+<p>나중에 다룸</p>
+<h2 id="e-r-모델과-릴레이션-변환-규칙을-이용">E-R 모델과 릴레이션 변환 규칙을 이용</h2>
+<p><figure 
+	>
+	<a href="/posts/oracle-db-theory/Untitled%2013.png" >
+		<img src="/posts/oracle-db-theory/Untitled%2013.png"
+			
+			
+			
+			loading="lazy"
+			alt="image">
+	</a>
+	
+	<figcaption>image</figcaption>
+	
+</figure></p>
+<ul>
+<li>5단계의 과정이 있음</li>
+<li>도중에 오류가 생기면 이전 단계로 돌아갈 수도 있음</li>
+</ul>
+<h2 id="1-요구사항-분석">1. 요구사항 분석</h2>
+<p><figure 
+	>
+	<a href="/posts/oracle-db-theory/Untitled%2014.png" >
+		<img src="/posts/oracle-db-theory/Untitled%2014.png"
+			
+			
+			
+			loading="lazy"
+			alt="image">
+	</a>
+	
+	<figcaption>image</figcaption>
+	
+</figure></p>
+<ul>
+<li>사용자의 요구 사항을 수집, 분석해 DB 용도 결정</li>
+<li>DB를 실제 사용할 주요 사용자의 범위를 결정</li>
+<li>면담, 설문조사, 업무관련 문서 분석 등으로 요구사항 수집</li>
+<li>결과물: 요구사항 명세서</li>
+</ul>
+<h2 id="2-개념적-설계">2. 개념적 설계</h2>
+<ul>
+<li>요구사항 명세서를 토대로 개념적 구조로 표현 →  개념적 모델링</li>
+<li>일반적으로 E-R 모델 (위에서 배운 개체-관계 모델) 을 많이 사용</li>
+</ul>
+<h2 id="작업-과정"><strong>작업 과정</strong></h2>
+<h3 id="a-개체-추출--각-개체의-주요-속성과-키-속성-선별">A. <strong>개체 추출 :</strong> 각 개체의 주요 속성과 키 속성 선별</h3>
+<p><figure 
+	>
+	<a href="/posts/oracle-db-theory/Untitled%2015.png" >
+		<img src="/posts/oracle-db-theory/Untitled%2015.png"
+			
+			
+			
+			loading="lazy"
+			alt="image">
+	</a>
+	
+	<figcaption>image</figcaption>
+	
+</figure></p>
+<ul>
+<li>개체 : 저장할 만한 가치가 있는 중요 데이터를 가진 사람이나 사물
+<ul>
+<li>병원 운영에 필요한 사람: 환자, 의사 간호사 등</li>
+<li>병원 운영에 필요한 사물: 병실, 수술실, 의료 장비 등</li>
+</ul>
+</li>
+<li>개체 추출 방법 : 업무에 관련이 깊은 <strong>명사</strong>를 찾아 <strong>개체, 속성</strong>으로 분류</li>
+<li>위의 예에서는
+<ul>
+<li>한빛 마트는 프로젝트의 이름</li>
+<li>회원의 속성으로 회원아이디, 비밀번호, 이름, 나이, 직업, 등급, 적립금</li>
+<li>회원아이디는 키 속성으로 분류</li>
+<li>이렇게 할 수 있겠다</li>
+</ul>
+</li>
+<li>최종 추출 결과 (연습 많이 할 것)</li>
+</ul>
+<p><figure 
+	>
+	<a href="/posts/oracle-db-theory/Untitled%2016.png" >
+		<img src="/posts/oracle-db-theory/Untitled%2016.png"
+			
+			
+			
+			loading="lazy"
+			alt="image">
+	</a>
+	
+	<figcaption>image</figcaption>
+	
+</figure></p>
+<p><figure 
+	>
+	<a href="/posts/oracle-db-theory/Untitled%2017.png" >
+		<img src="/posts/oracle-db-theory/Untitled%2017.png"
+			
+			
+			
+			loading="lazy"
+			alt="image">
+	</a>
+	
+	<figcaption>image</figcaption>
+	
+</figure></p>
+<p><figure 
+	>
+	<a href="/posts/oracle-db-theory/Untitled%2018.png" >
+		<img src="/posts/oracle-db-theory/Untitled%2018.png"
+			
+			
+			
+			loading="lazy"
+			alt="image">
+	</a>
+	
+	<figcaption>image</figcaption>
+	
+</figure></p>
+<h3 id="b-개체-간의-관계-설정">B. <strong>개체 간의 관계 설정</strong></h3>
+<p><figure 
+	>
+	<a href="/posts/oracle-db-theory/Untitled%2019.png" >
+		<img src="/posts/oracle-db-theory/Untitled%2019.png"
+			
+			
+			
+			loading="lazy"
+			alt="image">
+	</a>
+	
+	<figcaption>image</figcaption>
+	
+</figure></p>
+<ul>
+<li>
+<p>요구 사항 문장에서 의미 있는 동사를 찾자</p>
+</li>
+<li>
+<p>위의 예시에서는</p>
+<ul>
+<li>회원 개체와 상품 개체의 관계 : 다대 다 관계</li>
+<li>주문 관계의 속성 : 주문번호, 배송지, 주문일자</li>
+<li>를 추출 가능</li>
+</ul>
+</li>
+<li>
+<p><strong>최종</strong></p>
+<p><figure 
+	>
+	<a href="/posts/oracle-db-theory/Untitled%2020.png" >
+		<img src="/posts/oracle-db-theory/Untitled%2020.png"
+			
+			
+			
+			loading="lazy"
+			alt="image">
+	</a>
+	
+	<figcaption>image</figcaption>
+	
+</figure></p>
+<p><figure 
+	>
+	<a href="/posts/oracle-db-theory/Untitled%2021.png" >
+		<img src="/posts/oracle-db-theory/Untitled%2021.png"
+			
+			
+			
+			loading="lazy"
+			alt="image">
+	</a>
+	
+	<figcaption>image</figcaption>
+	
+</figure></p>
+<p><figure 
+	>
+	<a href="/posts/oracle-db-theory/Untitled%2022.png" >
+		<img src="/posts/oracle-db-theory/Untitled%2022.png"
+			
+			
+			
+			loading="lazy"
+			alt="image">
+	</a>
+	
+	<figcaption>image</figcaption>
+	
+</figure></p>
+</li>
+</ul>
+<h3 id="c-e-r-다이어그램을-총합해-표현">C. <strong>E-R 다이어그램을 총합해 표현</strong></h3>
+<p><figure 
+	>
+	<a href="/posts/oracle-db-theory/Untitled%2023.png" >
+		<img src="/posts/oracle-db-theory/Untitled%2023.png"
+			
+			
+			
+			loading="lazy"
+			alt="image">
+	</a>
+	
+	<figcaption>image</figcaption>
+	
+</figure></p>
+</section>
+
+
+    <footer class="article-footer">
+    
+    <section class="article-tags">
+        
+            <a href="/tags/oracle/">oracle</a>
+        
+            <a href="/tags/db/">db</a>
+        
+            <a href="/tags/oracle-db/">oracle-db</a>
+        
+    </section>
+
+
+    
+    <section class="article-copyright">
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-copyright" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <path d="M14.5 9a3.5 4 0 1 0 0 6" />
+</svg>
+
+
+
+        <span>Licensed under CC BY-NC-SA 4.0</span>
+    </section>
+    </footer>
+
+
+    
+</article>
+
+    <aside class="related-contents--wrapper">
+    
+    
+        <h2 class="section-title">Related contents</h2>
+        <div class="related-contents">
+            <div class="flex article-list--tile">
+                
+                    
+<article class="">
+    <a href="/blog/oracle-db-sqlplus-%EB%AA%85%EB%A0%B9%EC%96%B4-%EC%A0%95%EB%A6%AC/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">ORACLE DB SQL*PLUS 명령어 정리</h2>
+        </div>
+    </a>
+</article>
+                
+                    
+<article class="">
+    <a href="/blog/oracle-db-scott-%EA%B3%84%EC%A0%95/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">ORACLE DB Scott 계정</h2>
+        </div>
+    </a>
+</article>
+                
+                    
+<article class="">
+    <a href="/blog/oracle-db-%EA%B3%84%EC%A0%95/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">ORACLE DB 계정</h2>
+        </div>
+    </a>
+</article>
+                
+                    
+<article class="">
+    <a href="/blog/oracle-db-%EB%AA%85%EB%A0%B9%EC%96%B4-%EC%A0%95%EB%A6%AC/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">ORACLE DB 명령어 정리</h2>
+        </div>
+    </a>
+</article>
+                
+                    
+<article class="">
+    <a href="/blog/oracle-db-%EC%84%9C%EB%B8%8C-%EC%BF%BC%EB%A6%AC-%EC%A0%95%EB%A6%AC/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">ORACLE DB 서브 쿼리 정리</h2>
+        </div>
+    </a>
+</article>
+                
+            </div>
+        </div>
+    
+</aside>
+
+     
+    
+        
+    <script src="https://utteranc.es/client.js" 
+        repo="yansigit/yansigit.github.io"
+        issue-term="pathname"
+        
+        label="Utterances Comment"
+        
+        crossorigin="anonymous"
+        async
+        >
+</script>
+
+<style>
+    .utterances {
+        max-width: unset;
+    }
+</style>
+
+<script>
+    function setUtterancesTheme(theme) {
+        let utterances = document.querySelector('.utterances iframe');
+        if (utterances) {
+            utterances.contentWindow.postMessage(
+                {
+                    type: 'set-theme',
+                    theme: `github-${theme}`
+                },
+                'https://utteranc.es'
+            );
+        }
+    }
+
+    addEventListener('message', event => {
+        if (event.origin !== 'https://utteranc.es') return;
+        setUtterancesTheme(document.documentElement.dataset.scheme)
+    });
+
+    window.addEventListener('onColorSchemeChange', (e) => {
+        setUtterancesTheme(e.detail)
+    })
+</script>
+
+
+    
+
+    <footer class="site-footer">
+    <section class="copyright">
+        &copy; 
+        
+            2020 - 
+        
+        2021 Code like Feather
+    </section>
+    
+    <section class="powerby">
+        Built with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> <br />
+        Theme <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="3.2.0">Stack</a></b> designed by <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a>
+    </section>
+</footer>
+
+
+    
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    
+    <div class="pswp__bg"></div>
+
+    
+    <div class="pswp__scroll-wrap">
+
+        
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                
+                
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"integrity="sha256-ePwmChbbvXbsO02lbM3HoHbSHTHFAeChekF1xKJdleo="crossorigin="anonymous"
+                defer="true"
+                >
+            </script><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"integrity="sha256-UKkzOn/w1mBxRmLLGrSeyB4e1xbrp4xylgAWb3M42pU="crossorigin="anonymous"
+                defer="true"
+                >
+            </script><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.css"integrity="sha256-c0uckgykQ9v5k&#43;IqViZOZKc47Jn7KQil4/MP3ySA3F8="crossorigin="anonymous"
+            ><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.css"integrity="sha256-SBLU4vv6CA6lHsZ1XyTdhyjJxCjPif/TRkjnsyGAGnE="crossorigin="anonymous"
+            >
+
+            </main>
+    
+        <aside class="sidebar right-sidebar sticky">
+            <section class="widget archives">
+                <div class="widget-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-hash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <line x1="5" y1="9" x2="19" y2="9" />
+  <line x1="5" y1="15" x2="19" y2="15" />
+  <line x1="11" y1="4" x2="7" y2="20" />
+  <line x1="17" y1="4" x2="13" y2="20" />
+</svg>
+
+
+
+                </div>
+                <h2 class="widget-title section-title">Table of contents</h2>
+                
+                <div class="widget--toc">
+                    <nav id="TableOfContents">
+  <ol>
+    <li><a href="#자료와-정보">자료와 정보</a></li>
+    <li><a href="#표현-단위">표현 단위</a></li>
+  </ol>
+
+  <ol>
+    <li><a href="#파일-시스템">파일 시스템</a></li>
+    <li><a href="#데이터베이스-관리-시스템">데이터베이스 관리 시스템</a></li>
+    <li><a href="#dbms의-주요-기능">DBMS의 주요 기능</a></li>
+    <li><a href="#dmbs의-주요-구성-요소">DMBS의 주요 구성 요소</a></li>
+  </ol>
+
+  <ol>
+    <li><a href="#1세대">1세대</a></li>
+    <li><a href="#2세대">2세대</a></li>
+    <li><a href="#3세대">3세대</a></li>
+    <li><a href="#4세대">4세대</a></li>
+  </ol>
+
+  <ol>
+    <li><a href="#구조">구조</a></li>
+    <li><a href="#3단계-데이터베이스-구조">3단계 데이터베이스 구조</a></li>
+    <li><a href="#3단계-데이터베이스-구조의-매핑사상">3단계 데이터베이스 구조의 매핑(사상)</a></li>
+    <li><a href="#데이터-사전">데이터 사전</a></li>
+    <li><a href="#데이터-디렉토리">데이터 디렉토리</a></li>
+    <li><a href="#사용자-데이터베이스">사용자 데이터베이스</a></li>
+  </ol>
+
+  <ol>
+    <li><a href="#2단계-데이터-모델링">2단계 데이터 모델링</a></li>
+  </ol>
+
+  <ol>
+    <li><a href="#개체-관계-모델-e-r-model">개체 관계 모델 (E-R model)</a></li>
+    <li><a href="#개체-관계-모델-다이어그램">개체-관계 모델 다이어그램</a></li>
+  </ol>
+
+  <ol>
+    <li><a href="#관계-데이터-모델">관계 데이터 모델</a></li>
+  </ol>
+
+  <ol>
+    <li><a href="#정규화를-이용">정규화를 이용</a></li>
+    <li><a href="#e-r-모델과-릴레이션-변환-규칙을-이용">E-R 모델과 릴레이션 변환 규칙을 이용</a></li>
+    <li><a href="#1-요구사항-분석">1. 요구사항 분석</a></li>
+    <li><a href="#2-개념적-설계">2. 개념적 설계</a></li>
+    <li><a href="#작업-과정"><strong>작업 과정</strong></a>
+      <ol>
+        <li><a href="#a-개체-추출--각-개체의-주요-속성과-키-속성-선별">A. <strong>개체 추출 :</strong> 각 개체의 주요 속성과 키 속성 선별</a></li>
+        <li><a href="#b-개체-간의-관계-설정">B. <strong>개체 간의 관계 설정</strong></a></li>
+        <li><a href="#c-e-r-다이어그램을-총합해-표현">C. <strong>E-R 다이어그램을 총합해 표현</strong></a></li>
+      </ol>
+    </li>
+  </ol>
+</nav>
+                </div>
+            </section>
+        </aside>
+    
+
+        </div>
+        <script 
+                src="https://cdn.jsdelivr.net/npm/node-vibrant@3.1.5/dist/vibrant.min.js"integrity="sha256-5NovOZc4iwiAWTYIFiIM7DxKUXKWvpVEuMEPLzcm5/g="crossorigin="anonymous"
+                defer="false"
+                >
+            </script><script type="text/javascript" src="/ts/main.js" defer></script>
+<script>
+    (function () {
+        const customFont = document.createElement('link');
+        customFont.href = "https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap";
+
+        customFont.type = "text/css";
+        customFont.rel = "stylesheet";
+
+        document.head.appendChild(customFont);
+    }());
+</script>
+
+    </body>
+</html>

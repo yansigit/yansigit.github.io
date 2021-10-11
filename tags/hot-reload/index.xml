@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>hot-reload on Code like Feather</title>
+    <link>https://yansigit.github.io/tags/hot-reload/</link>
+    <description>Recent content in hot-reload on Code like Feather</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>ko-kr</language>
+    <lastBuildDate>Mon, 27 Jan 2020 19:47:58 +0900</lastBuildDate><atom:link href="https://yansigit.github.io/tags/hot-reload/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Hot Reloading on Golang Project</title>
+      <link>https://yansigit.github.io/blog/hot-reloading-on-golang-project/</link>
+      <pubDate>Mon, 27 Jan 2020 19:47:58 +0900</pubDate>
+      
+      <guid>https://yansigit.github.io/blog/hot-reloading-on-golang-project/</guid>
+      <description>&lt;h1 id=&#34;hot-reloading&#34;&gt;Hot Reloading&lt;/h1&gt;
+&lt;p&gt;웹 어플리케이션을 개발할 때 항상 유용하게 사용하는 기능이 Hot-Reloading 기능이다.&lt;/p&gt;
+&lt;p&gt;템플릿이나 기능을 약간 바꾸고 확인하고 싶을 때,
+코드를 변경하고 일일히 빌드를 새로 해주기란 여간 귀찮은 일이 아니기 때문이다.&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

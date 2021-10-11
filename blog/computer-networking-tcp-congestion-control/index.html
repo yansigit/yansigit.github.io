@@ -1,0 +1,897 @@
+<!DOCTYPE html>
+<html lang="ko-kr">
+    <head><meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content='컴퓨터 네트워크 - TCP Congestion Control'><title>Computer Networking - TCP Congestion Control</title>
+
+<link rel='canonical' href='https://yansigit.github.io/blog/computer-networking-tcp-congestion-control/'>
+
+<link rel="stylesheet" href="/scss/style.min.css"><meta property='og:title' content='Computer Networking - TCP Congestion Control'>
+<meta property='og:description' content='컴퓨터 네트워크 - TCP Congestion Control'>
+<meta property='og:url' content='https://yansigit.github.io/blog/computer-networking-tcp-congestion-control/'>
+<meta property='og:site_name' content='Code like Feather'>
+<meta property='og:type' content='article'><meta property='article:section' content='Posts' /><meta property='article:tag' content='computer-networking' /><meta property='article:tag' content='network' /><meta property='article:tag' content='networking' /><meta property='article:tag' content='tcp' /><meta property='article:tag' content='congestion-control' /><meta property='article:published_time' content='2020-09-17T00:11:07&#43;09:00'/><meta property='article:modified_time' content='2020-09-17T00:11:07&#43;09:00'/><meta property='og:image' content='https://yansigit.github.io/images/lighthouse.jpg' />
+<meta name="twitter:title" content="Computer Networking - TCP Congestion Control">
+<meta name="twitter:description" content="컴퓨터 네트워크 - TCP Congestion Control"><meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content='https://yansigit.github.io/images/lighthouse.jpg' />
+    </head>
+    <body class="
+    article-page has-toc
+">
+    <script>
+        (function() {
+            const colorSchemeKey = 'StackColorScheme';
+            if(!localStorage.getItem(colorSchemeKey)){
+                localStorage.setItem(colorSchemeKey, "auto");
+            }
+        })();
+    </script><script>
+    (function() {
+        const colorSchemeKey = 'StackColorScheme';
+        const colorSchemeItem = localStorage.getItem(colorSchemeKey);
+        const supportDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches === true;
+
+        if (colorSchemeItem == 'dark' || colorSchemeItem === 'auto' && supportDarkMode) {
+            
+
+            document.documentElement.dataset.scheme = 'dark';
+        } else {
+            document.documentElement.dataset.scheme = 'light';
+        }
+    })();
+</script>
+<div class="container main-container flex 
+    
+        extended
+    
+">
+    
+        <div id="article-toolbar">
+            <a href="https://yansigit.github.io" class="back-home">
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-chevron-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <polyline points="15 6 9 12 15 18" />
+</svg>
+
+
+
+                <span>Back</span>
+            </a>
+        </div>
+    
+<main class="main full-width">
+    <article class="main-article">
+    <header class="article-header">
+
+    <div class="article-details">
+    
+    <header class="article-category">
+        
+            <a href="/categories/computer-networking/" >
+                computer-networking
+            </a>
+        
+    </header>
+    
+
+    <h2 class="article-title">
+        <a href="/blog/computer-networking-tcp-congestion-control/">Computer Networking - TCP Congestion Control</a>
+    </h2>
+
+    
+    <h3 class="article-subtitle">
+        컴퓨터 네트워크 - TCP Congestion Control
+    </h3>
+    
+
+    
+    <footer class="article-time">
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-calendar-time" width="56" height="56" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M11.795 21h-6.795a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v4" />
+  <circle cx="18" cy="18" r="4" />
+  <path d="M15 3v4" />
+  <path d="M7 3v4" />
+  <path d="M3 11h16" />
+  <path d="M18 16.496v1.504l1 1" />
+</svg>
+                <time class="article-time--published">Sep 17, 2020</time>
+            </div>
+        
+
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <polyline points="12 7 12 12 15 15" />
+</svg>
+
+
+
+                <time class="article-time--reading">
+                    3 minute read
+                </time>
+            </div>
+        
+    </footer>
+    
+</div>
+</header>
+
+    <section class="article-content">
+    <p>Computer Networking - TCP Congestion Control</p>
+<h1 id="computer-network-tcp-congestion-control">Computer-Network-TCP-Congestion-Control</h1>
+<h1 id="principles-of-congestion-control">Principles of congestion control</h1>
+<h2 id="정의">정의</h2>
+<ul>
+<li>너무 많은 Source들이 너무 많은 데이터를 너무 빨리 보내 네트워크가 감당이 안되는 상황</li>
+<li>Flow control과는 다르다</li>
+<li>패킷 유실, 긴 딜레이가 발생할 수 있다</li>
+</ul>
+<h2 id="시나리오-1">시나리오 1</h2>
+<p><figure 
+	>
+	<a href="/posts/computer-network-tcp-congestion-control/Untitled.png" >
+		<img src="/posts/computer-network-tcp-congestion-control/Untitled.png"
+			
+			
+			
+			loading="lazy"
+			alt="image">
+	</a>
+	
+	<figcaption>image</figcaption>
+	
+</figure></p>
+<h2 id="시나리오-2">시나리오 2</h2>
+<p><figure 
+	>
+	<a href="/posts/computer-network-tcp-congestion-control/Untitled%201.png" >
+		<img src="/posts/computer-network-tcp-congestion-control/Untitled%201.png"
+			
+			
+			
+			loading="lazy"
+			alt="image">
+	</a>
+	
+	<figcaption>image</figcaption>
+	
+</figure></p>
+<p><figure 
+	>
+	<a href="/posts/computer-network-tcp-congestion-control/Untitled%202.png" >
+		<img src="/posts/computer-network-tcp-congestion-control/Untitled%202.png"
+			
+			
+			
+			loading="lazy"
+			alt="image">
+	</a>
+	
+	<figcaption>image</figcaption>
+	
+</figure></p>
+<p><figure 
+	>
+	<a href="/posts/computer-network-tcp-congestion-control/Untitled%203.png" >
+		<img src="/posts/computer-network-tcp-congestion-control/Untitled%203.png"
+			
+			
+			
+			loading="lazy"
+			alt="image">
+	</a>
+	
+	<figcaption>image</figcaption>
+	
+</figure></p>
+<p><figure 
+	>
+	<a href="/posts/computer-network-tcp-congestion-control/Untitled%204.png" >
+		<img src="/posts/computer-network-tcp-congestion-control/Untitled%204.png"
+			
+			
+			
+			loading="lazy"
+			alt="image">
+	</a>
+	
+	<figcaption>image</figcaption>
+	
+</figure></p>
+<h2 id="혼잡이-발생하면">혼잡이 발생하면</h2>
+<ul>
+<li>&ldquo;Goodput&quot;을 위해 재전송이 자주 필요할 수 있다</li>
+<li>필요하지 않은 재전송도 일어날 수 있다
+<ul>
+<li>&ldquo;Goodput&quot;의 효율을 떨어뜨린다</li>
+</ul>
+</li>
+</ul>
+<h2 id="시나리오-3">시나리오 3</h2>
+<p><figure 
+	>
+	<a href="/posts/computer-network-tcp-congestion-control/Untitled%205.png" >
+		<img src="/posts/computer-network-tcp-congestion-control/Untitled%205.png"
+			
+			
+			
+			loading="lazy"
+			alt="image">
+	</a>
+	
+	<figcaption>image</figcaption>
+	
+</figure></p>
+<p><figure 
+	>
+	<a href="/posts/computer-network-tcp-congestion-control/Untitled%206.png" >
+		<img src="/posts/computer-network-tcp-congestion-control/Untitled%206.png"
+			
+			
+			
+			loading="lazy"
+			alt="image">
+	</a>
+	
+	<figcaption>image</figcaption>
+	
+</figure></p>
+<h2 id="혼잡이-발생하면-1">혼잡이 발생하면</h2>
+<ul>
+<li>만약 패킷이 드롭되면, 해당 모든 상위의 Transmission capacity들의 효율이 떨어지게 된다.TCP Congestion Control</li>
+</ul>
+<blockquote>
+<p>Additive Increase, Multiplicative Decrease</p>
+</blockquote>
+<blockquote>
+<p>증가시킬때는 천천히, 감소시킬때는 빠르게</p>
+</blockquote>
+<ul>
+<li>
+<p>Sender는 전송 속도 (윈도우 사이즈)를 계속 늘려 Bandwidth를 증가시키고, 패킷 로스가 일어나면 윈도우 사이즈를 줄인다</p>
+<ul>
+<li>Additive increase
+<ul>
+<li><code>cwnd</code> (congestion window)를 패킷 로스가 감지될 때 까지 <code>1MSS</code> 만큼 매 <code>RTT</code>마다 늘린다</li>
+</ul>
+</li>
+<li>Multiplicative decrease
+<ul>
+<li>패킷 로스가 감지되면 <code>cwnd</code>를 반으로 줄인다</li>
+</ul>
+</li>
+</ul>
+<p><figure 
+	>
+	<a href="/posts/computer-network-tcp-congestion-control/Untitled%207.png" >
+		<img src="/posts/computer-network-tcp-congestion-control/Untitled%207.png"
+			
+			
+			
+			loading="lazy"
+			alt="image">
+	</a>
+	
+	<figcaption>image</figcaption>
+	
+</figure></p>
+<ul>
+<li>최대한 Max bandwidth를 쓰겠다는 노력..</li>
+</ul>
+</li>
+</ul>
+<h2 id="1-tcp-congestion-control-detail">1. TCP Congestion Control: detail</h2>
+<p><figure 
+	>
+	<a href="/posts/computer-network-tcp-congestion-control/Untitled%208.png" >
+		<img src="/posts/computer-network-tcp-congestion-control/Untitled%208.png"
+			
+			
+			
+			loading="lazy"
+			alt="image">
+	</a>
+	
+	<figcaption>image</figcaption>
+	
+</figure></p>
+<ul>
+<li>기억하자!
+<ul>
+<li>TCP의 경우 Cumulative (누적) Ack를 쓰기 때문에 초록 노랑 섞이지 않음</li>
+</ul>
+</li>
+<li>Sender 전송 속도 제한</li>
+</ul>
+<p><figure 
+	>
+	<a href="/posts/computer-network-tcp-congestion-control/Untitled%209.png" >
+		<img src="/posts/computer-network-tcp-congestion-control/Untitled%209.png"
+			
+			
+			
+			loading="lazy"
+			alt="image">
+	</a>
+	
+	<figcaption>image</figcaption>
+	
+</figure></p>
+<ul>
+<li>
+<p>cwnd (congestion window) 는 네트워크 혼잡도에 따라 가변적</p>
+</li>
+<li>
+<p><strong>TCP Sending Rate</strong></p>
+<ul>
+<li>대충 RTT 당 cwnd 만큼 보냄</li>
+</ul>
+<p><figure 
+	>
+	<a href="/posts/computer-network-tcp-congestion-control/Untitled%2010.png" >
+		<img src="/posts/computer-network-tcp-congestion-control/Untitled%2010.png"
+			
+			
+			
+			loading="lazy"
+			alt="image">
+	</a>
+	
+	<figcaption>image</figcaption>
+	
+</figure></p>
+<ul>
+<li>cwnd를 늘리거나 줄임으로서 혼잡도 회피</li>
+</ul>
+</li>
+</ul>
+<h2 id="2-tcp-slow-start">2. TCP Slow Start</h2>
+<ul>
+<li>
+<p>처음에는 cwnd = 1 MSS (1460bytes 정도)로 시작 (작은 크기)</p>
+</li>
+<li>
+<p>이를 지수적으로 증가시킴</p>
+<ul>
+<li>각각의 RTT마다 cwnd를 두배씩 증가시킴</li>
+<li>이는 ACK를 받을 때 마다 +1를 해줌으로서 가능</li>
+</ul>
+<p><figure 
+	>
+	<a href="/posts/computer-network-tcp-congestion-control/Untitled%2011.png" >
+		<img src="/posts/computer-network-tcp-congestion-control/Untitled%2011.png"
+			
+			
+			
+			loading="lazy"
+			alt="image">
+	</a>
+	
+	<figcaption>image</figcaption>
+	
+</figure></p>
+</li>
+</ul>
+<h2 id="3-tcp-패킷-로스-검출-반응">3. TCP: 패킷 로스 검출, 반응</h2>
+<ul>
+<li>타임아웃 발생
+<ul>
+<li>cwnd를 1 MSS로 줄임</li>
+<li>다음 다시 지수적으로 증가시킴 (threshold=8 까지) (1..2..4..8..)</li>
+<li>threshold에 도달하면 선형적으로 증가시킴 (9..10..11..12) → congestion avoidence</li>
+</ul>
+</li>
+<li>3개의 중복 ACK가 발생
+<ul>
+<li>TCP Tahoe
+<ul>
+<li>타임아웃 발생시와 같이 처리</li>
+</ul>
+</li>
+<li>TCP RENO
+<ul>
+<li>cwnd를 반으로 줄이고 선형적으로 증가시킴</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="4-slow-start--ca-congestion-avoidence">4. Slow start → CA (congestion avoidence)</h2>
+<p><figure 
+	>
+	<a href="/posts/computer-network-tcp-congestion-control/Untitled%2012.png" >
+		<img src="/posts/computer-network-tcp-congestion-control/Untitled%2012.png"
+			
+			
+			
+			loading="lazy"
+			alt="image">
+	</a>
+	
+	<figcaption>image</figcaption>
+	
+</figure></p>
+<ul>
+<li>위를 보면 패킷로스 이벤트가 발생하자
+<ul>
+<li>ssthresh가 패킷로스가 일어난 값의 1/2로 재설정되었다</li>
+<li>TCP Tahoe의 경우
+<ul>
+<li>cwnd가 1로 초기화 되고 지수적으로 증가</li>
+<li>ssthresh에 도달하자 선형적으로 증가</li>
+</ul>
+</li>
+<li>TCP Reno의 경우
+<ul>
+<li>cwnd가 1/2로 재설정되어 바로 선형적으로 증가</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="tcp-혼잡-컨트롤-요약">TCP 혼잡 컨트롤 요약</h2>
+<p><figure 
+	>
+	<a href="/posts/computer-network-tcp-congestion-control/Untitled%2013.png" >
+		<img src="/posts/computer-network-tcp-congestion-control/Untitled%2013.png"
+			
+			
+			
+			loading="lazy"
+			alt="image">
+	</a>
+	
+	<figcaption>image</figcaption>
+	
+</figure></p>
+<h2 id="tcp-쓰루풋">TCP 쓰루풋</h2>
+<p><figure 
+	>
+	<a href="/posts/computer-network-tcp-congestion-control/Untitled%2014.png" >
+		<img src="/posts/computer-network-tcp-congestion-control/Untitled%2014.png"
+			
+			
+			
+			loading="lazy"
+			alt="image">
+	</a>
+	
+	<figcaption>image</figcaption>
+	
+</figure></p>
+<ul>
+<li>Slow start 없다고 가정, 보낼 데이터가 항상 있다고 가정</li>
+<li>W (window size) 이상이면 패킷 로스가 일어난다고 가정</li>
+<li>평균 쓰루풋 = 3/4 * W per RTT</li>
+</ul>
+<h2 id="tcp-features-tcp-over-long-fat-pipes">TCP Features: TCP over &ldquo;Long, Fat Pipes&rdquo;</h2>
+<ul>
+<li>
+<p>예를들어 1500 byte segments, 100ms RTT에 10 Gbps 쓰루풋을 원할 때</p>
+</li>
+<li>
+<p>윈도우 사이즈가 83,333이 되어야 가능</p>
+</li>
+<li>
+<p>세그먼트가 로스된다면?</p>
+<p><figure 
+	>
+	<a href="/posts/computer-network-tcp-congestion-control/Untitled%2015.png" >
+		<img src="/posts/computer-network-tcp-congestion-control/Untitled%2015.png"
+			
+			
+			
+			loading="lazy"
+			alt="image">
+	</a>
+	
+	<figcaption>image</figcaption>
+	
+</figure></p>
+</li>
+<li>
+<p>2의 10승 당 하나의 로스만 발생해야 한다고 함</p>
+</li>
+<li>
+<p>이는 비현실적임</p>
+</li>
+</ul>
+<h2 id="tcp-공평성">TCP 공평성</h2>
+<ul>
+<li>TCP는 공평성을 가지고 있다</li>
+</ul>
+<p><figure 
+	>
+	<a href="/posts/computer-network-tcp-congestion-control/Untitled%2016.png" >
+		<img src="/posts/computer-network-tcp-congestion-control/Untitled%2016.png"
+			
+			
+			
+			loading="lazy"
+			alt="image">
+	</a>
+	
+	<figcaption>image</figcaption>
+	
+</figure></p>
+<ul>
+<li>연결 1,2가 같은 네트워크를 사용한다고 했을 때
+<ul>
+<li>처음에는 쓰루풋이 달라도 패킷로스 등을 거치며 slow start, CA 등으로 쓰루풋이 equal bandwidth로 수렴된다</li>
+</ul>
+</li>
+</ul>
+<h2 id="공평성의-장단점">공평성의 장단점</h2>
+<ul>
+<li>멀티미디어 앱들의 경우 혼잡도 컨트롤 때문에 속도에 지장받는걸 원하지 않음
+<ul>
+<li>따라서 UDP를 많이 사용</li>
+</ul>
+</li>
+<li>Parallel TCP
+<ul>
+<li>어플리케이션은 병렬적으로 연결을 맺어 속도를 향상시킬 수 있음 (꼼수같다..?)</li>
+<li>예를 들어 이미 9개의 TCP 커넥션이 있는데, 새 앱이 1개의 TCP만 연결한다면
+<ul>
+<li>R/10 만 배당받는 셈</li>
+</ul>
+</li>
+<li>그런데 새 앱이 TCP를 9개 열어버리면
+<ul>
+<li>R/2를 할당받는 셈</li>
+</ul>
+</li>
+<li>웹 브라우저에서 자주 사용</li>
+</ul>
+</li>
+</ul>
+<h2 id="explict-congestion-notification-ecn">Explict Congestion Notification (ECN)</h2>
+<blockquote>
+<p>네트워크가 도와주는 혼잡 컨트롤 (일부 구현)</p>
+</blockquote>
+<ul>
+<li>라우터들이 혼잡 상황을 판단, Source와 Destination에 알려줌</li>
+<li>IP 헤더에 ToS 필드가 있는데 이것을 사용</li>
+</ul>
+<p><figure 
+	>
+	<a href="/posts/computer-network-tcp-congestion-control/Untitled%2017.png" >
+		<img src="/posts/computer-network-tcp-congestion-control/Untitled%2017.png"
+			
+			
+			
+			loading="lazy"
+			alt="image">
+	</a>
+	
+	<figcaption>image</figcaption>
+	
+</figure></p>
+<ul>
+<li>위를 보면
+<ol>
+<li>Source에서는 ECN=00 으로 세팅되어 전송됨</li>
+<li>만약 네트워크에 혼잡이 있다면 중간에 라우터에서 이를 ECN=11으로 바꿈</li>
+<li>Destination에서는 패킷을 받아보고 ECN이 설정되어 있다면 ECE=1 (ECN echo) 설정해 ACK를 보내줘 Source에게도 네트워크에 혼잡이 있다는 것을 알려줌</li>
+</ol>
+</li>
+</ul>
+</section>
+
+
+    <footer class="article-footer">
+    
+    <section class="article-tags">
+        
+            <a href="/tags/computer-networking/">computer-networking</a>
+        
+            <a href="/tags/network/">network</a>
+        
+            <a href="/tags/networking/">networking</a>
+        
+            <a href="/tags/tcp/">tcp</a>
+        
+            <a href="/tags/congestion-control/">congestion-control</a>
+        
+    </section>
+
+
+    
+    <section class="article-copyright">
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-copyright" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <path d="M14.5 9a3.5 4 0 1 0 0 6" />
+</svg>
+
+
+
+        <span>Licensed under CC BY-NC-SA 4.0</span>
+    </section>
+    </footer>
+
+
+    
+</article>
+
+    <aside class="related-contents--wrapper">
+    
+    
+        <h2 class="section-title">Related contents</h2>
+        <div class="related-contents">
+            <div class="flex article-list--tile">
+                
+                    
+<article class="">
+    <a href="/blog/computer-networking-flow-control-and-handshake/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">Computer Networking - Flow Control and Handshake</h2>
+        </div>
+    </a>
+</article>
+                
+                    
+<article class="">
+    <a href="/blog/computer-networking-network-tcp/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">Computer Networking - Network TCP</h2>
+        </div>
+    </a>
+</article>
+                
+                    
+<article class="">
+    <a href="/blog/computer-networking-email-and-dns/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">Computer Networking - Email and DNS</h2>
+        </div>
+    </a>
+</article>
+                
+                    
+<article class="">
+    <a href="/blog/computer-networking-final-quick-note/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">Computer Networking - Final Quick Note</h2>
+        </div>
+    </a>
+</article>
+                
+                    
+<article class="">
+    <a href="/blog/computer-networking-http/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">Computer Networking - HTTP</h2>
+        </div>
+    </a>
+</article>
+                
+            </div>
+        </div>
+    
+</aside>
+
+     
+    
+        
+    <script src="https://utteranc.es/client.js" 
+        repo="yansigit/yansigit.github.io"
+        issue-term="pathname"
+        
+        label="Utterances Comment"
+        
+        crossorigin="anonymous"
+        async
+        >
+</script>
+
+<style>
+    .utterances {
+        max-width: unset;
+    }
+</style>
+
+<script>
+    function setUtterancesTheme(theme) {
+        let utterances = document.querySelector('.utterances iframe');
+        if (utterances) {
+            utterances.contentWindow.postMessage(
+                {
+                    type: 'set-theme',
+                    theme: `github-${theme}`
+                },
+                'https://utteranc.es'
+            );
+        }
+    }
+
+    addEventListener('message', event => {
+        if (event.origin !== 'https://utteranc.es') return;
+        setUtterancesTheme(document.documentElement.dataset.scheme)
+    });
+
+    window.addEventListener('onColorSchemeChange', (e) => {
+        setUtterancesTheme(e.detail)
+    })
+</script>
+
+
+    
+
+    <footer class="site-footer">
+    <section class="copyright">
+        &copy; 
+        
+            2020 - 
+        
+        2021 Code like Feather
+    </section>
+    
+    <section class="powerby">
+        Built with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> <br />
+        Theme <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="3.2.0">Stack</a></b> designed by <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a>
+    </section>
+</footer>
+
+
+    
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    
+    <div class="pswp__bg"></div>
+
+    
+    <div class="pswp__scroll-wrap">
+
+        
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                
+                
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"integrity="sha256-ePwmChbbvXbsO02lbM3HoHbSHTHFAeChekF1xKJdleo="crossorigin="anonymous"
+                defer="true"
+                >
+            </script><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"integrity="sha256-UKkzOn/w1mBxRmLLGrSeyB4e1xbrp4xylgAWb3M42pU="crossorigin="anonymous"
+                defer="true"
+                >
+            </script><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.css"integrity="sha256-c0uckgykQ9v5k&#43;IqViZOZKc47Jn7KQil4/MP3ySA3F8="crossorigin="anonymous"
+            ><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.css"integrity="sha256-SBLU4vv6CA6lHsZ1XyTdhyjJxCjPif/TRkjnsyGAGnE="crossorigin="anonymous"
+            >
+
+            </main>
+    
+        <aside class="sidebar right-sidebar sticky">
+            <section class="widget archives">
+                <div class="widget-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-hash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <line x1="5" y1="9" x2="19" y2="9" />
+  <line x1="5" y1="15" x2="19" y2="15" />
+  <line x1="11" y1="4" x2="7" y2="20" />
+  <line x1="17" y1="4" x2="13" y2="20" />
+</svg>
+
+
+
+                </div>
+                <h2 class="widget-title section-title">Table of contents</h2>
+                
+                <div class="widget--toc">
+                    <nav id="TableOfContents">
+  <ol>
+    <li><a href="#정의">정의</a></li>
+    <li><a href="#시나리오-1">시나리오 1</a></li>
+    <li><a href="#시나리오-2">시나리오 2</a></li>
+    <li><a href="#혼잡이-발생하면">혼잡이 발생하면</a></li>
+    <li><a href="#시나리오-3">시나리오 3</a></li>
+    <li><a href="#혼잡이-발생하면-1">혼잡이 발생하면</a></li>
+    <li><a href="#1-tcp-congestion-control-detail">1. TCP Congestion Control: detail</a></li>
+    <li><a href="#2-tcp-slow-start">2. TCP Slow Start</a></li>
+    <li><a href="#3-tcp-패킷-로스-검출-반응">3. TCP: 패킷 로스 검출, 반응</a></li>
+    <li><a href="#4-slow-start--ca-congestion-avoidence">4. Slow start → CA (congestion avoidence)</a></li>
+    <li><a href="#tcp-혼잡-컨트롤-요약">TCP 혼잡 컨트롤 요약</a></li>
+    <li><a href="#tcp-쓰루풋">TCP 쓰루풋</a></li>
+    <li><a href="#tcp-features-tcp-over-long-fat-pipes">TCP Features: TCP over &ldquo;Long, Fat Pipes&rdquo;</a></li>
+    <li><a href="#tcp-공평성">TCP 공평성</a></li>
+    <li><a href="#공평성의-장단점">공평성의 장단점</a></li>
+    <li><a href="#explict-congestion-notification-ecn">Explict Congestion Notification (ECN)</a></li>
+  </ol>
+</nav>
+                </div>
+            </section>
+        </aside>
+    
+
+        </div>
+        <script 
+                src="https://cdn.jsdelivr.net/npm/node-vibrant@3.1.5/dist/vibrant.min.js"integrity="sha256-5NovOZc4iwiAWTYIFiIM7DxKUXKWvpVEuMEPLzcm5/g="crossorigin="anonymous"
+                defer="false"
+                >
+            </script><script type="text/javascript" src="/ts/main.js" defer></script>
+<script>
+    (function () {
+        const customFont = document.createElement('link');
+        customFont.href = "https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap";
+
+        customFont.type = "text/css";
+        customFont.rel = "stylesheet";
+
+        document.head.appendChild(customFont);
+    }());
+</script>
+
+    </body>
+</html>

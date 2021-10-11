@@ -1,0 +1,722 @@
+<!DOCTYPE html>
+<html lang="ko-kr">
+    <head><meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content='탐색 알고리즘 정리'><title>탐색 알고리즘</title>
+
+<link rel='canonical' href='https://yansigit.github.io/blog/%ED%83%90%EC%83%89-%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98/'>
+
+<link rel="stylesheet" href="/scss/style.min.css"><meta property='og:title' content='탐색 알고리즘'>
+<meta property='og:description' content='탐색 알고리즘 정리'>
+<meta property='og:url' content='https://yansigit.github.io/blog/%ED%83%90%EC%83%89-%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98/'>
+<meta property='og:site_name' content='Code like Feather'>
+<meta property='og:type' content='article'><meta property='article:section' content='Posts' /><meta property='article:tag' content='algorithm' /><meta property='article:tag' content='search algorithm' /><meta property='article:tag' content='data-science' /><meta property='article:published_time' content='2021-07-07T00:04:34&#43;09:00'/><meta property='article:modified_time' content='2021-07-07T00:04:34&#43;09:00'/><meta property='og:image' content='https://yansigit.github.io/images/lighthouse.jpg' />
+<meta name="twitter:title" content="탐색 알고리즘">
+<meta name="twitter:description" content="탐색 알고리즘 정리"><meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content='https://yansigit.github.io/images/lighthouse.jpg' />
+    </head>
+    <body class="
+    article-page has-toc
+">
+    <script>
+        (function() {
+            const colorSchemeKey = 'StackColorScheme';
+            if(!localStorage.getItem(colorSchemeKey)){
+                localStorage.setItem(colorSchemeKey, "auto");
+            }
+        })();
+    </script><script>
+    (function() {
+        const colorSchemeKey = 'StackColorScheme';
+        const colorSchemeItem = localStorage.getItem(colorSchemeKey);
+        const supportDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches === true;
+
+        if (colorSchemeItem == 'dark' || colorSchemeItem === 'auto' && supportDarkMode) {
+            
+
+            document.documentElement.dataset.scheme = 'dark';
+        } else {
+            document.documentElement.dataset.scheme = 'light';
+        }
+    })();
+</script>
+<div class="container main-container flex 
+    
+        extended
+    
+">
+    
+        <div id="article-toolbar">
+            <a href="https://yansigit.github.io" class="back-home">
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-chevron-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <polyline points="15 6 9 12 15 18" />
+</svg>
+
+
+
+                <span>Back</span>
+            </a>
+        </div>
+    
+<main class="main full-width">
+    <article class="main-article">
+    <header class="article-header">
+
+    <div class="article-details">
+    
+    <header class="article-category">
+        
+            <a href="/categories/algorithm/" >
+                algorithm
+            </a>
+        
+    </header>
+    
+
+    <h2 class="article-title">
+        <a href="/blog/%ED%83%90%EC%83%89-%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98/">탐색 알고리즘</a>
+    </h2>
+
+    
+    <h3 class="article-subtitle">
+        탐색 알고리즘 정리
+    </h3>
+    
+
+    
+    <footer class="article-time">
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-calendar-time" width="56" height="56" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M11.795 21h-6.795a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v4" />
+  <circle cx="18" cy="18" r="4" />
+  <path d="M15 3v4" />
+  <path d="M7 3v4" />
+  <path d="M3 11h16" />
+  <path d="M18 16.496v1.504l1 1" />
+</svg>
+                <time class="article-time--published">Jul 07, 2021</time>
+            </div>
+        
+
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <polyline points="12 7 12 12 15 15" />
+</svg>
+
+
+
+                <time class="article-time--reading">
+                    3 minute read
+                </time>
+            </div>
+        
+    </footer>
+    
+</div>
+</header>
+
+    <section class="article-content">
+    <h1 id="탐색">탐색</h1>
+<p><figure 
+	>
+	<a href="/posts/%ed%83%90%ec%83%89/Untitled.png" >
+		<img src="/posts/%ed%83%90%ec%83%89/Untitled.png"
+			
+			
+			
+			loading="lazy"
+			alt="%E1%84%90%E1%85%A1%E1%86%B7%E1%84%89%E1%85%A2%E1%86%A8/Untitled.png">
+	</a>
+	
+	<figcaption>%E1%84%90%E1%85%A1%E1%86%B7%E1%84%89%E1%85%A2%E1%86%A8/Untitled.png</figcaption>
+	
+</figure></p>
+<h1 id="-1-search-space--search">👾 1. Search Space &amp; Search</h1>
+<h2 id="탐색-1">탐색</h2>
+<ul>
+<li>문제의 해가 될 수 있는 것들의 집합을 공간으로 간주하고, 문제의 최적의 해를 찾기위해 공간을 체계적으로 찾아보는 것</li>
+<li>탐색문제의 예
+<ul>
+<li>선교사-식인종 강건너기 문제</li>
+<li>8퍼즐 문제</li>
+<li>8퀸 문제</li>
+<li>틱택토</li>
+<li>루빅스큐브</li>
+<li>순회판매자 문제</li>
+</ul>
+</li>
+</ul>
+<h2 id="상태">상태</h2>
+<ul>
+<li>특정 시점에 문제의 세계가 처해 있는 모습</li>
+</ul>
+<h2 id="세계">세계</h2>
+<ul>
+<li>문제에 포함된 대상들과 이들의 상황을 포괄적으로 표현한 것</li>
+</ul>
+<h2 id="상태-공간">상태 공간</h2>
+<ul>
+<li>문제 해결 과정에서 초기 상태로부터 도달할 수 있는 모든 상태들의 집합</li>
+<li>문제의 해가 될 가능성이 있는 모든 상태들의 집합</li>
+</ul>
+<h2 id="초기상태">초기상태</h2>
+<ul>
+<li>문제가 주어진 시점의 시작 상태</li>
+</ul>
+<h2 id="목표상태">목표상태</h2>
+<ul>
+<li>문제에서 원하는 최종 상태</li>
+</ul>
+<h2 id="상태-공간-그래프">상태 공간 그래프</h2>
+<ul>
+<li>상태공간에서 각 행동에 따른 상태의 변화를 나타낸 그래프
+<ul>
+<li>노드: 상태</li>
+<li>링크: 행동</li>
+</ul>
+</li>
+<li>일반적인 문제에서는 상태공간이 매우 큼
+<ul>
+<li>미리 상태 공간 그래프를 만들기 어렵다</li>
+<li>탐색과정애서 그래프 생성</li>
+</ul>
+</li>
+</ul>
+<h1 id="-2-blind-search">🤖 2. Blind Search</h1>
+<h2 id="맹목적-탐색">맹목적 탐색</h2>
+<ul>
+<li>정해진 순서에 따라 상태공간 그래프를 점점 생성해 가면서 해를 탐색하는 방법</li>
+</ul>
+<h2 id="깊이-우선-탐색-dfs">깊이 우선 탐색 (DFS)</h2>
+<ul>
+<li>초기 노트에서 시작하여 깊이 방향을 ㅗ탐색</li>
+<li>목표 노드에 도달하면 종료</li>
+<li>더 이상 진행할 수 없으면 백트래킹</li>
+<li>방문한 노드는 재방문하지 않음</li>
+</ul>
+<h2 id="너비-우선-탐색-bfs">너비 우선 탐색 (BFS)</h2>
+<ul>
+<li>초기 노드에서 시작하여 모든 자식노드를 확장하여 생성</li>
+<li>목표 노드가 없으면 형제 노드에서 다시 자식 노드 확장</li>
+</ul>
+<h2 id="8퍼즐-문제">8퍼즐 문제</h2>
+<h3 id="dfs">DFS</h3>
+<ul>
+<li>루트 노드에섯 현재 노드까지의 경로 하나만 유지</li>
+<li>가능 상태 : 9!/2 = 184,440</li>
+</ul>
+<p><figure 
+	>
+	<a href="/posts/%ed%83%90%ec%83%89/Untitled%201.png" >
+		<img src="/posts/%ed%83%90%ec%83%89/Untitled%201.png"
+			
+			
+			
+			loading="lazy"
+			alt="%E1%84%90%E1%85%A1%E1%86%B7%E1%84%89%E1%85%A2%E1%86%A8/Untitled%201.png">
+	</a>
+	
+	<figcaption>%E1%84%90%E1%85%A1%E1%86%B7%E1%84%89%E1%85%A2%E1%86%A8/Untitled%201.png</figcaption>
+	
+</figure></p>
+<h3 id="bfs">BFS</h3>
+<ul>
+<li>전체 트리를 메모리에서 관리</li>
+</ul>
+<p><figure 
+	>
+	<a href="/posts/%ed%83%90%ec%83%89/Untitled%202.png" >
+		<img src="/posts/%ed%83%90%ec%83%89/Untitled%202.png"
+			
+			
+			
+			loading="lazy"
+			alt="%E1%84%90%E1%85%A1%E1%86%B7%E1%84%89%E1%85%A2%E1%86%A8/Untitled%202.png">
+	</a>
+	
+	<figcaption>%E1%84%90%E1%85%A1%E1%86%B7%E1%84%89%E1%85%A2%E1%86%A8/Untitled%202.png</figcaption>
+	
+</figure></p>
+<h2 id="균일-비용-탐색">균일 비용 탐색</h2>
+<p><figure 
+	>
+	<a href="/posts/%ed%83%90%ec%83%89/Untitled%203.png" >
+		<img src="/posts/%ed%83%90%ec%83%89/Untitled%203.png"
+			
+			
+			
+			loading="lazy"
+			alt="%E1%84%90%E1%85%A1%E1%86%B7%E1%84%89%E1%85%A2%E1%86%A8/Untitled%203.png">
+	</a>
+	
+	<figcaption>%E1%84%90%E1%85%A1%E1%86%B7%E1%84%89%E1%85%A2%E1%86%A8/Untitled%203.png</figcaption>
+	
+</figure></p>
+<ul>
+<li>경로 비용 g(n)이 제일 낮은 노드 n을 확장</li>
+<li>Sibiu → Bucharest 로 갈 때
+<ul>
+<li>Sibiu에서 볼 수 있는 도시는 Rim, Fag</li>
+<li>따라서 80 비용인 Rim부터 감 → Pit 확장</li>
+<li>이제 Pit과 Fag가 보인다. 97 비용인 Pit 가고 Buch 확장</li>
+<li>이제 99인 Fag와 101이 Buch가 보인다. Fag가기</li>
+<li>이제 비용 101인 Pit → Buch로 간다 80 + 97 + 101 = 278 (최적)</li>
+<li>이제 비용 211인 Fag → Buch로 간다. 99 + 211 = 310</li>
+</ul>
+</li>
+</ul>
+<h2 id="반복적-깊이심화--탐색">반복적 깊이심화  탐색</h2>
+<p><figure 
+	>
+	<a href="/posts/%ed%83%90%ec%83%89/Untitled%204.png" >
+		<img src="/posts/%ed%83%90%ec%83%89/Untitled%204.png"
+			
+			
+			
+			loading="lazy"
+			alt="%E1%84%90%E1%85%A1%E1%86%B7%E1%84%89%E1%85%A2%E1%86%A8/Untitled%204.png">
+	</a>
+	
+	<figcaption>%E1%84%90%E1%85%A1%E1%86%B7%E1%84%89%E1%85%A2%E1%86%A8/Untitled%204.png</figcaption>
+	
+</figure></p>
+<ul>
+<li>깊이 한계가 있는 깊이 우선 탐색을 반복적으로 사용</li>
+<li>최상의 싶이 한계를 찾아내는 방법</li>
+<li>목표를 발견할 때 까지 깊이 한계를 증가시켜 나감</li>
+<li>깊이우선탐색 + 너비우선탐색 장점 모두 가짐</li>
+</ul>
+<h2 id="맹목적-탐색-방법의-비교">맹목적 탐색 방법의 비교</h2>
+<ul>
+<li><strong>깊이 우선 탐색</strong>
+<ul>
+<li>메모라 공간 사용 효율적</li>
+<li>최단 경로 해 탐색 보장 불가</li>
+</ul>
+</li>
+<li><strong>너비 우선 탐색</strong>
+<ul>
+<li>최단 경로 해 탐색 보장</li>
+<li>메모리 공간 사용 비효율</li>
+</ul>
+</li>
+<li><strong>반복적 깊이심화 탐색</strong>
+<ul>
+<li>최단 경로 해 보장</li>
+<li>메모리 공간 사용 효율적</li>
+<li>반복적인 깊이 우선 탐색에 따른 비효율
+<ul>
+<li>실제 비용은 크게 늘지 않음</li>
+<li>각 노드가 10개의 자식노드를 가질 때 너비 우선 탐색 대비 약 11% 정도 추가 노드 생성</li>
+</ul>
+</li>
+<li>탐색공간이 크기 해답의 깊이가 알려져 있지 않은 경우 선호</li>
+</ul>
+</li>
+</ul>
+<h2 id="양방향-탐색">양방향 탐색</h2>
+<ul>
+<li>초기 노드와 목적 노드에서 동시에 너비 우선 탐색 진행</li>
+<li>중간에 만나도록 하여 초기 노드에서 목표 노드로의 최단 경로를 찾음</li>
+</ul>
+<h1 id="1-informed-search">1. Informed Search</h1>
+<h2 id="정보이용-탐색">정보이용 탐색</h2>
+<ul>
+<li>휴리스틱 탐색
+<ul>
+<li>시간이나 정보가 불충분하여 신속하게 어림짐작 하기</li>
+<li>최적의 해를 구하는 것이 아니라 적절한 해를 빠르게 찾는 방법</li>
+</ul>
+</li>
+<li>언덕 오르기 방법, 최상 우선 탐색, 빔 탐색, A* 알고리즘 등</li>
+<li>최단 경로 문제에서 목적지까지 남은 직선 거리
+<ul>
+<li>거리는 짧지만 비용이 많이 소요될 여지가 있음</li>
+</ul>
+</li>
+</ul>
+<h2 id="휴리스틱-비용-추정의-예">휴리스틱 비용 추정의 예</h2>
+<p><figure 
+	>
+	<a href="/posts/%ed%83%90%ec%83%89/Untitled%205.png" >
+		<img src="/posts/%ed%83%90%ec%83%89/Untitled%205.png"
+			
+			
+			
+			loading="lazy"
+			alt="%E1%84%90%E1%85%A1%E1%86%B7%E1%84%89%E1%85%A2%E1%86%A8/Untitled%205.png">
+	</a>
+	
+	<figcaption>%E1%84%90%E1%85%A1%E1%86%B7%E1%84%89%E1%85%A2%E1%86%A8/Untitled%205.png</figcaption>
+	
+</figure></p>
+<h2 id="언덕-오르기-방법">언덕 오르기 방법</h2>
+<p><figure 
+	>
+	<a href="/posts/%ed%83%90%ec%83%89/Untitled%206.png" >
+		<img src="/posts/%ed%83%90%ec%83%89/Untitled%206.png"
+			
+			
+			
+			loading="lazy"
+			alt="%E1%84%90%E1%85%A1%E1%86%B7%E1%84%89%E1%85%A2%E1%86%A8/Untitled%206.png">
+	</a>
+	
+	<figcaption>%E1%84%90%E1%85%A1%E1%86%B7%E1%84%89%E1%85%A2%E1%86%A8/Untitled%206.png</figcaption>
+	
+</figure></p>
+<ul>
+<li>현재 노드에서 휴리스틱에 의한 평가값이 가장 좋은 이웃 노드 하나를 확장해 나가는 탐색 방법
+<ul>
+<li>Greedy Search</li>
+<li>기울기가 제일 가파른 곳부터 계속해서 탐욕적으로 나아가는 방법</li>
+</ul>
+</li>
+<li>그러나 최적의 값을 도출하지 못할 수 있음
+<ul>
+<li>에를들어 중간에서 왼쪽으로 가야 최고점에 도달하는데</li>
+<li>오른쪽으로 가버리면 최고점에 도달하지 못하고, 중간봉우리에서 끝나게 됨</li>
+</ul>
+</li>
+</ul>
+<h2 id="모의-담금법">모의 담금법</h2>
+<p><figure 
+	>
+	<a href="/posts/%ed%83%90%ec%83%89/Untitled%207.png" >
+		<img src="/posts/%ed%83%90%ec%83%89/Untitled%207.png"
+			
+			
+			
+			loading="lazy"
+			alt="%E1%84%90%E1%85%A1%E1%86%B7%E1%84%89%E1%85%A2%E1%86%A8/Untitled%207.png">
+	</a>
+	
+	<figcaption>%E1%84%90%E1%85%A1%E1%86%B7%E1%84%89%E1%85%A2%E1%86%A8/Untitled%207.png</figcaption>
+	
+</figure></p>
+<ul>
+<li>Greedy Search, Stochastic Search</li>
+<li>담금질을 하듯 기울기를 조절하여 왔다갔다하면서 최적점을 찾음</li>
+</ul>
+<h2 id="최상-우선-탐색">최상 우선 탐색</h2>
+<p><figure 
+	>
+	<a href="/posts/%ed%83%90%ec%83%89/Untitled%208.png" >
+		<img src="/posts/%ed%83%90%ec%83%89/Untitled%208.png"
+			
+			
+			
+			loading="lazy"
+			alt="%E1%84%90%E1%85%A1%E1%86%B7%E1%84%89%E1%85%A2%E1%86%A8/Untitled%208.png">
+	</a>
+	
+	<figcaption>%E1%84%90%E1%85%A1%E1%86%B7%E1%84%89%E1%85%A2%E1%86%A8/Untitled%208.png</figcaption>
+	
+</figure></p>
+<ul>
+<li>확장중인 노드들 중에서 목표 노드까지 남은 거리가 가장 짧은 노드를 확장하여 검색</li>
+<li>남은 거리를 정확히 알 수 없으므로 휴리스틱 사용
+<ul>
+<li>제자리가 아닌 타일의 개수</li>
+</ul>
+</li>
+</ul>
+<h2 id="a-알고리즘">A* 알고리즘</h2>
+<p><figure 
+	>
+	<a href="/posts/%ed%83%90%ec%83%89/Untitled%209.png" >
+		<img src="/posts/%ed%83%90%ec%83%89/Untitled%209.png"
+			
+			
+			
+			loading="lazy"
+			alt="%E1%84%90%E1%85%A1%E1%86%B7%E1%84%89%E1%85%A2%E1%86%A8/Untitled%209.png">
+	</a>
+	
+	<figcaption>%E1%84%90%E1%85%A1%E1%86%B7%E1%84%89%E1%85%A2%E1%86%A8/Untitled%209.png</figcaption>
+	
+</figure></p>
+<ul>
+<li>추정한 전체 비용 f(n)을 최소로 하는 노드를 확장해 가는 방법</li>
+<li>f(n) = g(n) + h(n)
+<ul>
+<li>노드 n을 경유하는 전체 비용</li>
+<li>현재 노드 n까지 이미 투입된 비용 g(n)과 목표 노드까지의 남은 비용 h(n)의 합</li>
+</ul>
+</li>
+<li>h(n) : 남은 비용의 정확한 예측 불가
+<ul>
+<li>휴리스틱 함수로 예측</li>
+</ul>
+</li>
+</ul>
+<h2 id="빔-탐색">빔 탐색</h2>
+<ul>
+<li>휴리스틱에 의한 평가값이 우수한 일정 개수의 확장 가능한 노드만을 메모리에 관리하면서 최상 우선 탐색을 적용</li>
+</ul>
+</section>
+
+
+    <footer class="article-footer">
+    
+    <section class="article-tags">
+        
+            <a href="/tags/algorithm/">algorithm</a>
+        
+            <a href="/tags/search-algorithm/">search algorithm</a>
+        
+            <a href="/tags/data-science/">data-science</a>
+        
+    </section>
+
+
+    
+    <section class="article-copyright">
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-copyright" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <path d="M14.5 9a3.5 4 0 1 0 0 6" />
+</svg>
+
+
+
+        <span>Licensed under CC BY-NC-SA 4.0</span>
+    </section>
+    </footer>
+
+
+    
+</article>
+
+    <aside class="related-contents--wrapper">
+    
+    
+</aside>
+
+     
+    
+        
+    <script src="https://utteranc.es/client.js" 
+        repo="yansigit/yansigit.github.io"
+        issue-term="pathname"
+        
+        label="Utterances Comment"
+        
+        crossorigin="anonymous"
+        async
+        >
+</script>
+
+<style>
+    .utterances {
+        max-width: unset;
+    }
+</style>
+
+<script>
+    function setUtterancesTheme(theme) {
+        let utterances = document.querySelector('.utterances iframe');
+        if (utterances) {
+            utterances.contentWindow.postMessage(
+                {
+                    type: 'set-theme',
+                    theme: `github-${theme}`
+                },
+                'https://utteranc.es'
+            );
+        }
+    }
+
+    addEventListener('message', event => {
+        if (event.origin !== 'https://utteranc.es') return;
+        setUtterancesTheme(document.documentElement.dataset.scheme)
+    });
+
+    window.addEventListener('onColorSchemeChange', (e) => {
+        setUtterancesTheme(e.detail)
+    })
+</script>
+
+
+    
+
+    <footer class="site-footer">
+    <section class="copyright">
+        &copy; 
+        
+            2020 - 
+        
+        2021 Code like Feather
+    </section>
+    
+    <section class="powerby">
+        Built with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> <br />
+        Theme <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="3.2.0">Stack</a></b> designed by <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a>
+    </section>
+</footer>
+
+
+    
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    
+    <div class="pswp__bg"></div>
+
+    
+    <div class="pswp__scroll-wrap">
+
+        
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                
+                
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"integrity="sha256-ePwmChbbvXbsO02lbM3HoHbSHTHFAeChekF1xKJdleo="crossorigin="anonymous"
+                defer="true"
+                >
+            </script><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"integrity="sha256-UKkzOn/w1mBxRmLLGrSeyB4e1xbrp4xylgAWb3M42pU="crossorigin="anonymous"
+                defer="true"
+                >
+            </script><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.css"integrity="sha256-c0uckgykQ9v5k&#43;IqViZOZKc47Jn7KQil4/MP3ySA3F8="crossorigin="anonymous"
+            ><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.css"integrity="sha256-SBLU4vv6CA6lHsZ1XyTdhyjJxCjPif/TRkjnsyGAGnE="crossorigin="anonymous"
+            >
+
+            </main>
+    
+        <aside class="sidebar right-sidebar sticky">
+            <section class="widget archives">
+                <div class="widget-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-hash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <line x1="5" y1="9" x2="19" y2="9" />
+  <line x1="5" y1="15" x2="19" y2="15" />
+  <line x1="11" y1="4" x2="7" y2="20" />
+  <line x1="17" y1="4" x2="13" y2="20" />
+</svg>
+
+
+
+                </div>
+                <h2 class="widget-title section-title">Table of contents</h2>
+                
+                <div class="widget--toc">
+                    <nav id="TableOfContents">
+  <ol>
+    <li><a href="#탐색-1">탐색</a></li>
+    <li><a href="#상태">상태</a></li>
+    <li><a href="#세계">세계</a></li>
+    <li><a href="#상태-공간">상태 공간</a></li>
+    <li><a href="#초기상태">초기상태</a></li>
+    <li><a href="#목표상태">목표상태</a></li>
+    <li><a href="#상태-공간-그래프">상태 공간 그래프</a></li>
+  </ol>
+
+  <ol>
+    <li><a href="#맹목적-탐색">맹목적 탐색</a></li>
+    <li><a href="#깊이-우선-탐색-dfs">깊이 우선 탐색 (DFS)</a></li>
+    <li><a href="#너비-우선-탐색-bfs">너비 우선 탐색 (BFS)</a></li>
+    <li><a href="#8퍼즐-문제">8퍼즐 문제</a>
+      <ol>
+        <li><a href="#dfs">DFS</a></li>
+        <li><a href="#bfs">BFS</a></li>
+      </ol>
+    </li>
+    <li><a href="#균일-비용-탐색">균일 비용 탐색</a></li>
+    <li><a href="#반복적-깊이심화--탐색">반복적 깊이심화  탐색</a></li>
+    <li><a href="#맹목적-탐색-방법의-비교">맹목적 탐색 방법의 비교</a></li>
+    <li><a href="#양방향-탐색">양방향 탐색</a></li>
+  </ol>
+
+  <ol>
+    <li><a href="#정보이용-탐색">정보이용 탐색</a></li>
+    <li><a href="#휴리스틱-비용-추정의-예">휴리스틱 비용 추정의 예</a></li>
+    <li><a href="#언덕-오르기-방법">언덕 오르기 방법</a></li>
+    <li><a href="#모의-담금법">모의 담금법</a></li>
+    <li><a href="#최상-우선-탐색">최상 우선 탐색</a></li>
+    <li><a href="#a-알고리즘">A* 알고리즘</a></li>
+    <li><a href="#빔-탐색">빔 탐색</a></li>
+  </ol>
+</nav>
+                </div>
+            </section>
+        </aside>
+    
+
+        </div>
+        <script 
+                src="https://cdn.jsdelivr.net/npm/node-vibrant@3.1.5/dist/vibrant.min.js"integrity="sha256-5NovOZc4iwiAWTYIFiIM7DxKUXKWvpVEuMEPLzcm5/g="crossorigin="anonymous"
+                defer="false"
+                >
+            </script><script type="text/javascript" src="/ts/main.js" defer></script>
+<script>
+    (function () {
+        const customFont = document.createElement('link');
+        customFont.href = "https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap";
+
+        customFont.type = "text/css";
+        customFont.rel = "stylesheet";
+
+        document.head.appendChild(customFont);
+    }());
+</script>
+
+    </body>
+</html>

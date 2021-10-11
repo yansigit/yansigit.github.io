@@ -1,0 +1,461 @@
+<!DOCTYPE html>
+<html lang="ko-kr">
+    <head><meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content='네이티브 리눅스를 안드로이드 대신 설치하기'><title>PostmarketOS on Nexus5</title>
+
+<link rel='canonical' href='https://yansigit.github.io/blog/postmarketos-on-nexus5/'>
+
+<link rel="stylesheet" href="/scss/style.min.css"><meta property='og:title' content='PostmarketOS on Nexus5'>
+<meta property='og:description' content='네이티브 리눅스를 안드로이드 대신 설치하기'>
+<meta property='og:url' content='https://yansigit.github.io/blog/postmarketos-on-nexus5/'>
+<meta property='og:site_name' content='Code like Feather'>
+<meta property='og:type' content='article'><meta property='article:section' content='Posts' /><meta property='article:tag' content='linux' /><meta property='article:tag' content='android' /><meta property='article:tag' content='nexus5' /><meta property='article:tag' content='postmarketos' /><meta property='article:tag' content='linux on android' /><meta property='article:published_time' content='2020-01-22T21:31:21&#43;09:00'/><meta property='article:modified_time' content='2020-01-22T21:31:21&#43;09:00'/><meta property='og:image' content='https://yansigit.github.io/images/lighthouse.jpg' />
+<meta name="twitter:title" content="PostmarketOS on Nexus5">
+<meta name="twitter:description" content="네이티브 리눅스를 안드로이드 대신 설치하기"><meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content='https://yansigit.github.io/images/lighthouse.jpg' />
+    </head>
+    <body class="
+    article-page has-toc
+">
+    <script>
+        (function() {
+            const colorSchemeKey = 'StackColorScheme';
+            if(!localStorage.getItem(colorSchemeKey)){
+                localStorage.setItem(colorSchemeKey, "auto");
+            }
+        })();
+    </script><script>
+    (function() {
+        const colorSchemeKey = 'StackColorScheme';
+        const colorSchemeItem = localStorage.getItem(colorSchemeKey);
+        const supportDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches === true;
+
+        if (colorSchemeItem == 'dark' || colorSchemeItem === 'auto' && supportDarkMode) {
+            
+
+            document.documentElement.dataset.scheme = 'dark';
+        } else {
+            document.documentElement.dataset.scheme = 'light';
+        }
+    })();
+</script>
+<div class="container main-container flex 
+    
+        extended
+    
+">
+    
+        <div id="article-toolbar">
+            <a href="https://yansigit.github.io" class="back-home">
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-chevron-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <polyline points="15 6 9 12 15 18" />
+</svg>
+
+
+
+                <span>Back</span>
+            </a>
+        </div>
+    
+<main class="main full-width">
+    <article class="main-article">
+    <header class="article-header">
+
+    <div class="article-details">
+    
+    <header class="article-category">
+        
+            <a href="/categories/%EB%A6%AC%EB%88%85%EC%8A%A4/" >
+                리눅스
+            </a>
+        
+    </header>
+    
+
+    <h2 class="article-title">
+        <a href="/blog/postmarketos-on-nexus5/">PostmarketOS on Nexus5</a>
+    </h2>
+
+    
+    <h3 class="article-subtitle">
+        네이티브 리눅스를 안드로이드 대신 설치하기
+    </h3>
+    
+
+    
+    <footer class="article-time">
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-calendar-time" width="56" height="56" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M11.795 21h-6.795a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v4" />
+  <circle cx="18" cy="18" r="4" />
+  <path d="M15 3v4" />
+  <path d="M7 3v4" />
+  <path d="M3 11h16" />
+  <path d="M18 16.496v1.504l1 1" />
+</svg>
+                <time class="article-time--published">Jan 22, 2020</time>
+            </div>
+        
+
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <polyline points="12 7 12 12 15 15" />
+</svg>
+
+
+
+                <time class="article-time--reading">
+                    4 minute read
+                </time>
+            </div>
+        
+    </footer>
+    
+</div>
+</header>
+
+    <section class="article-content">
+    <h1 id="intro">INTRO</h1>
+<p>실험 대상은 넥서스 5. 굳이 넥서스 5를 고른 이유는, 구글의 레퍼런스 폰인만큼 부트로더 언락도 쉽고
+이미 여러 프로젝트의 개발 1호기로 사용되고 있기에 우분투나 페도라 등에서 혹시 이미 넥서스5용 OS를 개발해놓지 않았을까
+하는 기대감 때문이었다. 결과적으로는 NO 라고 이야기 할 수 있지만.</p>
+<p>리눅스 개발보드가 널렸는데 그런거나 사지 굳이 이런 삽질을 하는 이유는&hellip;</p>
+<ol>
+<li>
+<p>재밌을 것 같다는 이유가 첫번째.</p>
+</li>
+<li>
+<p>라즈베리 파이가 성능대비 너무 비싸다는게 두번째.
+넥서스5는 중고나라에서 3만원에 구입했는데
+제대로 구동되기만 한다면 화면과 스피커, 카메라, 와이파이 모듈까지 달린 SNAPDRAGON 800 ARM 개발보드를 단돈 3만원에 구입한거나 마찬가지.</p>
+</li>
+<li>
+<p>세번째도 역시 재밌을 것 같아서.</p>
+</li>
+</ol>
+<h1 id="which-os">WHICH OS?</h1>
+<h2 id="1-ubuntu-touch">1. Ubuntu Touch</h2>
+<p>처음에 생각했던 OS는 <a class="link" href="https://ubports.com/"  target="_blank" rel="noopener"
+    >우분투 터치</a></p>
+<p>예전에 유튜브에서 우분투 터치가 넥서스 5 위에서 구동되는 것을 보기도 했고
+캐노니컬에서 공식 프로젝트로 진행했었던 만큼 (현재는 개발중단되어 커뮤니티 차원에서 개발중이다.)
+안정성 하나는 믿을 수 있지 않을까 싶어서였다.</p>
+<p>그러나 직접 써본 결과는..</p>
+<p>설치 애플리케이션부터 에러가 뿜어져 나오고 설치 이후에도 최적화의 문제인지 제대로 된 구동이 힘들어 건너뛰기.</p>
+<h2 id="2-termux">2. Termux</h2>
+<p>그래도 레퍼런스 기기인데 해외 괴수들에 의해 리눅스 배포판 중 하나라도 포팅이 되어있지 않을까&hellip; 했지만</p>
+<p>의외로 우분투, 페도라 등 메이저 OS 중 하나도 포팅된 전력이 없었다.</p>
+<p>그래서 안드로이드를 갈아치우고 리눅스만 얹어보자는 야심찬 생각을 접어야 할까</p>
+<p>생각하며 시도한게 <a class="link" href="https://f-droid.org/en/packages/com.termux/"  target="_blank" rel="noopener"
+    >Termux</a>.</p>
+<p>Termux는 안드로이드 터미널 에뮬레이터로 안드로이드상에서 리눅스와 유사한 환경을 제공한다.</p>
+<p>그리고 Chroot 와 비슷한 Proot라는 기술을 이용해 리눅스 배포판의 코어파일을 내려받고</p>
+<p>안드로이드 위에서 리눅스를 돌릴 수도 있게 한다!</p>
+<p>F-DROID 에 <a class="link" href="https://f-droid.org/en/packages/exa.lnx.a"  target="_blank" rel="noopener"
+    >AnLinux</a> 를 검색하면</p>
+<p>자동으로 스크립트를 생성해 제공해주는 어플을 내려받을 수 있다.</p>
+<p>의외로 쓸만하긴 했지만.. 그래도 여전히 안드로이듣 상에서 잡아먹는 쓸모없는 자원 낭비를 없애고 싶었다.</p>
+<h2 id="3-postmarketos">3. PostmarketOS</h2>
+<p><a class="link" href="https://postmarketos.org/"  target="_blank" rel="noopener"
+    >PostmarketOS</a>는 안드로이드의 짧은 사후지원을 대체해 훨씬 긴 (15년 이상) 기간의 사후지원을 목표로 하는 프로젝트다.</p>
+<p>즉, 해당 프로젝트는 여전히 &lsquo;휴대기기용&rsquo; 운영체제가 주된 목적이다.</p>
+<p>그러나 내 관심을 끈 이유는 바로 해당 운영체제의 &lsquo;완전한 리눅스 커널 기반&rsquo;을 목표로 하는 것이다.</p>
+<p>실제로 해당 프로젝트는 <strong>Alpine Linux 기반</strong>이며, 넥서스 5는 공식적으로 지원하고 있는 기기 중 하나라 이미 리눅스 Mainline 커널이 적용되어 있다.</p>
+<p>다만 다른 기기들은 안드로이드 커널을 그대로 사용하는 수준인 듯 하다. 대부분의 기기들도 사용자들에 의해 포팅되어 구동 확인에 그친것 같고&hellip;</p>
+<h1 id="installing-postmarketos">Installing postmarketOS</h1>
+<p>아무튼, 해당 OS 펌웨어 파일을 내려받아 기기에 바로 적용시킬 수는 없고, 아직은 사용자가 스스로 빌드하여 적용해야 한다.</p>
+<p>빌드 환경은 리눅스만 지원하고 있어 윈도우 사용자라면 가상머신이나 도커를 이용해야 한다.</p>
+<p>나의 경우에는 도커 <code>ubuntu</code> 컨테이너를 통해 빌드환경을 조성했다.</p>
+<p>그리고 도커를 사용할 경우 반드시 <code>--privileged</code> 옵션을 주어야 한다! (개발자들한테 도커에서 빌드 안되는거 같다고 이슈 작성했다가 비추 먹었다..)</p>
+<p>리눅스 환경이 준비되었다면 빌드 및 사용에 필수적인 패키지들을 내려받는다.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell">apt install python3 python3-pip coreutils procps qemu binfmt-support qemu-user-static sudo nano git
+</code></pre></div><p>postmarketOS 빌드를 도와줄 pmbootstrap은 루트 사용자의 실행을 제한하고 있다. 새 사용자를 만들어주자.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell">adduser &lt;user name&gt;
+</code></pre></div><p>그리고 <code>/etc/sudoer</code>에 사용자를 추가해 <code>sudo</code> 명령어를 사용할 수 있게 한다.</p>
+<p>그리고 해당 사용자로 로그인해 다음 명령어를 실행, pmbootstrap을 설치한다.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell">pip3 install --user pmbootstrap
+</code></pre></div><p>다음 환경변수 PATH 를 지정해 명령어를 바로 사용할 수 있게 한다.</p>
+<p>아래 명령어를 실행해 일시적으로 지정해주거나</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="nb">export</span> <span class="nv">PATH</span><span class="o">=</span><span class="nv">$PATH</span>:~/.local/bin/
+</code></pre></div><p><code>~/.profile</code> 파일을 수정해 시작 시 자동으로 지정해줄 수도 있다. (아마 대부분 기본 적용되어 있을 것이다)</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="c1"># set PATH so it includes user&#39;s private bin if it exists</span>
+<span class="k">if</span> <span class="o">[</span> -d <span class="s2">&#34;</span><span class="nv">$HOME</span><span class="s2">/.local/bin&#34;</span> <span class="o">]</span> <span class="p">;</span> <span class="k">then</span>
+    <span class="nv">PATH</span><span class="o">=</span><span class="s2">&#34;</span><span class="nv">$HOME</span><span class="s2">/.local/bin:</span><span class="nv">$PATH</span><span class="s2">&#34;</span>
+<span class="k">fi</span>
+</code></pre></div><p>pmbootstrap 설치가 끝났다. 이제 빌드를 할 차례.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell">pmbootstrap init
+</code></pre></div><p>위 명령어를 실행하면 빌드를 도와줄 마법사가 실행된다. 원하는 옵션을 넣으면 해당 옵션해 해당하는 세팅을 알아서 맞춰준다.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell">pmbootstrap install
+</code></pre></div><p>위 명령어를 입력하면 <code>init</code>으로 세팅된 옵션에 맞춰 빌드를 시작한다.</p>
+<p>뒤에 아무 매개변수도 주지 않으면 나중에 pmbootstrap이나 직접 ADB 등을 통해 USB 연결을 통해 설치하게 되는데</p>
+<p>도커에서 아직 지원되는 부분이 아니라 아래와 같이 펌웨어를 zip파일로 만들어 TWRP 등 커스텀 리커버리로 올려줘야 한다.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell">pmbootstrap install --android-recovery-zip --recovery-install-partition data
+pmbootstrap <span class="nb">export</span> <span class="c1"># /tmp/postmarketOS-export/ 내부에 zip 생성</span>
+</code></pre></div><p>이렇게 하면 <code>/tmp/postmarketOS-export/</code> 내부에 펌웨어 파일이 생성된다. 이 파일을 내려받고 플래싱할 준비를 하자.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell">fastboot format system
+fastboot format userdata
+</code></pre></div><p>안드로이드 SDK 내부의 <code>fastboot</code> 를 이용하여 <code>system</code>, <code>userdata</code> 파티션을 깨끗이 포맷해준다.</p>
+<p>넥서스 5에서 <code>system</code> 파티션의 크기는 얼마 1G 남짓이다.
+용량이 부족할 것 같아 설치 파티션을 변경하려 애썼는데, 명령어줄 상에서는 아무리 삽질해도 적용이 되지 않아
+zip 파일의 스크립트를 직접 변경해주었다.</p>
+<p><code>pmos-*.zip -&gt; chroot 폴더 -&gt; install_options</code> 의 <code>SYSTEM_PARTLABEL</code> 옵션을 <code>data</code>로 바꿔 <code>userdata</code> 파티션을 사용하도록 변경했다.</p>
+<pre tabindex="0"><code>DEVICE='lg-hammerhead'
+FLAVOR='postmarketos-qcom-msm8974'
+FLASH_KERNEL='true'
+ISOREC='false'
+KERNEL_PARTLABEL='boot'
+INITFS_PARTLABEL='RECOVERY'
+SYSTEM_PARTLABEL='data'
+INSTALL_PARTITION='data'
+CIPHER='aes-cbc-plain64'
+FDE='false'
+</code></pre><p>다음 TWRP의 <code>sideload</code> 기능을 이용해 zip 파일을 플래싱해주었다. <strong>이 때 모든 파티션을 언마운트 해주고 플래싱해야 한다.</strong></p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell">adb sideload pmos-*.zip
+</code></pre></div><p>다음 리부트하면, postmarketOS 로고가 뜨며 부팅될 것이다. 이제 안드로이드 대신 완전한 리눅스를 사용할 수 있다!</p>
+<p>Wifi 연결이 필요하다면 수동으로 WIFI 연결을 지정해주거나</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell">$ sudo nmcli device wifi list ifname wlan0
+$ sudo nmcli device wifi connect <span class="s2">&#34;</span><span class="nv">$SSID</span><span class="s2">&#34;</span> password <span class="s2">&#34;</span><span class="nv">$PASSWORD</span><span class="s2">&#34;</span> ifname <span class="s2">&#34;wlan0&#34;</span>
+</code></pre></div><p>혹은 마법사를 이용할 수도 있다</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell">sudo nmtui
+</code></pre></div>
+</section>
+
+
+    <footer class="article-footer">
+    
+    <section class="article-tags">
+        
+            <a href="/tags/linux/">linux</a>
+        
+            <a href="/tags/android/">android</a>
+        
+            <a href="/tags/nexus5/">nexus5</a>
+        
+            <a href="/tags/postmarketos/">postmarketos</a>
+        
+            <a href="/tags/linux-on-android/">linux on android</a>
+        
+    </section>
+
+
+    
+    <section class="article-copyright">
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-copyright" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <path d="M14.5 9a3.5 4 0 1 0 0 6" />
+</svg>
+
+
+
+        <span>Licensed under CC BY-NC-SA 4.0</span>
+    </section>
+    </footer>
+
+
+    
+</article>
+
+    <aside class="related-contents--wrapper">
+    
+    
+</aside>
+
+     
+    
+        
+    <script src="https://utteranc.es/client.js" 
+        repo="yansigit/yansigit.github.io"
+        issue-term="pathname"
+        
+        label="Utterances Comment"
+        
+        crossorigin="anonymous"
+        async
+        >
+</script>
+
+<style>
+    .utterances {
+        max-width: unset;
+    }
+</style>
+
+<script>
+    function setUtterancesTheme(theme) {
+        let utterances = document.querySelector('.utterances iframe');
+        if (utterances) {
+            utterances.contentWindow.postMessage(
+                {
+                    type: 'set-theme',
+                    theme: `github-${theme}`
+                },
+                'https://utteranc.es'
+            );
+        }
+    }
+
+    addEventListener('message', event => {
+        if (event.origin !== 'https://utteranc.es') return;
+        setUtterancesTheme(document.documentElement.dataset.scheme)
+    });
+
+    window.addEventListener('onColorSchemeChange', (e) => {
+        setUtterancesTheme(e.detail)
+    })
+</script>
+
+
+    
+
+    <footer class="site-footer">
+    <section class="copyright">
+        &copy; 
+        
+            2020 - 
+        
+        2021 Code like Feather
+    </section>
+    
+    <section class="powerby">
+        Built with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> <br />
+        Theme <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="3.2.0">Stack</a></b> designed by <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a>
+    </section>
+</footer>
+
+
+    
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    
+    <div class="pswp__bg"></div>
+
+    
+    <div class="pswp__scroll-wrap">
+
+        
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                
+                
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"integrity="sha256-ePwmChbbvXbsO02lbM3HoHbSHTHFAeChekF1xKJdleo="crossorigin="anonymous"
+                defer="true"
+                >
+            </script><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"integrity="sha256-UKkzOn/w1mBxRmLLGrSeyB4e1xbrp4xylgAWb3M42pU="crossorigin="anonymous"
+                defer="true"
+                >
+            </script><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.css"integrity="sha256-c0uckgykQ9v5k&#43;IqViZOZKc47Jn7KQil4/MP3ySA3F8="crossorigin="anonymous"
+            ><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.css"integrity="sha256-SBLU4vv6CA6lHsZ1XyTdhyjJxCjPif/TRkjnsyGAGnE="crossorigin="anonymous"
+            >
+
+            </main>
+    
+        <aside class="sidebar right-sidebar sticky">
+            <section class="widget archives">
+                <div class="widget-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-hash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <line x1="5" y1="9" x2="19" y2="9" />
+  <line x1="5" y1="15" x2="19" y2="15" />
+  <line x1="11" y1="4" x2="7" y2="20" />
+  <line x1="17" y1="4" x2="13" y2="20" />
+</svg>
+
+
+
+                </div>
+                <h2 class="widget-title section-title">Table of contents</h2>
+                
+                <div class="widget--toc">
+                    <nav id="TableOfContents">
+  <ol>
+    <li><a href="#1-ubuntu-touch">1. Ubuntu Touch</a></li>
+    <li><a href="#2-termux">2. Termux</a></li>
+    <li><a href="#3-postmarketos">3. PostmarketOS</a></li>
+  </ol>
+</nav>
+                </div>
+            </section>
+        </aside>
+    
+
+        </div>
+        <script 
+                src="https://cdn.jsdelivr.net/npm/node-vibrant@3.1.5/dist/vibrant.min.js"integrity="sha256-5NovOZc4iwiAWTYIFiIM7DxKUXKWvpVEuMEPLzcm5/g="crossorigin="anonymous"
+                defer="false"
+                >
+            </script><script type="text/javascript" src="/ts/main.js" defer></script>
+<script>
+    (function () {
+        const customFont = document.createElement('link');
+        customFont.href = "https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap";
+
+        customFont.type = "text/css";
+        customFont.rel = "stylesheet";
+
+        document.head.appendChild(customFont);
+    }());
+</script>
+
+    </body>
+</html>

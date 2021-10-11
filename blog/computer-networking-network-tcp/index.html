@@ -1,0 +1,822 @@
+<!DOCTYPE html>
+<html lang="ko-kr">
+    <head><meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content='컴퓨터 네트워크 - Network TCP'><title>Computer Networking - Network TCP</title>
+
+<link rel='canonical' href='https://yansigit.github.io/blog/computer-networking-network-tcp/'>
+
+<link rel="stylesheet" href="/scss/style.min.css"><meta property='og:title' content='Computer Networking - Network TCP'>
+<meta property='og:description' content='컴퓨터 네트워크 - Network TCP'>
+<meta property='og:url' content='https://yansigit.github.io/blog/computer-networking-network-tcp/'>
+<meta property='og:site_name' content='Code like Feather'>
+<meta property='og:type' content='article'><meta property='article:section' content='Posts' /><meta property='article:tag' content='computer-networking' /><meta property='article:tag' content='network' /><meta property='article:tag' content='networking' /><meta property='article:tag' content='tcp' /><meta property='article:published_time' content='2020-09-17T00:11:07&#43;09:00'/><meta property='article:modified_time' content='2020-09-17T00:11:07&#43;09:00'/><meta property='og:image' content='https://yansigit.github.io/images/lighthouse.jpg' />
+<meta name="twitter:title" content="Computer Networking - Network TCP">
+<meta name="twitter:description" content="컴퓨터 네트워크 - Network TCP"><meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content='https://yansigit.github.io/images/lighthouse.jpg' />
+    </head>
+    <body class="
+    article-page has-toc
+">
+    <script>
+        (function() {
+            const colorSchemeKey = 'StackColorScheme';
+            if(!localStorage.getItem(colorSchemeKey)){
+                localStorage.setItem(colorSchemeKey, "auto");
+            }
+        })();
+    </script><script>
+    (function() {
+        const colorSchemeKey = 'StackColorScheme';
+        const colorSchemeItem = localStorage.getItem(colorSchemeKey);
+        const supportDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches === true;
+
+        if (colorSchemeItem == 'dark' || colorSchemeItem === 'auto' && supportDarkMode) {
+            
+
+            document.documentElement.dataset.scheme = 'dark';
+        } else {
+            document.documentElement.dataset.scheme = 'light';
+        }
+    })();
+</script>
+<div class="container main-container flex 
+    
+        extended
+    
+">
+    
+        <div id="article-toolbar">
+            <a href="https://yansigit.github.io" class="back-home">
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-chevron-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <polyline points="15 6 9 12 15 18" />
+</svg>
+
+
+
+                <span>Back</span>
+            </a>
+        </div>
+    
+<main class="main full-width">
+    <article class="main-article">
+    <header class="article-header">
+
+    <div class="article-details">
+    
+    <header class="article-category">
+        
+            <a href="/categories/computer-networking/" >
+                computer-networking
+            </a>
+        
+    </header>
+    
+
+    <h2 class="article-title">
+        <a href="/blog/computer-networking-network-tcp/">Computer Networking - Network TCP</a>
+    </h2>
+
+    
+    <h3 class="article-subtitle">
+        컴퓨터 네트워크 - Network TCP
+    </h3>
+    
+
+    
+    <footer class="article-time">
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-calendar-time" width="56" height="56" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M11.795 21h-6.795a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v4" />
+  <circle cx="18" cy="18" r="4" />
+  <path d="M15 3v4" />
+  <path d="M7 3v4" />
+  <path d="M3 11h16" />
+  <path d="M18 16.496v1.504l1 1" />
+</svg>
+                <time class="article-time--published">Sep 17, 2020</time>
+            </div>
+        
+
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <polyline points="12 7 12 12 15 15" />
+</svg>
+
+
+
+                <time class="article-time--reading">
+                    3 minute read
+                </time>
+            </div>
+        
+    </footer>
+    
+</div>
+</header>
+
+    <section class="article-content">
+    <p>Computer Networking - Network TCP</p>
+<h1 id="computer-network-tcp">Computer-Network-TCP</h1>
+<h1 id="1-tcp">1. TCP</h1>
+<h2 id="overview">Overview</h2>
+<ul>
+<li><strong>Point 2 Point</strong>
+<ul>
+<li>하나의 Sender, 하나의 Receiver</li>
+</ul>
+</li>
+<li><strong>Reliable, In-Order byte Stream</strong>
+<ul>
+<li>메세지 크기 제한이 없음</li>
+</ul>
+</li>
+<li><strong>Pipelined</strong>
+<ul>
+<li>TCP의 Congrestion Control과 Flow control에 의해 윈도우 사이즈 계속 변함</li>
+</ul>
+</li>
+<li><strong>Full duplex data</strong>
+<ul>
+<li>양방향 통신</li>
+<li>MSS: Maximum Segment Size</li>
+</ul>
+</li>
+<li><strong>Connection-Oriented</strong>
+<ul>
+<li>Hand-Shaking을 먼저 해야함</li>
+</ul>
+</li>
+<li><strong>Flow Controlled</strong>
+<ul>
+<li>Receiver가 핸들 가능한 정도로의 속도로 맞춰줌</li>
+</ul>
+</li>
+</ul>
+<h2 id="tcp-segment-구조">TCP segment 구조</h2>
+<p><figure 
+	>
+	<a href="/posts/computer-network-tcp/Untitled.png" >
+		<img src="/posts/computer-network-tcp/Untitled.png"
+			
+			
+			
+			loading="lazy"
+			alt="image">
+	</a>
+	
+	<figcaption>image</figcaption>
+	
+</figure></p>
+<ul>
+<li>Option은 거의 사용하지 않아 TCP의 헤더 사이즈는 보통 20Bytes
+<ul>
+<li>32bits = 4bytes</li>
+</ul>
+</li>
+</ul>
+<h2 id="tcp-시퀀스-넘버-acks">TCP 시퀀스 넘버, ACKs</h2>
+<blockquote>
+<p>GO back N 등에서는 패킷 단위로 번호를 매겼지만 여기서는 바이트 단위로 번호를 매김</p>
+</blockquote>
+<h3 id="시퀀스-넘버">시퀀스 넘버</h3>
+<p><figure 
+	>
+	<a href="/posts/computer-network-tcp/Untitled%201.png" >
+		<img src="/posts/computer-network-tcp/Untitled%201.png"
+			
+			
+			
+			loading="lazy"
+			alt="image">
+	</a>
+	
+	<figcaption>image</figcaption>
+	
+</figure></p>
+<ul>
+<li>해당 시퀀스의 첫번째 바이트의 Number</li>
+</ul>
+<h3 id="ack-넘버">ACK 넘버</h3>
+<ul>
+<li>상대방으로부터 기대하는 다음 시퀀스 넘버</li>
+<li>즉 Seq1 다음에는 Seq5를 기대할 것이므로 Ack5</li>
+<li>Cumulative (누적되는) ACK
+<ul>
+<li>즉 Ack8을 받았다면 1~7바이트 까지는 정상적으로 받았다라는 것</li>
+</ul>
+</li>
+<li>Q. 만약 순서에 맞지않게 (Out of Order) 세그먼트들을 받았다면?
+<ul>
+<li>TCP 표준에는 정의되어 있지 않아 따로 개발자가 구현 필요</li>
+</ul>
+</li>
+</ul>
+<h3 id="간단한-예시">간단한 예시</h3>
+<p><figure 
+	>
+	<a href="/posts/computer-network-tcp/Untitled%202.png" >
+		<img src="/posts/computer-network-tcp/Untitled%202.png"
+			
+			
+			
+			loading="lazy"
+			alt="image">
+	</a>
+	
+	<figcaption>image</figcaption>
+	
+</figure></p>
+<ul>
+<li>**&lsquo;C&rsquo;**라는 1Byte짜리 데이터를 주고받는 모습</li>
+</ul>
+<h2 id="tcp-timeout">TCP Timeout</h2>
+<ul>
+<li>Timer의 시간이 만료되면 패킷이 유실됬다고 판단, 재전송</li>
+<li>Q. 얼마나 기다릴 것인가?
+<ul>
+<li>RTT (패킷이 갔다가 돌아오는 시간) 보다 커야함</li>
+<li>그런데 RTT는 네트워크 상황에 따라 가변적임</li>
+<li>너무 짧으면
+<ul>
+<li>타임아웃이 너무 빨리 걸림.</li>
+<li>의미없는 재전송을 하게 됨</li>
+</ul>
+</li>
+<li>너무 길면
+<ul>
+<li>세그먼트 로스에 대해 늦게 대처하게 됨</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Q. RTT를 예상할 순 없나?
+<ul>
+<li><strong>SampleRTT</strong>
+<ul>
+<li>세그먼트를 실제로 한번 보내보고 Ack가 올때까지의 시간을 측정해 평균값 추정</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="tcp-rtt">TCP RTT</h2>
+<p><figure 
+	>
+	<a href="/posts/computer-network-tcp/Untitled%203.png" >
+		<img src="/posts/computer-network-tcp/Untitled%203.png"
+			
+			
+			
+			loading="lazy"
+			alt="image">
+	</a>
+	
+	<figcaption>image</figcaption>
+	
+</figure></p>
+<p><figure 
+	>
+	<a href="/posts/computer-network-tcp/Untitled%204.png" >
+		<img src="/posts/computer-network-tcp/Untitled%204.png"
+			
+			
+			
+			loading="lazy"
+			alt="image">
+	</a>
+	
+	<figcaption>image</figcaption>
+	
+</figure></p>
+<ul>
+<li>Exponential weighted moving average</li>
+<li>EstimatedRTT
+<ul>
+<li>SampleRTT들의 평균값</li>
+</ul>
+</li>
+<li>대략 이전의 평균 RTT에다 새로운 SampleRTT를 평균하되 가중치를 두어 평균하는 방법</li>
+<li>이전의 값들은 시간이 지날수록 점점 더 영향력이 줄어듬</li>
+<li>위 그래프에서 실제 SampleRTT보다 EstimatedRTT가 더 부드러운 곡선을 그리는 것을 알 수 있다</li>
+<li>계산 예제
+<ul>
+<li>Est0 = 100, Sam1 = 100, Sam2 = 50, Sam3 = 200, Alpha=0.1 일 때 Est1, Est2, Est3를 구하라</li>
+<li>Est1 = 0.9<em>Est0 + 0.1</em>Sam1</li>
+<li>Est2 = 0.9<em>Est1 + 0.1</em>Sam2</li>
+<li>Est3 = 0.9<em>Est2 + 0.1</em>Sam3</li>
+</ul>
+</li>
+</ul>
+<h2 id="tcp-timeout-1">TCP Timeout</h2>
+<p><figure 
+	>
+	<a href="/posts/computer-network-tcp/Untitled%205.png" >
+		<img src="/posts/computer-network-tcp/Untitled%205.png"
+			
+			
+			
+			loading="lazy"
+			alt="image">
+	</a>
+	
+	<figcaption>image</figcaption>
+	
+</figure></p>
+<p><figure 
+	>
+	<a href="/posts/computer-network-tcp/Untitled%206.png" >
+		<img src="/posts/computer-network-tcp/Untitled%206.png"
+			
+			
+			
+			loading="lazy"
+			alt="image">
+	</a>
+	
+	<figcaption>image</figcaption>
+	
+</figure></p>
+<ul>
+<li>실제 Timeout Interval =  EstimateRTT + &ldquo;추가 값 (Safety Margin)&rdquo;</li>
+<li>|현재 측정값 - 평균 측정값의 절대값|
+<ul>
+<li>즉 현재 측정값과 평균 측정값의 차이가 많이 나면 마진을 많이 두고</li>
+<li>아니라면 적게 두겠다는 뜻</li>
+</ul>
+</li>
+<li>최소 1초 이상은 나오게 되어있음
+<ul>
+<li>컴퓨터 입장에서는 1초가 긴 시간이기 때문에 다른 패킷 로스 디텍트 방식이 있음</li>
+</ul>
+</li>
+</ul>
+<h2 id="tcp-reliable-data-transfer">TCP Reliable Data Transfer</h2>
+<ul>
+<li>IP (인터넷 프로토콜)은 RDT를 제공하지 않음</li>
+<li>따라서 TCP는 해당 Unreliable한 서비스 위에서 RDT 서비스를 제공하고 있음
+<ul>
+<li>파이프라인 세그먼트</li>
+<li>Cumulative Acks</li>
+<li>Single Retransmission timer
+<ul>
+<li>타이머를 하나만 씀</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Retransmission Triggered by
+<ul>
+<li>타임아웃 발생</li>
+<li>Duplicate Acks</li>
+</ul>
+</li>
+</ul>
+<h2 id="tcp-sender-events">TCP sender events</h2>
+<p><figure 
+	>
+	<a href="/posts/computer-network-tcp/Untitled%207.png" >
+		<img src="/posts/computer-network-tcp/Untitled%207.png"
+			
+			
+			
+			loading="lazy"
+			alt="image">
+	</a>
+	
+	<figcaption>image</figcaption>
+	
+</figure></p>
+<ul>
+<li><strong>TCP 소켓이 앱에서 데이터를 받을 때</strong>
+<ul>
+<li>세그먼트 넘버와 함께 세그먼트 생성</li>
+<li>타이머가 작동중이지 않으면 시작시킴
+<ul>
+<li>가장 오래 Unacked 상태인 세그먼트라고 가정</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><strong>타임아웃이 일어날 때</strong>
+<ul>
+<li>타임아웃이 일어난 세그먼트 재전송</li>
+<li>타이머 재시작</li>
+</ul>
+</li>
+<li><strong>Ack를 받을 때</strong>
+<ul>
+<li>새로운 Ack일 경우
+<ul>
+<li>Ack 된 (컨펌된) 세그먼트 체크 (SendBase 우측으로 이동)</li>
+<li>아직 <em>Unacked</em>인 세그먼트가 있다면 타이머 시작</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="tcp-재전송-시나리오">TCP 재전송 시나리오</h2>
+<p><figure 
+	>
+	<a href="/posts/computer-network-tcp/Untitled%208.png" >
+		<img src="/posts/computer-network-tcp/Untitled%208.png"
+			
+			
+			
+			loading="lazy"
+			alt="image">
+	</a>
+	
+	<figcaption>image</figcaption>
+	
+</figure></p>
+<ul>
+<li><strong>Premature timeout 설명</strong>
+<ul>
+<li>Sender: 타임아웃되어 Seq 92를 다시 재전송</li>
+<li>Receiver: 사실 정상적으로 받아 Ack120을 돌려줌</li>
+<li>Sender: Sendbase 120으로 맞춤</li>
+<li>Receiver: 이미 받은 세그먼트를 다시 받았으므로, 마지막으로 성공한 Ack120을 다시 전송해줌
+<ul>
+<li>받을것으로 기대하는 넘버를 보낸다는 의미도 있음</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p><figure 
+	>
+	<a href="/posts/computer-network-tcp/Untitled%209.png" >
+		<img src="/posts/computer-network-tcp/Untitled%209.png"
+			
+			
+			
+			loading="lazy"
+			alt="image">
+	</a>
+	
+	<figcaption>image</figcaption>
+	
+</figure></p>
+<ul>
+<li>Cumulative ACK이기 때문에 ACK를 동시에 받았을 때 윗쪽 하나가 유실되더라도 Ack120 하나만으로 <code>0~119</code>까지 받았다는걸 알기에 정상작동</li>
+</ul>
+<h2 id="tcp-ack-생성">TCP ACK 생성</h2>
+<p><figure 
+	>
+	<a href="/posts/computer-network-tcp/Untitled%2010.png" >
+		<img src="/posts/computer-network-tcp/Untitled%2010.png"
+			
+			
+			
+			loading="lazy"
+			alt="image">
+	</a>
+	
+	<figcaption>image</figcaption>
+	
+</figure></p>
+<h2 id="tcp-fast-retransmit">TCP Fast retransmit</h2>
+<p><figure 
+	>
+	<a href="/posts/computer-network-tcp/Untitled%2011.png" >
+		<img src="/posts/computer-network-tcp/Untitled%2011.png"
+			
+			
+			
+			loading="lazy"
+			alt="image">
+	</a>
+	
+	<figcaption>image</figcaption>
+	
+</figure></p>
+<ul>
+<li>타임아웃은 1초 이상으로 꽤 김
+<ul>
+<li>패킷 로스에 대응해 재전송하기까지 딜레이가 길 수 있음</li>
+</ul>
+</li>
+<li>따라서 Duplicate ACKs가 발생하면 패킷 로스로 판단, 즉각 재전송 하겠다는 것</li>
+<li>위의 예에서 Host B는 기대중이던 Seq number가 도착하지 않아 ACK100을 계속 재전송해줌</li>
+<li>Host A는 그것으로 보아 패킷 로스가 일어났다고 가정하고 Host B가 지정해주는 (또한 가장 오래된 Unacked Seq인) 100번 세그먼트를 빠르게 재전송</li>
+</ul>
+</section>
+
+
+    <footer class="article-footer">
+    
+    <section class="article-tags">
+        
+            <a href="/tags/computer-networking/">computer-networking</a>
+        
+            <a href="/tags/network/">network</a>
+        
+            <a href="/tags/networking/">networking</a>
+        
+            <a href="/tags/tcp/">tcp</a>
+        
+    </section>
+
+
+    
+    <section class="article-copyright">
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-copyright" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <path d="M14.5 9a3.5 4 0 1 0 0 6" />
+</svg>
+
+
+
+        <span>Licensed under CC BY-NC-SA 4.0</span>
+    </section>
+    </footer>
+
+
+    
+</article>
+
+    <aside class="related-contents--wrapper">
+    
+    
+        <h2 class="section-title">Related contents</h2>
+        <div class="related-contents">
+            <div class="flex article-list--tile">
+                
+                    
+<article class="">
+    <a href="/blog/computer-networking-flow-control-and-handshake/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">Computer Networking - Flow Control and Handshake</h2>
+        </div>
+    </a>
+</article>
+                
+                    
+<article class="">
+    <a href="/blog/computer-networking-tcp-congestion-control/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">Computer Networking - TCP Congestion Control</h2>
+        </div>
+    </a>
+</article>
+                
+                    
+<article class="">
+    <a href="/blog/computer-networking-email-and-dns/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">Computer Networking - Email and DNS</h2>
+        </div>
+    </a>
+</article>
+                
+                    
+<article class="">
+    <a href="/blog/computer-networking-final-quick-note/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">Computer Networking - Final Quick Note</h2>
+        </div>
+    </a>
+</article>
+                
+                    
+<article class="">
+    <a href="/blog/computer-networking-http/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">Computer Networking - HTTP</h2>
+        </div>
+    </a>
+</article>
+                
+            </div>
+        </div>
+    
+</aside>
+
+     
+    
+        
+    <script src="https://utteranc.es/client.js" 
+        repo="yansigit/yansigit.github.io"
+        issue-term="pathname"
+        
+        label="Utterances Comment"
+        
+        crossorigin="anonymous"
+        async
+        >
+</script>
+
+<style>
+    .utterances {
+        max-width: unset;
+    }
+</style>
+
+<script>
+    function setUtterancesTheme(theme) {
+        let utterances = document.querySelector('.utterances iframe');
+        if (utterances) {
+            utterances.contentWindow.postMessage(
+                {
+                    type: 'set-theme',
+                    theme: `github-${theme}`
+                },
+                'https://utteranc.es'
+            );
+        }
+    }
+
+    addEventListener('message', event => {
+        if (event.origin !== 'https://utteranc.es') return;
+        setUtterancesTheme(document.documentElement.dataset.scheme)
+    });
+
+    window.addEventListener('onColorSchemeChange', (e) => {
+        setUtterancesTheme(e.detail)
+    })
+</script>
+
+
+    
+
+    <footer class="site-footer">
+    <section class="copyright">
+        &copy; 
+        
+            2020 - 
+        
+        2021 Code like Feather
+    </section>
+    
+    <section class="powerby">
+        Built with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> <br />
+        Theme <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="3.2.0">Stack</a></b> designed by <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a>
+    </section>
+</footer>
+
+
+    
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    
+    <div class="pswp__bg"></div>
+
+    
+    <div class="pswp__scroll-wrap">
+
+        
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                
+                
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"integrity="sha256-ePwmChbbvXbsO02lbM3HoHbSHTHFAeChekF1xKJdleo="crossorigin="anonymous"
+                defer="true"
+                >
+            </script><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"integrity="sha256-UKkzOn/w1mBxRmLLGrSeyB4e1xbrp4xylgAWb3M42pU="crossorigin="anonymous"
+                defer="true"
+                >
+            </script><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.css"integrity="sha256-c0uckgykQ9v5k&#43;IqViZOZKc47Jn7KQil4/MP3ySA3F8="crossorigin="anonymous"
+            ><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.css"integrity="sha256-SBLU4vv6CA6lHsZ1XyTdhyjJxCjPif/TRkjnsyGAGnE="crossorigin="anonymous"
+            >
+
+            </main>
+    
+        <aside class="sidebar right-sidebar sticky">
+            <section class="widget archives">
+                <div class="widget-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-hash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <line x1="5" y1="9" x2="19" y2="9" />
+  <line x1="5" y1="15" x2="19" y2="15" />
+  <line x1="11" y1="4" x2="7" y2="20" />
+  <line x1="17" y1="4" x2="13" y2="20" />
+</svg>
+
+
+
+                </div>
+                <h2 class="widget-title section-title">Table of contents</h2>
+                
+                <div class="widget--toc">
+                    <nav id="TableOfContents">
+  <ol>
+    <li><a href="#overview">Overview</a></li>
+    <li><a href="#tcp-segment-구조">TCP segment 구조</a></li>
+    <li><a href="#tcp-시퀀스-넘버-acks">TCP 시퀀스 넘버, ACKs</a>
+      <ol>
+        <li><a href="#시퀀스-넘버">시퀀스 넘버</a></li>
+        <li><a href="#ack-넘버">ACK 넘버</a></li>
+        <li><a href="#간단한-예시">간단한 예시</a></li>
+      </ol>
+    </li>
+    <li><a href="#tcp-timeout">TCP Timeout</a></li>
+    <li><a href="#tcp-rtt">TCP RTT</a></li>
+    <li><a href="#tcp-timeout-1">TCP Timeout</a></li>
+    <li><a href="#tcp-reliable-data-transfer">TCP Reliable Data Transfer</a></li>
+    <li><a href="#tcp-sender-events">TCP sender events</a></li>
+    <li><a href="#tcp-재전송-시나리오">TCP 재전송 시나리오</a></li>
+    <li><a href="#tcp-ack-생성">TCP ACK 생성</a></li>
+    <li><a href="#tcp-fast-retransmit">TCP Fast retransmit</a></li>
+  </ol>
+</nav>
+                </div>
+            </section>
+        </aside>
+    
+
+        </div>
+        <script 
+                src="https://cdn.jsdelivr.net/npm/node-vibrant@3.1.5/dist/vibrant.min.js"integrity="sha256-5NovOZc4iwiAWTYIFiIM7DxKUXKWvpVEuMEPLzcm5/g="crossorigin="anonymous"
+                defer="false"
+                >
+            </script><script type="text/javascript" src="/ts/main.js" defer></script>
+<script>
+    (function () {
+        const customFont = document.createElement('link');
+        customFont.href = "https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap";
+
+        customFont.type = "text/css";
+        customFont.rel = "stylesheet";
+
+        document.head.appendChild(customFont);
+    }());
+</script>
+
+    </body>
+</html>

@@ -1,0 +1,466 @@
+<!DOCTYPE html>
+<html lang="ko-kr">
+    <head><meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content='openCV 도형 그리기'><title>Drawing Things on Opencv</title>
+
+<link rel='canonical' href='https://yansigit.github.io/blog/drawing-things-on-opencv/'>
+
+<link rel="stylesheet" href="/scss/style.min.css"><meta property='og:title' content='Drawing Things on Opencv'>
+<meta property='og:description' content='openCV 도형 그리기'>
+<meta property='og:url' content='https://yansigit.github.io/blog/drawing-things-on-opencv/'>
+<meta property='og:site_name' content='Code like Feather'>
+<meta property='og:type' content='article'><meta property='article:section' content='Posts' /><meta property='article:tag' content='opencv' /><meta property='article:tag' content='python' /><meta property='article:published_time' content='2020-09-15T23:44:12&#43;09:00'/><meta property='article:modified_time' content='2020-09-15T23:44:12&#43;09:00'/><meta property='og:image' content='https://yansigit.github.io/images/lighthouse.jpg' />
+<meta name="twitter:title" content="Drawing Things on Opencv">
+<meta name="twitter:description" content="openCV 도형 그리기"><meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content='https://yansigit.github.io/images/lighthouse.jpg' />
+    </head>
+    <body class="
+    article-page has-toc
+">
+    <script>
+        (function() {
+            const colorSchemeKey = 'StackColorScheme';
+            if(!localStorage.getItem(colorSchemeKey)){
+                localStorage.setItem(colorSchemeKey, "auto");
+            }
+        })();
+    </script><script>
+    (function() {
+        const colorSchemeKey = 'StackColorScheme';
+        const colorSchemeItem = localStorage.getItem(colorSchemeKey);
+        const supportDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches === true;
+
+        if (colorSchemeItem == 'dark' || colorSchemeItem === 'auto' && supportDarkMode) {
+            
+
+            document.documentElement.dataset.scheme = 'dark';
+        } else {
+            document.documentElement.dataset.scheme = 'light';
+        }
+    })();
+</script>
+<div class="container main-container flex 
+    
+        extended
+    
+">
+    
+        <div id="article-toolbar">
+            <a href="https://yansigit.github.io" class="back-home">
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-chevron-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <polyline points="15 6 9 12 15 18" />
+</svg>
+
+
+
+                <span>Back</span>
+            </a>
+        </div>
+    
+<main class="main full-width">
+    <article class="main-article">
+    <header class="article-header">
+
+    <div class="article-details">
+    
+    <header class="article-category">
+        
+            <a href="/categories/opencv/" >
+                opencv
+            </a>
+        
+    </header>
+    
+
+    <h2 class="article-title">
+        <a href="/blog/drawing-things-on-opencv/">Drawing Things on Opencv</a>
+    </h2>
+
+    
+    <h3 class="article-subtitle">
+        openCV 도형 그리기
+    </h3>
+    
+
+    
+    <footer class="article-time">
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-calendar-time" width="56" height="56" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M11.795 21h-6.795a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v4" />
+  <circle cx="18" cy="18" r="4" />
+  <path d="M15 3v4" />
+  <path d="M7 3v4" />
+  <path d="M3 11h16" />
+  <path d="M18 16.496v1.504l1 1" />
+</svg>
+                <time class="article-time--published">Sep 15, 2020</time>
+            </div>
+        
+
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <polyline points="12 7 12 12 15 15" />
+</svg>
+
+
+
+                <time class="article-time--reading">
+                    2 minute read
+                </time>
+            </div>
+        
+    </footer>
+    
+</div>
+</header>
+
+    <section class="article-content">
+    <h2 id="1-직선-그리기">1. 직선 그리기</h2>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="n">img</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">imread</span><span class="p">(</span><span class="s1">&#39;blank_500.jpg&#39;</span><span class="p">)</span>
+
+<span class="c1"># start와 end 점을 연결하여 직선을 그림</span>
+<span class="c1"># img = 이미지를 그릴 이미지</span>
+<span class="c1"># start = 시작 좌표 ex; (0,0)</span>
+<span class="c1"># end = 종료 좌표 ex; (500,500)</span>
+<span class="c1"># color = BGR 형태의 color ex; (255, 0, 0)</span>
+<span class="c1"># thickness (int) = 선의 두께, pixel</span>
+<span class="c1"># lineType = 선 그리기 형식. 픽셀 계단 현상 완화 등.. ex; cv2.LINE_AA (안티앨리어싱), cv2.LINE_4 (브레젠햄 4연결)</span>
+<span class="n">cv2</span><span class="o">.</span><span class="n">line</span><span class="p">(</span><span class="n">img</span><span class="p">,</span> <span class="n">start</span><span class="p">,</span> <span class="n">end</span><span class="p">,</span> <span class="n">color</span><span class="p">[,</span> <span class="n">thickness</span><span class="p">,</span> <span class="n">lineType</span><span class="p">])</span>
+</code></pre></div><h2 id="2-사각형-그리기">2. 사각형 그리기</h2>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="c1"># thickness가 -1이면 채우기</span>
+<span class="n">cv2</span><span class="o">.</span><span class="n">rectangle</span><span class="p">(</span><span class="n">img</span><span class="p">,</span> <span class="n">start</span><span class="p">,</span> <span class="n">end</span><span class="p">,</span> <span class="n">color</span><span class="p">[,</span> <span class="n">thickness</span><span class="p">,</span> <span class="n">lineType</span><span class="p">])</span>
+</code></pre></div><h2 id="3-다각형-그리기">3. 다각형 그리기</h2>
+<ul>
+<li>여기서는 좌표를 numPy 형식으로 지정한다.</li>
+</ul>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="n">points</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">50</span><span class="p">,</span><span class="mi">50</span><span class="p">],</span> <span class="p">[</span><span class="mi">150</span><span class="p">,</span><span class="mi">150</span><span class="p">],</span> <span class="p">[</span><span class="mi">100</span><span class="p">,</span><span class="mi">140</span><span class="p">],</span> <span class="p">[</span><span class="mi">200</span><span class="p">,</span><span class="mi">240</span><span class="p">]],</span> <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">int32</span><span class="p">)</span>
+</code></pre></div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="c1"># isCloused(Bool) = 닫힌 도형 여부</span>
+<span class="c1"># thickness = 여기서는 -1로 채우기 작동 안됨</span>
+<span class="n">cv2</span><span class="o">.</span><span class="n">polylines</span><span class="p">(</span><span class="n">img</span><span class="p">,</span> <span class="n">points</span><span class="p">,</span> <span class="n">isClosed</span><span class="p">,</span> <span class="n">color</span><span class="p">[,</span> <span class="n">thickness</span><span class="p">,</span> <span class="n">lineType</span><span class="p">])</span>
+</code></pre></div><h2 id="4-원-타원">4. 원, 타원</h2>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="c1"># center = 원점 좌표 ex; (50,50)</span>
+<span class="c1"># radius = 원점 반지름 (int)</span>
+<span class="n">cv2</span><span class="o">.</span><span class="n">circle</span><span class="p">(</span><span class="n">img</span><span class="p">,</span> <span class="n">center</span><span class="p">,</span> <span class="n">radius</span><span class="p">,</span> <span class="n">color</span> <span class="p">[,</span> <span class="n">thickness</span><span class="p">,</span> <span class="n">lineType</span><span class="p">])</span>
+
+<span class="c1"># axes = 기준 축 길이 (50, 75)</span>
+<span class="c1"># angle = 기준 축 회전 각도 (int)</span>
+<span class="c1"># from,, to = 호를 그릴 시작 각도와 끝</span>
+<span class="n">cv2</span><span class="o">.</span><span class="n">ellipse</span><span class="p">(</span><span class="n">img</span><span class="p">,</span> <span class="n">center</span><span class="p">,</span> <span class="n">axes</span><span class="p">,</span> <span class="n">angle</span><span class="p">,</span> <span class="n">from</span><span class="p">,</span> <span class="n">to</span><span class="p">,</span> <span class="n">color</span> <span class="p">[,</span> <span class="n">thickness</span><span class="p">,</span> <span class="n">lineType</span><span class="p">])</span>
+</code></pre></div><h2 id="5-이미지에-text-추가">5. 이미지에 Text 추가</h2>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="c1"># text(str) = 표시할 문자열</span>
+<span class="c1"># point = 문자열이 표시될 위치. 문자열의 좌측 아래가 기준 ex; (50,30)</span>
+<span class="c1"># font = 폰트 글꼴. ex; CV2.FONT_XXX</span>
+<span class="c1"># fontScale = 폰트 사이즈 스케일</span>
+<span class="n">cv2</span><span class="o">.</span><span class="n">putText</span><span class="p">(</span><span class="n">img</span><span class="p">,</span> <span class="n">text</span><span class="p">,</span> <span class="n">point</span><span class="p">,</span> <span class="n">fontFace</span><span class="p">,</span> <span class="n">fontScale</span><span class="p">,</span> <span class="n">color</span> <span class="p">[,</span> <span class="n">thickness</span><span class="p">,</span> <span class="n">lineType</span><span class="p">])</span>
+</code></pre></div><ul>
+<li>fontFace
+<ul>
+<li>FONT_HERSHEY_COMPLEX : 상대적으로 복잡한 모양</li>
+<li>FONT_HERSHEY_SIMPLEX : 단순한 모양</li>
+</ul>
+</li>
+</ul>
+</section>
+
+
+    <footer class="article-footer">
+    
+    <section class="article-tags">
+        
+            <a href="/tags/opencv/">opencv</a>
+        
+            <a href="/tags/python/">python</a>
+        
+    </section>
+
+
+    
+    <section class="article-copyright">
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-copyright" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <path d="M14.5 9a3.5 4 0 1 0 0 6" />
+</svg>
+
+
+
+        <span>Licensed under CC BY-NC-SA 4.0</span>
+    </section>
+    </footer>
+
+
+    
+</article>
+
+    <aside class="related-contents--wrapper">
+    
+    
+        <h2 class="section-title">Related contents</h2>
+        <div class="related-contents">
+            <div class="flex article-list--tile">
+                
+                    
+<article class="">
+    <a href="/blog/opencv-spatial-domain/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">OpenCV Spatial Domain</h2>
+        </div>
+    </a>
+</article>
+                
+                    
+<article class="">
+    <a href="/blog/opencv-linear-interpolation/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">OpenCV Linear Interpolation</h2>
+        </div>
+    </a>
+</article>
+                
+                    
+<article class="">
+    <a href="/blog/opencv-geometric-transform/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">OpenCV Geometric Transform</h2>
+        </div>
+    </a>
+</article>
+                
+                    
+<article class="">
+    <a href="/blog/opencv-histogram/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">OpenCV Histogram</h2>
+        </div>
+    </a>
+</article>
+                
+                    
+<article class="">
+    <a href="/blog/dealing-with-camera-on-opencv/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">Dealing With Camera on OpenCV</h2>
+        </div>
+    </a>
+</article>
+                
+            </div>
+        </div>
+    
+</aside>
+
+     
+    
+        
+    <script src="https://utteranc.es/client.js" 
+        repo="yansigit/yansigit.github.io"
+        issue-term="pathname"
+        
+        label="Utterances Comment"
+        
+        crossorigin="anonymous"
+        async
+        >
+</script>
+
+<style>
+    .utterances {
+        max-width: unset;
+    }
+</style>
+
+<script>
+    function setUtterancesTheme(theme) {
+        let utterances = document.querySelector('.utterances iframe');
+        if (utterances) {
+            utterances.contentWindow.postMessage(
+                {
+                    type: 'set-theme',
+                    theme: `github-${theme}`
+                },
+                'https://utteranc.es'
+            );
+        }
+    }
+
+    addEventListener('message', event => {
+        if (event.origin !== 'https://utteranc.es') return;
+        setUtterancesTheme(document.documentElement.dataset.scheme)
+    });
+
+    window.addEventListener('onColorSchemeChange', (e) => {
+        setUtterancesTheme(e.detail)
+    })
+</script>
+
+
+    
+
+    <footer class="site-footer">
+    <section class="copyright">
+        &copy; 
+        
+            2020 - 
+        
+        2021 Code like Feather
+    </section>
+    
+    <section class="powerby">
+        Built with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> <br />
+        Theme <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="3.2.0">Stack</a></b> designed by <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a>
+    </section>
+</footer>
+
+
+    
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    
+    <div class="pswp__bg"></div>
+
+    
+    <div class="pswp__scroll-wrap">
+
+        
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                
+                
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"integrity="sha256-ePwmChbbvXbsO02lbM3HoHbSHTHFAeChekF1xKJdleo="crossorigin="anonymous"
+                defer="true"
+                >
+            </script><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"integrity="sha256-UKkzOn/w1mBxRmLLGrSeyB4e1xbrp4xylgAWb3M42pU="crossorigin="anonymous"
+                defer="true"
+                >
+            </script><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.css"integrity="sha256-c0uckgykQ9v5k&#43;IqViZOZKc47Jn7KQil4/MP3ySA3F8="crossorigin="anonymous"
+            ><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.css"integrity="sha256-SBLU4vv6CA6lHsZ1XyTdhyjJxCjPif/TRkjnsyGAGnE="crossorigin="anonymous"
+            >
+
+            </main>
+    
+        <aside class="sidebar right-sidebar sticky">
+            <section class="widget archives">
+                <div class="widget-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-hash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <line x1="5" y1="9" x2="19" y2="9" />
+  <line x1="5" y1="15" x2="19" y2="15" />
+  <line x1="11" y1="4" x2="7" y2="20" />
+  <line x1="17" y1="4" x2="13" y2="20" />
+</svg>
+
+
+
+                </div>
+                <h2 class="widget-title section-title">Table of contents</h2>
+                
+                <div class="widget--toc">
+                    <nav id="TableOfContents">
+  <ol>
+    <li><a href="#1-직선-그리기">1. 직선 그리기</a></li>
+    <li><a href="#2-사각형-그리기">2. 사각형 그리기</a></li>
+    <li><a href="#3-다각형-그리기">3. 다각형 그리기</a></li>
+    <li><a href="#4-원-타원">4. 원, 타원</a></li>
+    <li><a href="#5-이미지에-text-추가">5. 이미지에 Text 추가</a></li>
+  </ol>
+</nav>
+                </div>
+            </section>
+        </aside>
+    
+
+        </div>
+        <script 
+                src="https://cdn.jsdelivr.net/npm/node-vibrant@3.1.5/dist/vibrant.min.js"integrity="sha256-5NovOZc4iwiAWTYIFiIM7DxKUXKWvpVEuMEPLzcm5/g="crossorigin="anonymous"
+                defer="false"
+                >
+            </script><script type="text/javascript" src="/ts/main.js" defer></script>
+<script>
+    (function () {
+        const customFont = document.createElement('link');
+        customFont.href = "https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap";
+
+        customFont.type = "text/css";
+        customFont.rel = "stylesheet";
+
+        document.head.appendChild(customFont);
+    }());
+</script>
+
+    </body>
+</html>

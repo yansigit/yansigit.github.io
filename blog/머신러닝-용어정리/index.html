@@ -1,0 +1,628 @@
+<!DOCTYPE html>
+<html lang="ko-kr">
+    <head><meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content='용어정리'><title>머신러닝 용어정리</title>
+
+<link rel='canonical' href='https://yansigit.github.io/blog/%EB%A8%B8%EC%8B%A0%EB%9F%AC%EB%8B%9D-%EC%9A%A9%EC%96%B4%EC%A0%95%EB%A6%AC/'>
+
+<link rel="stylesheet" href="/scss/style.min.css"><meta property='og:title' content='머신러닝 용어정리'>
+<meta property='og:description' content='용어정리'>
+<meta property='og:url' content='https://yansigit.github.io/blog/%EB%A8%B8%EC%8B%A0%EB%9F%AC%EB%8B%9D-%EC%9A%A9%EC%96%B4%EC%A0%95%EB%A6%AC/'>
+<meta property='og:site_name' content='Code like Feather'>
+<meta property='og:type' content='article'><meta property='article:section' content='Posts' /><meta property='article:tag' content='machine-learning' /><meta property='article:tag' content='deep-learning' /><meta property='article:tag' content='data-processing' /><meta property='article:tag' content='data-science' /><meta property='article:published_time' content='2021-07-07T00:04:34&#43;09:00'/><meta property='article:modified_time' content='2021-07-07T00:04:34&#43;09:00'/><meta property='og:image' content='https://yansigit.github.io/images/lighthouse.jpg' />
+<meta name="twitter:title" content="머신러닝 용어정리">
+<meta name="twitter:description" content="용어정리"><meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content='https://yansigit.github.io/images/lighthouse.jpg' />
+    </head>
+    <body class="
+    article-page has-toc
+">
+    <script>
+        (function() {
+            const colorSchemeKey = 'StackColorScheme';
+            if(!localStorage.getItem(colorSchemeKey)){
+                localStorage.setItem(colorSchemeKey, "auto");
+            }
+        })();
+    </script><script>
+    (function() {
+        const colorSchemeKey = 'StackColorScheme';
+        const colorSchemeItem = localStorage.getItem(colorSchemeKey);
+        const supportDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches === true;
+
+        if (colorSchemeItem == 'dark' || colorSchemeItem === 'auto' && supportDarkMode) {
+            
+
+            document.documentElement.dataset.scheme = 'dark';
+        } else {
+            document.documentElement.dataset.scheme = 'light';
+        }
+    })();
+</script>
+<div class="container main-container flex 
+    
+        extended
+    
+">
+    
+        <div id="article-toolbar">
+            <a href="https://yansigit.github.io" class="back-home">
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-chevron-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <polyline points="15 6 9 12 15 18" />
+</svg>
+
+
+
+                <span>Back</span>
+            </a>
+        </div>
+    
+<main class="main full-width">
+    <article class="main-article">
+    <header class="article-header">
+
+    <div class="article-details">
+    
+    <header class="article-category">
+        
+            <a href="/categories/machine-learning/" >
+                machine-learning
+            </a>
+        
+            <a href="/categories/deep-learning/" >
+                deep-learning
+            </a>
+        
+            <a href="/categories/data-science/" >
+                data-science
+            </a>
+        
+    </header>
+    
+
+    <h2 class="article-title">
+        <a href="/blog/%EB%A8%B8%EC%8B%A0%EB%9F%AC%EB%8B%9D-%EC%9A%A9%EC%96%B4%EC%A0%95%EB%A6%AC/">머신러닝 용어정리</a>
+    </h2>
+
+    
+    <h3 class="article-subtitle">
+        용어정리
+    </h3>
+    
+
+    
+    <footer class="article-time">
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-calendar-time" width="56" height="56" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M11.795 21h-6.795a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v4" />
+  <circle cx="18" cy="18" r="4" />
+  <path d="M15 3v4" />
+  <path d="M7 3v4" />
+  <path d="M3 11h16" />
+  <path d="M18 16.496v1.504l1 1" />
+</svg>
+                <time class="article-time--published">Jul 07, 2021</time>
+            </div>
+        
+
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <polyline points="12 7 12 12 15 15" />
+</svg>
+
+
+
+                <time class="article-time--reading">
+                    3 minute read
+                </time>
+            </div>
+        
+    </footer>
+    
+</div>
+</header>
+
+    <section class="article-content">
+    <h1 id="용어정리">용어정리</h1>
+<h2 id="explain-the-following-terms">Explain the following terms.</h2>
+<ol>
+<li>
+<p>singularity</p>
+<ul>
+<li>특이점. 인공지능이 인간의 지능을 능가하는 기점</li>
+</ul>
+</li>
+<li>
+<p>chatbot</p>
+<ul>
+<li>챗봇. 인간이 아닌 기계가 인간을 응대하는 서비스. 앱 내 고객센터 등에 사용.</li>
+</ul>
+</li>
+<li>
+<p>fuzzy logic</p>
+<ul>
+<li>전통적인 방식은 1로 참, 0으로 거짓</li>
+<li>fuzzy 로직은 0~1 사이에서 어떤 값이라도 나올 수 있도록 함
+<ul>
+<li>즉 0.7로 애매하게 참, 0.3으로 애매하게 거짓을 나타낼 수 있도록 함</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>fuzzy set</p>
+<ul>
+<li>위의 퍼지 논리를 이용해 기존의 집합 개념을 확장</li>
+<li>집합에 속하는 정도를 참, 거짓이 아닌 애매하게 속한다는 개념도 표현 가능한 <code>소속도</code>로 나타냄</li>
+</ul>
+</li>
+<li>
+<p>regression</p>
+<ul>
+<li>회귀. 여러개의 독립변수와 하나의 종속변수의 상관관계를 모델링하는 기법.</li>
+</ul>
+</li>
+<li>
+<p>epoch</p>
+<p><figure 
+	>
+	<a href="/posts/%ec%9a%a9%ec%96%b4%ec%a0%95%eb%a6%ac/Untitled.png" >
+		<img src="/posts/%ec%9a%a9%ec%96%b4%ec%a0%95%eb%a6%ac/Untitled.png"
+			
+			
+			
+			loading="lazy"
+			alt="%E1%84%8B%E1%85%AD%E1%86%BC%E1%84%8B%E1%85%A5%E1%84%8C%E1%85%A5%E1%86%BC%E1%84%85%E1%85%B5/Untitled.png">
+	</a>
+	
+	<figcaption>%E1%84%8B%E1%85%AD%E1%86%BC%E1%84%8B%E1%85%A5%E1%84%8C%E1%85%A5%E1%86%BC%E1%84%85%E1%85%B5/Untitled.png</figcaption>
+	
+</figure></p>
+<ul>
+<li>훈련 데이터셋에 포함된 모든 데이터들이 한번씩 모델을 통과한 횟수</li>
+<li>epoch가 10회라면 학습데이터셋 A를 10회 모델에 학습시켰다는 것</li>
+<li>epoch를 높일수록 다양한 무작위 가중치로 학습을 해보므로 적합한 파라미터를 찾을 확률이 올라감</li>
+<li>그러나 지나치게 높이면 overfitting됨</li>
+</ul>
+</li>
+<li>
+<p>Batch size</p>
+<ul>
+<li>연산 한번에 들어가는 데이터의 크기</li>
+</ul>
+</li>
+<li>
+<p>data normalization</p>
+<ul>
+<li>데이터 전처리 기법의 하나로 feature들을 0~1 사이의 값으로 모두 평준화하여 학습의 효율을 높임.</li>
+</ul>
+</li>
+<li>
+<p>overfitting</p>
+<ul>
+<li>과적합. 과도하게 학습되어 새로운 데이터에 대한 예측이 어려움.</li>
+</ul>
+</li>
+<li>
+<p>loss function</p>
+<ul>
+<li>손실함수. 실제 데이터와 예측값의 차이를 도출. 차이가 작을수록 좋다.</li>
+</ul>
+</li>
+<li>
+<p>information gain</p>
+<ul>
+<li>정보이득. 어떤 Feature를 선택해야 가장 정보적으로 이득되는지 판별하는 척도. 디씨젼 트리에서 사용.</li>
+</ul>
+</li>
+<li>
+<p>bayes rule</p>
+<ul>
+<li>베이즈 정리. 두 확률 변수의 사전확률과 사후 확률 사이의 관계를 나타냄.</li>
+</ul>
+</li>
+<li>
+<p>gradient descent</p>
+<ul>
+<li>경사하강법. 기울기를 이용해 함수의 최소값을 찾아간다.</li>
+</ul>
+</li>
+</ol>
+<hr>
+<ol>
+<li>quantities of information
+<ul>
+<li>불확실성의 양을 뜻한다. 확률이 낮을수록 정보량은 높다. Information theory에서 이를 이용해 정보량을 계산한다.</li>
+</ul>
+</li>
+<li>information entropy
+<ul>
+<li>어떤 정보가 주어졌을 때 해당 정보가 의미있는 정보인지 파악할 때 사용된다. 0에 가까울수록 정보량이 없는 것이고 1에 가까울수록 정보량이 많음을 의미한다.</li>
+</ul>
+</li>
+<li>cross entropy
+<ul>
+<li>교차 엔트로피. 신경망의 손실함수로 사용된다. Cross Entropy가 작으면 예측값과 실제값이 거의 일치함을 뜻한다.</li>
+</ul>
+</li>
+<li>mutual information
+<ul>
+<li>상호 정보량. 두 정보를 따로따로 보았을 때 보다 같이 보았을 때 얼마나 더 불확실성이 감소하였는가를 정량화. 두 정보의 연관성을 볼 때 사용.</li>
+</ul>
+</li>
+</ol>
+<hr>
+<ol>
+<li>artificial intelligence
+<ul>
+<li>AI란 사람의 행동을 모방하도록 설계된 기계 혹은 소프트웨어, 방법론을 뜻한다.</li>
+</ul>
+</li>
+<li>machine learning
+<ul>
+<li>머신러닝이란 AI를 구현하기 위해 사용되는 방법 중 하나이며 사람이 Feature들을 선별하여 학습시킨다.</li>
+</ul>
+</li>
+<li>deep learning
+<ul>
+<li>딥러닝은 머신러닝의 일종으로 히든 레이어에서 자체적으로 Feature를 학습하여 머신러닝보다 상대적으로 간편하다.</li>
+</ul>
+</li>
+</ol>
+<hr>
+<ol>
+<li>bias
+<ul>
+<li>편향. 결과의 정확도를 의미한다.</li>
+</ul>
+</li>
+<li>variance
+<ul>
+<li>분산. 결과의 다양성을 의미한다.</li>
+</ul>
+</li>
+</ol>
+<hr>
+<ol>
+<li>K-means
+<ul>
+<li>Algorithm that forms K clusters for a given K</li>
+<li>How to automatically determine K?
+<ul>
+<li>K값을 1씩 더해서</li>
+</ul>
+</li>
+<li>How can you determine which clusters are better than others for the same data
+<ul>
+<li>응집도를 보고 판단</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Overfitting
+<ul>
+<li>How to avoid overfitting in terms of the amount of learning data, the learning epoch, complexity of the model
+<ul>
+<li>learning data, learning epoch가 많을수록, 모델의 복잡도가 높을수록 overfitting이 될 확률이 높으므로 적절하게 설정하는 것이 중요하다. 예를들어 learning data의 경우 전처리  및 차원축소 등을 실행하거나, epoch의 경우 너무 높에 설정하지 않아야하고, 모델의 복잡도가 너무 높은 경우 레귤레이션이나 드롭아웃을 통해 해결한다.</li>
+</ul>
+</li>
+</ul>
+</li>
+</ol>
+<hr>
+<ol>
+<li>Generalization
+<ul>
+<li>일반화. 트레이닝 셋이 아닌 데이터를 넣어도 정확도가 최대한 유지된 채로 아웃풋이 나오도록 하는 것.</li>
+</ul>
+</li>
+<li>Optimization
+<ul>
+<li>최적화. 아웃풋의 오류가 가장 적은 하이퍼 파라미터들을 찾는 것</li>
+</ul>
+</li>
+</ol>
+</section>
+
+
+    <footer class="article-footer">
+    
+    <section class="article-tags">
+        
+            <a href="/tags/machine-learning/">machine-learning</a>
+        
+            <a href="/tags/deep-learning/">deep-learning</a>
+        
+            <a href="/tags/data-processing/">data-processing</a>
+        
+            <a href="/tags/data-science/">data-science</a>
+        
+    </section>
+
+
+    
+    <section class="article-copyright">
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-copyright" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <path d="M14.5 9a3.5 4 0 1 0 0 6" />
+</svg>
+
+
+
+        <span>Licensed under CC BY-NC-SA 4.0</span>
+    </section>
+    </footer>
+
+
+    
+</article>
+
+    <aside class="related-contents--wrapper">
+    
+    
+        <h2 class="section-title">Related contents</h2>
+        <div class="related-contents">
+            <div class="flex article-list--tile">
+                
+                    
+<article class="">
+    <a href="/blog/classification/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">Classification</h2>
+        </div>
+    </a>
+</article>
+                
+                    
+<article class="">
+    <a href="/blog/clustering-%EA%B5%B0%EC%A7%91%ED%99%94/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">Clustering (군집화)</h2>
+        </div>
+    </a>
+</article>
+                
+                    
+<article class="">
+    <a href="/blog/data-processing/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">Data Processing</h2>
+        </div>
+    </a>
+</article>
+                
+                    
+<article class="">
+    <a href="/blog/deep-neural-network/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">Deep Neural Network</h2>
+        </div>
+    </a>
+</article>
+                
+                    
+<article class="">
+    <a href="/blog/dicision-tree/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">Dicision Tree</h2>
+        </div>
+    </a>
+</article>
+                
+            </div>
+        </div>
+    
+</aside>
+
+     
+    
+        
+    <script src="https://utteranc.es/client.js" 
+        repo="yansigit/yansigit.github.io"
+        issue-term="pathname"
+        
+        label="Utterances Comment"
+        
+        crossorigin="anonymous"
+        async
+        >
+</script>
+
+<style>
+    .utterances {
+        max-width: unset;
+    }
+</style>
+
+<script>
+    function setUtterancesTheme(theme) {
+        let utterances = document.querySelector('.utterances iframe');
+        if (utterances) {
+            utterances.contentWindow.postMessage(
+                {
+                    type: 'set-theme',
+                    theme: `github-${theme}`
+                },
+                'https://utteranc.es'
+            );
+        }
+    }
+
+    addEventListener('message', event => {
+        if (event.origin !== 'https://utteranc.es') return;
+        setUtterancesTheme(document.documentElement.dataset.scheme)
+    });
+
+    window.addEventListener('onColorSchemeChange', (e) => {
+        setUtterancesTheme(e.detail)
+    })
+</script>
+
+
+    
+
+    <footer class="site-footer">
+    <section class="copyright">
+        &copy; 
+        
+            2020 - 
+        
+        2021 Code like Feather
+    </section>
+    
+    <section class="powerby">
+        Built with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> <br />
+        Theme <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="3.2.0">Stack</a></b> designed by <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a>
+    </section>
+</footer>
+
+
+    
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    
+    <div class="pswp__bg"></div>
+
+    
+    <div class="pswp__scroll-wrap">
+
+        
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                
+                
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"integrity="sha256-ePwmChbbvXbsO02lbM3HoHbSHTHFAeChekF1xKJdleo="crossorigin="anonymous"
+                defer="true"
+                >
+            </script><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"integrity="sha256-UKkzOn/w1mBxRmLLGrSeyB4e1xbrp4xylgAWb3M42pU="crossorigin="anonymous"
+                defer="true"
+                >
+            </script><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.css"integrity="sha256-c0uckgykQ9v5k&#43;IqViZOZKc47Jn7KQil4/MP3ySA3F8="crossorigin="anonymous"
+            ><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.css"integrity="sha256-SBLU4vv6CA6lHsZ1XyTdhyjJxCjPif/TRkjnsyGAGnE="crossorigin="anonymous"
+            >
+
+            </main>
+    
+        <aside class="sidebar right-sidebar sticky">
+            <section class="widget archives">
+                <div class="widget-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-hash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <line x1="5" y1="9" x2="19" y2="9" />
+  <line x1="5" y1="15" x2="19" y2="15" />
+  <line x1="11" y1="4" x2="7" y2="20" />
+  <line x1="17" y1="4" x2="13" y2="20" />
+</svg>
+
+
+
+                </div>
+                <h2 class="widget-title section-title">Table of contents</h2>
+                
+                <div class="widget--toc">
+                    <nav id="TableOfContents">
+  <ol>
+    <li><a href="#explain-the-following-terms">Explain the following terms.</a></li>
+  </ol>
+</nav>
+                </div>
+            </section>
+        </aside>
+    
+
+        </div>
+        <script 
+                src="https://cdn.jsdelivr.net/npm/node-vibrant@3.1.5/dist/vibrant.min.js"integrity="sha256-5NovOZc4iwiAWTYIFiIM7DxKUXKWvpVEuMEPLzcm5/g="crossorigin="anonymous"
+                defer="false"
+                >
+            </script><script type="text/javascript" src="/ts/main.js" defer></script>
+<script>
+    (function () {
+        const customFont = document.createElement('link');
+        customFont.href = "https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap";
+
+        customFont.type = "text/css";
+        customFont.rel = "stylesheet";
+
+        document.head.appendChild(customFont);
+    }());
+</script>
+
+    </body>
+</html>

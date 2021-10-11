@@ -1,0 +1,755 @@
+<!DOCTYPE html>
+<html lang="ko-kr">
+    <head><meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content='CPU'><title>운영체제 - CPU</title>
+
+<link rel='canonical' href='https://yansigit.github.io/blog/%EC%9A%B4%EC%98%81%EC%B2%B4%EC%A0%9C-cpu/'>
+
+<link rel="stylesheet" href="/scss/style.min.css"><meta property='og:title' content='운영체제 - CPU'>
+<meta property='og:description' content='CPU'>
+<meta property='og:url' content='https://yansigit.github.io/blog/%EC%9A%B4%EC%98%81%EC%B2%B4%EC%A0%9C-cpu/'>
+<meta property='og:site_name' content='Code like Feather'>
+<meta property='og:type' content='article'><meta property='article:section' content='Posts' /><meta property='article:tag' content='os' /><meta property='article:tag' content='operation-system' /><meta property='article:published_time' content='2020-09-18T23:24:53&#43;09:00'/><meta property='article:modified_time' content='2020-09-18T23:24:53&#43;09:00'/><meta property='og:image' content='https://yansigit.github.io/images/lighthouse.jpg' />
+<meta name="twitter:title" content="운영체제 - CPU">
+<meta name="twitter:description" content="CPU"><meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content='https://yansigit.github.io/images/lighthouse.jpg' />
+    </head>
+    <body class="
+    article-page has-toc
+">
+    <script>
+        (function() {
+            const colorSchemeKey = 'StackColorScheme';
+            if(!localStorage.getItem(colorSchemeKey)){
+                localStorage.setItem(colorSchemeKey, "auto");
+            }
+        })();
+    </script><script>
+    (function() {
+        const colorSchemeKey = 'StackColorScheme';
+        const colorSchemeItem = localStorage.getItem(colorSchemeKey);
+        const supportDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches === true;
+
+        if (colorSchemeItem == 'dark' || colorSchemeItem === 'auto' && supportDarkMode) {
+            
+
+            document.documentElement.dataset.scheme = 'dark';
+        } else {
+            document.documentElement.dataset.scheme = 'light';
+        }
+    })();
+</script>
+<div class="container main-container flex 
+    
+        extended
+    
+">
+    
+        <div id="article-toolbar">
+            <a href="https://yansigit.github.io" class="back-home">
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-chevron-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <polyline points="15 6 9 12 15 18" />
+</svg>
+
+
+
+                <span>Back</span>
+            </a>
+        </div>
+    
+<main class="main full-width">
+    <article class="main-article">
+    <header class="article-header">
+
+    <div class="article-details">
+    
+    <header class="article-category">
+        
+            <a href="/categories/os/" >
+                os
+            </a>
+        
+    </header>
+    
+
+    <h2 class="article-title">
+        <a href="/blog/%EC%9A%B4%EC%98%81%EC%B2%B4%EC%A0%9C-cpu/">운영체제 - CPU</a>
+    </h2>
+
+    
+    <h3 class="article-subtitle">
+        CPU
+    </h3>
+    
+
+    
+    <footer class="article-time">
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-calendar-time" width="56" height="56" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M11.795 21h-6.795a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v4" />
+  <circle cx="18" cy="18" r="4" />
+  <path d="M15 3v4" />
+  <path d="M7 3v4" />
+  <path d="M3 11h16" />
+  <path d="M18 16.496v1.504l1 1" />
+</svg>
+                <time class="article-time--published">Sep 18, 2020</time>
+            </div>
+        
+
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <polyline points="12 7 12 12 15 15" />
+</svg>
+
+
+
+                <time class="article-time--reading">
+                    3 minute read
+                </time>
+            </div>
+        
+    </footer>
+    
+</div>
+</header>
+
+    <section class="article-content">
+    <p>CPU</p>
+<h1 id="cpu">CPU</h1>
+<h1 id="1-인터럽트">1. 인터럽트</h1>
+<h2 id="폴링-방식">폴링 방식</h2>
+<p><figure 
+	>
+	<a href="/posts/cpu/Untitled.png" >
+		<img src="/posts/cpu/Untitled.png"
+			
+			
+			
+			loading="lazy"
+			alt="image">
+	</a>
+	
+	<figcaption>image</figcaption>
+	
+</figure></p>
+<ul>
+<li>CPU가 직접 입출력장치에서 데이터를 가져오거나 내보냄</li>
+<li>CPU가 입출력장치의 상태를 주기적으로 검사
+<ul>
+<li>일정한 조건을 만족할 때 데이터를 처리</li>
+</ul>
+</li>
+<li>CPU가 명령어 해석과 실행과 더불어 모든 입출력을 관리해야 하므로 작업 효율이 떨어짐</li>
+</ul>
+<h2 id="인터럽트-방식">인터럽트 방식</h2>
+<p><figure 
+	>
+	<a href="/posts/cpu/Untitled%201.png" >
+		<img src="/posts/cpu/Untitled%201.png"
+			
+			
+			
+			loading="lazy"
+			alt="image">
+	</a>
+	
+	<figcaption>image</figcaption>
+	
+</figure></p>
+<ul>
+<li>입출력 관리자가 입출력을 대신 전담</li>
+<li>CPU의 작업과 저장장치의 I/O를 독립적으로 운영
+<ul>
+<li>시스템의 효율을 높임</li>
+<li>I/O를 수행하는 동안 CPU가 다른 작업을 할 수 있음</li>
+</ul>
+</li>
+</ul>
+<h3 id="인터럽트">인터럽트</h3>
+<ul>
+<li>입출력 관리자가 CPU에 보내는 완료 신호</li>
+</ul>
+<h3 id="인터럽트-번호">인터럽트 번호</h3>
+<ul>
+<li>많은 주변장치 중 어떤 것의 작업이 끝났는지를 CPU에 알려주기 위해 사용하는 번호</li>
+<li>윈도우에서는 IRQ라고 부름</li>
+</ul>
+<h3 id="인터럽트-벡터">인터럽트 벡터</h3>
+<ul>
+<li>여러 개의 입출력 장치를 한꺼번에 처리하기 위해 여러개의 인터럽트를 하나의 배열로 만든 것</li>
+</ul>
+<h1 id="2-인터럽트-방식의-동작-과정">2. 인터럽트 방식의 동작 과정</h1>
+<p><figure 
+	>
+	<a href="/posts/cpu/Untitled%202.png" >
+		<img src="/posts/cpu/Untitled%202.png"
+			
+			
+			
+			loading="lazy"
+			alt="image">
+	</a>
+	
+	<figcaption>image</figcaption>
+	
+</figure></p>
+<ol>
+<li>CPU가 입출력 관리자에게 데이터 입출력 명령을 보냄</li>
+<li>입출력 관리자는 명령받은 데이터를 메모리에 가져다놓거나 메모리의 데이터를 저장장치로 옮김</li>
+<li>데이터 전송이 완료되면 입출력 관리자는 완료 신호를 CPU에 보냄</li>
+</ol>
+<h1 id="3-직접-메모리-접근">3. 직접 메모리 접근</h1>
+<p><figure 
+	>
+	<a href="/posts/cpu/Untitled%203.png" >
+		<img src="/posts/cpu/Untitled%203.png"
+			
+			
+			
+			loading="lazy"
+			alt="image">
+	</a>
+	
+	<figcaption>image</figcaption>
+	
+</figure></p>
+<ul>
+<li>입출력 관리자가 CPU의 허락 없이 메모리에 접근할 수 있는 권한</li>
+<li>메모리는 CPU의 작업 공간
+<ul>
+<li>데이터 전송을 지시받은 입출력 관리자는 직접 메모리 접근 권한이 있어야 작업 처리 가능</li>
+</ul>
+</li>
+</ul>
+<h1 id="4-메모리-매핑-입출력">4. 메모리 매핑 입출력</h1>
+<p><figure 
+	>
+	<a href="/posts/cpu/Untitled%204.png" >
+		<img src="/posts/cpu/Untitled%204.png"
+			
+			
+			
+			loading="lazy"
+			alt="image">
+	</a>
+	
+	<figcaption>image</figcaption>
+	
+</figure></p>
+<ul>
+<li>메모리의 일정 공간을 입출력에 할당</li>
+<li>보통 메모리(.)에 해당하는 어드레스 영역, I/O에 해당하는 어드레스 영역이 별개로 존재</li>
+<li>그러므로 다른 명령어를 통해서 접근하게 됨</li>
+<li>그런데 이 방식에서는 메모리의 일정 공간을 I/O를 위해 할당</li>
+</ul>
+<h1 id="5-싸이클-훔치기">5. 싸이클 훔치기</h1>
+<ul>
+<li>CPU와 직접 메모리 접근이 동시에 메모리에 접근하면 <strong>보통 CPU가</strong> 메모리 사용 권한을 <strong>양보</strong></li>
+<li><strong>CPU의 작업 속도보다 입출력장치의 속도가 느리기 때문</strong>에 직접 메모리 접근에 양보하는 것
+<ul>
+<li>I/O 작업을 기다리고 있는 프로그램이 있을 수 있기 때문</li>
+</ul>
+</li>
+</ul>
+<h1 id="6-병렬-처리">6. 병렬 처리</h1>
+<h2 id="개념">개념</h2>
+<ul>
+<li>동시에 여러 개의 명령어를 처리해 작업의 능률을 올리는 방식</li>
+</ul>
+<h2 id="파이프라인-기법">파이프라인 기법</h2>
+<p><figure 
+	>
+	<a href="/posts/cpu/Untitled%205.png" >
+		<img src="/posts/cpu/Untitled%205.png"
+			
+			
+			
+			loading="lazy"
+			alt="image">
+	</a>
+	
+	<figcaption>image</figcaption>
+	
+</figure></p>
+<ul>
+<li>하나의 코어에 여러 개의 스레드를 이용하는 방식</li>
+</ul>
+<h2 id="슈퍼스칼라-기법">슈퍼스칼라 기법</h2>
+<p><figure 
+	>
+	<a href="/posts/cpu/Untitled%206.png" >
+		<img src="/posts/cpu/Untitled%206.png"
+			
+			
+			
+			loading="lazy"
+			alt="image">
+	</a>
+	
+	<figcaption>image</figcaption>
+	
+</figure></p>
+<ul>
+<li>듀얼코어 CPU를 이용해 2개의 작업을 동시에  처리</li>
+</ul>
+<h2 id="병렬-처리의-고려사항">병렬 처리의 고려사항</h2>
+<ul>
+<li>
+<p><strong>상호 의존성이 없어야 병렬 처리가 가능</strong></p>
+<ul>
+<li>각 명령이 서로 독립적이고 앞의 결과가 뒤의 명령에 영향을 미치지 않아야 함</li>
+</ul>
+</li>
+<li>
+<p><strong>각 단계의 시간을 일정하게 맞춰야 병렬 처리가 원만하게 이루어짐</strong></p>
+<p><figure 
+	>
+	<a href="/posts/cpu/Untitled%207.png" >
+		<img src="/posts/cpu/Untitled%207.png"
+			
+			
+			
+			loading="lazy"
+			alt="image">
+	</a>
+	
+	<figcaption>image</figcaption>
+	
+</figure></p>
+<ul>
+<li>각 단계의 시간이 들쭉날쭉하면 다음 작업이 밀리게 되어 병렬 처리의 효과가 떨어질 수 있다.</li>
+</ul>
+</li>
+<li>
+<p><strong>전체 작업 시간을 몇 개로 나눌지 잘 따져봐야 한다</strong></p>
+<ul>
+<li>병렬 처리의 깊이 N (위 이미지의 높이)</li>
+<li>이론적으로는 N이 커질수록 동시에 작업할 수 있는 갯수가 증가
+<ul>
+<li>그러나 작업을 너무 많이 나누면 오히려 작업을 이동하고 새로운 작업을 불러오는 딜레이가 많이 걸려 성능 하락</li>
+<li>따라서 적절하게 설정하는 것이 중요</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h1 id="7-cpu에서-명령어가-실행되는-과정">7. CPU에서 명령어가 실행되는 과정</h1>
+<ol>
+<li><strong>명령어 패치 (.)</strong>: 다음에 실행할 명령어를 메모리에서 불러와 레지스터에 저장</li>
+<li><strong>명령어 해석 (.)</strong>: 명령어 해석</li>
+<li><strong>실행 (.)</strong>: 해석한 결과를 토대로 명령어 실행</li>
+<li><strong>쓰기 (.)</strong>: 실행된 결과를 메모리에 저장</li>
+</ol>
+<h2 id="파이프라인-기법-1">파이프라인 기법</h2>
+<p><figure 
+	>
+	<a href="/posts/cpu/Untitled%208.png" >
+		<img src="/posts/cpu/Untitled%208.png"
+			
+			
+			
+			loading="lazy"
+			alt="image">
+	</a>
+	
+	<figcaption>image</figcaption>
+	
+</figure></p>
+<h2 id="슈퍼스칼라-기법-1">슈퍼스칼라 기법</h2>
+<p><figure 
+	>
+	<a href="/posts/cpu/Untitled%209.png" >
+		<img src="/posts/cpu/Untitled%209.png"
+			
+			
+			
+			loading="lazy"
+			alt="image">
+	</a>
+	
+	<figcaption>image</figcaption>
+	
+</figure></p>
+<ul>
+<li>파이프라인을 처리할 수 있는 코어를 여러개 구성</li>
+<li>복수의 명령어를 동시에 실행</li>
+</ul>
+<h2 id="슈퍼파이프라인-기법">슈퍼파이프라인 기법</h2>
+<p><figure 
+	>
+	<a href="/posts/cpu/Untitled%2010.png" >
+		<img src="/posts/cpu/Untitled%2010.png"
+			
+			
+			
+			loading="lazy"
+			alt="image">
+	</a>
+	
+	<figcaption>image</figcaption>
+	
+</figure></p>
+<ul>
+<li>파이프라인의 각 단계를 또 세분화</li>
+<li>한 클록 내에 여러 명령어를 처리</li>
+<li>다음 명령어가 빠른 시간 내에 처리될 수 있어 처리속도 향상</li>
+</ul>
+<h3 id="슈퍼파이프라인-슈퍼스칼라-기법">슈퍼파이프라인 슈퍼스칼라 기법</h3>
+<p><figure 
+	>
+	<a href="/posts/cpu/Untitled%2011.png" >
+		<img src="/posts/cpu/Untitled%2011.png"
+			
+			
+			
+			loading="lazy"
+			alt="image">
+	</a>
+	
+	<figcaption>image</figcaption>
+	
+</figure></p>
+<ul>
+<li>슈퍼파이프라인 기법을 여러 코어에서 실행</li>
+</ul>
+<h1 id="8-무어의-법칙-암달의-법칙">8. 무어의 법칙, 암달의 법칙</h1>
+<h2 id="무어의-법칙">무어의 법칙</h2>
+<ul>
+<li>CPU의 속도가 24개월마다 2배 빨라진다는 내용</li>
+<li>초기의 CPU에만 적용되었다</li>
+</ul>
+<h2 id="암달의-법칙">암달의 법칙</h2>
+<ul>
+<li>컴퓨터 시스템의 일부를 개선할 때</li>
+<li>예를들어 CPU의 속도를 2배 개선하더라도 전체 시스템의 성능이 2배 빨라지지 않는다는 것</li>
+</ul>
+</section>
+
+
+    <footer class="article-footer">
+    
+    <section class="article-tags">
+        
+            <a href="/tags/os/">os</a>
+        
+            <a href="/tags/operation-system/">operation-system</a>
+        
+    </section>
+
+
+    
+    <section class="article-copyright">
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-copyright" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <path d="M14.5 9a3.5 4 0 1 0 0 6" />
+</svg>
+
+
+
+        <span>Licensed under CC BY-NC-SA 4.0</span>
+    </section>
+    </footer>
+
+
+    
+</article>
+
+    <aside class="related-contents--wrapper">
+    
+    
+        <h2 class="section-title">Related contents</h2>
+        <div class="related-contents">
+            <div class="flex article-list--tile">
+                
+                    
+<article class="">
+    <a href="/blog/%EC%9A%B4%EC%98%81%EC%B2%B4%EC%A0%9C-cpu-%EC%8A%A4%EC%BC%80%EC%A4%84%EB%A7%81/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">운영체제 - CPU 스케줄링</h2>
+        </div>
+    </a>
+</article>
+                
+                    
+<article class="">
+    <a href="/blog/%EC%9A%B4%EC%98%81%EC%B2%B4%EC%A0%9C-cpu-%EC%8A%A4%EC%BC%80%EC%A4%84%EB%A7%81-%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">운영체제 - CPU 스케줄링 알고리즘</h2>
+        </div>
+    </a>
+</article>
+                
+                    
+<article class="">
+    <a href="/blog/%EC%9A%B4%EC%98%81%EC%B2%B4%EC%A0%9C-raid/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">운영체제 - RAID</h2>
+        </div>
+    </a>
+</article>
+                
+                    
+<article class="">
+    <a href="/blog/%EC%9A%B4%EC%98%81%EC%B2%B4%EC%A0%9C-%EA%B0%80%EC%83%81-%EB%A9%94%EB%AA%A8%EB%A6%AC/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">운영체제 - 가상 메모리</h2>
+        </div>
+    </a>
+</article>
+                
+                    
+<article class="">
+    <a href="/blog/%EC%9A%B4%EC%98%81%EC%B2%B4%EC%A0%9C-%EA%B0%80%EC%83%81%EB%A9%94%EB%AA%A8%EB%A6%AC-%EA%B4%80%EB%A6%AC/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">운영체제 - 가상메모리 관리</h2>
+        </div>
+    </a>
+</article>
+                
+            </div>
+        </div>
+    
+</aside>
+
+     
+    
+        
+    <script src="https://utteranc.es/client.js" 
+        repo="yansigit/yansigit.github.io"
+        issue-term="pathname"
+        
+        label="Utterances Comment"
+        
+        crossorigin="anonymous"
+        async
+        >
+</script>
+
+<style>
+    .utterances {
+        max-width: unset;
+    }
+</style>
+
+<script>
+    function setUtterancesTheme(theme) {
+        let utterances = document.querySelector('.utterances iframe');
+        if (utterances) {
+            utterances.contentWindow.postMessage(
+                {
+                    type: 'set-theme',
+                    theme: `github-${theme}`
+                },
+                'https://utteranc.es'
+            );
+        }
+    }
+
+    addEventListener('message', event => {
+        if (event.origin !== 'https://utteranc.es') return;
+        setUtterancesTheme(document.documentElement.dataset.scheme)
+    });
+
+    window.addEventListener('onColorSchemeChange', (e) => {
+        setUtterancesTheme(e.detail)
+    })
+</script>
+
+
+    
+
+    <footer class="site-footer">
+    <section class="copyright">
+        &copy; 
+        
+            2020 - 
+        
+        2021 Code like Feather
+    </section>
+    
+    <section class="powerby">
+        Built with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> <br />
+        Theme <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="3.2.0">Stack</a></b> designed by <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a>
+    </section>
+</footer>
+
+
+    
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    
+    <div class="pswp__bg"></div>
+
+    
+    <div class="pswp__scroll-wrap">
+
+        
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                
+                
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"integrity="sha256-ePwmChbbvXbsO02lbM3HoHbSHTHFAeChekF1xKJdleo="crossorigin="anonymous"
+                defer="true"
+                >
+            </script><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"integrity="sha256-UKkzOn/w1mBxRmLLGrSeyB4e1xbrp4xylgAWb3M42pU="crossorigin="anonymous"
+                defer="true"
+                >
+            </script><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.css"integrity="sha256-c0uckgykQ9v5k&#43;IqViZOZKc47Jn7KQil4/MP3ySA3F8="crossorigin="anonymous"
+            ><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.css"integrity="sha256-SBLU4vv6CA6lHsZ1XyTdhyjJxCjPif/TRkjnsyGAGnE="crossorigin="anonymous"
+            >
+
+            </main>
+    
+        <aside class="sidebar right-sidebar sticky">
+            <section class="widget archives">
+                <div class="widget-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-hash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <line x1="5" y1="9" x2="19" y2="9" />
+  <line x1="5" y1="15" x2="19" y2="15" />
+  <line x1="11" y1="4" x2="7" y2="20" />
+  <line x1="17" y1="4" x2="13" y2="20" />
+</svg>
+
+
+
+                </div>
+                <h2 class="widget-title section-title">Table of contents</h2>
+                
+                <div class="widget--toc">
+                    <nav id="TableOfContents">
+  <ol>
+    <li><a href="#폴링-방식">폴링 방식</a></li>
+    <li><a href="#인터럽트-방식">인터럽트 방식</a>
+      <ol>
+        <li><a href="#인터럽트">인터럽트</a></li>
+        <li><a href="#인터럽트-번호">인터럽트 번호</a></li>
+        <li><a href="#인터럽트-벡터">인터럽트 벡터</a></li>
+      </ol>
+    </li>
+  </ol>
+
+  <ol>
+    <li><a href="#개념">개념</a></li>
+    <li><a href="#파이프라인-기법">파이프라인 기법</a></li>
+    <li><a href="#슈퍼스칼라-기법">슈퍼스칼라 기법</a></li>
+    <li><a href="#병렬-처리의-고려사항">병렬 처리의 고려사항</a></li>
+  </ol>
+
+  <ol>
+    <li><a href="#파이프라인-기법-1">파이프라인 기법</a></li>
+    <li><a href="#슈퍼스칼라-기법-1">슈퍼스칼라 기법</a></li>
+    <li><a href="#슈퍼파이프라인-기법">슈퍼파이프라인 기법</a>
+      <ol>
+        <li><a href="#슈퍼파이프라인-슈퍼스칼라-기법">슈퍼파이프라인 슈퍼스칼라 기법</a></li>
+      </ol>
+    </li>
+  </ol>
+
+  <ol>
+    <li><a href="#무어의-법칙">무어의 법칙</a></li>
+    <li><a href="#암달의-법칙">암달의 법칙</a></li>
+  </ol>
+</nav>
+                </div>
+            </section>
+        </aside>
+    
+
+        </div>
+        <script 
+                src="https://cdn.jsdelivr.net/npm/node-vibrant@3.1.5/dist/vibrant.min.js"integrity="sha256-5NovOZc4iwiAWTYIFiIM7DxKUXKWvpVEuMEPLzcm5/g="crossorigin="anonymous"
+                defer="false"
+                >
+            </script><script type="text/javascript" src="/ts/main.js" defer></script>
+<script>
+    (function () {
+        const customFont = document.createElement('link');
+        customFont.href = "https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap";
+
+        customFont.type = "text/css";
+        customFont.rel = "stylesheet";
+
+        document.head.appendChild(customFont);
+    }());
+</script>
+
+    </body>
+</html>

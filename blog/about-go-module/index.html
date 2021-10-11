@@ -1,0 +1,609 @@
+<!DOCTYPE html>
+<html lang="ko-kr">
+    <head><meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content='고 모듈로 쉽고 간편하게 고 언어 개발하기'><title>About Go Module</title>
+
+<link rel='canonical' href='https://yansigit.github.io/blog/about-go-module/'>
+
+<link rel="stylesheet" href="/scss/style.min.css"><meta property='og:title' content='About Go Module'>
+<meta property='og:description' content='고 모듈로 쉽고 간편하게 고 언어 개발하기'>
+<meta property='og:url' content='https://yansigit.github.io/blog/about-go-module/'>
+<meta property='og:site_name' content='Code like Feather'>
+<meta property='og:type' content='article'><meta property='article:section' content='Posts' /><meta property='article:tag' content='go' /><meta property='article:tag' content='golang' /><meta property='article:tag' content='gomodule' /><meta property='article:published_time' content='2020-01-21T01:50:58&#43;09:00'/><meta property='article:modified_time' content='2020-01-21T01:50:58&#43;09:00'/><meta property='og:image' content='https://yansigit.github.io/images/lighthouse.jpg' />
+<meta name="twitter:title" content="About Go Module">
+<meta name="twitter:description" content="고 모듈로 쉽고 간편하게 고 언어 개발하기"><meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content='https://yansigit.github.io/images/lighthouse.jpg' />
+    </head>
+    <body class="
+    article-page 
+">
+    <script>
+        (function() {
+            const colorSchemeKey = 'StackColorScheme';
+            if(!localStorage.getItem(colorSchemeKey)){
+                localStorage.setItem(colorSchemeKey, "auto");
+            }
+        })();
+    </script><script>
+    (function() {
+        const colorSchemeKey = 'StackColorScheme';
+        const colorSchemeItem = localStorage.getItem(colorSchemeKey);
+        const supportDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches === true;
+
+        if (colorSchemeItem == 'dark' || colorSchemeItem === 'auto' && supportDarkMode) {
+            
+
+            document.documentElement.dataset.scheme = 'dark';
+        } else {
+            document.documentElement.dataset.scheme = 'light';
+        }
+    })();
+</script>
+<div class="container main-container flex 
+    
+        on-phone--column extended
+    
+">
+    
+        <aside class="sidebar left-sidebar sticky">
+    <button class="hamburger hamburger--spin" type="button" id="toggle-menu" aria-label="Toggle Menu">
+        <span class="hamburger-box">
+            <span class="hamburger-inner"></span>
+        </span>
+    </button>
+
+    <header class="site-info">
+        
+            
+            <figure class="site-avatar">
+                
+                    
+                    
+                    
+                        
+                        <img src="/images/feather_huffe0b2f5c64b5767aa123d4e37970f1f_948630_300x0_resize_box_3.png" width="300"
+                            height="450" class="site-logo" loading="lazy" alt="Avatar">
+                    
+                
+
+                
+                    <span class="emoji">🍥</span>
+                
+            </figure>
+            
+        
+        <h1 class="site-name"><a href="https://yansigit.github.io">Code like Feather</a></h1>
+        <h2 class="site-description">Tech blog related on Frontend, Backend, Machine-Learning, CS, Problem Solving and so on</h2>
+    </header>
+
+    <ol class="menu" id="main-menu">
+        
+        
+        
+
+        <li >
+            <a href='/' >
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-home" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <polyline points="5 12 3 12 12 3 21 12 19 12" />
+  <path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-7" />
+  <path d="M9 21v-6a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v6" />
+</svg>
+
+
+
+                
+                <span>Home</span>
+            </a>
+        </li>
+        
+        
+
+        <li >
+            <a href='/archives/' >
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-archive" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <rect x="3" y="4" width="18" height="4" rx="2" />
+  <path d="M5 8v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-10" />
+  <line x1="10" y1="12" x2="14" y2="12" />
+</svg>
+
+
+
+                
+                <span>Archives</span>
+            </a>
+        </li>
+        
+        
+
+        <li >
+            <a href='/search/' >
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-search" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="10" cy="10" r="7" />
+  <line x1="21" y1="21" x2="15" y2="15" />
+</svg>
+
+
+
+                
+                <span>Search</span>
+            </a>
+        </li>
+        
+        
+
+        <li >
+            <a href='/about/' >
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-user" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="7" r="4" />
+  <path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2" />
+</svg>
+
+
+
+                
+                <span>About</span>
+            </a>
+        </li>
+        
+        
+
+        <li >
+            <a href='/portfolio/' >
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-hash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <line x1="5" y1="9" x2="19" y2="9" />
+  <line x1="5" y1="15" x2="19" y2="15" />
+  <line x1="11" y1="4" x2="7" y2="20" />
+  <line x1="17" y1="4" x2="13" y2="20" />
+</svg>
+
+
+
+                
+                <span>Portfolio</span>
+            </a>
+        </li>
+        
+
+        
+            <li id="dark-mode-toggle">
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="8" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-right" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="16" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                <span>Dark Mode</span>
+            </li>
+        
+    </ol>
+</aside>
+
+    
+<main class="main full-width">
+    <article class="main-article">
+    <header class="article-header">
+
+    <div class="article-details">
+    
+    <header class="article-category">
+        
+            <a href="/categories/go/" >
+                go
+            </a>
+        
+    </header>
+    
+
+    <h2 class="article-title">
+        <a href="/blog/about-go-module/">About Go Module</a>
+    </h2>
+
+    
+    <h3 class="article-subtitle">
+        고 모듈로 쉽고 간편하게 고 언어 개발하기
+    </h3>
+    
+
+    
+    <footer class="article-time">
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-calendar-time" width="56" height="56" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M11.795 21h-6.795a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v4" />
+  <circle cx="18" cy="18" r="4" />
+  <path d="M15 3v4" />
+  <path d="M7 3v4" />
+  <path d="M3 11h16" />
+  <path d="M18 16.496v1.504l1 1" />
+</svg>
+                <time class="article-time--published">Jan 21, 2020</time>
+            </div>
+        
+
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <polyline points="12 7 12 12 15 15" />
+</svg>
+
+
+
+                <time class="article-time--reading">
+                    2 minute read
+                </time>
+            </div>
+        
+    </footer>
+    
+</div>
+</header>
+
+    <section class="article-content">
+    <p>고 모듈이 등장하기 전까지, 개발자들은 GOPATH 등의 환경변수를 이용해
+프로젝트 및 패키지 종속성을 관리해야 했다.</p>
+<p>그러나 고 버전 1.11버전부터 공식적으로 고 모듈 기능이 추가되어
+더욱 쉽고 간편하게 패키지를 관리하는 것이 가능해졌다.</p>
+<h1 id="how-to-use">HOW TO USE</h1>
+<p>사용 방법은 다음과 같다.</p>
+<p>먼저 프로젝트 디렉토리로 사용할 디렉토리를 만든다. 어디든지 상관없다.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell">mkdir goProject
+</code></pre></div><p>다음 <code>go mod init</code> 명령어를 통해 모듈 프로젝트로 초기화시킨다.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell">go mod init github.com/yansigit/hello
+</code></pre></div><p>init 이후의 <code>github.com/yansigit/hello</code> 인수는 모듈의 이름이다.</p>
+<p>모듈 이름을 해당 명령어를 통해 작성할 수도 있고 소스코드 파일에</p>
+<p><code>package &lt;패키지명&gt; // import github.com/yansigit/hello</code></p>
+<p>이런 식으로 주석으로 달아준 다음 <code>go mod init</code>만 해줘도 상관없는 듯 하다.</p>
+<p>아무튼 실행하게 되면, <code>go.mod</code>라는 파일 하나가 프로젝트 루트에 생성된다.</p>
+<p>파일을 열어보면 다음과 같이 되어있을 것이다.</p>
+<pre tabindex="0"><code>module github.com/yansigit/hello
+
+go 1.13
+</code></pre><p>이제 소스파일을 작성해보자.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell">touch test.go
+</code></pre></div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="kn">package</span> <span class="nx">main</span>
+
+<span class="kn">import</span> <span class="p">(</span>
+	<span class="c1">// &#34;fmt&#34;
+</span><span class="c1"></span>	<span class="s">&#34;github.com/gin-gonic/gin&#34;</span>
+	<span class="c1">// &#34;net/http&#34;
+</span><span class="c1"></span><span class="p">)</span>
+<span class="kd">func</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+	<span class="nx">r</span> <span class="o">:=</span> <span class="nx">gin</span><span class="p">.</span><span class="nf">Default</span><span class="p">()</span>
+	<span class="nx">r</span><span class="p">.</span><span class="nf">GET</span><span class="p">(</span><span class="s">&#34;/ping&#34;</span><span class="p">,</span> <span class="kd">func</span><span class="p">(</span><span class="nx">c</span> <span class="o">*</span><span class="nx">gin</span><span class="p">.</span><span class="nx">Context</span><span class="p">)</span> <span class="p">{</span>
+		<span class="nx">c</span><span class="p">.</span><span class="nf">JSON</span><span class="p">(</span><span class="mi">200</span><span class="p">,</span> <span class="nx">gin</span><span class="p">.</span><span class="nx">H</span><span class="p">{</span>
+			<span class="s">&#34;message&#34;</span><span class="p">:</span> <span class="s">&#34;pong&#34;</span><span class="p">,</span>
+		<span class="p">})</span>
+	<span class="p">})</span>
+	<span class="nx">r</span><span class="p">.</span><span class="nf">Run</span><span class="p">()</span> <span class="c1">// listen and serve on 0.0.0.0:8080
+</span><span class="c1"></span><span class="p">}</span>
+</code></pre></div><p>다음, <code>go</code> 명령어를 사용하면 자동으로 import된 패키지를 찾고 <code>GOPATH/pkg/mod</code> 디렉터리 밑에 설치된다.
+이 때 프로젝트 루트 디렉터리에 go.sum 파일도 함께 생성된다.</p>
+<p>이 파일은 설치된 모듈의 해시 값을 저장해두고, 매 go 커맨드가 실행되기 전에
+설치 되어있는 모듈의 해시 값과 go.sum에 저장된 해시 값을 비교하여
+설치된 모듈의 유효성을 검증하는 역할을 한다.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell">go get -u
+</code></pre></div><p>명령어를 통해 import 시킨 패키지들을 받아온다.</p>
+<p>굳이 go 명령어를 사용하면 자동으로 받아오는데 왜 <code>go get</code>까지 해주냐면..</p>
+<p>이유는 모르겠으나 goland IDE에서 해당 명령어를 쳐주지 않으면 패키지를 찾을 수 없는지 빨갛게 뜬다.</p>
+<pre tabindex="0"><code>module github.com/yansigit/hello
+
+go 1.13
+
+require (
+	github.com/gin-gonic/gin v1.5.0
+	github.com/go-playground/universal-translator v0.17.0 // indirect
+	github.com/json-iterator/go v1.1.9 // indirect
+	github.com/leodido/go-urn v1.2.0 // indirect
+	github.com/mattn/go-isatty v0.0.12 // indirect
+	github.com/modern-go/concurrent v0.0.0-20180306012644-bacd9c7ef1dd // indirect
+	github.com/modern-go/reflect2 v1.0.1 // indirect
+	golang.org/x/sys v0.0.0-20200121082415-34d275377bf9 // indirect
+	gopkg.in/go-playground/validator.v9 v9.31.0 // indirect
+	gopkg.in/yaml.v2 v2.2.7 // indirect
+)
+
+</code></pre><p><code>go.mod</code>에서도 의존성 관련 정보들이 업데이트 된다.</p>
+<p>필요할 때 마다 <code>go.mod</code> 파일을 수정해 모듈을 관리할 수 있다.</p>
+<p>만약, 새로운 모듈을 추가하고 싶다면
+<code>go get &lt;module-path&gt;@&lt;module-query&gt;</code> 커맨드를 사용한다.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell">go get github.com/fatih/color@latest 
+</code></pre></div><p>Module query에 대한 더 자세한 내용은 <a class="link" href="https://golang.org/cmd/go/#hdr-Module_queries"  target="_blank" rel="noopener"
+    >공식문서</a>를 통해 확인하실 수 있다.</p>
+<p>버전 지정이 필요가 없다면 코드에서 바로 import 하면
+go 커맨드가 실행될 때 자동으로 추가될 것이다.</p>
+<hr>
+<p>참고 및 출처: <a class="link" href="https://velog.io/@kimmachinegun/Go-Go-Modules-%ec%82%b4%ed%8e%b4%eb%b3%b4%ea%b8%b0-7cjn4soifk"  target="_blank" rel="noopener"
+    >https://velog.io/@kimmachinegun/Go-Go-Modules-살펴보기-7cjn4soifk</a></p>
+</section>
+
+
+    <footer class="article-footer">
+    
+    <section class="article-tags">
+        
+            <a href="/tags/go/">go</a>
+        
+            <a href="/tags/golang/">golang</a>
+        
+            <a href="/tags/gomodule/">gomodule</a>
+        
+    </section>
+
+
+    
+    <section class="article-copyright">
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-copyright" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <path d="M14.5 9a3.5 4 0 1 0 0 6" />
+</svg>
+
+
+
+        <span>Licensed under CC BY-NC-SA 4.0</span>
+    </section>
+    </footer>
+
+
+    
+</article>
+
+    <aside class="related-contents--wrapper">
+    
+    
+        <h2 class="section-title">Related contents</h2>
+        <div class="related-contents">
+            <div class="flex article-list--tile">
+                
+                    
+<article class="">
+    <a href="/blog/golang-cheet-sheets-for-algo-test/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">Golang Cheet Sheets for Algo Test</h2>
+        </div>
+    </a>
+</article>
+                
+                    
+<article class="">
+    <a href="/blog/time-format-in-golang/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">Time Format in Golang</h2>
+        </div>
+    </a>
+</article>
+                
+                    
+<article class="">
+    <a href="/blog/hot-reloading-on-golang-project/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">Hot Reloading on Golang Project</h2>
+        </div>
+    </a>
+</article>
+                
+                    
+<article class="">
+    <a href="/blog/comparing-float-in-golang/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">Comparing Float in Golang</h2>
+        </div>
+    </a>
+</article>
+                
+                    
+<article class="">
+    <a href="/blog/go-cross-compile/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">Go Cross Compile</h2>
+        </div>
+    </a>
+</article>
+                
+            </div>
+        </div>
+    
+</aside>
+
+     
+    
+        
+    <script src="https://utteranc.es/client.js" 
+        repo="yansigit/yansigit.github.io"
+        issue-term="pathname"
+        
+        label="Utterances Comment"
+        
+        crossorigin="anonymous"
+        async
+        >
+</script>
+
+<style>
+    .utterances {
+        max-width: unset;
+    }
+</style>
+
+<script>
+    function setUtterancesTheme(theme) {
+        let utterances = document.querySelector('.utterances iframe');
+        if (utterances) {
+            utterances.contentWindow.postMessage(
+                {
+                    type: 'set-theme',
+                    theme: `github-${theme}`
+                },
+                'https://utteranc.es'
+            );
+        }
+    }
+
+    addEventListener('message', event => {
+        if (event.origin !== 'https://utteranc.es') return;
+        setUtterancesTheme(document.documentElement.dataset.scheme)
+    });
+
+    window.addEventListener('onColorSchemeChange', (e) => {
+        setUtterancesTheme(e.detail)
+    })
+</script>
+
+
+    
+
+    <footer class="site-footer">
+    <section class="copyright">
+        &copy; 
+        
+            2020 - 
+        
+        2021 Code like Feather
+    </section>
+    
+    <section class="powerby">
+        Built with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> <br />
+        Theme <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="3.2.0">Stack</a></b> designed by <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a>
+    </section>
+</footer>
+
+
+    
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    
+    <div class="pswp__bg"></div>
+
+    
+    <div class="pswp__scroll-wrap">
+
+        
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                
+                
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"integrity="sha256-ePwmChbbvXbsO02lbM3HoHbSHTHFAeChekF1xKJdleo="crossorigin="anonymous"
+                defer="true"
+                >
+            </script><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"integrity="sha256-UKkzOn/w1mBxRmLLGrSeyB4e1xbrp4xylgAWb3M42pU="crossorigin="anonymous"
+                defer="true"
+                >
+            </script><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.css"integrity="sha256-c0uckgykQ9v5k&#43;IqViZOZKc47Jn7KQil4/MP3ySA3F8="crossorigin="anonymous"
+            ><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.css"integrity="sha256-SBLU4vv6CA6lHsZ1XyTdhyjJxCjPif/TRkjnsyGAGnE="crossorigin="anonymous"
+            >
+
+            </main>
+    
+
+        </div>
+        <script 
+                src="https://cdn.jsdelivr.net/npm/node-vibrant@3.1.5/dist/vibrant.min.js"integrity="sha256-5NovOZc4iwiAWTYIFiIM7DxKUXKWvpVEuMEPLzcm5/g="crossorigin="anonymous"
+                defer="false"
+                >
+            </script><script type="text/javascript" src="/ts/main.js" defer></script>
+<script>
+    (function () {
+        const customFont = document.createElement('link');
+        customFont.href = "https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap";
+
+        customFont.type = "text/css";
+        customFont.rel = "stylesheet";
+
+        document.head.appendChild(customFont);
+    }());
+</script>
+
+    </body>
+</html>

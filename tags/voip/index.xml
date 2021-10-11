@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>voip on Code like Feather</title>
+    <link>https://yansigit.github.io/tags/voip/</link>
+    <description>Recent content in voip on Code like Feather</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>ko-kr</language>
+    <lastBuildDate>Thu, 17 Sep 2020 00:11:07 +0900</lastBuildDate><atom:link href="https://yansigit.github.io/tags/voip/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Computer Networking - VOIP</title>
+      <link>https://yansigit.github.io/blog/computer-networking-voip/</link>
+      <pubDate>Thu, 17 Sep 2020 00:11:07 +0900</pubDate>
+      
+      <guid>https://yansigit.github.io/blog/computer-networking-voip/</guid>
+      <description>&lt;p&gt;Computer Networking - VOIP&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Computer Networking - VOIP-SIP</title>
+      <link>https://yansigit.github.io/blog/computer-networking-voip-sip/</link>
+      <pubDate>Thu, 17 Sep 2020 00:11:07 +0900</pubDate>
+      
+      <guid>https://yansigit.github.io/blog/computer-networking-voip-sip/</guid>
+      <description>&lt;p&gt;Computer Networking - VOIP-SIP&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

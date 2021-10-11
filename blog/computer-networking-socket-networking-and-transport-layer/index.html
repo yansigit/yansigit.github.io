@@ -1,0 +1,761 @@
+<!DOCTYPE html>
+<html lang="ko-kr">
+    <head><meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content='컴퓨터 네트워크 - Socket Networking and Transport Layer'><title>Computer Networking - Socket Networking and Transport Layer</title>
+
+<link rel='canonical' href='https://yansigit.github.io/blog/computer-networking-socket-networking-and-transport-layer/'>
+
+<link rel="stylesheet" href="/scss/style.min.css"><meta property='og:title' content='Computer Networking - Socket Networking and Transport Layer'>
+<meta property='og:description' content='컴퓨터 네트워크 - Socket Networking and Transport Layer'>
+<meta property='og:url' content='https://yansigit.github.io/blog/computer-networking-socket-networking-and-transport-layer/'>
+<meta property='og:site_name' content='Code like Feather'>
+<meta property='og:type' content='article'><meta property='article:section' content='Posts' /><meta property='article:tag' content='computer-networking' /><meta property='article:tag' content='network' /><meta property='article:tag' content='networking' /><meta property='article:tag' content='socket' /><meta property='article:tag' content='socket-networking' /><meta property='article:tag' content='transport-layer' /><meta property='article:published_time' content='2020-09-17T00:11:07&#43;09:00'/><meta property='article:modified_time' content='2020-09-17T00:11:07&#43;09:00'/><meta property='og:image' content='https://yansigit.github.io/images/lighthouse.jpg' />
+<meta name="twitter:title" content="Computer Networking - Socket Networking and Transport Layer">
+<meta name="twitter:description" content="컴퓨터 네트워크 - Socket Networking and Transport Layer"><meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content='https://yansigit.github.io/images/lighthouse.jpg' />
+    </head>
+    <body class="
+    article-page has-toc
+">
+    <script>
+        (function() {
+            const colorSchemeKey = 'StackColorScheme';
+            if(!localStorage.getItem(colorSchemeKey)){
+                localStorage.setItem(colorSchemeKey, "auto");
+            }
+        })();
+    </script><script>
+    (function() {
+        const colorSchemeKey = 'StackColorScheme';
+        const colorSchemeItem = localStorage.getItem(colorSchemeKey);
+        const supportDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches === true;
+
+        if (colorSchemeItem == 'dark' || colorSchemeItem === 'auto' && supportDarkMode) {
+            
+
+            document.documentElement.dataset.scheme = 'dark';
+        } else {
+            document.documentElement.dataset.scheme = 'light';
+        }
+    })();
+</script>
+<div class="container main-container flex 
+    
+        extended
+    
+">
+    
+        <div id="article-toolbar">
+            <a href="https://yansigit.github.io" class="back-home">
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-chevron-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <polyline points="15 6 9 12 15 18" />
+</svg>
+
+
+
+                <span>Back</span>
+            </a>
+        </div>
+    
+<main class="main full-width">
+    <article class="main-article">
+    <header class="article-header">
+
+    <div class="article-details">
+    
+    <header class="article-category">
+        
+            <a href="/categories/computer-networking/" >
+                computer-networking
+            </a>
+        
+    </header>
+    
+
+    <h2 class="article-title">
+        <a href="/blog/computer-networking-socket-networking-and-transport-layer/">Computer Networking - Socket Networking and Transport Layer</a>
+    </h2>
+
+    
+    <h3 class="article-subtitle">
+        컴퓨터 네트워크 - Socket Networking and Transport Layer
+    </h3>
+    
+
+    
+    <footer class="article-time">
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-calendar-time" width="56" height="56" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M11.795 21h-6.795a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v4" />
+  <circle cx="18" cy="18" r="4" />
+  <path d="M15 3v4" />
+  <path d="M7 3v4" />
+  <path d="M3 11h16" />
+  <path d="M18 16.496v1.504l1 1" />
+</svg>
+                <time class="article-time--published">Sep 17, 2020</time>
+            </div>
+        
+
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <polyline points="12 7 12 12 15 15" />
+</svg>
+
+
+
+                <time class="article-time--reading">
+                    4 minute read
+                </time>
+            </div>
+        
+    </footer>
+    
+</div>
+</header>
+
+    <section class="article-content">
+    <p>Computer Networking - Socket Networking and Transport Layer</p>
+<h1 id="computer-netowork-socket-networking-and-transport-layer">Computer-Netowork-Socket-Networking-and-Transport-Layer</h1>
+<h1 id="1-socket-programming">1. Socket Programming</h1>
+<h2 id="socket"><strong>Socket</strong></h2>
+<p>Door between applicationp process and end to end transport protocol</p>
+<h2 id="socket-delivery-flow">Socket delivery flow</h2>
+<p>Make a messsage → Send it to sender socket → will be delivered automatically to the socket of the receiver → Receiver will get message thru its own socket</p>
+<h2 id="so-you-dont-need-to-worry-about-much-things">So, you don&rsquo;t need to worry about much things</h2>
+<p>You only need to specify source address, destination address, and message which will be attached on socket.</p>
+<p>Rest of parts will be done by transport infra.</p>
+<h2 id="two-socket-types">Two socket types</h2>
+<ul>
+<li><strong>UDP</strong>
+<ul>
+<li>Unreliable Datagram</li>
+</ul>
+</li>
+<li><strong>TCP</strong>
+<ul>
+<li>Reliable</li>
+<li>Byte stream-oriented
+<ul>
+<li>Imagine there is some pipe between sender and receiver</li>
+<li>Sender ←→ Receiver</li>
+<li>And datagrams flow thru the pipeline, being oriented</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="udp-no-connection-between-client--server">UDP: &ldquo;No connection&rdquo; between client ↔ server</h2>
+<ul>
+<li>No Handshaking before sending data</li>
+<li>Sender (Can be both Server or Client) attaches IP destination address and port number to each packet</li>
+<li>Receiver extracts sender IP and port number from received packet</li>
+<li>Packet can be lost or received un-ordered status. (not guaranteed)</li>
+</ul>
+<h2 id="how-udp-interacting">How UDP interacting</h2>
+<p><figure 
+	>
+	<a href="/posts/computer-network-networking-and-transport-layer/Untitled.png" >
+		<img src="/posts/computer-network-networking-and-transport-layer/Untitled.png"
+			
+			
+			
+			loading="lazy"
+			alt="image">
+	</a>
+	
+	<figcaption>image</figcaption>
+	
+</figure></p>
+<h2 id="actual-python-code-udp">Actual Python Code (UDP)</h2>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="c1"># UDP CLIENT</span>
+<span class="kn">from</span> <span class="nn">socket</span> <span class="kn">import</span> <span class="o">*</span>
+<span class="n">serverName</span> <span class="o">=</span> <span class="s1">&#39;hostname&#39;</span>
+<span class="n">serverPort</span> <span class="o">=</span> <span class="mi">12000</span>
+<span class="n">clientSocket</span> <span class="o">=</span> <span class="n">socket</span><span class="p">(</span><span class="n">AF_INET</span><span class="p">,</span> <span class="n">SOCK_DGRAM</span><span class="p">)</span>
+<span class="n">message</span> <span class="o">=</span> <span class="n">raw_input</span><span class="p">(</span><span class="s1">&#39;Input lowercase sentence:&#39;</span><span class="p">)</span>
+<span class="n">clientSocket</span><span class="o">.</span><span class="n">sendto</span><span class="p">(</span><span class="n">message</span><span class="o">.</span><span class="n">encode</span><span class="p">(),</span> <span class="p">(</span><span class="n">serverName</span><span class="p">,</span> <span class="n">serverPort</span><span class="p">))</span>
+<span class="n">modifiedMessage</span><span class="p">,</span> <span class="n">serverAddress</span> <span class="o">=</span> <span class="n">clientSocket</span><span class="o">.</span><span class="n">recvfrom</span><span class="p">(</span><span class="mi">2048</span><span class="p">)</span> <span class="c1"># receive from. will be blocked until it receives some datagram</span>
+<span class="nb">print</span> <span class="n">modifiedMessage</span><span class="o">.</span><span class="n">decode</span><span class="p">()</span>
+<span class="n">clientSocket</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+</code></pre></div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="c1"># UDP SERVER</span>
+<span class="kn">from</span> <span class="nn">socket</span> <span class="kn">import</span> <span class="o">*</span>
+<span class="n">serverPort</span> <span class="o">=</span> <span class="mi">12000</span>
+<span class="n">serverSocket</span> <span class="o">=</span> <span class="n">socket</span><span class="p">(</span><span class="n">AF_INET</span><span class="p">,</span> <span class="n">SOCK_DGRAM</span><span class="p">)</span>
+<span class="n">serverSocket</span><span class="o">.</span><span class="n">bind</span><span class="p">((</span><span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="n">serverPort</span><span class="p">))</span>
+<span class="nb">print</span> <span class="p">(</span><span class="s1">&#39;The server is ready to receive&#39;</span><span class="p">)</span>
+<span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
+    <span class="n">message</span><span class="p">,</span> <span class="n">clientAddress</span> <span class="o">=</span> <span class="n">serverSocket</span><span class="o">.</span><span class="n">recvfrom</span><span class="p">(</span><span class="mi">2048</span><span class="p">)</span>
+    <span class="n">modifiedMessage</span> <span class="o">=</span> <span class="n">message</span><span class="o">.</span><span class="n">decode</span><span class="p">()</span><span class="o">.</span><span class="n">upper</span><span class="p">()</span>
+    <span class="n">serverSocket</span><span class="o">.</span><span class="n">sendto</span><span class="p">(</span><span class="n">modifiedMessage</span><span class="o">.</span><span class="n">encode</span><span class="p">(),</span> <span class="n">clientAddress</span><span class="p">)</span>
+</code></pre></div><h2 id="tcp-creating-tcp-connection-between-clientserver">TCP: &ldquo;Creating TCP connection between client↔server&rdquo;</h2>
+<ul>
+<li>Client must contact server first
+<ul>
+<li>So, server process should be run first, with its socket to welcome client&rsquo;s contact</li>
+<li>Client contacts server by creating TCP socket, specifying IP address, port number of server process (with connect function in python)</li>
+</ul>
+</li>
+<li>Server creates saparated TCP socket for each clients
+<ul>
+<li>allows server to talk with multiple clients</li>
+<li>source port numbers used to determine clients</li>
+</ul>
+</li>
+<li>TCP provices reliable, in-order byte stream transfer (&ldquo;pipe&rdquo;) between client ↔ server</li>
+</ul>
+<h2 id="how-tcp-interacting">How TCP interacting</h2>
+<p><figure 
+	>
+	<a href="/posts/computer-network-networking-and-transport-layer/Untitled%201.png" >
+		<img src="/posts/computer-network-networking-and-transport-layer/Untitled%201.png"
+			
+			
+			
+			loading="lazy"
+			alt="image">
+	</a>
+	
+	<figcaption>image</figcaption>
+	
+</figure></p>
+<ul>
+<li>서버 소켓은 Close되지 않고 클라이언트 소켓을 위해 언제나 열려있을 것임</li>
+</ul>
+<h2 id="actual-python-code-tcp">Actual Python Code (TCP)</h2>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="c1"># Client</span>
+<span class="kn">from</span> <span class="nn">socket</span> <span class="kn">import</span> <span class="o">*</span>
+<span class="n">serverName</span> <span class="o">=</span> <span class="s1">&#39;servername&#39;</span>
+<span class="n">serverPort</span> <span class="o">=</span> <span class="mi">12000</span>
+<span class="n">clientSocket</span> <span class="o">=</span> <span class="n">socket</span><span class="p">(</span><span class="n">AF_INET</span><span class="p">,</span> <span class="n">SOCK_STREAM</span><span class="p">)</span>
+<span class="n">clientSocket</span><span class="o">.</span><span class="n">connect</span><span class="p">((</span><span class="n">serverName</span><span class="p">,</span><span class="n">serverPort</span><span class="p">))</span>
+<span class="n">sentence</span> <span class="o">=</span> <span class="n">raw_input</span><span class="p">(</span><span class="s1">&#39;Input lowercase sentence:&#39;</span><span class="p">)</span>
+<span class="n">clientSocket</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="n">sentence</span><span class="o">.</span><span class="n">encode</span><span class="p">())</span>
+<span class="n">modifiedSentence</span> <span class="o">=</span> <span class="n">clientSocket</span><span class="o">.</span><span class="n">recv</span><span class="p">(</span><span class="mi">1024</span><span class="p">)</span>
+<span class="nb">print</span> <span class="p">(</span><span class="err">‘</span><span class="n">From</span> <span class="n">Server</span><span class="p">:</span><span class="err">’</span><span class="p">,</span> <span class="n">modifiedSentence</span><span class="o">.</span><span class="n">decode</span><span class="p">())</span>
+<span class="n">clientSocket</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+</code></pre></div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="c1"># Server</span>
+<span class="kn">from</span> <span class="nn">socket</span> <span class="kn">import</span> <span class="o">*</span>
+<span class="n">serverPort</span> <span class="o">=</span> <span class="mi">12000</span>
+<span class="n">serverSocket</span> <span class="o">=</span> <span class="n">socket</span><span class="p">(</span><span class="n">AF_INET</span><span class="p">,</span><span class="n">SOCK_STREAM</span><span class="p">)</span>
+<span class="n">serverSocket</span><span class="o">.</span><span class="n">bind</span><span class="p">((</span><span class="s1">&#39;&#39;</span><span class="p">,</span><span class="n">serverPort</span><span class="p">))</span>
+<span class="n">serverSocket</span><span class="o">.</span><span class="n">listen</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="c1"># begins to listen for incoming TCP requests</span>
+<span class="nb">print</span> <span class="s1">&#39;The server is ready to receive&#39;</span>
+<span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
+     <span class="n">connectionSocket</span><span class="p">,</span> <span class="n">addr</span> <span class="o">=</span> <span class="n">serverSocket</span><span class="o">.</span><span class="n">accept</span><span class="p">()</span> <span class="c1"># blocked waiting imcoming requests</span>
+     
+     <span class="n">sentence</span> <span class="o">=</span> <span class="n">connectionSocket</span><span class="o">.</span><span class="n">recv</span><span class="p">(</span><span class="mi">1024</span><span class="p">)</span><span class="o">.</span><span class="n">decode</span><span class="p">()</span>
+     <span class="n">capitalizedSentence</span> <span class="o">=</span> <span class="n">sentence</span><span class="o">.</span><span class="n">upper</span><span class="p">()</span>
+     <span class="n">connectionSocket</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="n">capitalizedSentence</span><span class="o">.</span><span class="n">encode</span><span class="p">())</span>
+     <span class="n">connectionSocket</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+</code></pre></div><h1 id="2-transport-layer">2. Transport Layer</h1>
+<h2 id="tranport-services-and-protocols">Tranport services and protocols</h2>
+<ul>
+<li>Manage <strong>logical commucation</strong> between app process running on different hosts
+<ul>
+<li>Those Two hosts may not physically connected</li>
+</ul>
+</li>
+<li>Transport protocols run in end systems
+<ul>
+<li>Not in routers</li>
+<li>Send side: breaks app messages into segments, and passes to network layer</li>
+<li>Receiver side: Reassembles segments into messages, passes to app layer</li>
+</ul>
+</li>
+<li>More than one transport layer can be available: UDP and TCP</li>
+</ul>
+<h2 id="transport-vs-network-layer-">Transport vs Network Layer ★</h2>
+<h3 id="network-layer">Network Layer</h3>
+<ul>
+<li><strong>Logical communication</strong> between <strong>hosts</strong></li>
+</ul>
+<h3 id="transport-layer">Transport Layer</h3>
+<ul>
+<li><strong>Logical communication</strong> between <strong>processes</strong> (programs)</li>
+<li>Relies on network layer servcies</li>
+</ul>
+<h2 id="internet-transport-layer-protocols">Internet Transport-Layer Protocols</h2>
+<blockquote>
+<p>딜레이, 전송 속도는 TCP, UDP 둘 다 보장 안됨</p>
+</blockquote>
+<h3 id="tcp">TCP</h3>
+<ul>
+<li>Congesion control
+<ul>
+<li>네트워크가 혼잡할 때 Sender의 속도를 줄여 혼잡을 완화</li>
+</ul>
+</li>
+<li>Flow control
+<ul>
+<li>Sender가 너무 빠르게 Stream을 보내지 않도록 속도를 조절</li>
+<li>Receiver가 받는 속도가 느리면 패킷로스가 일어날 수 있기 때문</li>
+</ul>
+</li>
+<li>Connection setup</li>
+</ul>
+<h3 id="udp">UDP</h3>
+<ul>
+<li>No extensions</li>
+</ul>
+<h1 id="3-multiplexing-and-demultiplexing">3. Multiplexing and Demultiplexing</h1>
+<blockquote>
+<p>여러개의 소켓에서 전송되고 받는 데이터를 Handle하기 위함</p>
+</blockquote>
+<p><figure 
+	>
+	<a href="/posts/computer-network-networking-and-transport-layer/Untitled%202.png" >
+		<img src="/posts/computer-network-networking-and-transport-layer/Untitled%202.png"
+			
+			
+			
+			loading="lazy"
+			alt="image">
+	</a>
+	
+	<figcaption>image</figcaption>
+	
+</figure></p>
+<h2 id="multiplexing">Multiplexing</h2>
+<ul>
+<li><strong>Handle data from</strong> <strong>multiple sockets</strong>, add transport header</li>
+</ul>
+<h2 id="demultiplexing">Demultiplexing</h2>
+<ul>
+<li>Use transport header info to <strong>deliver received segments to correct socket</strong></li>
+</ul>
+<h2 id="how-demultiplexing-works">How Demultiplexing works</h2>
+<ul>
+<li>Each datagram has source IP address and destination IP address</li>
+<li>Also datagram carries one transport-layer segment
+<ul>
+<li>which has source, destination port number</li>
+</ul>
+</li>
+<li>So, host uses IP address &amp; Port numbers to direct segment to appropriate socket</li>
+</ul>
+<h2 id="connectionless-demultiplexing-used-in-udp">Connectionless demultiplexing: &ldquo;Used in UDP&rdquo;</h2>
+<h3 id="recall">!Recall</h3>
+<ul>
+<li>클라이언트 소켓이 만들어질때는 OS가 클라이언트 소켓에 포트 넘버를 자동 할당</li>
+<li>서버 소켓을 만들 때는 Bind 함수로 포트번호 할당 가능
+<ul>
+<li>OS에서 포트 넘버 할당</li>
+<li>Bind() 함수로 포트 넘버 할당</li>
+</ul>
+</li>
+<li>Sendto() 함수를 사용하기 위해서는
+<ul>
+<li>IP 주소와 포트 넘버를 명시해줘야 한다</li>
+</ul>
+</li>
+</ul>
+<h3 id="so-when-host-receives-udp-segment">SO.. When host receives UDP segment</h3>
+<p><figure 
+	>
+	<a href="/posts/computer-network-networking-and-transport-layer/Untitled%203.png" >
+		<img src="/posts/computer-network-networking-and-transport-layer/Untitled%203.png"
+			
+			
+			
+			loading="lazy"
+			alt="image">
+	</a>
+	
+	<figcaption>image</figcaption>
+	
+</figure></p>
+<ul>
+<li>Checks destination port number in segment
+<ul>
+<li>만약 각기 다른 Source IP, Port에서 온 데이터그램들이 같은 Destination Port를 가지고 있다면, 그냥 해당 Destination의 소켓으로 모두 전달한다.</li>
+<li>즉 UDP에서는 간단하게 말하면 포트 넘버만 보고 Demux를 한다고 볼 수 있다.</li>
+</ul>
+</li>
+<li>And directs UDP segment to socket with that port number</li>
+</ul>
+<h2 id="connection-oriented-demultiplexing-used-in-tcp">Connection-Oriented Demultiplexing: &ldquo;Used in TCP&rdquo;</h2>
+<h3 id="tcp-socket-identified-by-4-tuple">TCP socket identified by 4-tuple</h3>
+<p><figure 
+	>
+	<a href="/posts/computer-network-networking-and-transport-layer/Untitled%204.png" >
+		<img src="/posts/computer-network-networking-and-transport-layer/Untitled%204.png"
+			
+			
+			
+			loading="lazy"
+			alt="image">
+	</a>
+	
+	<figcaption>image</figcaption>
+	
+</figure></p>
+<blockquote>
+<p>Receiver uses all four values to direct segment to proper socket</p>
+</blockquote>
+<ul>
+<li>Source IP</li>
+<li>Source Port #</li>
+<li>Destination IP</li>
+<li>Destination Port #</li>
+</ul>
+<h3 id="server-host">Server host</h3>
+<ul>
+<li>May support many simultaneous TCP sockets</li>
+<li>May have different sockets for each connecting client
+<ul>
+<li>Non-persistent HTTP will have different socket for each request</li>
+</ul>
+</li>
+</ul>
+</section>
+
+
+    <footer class="article-footer">
+    
+    <section class="article-tags">
+        
+            <a href="/tags/computer-networking/">computer-networking</a>
+        
+            <a href="/tags/network/">network</a>
+        
+            <a href="/tags/networking/">networking</a>
+        
+            <a href="/tags/socket/">socket</a>
+        
+            <a href="/tags/socket-networking/">socket-networking</a>
+        
+            <a href="/tags/transport-layer/">transport-layer</a>
+        
+    </section>
+
+
+    
+    <section class="article-copyright">
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-copyright" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <path d="M14.5 9a3.5 4 0 1 0 0 6" />
+</svg>
+
+
+
+        <span>Licensed under CC BY-NC-SA 4.0</span>
+    </section>
+    </footer>
+
+
+    
+</article>
+
+    <aside class="related-contents--wrapper">
+    
+    
+        <h2 class="section-title">Related contents</h2>
+        <div class="related-contents">
+            <div class="flex article-list--tile">
+                
+                    
+<article class="">
+    <a href="/blog/computer-networking-transport-layer-protocols/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">Computer Networking - Transport Layer Protocols</h2>
+        </div>
+    </a>
+</article>
+                
+                    
+<article class="">
+    <a href="/blog/computer-networking-email-and-dns/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">Computer Networking - Email and DNS</h2>
+        </div>
+    </a>
+</article>
+                
+                    
+<article class="">
+    <a href="/blog/computer-networking-final-quick-note/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">Computer Networking - Final Quick Note</h2>
+        </div>
+    </a>
+</article>
+                
+                    
+<article class="">
+    <a href="/blog/computer-networking-flow-control-and-handshake/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">Computer Networking - Flow Control and Handshake</h2>
+        </div>
+    </a>
+</article>
+                
+                    
+<article class="">
+    <a href="/blog/computer-networking-http/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">Computer Networking - HTTP</h2>
+        </div>
+    </a>
+</article>
+                
+            </div>
+        </div>
+    
+</aside>
+
+     
+    
+        
+    <script src="https://utteranc.es/client.js" 
+        repo="yansigit/yansigit.github.io"
+        issue-term="pathname"
+        
+        label="Utterances Comment"
+        
+        crossorigin="anonymous"
+        async
+        >
+</script>
+
+<style>
+    .utterances {
+        max-width: unset;
+    }
+</style>
+
+<script>
+    function setUtterancesTheme(theme) {
+        let utterances = document.querySelector('.utterances iframe');
+        if (utterances) {
+            utterances.contentWindow.postMessage(
+                {
+                    type: 'set-theme',
+                    theme: `github-${theme}`
+                },
+                'https://utteranc.es'
+            );
+        }
+    }
+
+    addEventListener('message', event => {
+        if (event.origin !== 'https://utteranc.es') return;
+        setUtterancesTheme(document.documentElement.dataset.scheme)
+    });
+
+    window.addEventListener('onColorSchemeChange', (e) => {
+        setUtterancesTheme(e.detail)
+    })
+</script>
+
+
+    
+
+    <footer class="site-footer">
+    <section class="copyright">
+        &copy; 
+        
+            2020 - 
+        
+        2021 Code like Feather
+    </section>
+    
+    <section class="powerby">
+        Built with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> <br />
+        Theme <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="3.2.0">Stack</a></b> designed by <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a>
+    </section>
+</footer>
+
+
+    
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    
+    <div class="pswp__bg"></div>
+
+    
+    <div class="pswp__scroll-wrap">
+
+        
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                
+                
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"integrity="sha256-ePwmChbbvXbsO02lbM3HoHbSHTHFAeChekF1xKJdleo="crossorigin="anonymous"
+                defer="true"
+                >
+            </script><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"integrity="sha256-UKkzOn/w1mBxRmLLGrSeyB4e1xbrp4xylgAWb3M42pU="crossorigin="anonymous"
+                defer="true"
+                >
+            </script><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.css"integrity="sha256-c0uckgykQ9v5k&#43;IqViZOZKc47Jn7KQil4/MP3ySA3F8="crossorigin="anonymous"
+            ><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.css"integrity="sha256-SBLU4vv6CA6lHsZ1XyTdhyjJxCjPif/TRkjnsyGAGnE="crossorigin="anonymous"
+            >
+
+            </main>
+    
+        <aside class="sidebar right-sidebar sticky">
+            <section class="widget archives">
+                <div class="widget-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-hash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <line x1="5" y1="9" x2="19" y2="9" />
+  <line x1="5" y1="15" x2="19" y2="15" />
+  <line x1="11" y1="4" x2="7" y2="20" />
+  <line x1="17" y1="4" x2="13" y2="20" />
+</svg>
+
+
+
+                </div>
+                <h2 class="widget-title section-title">Table of contents</h2>
+                
+                <div class="widget--toc">
+                    <nav id="TableOfContents">
+  <ol>
+    <li><a href="#socket"><strong>Socket</strong></a></li>
+    <li><a href="#socket-delivery-flow">Socket delivery flow</a></li>
+    <li><a href="#so-you-dont-need-to-worry-about-much-things">So, you don&rsquo;t need to worry about much things</a></li>
+    <li><a href="#two-socket-types">Two socket types</a></li>
+    <li><a href="#udp-no-connection-between-client--server">UDP: &ldquo;No connection&rdquo; between client ↔ server</a></li>
+    <li><a href="#how-udp-interacting">How UDP interacting</a></li>
+    <li><a href="#actual-python-code-udp">Actual Python Code (UDP)</a></li>
+    <li><a href="#tcp-creating-tcp-connection-between-clientserver">TCP: &ldquo;Creating TCP connection between client↔server&rdquo;</a></li>
+    <li><a href="#how-tcp-interacting">How TCP interacting</a></li>
+    <li><a href="#actual-python-code-tcp">Actual Python Code (TCP)</a></li>
+  </ol>
+
+  <ol>
+    <li><a href="#tranport-services-and-protocols">Tranport services and protocols</a></li>
+    <li><a href="#transport-vs-network-layer-">Transport vs Network Layer ★</a>
+      <ol>
+        <li><a href="#network-layer">Network Layer</a></li>
+        <li><a href="#transport-layer">Transport Layer</a></li>
+      </ol>
+    </li>
+    <li><a href="#internet-transport-layer-protocols">Internet Transport-Layer Protocols</a>
+      <ol>
+        <li><a href="#tcp">TCP</a></li>
+        <li><a href="#udp">UDP</a></li>
+      </ol>
+    </li>
+  </ol>
+
+  <ol>
+    <li><a href="#multiplexing">Multiplexing</a></li>
+    <li><a href="#demultiplexing">Demultiplexing</a></li>
+    <li><a href="#how-demultiplexing-works">How Demultiplexing works</a></li>
+    <li><a href="#connectionless-demultiplexing-used-in-udp">Connectionless demultiplexing: &ldquo;Used in UDP&rdquo;</a>
+      <ol>
+        <li><a href="#recall">!Recall</a></li>
+        <li><a href="#so-when-host-receives-udp-segment">SO.. When host receives UDP segment</a></li>
+      </ol>
+    </li>
+    <li><a href="#connection-oriented-demultiplexing-used-in-tcp">Connection-Oriented Demultiplexing: &ldquo;Used in TCP&rdquo;</a>
+      <ol>
+        <li><a href="#tcp-socket-identified-by-4-tuple">TCP socket identified by 4-tuple</a></li>
+        <li><a href="#server-host">Server host</a></li>
+      </ol>
+    </li>
+  </ol>
+</nav>
+                </div>
+            </section>
+        </aside>
+    
+
+        </div>
+        <script 
+                src="https://cdn.jsdelivr.net/npm/node-vibrant@3.1.5/dist/vibrant.min.js"integrity="sha256-5NovOZc4iwiAWTYIFiIM7DxKUXKWvpVEuMEPLzcm5/g="crossorigin="anonymous"
+                defer="false"
+                >
+            </script><script type="text/javascript" src="/ts/main.js" defer></script>
+<script>
+    (function () {
+        const customFont = document.createElement('link');
+        customFont.href = "https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap";
+
+        customFont.type = "text/css";
+        customFont.rel = "stylesheet";
+
+        document.head.appendChild(customFont);
+    }());
+</script>
+
+    </body>
+</html>
